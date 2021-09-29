@@ -3,13 +3,12 @@ import { GenericContract } from 'eth-components/ant/generic-contract';
 import { Contract } from 'ethers';
 import { TEthersProvider, TProviderAndSigner } from 'eth-hooks/models';
 import { TContractConfig } from 'eth-hooks';
+import { IScaffoldProviders } from '~~/components/routes/main/hooks/useScaffoldProviders';
 
 interface IMainPageContracts {
-  mainnetProvider: TEthersProvider;
+  appProviders: IScaffoldProviders;
+  currentProviderAndSigner: TProviderAndSigner;
   mainnetContracts: Record<string, Contract>;
-  userProviderAndSigner: TProviderAndSigner;
-  localProvider: TEthersProvider;
-  userAddress: string;
   blockExplorerUrl: string;
   contractConfig: TContractConfig;
 }
@@ -29,13 +28,13 @@ export const MainPageContracts: FC<IMainPageContracts> = (props) => {
         this <Contract/> component will automatically parse your ABI
         and give you a form to interact with it locally
       */}
-      {props.userProviderAndSigner?.signer != null && (
+      {props.currentProviderAndSigner?.signer != null && (
         <>
           <GenericContract
             contractName="YourContract"
-            signer={props.userProviderAndSigner.signer}
-            provider={props.localProvider}
-            address={props.userAddress}
+            signer={props.currentProviderAndSigner.signer}
+            provider={props.currentProviderAndSigner.provider}
+            address={props.currentProviderAndSigner.address}
             blockExplorer={props.blockExplorerUrl}
             contractConfig={props.contractConfig}
           />

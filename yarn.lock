@@ -1441,6 +1441,7 @@
   integrity sha512-6quxWe8wwS4X5v3Au8q1jOvXYEPkS1Fh+cME5u6AwNdnI4uERvPlVjlgRWzpnb+Rrt1l/cEqiNRH9GlsBMSDQg==
 
 "@nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers", hardhat-deploy-ethers@^0.3.0-beta.10:
+  name "@nomiclabs/hardhat-ethers"
   version "0.3.0-beta.10"
   resolved "https://registry.yarnpkg.com/hardhat-deploy-ethers/-/hardhat-deploy-ethers-0.3.0-beta.10.tgz#bccfcf635d380bbab3638960f6739fe4d396fc5f"
   integrity sha512-TeyriUshRZ7XVHOjMsDtTozIrdwLf3Bw+oZRYNhXdG/eut5HeDhjUFPfRlG7TI1lSLvkcB5dt7OxOtPYKDOxTg==
@@ -6434,6 +6435,25 @@ eth-hooks@^2.4.0-beta05:
   version "2.4.0-beta05"
   resolved "https://registry.yarnpkg.com/eth-hooks/-/eth-hooks-2.4.0-beta05.tgz#72e280e76d3cc81dcf0bea2de50cc0b3e840e141"
   integrity sha512-+mVpUphMH0/ALWt11lSO5u9pr4yrM0cN5yfSPJSpiCYHY0mvNB0EeEJ2rSmFk+XLsB1eks05w1ZgIzLV38TTeA==
+  dependencies:
+    "@ethersproject/address" "^5.4.0"
+    "@ethersproject/bignumber" "^5.4.0"
+    "@ethersproject/bytes" "^5.4.0"
+    "@ethersproject/contracts" "^5.4.0"
+    "@ethersproject/networks" "^5.4.0"
+    "@ethersproject/providers" "^5.4.0"
+    "@ethersproject/signing-key" "^5.4.0"
+    "@ethersproject/solidity" "^5.4.0"
+    "@ethersproject/units" "^5.4.0"
+    "@uniswap/token-lists" "^1.0.0-beta.24"
+    axios "^0.21.4"
+    ethers "^5.4.1"
+    use-debounce "^7.0.0"
+
+eth-hooks@^2.4.0-beta14:
+  version "2.4.0-beta14"
+  resolved "https://registry.yarnpkg.com/eth-hooks/-/eth-hooks-2.4.0-beta14.tgz#4dc9a3ace1f7bf4a2fe4f65b49f0ea4127462226"
+  integrity sha512-nCnC7WvP/FDo4HfizS8TwcEYzmsTkpcdXx+f06m5/neDNbxwZ6Zm/zZfSlC8cdu0j0WpIaIBFiTHxIiYHhTrtw==
   dependencies:
     "@ethersproject/address" "^5.4.0"
     "@ethersproject/bignumber" "^5.4.0"
