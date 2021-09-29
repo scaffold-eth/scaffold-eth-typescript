@@ -64,3 +64,5 @@ yarn-error.log*
 .netlify
 *.tsbuildinfo
 *.stackdump
+.yalc
+yalc.lock

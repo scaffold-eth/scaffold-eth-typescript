@@ -10,7 +10,8 @@
     "ipfs-ts": "node ./scripts/ipfs.js",
     "surge-ts": "surge ./build",
     "s3-ts": "node ./scripts/s3.js",
-    "ship-ts": "yarn surge"
+    "ship-ts": "yarn surge",
+    "dev:link": "yalc link eth-hooks && yalc link eth-components"
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
