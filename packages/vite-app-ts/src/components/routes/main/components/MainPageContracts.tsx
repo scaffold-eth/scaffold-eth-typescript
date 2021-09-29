@@ -32,9 +32,8 @@ export const MainPageContracts: FC<IMainPageContracts> = (props) => {
         <>
           <GenericContract
             contractName="YourContract"
-            signer={props.currentProviderAndSigner.signer}
-            provider={props.currentProviderAndSigner.provider}
-            address={props.currentProviderAndSigner.address}
+            providerAndSigner={props.currentProviderAndSigner}
+            mainnetProvider={props.appProviders.mainnetProvider}
             blockExplorer={props.blockExplorerUrl}
             contractConfig={props.contractConfig}
           />

@@ -12,7 +12,7 @@ interface IExampleUIProps {
   setPurposeEvents: any;
   address: string;
   mainnetProvider: any;
-  localProvider: any;
+  currentProvider: any;
   yourLocalBalance: any;
   price: any;
   tx: any;
@@ -26,7 +26,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
     setPurposeEvents,
     address,
     mainnetProvider,
-    localProvider,
+    currentProvider: localProvider,
     yourLocalBalance,
     price,
     tx,

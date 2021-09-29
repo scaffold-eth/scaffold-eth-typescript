@@ -3,14 +3,13 @@ import { Row, Col, Button } from 'antd';
 import { Ramp } from '~~/components/common';
 import { Faucet, GasGauge } from 'eth-components/ant';
 import { NETWORKS } from '~~/models/constants/networks';
-import { TEthersProvider } from 'eth-hooks/models';
+import { TEthersProvider, TProviderAndSigner } from 'eth-hooks/models';
 
 interface IMainPageExtraUi {
-  localProvider: TEthersProvider;
+  currentProviderAndSinger: TProviderAndSigner;
   mainnetProvider: TEthersProvider;
   price: number;
   gasPrice: number | undefined;
-  userAddress: string;
   faucetAvailable: boolean;
 }
 
@@ -30,7 +29,7 @@ export const MainPageExtraUi: FC<IMainPageExtraUi> = (props) => (
     }}>
     <Row align="middle" gutter={[4, 4]}>
       <Col span={8}>
-        <Ramp price={props.price} address={props.userAddress} networks={NETWORKS} />
+        <Ramp price={props.price} address={props.currentProviderAndSinger.address ?? ''} networks={NETWORKS} />
       </Col>
 
       <Col
@@ -71,7 +70,11 @@ export const MainPageExtraUi: FC<IMainPageExtraUi> = (props) => (
         {
           /*  if the local provider has a signer, let's show the faucet:  */
           props.faucetAvailable ? (
-            <Faucet localProvider={props.localProvider} price={props.price} ensProvider={props.mainnetProvider} />
+            <Faucet
+              localProvider={props.currentProviderAndSinger.provider as any}
+              price={props.price}
+              ensProvider={props.mainnetProvider}
+            />
           ) : (
             ''
           )

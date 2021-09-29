@@ -196,10 +196,11 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
    * facuet is only available on localhost
    */
   const faucetAvailable =
-    true &&
-    currentProviderAndSigner.provider &&
-    currentProviderAndSigner.providerNetwork?.chainId === targetNetwork.chainId &&
-    targetNetwork.name === 'localhost';
+    (true &&
+      currentProviderAndSigner.provider &&
+      currentProviderAndSigner.providerNetwork?.chainId === targetNetwork.chainId &&
+      targetNetwork.name === 'localhost') ??
+    false;
 
   const [faucetClicked, setFaucetClicked] = useState(false);
   if (!faucetClicked && faucetAvailable && yourLocalBalance && yourLocalBalance.toBigInt() <= 0) {
@@ -241,11 +242,9 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
               */}
                 <MainPageContracts
                   mainnetContracts={mainnetContracts}
-                  mainnetProvider={mainnetProvider}
-                  userProviderAndSigner={currentProviderAndSigner}
-                  localProvider={localProvider}
+                  appProviders={appProviders}
+                  currentProviderAndSigner={currentProviderAndSigner}
                   blockExplorerUrl={blockExplorer}
-                  userAddress={userAddress}
                   contractConfig={contractsConfig}
                 />
               </>
@@ -253,18 +252,18 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
           </Route>
           <Route path="/hints">
             <Hints
-              address={userAddress}
+              address={currentProviderAndSigner.address ?? ''}
               yourLocalBalance={yourLocalBalance}
-              mainnetProvider={mainnetProvider}
+              mainnetProvider={appProviders.mainnetProvider}
               price={price}
             />
           </Route>
           <Route path="/exampleui">
             <ExampleUI
-              address={userAddress}
+              address={currentProviderAndSigner.address ?? ''}
               userSigner={currentProviderAndSigner?.signer}
-              mainnetProvider={mainnetProvider}
-              localProvider={localProvider}
+              mainnetProvider={appProviders.mainnetProvider}
+              currentProvider={currentProviderAndSigner.provider}
               yourLocalBalance={yourLocalBalance}
               price={price}
               tx={tx}
@@ -279,9 +278,8 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
               <GenericContract
                 contractName="DAI"
                 customContract={mainnetContracts?.contracts?.DAI as ethers.Contract | undefined}
-                signer={currentProviderAndSigner.signer}
-                provider={mainnetProvider}
-                address={userAddress}
+                providerAndSigner={currentProviderAndSigner}
+                mainnetProvider={appProviders.mainnetProvider}
                 blockExplorer="https://etherscan.io/"
                 contractConfig={contractsConfig}
               />
@@ -292,7 +290,7 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
               subgraphUri={props.subgraphUri}
               tx={tx}
               writeContracts={writeContracts}
-              mainnetProvider={mainnetProvider}
+              mainnetProvider={appProviders.mainnetProvider}
             />
           </Route>
         </Switch>
@@ -303,14 +301,11 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
       {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
       <div style={{ position: 'fixed', textAlign: 'right', right: 0, top: 0, padding: 10 }}>
         <Account
-          address={userAddress}
-          localProvider={localProvider}
-          userSigner={currentProviderAndSigner?.signer}
-          mainnetProvider={mainnetProvider}
+          currentProviderAndSinger={currentProviderAndSigner}
+          mainnetProvider={appProviders.mainnetProvider}
           price={price}
-          web3Modal={web3ModalProvider}
-          loadWeb3Modal={loadWeb3Modal}
-          logoutOfWeb3Modal={logoutOfWeb3Modal}
+          loadWeb3Modal={appProviders.web3ModalState.openWeb3Modal}
+          logoutOfWeb3Modal={appProviders.web3ModalState.logoutOfWeb3Modal}
           blockExplorer={blockExplorer}
         />
         {faucetHint}
@@ -318,12 +313,11 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
 
       {/* 🗺 Extra UI like gas price, eth price, faucet, and support: */}
       <MainPageExtraUi
-        mainnetProvider={mainnetProvider}
+        mainnetProvider={appProviders.mainnetProvider}
+        currentProviderAndSinger={currentProviderAndSigner}
         price={price}
         gasPrice={gasPrice}
-        userAddress={userAddress}
         faucetAvailable={faucetAvailable}
-        localProvider={localProvider}
       />
     </div>
   );

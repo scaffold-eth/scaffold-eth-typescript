@@ -6399,10 +6399,10 @@ eth-block-tracker@^4.4.2:
     pify "^3.0.0"
     safe-event-emitter "^1.0.1"
 
-eth-components@0.1.0-beta10:
-  version "0.1.0-beta10"
-  resolved "https://registry.yarnpkg.com/eth-components/-/eth-components-0.1.0-beta10.tgz#33cd6c5de3225ec318ccc6bc849018f149c604bf"
-  integrity sha512-X4I+T9LGTxnPjZi7UPtQhVtNzn4n//VxwV5YVq1ilOc+nRTjve6kBBlMFMeIs1cdpRxdgyK0jCGpqI2IotHYlA==
+eth-components@0.1.0-beta18:
+  version "0.1.0-beta18"
+  resolved "https://registry.yarnpkg.com/eth-components/-/eth-components-0.1.0-beta18.tgz#0b0bd1bccd74967c3c7b25b558372321e92aba78"
+  integrity sha512-1koyVkpjhH4nsIE3FG++SM+PVshgN9CzLTKLGYV58f9eqkAbMaUJUuEx2LiaDGRJP+c6833kjz579lXGkLkoaQ==
   dependencies:
     "@ethersproject/abstract-signer" "^5.4.0"
     "@ethersproject/address" "^5.4.0"
@@ -6417,7 +6417,7 @@ eth-components@0.1.0-beta10:
     "@uniswap/token-lists" "^1.0.0-beta.24"
     axios "^0.21.4"
     bnc-notify "^1.9.1"
-    eth-hooks "^2.4.0-beta05"
+    eth-hooks "^2.4.0-beta15"
     ethers "^5.4.1"
     qrcode.react "^1.0.1"
     react-blockies "^1.4.1"
@@ -6431,29 +6431,10 @@ eth-ens-namehash@2.0.8, eth-ens-namehash@^2.0.8:
     idna-uts46-hx "^2.3.1"
     js-sha3 "^0.5.7"
 
-eth-hooks@^2.4.0-beta05:
-  version "2.4.0-beta05"
-  resolved "https://registry.yarnpkg.com/eth-hooks/-/eth-hooks-2.4.0-beta05.tgz#72e280e76d3cc81dcf0bea2de50cc0b3e840e141"
-  integrity sha512-+mVpUphMH0/ALWt11lSO5u9pr4yrM0cN5yfSPJSpiCYHY0mvNB0EeEJ2rSmFk+XLsB1eks05w1ZgIzLV38TTeA==
-  dependencies:
-    "@ethersproject/address" "^5.4.0"
-    "@ethersproject/bignumber" "^5.4.0"
-    "@ethersproject/bytes" "^5.4.0"
-    "@ethersproject/contracts" "^5.4.0"
-    "@ethersproject/networks" "^5.4.0"
-    "@ethersproject/providers" "^5.4.0"
-    "@ethersproject/signing-key" "^5.4.0"
-    "@ethersproject/solidity" "^5.4.0"
-    "@ethersproject/units" "^5.4.0"
-    "@uniswap/token-lists" "^1.0.0-beta.24"
-    axios "^0.21.4"
-    ethers "^5.4.1"
-    use-debounce "^7.0.0"
-
-eth-hooks@^2.4.0-beta14:
-  version "2.4.0-beta14"
-  resolved "https://registry.yarnpkg.com/eth-hooks/-/eth-hooks-2.4.0-beta14.tgz#4dc9a3ace1f7bf4a2fe4f65b49f0ea4127462226"
-  integrity sha512-nCnC7WvP/FDo4HfizS8TwcEYzmsTkpcdXx+f06m5/neDNbxwZ6Zm/zZfSlC8cdu0j0WpIaIBFiTHxIiYHhTrtw==
+eth-hooks@^2.4.0-beta15:
+  version "2.4.0-beta15"
+  resolved "https://registry.yarnpkg.com/eth-hooks/-/eth-hooks-2.4.0-beta15.tgz#a9b275744e69d6e73efc07cc178df14e788ed787"
+  integrity sha512-a+etot846IvzyVB289L5WKU8AejL/ZkhluWqVRd8S0OpmAFIj7JPbhkXbZ+RY7CZ+FEvCoSPa2d26CK8tapI8g==
   dependencies:
     "@ethersproject/address" "^5.4.0"
     "@ethersproject/bignumber" "^5.4.0"
