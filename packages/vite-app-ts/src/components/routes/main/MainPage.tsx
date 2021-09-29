@@ -67,7 +67,7 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
   const gasPrice = useGasPrice(targetNetwork, 'fast');
   // Use your injected provider from 🦊 Metamask or if you don't have it then instantly generate a 🔥 burner wallet.
   let currentProviderAndSigner: TProviderAndSigner | undefined = useUserProviderAndSigner(appProviders.currentProvider);
-  currentProviderAndSigner = useBurnerFallback(currentProviderAndSigner);
+  //currentProviderAndSigner = useBurnerFallback(currentProviderAndSigner);
 
   // You can warn the user if you would like them to be on a specific network
   let selectedChainId: number | undefined = currentProviderAndSigner.providerNetwork?.chainId;
@@ -162,7 +162,7 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
     appProviders.mainnetProvider,
     appProviders.currentTargetNetwork.chainId,
     selectedChainId,
-    currentProviderAndSigner.address,
+    currentProviderAndSigner?.address,
   ]);
 
   let networkDisplay: ReactElement | undefined;
@@ -197,8 +197,8 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
    */
   const faucetAvailable =
     (true &&
-      currentProviderAndSigner.provider &&
-      currentProviderAndSigner.providerNetwork?.chainId === targetNetwork.chainId &&
+      currentProviderAndSigner?.provider &&
+      currentProviderAndSigner?.providerNetwork?.chainId === targetNetwork.chainId &&
       targetNetwork.name === 'localhost') ??
     false;
 
@@ -241,8 +241,8 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
                 and give you a form to interact with it locally
               */}
                 <MainPageContracts
-                  mainnetContracts={mainnetContracts}
                   appProviders={appProviders}
+                  mainnetContracts={{}}
                   currentProviderAndSigner={currentProviderAndSigner}
                   blockExplorerUrl={blockExplorer}
                   contractConfig={contractsConfig}
@@ -252,7 +252,7 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
           </Route>
           <Route path="/hints">
             <Hints
-              address={currentProviderAndSigner.address ?? ''}
+              address={currentProviderAndSigner?.address ?? ''}
               yourLocalBalance={yourLocalBalance}
               mainnetProvider={appProviders.mainnetProvider}
               price={price}
@@ -260,10 +260,10 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
           </Route>
           <Route path="/exampleui">
             <ExampleUI
-              address={currentProviderAndSigner.address ?? ''}
+              address={currentProviderAndSigner?.address ?? ''}
               userSigner={currentProviderAndSigner?.signer}
               mainnetProvider={appProviders.mainnetProvider}
-              currentProvider={currentProviderAndSigner.provider}
+              currentProvider={currentProviderAndSigner?.provider}
               yourLocalBalance={yourLocalBalance}
               price={price}
               tx={tx}
@@ -301,7 +301,7 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
       {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
       <div style={{ position: 'fixed', textAlign: 'right', right: 0, top: 0, padding: 10 }}>
         <Account
-          currentProviderAndSinger={currentProviderAndSigner}
+          providerAndSigner={currentProviderAndSigner}
           mainnetProvider={appProviders.mainnetProvider}
           price={price}
           loadWeb3Modal={appProviders.web3ModalState.openWeb3Modal}

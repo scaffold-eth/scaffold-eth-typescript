@@ -40,7 +40,7 @@ if (DEBUG) console.log('🏠 Connecting to provider:', localProviderUrl);
 const localProvider: TEthersProvider = new StaticJsonRpcProvider(localProviderUrl);
 
 export interface IScaffoldProviders {
-  currentProvider: TEthersProvider;
+  currentProvider: TEthersProvider | undefined;
   currentTargetNetwork: TNetwork;
   mainnetProvider: TEthersProvider;
   web3ModalState: IWeb3ModalState;
@@ -57,7 +57,9 @@ export const useScaffoldProviders = (): IScaffoldProviders => {
   const burnerSigner = useBurnerSigner(localProvider);
 
   return {
-    currentProvider: currentProvider ?? localProvider,
+    currentProvider: (currentProvider ? currentProvider : web3ModalState.initialized ? localProvider : undefined) as
+      | TEthersProvider
+      | undefined,
     mainnetProvider: currentMainnetProvider,
     currentTargetNetwork: targetNetwork,
     web3ModalState: web3ModalState,

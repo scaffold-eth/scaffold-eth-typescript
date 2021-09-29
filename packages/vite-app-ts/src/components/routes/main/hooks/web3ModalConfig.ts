@@ -4,7 +4,7 @@ import Web3Modal, { ICoreOptions } from 'web3modal';
 import { INFURA_ID } from '~~/models/constants/constants';
 
 export const web3ModalConfig: Partial<ICoreOptions> = {
-  cacheProvider: true,
+  //cacheProvider: true,
   providerOptions: {
     walletconnect: {
       package: WalletConnectProvider,

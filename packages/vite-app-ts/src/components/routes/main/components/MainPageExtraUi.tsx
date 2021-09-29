@@ -6,8 +6,8 @@ import { NETWORKS } from '~~/models/constants/networks';
 import { TEthersProvider, TProviderAndSigner } from 'eth-hooks/models';
 
 interface IMainPageExtraUi {
-  currentProviderAndSinger: TProviderAndSigner;
-  mainnetProvider: TEthersProvider;
+  currentProviderAndSinger: TProviderAndSigner | undefined;
+  mainnetProvider: TEthersProvider | undefined;
   price: number;
   gasPrice: number | undefined;
   faucetAvailable: boolean;
@@ -29,7 +29,7 @@ export const MainPageExtraUi: FC<IMainPageExtraUi> = (props) => (
     }}>
     <Row align="middle" gutter={[4, 4]}>
       <Col span={8}>
-        <Ramp price={props.price} address={props.currentProviderAndSinger.address ?? ''} networks={NETWORKS} />
+        <Ramp price={props.price} address={props.currentProviderAndSinger?.address ?? ''} networks={NETWORKS} />
       </Col>
 
       <Col
@@ -69,9 +69,9 @@ export const MainPageExtraUi: FC<IMainPageExtraUi> = (props) => (
       <Col span={24}>
         {
           /*  if the local provider has a signer, let's show the faucet:  */
-          props.faucetAvailable ? (
+          props.faucetAvailable && props.mainnetProvider ? (
             <Faucet
-              localProvider={props.currentProviderAndSinger.provider as any}
+              localProvider={props.currentProviderAndSinger?.provider as any}
               price={props.price}
               ensProvider={props.mainnetProvider}
             />

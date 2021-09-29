@@ -32,7 +32,7 @@ export const MainPageContracts: FC<IMainPageContracts> = (props) => {
         <>
           <GenericContract
             contractName="YourContract"
-            providerAndSigner={props.currentProviderAndSigner}
+            currentProviderAndSigner={props.currentProviderAndSigner}
             mainnetProvider={props.appProviders.mainnetProvider}
             blockExplorer={props.blockExplorerUrl}
             contractConfig={props.contractConfig}
@@ -41,9 +41,7 @@ export const MainPageContracts: FC<IMainPageContracts> = (props) => {
           {/* uncomment for a second contract: 
         <GenericContract
           name="SecondContract"
-          signer={props.userProviderAndSigner.signer}
-          provider={props.localProvider}
-          address={props.userAddress}
+          currentProviderAndSigner={props.currentProviderAndSigner}
           blockExplorer={props.blockExplorerUrl}
           config={props.config}
         />
@@ -53,7 +51,7 @@ export const MainPageContracts: FC<IMainPageContracts> = (props) => {
         <GenericContract
           name="DAI"
           customContract={props.mainnetContracts?.['DAI']}
-          signer={props.userProviderAndSigner.signer}
+          currentProviderAndSigner={props.currentProviderAndSigner}
           provider={props.mainnetProvider}
           address={props.userAddress}
           blockExplorer={props.blockExplorerUrl}
