@@ -1,6 +1,5 @@
+import { TNetwork } from 'eth-hooks/models';
 import { INFURA_ID } from './constants';
-
-import { TNetwork } from '~~/models/networkTypes';
 
 export const NETWORKS: Record<string, TNetwork> = {
   localhost: {

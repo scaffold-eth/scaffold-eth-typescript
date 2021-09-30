@@ -8,7 +8,9 @@ import request from 'request/lib/helpers';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [nodePolyfills(), reactRefresh(), macrosPlugin(), tsconfigPaths()],
-
+  build: {
+    sourcemap: true,
+  },
   esbuild: {
     jsxFactory: 'jsx',
     jsxInject: `import {jsx, css} from '@emotion/react'`,

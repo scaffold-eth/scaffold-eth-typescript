@@ -66,7 +66,7 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
   /* 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation */
   const gasPrice = useGasPrice(targetNetwork, 'fast');
   // Use your injected provider from 🦊 Metamask or if you don't have it then instantly generate a 🔥 burner wallet.
-  let currentProviderAndSigner: TProviderAndSigner | undefined = useUserProviderAndSigner(appProviders.currentProvider);
+  let currentProviderAndSigner: TProviderAndSigner = useUserProviderAndSigner(appProviders.currentProvider);
   //currentProviderAndSigner = useBurnerFallback(currentProviderAndSigner);
 
   // You can warn the user if you would like them to be on a specific network
@@ -278,7 +278,7 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
               <GenericContract
                 contractName="DAI"
                 customContract={mainnetContracts?.contracts?.DAI as ethers.Contract | undefined}
-                providerAndSigner={currentProviderAndSigner}
+                currentProviderAndSigner={currentProviderAndSigner}
                 mainnetProvider={appProviders.mainnetProvider}
                 blockExplorer="https://etherscan.io/"
                 contractConfig={contractsConfig}
@@ -301,11 +301,11 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
       {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
       <div style={{ position: 'fixed', textAlign: 'right', right: 0, top: 0, padding: 10 }}>
         <Account
-          providerAndSigner={currentProviderAndSigner}
+          currentProviderAndSigner={currentProviderAndSigner}
           mainnetProvider={appProviders.mainnetProvider}
           price={price}
-          loadWeb3Modal={appProviders.web3ModalState.openWeb3Modal}
-          logoutOfWeb3Modal={appProviders.web3ModalState.logoutOfWeb3Modal}
+          loadWeb3Modal={appProviders.web3ModalState.openWeb3ModalCallback}
+          logoutOfWeb3Modal={appProviders.web3ModalState.logoutOfWeb3ModalCallback}
           blockExplorer={blockExplorer}
         />
         {faucetHint}
