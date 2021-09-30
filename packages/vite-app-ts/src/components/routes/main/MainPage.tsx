@@ -16,7 +16,7 @@ import {
 } from 'eth-hooks';
 import { useExchangeEthPrice } from 'eth-hooks/dapps/dex';
 
-import { Header, ThemeSwitcher } from '~~/components/common';
+import { MainPageLeftHeader, ThemeSwitcher } from '~~/components/common';
 import { Account } from 'eth-components/ant';
 
 import { GenericContract } from 'eth-components/ant/generic-contract';
@@ -63,7 +63,7 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
   const scaffoldAppProviders = useScaffoldAppProviders();
 
   /* 💵 This hook will get the price of ETH from 🦄 Uniswap: */
-  const price = useExchangeEthPrice(scaffoldAppProviders.currentTargetNetwork, scaffoldAppProviders.mainnetProvider);
+  const price = useExchangeEthPrice(scaffoldAppProviders.targetNetwork, scaffoldAppProviders.mainnetProvider);
 
   /* 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation */
   const gasPrice = useGasPrice(targetNetwork, 'fast');
@@ -95,7 +95,7 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
   const readContracts = useContractLoader(
     scaffoldAppProviders.currentProvider,
     contractsConfig,
-    scaffoldAppProviders.currentTargetNetwork.chainId
+    scaffoldAppProviders.targetNetwork.chainId
   );
 
   // If you want to make 🔐 write transactions to your contracts, use the userProvider:
@@ -162,31 +162,10 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
     }
   }, [
     scaffoldAppProviders.mainnetProvider,
-    scaffoldAppProviders.currentTargetNetwork.chainId,
+    scaffoldAppProviders.targetNetwork.chainId,
     selectedChainId,
     currentEthersUser?.address,
   ]);
-
-  let networkDisplay: ReactElement | undefined;
-  if (selectedChainId && selectedChainId != targetNetwork.chainId) {
-    const description = (
-      <div>
-        You have <b>{getNetwork(selectedChainId)?.name}</b> selected and you need to be on{' '}
-        <b>{getNetwork(selectedChainId)?.name ?? 'UNKNOWN'}</b>.
-      </div>
-    );
-    networkDisplay = (
-      <div style={{ zIndex: 2, position: 'absolute', right: 0, top: 60, padding: 16 }}>
-        <Alert message="⚠️ Wrong Network" description={description} type="error" closable={false} />
-      </div>
-    );
-  } else {
-    networkDisplay = (
-      <div style={{ zIndex: -1, position: 'absolute', right: 154, top: 28, padding: 16, color: targetNetwork.color }}>
-        {targetNetwork.name}
-      </div>
-    );
-  }
 
   const [route, setRoute] = useState<string>('');
   useEffect(() => {
@@ -228,8 +207,7 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
   return (
     <div className="App">
       {/* ✏️ Edit the header and change the title to your project name */}
-      <Header />
-      {networkDisplay}
+      <MainPageLeftHeader currentEthersUser={currentEthersUser} scaffoldAppProviders={scaffoldAppProviders} />
       <BrowserRouter>
         <MainPageMenu route={route} setRoute={setRoute} />
         <Switch>
@@ -297,7 +275,7 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
         </Switch>
       </BrowserRouter>
 
-      <MainPageRightFooter />
+      <MainPageRightFooter scaffoldAppProviders={scaffoldAppProviders} currentEthersUser={currentEthersUser} />
 
       {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
       <MainPageRightHeader

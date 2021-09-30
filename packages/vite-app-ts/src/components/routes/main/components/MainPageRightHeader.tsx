@@ -1,12 +1,12 @@
 import { Account } from 'eth-components/ant';
 import { TEthersUser } from 'eth-hooks/models';
 import { FC } from 'react';
-import { blockExplorer, IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
+import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 
 interface IMainPageRightHeader {
   scaffoldAppProviders: IScaffoldAppProviders;
-  price: number;
   currentEthersUser: TEthersUser;
+  price: number;
 }
 
 export const MainPageRightHeader: FC<IMainPageRightHeader> = (props) => {
@@ -19,7 +19,7 @@ export const MainPageRightHeader: FC<IMainPageRightHeader> = (props) => {
         price={props.price}
         loadWeb3Modal={props.scaffoldAppProviders.web3ModalState.openWeb3ModalCallback}
         logoutOfWeb3Modal={props.scaffoldAppProviders.web3ModalState.logoutOfWeb3ModalCallback}
-        blockExplorer={blockExplorer}
+        blockExplorer={props.scaffoldAppProviders.targetNetwork.blockExplorer}
       />
       {props.children}
     </div>

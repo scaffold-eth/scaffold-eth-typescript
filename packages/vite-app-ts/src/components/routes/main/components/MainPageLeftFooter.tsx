@@ -4,10 +4,11 @@ import { Ramp } from '~~/components/common';
 import { Faucet, GasGauge } from 'eth-components/ant';
 import { NETWORKS } from '~~/models/constants/networks';
 import { TEthersProvider, TEthersUser } from 'eth-hooks/models';
+import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 
 interface IMainPageLeftFooter {
-  currentEthersUser: TEthersUser | undefined;
-  mainnetProvider: TEthersProvider | undefined;
+  scaffoldAppProviders: IScaffoldAppProviders;
+  currentEthersUser: TEthersUser;
   price: number;
   gasPrice: number | undefined;
   faucetAvailable: boolean;
@@ -69,11 +70,11 @@ export const MainPageLeftFooter: FC<IMainPageLeftFooter> = (props) => (
       <Col span={24}>
         {
           /*  if the local provider has a signer, let's show the faucet:  */
-          props.faucetAvailable && props.mainnetProvider ? (
+          props.faucetAvailable && props.scaffoldAppProviders.mainnetProvider ? (
             <Faucet
               localProvider={props.currentEthersUser?.provider as any}
               price={props.price}
-              ensProvider={props.mainnetProvider}
+              ensProvider={props.scaffoldAppProviders.mainnetProvider}
             />
           ) : (
             <></>

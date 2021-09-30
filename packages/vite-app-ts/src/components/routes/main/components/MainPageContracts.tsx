@@ -9,7 +9,6 @@ interface IMainPageContracts {
   appProviders: IScaffoldAppProviders;
   currentEthersUser: TEthersUser;
   mainnetContracts: Record<string, Contract>;
-  blockExplorerUrl: string;
   contractConfig: TContractConfig;
 }
 
@@ -34,7 +33,7 @@ export const MainPageContracts: FC<IMainPageContracts> = (props) => {
             contractName="YourContract"
             currentEthersUser={props.currentEthersUser}
             mainnetProvider={props.appProviders.mainnetProvider}
-            blockExplorer={props.blockExplorerUrl}
+            blockExplorer={props.appProviders.targetNetwork.blockExplorer}
             contractConfig={props.contractConfig}
           />
 
