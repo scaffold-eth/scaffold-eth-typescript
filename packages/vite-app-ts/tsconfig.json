@@ -26,5 +26,5 @@
     }
   },
   "include": ["src", "src/__global.ts"],
-  "exclude": ["**/node_modules", ".husky", "./src/styles/css", "./tailwind.config.js", "node_modules"]
+  "exclude": ["**/node_modules", ".husky", "./src/styles/css", "./tailwind.config.js", "node_modules", "**/.yalc/**/*"]
 }

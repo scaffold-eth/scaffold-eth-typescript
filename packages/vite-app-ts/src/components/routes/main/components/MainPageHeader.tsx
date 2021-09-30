@@ -1,4 +1,4 @@
-import { Account } from '.yalc/eth-components/ant';
+import { Account } from 'eth-components/ant';
 import { getNetwork } from '@ethersproject/networks';
 import { Alert, PageHeader } from 'antd';
 import { TEthersUser, TNetworkInfo } from 'eth-hooks/models';
