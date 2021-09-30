@@ -5,12 +5,12 @@ import React, { FC, ReactElement } from 'react';
 import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 
 // displays a page header
-interface IMainPageLeftHeader {
+interface IMainPageHeaderLeft {
   currentEthersUser: TEthersUser;
   scaffoldAppProviders: IScaffoldAppProviders;
 }
 
-export const MainPageLeftHeader: FC<IMainPageLeftHeader> = (props) => {
+export const MainPageHeaderLeft: FC<IMainPageHeaderLeft> = (props) => {
   const selectedChainId = props.currentEthersUser.providerNetwork?.chainId;
 
   let networkDisplay: ReactElement | undefined;

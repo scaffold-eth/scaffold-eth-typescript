@@ -6,7 +6,7 @@ import { NETWORKS } from '~~/models/constants/networks';
 import { TEthersProvider, TEthersUser } from 'eth-hooks/models';
 import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 
-interface IMainPageLeftFooter {
+interface IMainPageFooterLeft {
   scaffoldAppProviders: IScaffoldAppProviders;
   currentEthersUser: TEthersUser;
   price: number;
@@ -19,7 +19,7 @@ interface IMainPageLeftFooter {
  * @param props
  * @returns
  */
-export const MainPageLeftFooter: FC<IMainPageLeftFooter> = (props) => (
+export const MainPageFooterLeft: FC<IMainPageFooterLeft> = (props) => (
   <div
     style={{
       position: 'fixed',

@@ -4,7 +4,7 @@ import 'antd/dist/antd.css';
 import { ExternalProvider, JsonRpcFetchFunc, StaticJsonRpcProvider, Web3Provider } from '@ethersproject/providers';
 
 import '~~/styles/main-page.css';
-import { Button, Alert } from 'antd';
+import { Alert } from 'antd';
 import {
   useUserAddress,
   useGasPrice,
@@ -14,42 +14,31 @@ import {
   useOnRepetition,
   useGetUserFromProviders,
 } from 'eth-hooks';
-import { useExchangeEthPrice } from 'eth-hooks/dapps/dex';
-
-import { MainPageLeftHeader, ThemeSwitcher } from '~~/components/common';
-import { Account } from 'eth-components/ant';
+import { useDexEthPrice } from 'eth-hooks/dapps';
 
 import { GenericContract } from 'eth-components/ant/generic-contract';
 import { Hints, Subgraph } from '~~/components/views';
 import { ExampleUI } from '~~/components/views/ExampleUI';
 import { transactor } from 'eth-components/functions';
 
-import { parseEther } from '@ethersproject/units';
-
-import { NETWORKS } from '~~/models/constants/networks';
-import { getNetwork } from '~~/helpers/getNetwork';
-
 import { ethers } from 'ethers';
 
-import { TNetwork } from '~~/models/networkTypes';
-
 import { TEthersProvider, TEthersUser } from 'eth-hooks/models';
-import { useEventListener } from 'eth-hooks/events';
+import { useEventListener } from 'eth-hooks';
 import { MainPageMenu } from './components/MainPageMenu';
 import { MainPageContracts } from './components/MainPageContracts';
-import { MainPageLeftFooter } from './components/MainPageLeftFooter';
-import { useContractConfig } from '~~/components/routes/main/hooks/useContractConfig';
+import { MainPageFooterLeft } from './components/MainPageFooterLeft';
+import { useScaffoldContractConfig } from '~~/components/routes/main/hooks/useScaffoldContractConfig';
 import { EthComponentsContext } from 'eth-components/models';
-import {
-  useScaffoldProviders as useScaffoldAppProviders,
-  targetNetwork,
-  blockExplorer,
-} from '~~/components/routes/main/hooks/useScaffoldAppProviders';
+import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 import { useBurnerFallback } from '~~/components/routes/main/hooks/useBurnerFallback';
-import { MainPageRightFooter } from '~~/components/routes/main/components/MainPageRightFooter';
-import { MainPageRightHeader } from '~~/components/routes/main/components/MainPageRightHeader';
+import { MainPageFooterRight } from '~~/components/routes/main/components/MainPageFooterRight';
+import { MainPageHeaderRight } from '~~/components/routes/main/components/MainPageHeaderRight';
+import { getFaucetAvailable } from '../../common/FaucetHintButton';
+import { MainPageHeaderLeft } from '~~/components/routes/main/components/MainPageHeaderLeft';
+import { useScaffoldHooks } from './hooks/useScaffoldHooks';
 
-const DEBUG = false;
+export const DEBUG = false;
 
 const translateAddressesForLocal = (addy: string): string => {
   // if(addy=="0x90FC815Fe9338BB3323bAC84b82B9016ED021e70") return "0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE"
@@ -58,38 +47,28 @@ const translateAddressesForLocal = (addy: string): string => {
 };
 
 export const MainPage: FC<{ subgraphUri: string }> = (props) => {
+  const context = useContext(EthComponentsContext);
+
+  // -----------------------------
+  // Providers and signers
+  // -----------------------------
+
   // 🛰 providers
   // see useLoadProviders.ts for everything to do with loading the right providers
   const scaffoldAppProviders = useScaffoldAppProviders();
 
-  /* 💵 This hook will get the price of ETH from 🦄 Uniswap: */
-  const price = useExchangeEthPrice(scaffoldAppProviders.targetNetwork, scaffoldAppProviders.mainnetProvider);
-
-  /* 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation */
-  const gasPrice = useGasPrice(targetNetwork, 'fast');
-  // Use your injected provider from 🦊 Metamask or if you don't have it then instantly generate a 🔥 burner wallet.
+  // 🦊 Get your web3 ethers User from current providers
   let currentEthersUser: TEthersUser = useGetUserFromProviders(scaffoldAppProviders.currentProvider);
+  // if no user is found use a burner wallet on localhost as fallback
   currentEthersUser = useBurnerFallback(scaffoldAppProviders, currentEthersUser);
 
-  // You can warn the user if you would like them to be on a specific network
-  let selectedChainId: number | undefined = currentEthersUser.providerNetwork?.chainId;
+  // -----------------------------
+  // Contracts
+  // -----------------------------
 
-  // For more hooks, check out 🔗eth-hooks at: https://www.npmjs.com/package/eth-hooks
-  const context = useContext(EthComponentsContext);
-
-  // The transactor wraps transactions and provides notificiations
-  const tx = transactor(context, currentEthersUser?.signer, gasPrice);
-
-  // Faucet Tx can be used to send funds from the faucet
-  const faucetTx = transactor(context, scaffoldAppProviders.localProvider, gasPrice);
-
-  // 🏗 scaffold-eth is full of handy hooks like this one to get your balance:
-  const yourLocalBalance = useBalance(currentEthersUser.provider, currentEthersUser.address ?? '');
-
-  // Just plug in different 🛰 providers to get your balance on different chains:
-  const yourMainnetBalance = useBalance(scaffoldAppProviders.mainnetProvider, currentEthersUser.address ?? '');
-
-  const contractsConfig = useContractConfig();
+  // ⚙ contract config
+  // get the contracts configuration for the app
+  const contractsConfig = useScaffoldContractConfig();
 
   // Load in your local 📝 contract and read a value from it:
   const readContracts = useContractLoader(
@@ -106,7 +85,6 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
   );
 
   // EXTERNAL CONTRACT EXAMPLE:
-  //
   // If you want to bring in the mainnet DAI contract it would look like:
   const mainnetContracts = useContractLoader(
     scaffoldAppProviders.mainnetProvider,
@@ -114,18 +92,9 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
     scaffoldAppProviders.mainnetProvider?._network?.chainId
   );
 
-  // If you want to call a function on a new block
-  useOnRepetition(
-    (): void => console.log(`⛓ A new mainnet block is here: ${scaffoldAppProviders.mainnetProvider._lastBlockNumber}`),
-    {
-      provider: scaffoldAppProviders.mainnetProvider,
-    }
-  );
-
-  // Then read your DAI balance like:
-  const myMainnetDAIBalance = useContractReader(mainnetContracts, 'DAI', 'balanceOf', [
-    '0x34aA3F359A9D614239015126635CE7732c18fDF3',
-  ]);
+  // -----------------------------
+  // current contract and listners
+  // -----------------------------
 
   // keep track of a variable from the contract in the local React state:
   const purpose = useContractReader<string>(readContracts, 'YourContract', 'purpose');
@@ -139,75 +108,40 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
     1
   );
 
-  /*
-  const addressFromENS = useResolveName(mainnetProvider, "austingriffith.eth");
-  console.log("🏷 Resolved austingriffith.eth as:",addressFromENS)
-  */
-  //
-  // 🧫 DEBUG 👨🏻‍🔬
-  //
-  useEffect(() => {
-    if (DEBUG && scaffoldAppProviders.mainnetProvider && currentEthersUser?.address && selectedChainId) {
-      console.log('_____________________________________ 🏗 scaffold-eth _____________________________________');
-      console.log('🌎 mainnetProvider', scaffoldAppProviders.mainnetProvider);
-      console.log('🕵🏻‍♂️ targetChainId:', targetNetwork.chainId);
-      console.log('🏠 selected ChainId', selectedChainId);
-      console.log('👩‍💼 selected address:', currentEthersUser.address);
+  // -----------------------------
+  // Hooks
+  // -----------------------------
+  // For more hooks, check out 🔗eth-hooks at: https://www.npmjs.com/package/eth-hooks
 
-      /* console.log("💵 yourLocalBalance",yourLocalBalance?formatEther(yourLocalBalance):"...")
-      console.log("💵 yourMainnetBalance",yourMainnetBalance?formatEther(yourMainnetBalance):"...")
-      console.log("📝 readContracts",readContracts)
-      console.log("🌍 DAI contract on mainnet:",mainnetDAIContract)
-      console.log("🔐 writeContracts",writeContracts) */
-    }
-  }, [
-    scaffoldAppProviders.mainnetProvider,
-    scaffoldAppProviders.targetNetwork.chainId,
-    selectedChainId,
-    currentEthersUser?.address,
-  ]);
+  // 💵 This hook will get the price of ETH from 🦄 Uniswap:
+  const price = useDexEthPrice(scaffoldAppProviders.targetNetwork, scaffoldAppProviders.mainnetProvider);
+
+  // 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation
+  const gasPrice = useGasPrice(scaffoldAppProviders.targetNetwork, 'fast');
+
+  // 💰 this hook will get your balance
+  const yourCurrentBalance = useBalance(currentEthersUser.provider, currentEthersUser.address ?? '');
+
+  // -----------------------------
+  // 🎉 Console logs & More hook examples:  Check out this to see how to get
+  // -----------------------------
+  useScaffoldHooks(scaffoldAppProviders, currentEthersUser, readContracts, writeContracts, mainnetContracts);
+
+  // The transactor wraps transactions and provides notificiations
+  const tx = transactor(context, currentEthersUser?.signer, gasPrice);
 
   const [route, setRoute] = useState<string>('');
   useEffect(() => {
     setRoute(window.location.pathname);
   }, [setRoute]);
 
-  let faucetHint: ReactElement = <></>;
-  /**
-   * facuet is only available on localhost
-   */
-  const faucetAvailable =
-    (true &&
-      currentEthersUser?.provider &&
-      currentEthersUser?.providerNetwork?.chainId === targetNetwork.chainId &&
-      targetNetwork.name === 'localhost') ??
-    false;
-
-  const [faucetClicked, setFaucetClicked] = useState(false);
-  if (!faucetClicked && faucetAvailable && yourLocalBalance && yourLocalBalance.toBigInt() <= 0) {
-    faucetHint = (
-      <div style={{ padding: 16 }}>
-        <Button
-          type="primary"
-          onClick={(): void => {
-            if (faucetTx) {
-              void faucetTx({
-                to: currentEthersUser?.address,
-                value: parseEther('0.01'),
-              });
-            }
-            setFaucetClicked(true);
-          }}>
-          💰 Grab funds from the faucet ⛽️
-        </Button>
-      </div>
-    );
-  }
+  // Faucet Tx can be used to send funds from the faucet
+  let faucetAvailable = getFaucetAvailable(scaffoldAppProviders, currentEthersUser);
 
   return (
     <div className="App">
       {/* ✏️ Edit the header and change the title to your project name */}
-      <MainPageLeftHeader currentEthersUser={currentEthersUser} scaffoldAppProviders={scaffoldAppProviders} />
+      <MainPageHeaderLeft currentEthersUser={currentEthersUser} scaffoldAppProviders={scaffoldAppProviders} />
       <BrowserRouter>
         <MainPageMenu route={route} setRoute={setRoute} />
         <Switch>
@@ -223,7 +157,6 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
                   appProviders={scaffoldAppProviders}
                   mainnetContracts={{}}
                   currentEthersUser={currentEthersUser}
-                  blockExplorerUrl={blockExplorer}
                   contractConfig={contractsConfig}
                 />
               </>
@@ -232,7 +165,7 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
           <Route path="/hints">
             <Hints
               address={currentEthersUser?.address ?? ''}
-              yourLocalBalance={yourLocalBalance}
+              yourCurrentBalance={yourCurrentBalance}
               mainnetProvider={scaffoldAppProviders.mainnetProvider}
               price={price}
             />
@@ -243,7 +176,7 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
               userSigner={currentEthersUser?.signer}
               mainnetProvider={scaffoldAppProviders.mainnetProvider}
               currentProvider={currentEthersUser?.provider}
-              yourLocalBalance={yourLocalBalance}
+              yourCurrentBalance={yourCurrentBalance}
               price={price}
               tx={tx}
               writeContracts={writeContracts}
@@ -275,18 +208,19 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
         </Switch>
       </BrowserRouter>
 
-      <MainPageRightFooter scaffoldAppProviders={scaffoldAppProviders} currentEthersUser={currentEthersUser} />
+      <MainPageFooterRight scaffoldAppProviders={scaffoldAppProviders} currentEthersUser={currentEthersUser} />
 
       {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
-      <MainPageRightHeader
+      <MainPageHeaderRight
         scaffoldAppProviders={scaffoldAppProviders}
         currentEthersUser={currentEthersUser}
         price={price}
+        gasPrice={gasPrice}
       />
 
       {/* 🗺 Extra UI like gas price, eth price, faucet, and support: */}
-      <MainPageLeftFooter
-        mainnetProvider={scaffoldAppProviders.mainnetProvider}
+      <MainPageFooterLeft
+        scaffoldAppProviders={scaffoldAppProviders}
         currentEthersUser={currentEthersUser}
         price={price}
         gasPrice={gasPrice}

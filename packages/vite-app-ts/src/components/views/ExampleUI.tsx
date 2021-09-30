@@ -13,7 +13,7 @@ interface IExampleUIProps {
   address: string;
   mainnetProvider: any;
   currentProvider: any;
-  yourLocalBalance: any;
+  yourCurrentBalance: any;
   price: any;
   tx: any;
   readContracts: Record<string, Contract>;
@@ -26,8 +26,8 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
     setPurposeEvents,
     address,
     mainnetProvider,
-    currentProvider: localProvider,
-    yourLocalBalance,
+    currentProvider,
+    yourCurrentBalance,
     price,
     tx,
     readContracts,
@@ -88,15 +88,15 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
         />
         <Divider />
         {/* use formatEther to display a BigNumber: */}
-        <h2>Your Balance: {yourLocalBalance ? formatEther(yourLocalBalance) : '...'}</h2>
+        <h2>Your Balance: {yourCurrentBalance ? formatEther(yourCurrentBalance) : '...'}</h2>
         <div>OR</div>
-        <Balance address={address} provider={localProvider} price={price} />
+        <Balance address={address} provider={currentProvider} price={price} />
         <Divider />
         <div>🐳 Example Whale Balance:</div>
-        <Balance balance={parseEther('1000')} provider={localProvider} price={price} address={address} />
+        <Balance balance={parseEther('1000')} provider={currentProvider} price={price} address={address} />
         <Divider />
         {/* use formatEther to display a BigNumber: */}
-        <h2>Your Balance: {yourLocalBalance ? formatEther(yourLocalBalance) : '...'}</h2>
+        <h2>Your Balance: {yourCurrentBalance ? formatEther(yourCurrentBalance) : '...'}</h2>
         <Divider />
         Your Contract Address:
         <Address

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { loadAppContracts } from '~~/helpers/loadAppContracts';
 import { TContractConfig } from 'eth-hooks';
 
-export const useContractConfig = (): TContractConfig => {
+export const useScaffoldContractConfig = (): TContractConfig => {
   const [contractsConfig, setContractsConfig] = useState<TContractConfig>({});
 
   useEffect(() => {

@@ -1429,6 +1429,7 @@
   integrity sha512-6quxWe8wwS4X5v3Au8q1jOvXYEPkS1Fh+cME5u6AwNdnI4uERvPlVjlgRWzpnb+Rrt1l/cEqiNRH9GlsBMSDQg==
 
 "@nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers", hardhat-deploy-ethers@^0.3.0-beta.10:
+  name "@nomiclabs/hardhat-ethers"
   version "0.3.0-beta.10"
   resolved "https://registry.yarnpkg.com/hardhat-deploy-ethers/-/hardhat-deploy-ethers-0.3.0-beta.10.tgz#bccfcf635d380bbab3638960f6739fe4d396fc5f"
   integrity sha512-TeyriUshRZ7XVHOjMsDtTozIrdwLf3Bw+oZRYNhXdG/eut5HeDhjUFPfRlG7TI1lSLvkcB5dt7OxOtPYKDOxTg==
@@ -6312,10 +6313,10 @@ eth-block-tracker@^4.4.2:
     pify "^3.0.0"
     safe-event-emitter "^1.0.1"
 
-eth-components@1.0.0-beta02:
-  version "1.0.0-beta02"
-  resolved "https://registry.yarnpkg.com/eth-components/-/eth-components-1.0.0-beta02.tgz#730c8c89cabbc4a47a19328c32cc6989a204e42a"
-  integrity sha512-o+E3HJXuNygVQdmfYzuADzWPtsVRfN8smb8gumFtiFro4XWVbPiawr4bJaWF5uvUn9r+ZGzA28StXQPjq9lhqg==
+eth-components@1.0.0-beta03:
+  version "1.0.0-beta03"
+  resolved "https://registry.yarnpkg.com/eth-components/-/eth-components-1.0.0-beta03.tgz#04fab4d2ff714aacada9c825f526ab8dd6fc1cd3"
+  integrity sha512-wa+It25HVvhykTK5XICLcMSUStf+nOTz+JZWl/PqVhKDsJwmPfsjthqn1abDov6sj51my6xt79cmFAzot/SuCw==
   dependencies:
     "@ethersproject/abstract-signer" "^5.4.0"
     "@ethersproject/address" "^5.4.0"
@@ -6330,7 +6331,7 @@ eth-components@1.0.0-beta02:
     "@uniswap/token-lists" "^1.0.0-beta.24"
     axios "^0.21.4"
     bnc-notify "^1.9.1"
-    eth-hooks "^3.0.0-beta01"
+    eth-hooks "^3.0.0-beta02"
     ethers "^5.4.1"
     qrcode.react "^1.0.1"
     react-blockies "^1.4.1"
@@ -6344,10 +6345,10 @@ eth-ens-namehash@2.0.8, eth-ens-namehash@^2.0.8:
     idna-uts46-hx "^2.3.1"
     js-sha3 "^0.5.7"
 
-eth-hooks@^3.0.0-beta01:
-  version "3.0.0-beta01"
-  resolved "https://registry.yarnpkg.com/eth-hooks/-/eth-hooks-3.0.0-beta01.tgz#c8a4e10a267a15ed5ea15701efa3e7254732172c"
-  integrity sha512-zuse0Ogw3QOlt9Pftw7w6qRhy8F34SdYT7wPFnGMieDjoZ/jsu80nUKIF3Kfz17zHiGC9+hi/9lO6H+QhdCAQA==
+eth-hooks@^3.0.0-beta02:
+  version "3.0.0-beta02"
+  resolved "https://registry.yarnpkg.com/eth-hooks/-/eth-hooks-3.0.0-beta02.tgz#f80d0ffa8829fa6bd498b4ac7f8c416b28392dc5"
+  integrity sha512-cn4juo1Oaf1g4msLOcAIFf/YsJvzqM/4OP97XRKnUpYs86HpejfeD+h92fjYoJ0B0H/Y5+NpJVrOXHSTHIoV6g==
   dependencies:
     "@ethersproject/address" "^5.4.0"
     "@ethersproject/bignumber" "^5.4.0"
