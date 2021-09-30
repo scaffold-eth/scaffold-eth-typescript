@@ -1,7 +1,7 @@
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import input from 'antd/lib/input';
 import { IWeb3ModalState, useBurnerSigner, useWeb3Modal } from 'eth-hooks';
-import { TEthersProvider, TNetwork } from 'eth-hooks/models';
+import { TEthersProvider, TNetworkInfo } from 'eth-hooks/models';
 import { useEffect, useMemo, useState } from 'react';
 import { web3ModalConfig } from '~~/models/constants/web3ModalConfig';
 import { INFURA_ID } from '~~/models/constants/constants';
@@ -13,7 +13,7 @@ const DEBUG = true;
 /**
  * 📡 What chain are your contracts deployed to?
  */
-const targetNetwork: TNetwork = NETWORKS.localhost; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
+const targetNetwork: TNetworkInfo = NETWORKS.localhost; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 
 // ( ⚠️ Getting "failed to meet quorum" errors? Check your INFURA_I
 // 🏠 Your local provider is usually pointed at your local blockchain
@@ -34,7 +34,7 @@ const localProvider: TEthersProvider = new StaticJsonRpcProvider(localProviderUr
 
 export interface IScaffoldAppProviders {
   currentProvider: TEthersProvider | undefined;
-  targetNetwork: TNetwork;
+  targetNetwork: TNetworkInfo;
   mainnetProvider: StaticJsonRpcProvider;
   localProvider: StaticJsonRpcProvider;
   isUsingFallback: boolean;

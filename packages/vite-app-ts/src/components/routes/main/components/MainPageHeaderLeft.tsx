@@ -1,6 +1,6 @@
 import { getNetwork } from '@ethersproject/networks';
 import { Alert, PageHeader } from 'antd';
-import { TEthersUser, TNetwork } from 'eth-hooks/models';
+import { TEthersUser, TNetworkInfo } from 'eth-hooks/models';
 import React, { FC, ReactElement } from 'react';
 import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 
@@ -18,7 +18,7 @@ export const MainPageHeaderLeft: FC<IMainPageHeaderLeft> = (props) => {
     const description = (
       <div>
         You have <b>{getNetwork(selectedChainId)?.name}</b> selected and you need to be on{' '}
-        <b>{getNetwork(selectedChainId)?.name ?? 'UNKNOWN'}</b>.
+        <b>{getNetwork(props.scaffoldAppProviders.targetNetwork)?.name ?? 'UNKNOWN'}</b>.
       </div>
     );
     networkDisplay = (

@@ -5,6 +5,7 @@ import { Faucet, GasGauge } from 'eth-components/ant';
 import { NETWORKS } from '~~/models/constants/networks';
 import { TEthersProvider, TEthersUser } from 'eth-hooks/models';
 import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
+import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
 
 interface IMainPageFooterLeft {
   scaffoldAppProviders: IScaffoldAppProviders;
@@ -39,7 +40,12 @@ export const MainPageFooterLeft: FC<IMainPageFooterLeft> = (props) => (
           textAlign: 'center',
           opacity: 0.8,
         }}>
-        <GasGauge gasPrice={props.gasPrice?.toString() ?? ''} />
+        <GasGauge
+          chainId={props.scaffoldAppProviders.targetNetwork.chainId}
+          currentNetwork={getNetworkInfo(props.currentEthersUser.providerNetwork?.chainId)}
+          provider={props.currentEthersUser.provider}
+          speed="average"
+        />
       </Col>
       <Col
         span={8}

@@ -1,7 +1,13 @@
 import React, { FC, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import 'antd/dist/antd.css';
-import { ExternalProvider, JsonRpcFetchFunc, StaticJsonRpcProvider, Web3Provider } from '@ethersproject/providers';
+import {
+  ExternalProvider,
+  getNetwork,
+  JsonRpcFetchFunc,
+  StaticJsonRpcProvider,
+  Web3Provider,
+} from '@ethersproject/providers';
 
 import '~~/styles/main-page.css';
 import { Alert } from 'antd';
@@ -37,6 +43,8 @@ import { MainPageHeaderRight } from '~~/components/routes/main/components/MainPa
 import { getFaucetAvailable } from '../../common/FaucetHintButton';
 import { MainPageHeaderLeft } from '~~/components/routes/main/components/MainPageHeaderLeft';
 import { useScaffoldHooks } from './hooks/useScaffoldHooks';
+import { NETWORKS } from '~~/models/constants/networks';
+import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
 
 export const DEBUG = false;
 
@@ -117,7 +125,12 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
   const price = useDexEthPrice(scaffoldAppProviders.targetNetwork, scaffoldAppProviders.mainnetProvider);
 
   // 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation
-  const gasPrice = useGasPrice(scaffoldAppProviders.targetNetwork, 'fast');
+  const gasPrice = useGasPrice(
+    currentEthersUser.providerNetwork?.chainId,
+    'average',
+    currentEthersUser.provider,
+    getNetworkInfo(currentEthersUser.providerNetwork?.chainId)
+  );
 
   // 💰 this hook will get your balance
   const yourCurrentBalance = useBalance(currentEthersUser.provider, currentEthersUser.address ?? '');
