@@ -41,7 +41,7 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
   const faucetHint = useMemo(() => {
     if (!faucetClicked && faucetAvailable && yourLocalBalance && yourLocalBalance.toBigInt() <= 0) {
       return (
-        <div style={{ padding: 16 }}>
+        <div style={{ paddingTop: 10, paddingLeft: 10 }}>
           <Button
             type="primary"
             onClick={(): void => {

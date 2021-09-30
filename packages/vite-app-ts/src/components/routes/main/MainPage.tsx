@@ -33,7 +33,7 @@ import { TEthersProvider, TEthersUser } from 'eth-hooks/models';
 import { useEventListener } from 'eth-hooks';
 import { MainPageMenu } from './components/MainPageMenu';
 import { MainPageContracts } from './components/MainPageContracts';
-import { MainPageFooterLeft } from './components/MainPageFooterLeft';
+import { MainPageFooter } from './components/MainPageFooter';
 import { useScaffoldContractConfig } from '~~/components/routes/main/hooks/useScaffoldContractConfig';
 import { EthComponentsContext } from 'eth-components/models';
 import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
@@ -41,7 +41,7 @@ import { useBurnerFallback } from '~~/components/routes/main/hooks/useBurnerFall
 import { MainPageFooterRight } from '~~/components/routes/main/components/MainPageFooterRight';
 import { MainPageHeaderRight } from '~~/components/routes/main/components/MainPageHeaderRight';
 import { getFaucetAvailable } from '../../common/FaucetHintButton';
-import { MainPageHeaderLeft } from '~~/components/routes/main/components/MainPageHeaderLeft';
+import { MainPageHeader } from '~~/components/routes/main/components/MainPageHeader';
 import { useScaffoldHooks } from './hooks/useScaffoldHooks';
 import { NETWORKS } from '~~/models/constants/networks';
 import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
@@ -153,8 +153,13 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
 
   return (
     <div className="App">
-      {/* ✏️ Edit the header and change the title to your project name */}
-      <MainPageHeaderLeft currentEthersUser={currentEthersUser} scaffoldAppProviders={scaffoldAppProviders} />
+      {/* ✏️ Edit the header and change the title to your project name.  Your account is on the right */}
+      <MainPageHeader
+        currentEthersUser={currentEthersUser}
+        scaffoldAppProviders={scaffoldAppProviders}
+        price={price}
+        gasPrice={gasPrice}
+      />
       <BrowserRouter>
         <MainPageMenu route={route} setRoute={setRoute} />
         <Switch>
@@ -221,18 +226,8 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
         </Switch>
       </BrowserRouter>
 
-      <MainPageFooterRight scaffoldAppProviders={scaffoldAppProviders} currentEthersUser={currentEthersUser} />
-
-      {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
-      <MainPageHeaderRight
-        scaffoldAppProviders={scaffoldAppProviders}
-        currentEthersUser={currentEthersUser}
-        price={price}
-        gasPrice={gasPrice}
-      />
-
       {/* 🗺 Extra UI like gas price, eth price, faucet, and support: */}
-      <MainPageFooterLeft
+      <MainPageFooter
         scaffoldAppProviders={scaffoldAppProviders}
         currentEthersUser={currentEthersUser}
         price={price}
