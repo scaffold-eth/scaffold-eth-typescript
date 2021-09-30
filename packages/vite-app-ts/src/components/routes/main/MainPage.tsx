@@ -58,7 +58,7 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
   const context = useContext(EthComponentsContext);
 
   // -----------------------------
-  // Providers and signers
+  // Providers, signers & wallets
   // -----------------------------
 
   // 🛰 providers

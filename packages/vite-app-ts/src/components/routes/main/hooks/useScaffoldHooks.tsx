@@ -22,24 +22,36 @@ export const useScaffoldHooks = (
   writeContracts: Record<string, ethers.Contract>,
   mainnetContracts: Record<string, ethers.Contract>
 ) => {
-  // You can warn the user if you would like them to be on a specific network
   let currentChainId: number | undefined = currentEthersUser.providerNetwork?.chainId;
 
+  // ---------------------
+  // 🏦 get your balance
+  // ---------------------
   // 🏗 scaffold-eth is full of handy hooks like this one to get your balance:
   const yourLocalBalance = useBalance(currentEthersUser.provider, currentEthersUser.address ?? '');
 
+  // ---------------------
+  // 🤙🏽 calling an external function
+  // ---------------------
   // Just plug in different 🛰 providers to get your balance on different chains:
   const yourMainnetBalance = useBalance(scaffoldAppProviders.mainnetProvider, currentEthersUser.address ?? '');
 
-  // Then read your DAI balance like:
+  // 💰 Then read your DAI balance like:
   const myMainnetDAIBalance = useContractReader(mainnetContracts, 'DAI', 'balanceOf', [
     '0x34aA3F359A9D614239015126635CE7732c18fDF3',
   ]);
 
-  const addressFromENS = useEnsResolveName(scaffoldAppProviders.mainnetProvider, 'austingriffith.eth');
-  console.log('🏷 Resolved austingriffith.eth as:', addressFromENS);
+  // ---------------------
+  // 📛 call ens
+  // ---------------------
+  // const addressFromENS = useEnsResolveName(scaffoldAppProviders.mainnetProvider, 'austingriffith.eth');
+  // console.log('🏷 Resolved austingriffith.eth as:', addressFromENS);
 
-  // If you want to call a function on a new block
+  // ---------------------
+  // 🔁 onBlock or on polling
+  // ---------------------
+  // This hook will let you invoke a callback on every block or with a polling time!
+  // on block is prefferedmai
   useOnRepetition(
     (): void => console.log(`⛓ A new mainnet block is here: ${scaffoldAppProviders.mainnetProvider._lastBlockNumber}`),
     {
