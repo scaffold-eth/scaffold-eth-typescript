@@ -3,7 +3,7 @@ import input from 'antd/lib/input';
 import { IWeb3ModalState, useBurnerSigner, useWeb3Modal } from 'eth-hooks';
 import { TEthersProvider, TNetwork } from 'eth-hooks/models';
 import { useEffect, useMemo, useState } from 'react';
-import { web3ModalConfig } from '~~/components/routes/main/hooks/web3ModalConfig';
+import { web3ModalConfig } from '~~/models/constants/web3ModalConfig';
 import { INFURA_ID } from '~~/models/constants/constants';
 import { NETWORKS } from '~~/models/constants/networks';
 
@@ -38,16 +38,16 @@ const localProviderUrl = targetNetwork.rpcUrl;
 if (DEBUG) console.log('🏠 Connecting to provider:', localProviderUrl);
 const localProvider: TEthersProvider = new StaticJsonRpcProvider(localProviderUrl);
 
-export interface IScaffoldProviders {
+export interface IScaffoldAppProviders {
   currentProvider: TEthersProvider | undefined;
   currentTargetNetwork: TNetwork;
   mainnetProvider: StaticJsonRpcProvider;
-  fallbackProvider: StaticJsonRpcProvider;
+  localProvider: StaticJsonRpcProvider;
   isUsingFallback: boolean;
   web3ModalState: IWeb3ModalState;
 }
 
-export const useScaffoldProviders = (): IScaffoldProviders => {
+export const useScaffoldProviders = (): IScaffoldAppProviders => {
   const [currentProvider, setCurrentProvider] = useState<TEthersProvider>();
   const currentMainnetProvider = useMemo(
     () => (scaffoldEthProvider && scaffoldEthProvider._network ? scaffoldEthProvider : mainnetInfura),
@@ -61,7 +61,7 @@ export const useScaffoldProviders = (): IScaffoldProviders => {
       | TEthersProvider
       | undefined,
     mainnetProvider: currentMainnetProvider,
-    fallbackProvider: localProvider,
+    localProvider: localProvider,
     isUsingFallback: false,
     currentTargetNetwork: targetNetwork,
     web3ModalState: web3ModalState,

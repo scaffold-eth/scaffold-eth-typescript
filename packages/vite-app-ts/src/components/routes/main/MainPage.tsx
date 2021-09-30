@@ -37,7 +37,7 @@ import { TEthersProvider, TEthersUser } from 'eth-hooks/models';
 import { useEventListener } from 'eth-hooks/events';
 import { MainPageMenu } from './components/MainPageMenu';
 import { MainPageContracts } from './components/MainPageContracts';
-import { MainPageExtraUi } from './components/MainPageExtraUi';
+import { MainPageLeftFooter } from './components/MainPageLeftFooter';
 import { useContractConfig } from '~~/components/routes/main/hooks/useContractConfig';
 import { EthComponentsContext } from 'eth-components/models';
 import {
@@ -46,6 +46,8 @@ import {
   blockExplorer,
 } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 import { useBurnerFallback } from '~~/components/routes/main/hooks/useBurnerFallback';
+import { MainPageRightFooter } from '~~/components/routes/main/components/MainPageRightFooter';
+import { MainPageRightHeader } from '~~/components/routes/main/components/MainPageRightHeader';
 
 const DEBUG = false;
 
@@ -79,7 +81,7 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
   const tx = transactor(context, currentEthersUser?.signer, gasPrice);
 
   // Faucet Tx can be used to send funds from the faucet
-  const faucetTx = transactor(context, currentEthersUser?.signer, gasPrice);
+  const faucetTx = transactor(context, scaffoldAppProviders.localProvider, gasPrice);
 
   // 🏗 scaffold-eth is full of handy hooks like this one to get your balance:
   const yourLocalBalance = useBalance(currentEthersUser.provider, currentEthersUser.address ?? '');
@@ -230,7 +232,6 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
       {networkDisplay}
       <BrowserRouter>
         <MainPageMenu route={route} setRoute={setRoute} />
-
         <Switch>
           <Route exact path="/">
             {currentEthersUser != null && (
@@ -296,26 +297,19 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
         </Switch>
       </BrowserRouter>
 
-      <ThemeSwitcher />
+      <MainPageRightFooter />
 
       {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
-      <div style={{ position: 'fixed', textAlign: 'right', right: 0, top: 0, padding: 10 }}>
-        <Account
-          currentEthersUser={currentEthersUser}
-          mainnetProvider={scaffoldAppProviders.mainnetProvider}
-          isWeb3ModalUser={!scaffoldAppProviders.isUsingFallback}
-          price={price}
-          loadWeb3Modal={scaffoldAppProviders.web3ModalState.openWeb3ModalCallback}
-          logoutOfWeb3Modal={scaffoldAppProviders.web3ModalState.logoutOfWeb3ModalCallback}
-          blockExplorer={blockExplorer}
-        />
-        {faucetHint}
-      </div>
+      <MainPageRightHeader
+        scaffoldAppProviders={scaffoldAppProviders}
+        currentEthersUser={currentEthersUser}
+        price={price}
+      />
 
       {/* 🗺 Extra UI like gas price, eth price, faucet, and support: */}
-      <MainPageExtraUi
+      <MainPageLeftFooter
         mainnetProvider={scaffoldAppProviders.mainnetProvider}
-        currentProviderAndSinger={currentEthersUser}
+        currentEthersUser={currentEthersUser}
         price={price}
         gasPrice={gasPrice}
         faucetAvailable={faucetAvailable}

@@ -3,10 +3,10 @@ import { GenericContract } from 'eth-components/ant/generic-contract';
 import { Contract } from 'ethers';
 import { TEthersUser } from 'eth-hooks/models';
 import { TContractConfig } from 'eth-hooks';
-import { IScaffoldProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
+import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 
 interface IMainPageContracts {
-  appProviders: IScaffoldProviders;
+  appProviders: IScaffoldAppProviders;
   currentEthersUser: TEthersUser;
   mainnetContracts: Record<string, Contract>;
   blockExplorerUrl: string;

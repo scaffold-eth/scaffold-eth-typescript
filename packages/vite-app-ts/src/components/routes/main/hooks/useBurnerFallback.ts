@@ -4,16 +4,16 @@ import { useBurnerSigner, useGetUserFromProviders, useGetUserFromSigners } from 
 import { parseProviderOrSigner } from 'eth-hooks/functions';
 import { TEthersProvider, TEthersProviderOrSigner, TEthersUser } from 'eth-hooks/models';
 import { useRef, useState } from 'react';
-import { IScaffoldProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
+import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 
-export const useBurnerFallback = (appProviders: IScaffoldProviders, currentEthersUser: TEthersUser): TEthersUser => {
-  const burnerFallback = useBurnerSigner(appProviders.fallbackProvider as TEthersProvider);
+export const useBurnerFallback = (appProviders: IScaffoldAppProviders, currentEthersUser: TEthersUser): TEthersUser => {
+  const burnerFallback = useBurnerSigner(appProviders.localProvider as TEthersProvider);
   const burnerUser = useGetUserFromSigners(burnerFallback.signer);
 
   if (
-    currentEthersUser.providerNetwork?.chainId === appProviders.fallbackProvider?.network?.chainId &&
-    currentEthersUser.provider?.connection.url === appProviders.fallbackProvider.connection.url &&
-    appProviders.fallbackProvider?.network != null &&
+    currentEthersUser.providerNetwork?.chainId === appProviders.localProvider?.network?.chainId &&
+    currentEthersUser.provider?.connection.url === appProviders.localProvider.connection.url &&
+    appProviders.localProvider?.network != null &&
     burnerUser.signer != null
   ) {
     appProviders.isUsingFallback = true;

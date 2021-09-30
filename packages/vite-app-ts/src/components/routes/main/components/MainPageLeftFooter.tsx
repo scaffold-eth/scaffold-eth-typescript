@@ -5,8 +5,8 @@ import { Faucet, GasGauge } from 'eth-components/ant';
 import { NETWORKS } from '~~/models/constants/networks';
 import { TEthersProvider, TEthersUser } from 'eth-hooks/models';
 
-interface IMainPageExtraUi {
-  currentProviderAndSinger: TEthersUser | undefined;
+interface IMainPageLeftFooter {
+  currentEthersUser: TEthersUser | undefined;
   mainnetProvider: TEthersProvider | undefined;
   price: number;
   gasPrice: number | undefined;
@@ -18,7 +18,7 @@ interface IMainPageExtraUi {
  * @param props
  * @returns
  */
-export const MainPageExtraUi: FC<IMainPageExtraUi> = (props) => (
+export const MainPageLeftFooter: FC<IMainPageLeftFooter> = (props) => (
   <div
     style={{
       position: 'fixed',
@@ -29,7 +29,7 @@ export const MainPageExtraUi: FC<IMainPageExtraUi> = (props) => (
     }}>
     <Row align="middle" gutter={[4, 4]}>
       <Col span={8}>
-        <Ramp price={props.price} address={props.currentProviderAndSinger?.address ?? ''} networks={NETWORKS} />
+        <Ramp price={props.price} address={props.currentEthersUser?.address ?? ''} networks={NETWORKS} />
       </Col>
 
       <Col
@@ -71,12 +71,12 @@ export const MainPageExtraUi: FC<IMainPageExtraUi> = (props) => (
           /*  if the local provider has a signer, let's show the faucet:  */
           props.faucetAvailable && props.mainnetProvider ? (
             <Faucet
-              localProvider={props.currentProviderAndSinger?.provider as any}
+              localProvider={props.currentEthersUser?.provider as any}
               price={props.price}
               ensProvider={props.mainnetProvider}
             />
           ) : (
-            ''
+            <></>
           )
         }
       </Col>
