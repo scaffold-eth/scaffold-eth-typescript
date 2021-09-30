@@ -6313,10 +6313,10 @@ eth-block-tracker@^4.4.2:
     pify "^3.0.0"
     safe-event-emitter "^1.0.1"
 
-eth-components@1.0.0-beta03:
-  version "1.0.0-beta03"
-  resolved "https://registry.yarnpkg.com/eth-components/-/eth-components-1.0.0-beta03.tgz#04fab4d2ff714aacada9c825f526ab8dd6fc1cd3"
-  integrity sha512-wa+It25HVvhykTK5XICLcMSUStf+nOTz+JZWl/PqVhKDsJwmPfsjthqn1abDov6sj51my6xt79cmFAzot/SuCw==
+eth-components@1.0.0-beta04:
+  version "1.0.0-beta04"
+  resolved "https://registry.yarnpkg.com/eth-components/-/eth-components-1.0.0-beta04.tgz#4a2603e3576cd289e3864f55677ac34ad166fe6b"
+  integrity sha512-H1qIxy7aqEZpM4zXifXIwAVM01RDw9jZHFfW9mSCHGvdqz6dVe2d1anZT8FMPQwqULlxmo1zURSyBdZ6Dk2BmQ==
   dependencies:
     "@ethersproject/abstract-signer" "^5.4.0"
     "@ethersproject/address" "^5.4.0"
@@ -6349,6 +6349,25 @@ eth-hooks@^3.0.0-beta02:
   version "3.0.0-beta02"
   resolved "https://registry.yarnpkg.com/eth-hooks/-/eth-hooks-3.0.0-beta02.tgz#f80d0ffa8829fa6bd498b4ac7f8c416b28392dc5"
   integrity sha512-cn4juo1Oaf1g4msLOcAIFf/YsJvzqM/4OP97XRKnUpYs86HpejfeD+h92fjYoJ0B0H/Y5+NpJVrOXHSTHIoV6g==
+  dependencies:
+    "@ethersproject/address" "^5.4.0"
+    "@ethersproject/bignumber" "^5.4.0"
+    "@ethersproject/bytes" "^5.4.0"
+    "@ethersproject/contracts" "^5.4.0"
+    "@ethersproject/networks" "^5.4.0"
+    "@ethersproject/providers" "^5.4.0"
+    "@ethersproject/signing-key" "^5.4.0"
+    "@ethersproject/solidity" "^5.4.0"
+    "@ethersproject/units" "^5.4.0"
+    "@uniswap/token-lists" "^1.0.0-beta.24"
+    axios "^0.21.4"
+    ethers "^5.4.1"
+    use-debounce "^7.0.0"
+
+eth-hooks@^3.0.0-beta03:
+  version "3.0.0-beta03"
+  resolved "https://registry.yarnpkg.com/eth-hooks/-/eth-hooks-3.0.0-beta03.tgz#f838b4613d75c9e3014b981a20806c9f97a53b88"
+  integrity sha512-WeIH6+eV0tzJFxgf549jZmRb5qZqPXEwavot8kq1TYvxLQfGNGuRrkuHKDN5zZHMhvQ5xKBFo4qV0TZzZQ9vHg==
   dependencies:
     "@ethersproject/address" "^5.4.0"
     "@ethersproject/bignumber" "^5.4.0"

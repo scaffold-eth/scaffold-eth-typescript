@@ -3,7 +3,7 @@ import React, { FC, Suspense } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import { EthComponentsContext, IEthComponentsContext } from 'eth-components/models';
 
-import { ErrorBoundary, ErrorFallback } from '~~/components/layout/ErrorFallback';
+import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 import { MainPage } from '~~/components/routes/main/MainPage';
 import '~~/styles/css/tailwind-base.pcss';
 import '~~/styles/css/tailwind-components.pcss';
