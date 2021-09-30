@@ -79,7 +79,7 @@ export const MainPageFooter: FC<IMainPageFooter> = (props) => {
             /*  if the local provider has a signer, let's show the faucet:  */
             props.faucetAvailable && props.scaffoldAppProviders.mainnetProvider ? (
               <Faucet
-                localProvider={props.currentEthersUser?.provider as any}
+                localProvider={props.scaffoldAppProviders?.localProvider}
                 price={props.price}
                 ensProvider={props.scaffoldAppProviders.mainnetProvider}
               />

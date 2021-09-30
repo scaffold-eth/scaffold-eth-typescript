@@ -15,11 +15,7 @@ export default defineConfig({
     jsxFactory: 'jsx',
     jsxInject: `import {jsx, css} from '@emotion/react'`,
   },
-  define: {
-    process: {},
-    'process.platform': JSON.stringify('win32'),
-    'process.env': {},
-  },
+  define: {},
   optimizeDeps: {
     exclude: ['@apollo/client', `..\\..\\node_modules\\@apollo\\client\\utilities\\globals\\graphql`],
   },
