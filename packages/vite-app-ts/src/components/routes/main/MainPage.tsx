@@ -12,7 +12,7 @@ import {
   useContractReader,
   useBalance,
   useOnRepetition,
-  useUserProviderAndSigner,
+  useGetUserFromProviders,
 } from 'eth-hooks';
 import { useExchangeEthPrice } from 'eth-hooks/dapps/dex';
 
@@ -33,7 +33,7 @@ import { ethers } from 'ethers';
 
 import { TNetwork } from '~~/models/networkTypes';
 
-import { TEthersProvider, TProviderAndSigner } from 'eth-hooks/models';
+import { TEthersProvider, TEthersUser } from 'eth-hooks/models';
 import { useEventListener } from 'eth-hooks/events';
 import { MainPageMenu } from './components/MainPageMenu';
 import { MainPageContracts } from './components/MainPageContracts';
@@ -41,10 +41,10 @@ import { MainPageExtraUi } from './components/MainPageExtraUi';
 import { useContractConfig } from '~~/components/routes/main/hooks/useContractConfig';
 import { EthComponentsContext } from 'eth-components/models';
 import {
-  useScaffoldProviders as useScaffoldProviders,
+  useScaffoldProviders as useScaffoldAppProviders,
   targetNetwork,
   blockExplorer,
-} from '~~/components/routes/main/hooks/useScaffoldProviders';
+} from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 import { useBurnerFallback } from '~~/components/routes/main/hooks/useBurnerFallback';
 
 const DEBUG = false;
@@ -58,65 +58,65 @@ const translateAddressesForLocal = (addy: string): string => {
 export const MainPage: FC<{ subgraphUri: string }> = (props) => {
   // 🛰 providers
   // see useLoadProviders.ts for everything to do with loading the right providers
-  const appProviders = useScaffoldProviders();
+  const scaffoldAppProviders = useScaffoldAppProviders();
 
   /* 💵 This hook will get the price of ETH from 🦄 Uniswap: */
-  const price = useExchangeEthPrice(appProviders.currentTargetNetwork, appProviders.mainnetProvider);
+  const price = useExchangeEthPrice(scaffoldAppProviders.currentTargetNetwork, scaffoldAppProviders.mainnetProvider);
 
   /* 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation */
   const gasPrice = useGasPrice(targetNetwork, 'fast');
   // Use your injected provider from 🦊 Metamask or if you don't have it then instantly generate a 🔥 burner wallet.
-  let currentProviderAndSigner: TProviderAndSigner = useUserProviderAndSigner(appProviders.currentProvider);
-  //currentProviderAndSigner = useBurnerFallback(currentProviderAndSigner);
+  let currentEthersUser: TEthersUser = useGetUserFromProviders(scaffoldAppProviders.currentProvider);
+  currentEthersUser = useBurnerFallback(scaffoldAppProviders, currentEthersUser);
 
   // You can warn the user if you would like them to be on a specific network
-  let selectedChainId: number | undefined = currentProviderAndSigner.providerNetwork?.chainId;
+  let selectedChainId: number | undefined = currentEthersUser.providerNetwork?.chainId;
 
   // For more hooks, check out 🔗eth-hooks at: https://www.npmjs.com/package/eth-hooks
   const context = useContext(EthComponentsContext);
 
   // The transactor wraps transactions and provides notificiations
-  const tx = transactor(context, currentProviderAndSigner?.signer, gasPrice);
+  const tx = transactor(context, currentEthersUser?.signer, gasPrice);
 
   // Faucet Tx can be used to send funds from the faucet
-  const faucetTx = transactor(context, currentProviderAndSigner?.signer, gasPrice);
+  const faucetTx = transactor(context, currentEthersUser?.signer, gasPrice);
 
   // 🏗 scaffold-eth is full of handy hooks like this one to get your balance:
-  const yourLocalBalance = useBalance(currentProviderAndSigner.provider, currentProviderAndSigner.address ?? '');
+  const yourLocalBalance = useBalance(currentEthersUser.provider, currentEthersUser.address ?? '');
 
   // Just plug in different 🛰 providers to get your balance on different chains:
-  const yourMainnetBalance = useBalance(appProviders.mainnetProvider, currentProviderAndSigner.address ?? '');
+  const yourMainnetBalance = useBalance(scaffoldAppProviders.mainnetProvider, currentEthersUser.address ?? '');
 
   const contractsConfig = useContractConfig();
 
   // Load in your local 📝 contract and read a value from it:
   const readContracts = useContractLoader(
-    appProviders.currentProvider,
+    scaffoldAppProviders.currentProvider,
     contractsConfig,
-    appProviders.currentTargetNetwork.chainId
+    scaffoldAppProviders.currentTargetNetwork.chainId
   );
 
   // If you want to make 🔐 write transactions to your contracts, use the userProvider:
   const writeContracts = useContractLoader(
-    currentProviderAndSigner?.signer,
+    currentEthersUser?.signer,
     contractsConfig,
-    currentProviderAndSigner.providerNetwork?.chainId
+    currentEthersUser.providerNetwork?.chainId
   );
 
   // EXTERNAL CONTRACT EXAMPLE:
   //
   // If you want to bring in the mainnet DAI contract it would look like:
   const mainnetContracts = useContractLoader(
-    appProviders.mainnetProvider,
+    scaffoldAppProviders.mainnetProvider,
     contractsConfig,
-    appProviders.mainnetProvider?._network?.chainId
+    scaffoldAppProviders.mainnetProvider?._network?.chainId
   );
 
   // If you want to call a function on a new block
   useOnRepetition(
-    (): void => console.log(`⛓ A new mainnet block is here: ${appProviders.mainnetProvider._lastBlockNumber}`),
+    (): void => console.log(`⛓ A new mainnet block is here: ${scaffoldAppProviders.mainnetProvider._lastBlockNumber}`),
     {
-      provider: appProviders.mainnetProvider,
+      provider: scaffoldAppProviders.mainnetProvider,
     }
   );
 
@@ -133,7 +133,7 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
     readContracts,
     'YourContract',
     'SetPurpose',
-    appProviders.currentProvider,
+    scaffoldAppProviders.currentProvider,
     1
   );
 
@@ -145,12 +145,12 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
   // 🧫 DEBUG 👨🏻‍🔬
   //
   useEffect(() => {
-    if (DEBUG && appProviders.mainnetProvider && currentProviderAndSigner?.address && selectedChainId) {
+    if (DEBUG && scaffoldAppProviders.mainnetProvider && currentEthersUser?.address && selectedChainId) {
       console.log('_____________________________________ 🏗 scaffold-eth _____________________________________');
-      console.log('🌎 mainnetProvider', appProviders.mainnetProvider);
+      console.log('🌎 mainnetProvider', scaffoldAppProviders.mainnetProvider);
       console.log('🕵🏻‍♂️ targetChainId:', targetNetwork.chainId);
       console.log('🏠 selected ChainId', selectedChainId);
-      console.log('👩‍💼 selected address:', currentProviderAndSigner.address);
+      console.log('👩‍💼 selected address:', currentEthersUser.address);
 
       /* console.log("💵 yourLocalBalance",yourLocalBalance?formatEther(yourLocalBalance):"...")
       console.log("💵 yourMainnetBalance",yourMainnetBalance?formatEther(yourMainnetBalance):"...")
@@ -159,10 +159,10 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
       console.log("🔐 writeContracts",writeContracts) */
     }
   }, [
-    appProviders.mainnetProvider,
-    appProviders.currentTargetNetwork.chainId,
+    scaffoldAppProviders.mainnetProvider,
+    scaffoldAppProviders.currentTargetNetwork.chainId,
     selectedChainId,
-    currentProviderAndSigner?.address,
+    currentEthersUser?.address,
   ]);
 
   let networkDisplay: ReactElement | undefined;
@@ -197,8 +197,8 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
    */
   const faucetAvailable =
     (true &&
-      currentProviderAndSigner?.provider &&
-      currentProviderAndSigner?.providerNetwork?.chainId === targetNetwork.chainId &&
+      currentEthersUser?.provider &&
+      currentEthersUser?.providerNetwork?.chainId === targetNetwork.chainId &&
       targetNetwork.name === 'localhost') ??
     false;
 
@@ -211,7 +211,7 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
           onClick={(): void => {
             if (faucetTx) {
               void faucetTx({
-                to: currentProviderAndSigner?.address,
+                to: currentEthersUser?.address,
                 value: parseEther('0.01'),
               });
             }
@@ -233,7 +233,7 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
 
         <Switch>
           <Route exact path="/">
-            {currentProviderAndSigner != null && (
+            {currentEthersUser != null && (
               <>
                 {/*
                 🎛 this scaffolding is full of commonly used components
@@ -241,9 +241,9 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
                 and give you a form to interact with it locally
               */}
                 <MainPageContracts
-                  appProviders={appProviders}
+                  appProviders={scaffoldAppProviders}
                   mainnetContracts={{}}
-                  currentProviderAndSigner={currentProviderAndSigner}
+                  currentEthersUser={currentEthersUser}
                   blockExplorerUrl={blockExplorer}
                   contractConfig={contractsConfig}
                 />
@@ -252,18 +252,18 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
           </Route>
           <Route path="/hints">
             <Hints
-              address={currentProviderAndSigner?.address ?? ''}
+              address={currentEthersUser?.address ?? ''}
               yourLocalBalance={yourLocalBalance}
-              mainnetProvider={appProviders.mainnetProvider}
+              mainnetProvider={scaffoldAppProviders.mainnetProvider}
               price={price}
             />
           </Route>
           <Route path="/exampleui">
             <ExampleUI
-              address={currentProviderAndSigner?.address ?? ''}
-              userSigner={currentProviderAndSigner?.signer}
-              mainnetProvider={appProviders.mainnetProvider}
-              currentProvider={currentProviderAndSigner?.provider}
+              address={currentEthersUser?.address ?? ''}
+              userSigner={currentEthersUser?.signer}
+              mainnetProvider={scaffoldAppProviders.mainnetProvider}
+              currentProvider={currentEthersUser?.provider}
               yourLocalBalance={yourLocalBalance}
               price={price}
               tx={tx}
@@ -274,12 +274,12 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
             />
           </Route>
           <Route path="/mainnetdai">
-            {currentProviderAndSigner?.signer != null && (
+            {currentEthersUser?.signer != null && (
               <GenericContract
                 contractName="DAI"
                 customContract={mainnetContracts?.contracts?.DAI as ethers.Contract | undefined}
-                currentProviderAndSigner={currentProviderAndSigner}
-                mainnetProvider={appProviders.mainnetProvider}
+                currentEthersUser={currentEthersUser}
+                mainnetProvider={scaffoldAppProviders.mainnetProvider}
                 blockExplorer="https://etherscan.io/"
                 contractConfig={contractsConfig}
               />
@@ -290,7 +290,7 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
               subgraphUri={props.subgraphUri}
               tx={tx}
               writeContracts={writeContracts}
-              mainnetProvider={appProviders.mainnetProvider}
+              mainnetProvider={scaffoldAppProviders.mainnetProvider}
             />
           </Route>
         </Switch>
@@ -301,11 +301,12 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
       {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
       <div style={{ position: 'fixed', textAlign: 'right', right: 0, top: 0, padding: 10 }}>
         <Account
-          currentProviderAndSigner={currentProviderAndSigner}
-          mainnetProvider={appProviders.mainnetProvider}
+          currentEthersUser={currentEthersUser}
+          mainnetProvider={scaffoldAppProviders.mainnetProvider}
+          isWeb3ModalUser={!scaffoldAppProviders.isUsingFallback}
           price={price}
-          loadWeb3Modal={appProviders.web3ModalState.openWeb3ModalCallback}
-          logoutOfWeb3Modal={appProviders.web3ModalState.logoutOfWeb3ModalCallback}
+          loadWeb3Modal={scaffoldAppProviders.web3ModalState.openWeb3ModalCallback}
+          logoutOfWeb3Modal={scaffoldAppProviders.web3ModalState.logoutOfWeb3ModalCallback}
           blockExplorer={blockExplorer}
         />
         {faucetHint}
@@ -313,8 +314,8 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
 
       {/* 🗺 Extra UI like gas price, eth price, faucet, and support: */}
       <MainPageExtraUi
-        mainnetProvider={appProviders.mainnetProvider}
-        currentProviderAndSinger={currentProviderAndSigner}
+        mainnetProvider={scaffoldAppProviders.mainnetProvider}
+        currentProviderAndSinger={currentEthersUser}
         price={price}
         gasPrice={gasPrice}
         faucetAvailable={faucetAvailable}

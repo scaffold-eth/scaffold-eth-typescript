@@ -1,32 +1,24 @@
 import { Provider } from '@ethersproject/abstract-provider';
 import { Signer } from 'crypto';
-import { useBurnerSigner, useUserProviderAndSigner } from 'eth-hooks';
+import { useBurnerSigner, useGetUserFromProviders, useGetUserFromSigners } from 'eth-hooks';
 import { parseProviderOrSigner } from 'eth-hooks/functions';
-import { TEthersProvider, TEthersProviderOrSigner, TProviderAndSigner } from 'eth-hooks/models';
+import { TEthersProvider, TEthersProviderOrSigner, TEthersUser } from 'eth-hooks/models';
 import { useRef, useState } from 'react';
+import { IScaffoldProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 
-export const useBurnerFallback = (
-  providerAndSigner: TProviderAndSigner | undefined
-): TProviderAndSigner | undefined => {
-  const fallbackSigner = useBurnerSigner(providerAndSigner?.provider as TEthersProvider);
-  const input: TEthersProvider[] = fallbackSigner.signer?.provider
-    ? [fallbackSigner.signer?.provider as TEthersProvider]
-    : [];
-  const result = useUserProviderAndSigner(...input);
-  const creatingRef = useRef(false);
+export const useBurnerFallback = (appProviders: IScaffoldProviders, currentEthersUser: TEthersUser): TEthersUser => {
+  const burnerFallback = useBurnerSigner(appProviders.fallbackProvider as TEthersProvider);
+  const burnerUser = useGetUserFromSigners(burnerFallback.signer);
 
-  if (providerAndSigner?.provider && providerAndSigner?.providerNetwork && providerAndSigner?.signer) {
-    return providerAndSigner;
+  if (
+    currentEthersUser.providerNetwork?.chainId === appProviders.fallbackProvider?.network?.chainId &&
+    currentEthersUser.provider?.connection.url === appProviders.fallbackProvider.connection.url &&
+    appProviders.fallbackProvider?.network != null &&
+    burnerUser.signer != null
+  ) {
+    appProviders.isUsingFallback = true;
+    return burnerUser;
   } else {
-    if (!fallbackSigner.signer && !creatingRef.current) {
-      creatingRef.current = true;
-      fallbackSigner?.createBurnerSigner();
-    }
-
-    if (result?.provider && result?.providerNetwork && result?.signer) {
-      return result;
-    }
-
-    return { signer: undefined, provider: undefined, providerNetwork: undefined, address: undefined };
+    return currentEthersUser;
   }
 };

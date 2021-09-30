@@ -3,10 +3,10 @@ import { Row, Col, Button } from 'antd';
 import { Ramp } from '~~/components/common';
 import { Faucet, GasGauge } from 'eth-components/ant';
 import { NETWORKS } from '~~/models/constants/networks';
-import { TEthersProvider, TProviderAndSigner } from 'eth-hooks/models';
+import { TEthersProvider, TEthersUser } from 'eth-hooks/models';
 
 interface IMainPageExtraUi {
-  currentProviderAndSinger: TProviderAndSigner | undefined;
+  currentProviderAndSinger: TEthersUser | undefined;
   mainnetProvider: TEthersProvider | undefined;
   price: number;
   gasPrice: number | undefined;

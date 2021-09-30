@@ -41,7 +41,9 @@ const localProvider: TEthersProvider = new StaticJsonRpcProvider(localProviderUr
 export interface IScaffoldProviders {
   currentProvider: TEthersProvider | undefined;
   currentTargetNetwork: TNetwork;
-  mainnetProvider: TEthersProvider;
+  mainnetProvider: StaticJsonRpcProvider;
+  fallbackProvider: StaticJsonRpcProvider;
+  isUsingFallback: boolean;
   web3ModalState: IWeb3ModalState;
 }
 
@@ -53,13 +55,14 @@ export const useScaffoldProviders = (): IScaffoldProviders => {
   );
 
   const web3ModalState = useWeb3Modal(web3ModalConfig, setCurrentProvider);
-  const burnerSigner = useBurnerSigner(localProvider);
 
   return {
-    currentProvider: (currentProvider ? currentProvider : web3ModalState.initialized ? localProvider : undefined) as
+    currentProvider: (currentProvider ? currentProvider : !web3ModalState.initializing ? localProvider : undefined) as
       | TEthersProvider
       | undefined,
     mainnetProvider: currentMainnetProvider,
+    fallbackProvider: localProvider,
+    isUsingFallback: false,
     currentTargetNetwork: targetNetwork,
     web3ModalState: web3ModalState,
   };
