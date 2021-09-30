@@ -66,3 +66,4 @@ yarn-error.log*
 *.stackdump
 .yalc
 yalc.lock
+packages/vite-app-ts/dist

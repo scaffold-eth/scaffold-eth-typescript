@@ -1,8 +1,8 @@
 /* eslint-disable unused-imports/no-unused-vars-ts */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import nodeBuffer from 'buffer';
-import nodeProcess from 'process';
+import * as nodeBuffer from 'buffer';
+import * as nodeProcess from 'process';
 
 import { ExternalProvider } from '@ethersproject/providers/src.ts/web3-provider';
 

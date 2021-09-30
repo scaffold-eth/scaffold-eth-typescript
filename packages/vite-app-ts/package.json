@@ -1,16 +1,16 @@
 {
-  "name": "@scaffold-eth/vite-app-ts",
+  "name": "@scaffold-eth/vite-app",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "start-ts": "vite",
-    "build-ts": "tsc && vite build",
-    "serve-ts": "vite preview",
-    "lint-ts": "eslint --config ./.eslintrc --ignore-path ./.eslintignore ./src/**/*",
-    "ipfs-ts": "node ./scripts/ipfs.js",
-    "surge-ts": "surge ./build",
-    "s3-ts": "node ./scripts/s3.js",
-    "ship-ts": "yarn surge",
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore ./src/**/*",
+    "ipfs": "node ./scripts/ipfs.js",
+    "surge": "surge ./build",
+    "s3": "node ./scripts/s3.js",
+    "ship": "yarn surge",
     "dev:link": "yalc link eth-hooks && yalc link eth-components"
   },
   "dependencies": {
@@ -34,7 +34,6 @@
     "axios": "^0.21.1",
     "bnc-notify": "^1.5.0",
     "buffer": "^6.0.3",
-    "burner-provider": "^1.0.38",
     "contract-types": "file:../hardhat-ts/generated/contract-types",
     "eth-components": "1.0.0-beta04",
     "eth-hooks": "^3.0.0-beta03",
