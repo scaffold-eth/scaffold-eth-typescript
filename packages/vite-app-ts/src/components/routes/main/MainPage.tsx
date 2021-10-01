@@ -38,21 +38,12 @@ import { useScaffoldContractConfig } from '~~/components/routes/main/hooks/useSc
 import { EthComponentsContext } from 'eth-components/models';
 import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 import { useBurnerFallback } from '~~/components/routes/main/hooks/useBurnerFallback';
-import { MainPageFooterRight } from '~~/components/routes/main/components/MainPageFooterRight';
-import { MainPageHeaderRight } from '~~/components/routes/main/components/MainPageHeaderRight';
 import { getFaucetAvailable } from '../../common/FaucetHintButton';
 import { MainPageHeader } from '~~/components/routes/main/components/MainPageHeader';
 import { useScaffoldHooks } from './hooks/useScaffoldHooks';
-import { NETWORKS } from '~~/models/constants/networks';
 import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
 
 export const DEBUG = false;
-
-const translateAddressesForLocal = (addy: string): string => {
-  // if(addy=="0x90FC815Fe9338BB3323bAC84b82B9016ED021e70") return "0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE"
-  // if(addy=="0x21e18260357D33d2e18482584a8F39D532fb71cC") return "0x3Aa5ebB10DC797CAC828524e59A333d0A371443c"
-  return addy;
-};
 
 export const MainPage: FC<{ subgraphUri: string }> = (props) => {
   const context = useContext(EthComponentsContext);
@@ -237,3 +228,5 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
     </div>
   );
 };
+
+export default MainPage;

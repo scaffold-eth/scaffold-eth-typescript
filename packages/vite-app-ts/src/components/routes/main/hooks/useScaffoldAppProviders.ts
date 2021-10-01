@@ -3,7 +3,7 @@ import input from 'antd/lib/input';
 import { IWeb3ModalState, useBurnerSigner, useWeb3Modal } from 'eth-hooks';
 import { TEthersProvider, TNetworkInfo } from 'eth-hooks/models';
 import { useEffect, useMemo, useState } from 'react';
-import { web3ModalConfig } from '~~/models/constants/web3ModalConfig';
+import { ICoreOptions } from 'web3modal';
 import { INFURA_ID } from '~~/models/constants/constants';
 import { NETWORKS } from '~~/models/constants/networks';
 
@@ -59,8 +59,15 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
     () => (scaffoldEthProvider && scaffoldEthProvider._network ? scaffoldEthProvider : mainnetInfura),
     [scaffoldEthProvider?._network?.name, mainnetInfura?._network?.name]
   );
+  const [web3Config, setWeb3Config] = useState<Partial<ICoreOptions>>({});
 
-  const web3ModalState = useWeb3Modal(web3ModalConfig, setCurrentProvider);
+  useEffect(() => {
+    // import async to split bundles
+    import('../../../../config/web3ModalConfig').then((value) => setWeb3Config(value.web3ModalConfig));
+  }, [input]);
+
+  const web3ModalState = useWeb3Modal(web3Config, setCurrentProvider);
+  // const web3ModalState = useWeb3Modal(web3ModalConfig, setCurrentProvider);
 
   return {
     currentProvider: (currentProvider ? currentProvider : !web3ModalState.initializing ? localProvider : undefined) as

@@ -17,7 +17,7 @@ export default defineConfig({
   },
   define: {},
   optimizeDeps: {
-    exclude: ['@apollo/client', `..\\..\\node_modules\\@apollo\\client\\utilities\\globals\\graphql`],
+    exclude: ['@apollo/client', `graphql`],
   },
   resolve: {
     alias: {
