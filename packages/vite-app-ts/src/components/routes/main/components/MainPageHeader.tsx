@@ -5,6 +5,7 @@ import { TEthersUser, TNetworkInfo } from 'eth-hooks/models';
 import React, { FC, ReactElement } from 'react';
 import { FaucetHintButton } from '~~/components/common/FaucetHintButton';
 import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
+import { useEthersContext } from 'eth-hooks/context';
 
 // displays a page header
 interface IMainPageHeader {
@@ -16,6 +17,8 @@ interface IMainPageHeader {
 
 export const MainPageHeader: FC<IMainPageHeader> = (props) => {
   const selectedChainId = props.currentEthersUser.providerNetwork?.chainId;
+
+  const context = useEthersContext();
 
   /**
    * this shows the page header and other informaiton
@@ -55,8 +58,8 @@ export const MainPageHeader: FC<IMainPageHeader> = (props) => {
         mainnetProvider={props.scaffoldAppProviders.mainnetProvider}
         isWeb3ModalUser={!props.scaffoldAppProviders.isUsingFallback}
         price={props.price}
-        loadWeb3Modal={props.scaffoldAppProviders.web3ModalState.openWeb3ModalCallback}
-        logoutOfWeb3Modal={props.scaffoldAppProviders.web3ModalState.logoutOfWeb3ModalCallback}
+        loadWeb3Modal={context.openWeb3Modal}
+        logoutOfWeb3Modal={context.logoutWeb3Modal}
         blockExplorer={props.scaffoldAppProviders.targetNetwork.blockExplorer}
       />
       <FaucetHintButton

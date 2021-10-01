@@ -143,6 +143,8 @@ export const MainPage: FC = (props) => {
   // Faucet Tx can be used to send funds from the faucet
   let faucetAvailable = getFaucetAvailable(scaffoldAppProviders, currentEthersUser);
 
+  console.log(scaffoldAppProviders);
+
   return (
     <div className="App">
       {/* ✏️ Edit the header and change the title to your project name.  Your account is on the right */}

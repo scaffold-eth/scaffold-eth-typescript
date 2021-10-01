@@ -1,5 +1,3 @@
-import { Provider } from '@ethersproject/abstract-provider';
-import { Signer } from 'crypto';
 import { useBurnerSigner, useGetUserFromProviders, useGetUserFromSigners } from 'eth-hooks';
 import { parseProviderOrSigner } from 'eth-hooks/functions';
 import { TEthersProvider, TEthersProviderOrSigner, TEthersUser } from 'eth-hooks/models';
@@ -12,6 +10,7 @@ export const useBurnerFallback = (appProviders: IScaffoldAppProviders, currentEt
 
   if (
     currentEthersUser.providerNetwork?.chainId === appProviders.localProvider?.network?.chainId &&
+    currentEthersUser.providerNetwork?.name === appProviders.localProvider?.network?.name &&
     currentEthersUser.provider?.connection.url === appProviders.localProvider.connection.url &&
     appProviders.localProvider?.network != null &&
     burnerUser.signer != null

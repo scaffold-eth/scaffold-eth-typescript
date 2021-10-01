@@ -22,3 +22,14 @@ interface Window {
   location: any;
   localStorage: { getItem: (key: string) => any; setItem: (key: string, value: string) => any };
 }
+
+// interface Ethereum {
+//   send: unknown
+//   enable: () => Promise<string[]>
+//   on?: (method: string, listener: (...args: any[]) => void) => void
+//   removeListener?: (method: string, listener: (...args: any[]) => void) => void
+// }
+
+// declare interface Window {
+//   ethereum?: Ethereum
+// }
