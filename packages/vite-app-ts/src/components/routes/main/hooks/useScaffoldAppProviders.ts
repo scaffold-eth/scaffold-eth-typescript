@@ -30,8 +30,9 @@ if (DEBUG) console.log('📡 Connecting to Mainnet Ethereum');
 // const mainnetProvider = getDefaultProvider("mainnet", { infura: INFURA_ID, etherscan: ETHERSCAN_KEY, quorum: 1 });
 // const mainnetProvider = new InfuraProvider("mainnet",INFURA_ID);
 // attempt to connect to our own scaffold eth rpc and if that fails fall back to infura...
-const scaffoldEthProvider = new StaticJsonRpcProvider('https://rpc.scaffoldeth.io:48544');
-const mainnetInfura = new StaticJsonRpcProvider('https://mainnet.infura.io/v3/' + INFURA_ID);
+const mainnetScaffoldEthProvider = new StaticJsonRpcProvider('https://rpc.scaffoldeth.io:48544');
+// const mainnetInfura = new StaticJsonRpcProvider('https://mainnet.infura.io/v3/' + INFURA_ID);
+//const mainnetLightPool = new StaticJsonRpcProvider('https://main-light.eth.linkpool.io/');
 
 // -------------------
 // connecting to local provider
@@ -56,8 +57,9 @@ export interface IScaffoldAppProviders {
 export const useScaffoldProviders = (): IScaffoldAppProviders => {
   const [currentProvider, setCurrentProvider] = useState<TEthersProvider>();
   const currentMainnetProvider = useMemo(
-    () => (scaffoldEthProvider && scaffoldEthProvider._network ? scaffoldEthProvider : mainnetInfura),
-    [scaffoldEthProvider?._network?.name, mainnetInfura?._network?.name]
+    () =>
+      mainnetScaffoldEthProvider && mainnetScaffoldEthProvider._network ? mainnetScaffoldEthProvider : mainnetInfura,
+    [mainnetScaffoldEthProvider?._network?.name, mainnetInfura?._network?.name]
   );
   const [web3Config, setWeb3Config] = useState<Partial<ICoreOptions>>({});
 

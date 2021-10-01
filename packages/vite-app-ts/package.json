@@ -29,6 +29,7 @@
     "@ramp-network/ramp-instant-sdk": "^2.5.0",
     "@uniswap/sdk": "^3.0.3",
     "@uniswap/token-lists": "^1.0.0-beta.24",
+    "@web3-react/core": "^6.1.9",
     "antd": "^4.7.0",
     "axios": "^0.21.1",
     "bnc-notify": "^1.5.0",
@@ -60,6 +61,7 @@
     "stream-browserify": "^3.0.0",
     "tailwindcss": "^2.2.2",
     "timers-browserify": "^2.0.12",
+    "tiny-invariant": "^1.1.0",
     "walletlink": "^2.1.11",
     "web3modal": "^1.9.1"
   },

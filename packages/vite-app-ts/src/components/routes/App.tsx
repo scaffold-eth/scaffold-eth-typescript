@@ -10,6 +10,7 @@ import '~~/styles/css/tailwind-components.pcss';
 import '~~/styles/css/tailwind-utilities.pcss';
 import '~~/styles/css/app.css';
 import { BLOCKNATIVE_DAPPID } from '~~/models/constants/constants';
+import { subgraphUri } from '~~/config/subgraph';
 
 const MainPage = lazy(() => import('./main/MainPage'));
 
@@ -19,8 +20,6 @@ const themes = {
 };
 
 const prevTheme = window.localStorage.getItem('theme');
-
-const subgraphUri = 'http://localhost:8000/subgraphs/name/scaffold-eth/your-contract';
 
 const client = new ApolloClient({
   uri: subgraphUri,
@@ -41,7 +40,7 @@ const App: FC = () => {
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             <EthComponentsContext.Provider value={context}>
               <Suspense fallback={<div />}>
-                <MainPage subgraphUri={subgraphUri} />
+                <MainPage />
               </Suspense>
             </EthComponentsContext.Provider>
           </ErrorBoundary>

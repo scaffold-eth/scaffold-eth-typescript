@@ -42,10 +42,11 @@ import { getFaucetAvailable } from '../../common/FaucetHintButton';
 import { MainPageHeader } from '~~/components/routes/main/components/MainPageHeader';
 import { useScaffoldHooks } from './hooks/useScaffoldHooks';
 import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
+import { subgraphUri } from '~~/config/subgraph';
 
 export const DEBUG = false;
 
-export const MainPage: FC<{ subgraphUri: string }> = (props) => {
+export const MainPage: FC = (props) => {
   const context = useContext(EthComponentsContext);
 
   // -----------------------------
@@ -208,7 +209,7 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
           </Route>
           <Route path="/subgraph">
             <Subgraph
-              subgraphUri={props.subgraphUri}
+              subgraphUri={subgraphUri}
               tx={tx}
               writeContracts={writeContracts}
               mainnetProvider={scaffoldAppProviders.mainnetProvider}
