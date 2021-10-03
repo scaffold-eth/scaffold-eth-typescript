@@ -119,7 +119,7 @@ export const MainPage: FC = (props) => {
   // 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation
   const gasPrice = useGasPrice(
     currentEthersUser.providerNetwork?.chainId,
-    'average',
+    'fast',
     currentEthersUser.provider,
     getNetworkInfo(currentEthersUser.providerNetwork?.chainId)
   );
