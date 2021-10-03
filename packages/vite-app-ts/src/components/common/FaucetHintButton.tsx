@@ -6,6 +6,7 @@ import { parseEther } from '@ethersproject/units';
 import { TEthersUser } from 'eth-hooks/models';
 import { EthComponentsContext, IEthComponentsContext } from 'eth-components/models';
 import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
+import { utils } from 'ethers';
 
 interface IFaucetButton {
   scaffoldAppProviders: IScaffoldAppProviders;
@@ -29,7 +30,7 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
   /**
    * create transactor for faucet
    */
-  const faucetTx = transactor(context, props.scaffoldAppProviders.localProvider, props.gasPrice);
+  const faucetTx = transactor(context, props.scaffoldAppProviders.localProvider);
 
   /**
    * facuet is only available on localhost
@@ -39,7 +40,9 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
   const [faucetClicked, setFaucetClicked] = useState(false);
 
   const faucetHint = useMemo(() => {
-    if (!faucetClicked && faucetAvailable && yourLocalBalance && yourLocalBalance.toBigInt() <= 0) {
+    const min = parseFloat(utils.formatUnits(yourLocalBalance.toBigInt(), 'ether'));
+
+    if (!faucetClicked && faucetAvailable && yourLocalBalance && min < 0.002) {
       return (
         <div style={{ paddingTop: 10, paddingLeft: 10 }}>
           <Button
