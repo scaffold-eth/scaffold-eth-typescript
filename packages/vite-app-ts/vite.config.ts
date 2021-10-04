@@ -21,7 +21,6 @@ export default defineConfig({
   define: {},
   optimizeDeps: {
     exclude: ['@apollo/client', `graphql`],
-    include: ['*/@portis/**'],
   },
   resolve: {
     alias: {
