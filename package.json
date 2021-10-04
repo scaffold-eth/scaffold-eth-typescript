@@ -10,7 +10,8 @@
   ],
   "private": true,
   "scripts": {
-    "build": "yarn workspace @scaffold-eth/vite-app build --max-old-space-size=12288",
+    "build": "yarn workspace @scaffold-eth/vite-app build",
+    "serve": "yarn workspace @scaffold-eth/vite-app serve",
     "chain": "yarn workspace @scaffold-eth/hardhat chain",
     "fork": "yarn workspace @scaffold-eth/hardhat fork",
     "node": "yarn workspace @scaffold-eth/hardhat chain",
