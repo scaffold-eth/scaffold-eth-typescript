@@ -28,18 +28,20 @@ export const useScaffoldHooks = (
   // 🏦 get your balance
   // ---------------------
   // 🏗 scaffold-eth is full of handy hooks like this one to get your balance:
-  const yourLocalBalance = useBalance(currentEthersUser.provider, currentEthersUser.address ?? '');
+  const yourLocalBalance = useBalance(currentEthersUser.address ?? '');
 
   // ---------------------
   // 🤙🏽 calling an external function
   // ---------------------
   // Just plug in different 🛰 providers to get your balance on different chains:
-  const yourMainnetBalance = useBalance(scaffoldAppProviders.mainnetProvider, currentEthersUser.address ?? '');
+  // const yourMainnetBalance = useBalance(scaffoldAppProviders.mainnetProvider, currentEthersUser.address ?? '');
 
   // 💰 Then read your DAI balance like:
-  const myMainnetDAIBalance = useContractReader(mainnetContracts, 'DAI', 'balanceOf', [
-    '0x34aA3F359A9D614239015126635CE7732c18fDF3',
-  ]);
+  const myMainnetDAIBalance = useContractReader(mainnetContracts, {
+    contractName: 'DAI',
+    functionName: 'balanceOf',
+    functionArgs: ['0x34aA3F359A9D614239015126635CE7732c18fDF3'],
+  });
 
   // ---------------------
   // 📛 call ens
@@ -66,7 +68,7 @@ export const useScaffoldHooks = (
       currentEthersUser.address &&
       currentChainId &&
       yourLocalBalance &&
-      yourMainnetBalance &&
+      // yourMainnetBalance &&
       readContracts &&
       writeContracts &&
       mainnetContracts
@@ -77,7 +79,7 @@ export const useScaffoldHooks = (
       console.log('👩‍💼 selected address:', currentEthersUser.address);
       console.log('🕵🏻‍♂️ currentChainId:', currentChainId);
       console.log('💵 yourLocalBalance', yourLocalBalance ? ethers.utils.formatEther(yourLocalBalance) : '...');
-      console.log('💵 yourMainnetBalance', yourMainnetBalance ? ethers.utils.formatEther(yourMainnetBalance) : '...');
+      // console.log('💵 yourMainnetBalance', yourMainnetBalance ? ethers.utils.formatEther(yourMainnetBalance) : '...');
       console.log('📝 readContracts', readContracts);
       console.log('🌍 DAI contract on mainnet:', mainnetContracts);
       console.log('💵 yourMainnetDAIBalance', myMainnetDAIBalance);

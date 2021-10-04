@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { ICoreOptions } from 'web3modal';
 import { INFURA_ID } from '~~/models/constants/constants';
 import { NETWORKS } from '~~/models/constants/networks';
-import { EthersAppConnector, useEthersContext } from 'eth-hooks/context';
+import { EthersModalConnector, useEthersContext } from 'eth-hooks/context';
 
 // 😬 Sorry for all the console logging
 const DEBUG = true;
@@ -70,26 +70,14 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
   }, []);
 
   useEffect(() => {
-    if (web3Config) ethersContext.activate(new EthersAppConnector(web3Config));
+    if (web3Config) ethersContext.activate(new EthersModalConnector(web3Config));
   }, [web3Config]);
 
-  //const web3ModalState = useWeb3Modal(web3Config, setCurrentProvider);
-
   return {
-    currentProvider: ethersContext.provider ?? localProvider,
+    currentProvider: ethersContext.ethersProvider ?? localProvider,
     mainnetProvider: currentMainnetProvider,
     localProvider: localProvider,
-    isUsingFallback: ethersContext.provider == null,
+    isUsingFallback: ethersContext.ethersProvider == null,
     targetNetwork: targetNetwork,
-
-    // return {
-    //   currentProvider: (currentProvider ? currentProvider : !web3ModalState.initializing ? localProvider : undefined) as
-    //     | TEthersProvider
-    //     | undefined,
-    //   mainnetProvider: currentMainnetProvider,
-    //   localProvider: localProvider,
-    //   isUsingFallback: false,
-    //   targetNetwork: targetNetwork,
-    //   web3ModalState: {web3ModalState},
   };
 };

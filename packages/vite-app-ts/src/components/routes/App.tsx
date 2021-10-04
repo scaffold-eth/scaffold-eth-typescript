@@ -2,9 +2,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import React, { FC, lazy, Suspense } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import { EthComponentsContext, IEthComponentsContext } from 'eth-components/models';
-import { Web3ReactProvider, useWeb3React } from '@web3-react/core';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
-// import { MainPage } from '~~/components/routes/main/MainPage';
 import '~~/styles/css/tailwind-base.pcss';
 import '~~/styles/css/tailwind-components.pcss';
 import '~~/styles/css/tailwind-utilities.pcss';
@@ -12,7 +10,7 @@ import '~~/styles/css/app.css';
 import { BLOCKNATIVE_DAPPID } from '~~/models/constants/constants';
 import { subgraphUri } from '~~/config/subgraph';
 import { Web3Provider } from '@ethersproject/providers';
-import { EthersWeb3Context } from '.yalc/eth-hooks/context';
+import { EthersAppContext } from '.yalc/eth-hooks/context';
 
 const MainPage = lazy(() => import('./main/MainPage'));
 
@@ -44,13 +42,13 @@ const App: FC = () => {
       <ApolloProvider client={client}>
         <ThemeSwitcherProvider themeMap={themes} defaultTheme={prevTheme || 'light'}>
           <EthComponentsContext.Provider value={context}>
-            <EthersWeb3Context>
+            <EthersAppContext>
               <ErrorBoundary FallbackComponent={ErrorFallback}>
                 <Suspense fallback={<div />}>
                   <MainPage />
                 </Suspense>
               </ErrorBoundary>
-            </EthersWeb3Context>
+            </EthersAppContext>
           </EthComponentsContext.Provider>
         </ThemeSwitcherProvider>
       </ApolloProvider>

@@ -71,42 +71,24 @@ export const MainPage: FC = (props) => {
   const contractsConfig = useScaffoldContractConfig();
 
   // Load in your local 📝 contract and read a value from it:
-  const readContracts = useContractLoader(
-    scaffoldAppProviders.currentProvider,
-    contractsConfig,
-    scaffoldAppProviders.targetNetwork.chainId
-  );
+  const readContracts = useContractLoader(contractsConfig);
 
   // If you want to make 🔐 write transactions to your contracts, use the userProvider:
-  const writeContracts = useContractLoader(
-    currentEthersUser?.signer,
-    contractsConfig,
-    currentEthersUser.providerNetwork?.chainId
-  );
+  const writeContracts = useContractLoader(contractsConfig, currentEthersUser?.signer);
 
   // EXTERNAL CONTRACT EXAMPLE:
   // If you want to bring in the mainnet DAI contract it would look like:
-  const mainnetContracts = useContractLoader(
-    scaffoldAppProviders.mainnetProvider,
-    contractsConfig,
-    scaffoldAppProviders.mainnetProvider?._network?.chainId
-  );
+  const mainnetContracts = useContractLoader(contractsConfig);
 
   // -----------------------------
   // current contract and listners
   // -----------------------------
 
   // keep track of a variable from the contract in the local React state:
-  const purpose = useContractReader<string>(readContracts, 'YourContract', 'purpose');
+  const purpose = useContractReader<string>(readContracts, { contractName: 'YourContract', functionName: 'purpose' });
 
   // 📟 Listen for broadcast events
-  const setPurposeEvents = useEventListener(
-    readContracts,
-    'YourContract',
-    'SetPurpose',
-    scaffoldAppProviders.currentProvider,
-    1
-  );
+  const setPurposeEvents = useEventListener(readContracts?.['YourContract'], 'SetPurpose', 1);
 
   // -----------------------------
   // Hooks
@@ -120,12 +102,11 @@ export const MainPage: FC = (props) => {
   const gasPrice = useGasPrice(
     currentEthersUser.providerNetwork?.chainId,
     'fast',
-    currentEthersUser.provider,
     getNetworkInfo(currentEthersUser.providerNetwork?.chainId)
   );
 
   // 💰 this hook will get your balance
-  const yourCurrentBalance = useBalance(currentEthersUser.provider, currentEthersUser.address ?? '');
+  const yourCurrentBalance = useBalance(currentEthersUser.address ?? '');
 
   // -----------------------------
   // 🎉 Console logs & More hook examples:  Check out this to see how to get

@@ -26,7 +26,7 @@ export const getFaucetAvailable = (scaffoldAppProviders: IScaffoldAppProviders, 
 
 export const FaucetHintButton: FC<IFaucetButton> = (props) => {
   const context = useContext(EthComponentsContext);
-  const yourLocalBalance = useBalance(props.currentEthersUser.provider, props.currentEthersUser.address ?? '');
+  const yourLocalBalance = useBalance(props.currentEthersUser.address ?? '');
   /**
    * create transactor for faucet
    */
