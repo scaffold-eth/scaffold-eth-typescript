@@ -10,6 +10,9 @@ export default defineConfig({
   plugins: [nodePolyfills(), reactRefresh(), macrosPlugin(), tsconfigPaths()],
   build: {
     sourcemap: true,
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
   },
   esbuild: {
     jsxFactory: 'jsx',
@@ -18,6 +21,7 @@ export default defineConfig({
   define: {},
   optimizeDeps: {
     exclude: ['@apollo/client', `graphql`],
+    include: ['*/@portis/**'],
   },
   resolve: {
     alias: {
