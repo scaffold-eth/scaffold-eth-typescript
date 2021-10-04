@@ -23,8 +23,7 @@ import {
 import { useDexEthPrice } from 'eth-hooks/dapps';
 
 import { GenericContract } from 'eth-components/ant/generic-contract';
-import { Hints, Subgraph } from '~~/components/routes';
-import { ExampleUI } from '~~/components/routes/exampleui/ExampleUI';
+import { Hints, Subgraph, ExampleUI } from '~~/components/routes';
 import { transactor } from 'eth-components/functions';
 
 import { ethers } from 'ethers';

@@ -6,6 +6,7 @@ import Portis from '@portis/web3';
 import Fortmatic from 'fortmatic';
 // @ts-ignore
 import WalletLink from 'walletlink';
+import WalletConnectProvider from '@walletconnect/web3-provider';
 
 // -------------------------
 // 📝 NOTES:
@@ -68,25 +69,25 @@ const coinbaseWalletLink = {
 // const authereum = {
 //   package: Authereum,
 // };
-// const walletConnectWeb3 = {
-//   package: WalletConnectProvider,
-//   options: {
-//     bridge: 'https://polygon.bridge.walletconnect.org',
-//     infuraId: INFURA_ID,
-//     rpc: {
-//       1: `https://mainnet.infura.io/v3/${INFURA_ID}`,
-//       42: `https://kovan.infura.io/v3/${INFURA_ID}`,
-//       100: 'https://dai.poa.network',
-//     },
-//   },
-// };
+const walletConnectWeb3 = {
+  package: WalletConnectProvider,
+  options: {
+    bridge: 'https://polygon.bridge.walletconnect.org',
+    infuraId: INFURA_ID,
+    rpc: {
+      1: `https://mainnet.infura.io/v3/${INFURA_ID}`,
+      42: `https://kovan.infura.io/v3/${INFURA_ID}`,
+      100: 'https://dai.poa.network',
+    },
+  },
+};
 
 export const web3ModalConfig: Partial<ICoreOptions> = {
   //network: 'mainnet', // Optional. If using WalletConnect on xDai, change network to "xdai" and add RPC info below for xDai chain.
   cacheProvider: true, // optional
   theme: 'light', // optional. Change to "dark" for a dark theme.
   providerOptions: {
-    //walletconnect: walletConnectWeb3,
+    walletconnect: walletConnectWeb3,
     portis: portis,
     fortmatic: formatic,
     //torus: torus,

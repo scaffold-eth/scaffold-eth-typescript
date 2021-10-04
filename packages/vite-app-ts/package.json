@@ -29,6 +29,7 @@
     "@ramp-network/ramp-instant-sdk": "^2.5.0",
     "@uniswap/sdk": "^3.0.3",
     "@uniswap/token-lists": "^1.0.0-beta.24",
+    "@walletconnect/web3-provider": "^1.6.5",
     "antd": "^4.7.0",
     "axios": "^0.21.1",
     "bnc-notify": "^1.5.0",
