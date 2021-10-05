@@ -2429,16 +2429,6 @@
     eip1193-provider "1.0.1"
     eventemitter3 "4.0.7"
 
-"@walletconnect/http-connection@^1.6.5":
-  version "1.6.5"
-  resolved "https://registry.yarnpkg.com/@walletconnect/http-connection/-/http-connection-1.6.5.tgz#18529b7556bc09d7c794f4adc76ef0742cd500aa"
-  integrity sha512-5kr6wZ3DnqaBiwkeA9iKdawvIb3bIJNf8WA8X89YHE5KOzbkAsymjniZWs8asdl9Y9+8ZHJMPXtylyrkpT8wXA==
-  dependencies:
-    "@walletconnect/types" "^1.6.5"
-    "@walletconnect/utils" "^1.6.5"
-    eventemitter3 "4.0.7"
-    xhr2-cookies "1.1.0"
-
 "@walletconnect/iso-crypto@^1.6.5":
   version "1.6.5"
   resolved "https://registry.yarnpkg.com/@walletconnect/iso-crypto/-/iso-crypto-1.6.5.tgz#1c6471506283817e7e797c5e2e733f6c3d88f8dc"
@@ -2549,18 +2539,6 @@
     bn.js "4.11.8"
     js-sha3 "0.8.0"
     query-string "6.13.5"
-
-"@walletconnect/web3-provider@^1.6.5":
-  version "1.6.5"
-  resolved "https://registry.yarnpkg.com/@walletconnect/web3-provider/-/web3-provider-1.6.5.tgz#7c4ac2f89ddda1a4069d500ed29cc4396e7fdade"
-  integrity sha512-SeC7+1saHxvFn2wjt/3F0sTkDemHDNDbMkdZ3jtA7vjEw91Q0CmaYIuZk2UxyVM+tC1jL1l4yci/sgaFeAcXpQ==
-  dependencies:
-    "@walletconnect/client" "^1.6.5"
-    "@walletconnect/http-connection" "^1.6.5"
-    "@walletconnect/qrcode-modal" "^1.6.5"
-    "@walletconnect/types" "^1.6.5"
-    "@walletconnect/utils" "^1.6.5"
-    web3-provider-engine "16.0.1"
 
 "@walletconnect/window-getters@1.0.0", "@walletconnect/window-getters@^1.0.0":
   version "1.0.0"
@@ -6453,10 +6431,10 @@ eth-block-tracker@^3.0.0:
     pify "^2.3.0"
     tape "^4.6.3"
 
-eth-components@1.0.0-beta04:
-  version "1.0.0-beta04"
-  resolved "https://registry.yarnpkg.com/eth-components/-/eth-components-1.0.0-beta04.tgz#4a2603e3576cd289e3864f55677ac34ad166fe6b"
-  integrity sha512-H1qIxy7aqEZpM4zXifXIwAVM01RDw9jZHFfW9mSCHGvdqz6dVe2d1anZT8FMPQwqULlxmo1zURSyBdZ6Dk2BmQ==
+eth-components@2.0.0-beta02:
+  version "2.0.0-beta02"
+  resolved "https://registry.yarnpkg.com/eth-components/-/eth-components-2.0.0-beta02.tgz#b3f28f6cfb77399259581cf1f258a30a6a8a61f3"
+  integrity sha512-zOZjgWxG5rbW1X3OkVKUShg37q3w8Cygc1/Y/pEnbQJ5pngbu4slC0tN19xVB1JwM8w6FUchy3Sla6xdBIqSKQ==
   dependencies:
     "@ethersproject/abstract-signer" "^5.4.0"
     "@ethersproject/address" "^5.4.0"
@@ -6471,11 +6449,12 @@ eth-components@1.0.0-beta04:
     "@uniswap/token-lists" "^1.0.0-beta.24"
     axios "^0.21.4"
     bnc-notify "^1.9.1"
-    eth-hooks "^3.0.0-beta02"
+    eth-hooks "^3.0.1"
     ethers "^5.4.1"
     qrcode.react "^1.0.1"
     react-blockies "^1.4.1"
     react-qr-reader "^2.2.1"
+    use-debounce "^7.0.0"
 
 eth-ens-namehash@2.0.8, eth-ens-namehash@^2.0.8:
   version "2.0.8"
@@ -6485,7 +6464,7 @@ eth-ens-namehash@2.0.8, eth-ens-namehash@^2.0.8:
     idna-uts46-hx "^2.3.1"
     js-sha3 "^0.5.7"
 
-eth-hooks@^3.0.0-beta02, eth-hooks@^3.0.0-beta03:
+eth-hooks@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/eth-hooks/-/eth-hooks-3.0.1.tgz#1b969d1945e0a6e002a1391c7ed645346cc67dcb"
   integrity sha512-2nCbg3thQnjDzMgs0kNScS0/qt9nyubP6BAgvM11tmFO3xBMiUYVKv0Pwv7IcVK8/BcHm+/6oAhDV3xspjQN6w==
@@ -6502,6 +6481,26 @@ eth-hooks@^3.0.0-beta02, eth-hooks@^3.0.0-beta03:
     "@uniswap/token-lists" "^1.0.0-beta.24"
     axios "^0.21.4"
     ethers "^5.4.1"
+    use-debounce "^7.0.0"
+
+eth-hooks@^3.1.0-beta02:
+  version "3.1.0-beta02"
+  resolved "https://registry.yarnpkg.com/eth-hooks/-/eth-hooks-3.1.0-beta02.tgz#8667c8596dd77be0e175a3d64fe356b775fbd8c5"
+  integrity sha512-X8+BWde/Z+VwB7QWEHKmMRh+ADb4EkSf59U1S000udqtJNYtWc0jKzq4LEN5xQlcDInV3EG3aKSJRZ0Zs2dx4g==
+  dependencies:
+    "@ethersproject/address" "^5.4.0"
+    "@ethersproject/bignumber" "^5.4.0"
+    "@ethersproject/bytes" "^5.4.0"
+    "@ethersproject/contracts" "^5.4.0"
+    "@ethersproject/networks" "^5.4.0"
+    "@ethersproject/providers" "^5.4.0"
+    "@ethersproject/signing-key" "^5.4.0"
+    "@ethersproject/solidity" "^5.4.0"
+    "@ethersproject/units" "^5.4.0"
+    "@uniswap/token-lists" "^1.0.0-beta.24"
+    axios "^0.21.4"
+    ethers "^5.4.1"
+    tiny-invariant "^1.1.0"
     use-debounce "^7.0.0"
 
 eth-json-rpc-filters@4.2.2, eth-json-rpc-filters@^4.2.1:

@@ -156,7 +156,7 @@ export const MainPage: FC = (props) => {
               address={ethersContext?.account ?? ''}
               userSigner={ethersContext?.signer}
               mainnetProvider={scaffoldAppProviders.mainnetProvider}
-              currentProvider={ethersContext?.provider}
+              currentProvider={ethersContext?.ethersProvider}
               yourCurrentBalance={yourCurrentBalance}
               price={price}
               tx={tx}

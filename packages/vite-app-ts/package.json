@@ -64,6 +64,7 @@
     "tailwindcss": "^2.2.2",
     "timers-browserify": "^2.0.12",
     "tiny-invariant": "^1.1.0",
+    "use-debounce": "^7.0.0",
     "walletlink": "^2.1.11",
     "web3modal": "^1.9.1"
   },

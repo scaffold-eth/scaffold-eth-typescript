@@ -51,8 +51,9 @@ export const MainPageHeader: FC<IMainPageHeader> = (props) => {
   const right = (
     <div style={{ position: 'fixed', textAlign: 'right', right: 0, top: 0, padding: 10 }}>
       <Account
+        account={ethersContext.account}
         mainnetProvider={props.scaffoldAppProviders.mainnetProvider}
-        isWeb3ModalUser={!props.scaffoldAppProviders.isUsingFallback}
+        isFallbackUser={props.scaffoldAppProviders.isUsingFallback}
         modalConnector={props.scaffoldAppProviders.modalConnector}
         price={props.price}
         blockExplorer={props.scaffoldAppProviders.targetNetwork.blockExplorer}

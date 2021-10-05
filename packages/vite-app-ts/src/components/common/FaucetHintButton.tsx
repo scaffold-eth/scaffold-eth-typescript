@@ -7,6 +7,7 @@ import { EthComponentsContext } from 'eth-components/models';
 import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 import { utils } from 'ethers';
 import { IEthersContext, useEthersContext } from 'eth-hooks/context';
+import { useDebounce } from 'use-debounce';
 
 interface IFaucetButton {
   scaffoldAppProviders: IScaffoldAppProviders;
@@ -16,7 +17,7 @@ interface IFaucetButton {
 export const getFaucetAvailable = (scaffoldAppProviders: IScaffoldAppProviders, ethersContext: IEthersContext) => {
   return (
     (true &&
-      ethersContext?.provider &&
+      ethersContext?.ethersProvider &&
       ethersContext?.chainId === scaffoldAppProviders.targetNetwork.chainId &&
       scaffoldAppProviders.targetNetwork.name === 'localhost') ??
     false
@@ -35,8 +36,9 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
   /**
    * facuet is only available on localhost
    */
-  const faucetAvailable = getFaucetAvailable(props.scaffoldAppProviders, ethersContext);
-
+  const faucetAvailable = useDebounce(getFaucetAvailable(props.scaffoldAppProviders, ethersContext), 250, {
+    trailing: true,
+  });
   const [faucetClicked, setFaucetClicked] = useState(false);
 
   const faucetHint = useMemo(() => {

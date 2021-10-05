@@ -28,29 +28,26 @@ export const MainPageContracts: FC<IMainPageContracts> = (props) => {
         this <Contract/> component will automatically parse your ABI
         and give you a form to interact with it locally
       */}
-      {ethersContext?.signer != null && (
-        <>
-          <GenericContract
-            contractName="YourContract"
-            mainnetProvider={props.appProviders.mainnetProvider}
-            blockExplorer={props.appProviders.targetNetwork.blockExplorer}
-            contractConfig={props.contractConfig}
-          />
+      <>
+        <GenericContract
+          contractName="YourContract"
+          mainnetProvider={props.appProviders.mainnetProvider}
+          blockExplorer={props.appProviders.targetNetwork.blockExplorer}
+          contractConfig={props.contractConfig}
+        />
 
-          {/* uncomment for a second contract: 
+        {/* uncomment for a second contract: 
         <GenericContract
           name="SecondContract"
-          currentProviderAndSigner={props.currentProviderAndSigner}
           blockExplorer={props.blockExplorerUrl}
           config={props.config}
         />
         */}
 
-          {/* Uncomment to display and interact with an external contract (DAI on mainnet): 
+        {/* Uncomment to display and interact with an external contract (DAI on mainnet): 
         <GenericContract
           name="DAI"
           customContract={props.mainnetContracts?.['DAI']}
-          currentProviderAndSigner={props.currentProviderAndSigner}
           provider={props.mainnetProvider}
           address={props.userAddress}
           blockExplorer={props.blockExplorerUrl}
@@ -58,8 +55,7 @@ export const MainPageContracts: FC<IMainPageContracts> = (props) => {
           chainId={props.mainnetProvider.chainId}
         />
         */}
-        </>
-      )}
+      </>
     </>
   );
 };
