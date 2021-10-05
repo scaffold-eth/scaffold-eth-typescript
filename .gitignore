@@ -64,3 +64,6 @@ yarn-error.log*
 .netlify
 *.tsbuildinfo
 *.stackdump
+.yalc
+packages/vite-app-ts/dist
+packages/vite-app-ts/yalc.lock
