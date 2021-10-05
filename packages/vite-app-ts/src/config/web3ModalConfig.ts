@@ -6,7 +6,7 @@ import Portis from '@portis/web3';
 import Fortmatic from 'fortmatic';
 // @ts-ignore
 import WalletLink from 'walletlink';
-import WalletConnectProvider from '@walletconnect/web3-provider';
+import WalletConnectProvider from '@walletconnect/ethereum-provider';
 
 // -------------------------
 // 📝 NOTES:

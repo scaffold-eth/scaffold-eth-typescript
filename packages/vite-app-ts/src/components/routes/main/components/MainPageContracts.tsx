@@ -1,13 +1,12 @@
 import React, { FC } from 'react';
 import { GenericContract } from 'eth-components/ant/generic-contract';
 import { Contract } from 'ethers';
-import { TEthersUser } from 'eth-hooks/models';
 import { TContractConfig } from 'eth-hooks';
 import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
+import { useEthersContext } from 'eth-hooks/context';
 
 interface IMainPageContracts {
   appProviders: IScaffoldAppProviders;
-  currentEthersUser: TEthersUser;
   mainnetContracts: Record<string, Contract>;
   contractConfig: TContractConfig;
 }
@@ -20,6 +19,8 @@ interface IMainPageContracts {
  * @returns 
  */
 export const MainPageContracts: FC<IMainPageContracts> = (props) => {
+  const ethersContext = useEthersContext();
+
   return (
     <>
       {/*
@@ -27,11 +28,10 @@ export const MainPageContracts: FC<IMainPageContracts> = (props) => {
         this <Contract/> component will automatically parse your ABI
         and give you a form to interact with it locally
       */}
-      {props.currentEthersUser?.signer != null && (
+      {ethersContext?.signer != null && (
         <>
           <GenericContract
             contractName="YourContract"
-            currentEthersUser={props.currentEthersUser}
             mainnetProvider={props.appProviders.mainnetProvider}
             blockExplorer={props.appProviders.targetNetwork.blockExplorer}
             contractConfig={props.contractConfig}

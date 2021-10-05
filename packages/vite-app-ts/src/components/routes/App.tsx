@@ -10,7 +10,7 @@ import '~~/styles/css/app.css';
 import { BLOCKNATIVE_DAPPID } from '~~/models/constants/constants';
 import { subgraphUri } from '~~/config/subgraph';
 import { Web3Provider } from '@ethersproject/providers';
-import { EthersAppContext } from '.yalc/eth-hooks/context';
+import { EthersAppContext } from 'eth-hooks/context';
 
 const MainPage = lazy(() => import('./main/MainPage'));
 

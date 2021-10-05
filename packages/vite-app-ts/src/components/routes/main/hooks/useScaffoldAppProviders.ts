@@ -52,16 +52,17 @@ export interface IScaffoldAppProviders {
   mainnetProvider: StaticJsonRpcProvider;
   localProvider: StaticJsonRpcProvider;
   isUsingFallback: boolean;
+  modalConnector: EthersModalConnector | undefined;
 }
 
 export const useScaffoldProviders = (): IScaffoldAppProviders => {
-  //const [currentProvider, setCurrentProvider] = useState<TEthersProvider>();
   const currentMainnetProvider = useMemo(
     () =>
       mainnetScaffoldEthProvider && mainnetScaffoldEthProvider._network ? mainnetScaffoldEthProvider : mainnetInfura,
     [mainnetScaffoldEthProvider?._network?.name, mainnetInfura?._network?.name]
   );
   const [web3Config, setWeb3Config] = useState<Partial<ICoreOptions>>();
+  const [modalConnector, setModalConnector] = useState<EthersModalConnector>();
   const ethersContext = useEthersContext();
 
   useEffect(() => {
@@ -70,7 +71,11 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
   }, []);
 
   useEffect(() => {
-    if (web3Config) ethersContext.activate(new EthersModalConnector(web3Config));
+    if (web3Config) {
+      const connector = new EthersModalConnector(web3Config, { reloadOnNetworkChange: false });
+      ethersContext.activate(connector);
+      setModalConnector(connector);
+    }
   }, [web3Config]);
 
   return {
@@ -79,5 +84,6 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
     localProvider: localProvider,
     isUsingFallback: ethersContext.ethersProvider == null,
     targetNetwork: targetNetwork,
+    modalConnector: modalConnector,
   };
 };

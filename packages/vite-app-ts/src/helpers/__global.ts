@@ -4,9 +4,7 @@
 import * as nodeBuffer from 'buffer';
 import * as nodeProcess from 'process';
 
-import { ExternalProvider } from '@ethersproject/providers/src.ts/web3-provider';
-
-export {};
+import 'eth-hooks/types/globalDelcarations';
 
 (window as any).global = window;
 const global = window;
@@ -17,19 +15,4 @@ if (!global.hasOwnProperty('Buffer')) {
 
 (global as any).process = nodeProcess;
 
-interface Window {
-  ethereum: ExternalProvider;
-  location: any;
-  localStorage: { getItem: (key: string) => any; setItem: (key: string, value: string) => any };
-}
-
-// interface Ethereum {
-//   send: unknown
-//   enable: () => Promise<string[]>
-//   on?: (method: string, listener: (...args: any[]) => void) => void
-//   removeListener?: (method: string, listener: (...args: any[]) => void) => void
-// }
-
-// declare interface Window {
-//   ethereum?: Ethereum
-// }
+export {};
