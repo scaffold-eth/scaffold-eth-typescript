@@ -2,11 +2,11 @@ import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import input from 'antd/lib/input';
 import { IWeb3ModalState, useBurnerSigner, useWeb3Modal } from 'eth-hooks';
 import { TEthersProvider, TNetworkInfo } from 'eth-hooks/models';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ICoreOptions } from 'web3modal';
 import { INFURA_ID } from '~~/models/constants/constants';
 import { NETWORKS } from '~~/models/constants/networks';
-import { EthersModalConnector, useEthersContext } from 'eth-hooks/context';
+import { EthersModalConnector, useEthersContext, CreateEthersModalConnector } from 'eth-hooks/context';
 
 // 😬 Sorry for all the console logging
 const DEBUG = true;
@@ -51,8 +51,7 @@ export interface IScaffoldAppProviders {
   targetNetwork: TNetworkInfo;
   mainnetProvider: StaticJsonRpcProvider;
   localProvider: StaticJsonRpcProvider;
-  isUsingFallback: boolean;
-  modalConnector: EthersModalConnector | undefined;
+  createLoginConnector: CreateEthersModalConnector;
 }
 
 export const useScaffoldProviders = (): IScaffoldAppProviders => {
@@ -62,7 +61,6 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
     [mainnetScaffoldEthProvider?._network?.name, mainnetInfura?._network?.name]
   );
   const [web3Config, setWeb3Config] = useState<Partial<ICoreOptions>>();
-  const [modalConnector, setModalConnector] = useState<EthersModalConnector>();
   const ethersContext = useEthersContext();
 
   useEffect(() => {
@@ -70,20 +68,28 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
     import('../../../../config/web3ModalConfig').then((value) => setWeb3Config(value.web3ModalConfig));
   }, []);
 
+  const createLoginConnector: CreateEthersModalConnector = useCallback(
+    (id?: string) => {
+      if (web3Config) {
+        const connector = new EthersModalConnector(web3Config, { reloadOnNetworkChange: false }, id);
+        return connector;
+      }
+    },
+    [web3Config]
+  );
+
   useEffect(() => {
-    if (web3Config) {
-      const connector = new EthersModalConnector(web3Config, { reloadOnNetworkChange: false });
-      ethersContext.activate(connector);
-      setModalConnector(connector);
+    if (ethersContext.activate) {
+      const connector = createLoginConnector();
+      if (connector) ethersContext.activate(connector);
     }
-  }, [web3Config]);
+  }, [web3Config, createLoginConnector, ethersContext.activate]);
 
   return {
     currentProvider: ethersContext.ethersProvider ?? localProvider,
     mainnetProvider: currentMainnetProvider,
     localProvider: localProvider,
-    isUsingFallback: ethersContext.ethersProvider == null,
     targetNetwork: targetNetwork,
-    modalConnector: modalConnector,
+    createLoginConnector: createLoginConnector,
   };
 };

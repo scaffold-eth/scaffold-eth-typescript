@@ -52,9 +52,8 @@ export const MainPageHeader: FC<IMainPageHeader> = (props) => {
     <div style={{ position: 'fixed', textAlign: 'right', right: 0, top: 0, padding: 10 }}>
       <Account
         account={ethersContext.account}
+        createLoginConnector={props.scaffoldAppProviders.createLoginConnector}
         mainnetProvider={props.scaffoldAppProviders.mainnetProvider}
-        isFallbackUser={props.scaffoldAppProviders.isUsingFallback}
-        modalConnector={props.scaffoldAppProviders.modalConnector}
         price={props.price}
         blockExplorer={props.scaffoldAppProviders.targetNetwork.blockExplorer}
       />

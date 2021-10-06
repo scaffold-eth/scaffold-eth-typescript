@@ -16,10 +16,8 @@ export const useBurnerFallback = (appProviders: IScaffoldAppProviders) => {
      * if the current provider is local provider then use the burner fallback
      */
     if (ethersContext.account === localAddress && burnerFallback.signer) {
-      appProviders.isUsingFallback = true;
       ethersContext.changeAccount?.(burnerFallback.signer);
     } else {
-      appProviders.isUsingFallback = false;
     }
   }, [ethersContext.account, localAddress, ethersContext.changeAccount, burnerFallback.signer]);
 };

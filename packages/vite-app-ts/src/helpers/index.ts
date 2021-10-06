@@ -1,1 +1,1 @@
-export * from './transactor';
+export * from './getNetworkInfo';
