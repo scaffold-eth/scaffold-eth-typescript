@@ -7,6 +7,7 @@ import { ICoreOptions } from 'web3modal';
 import { INFURA_ID } from '~~/models/constants/constants';
 import { NETWORKS } from '~~/models/constants/networks';
 import { EthersModalConnector, useEthersContext, CreateEthersModalConnector } from 'eth-hooks/context';
+import { useThemeSwitcher } from 'react-css-theme-switcher';
 
 // 😬 Sorry for all the console logging
 const DEBUG = true;
@@ -68,22 +69,28 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
     import('../../../../config/web3ModalConfig').then((value) => setWeb3Config(value.web3ModalConfig));
   }, []);
 
+  const { currentTheme } = useThemeSwitcher();
+
   const createLoginConnector: CreateEthersModalConnector = useCallback(
     (id?: string) => {
       if (web3Config) {
-        const connector = new EthersModalConnector(web3Config, { reloadOnNetworkChange: false }, id);
+        const connector = new EthersModalConnector(
+          { ...web3Config, theme: currentTheme },
+          { reloadOnNetworkChange: false },
+          id
+        );
         return connector;
       }
     },
-    [web3Config]
+    [web3Config, currentTheme]
   );
 
   useEffect(() => {
-    if (ethersContext.activate) {
+    if (!ethersContext.active && createLoginConnector) {
       const connector = createLoginConnector();
       if (connector) ethersContext.activate(connector);
     }
-  }, [web3Config, createLoginConnector, ethersContext.activate]);
+  }, [web3Config]);
 
   return {
     currentProvider: ethersContext.ethersProvider ?? localProvider,
