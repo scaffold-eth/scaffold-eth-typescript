@@ -6,7 +6,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ICoreOptions } from 'web3modal';
 import { EthersModalConnector, useEthersContext, CreateEthersModalConnector } from 'eth-hooks/context';
 import { useThemeSwitcher } from 'react-css-theme-switcher';
-import { mainnetProvider, localProvider, targetNetworkInfo } from '~~/config/providerConfig';
+import { mainnetProvider, localProvider, targetNetworkInfo } from '~~/config/providersConfig';
 
 export interface IScaffoldAppProviders {
   currentProvider: TEthersProvider | undefined;

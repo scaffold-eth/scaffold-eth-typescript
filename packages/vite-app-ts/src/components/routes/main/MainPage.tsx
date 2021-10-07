@@ -59,8 +59,8 @@ export const MainPage: FC = (props) => {
   // 🦊 Get your web3 ethers context from current providers
   const ethersContext = useEthersContext();
 
-  // if no user is found use a burner wallet on localhost as fallback
-  useBurnerFallback(scaffoldAppProviders);
+  // if no user is found use a burner wallet on localhost as fallback if enabled
+  useBurnerFallback(scaffoldAppProviders, true);
 
   // -----------------------------
   // Contracts
@@ -96,7 +96,7 @@ export const MainPage: FC = (props) => {
   // For more hooks, check out 🔗eth-hooks at: https://www.npmjs.com/package/eth-hooks
 
   // 💵 This hook will get the price of ETH from 🦄 Uniswap:
-  const price = useDexEthPrice(scaffoldAppProviders.targetNetwork, scaffoldAppProviders.mainnetProvider);
+  const price = useDexEthPrice(scaffoldAppProviders.mainnetProvider, scaffoldAppProviders.targetNetwork);
 
   // 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation
   const gasPrice = useGasPrice(ethersContext.chainId, 'fast', getNetworkInfo(ethersContext.chainId));

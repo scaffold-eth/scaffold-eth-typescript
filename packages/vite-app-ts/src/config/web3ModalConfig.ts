@@ -7,22 +7,10 @@ import Fortmatic from 'fortmatic';
 // @ts-ignore
 import WalletLink from 'walletlink';
 import WalletConnectProvider from '@walletconnect/ethereum-provider';
-
-// -------------------------
-// 📝 NOTES:
-// wallet link is disabled as web3-provider-engine
-// it runs in dev mode, but you can't build a production output.
-// see:
-// - https://github.com/WalletConnect/walletconnect-monorepo/issues/310
-// -------------------------
-
-// Coinbase walletLink init
-const walletLink = new WalletLink({
-  appName: 'coinbase',
-});
-
-// WalletLink provider
-const walletLinkProvider = walletLink.makeWeb3Provider(`https://mainnet.infura.io/v3/${INFURA_ID}`, 1);
+import Authereum from 'authereum';
+import { ConnectToStaticJsonRpcProvider } from '~~/helpers/StaticJsonRpcProviderConnector';
+import { JsonRpcProvider, StaticJsonRpcProvider } from '@ethersproject/providers';
+import { localNetworkInfo } from '~~/config/providersConfig';
 
 const portis = {
   display: {
@@ -41,6 +29,15 @@ const formatic = {
     key: 'pk_live_5A7C91B2FC585A17',
   },
 };
+
+// Coinbase walletLink init
+const walletLink = new WalletLink({
+  appName: 'coinbase',
+});
+
+// WalletLink provider
+const walletLinkProvider = walletLink.makeWeb3Provider(`https://mainnet.infura.io/v3/${INFURA_ID}`, 1);
+
 const coinbaseWalletLink = {
   display: {
     logo: 'https://play-lh.googleusercontent.com/PjoJoG27miSglVBXoXrxBSLveV6e3EeBPpNY55aiUUBM9Q1RCETKCOqdOkX2ZydqVf0',
@@ -53,6 +50,25 @@ const coinbaseWalletLink = {
     return provider;
   },
 };
+
+const authereum = {
+  package: Authereum,
+};
+
+//network: 'mainnet', // Optional. If using WalletConnect on xDai, change network to "xdai" and add RPC info below for xDai chain.
+const walletConnectEthereum = {
+  package: WalletConnectProvider,
+  options: {
+    bridge: 'https://polygon.bridge.walletconnect.org',
+    infuraId: INFURA_ID,
+    rpc: {
+      1: `https://mainnet.infura.io/v3/${INFURA_ID}`,
+      42: `https://kovan.infura.io/v3/${INFURA_ID}`,
+      100: 'https://dai.poa.network',
+    },
+  },
+};
+
 // const torus = {
 //   package: Torus,
 //   options: {
@@ -66,32 +82,33 @@ const coinbaseWalletLink = {
 //     },
 //   },
 // };
-// const authereum = {
-//   package: Authereum,
-// };
-const walletConnectWeb3 = {
-  package: WalletConnectProvider,
+
+const localhostStaticConnector = {
+  display: {
+    logo: 'https://avatars.githubusercontent.com/u/56928858?s=200&v=4',
+    name: 'Burner Wallet',
+    description: 'Connect to your localhost with a burner wallet 🔥',
+  },
+  package: StaticJsonRpcProvider,
+  connector: ConnectToStaticJsonRpcProvider,
   options: {
-    bridge: 'https://polygon.bridge.walletconnect.org',
-    infuraId: INFURA_ID,
+    chainId: localNetworkInfo.chainId,
     rpc: {
-      1: `https://mainnet.infura.io/v3/${INFURA_ID}`,
-      42: `https://kovan.infura.io/v3/${INFURA_ID}`,
-      100: 'https://dai.poa.network',
+      [localNetworkInfo.chainId]: localNetworkInfo.rpcUrl,
     },
   },
 };
 
 export const web3ModalConfig: Partial<ICoreOptions> = {
-  //network: 'mainnet', // Optional. If using WalletConnect on xDai, change network to "xdai" and add RPC info below for xDai chain.
-  cacheProvider: true, // optional
-  theme: 'light', // optional. Change to "dark" for a dark theme.
+  cacheProvider: true,
+  theme: 'light',
   providerOptions: {
-    walletconnect: walletConnectWeb3,
+    'custom-localhost': localhostStaticConnector,
+    walletconnect: walletConnectEthereum,
     portis: portis,
     fortmatic: formatic,
     //torus: torus,
-    //authereum: authereum,
+    authereum: authereum,
     'custom-walletlink': coinbaseWalletLink,
   },
 };

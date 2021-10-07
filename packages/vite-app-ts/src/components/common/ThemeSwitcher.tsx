@@ -1,4 +1,4 @@
-import { useEthersContext } from '.yalc/eth-hooks/context';
+import { useEthersContext } from 'eth-hooks/context';
 import { Switch } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useThemeSwitcher } from 'react-css-theme-switcher';
