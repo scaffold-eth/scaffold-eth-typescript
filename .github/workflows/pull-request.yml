@@ -38,9 +38,9 @@ jobs:
             ${{ runner.os }}-yarn-
       - run: yarn install --frozen-lockfile
       
-      - name: 'hardhat chain'  
-        run: |
-          yarn chain
+      # - name: 'hardhat chain'  
+      #   run: |
+      #     yarn chain
 
       - name: 'hardhat compile'  
         run: |
