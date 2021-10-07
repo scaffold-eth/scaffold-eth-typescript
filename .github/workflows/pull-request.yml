@@ -42,7 +42,7 @@ jobs:
         run: |
           yarn compile --force
         
-      - name: 'build application'
+      - name: 'build production'
         run: |
           yarn shx cp ./packages/vite-app-ts/src/generated/contracts/hardhat_contracts.json.bak ./packages/vite-app-ts/src/generated/contracts/hardhat_contracts.json
           yarn run start optimize --force 
