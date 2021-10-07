@@ -36,8 +36,20 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - run: yarn install --frozen-lockfile
-      - run: yarn run start optimize --force 
-      - run: yarn run build
+      
+      - name: 'hardhat chain'  
+        run: |
+          yarn chain
+
+      - name: 'hardhat compile'  
+        run: |
+          yarn compile --force
+          yarn deploy
+        
+      - name: 'build application'
+        run: |
+          yarn run start optimize --force 
+          yarn run build
     #  - run: yarn hardhat:test
     #  - name: Publish Unit Test Results
     #    uses: EnricoMi/publish-unit-test-result-action@v1
