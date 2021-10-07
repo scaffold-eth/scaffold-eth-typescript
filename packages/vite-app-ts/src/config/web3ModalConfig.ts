@@ -86,8 +86,8 @@ const walletConnectEthereum = {
 const localhostStaticConnector = {
   display: {
     logo: 'https://avatars.githubusercontent.com/u/56928858?s=200&v=4',
-    name: 'Burner Wallet',
-    description: 'Connect to your localhost with a burner wallet 🔥',
+    name: 'BurnerWallet',
+    description: '🔥 Connect to localhost with a burner wallet 🔥',
   },
   package: StaticJsonRpcProvider,
   connector: ConnectToStaticJsonRpcProvider,
