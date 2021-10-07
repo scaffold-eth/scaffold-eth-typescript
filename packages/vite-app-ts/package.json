@@ -114,6 +114,7 @@
     "postcss": "^8.3.5",
     "prettier": "^2.3.1",
     "rollup-plugin-polyfill-node": "^0.7.0",
+    "shx": "^0.3.3",
     "stylelint": "^13.13.1",
     "stylelint-config-recommended": "^5.0.0",
     "tailwindcss": "^2.2.2",

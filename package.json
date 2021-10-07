@@ -18,6 +18,7 @@
     "test": "yarn workspace @scaffold-eth/hardhat test",
     "start": "yarn workspace @scaffold-eth/vite-app start",
     "compile": "yarn workspace @scaffold-eth/hardhat compile",
+    "export": "yarn workspace @scaffold-eth/hardhat export",
     "deploy": "yarn workspace @scaffold-eth/hardhat deploy",
     "watch": "yarn workspace @scaffold-eth/hardhat watch",
     "accounts": "yarn workspace @scaffold-eth/hardhat accounts",

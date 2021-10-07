@@ -5,6 +5,7 @@
 name: Pull Request CI
 
 on:
+  workflow_dispatch: 
   push:
     branches: [master, develop]
   pull_request:
@@ -31,12 +32,21 @@ jobs:
           path: |
             ~/.yarn
             ~/node_modules
+            **/node_modules/**
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install --frozen-lockfile
-      - run: yarn run start optimize --force 
-      - run: yarn run build
+      
+      - name: 'hardhat compile'  
+        run: |
+          yarn compile --force
+        
+      - name: 'build production'
+        run: |
+          yarn shx cp ./packages/vite-app-ts/src/generated/contracts/hardhat_contracts.json.bak ./packages/vite-app-ts/src/generated/contracts/hardhat_contracts.json
+          yarn run start optimize --force 
+          yarn run build
     #  - run: yarn hardhat:test
     #  - name: Publish Unit Test Results
     #    uses: EnricoMi/publish-unit-test-result-action@v1
