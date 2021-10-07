@@ -38,13 +38,13 @@ jobs:
             ${{ runner.os }}-yarn-
       - run: yarn install --frozen-lockfile
       
-      - name: 'hardhat export'  
+      - name: 'hardhat compile'  
         run: |
           yarn compile --force
-          yarn export
         
       - name: 'build application'
         run: |
+          yarn shx cp ./packages/vite-app-ts/src/generated/contracts/hardhat_contracts.json.bak ./packages/vite-app-ts/src/generated/contracts/hardhat_contracts.json
           yarn run start optimize --force 
           yarn run build
     #  - run: yarn hardhat:test
