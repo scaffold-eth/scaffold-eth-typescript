@@ -36,7 +36,7 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
   /**
    * facuet is only available on localhost
    */
-  const faucetAvailable = useDebounce(getFaucetAvailable(props.scaffoldAppProviders, ethersContext), 350, {
+  const faucetAvailable = useDebounce(getFaucetAvailable(props.scaffoldAppProviders, ethersContext), 500, {
     trailing: true,
   });
   const [faucetClicked, setFaucetClicked] = useState(false);
