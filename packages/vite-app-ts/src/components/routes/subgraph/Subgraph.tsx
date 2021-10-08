@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 import { Contract } from 'ethers';
 import GraphiQL from 'graphiql';
 import 'graphiql/graphiql.min.css';
-import fetch from 'isomorphic-fetch';
+// import fetch from 'isomorphic-fetch';
 import React, { FC, ReactElement, useState } from 'react';
 
 import { Address } from 'eth-components/ant';

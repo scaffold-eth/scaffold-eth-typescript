@@ -1,16 +1,16 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": ["DOM", "DOM.Iterable", "ESNext", "ES2017"],
     "types": ["vite/client", "@emotion/react", "node", "ethers"],
     "allowJs": false,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "typeRoots": ["node_modules/@types", "helpers/types"] /* List of folders to include type definitions from. */,
     "forceConsistentCasingInFileNames": true,
-    "module": "commonjs",
+    "module": "es2020",
     "moduleResolution": "Node",
     "incremental": true,
     "resolveJsonModule": true,
@@ -25,6 +25,6 @@
       "~~/*": ["./src/*"]
     }
   },
-  "include": ["src", "./src/helpers/types/__global.ts", "src/**/*"],
-  "exclude": ["**/node_modules", ".husky", "./src/styles/css", "./tailwind.config.js", "node_modules"]
+  "include": ["src", "src/helpers/__global.ts"],
+  "exclude": ["**/node_modules", ".husky", "./src/styles/css", "./tailwind.config.js", "node_modules", "**/.yalc/**/*"]
 }

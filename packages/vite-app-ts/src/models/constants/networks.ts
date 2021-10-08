@@ -1,8 +1,7 @@
+import { TNetworkInfo } from 'eth-hooks/models';
 import { INFURA_ID } from './constants';
 
-import { TNetwork } from '~~/models/networkTypes';
-
-export const NETWORKS: Record<string, TNetwork> = {
+export const NETWORKS: Record<string, TNetworkInfo> = {
   localhost: {
     name: 'localhost',
     color: '#666666',

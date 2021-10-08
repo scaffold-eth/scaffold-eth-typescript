@@ -4,14 +4,14 @@ import { TContractConfig } from 'eth-hooks';
 const contractListPromise = import('../generated/contracts/hardhat_contracts.json');
 
 /**
- * - run yarn compile-ts and yarn deploy-ts to generate hardhhat_contracts.json
+ * - run yarn compile and yarn deploy to generate hardhhat_contracts.json
  */
 // @ts-ignore
 const externalContractsPromise = import('../generated/contracts/external_contracts');
 
 /**
  * LoadsAppContracts
- * - run yarn compile-ts and yarn deploy-ts to generate hardhhat_contracts.json
+ * - run yarn compile and yarn deploy to generate hardhhat_contracts.json
  * @returns
  */
 export const loadAppContracts = async (): Promise<TContractConfig> => {

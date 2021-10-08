@@ -1,6 +1,6 @@
 import { formatEther } from '@ethersproject/units';
 import { Select } from 'antd';
-import { useTokenList } from 'eth-hooks/dapps/dex';
+import { useDexTokenList } from 'eth-hooks/dapps';
 import { TEthersProvider } from 'eth-hooks/models';
 import { BigNumber } from 'ethers';
 import React, { FC, useState } from 'react';
@@ -10,17 +10,17 @@ import { Address, AddressInput } from 'eth-components/ant';
 const { Option } = Select;
 
 interface IHintsProps {
-  yourLocalBalance: BigNumber | undefined;
+  yourCurrentBalance: BigNumber | undefined;
   mainnetProvider: TEthersProvider;
   price: number;
   address: string;
 }
 
 export const Hints: FC<IHintsProps> = (props) => {
-  const { yourLocalBalance, mainnetProvider, price, address } = props;
+  const { yourCurrentBalance, mainnetProvider, price, address } = props;
   // Get a list of tokens from a tokenlist -> see tokenlists.org!
   const [selectedToken, setSelectedToken] = useState('Pick a token!');
-  const listOfTokens = useTokenList(
+  const listOfTokens = useDexTokenList(
     'https://raw.githubusercontent.com/SetProtocol/uniswap-tokenlist/main/set.tokenlist.json'
   );
 
@@ -121,7 +121,7 @@ export const Hints: FC<IHintsProps> = (props) => {
           style={{ margin: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: 'bolder' }}>
           useBalance()
         </span>{' '}
-        hook keeps track of your balance: <b>{formatEther(yourLocalBalance || 0)}</b>
+        hook keeps track of your balance: <b>{formatEther(yourCurrentBalance || 0)}</b>
       </div>
 
       <div style={{ margin: 8 }}>

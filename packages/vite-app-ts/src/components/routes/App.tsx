@@ -1,15 +1,17 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-import React, { FC, Suspense } from 'react';
+import React, { FC, lazy, Suspense } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import { EthComponentsContext, IEthComponentsContext } from 'eth-components/models';
 
-import { ErrorBoundary, ErrorFallback } from '~~/components/layout/ErrorFallback';
-import { MainPage } from '~~/components/routes/main/MainPage';
+import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
+// import { MainPage } from '~~/components/routes/main/MainPage';
 import '~~/styles/css/tailwind-base.pcss';
 import '~~/styles/css/tailwind-components.pcss';
 import '~~/styles/css/tailwind-utilities.pcss';
 import '~~/styles/css/app.css';
 import { BLOCKNATIVE_DAPPID } from '~~/models/constants/constants';
+
+const MainPage = lazy(() => import('./main/MainPage'));
 
 const themes = {
   dark: `${process.env.PUBLIC_URL ?? ''}/dark-theme.css`,
@@ -37,11 +39,11 @@ const App: FC = () => {
       <ApolloProvider client={client}>
         <ThemeSwitcherProvider themeMap={themes} defaultTheme={prevTheme || 'light'}>
           <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <Suspense fallback={<div />}>
-              <EthComponentsContext.Provider value={context}>
+            <EthComponentsContext.Provider value={context}>
+              <Suspense fallback={<div />}>
                 <MainPage subgraphUri={subgraphUri} />
-              </EthComponentsContext.Provider>
-            </Suspense>
+              </Suspense>
+            </EthComponentsContext.Provider>
           </ErrorBoundary>
         </ThemeSwitcherProvider>
       </ApolloProvider>

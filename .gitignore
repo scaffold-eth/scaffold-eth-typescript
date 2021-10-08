@@ -65,5 +65,5 @@ yarn-error.log*
 *.tsbuildinfo
 *.stackdump
 .yalc
+yalc.lock
 packages/vite-app-ts/dist
-packages/vite-app-ts/yalc.lock

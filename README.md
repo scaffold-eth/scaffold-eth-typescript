@@ -2,10 +2,10 @@
 ## Typescript
 This is the typescript branch of scaffold.eth.  The directories that you'll use are:
 ```
-packages/vite-app-ts/
-packages/hardhat-ts/
+packages/vite-app/
+packages/hardhat/
 ```
-All the typescript yarn commands have a postfix of `-ts` See the quick start section for more details
+All the typescript yarn commands have a postfix of `` See the quick start section for more details
 
 ## Overview
 
@@ -33,21 +33,21 @@ git clone https://github.com/austintgriffith/scaffold-eth.git
 ```bash
 cd scaffold-eth
 yarn install
-yarn chain-ts
+yarn chain
 ```
 
 > in a second terminal window, start your 📱 frontend:
 
 ```bash
 cd scaffold-eth
-yarn start-ts
+yarn start
 ```
 
 > in a third terminal window, 🛰 deploy your contract:
 
 ```bash
 cd scaffold-eth
-yarn deploy-ts
+yarn deploy
 ```
 
 🔏 Edit your smart contract `YourContract.sol` in `packages/hardhat/contracts`

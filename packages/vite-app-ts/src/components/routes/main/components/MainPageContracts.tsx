@@ -1,16 +1,14 @@
 import React, { FC } from 'react';
 import { GenericContract } from 'eth-components/ant/generic-contract';
 import { Contract } from 'ethers';
-import { TEthersProvider, TProviderAndSigner } from 'eth-hooks/models';
+import { TEthersUser } from 'eth-hooks/models';
 import { TContractConfig } from 'eth-hooks';
+import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 
 interface IMainPageContracts {
-  mainnetProvider: TEthersProvider;
+  appProviders: IScaffoldAppProviders;
+  currentEthersUser: TEthersUser;
   mainnetContracts: Record<string, Contract>;
-  userProviderAndSigner: TProviderAndSigner;
-  localProvider: TEthersProvider;
-  userAddress: string;
-  blockExplorerUrl: string;
   contractConfig: TContractConfig;
 }
 
@@ -29,23 +27,20 @@ export const MainPageContracts: FC<IMainPageContracts> = (props) => {
         this <Contract/> component will automatically parse your ABI
         and give you a form to interact with it locally
       */}
-      {props.userProviderAndSigner?.signer != null && (
+      {props.currentEthersUser?.signer != null && (
         <>
           <GenericContract
             contractName="YourContract"
-            signer={props.userProviderAndSigner.signer}
-            provider={props.localProvider}
-            address={props.userAddress}
-            blockExplorer={props.blockExplorerUrl}
+            currentEthersUser={props.currentEthersUser}
+            mainnetProvider={props.appProviders.mainnetProvider}
+            blockExplorer={props.appProviders.targetNetwork.blockExplorer}
             contractConfig={props.contractConfig}
           />
 
           {/* uncomment for a second contract: 
         <GenericContract
           name="SecondContract"
-          signer={props.userProviderAndSigner.signer}
-          provider={props.localProvider}
-          address={props.userAddress}
+          currentProviderAndSigner={props.currentProviderAndSigner}
           blockExplorer={props.blockExplorerUrl}
           config={props.config}
         />
@@ -55,7 +50,7 @@ export const MainPageContracts: FC<IMainPageContracts> = (props) => {
         <GenericContract
           name="DAI"
           customContract={props.mainnetContracts?.['DAI']}
-          signer={props.userProviderAndSigner.signer}
+          currentProviderAndSigner={props.currentProviderAndSigner}
           provider={props.mainnetProvider}
           address={props.userAddress}
           blockExplorer={props.blockExplorerUrl}
