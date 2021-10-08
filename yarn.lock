@@ -6491,10 +6491,10 @@ eth-block-tracker@^3.0.0:
     pify "^2.3.0"
     tape "^4.6.3"
 
-eth-components@2.1.0-beta02:
-  version "2.1.0-beta02"
-  resolved "https://registry.yarnpkg.com/eth-components/-/eth-components-2.1.0-beta02.tgz#e913418c3d3b7668c29fc569f21f930134e3d3da"
-  integrity sha512-CDuHCsL3Rl5o3ySm+eWRGa3JdB95Jych+wKrSR2r7Bey2av2rk0lSlNqXAf82EowECC0LoMZrgMrA5kQS6l2Xg==
+eth-components@2.1.0-beta03:
+  version "2.1.0-beta03"
+  resolved "https://registry.yarnpkg.com/eth-components/-/eth-components-2.1.0-beta03.tgz#c4959ecde0a86fdc3bda5882c549aa587ecb68f2"
+  integrity sha512-RQ03D6ye24qXRMSBjmtk0t+7gFM0vPcjnsl1OiIUGmitcHVLdDRGDIOQXxjcSDhJ+Tljn7oxFpzR3ULRUGd54w==
   dependencies:
     "@ethersproject/abstract-signer" "^5.4.0"
     "@ethersproject/address" "^5.4.0"
