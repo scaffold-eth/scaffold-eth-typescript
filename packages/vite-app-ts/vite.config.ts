@@ -33,4 +33,11 @@ export default defineConfig({
       process: 'process',
     },
   },
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+      },
+    },
+  },
 });

@@ -1,7 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import { JsonRpcProvider, Web3Provider } from '@ethersproject/providers';
 import { Button, Input, Table, Typography } from 'antd';
-import 'antd/dist/antd.css';
 import { Contract } from 'ethers';
 import GraphiQL from 'graphiql';
 import 'graphiql/graphiql.min.css';

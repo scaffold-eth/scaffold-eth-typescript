@@ -5,6 +5,7 @@ import { useThemeSwitcher } from 'react-css-theme-switcher';
 
 export const ThemeSwitcher = () => {
   const theme = window.localStorage.getItem('theme');
+  console.log(theme);
   const [isDarkMode, setIsDarkMode] = useState(!(!theme || theme === 'light'));
   const { switcher, currentTheme, status, themes } = useThemeSwitcher();
   const ethersContext = useEthersContext();
@@ -22,10 +23,15 @@ export const ThemeSwitcher = () => {
     ethersContext?.setModalTheme?.(isDarkMode ? 'dark' : 'light');
   };
 
-  // Avoid theme change flicker
-  // if (status === "loading") {
-  //   return null;
-  // }
+  useEffect(() => {
+    const data = window.localStorage.getItem('theme');
+    console.log(data, 'first shot');
+    switcher({ theme: data ?? 'light' });
+  }, []);
+
+  if (status === 'loading') {
+    return <></>;
+  }
 
   return (
     <div className="main fade-in" style={{ position: 'fixed', right: 10, bottom: 10 }}>
@@ -33,4 +39,6 @@ export const ThemeSwitcher = () => {
       <Switch checked={isDarkMode} onChange={toggleTheme} />
     </div>
   );
+
+  return null;
 };

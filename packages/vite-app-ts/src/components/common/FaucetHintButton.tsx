@@ -28,10 +28,11 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
   const settingsContext = useContext(EthComponentsContext);
   const ethersContext = useEthersContext();
   const yourLocalBalance = useBalance(ethersContext.account ?? '');
+  const signer = props.scaffoldAppProviders.localProvider.getSigner();
   /**
    * create transactor for faucet
    */
-  const faucetTx = transactor(settingsContext, props.scaffoldAppProviders.localProvider);
+  const faucetTx = transactor(settingsContext, signer, undefined, undefined, true);
 
   /**
    * facuet is only available on localhost
@@ -51,12 +52,13 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
             type="primary"
             onClick={(): void => {
               if (faucetTx && ethersContext?.account != null) {
-                void faucetTx({
+                faucetTx({
                   to: ethersContext?.account,
-                  value: parseEther('0.01'),
-                });
+                  value: parseEther('0.01').toHexString(),
+                })
+                  .then(() => setFaucetClicked(true))
+                  .catch(() => setFaucetClicked(false));
               }
-              setFaucetClicked(true);
             }}>
             💰 Grab funds from the faucet ⛽️
           </Button>

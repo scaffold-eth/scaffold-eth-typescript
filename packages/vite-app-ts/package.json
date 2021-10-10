@@ -5,6 +5,7 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
+    "build:styles": "yarn lessc ./src/styles/themes/dark-theme.less --js ./public/dark-theme.css -x && yarn lessc ./src/styles/themes/light-theme.less --js ./public/light-theme.css -x",
     "serve": "vite preview",
     "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore ./src/**/*",
     "ipfs": "node ./scripts/ipfs.js",
@@ -108,6 +109,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-tailwind": "^0.2.1",
     "eslint-plugin-unused-imports": "^1.1.2",
+    "less": "^4.1.2",
     "postcss": "^8.3.5",
     "prettier": "^2.3.1",
     "rollup-plugin-polyfill-node": "^0.7.0",

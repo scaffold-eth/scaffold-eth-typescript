@@ -9,18 +9,13 @@ import '~~/styles/css/tailwind-utilities.pcss';
 import '~~/styles/css/app.css';
 import { BLOCKNATIVE_DAPPID } from '~~/models/constants/constants';
 import { subgraphUri } from '~~/config/subgraph';
-import { Web3Provider } from '@ethersproject/providers';
 import { EthersAppContext } from 'eth-hooks/context';
 
 const MainPage = lazy(() => import('./main/MainPage'));
 
-function getLibrary(provider: any): any {
-  return new Web3Provider(provider);
-}
-
 const themes = {
-  dark: `${process.env.PUBLIC_URL ?? ''}/dark-theme.css`,
-  light: `${process.env.PUBLIC_URL ?? ''}/light-theme.css`,
+  dark: `./dark-theme.css`,
+  light: `./light-theme.css`,
 };
 
 const prevTheme = window.localStorage.getItem('theme');
@@ -36,7 +31,10 @@ const context: IEthComponentsContext = {
   },
 };
 
+console.log(themes);
+
 const App: FC = () => {
+  console.log('app');
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <ApolloProvider client={client}>

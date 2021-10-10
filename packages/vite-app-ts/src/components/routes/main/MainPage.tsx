@@ -1,25 +1,8 @@
 import React, { FC, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import 'antd/dist/antd.css';
-import {
-  ExternalProvider,
-  getNetwork,
-  JsonRpcFetchFunc,
-  StaticJsonRpcProvider,
-  Web3Provider,
-} from '@ethersproject/providers';
 
 import '~~/styles/main-page.css';
-import { Alert } from 'antd';
-import {
-  useUserAddress,
-  useGasPrice,
-  useContractLoader,
-  useContractReader,
-  useBalance,
-  useOnRepetition,
-  useGetUserFromProviders,
-} from 'eth-hooks';
+import { useGasPrice, useContractLoader, useContractReader, useBalance } from 'eth-hooks';
 import { useDexEthPrice } from 'eth-hooks/dapps';
 
 import { GenericContract } from 'eth-components/ant/generic-contract';
