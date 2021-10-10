@@ -4,6 +4,7 @@ import { Button, Input, Spin, notification } from 'antd';
 import React, { FC, ReactElement, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import StackGrid from 'react-stack-grid';
+import { TTransactor } from 'eth-components/functions';
 
 import { AddressInput, EtherInput } from 'eth-components/ant';
 
@@ -12,7 +13,7 @@ interface ICheckoutProps {
   cart: any;
   setCart: any;
   displayCart: any;
-  tx: any;
+  tx: TTransactor;
   writeContracts: any;
   mainnetProvider: StaticJsonRpcProvider;
 }

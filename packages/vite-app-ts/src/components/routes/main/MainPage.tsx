@@ -25,6 +25,8 @@ import { useScaffoldHooks } from './hooks/useScaffoldHooks';
 import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
 import { subgraphUri } from '~~/config/subgraph';
 import { useEthersContext } from 'eth-hooks/context';
+import { NETWORKS } from '~~/models/constants/networks';
+import { mainnetProvider } from '~~/config/providersConfig';
 
 export const DEBUG = false;
 
@@ -61,7 +63,8 @@ export const MainPage: FC = (props) => {
 
   // EXTERNAL CONTRACT EXAMPLE:
   // If you want to bring in the mainnet DAI contract it would look like:
-  const mainnetContracts = useContractLoader(contractsConfig);
+  // you need to pass the appropriate provider (readonly) or signer (write)
+  const mainnetContracts = useContractLoader(contractsConfig, mainnetProvider, NETWORKS['mainnet'].chainId);
 
   // -----------------------------
   // current contract and listners
@@ -120,7 +123,7 @@ export const MainPage: FC = (props) => {
               */}
                 <MainPageContracts
                   appProviders={scaffoldAppProviders}
-                  mainnetContracts={{}}
+                  mainnetContracts={mainnetContracts}
                   contractConfig={contractsConfig}
                 />
               </>
@@ -139,7 +142,6 @@ export const MainPage: FC = (props) => {
               address={ethersContext?.account ?? ''}
               userSigner={ethersContext?.signer}
               mainnetProvider={scaffoldAppProviders.mainnetProvider}
-              currentProvider={ethersContext?.ethersProvider}
               yourCurrentBalance={yourCurrentBalance}
               price={price}
               tx={tx}
@@ -153,7 +155,7 @@ export const MainPage: FC = (props) => {
             {ethersContext?.signer != null && (
               <GenericContract
                 contractName="DAI"
-                customContract={mainnetContracts?.contracts?.DAI as ethers.Contract | undefined}
+                contract={mainnetContracts?.contracts?.DAI as ethers.Contract}
                 mainnetProvider={scaffoldAppProviders.mainnetProvider}
                 blockExplorer="https://etherscan.io/"
                 contractConfig={contractsConfig}

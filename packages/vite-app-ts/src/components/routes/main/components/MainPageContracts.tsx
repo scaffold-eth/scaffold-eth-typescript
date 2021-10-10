@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { GenericContract } from 'eth-components/ant/generic-contract';
 import { Contract } from 'ethers';
-import { TContractConfig } from 'eth-hooks';
+import { TContractConfig, useContractLoader } from 'eth-hooks';
 import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 import { useEthersContext } from 'eth-hooks/context';
 
@@ -20,41 +20,47 @@ interface IMainPageContracts {
  */
 export const MainPageContracts: FC<IMainPageContracts> = (props) => {
   const ethersContext = useEthersContext();
+  const contractList = useContractLoader(props.contractConfig, undefined);
 
   return (
     <>
-      {/*
-        🎛 this scaffolding is full of commonly used components
-        this <Contract/> component will automatically parse your ABI
-        and give you a form to interact with it locally
-      */}
       <>
-        <GenericContract
+        {/* **********
+          ❓ this scaffolding is full of commonly used components
+          this <Contract/> component will automatically parse your ABI
+          and give you a form to interact with it locally
+        ********** */}
+        {/* <GenericContract
           contractName="YourContract"
+          contract={contractList?.['YourContract']}
+          mainnetProvider={props.appProviders.mainnetProvider}
+          blockExplorer={props.appProviders.targetNetwork.blockExplorer}
+          contractConfig={props.contractConfig}
+        /> */}
+
+        {/* **********
+         * ❓ uncomment for a second contract:
+         ********** */}
+        {/*
+          <GenericContract
+            contractName="SecondContract"
+            contract={contract={contractList?.['SecondContract']}
+            mainnetProvider={props.appProviders.mainnetProvider}
+            blockExplorer={props.appProviders.targetNetwork.blockExplorer}
+            contractConfig={props.contractConfig}
+          />
+        */}
+
+        {/***********
+         *  ❓ Uncomment to display and interact with an external contract (DAI on mainnet):
+         ********** */}
+        <GenericContract
+          contractName="DAI"
+          contract={props.mainnetContracts?.['DAI']}
           mainnetProvider={props.appProviders.mainnetProvider}
           blockExplorer={props.appProviders.targetNetwork.blockExplorer}
           contractConfig={props.contractConfig}
         />
-
-        {/* uncomment for a second contract: 
-        <GenericContract
-          name="SecondContract"
-          blockExplorer={props.blockExplorerUrl}
-          config={props.config}
-        />
-        */}
-
-        {/* Uncomment to display and interact with an external contract (DAI on mainnet): 
-        <GenericContract
-          name="DAI"
-          customContract={props.mainnetContracts?.['DAI']}
-          provider={props.mainnetProvider}
-          address={props.userAddress}
-          blockExplorer={props.blockExplorerUrl}
-          config={props.config}
-          chainId={props.mainnetProvider.chainId}
-        />
-        */}
       </>
     </>
   );

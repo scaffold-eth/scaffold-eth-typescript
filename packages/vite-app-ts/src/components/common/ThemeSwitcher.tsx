@@ -3,10 +3,9 @@ import { Switch } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useThemeSwitcher } from 'react-css-theme-switcher';
 
+const initialTheme = window.localStorage.getItem('theme') ?? 'light';
 export const ThemeSwitcher = () => {
-  const theme = window.localStorage.getItem('theme');
-  console.log(theme);
-  const [isDarkMode, setIsDarkMode] = useState(!(!theme || theme === 'light'));
+  const [isDarkMode, setIsDarkMode] = useState(initialTheme === 'dark');
   const { switcher, currentTheme, status, themes } = useThemeSwitcher();
   const ethersContext = useEthersContext();
 
@@ -23,13 +22,7 @@ export const ThemeSwitcher = () => {
     ethersContext?.setModalTheme?.(isDarkMode ? 'dark' : 'light');
   };
 
-  useEffect(() => {
-    const data = window.localStorage.getItem('theme');
-    console.log(data, 'first shot');
-    switcher({ theme: data ?? 'light' });
-  }, []);
-
-  if (status === 'loading') {
+  if (status === 'loading' || status === 'idle') {
     return <></>;
   }
 

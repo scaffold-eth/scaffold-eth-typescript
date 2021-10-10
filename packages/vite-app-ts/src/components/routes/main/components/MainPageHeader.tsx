@@ -56,6 +56,7 @@ export const MainPageHeader: FC<IMainPageHeader> = (props) => {
         mainnetProvider={props.scaffoldAppProviders.mainnetProvider}
         price={props.price}
         blockExplorer={props.scaffoldAppProviders.targetNetwork.blockExplorer}
+        hasContextConnect={true}
       />
       <FaucetHintButton scaffoldAppProviders={props.scaffoldAppProviders} gasPrice={props.gasPrice} />
       {props.children}

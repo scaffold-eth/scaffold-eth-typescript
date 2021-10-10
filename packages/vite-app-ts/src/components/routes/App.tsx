@@ -13,42 +13,44 @@ import { EthersAppContext } from 'eth-hooks/context';
 
 const MainPage = lazy(() => import('./main/MainPage'));
 
+// load saved theme
+const savedTheme = window.localStorage.getItem('theme');
+
+//setup themes for theme switcher
 const themes = {
   dark: `./dark-theme.css`,
   light: `./light-theme.css`,
 };
 
-const prevTheme = window.localStorage.getItem('theme');
-
+// load graphql client for subgraphs
 const client = new ApolloClient({
   uri: subgraphUri,
   cache: new InMemoryCache(),
 });
 
+// create eth components context for options and API keys
 const context: IEthComponentsContext = {
   apiKeys: {
     BlocknativeDappId: BLOCKNATIVE_DAPPID,
   },
 };
 
-console.log(themes);
-
 const App: FC = () => {
   console.log('app');
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <ApolloProvider client={client}>
-        <ThemeSwitcherProvider themeMap={themes} defaultTheme={prevTheme || 'light'}>
-          <EthComponentsContext.Provider value={context}>
-            <EthersAppContext>
-              <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <EthComponentsContext.Provider value={context}>
+          <EthersAppContext>
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
+              <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme || 'light'}>
                 <Suspense fallback={<div />}>
                   <MainPage />
                 </Suspense>
-              </ErrorBoundary>
-            </EthersAppContext>
-          </EthComponentsContext.Provider>
-        </ThemeSwitcherProvider>
+              </ThemeSwitcherProvider>
+            </ErrorBoundary>
+          </EthersAppContext>
+        </EthComponentsContext.Provider>
       </ApolloProvider>
     </ErrorBoundary>
   );
