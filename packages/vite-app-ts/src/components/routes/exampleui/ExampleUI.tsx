@@ -57,7 +57,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
             onClick={async () => {
               /* look how you call setPurpose on your contract: */
               /* notice how you pass a call back for tx updates too */
-              const result = tx(writeContracts?.YourContract?.setPurpose(newPurpose), (update: any) => {
+              const result = tx?.(writeContracts?.YourContract?.setPurpose(newPurpose), (update: any) => {
                 console.log('📡 Transaction Update:', update);
                 if (update && (update.status === 'confirmed' || update.status === 1)) {
                   console.log(' 🍾 Transaction ' + update.hash + ' finished!');
@@ -107,7 +107,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
           <Button
             onClick={() => {
               /* look how you call setPurpose on your contract: */
-              tx(writeContracts?.YourContract?.setPurpose('🍻 Cheers'));
+              tx?.(writeContracts?.YourContract?.setPurpose('🍻 Cheers'));
             }}>
             Set Purpose to &quot;🍻 Cheers&quot;
           </Button>
@@ -119,7 +119,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
               you can also just craft a transaction and send it to the tx() transactor
               here we are sending value straight to the contract's address:
             */
-              tx({
+              tx?.({
                 to: writeContracts.YourContract.address,
                 value: parseEther('0.001'),
               });
@@ -132,7 +132,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
           <Button
             onClick={() => {
               /* look how we call setPurpose AND send some value along */
-              tx(
+              tx?.(
                 writeContracts?.YourContract?.setPurpose('💵 Paying for this one!', {
                   value: parseEther('0.001'),
                 })
@@ -146,7 +146,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
           <Button
             onClick={() => {
               /* you can also just craft a transaction and send it to the tx() transactor */
-              tx({
+              tx?.({
                 to: writeContracts?.YourContract?.address,
                 value: parseEther('0.001'),
                 data: writeContracts?.YourContract?.interface?.encodeFunctionData?.('setPurpose(string)', [
