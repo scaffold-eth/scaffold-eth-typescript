@@ -4,11 +4,12 @@ import { Contract } from 'ethers';
 import { TContractConfig, useContractLoader } from 'eth-hooks';
 import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 import { useEthersContext } from 'eth-hooks/context';
+import { NETWORKS } from '~~/models/constants/networks';
 
 interface IMainPageContracts {
-  appProviders: IScaffoldAppProviders;
+  scaffoldAppProviders: IScaffoldAppProviders;
   mainnetContracts: Record<string, Contract>;
-  contractConfig: TContractConfig;
+  appContractConfig: TContractConfig;
 }
 
 /**
@@ -20,7 +21,7 @@ interface IMainPageContracts {
  */
 export const MainPageContracts: FC<IMainPageContracts> = (props) => {
   const ethersContext = useEthersContext();
-  const contractList = useContractLoader(props.contractConfig, undefined);
+  const contractList = useContractLoader(props.appContractConfig, undefined);
 
   return (
     <>
@@ -30,13 +31,13 @@ export const MainPageContracts: FC<IMainPageContracts> = (props) => {
           this <Contract/> component will automatically parse your ABI
           and give you a form to interact with it locally
         ********** */}
-        {/* <GenericContract
+        <GenericContract
           contractName="YourContract"
           contract={contractList?.['YourContract']}
-          mainnetProvider={props.appProviders.mainnetProvider}
-          blockExplorer={props.appProviders.targetNetwork.blockExplorer}
-          contractConfig={props.contractConfig}
-        /> */}
+          mainnetProvider={props.scaffoldAppProviders.mainnetProvider}
+          blockExplorer={props.scaffoldAppProviders.targetNetwork.blockExplorer}
+          contractConfig={props.appContractConfig}
+        />
 
         {/* **********
          * ❓ uncomment for a second contract:
@@ -57,9 +58,9 @@ export const MainPageContracts: FC<IMainPageContracts> = (props) => {
         <GenericContract
           contractName="DAI"
           contract={props.mainnetContracts?.['DAI']}
-          mainnetProvider={props.appProviders.mainnetProvider}
-          blockExplorer={props.appProviders.targetNetwork.blockExplorer}
-          contractConfig={props.contractConfig}
+          mainnetProvider={props.scaffoldAppProviders.mainnetProvider}
+          blockExplorer={NETWORKS['mainnet'].blockExplorer}
+          contractConfig={props.appContractConfig}
         />
       </>
     </>

@@ -38,7 +38,7 @@ export const useScaffoldHooks = (
   // const yourMainnetBalance = useBalance(scaffoldAppProviders.mainnetProvider, currentEthersUser.address ?? '');
 
   // 💰 Then read your DAI balance like:
-  const myMainnetDAIBalance = useContractReader(mainnetContracts, {
+  const myMainnetDAIBalance = useContractReader(mainnetContracts?.['DAI'], {
     contractName: 'DAI',
     functionName: 'balanceOf',
     functionArgs: ['0x34aA3F359A9D614239015126635CE7732c18fDF3'],

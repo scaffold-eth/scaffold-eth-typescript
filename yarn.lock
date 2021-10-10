@@ -6498,10 +6498,10 @@ eth-block-tracker@^3.0.0:
     pify "^2.3.0"
     tape "^4.6.3"
 
-eth-components@2.1.0-beta04:
-  version "2.1.0-beta04"
-  resolved "https://registry.yarnpkg.com/eth-components/-/eth-components-2.1.0-beta04.tgz#564d301f9842c3844c9f05f1475ede6b38271afc"
-  integrity sha512-ieTw01L5uL9BCSKpt450C5NFOpVT6U/vGu4FMjKT/hd1QDd2OblgsoL5k7K3PCJdBBLZPNjWHB7heBrFH7t17A==
+eth-components@2.1.0-beta05:
+  version "2.1.0-beta05"
+  resolved "https://registry.yarnpkg.com/eth-components/-/eth-components-2.1.0-beta05.tgz#f78b0a4a1dfbdd577c1982601e4f5c7d48cf1835"
+  integrity sha512-GM9JZDvU0Jo8NXS/Lc3zWW1jLjMhyxdBX5oqF4ivJh9I4ESb47IEiFaVMz41h7Uk1Gm7N/nBIXpuPtQ3+HQ69A==
   dependencies:
     "@ethersproject/abstract-signer" "^5.4.0"
     "@ethersproject/address" "^5.4.0"
@@ -6516,7 +6516,7 @@ eth-components@2.1.0-beta04:
     "@uniswap/token-lists" "^1.0.0-beta.24"
     axios "^0.21.4"
     bnc-notify "^1.9.1"
-    eth-hooks "^3.2.0beta02"
+    eth-hooks "^3.2.0beta03"
     ethers "^5.4.1"
     qrcode.react "^1.0.1"
     react-blockies "^1.4.1"
@@ -6532,10 +6532,35 @@ eth-ens-namehash@2.0.8, eth-ens-namehash@^2.0.8:
     idna-uts46-hx "^2.3.1"
     js-sha3 "^0.5.7"
 
-eth-hooks@3.2.0-beta02, eth-hooks@^3.2.0beta02:
+eth-hooks@3.2.0-beta02:
   version "3.2.0-beta02"
   resolved "https://registry.yarnpkg.com/eth-hooks/-/eth-hooks-3.2.0-beta02.tgz#140f0afc0873200e1c331cafd08ae8bc7cc16283"
   integrity sha512-yroetKF652spPujJPooL8998RgN+nL4GKd8wKy4Vcm8XkNfDTyhncmTmHqClLXZcK9dMdeRogWYQXRVRjpMWIg==
+  dependencies:
+    "@ethersproject/address" "^5.4.0"
+    "@ethersproject/bignumber" "^5.4.0"
+    "@ethersproject/bytes" "^5.4.0"
+    "@ethersproject/contracts" "^5.4.0"
+    "@ethersproject/networks" "^5.4.0"
+    "@ethersproject/providers" "^5.4.0"
+    "@ethersproject/signing-key" "^5.4.0"
+    "@ethersproject/solidity" "^5.4.0"
+    "@ethersproject/units" "^5.4.0"
+    "@uniswap/token-lists" "^1.0.0-beta.24"
+    "@web3-react/abstract-connector" "^6.0.7"
+    "@web3-react/core" "^6.1.9"
+    "@web3-react/types" "^6.0.7"
+    axios "^0.21.4"
+    ethers "^5.4.1"
+    tiny-invariant "^1.1.0"
+    use-debounce "^7.0.0"
+    usehooks-ts "^1.0.4"
+    web3modal "^1.9.1"
+
+eth-hooks@^3.2.0beta03:
+  version "3.2.0-beta03"
+  resolved "https://registry.yarnpkg.com/eth-hooks/-/eth-hooks-3.2.0-beta03.tgz#d9973270fc660db441f92139b342c71d4e93b071"
+  integrity sha512-kEedg3AXTY6JzadSJjGjpH8Sn9Cjg6XK0tumyfUw66WszPpi/4j0aY0QMWMYsyVTw2KsFFyn3SIjfi19DLW8cA==
   dependencies:
     "@ethersproject/address" "^5.4.0"
     "@ethersproject/bignumber" "^5.4.0"

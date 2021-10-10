@@ -53,25 +53,28 @@ export const MainPage: FC = (props) => {
 
   // ⚙ contract config
   // get the contracts configuration for the app
-  const contractsConfig = useAppContractConfig();
+  const appContractConfig = useAppContractConfig();
 
   // Load in your local 📝 contract and read a value from it:
-  const readContracts = useContractLoader(contractsConfig);
+  const readContracts = useContractLoader(appContractConfig);
 
   // If you want to make 🔐 write transactions to your contracts, use the userProvider:
-  const writeContracts = useContractLoader(contractsConfig, ethersContext?.signer);
+  const writeContracts = useContractLoader(appContractConfig, ethersContext?.signer);
 
   // EXTERNAL CONTRACT EXAMPLE:
   // If you want to bring in the mainnet DAI contract it would look like:
   // you need to pass the appropriate provider (readonly) or signer (write)
-  const mainnetContracts = useContractLoader(contractsConfig, mainnetProvider, NETWORKS['mainnet'].chainId);
+  const mainnetContracts = useContractLoader(appContractConfig, mainnetProvider, NETWORKS['mainnet'].chainId);
 
   // -----------------------------
   // current contract and listners
   // -----------------------------
 
   // keep track of a variable from the contract in the local React state:
-  const purpose = useContractReader<string>(readContracts, { contractName: 'YourContract', functionName: 'purpose' });
+  const purpose = useContractReader<string>(readContracts?.['YourContract'], {
+    contractName: 'YourContract',
+    functionName: 'purpose',
+  });
 
   // 📟 Listen for broadcast events
   const setPurposeEvents = useEventListener(readContracts?.['YourContract'], 'SetPurpose', 1);
@@ -122,9 +125,9 @@ export const MainPage: FC = (props) => {
                 and give you a form to interact with it locally
               */}
                 <MainPageContracts
-                  appProviders={scaffoldAppProviders}
+                  scaffoldAppProviders={scaffoldAppProviders}
                   mainnetContracts={mainnetContracts}
-                  contractConfig={contractsConfig}
+                  appContractConfig={appContractConfig}
                 />
               </>
             )}
@@ -152,13 +155,13 @@ export const MainPage: FC = (props) => {
             />
           </Route>
           <Route path="/mainnetdai">
-            {ethersContext?.signer != null && (
+            {mainnetProvider != null && (
               <GenericContract
                 contractName="DAI"
-                contract={mainnetContracts?.contracts?.DAI as ethers.Contract}
+                contract={mainnetContracts?.['DAI']}
                 mainnetProvider={scaffoldAppProviders.mainnetProvider}
-                blockExplorer="https://etherscan.io/"
-                contractConfig={contractsConfig}
+                blockExplorer={NETWORKS['mainnet'].blockExplorer}
+                contractConfig={appContractConfig}
               />
             )}
           </Route>
