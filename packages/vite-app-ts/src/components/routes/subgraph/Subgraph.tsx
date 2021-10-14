@@ -1,12 +1,11 @@
 import { gql, useQuery } from '@apollo/client';
 import { JsonRpcProvider, Web3Provider } from '@ethersproject/providers';
 import { Button, Input, Table, Typography } from 'antd';
-import 'antd/dist/antd.css';
 import { Contract } from 'ethers';
 import GraphiQL from 'graphiql';
 import 'graphiql/graphiql.min.css';
-// import fetch from 'isomorphic-fetch';
 import React, { FC, ReactElement, useState } from 'react';
+import { TTransactor } from 'eth-components/functions';
 
 import { Address } from 'eth-components/ant';
 
@@ -20,7 +19,7 @@ const highlight: React.CSSProperties = {
 
 interface ISubgraphProps {
   subgraphUri: string;
-  tx: any;
+  tx: TTransactor | undefined;
   writeContracts: Record<string, Contract>;
   mainnetProvider: JsonRpcProvider | Web3Provider;
 }
@@ -88,14 +87,14 @@ export const Subgraph: FC<ISubgraphProps> = (props) => {
         You will find that parsing/tracking events with the{' '}
         <span className="highlight" style={highlight}>
           useEventListener
-        </span>{' '}
+        </span>
         hook becomes a chore for every new project.
       </div>
       <div style={{ margin: 'auto', marginTop: 32 }}>
-        Instead, you can use{' '}
+        Instead, you can use
         <a href="https://thegraph.com/docs/introduction" target="_blank" rel="noopener noreferrer">
           The Graph
-        </a>{' '}
+        </a>
         with 🏗 scaffold-eth (
         <a href="https://youtu.be/T5ylzOTkn-Q" target="_blank" rel="noopener noreferrer">
           learn more
@@ -118,13 +117,11 @@ export const Subgraph: FC<ISubgraphProps> = (props) => {
           yarn graph-run-node
         </span>
         <span style={{ marginLeft: 4 }}>
-          {' '}
-          (requires{' '}
+          (requires
           <a href="https://www.docker.com/products/docker-desktop" target="_blank" rel="noopener noreferrer">
-            {' '}
             Docker
           </a>
-          ){' '}
+          )
         </span>
       </div>
 
@@ -177,7 +174,7 @@ export const Subgraph: FC<ISubgraphProps> = (props) => {
             onClick={(): void => {
               console.log('newPurpose', newPurpose);
               /* look how you call setPurpose on your contract: */
-              props.tx(props.writeContracts.YourContract.setPurpose(newPurpose));
+              props.tx?.(props.writeContracts.YourContract.setPurpose(newPurpose));
             }}>
             Set Purpose
           </Button>

@@ -1,25 +1,8 @@
 import React, { FC, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import 'antd/dist/antd.css';
-import {
-  ExternalProvider,
-  getNetwork,
-  JsonRpcFetchFunc,
-  StaticJsonRpcProvider,
-  Web3Provider,
-} from '@ethersproject/providers';
 
 import '~~/styles/main-page.css';
-import { Alert } from 'antd';
-import {
-  useUserAddress,
-  useGasPrice,
-  useContractLoader,
-  useContractReader,
-  useBalance,
-  useOnRepetition,
-  useGetUserFromProviders,
-} from 'eth-hooks';
+import { useGasPrice, useContractLoader, useContractReader, useBalance } from 'eth-hooks';
 import { useDexEthPrice } from 'eth-hooks/dapps';
 
 import { GenericContract } from 'eth-components/ant/generic-contract';
@@ -28,12 +11,11 @@ import { transactor } from 'eth-components/functions';
 
 import { ethers } from 'ethers';
 
-import { TEthersProvider, TEthersUser } from 'eth-hooks/models';
 import { useEventListener } from 'eth-hooks';
 import { MainPageMenu } from './components/MainPageMenu';
 import { MainPageContracts } from './components/MainPageContracts';
 import { MainPageFooter } from './components/MainPageFooter';
-import { useScaffoldContractConfig } from '~~/components/routes/main/hooks/useScaffoldContractConfig';
+import { useAppContractConfig } from '~~/components/routes/main/hooks/useAppContractConfig';
 import { EthComponentsContext } from 'eth-components/models';
 import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 import { useBurnerFallback } from '~~/components/routes/main/hooks/useBurnerFallback';
@@ -41,10 +23,14 @@ import { getFaucetAvailable } from '../../common/FaucetHintButton';
 import { MainPageHeader } from '~~/components/routes/main/components/MainPageHeader';
 import { useScaffoldHooks } from './hooks/useScaffoldHooks';
 import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
+import { subgraphUri } from '~~/config/subgraph';
+import { useEthersContext } from 'eth-hooks/context';
+import { NETWORKS } from '~~/models/constants/networks';
+import { mainnetProvider } from '~~/config/providersConfig';
 
 export const DEBUG = false;
 
-export const MainPage: FC<{ subgraphUri: string }> = (props) => {
+export const MainPage: FC = (props) => {
   const context = useContext(EthComponentsContext);
 
   // -----------------------------
@@ -55,10 +41,11 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
   // see useLoadProviders.ts for everything to do with loading the right providers
   const scaffoldAppProviders = useScaffoldAppProviders();
 
-  // 🦊 Get your web3 ethers User from current providers
-  let currentEthersUser: TEthersUser = useGetUserFromProviders(scaffoldAppProviders.currentProvider);
-  // if no user is found use a burner wallet on localhost as fallback
-  currentEthersUser = useBurnerFallback(scaffoldAppProviders, currentEthersUser);
+  // 🦊 Get your web3 ethers context from current providers
+  const ethersContext = useEthersContext();
+
+  // if no user is found use a burner wallet on localhost as fallback if enabled
+  useBurnerFallback(scaffoldAppProviders, true);
 
   // -----------------------------
   // Contracts
@@ -66,45 +53,31 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
 
   // ⚙ contract config
   // get the contracts configuration for the app
-  const contractsConfig = useScaffoldContractConfig();
+  const appContractConfig = useAppContractConfig();
 
   // Load in your local 📝 contract and read a value from it:
-  const readContracts = useContractLoader(
-    scaffoldAppProviders.currentProvider,
-    contractsConfig,
-    scaffoldAppProviders.targetNetwork.chainId
-  );
+  const readContracts = useContractLoader(appContractConfig);
 
   // If you want to make 🔐 write transactions to your contracts, use the userProvider:
-  const writeContracts = useContractLoader(
-    currentEthersUser?.signer,
-    contractsConfig,
-    currentEthersUser.providerNetwork?.chainId
-  );
+  const writeContracts = useContractLoader(appContractConfig, ethersContext?.signer);
 
   // EXTERNAL CONTRACT EXAMPLE:
   // If you want to bring in the mainnet DAI contract it would look like:
-  const mainnetContracts = useContractLoader(
-    scaffoldAppProviders.mainnetProvider,
-    contractsConfig,
-    scaffoldAppProviders.mainnetProvider?._network?.chainId
-  );
+  // you need to pass the appropriate provider (readonly) or signer (write)
+  const mainnetContracts = useContractLoader(appContractConfig, mainnetProvider, NETWORKS['mainnet'].chainId);
 
   // -----------------------------
   // current contract and listners
   // -----------------------------
 
   // keep track of a variable from the contract in the local React state:
-  const purpose = useContractReader<string>(readContracts, 'YourContract', 'purpose');
+  const purpose = useContractReader<string>(readContracts?.['YourContract'], {
+    contractName: 'YourContract',
+    functionName: 'purpose',
+  });
 
   // 📟 Listen for broadcast events
-  const setPurposeEvents = useEventListener(
-    readContracts,
-    'YourContract',
-    'SetPurpose',
-    scaffoldAppProviders.currentProvider,
-    1
-  );
+  const setPurposeEvents = useEventListener(readContracts?.['YourContract'], 'SetPurpose', 1);
 
   // -----------------------------
   // Hooks
@@ -112,26 +85,21 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
   // For more hooks, check out 🔗eth-hooks at: https://www.npmjs.com/package/eth-hooks
 
   // 💵 This hook will get the price of ETH from 🦄 Uniswap:
-  const price = useDexEthPrice(scaffoldAppProviders.targetNetwork, scaffoldAppProviders.mainnetProvider);
+  const price = useDexEthPrice(scaffoldAppProviders.mainnetProvider, scaffoldAppProviders.targetNetwork);
 
   // 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation
-  const gasPrice = useGasPrice(
-    currentEthersUser.providerNetwork?.chainId,
-    'fast',
-    currentEthersUser.provider,
-    getNetworkInfo(currentEthersUser.providerNetwork?.chainId)
-  );
+  const gasPrice = useGasPrice(ethersContext.chainId, 'fast', getNetworkInfo(ethersContext.chainId));
 
   // 💰 this hook will get your balance
-  const yourCurrentBalance = useBalance(currentEthersUser.provider, currentEthersUser.address ?? '');
+  const yourCurrentBalance = useBalance(ethersContext.account ?? '');
 
   // -----------------------------
   // 🎉 Console logs & More hook examples:  Check out this to see how to get
   // -----------------------------
-  useScaffoldHooks(scaffoldAppProviders, currentEthersUser, readContracts, writeContracts, mainnetContracts);
+  useScaffoldHooks(scaffoldAppProviders, readContracts, writeContracts, mainnetContracts);
 
   // The transactor wraps transactions and provides notificiations
-  const tx = transactor(context, currentEthersUser?.signer, gasPrice);
+  const tx = transactor(context, ethersContext?.signer, gasPrice);
 
   const [route, setRoute] = useState<string>('');
   useEffect(() => {
@@ -139,22 +107,17 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
   }, [setRoute]);
 
   // Faucet Tx can be used to send funds from the faucet
-  let faucetAvailable = getFaucetAvailable(scaffoldAppProviders, currentEthersUser);
+  let faucetAvailable = getFaucetAvailable(scaffoldAppProviders, ethersContext);
 
   return (
     <div className="App">
       {/* ✏️ Edit the header and change the title to your project name.  Your account is on the right */}
-      <MainPageHeader
-        currentEthersUser={currentEthersUser}
-        scaffoldAppProviders={scaffoldAppProviders}
-        price={price}
-        gasPrice={gasPrice}
-      />
+      <MainPageHeader scaffoldAppProviders={scaffoldAppProviders} price={price} gasPrice={gasPrice} />
       <BrowserRouter>
         <MainPageMenu route={route} setRoute={setRoute} />
         <Switch>
           <Route exact path="/">
-            {currentEthersUser != null && (
+            {ethersContext.account != null && (
               <>
                 {/*
                 🎛 this scaffolding is full of commonly used components
@@ -162,17 +125,16 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
                 and give you a form to interact with it locally
               */}
                 <MainPageContracts
-                  appProviders={scaffoldAppProviders}
-                  mainnetContracts={{}}
-                  currentEthersUser={currentEthersUser}
-                  contractConfig={contractsConfig}
+                  scaffoldAppProviders={scaffoldAppProviders}
+                  mainnetContracts={mainnetContracts}
+                  appContractConfig={appContractConfig}
                 />
               </>
             )}
           </Route>
           <Route path="/hints">
             <Hints
-              address={currentEthersUser?.address ?? ''}
+              address={ethersContext?.account ?? ''}
               yourCurrentBalance={yourCurrentBalance}
               mainnetProvider={scaffoldAppProviders.mainnetProvider}
               price={price}
@@ -180,10 +142,9 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
           </Route>
           <Route path="/exampleui">
             <ExampleUI
-              address={currentEthersUser?.address ?? ''}
-              userSigner={currentEthersUser?.signer}
+              address={ethersContext?.account ?? ''}
+              userSigner={ethersContext?.signer}
               mainnetProvider={scaffoldAppProviders.mainnetProvider}
-              currentProvider={currentEthersUser?.provider}
               yourCurrentBalance={yourCurrentBalance}
               price={price}
               tx={tx}
@@ -194,20 +155,19 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
             />
           </Route>
           <Route path="/mainnetdai">
-            {currentEthersUser?.signer != null && (
+            {mainnetProvider != null && (
               <GenericContract
                 contractName="DAI"
-                customContract={mainnetContracts?.contracts?.DAI as ethers.Contract | undefined}
-                currentEthersUser={currentEthersUser}
+                contract={mainnetContracts?.['DAI']}
                 mainnetProvider={scaffoldAppProviders.mainnetProvider}
-                blockExplorer="https://etherscan.io/"
-                contractConfig={contractsConfig}
+                blockExplorer={NETWORKS['mainnet'].blockExplorer}
+                contractConfig={appContractConfig}
               />
             )}
           </Route>
           <Route path="/subgraph">
             <Subgraph
-              subgraphUri={props.subgraphUri}
+              subgraphUri={subgraphUri}
               tx={tx}
               writeContracts={writeContracts}
               mainnetProvider={scaffoldAppProviders.mainnetProvider}
@@ -219,7 +179,6 @@ export const MainPage: FC<{ subgraphUri: string }> = (props) => {
       {/* 🗺 Extra UI like gas price, eth price, faucet, and support: */}
       <MainPageFooter
         scaffoldAppProviders={scaffoldAppProviders}
-        currentEthersUser={currentEthersUser}
         price={price}
         gasPrice={gasPrice}
         faucetAvailable={faucetAvailable}

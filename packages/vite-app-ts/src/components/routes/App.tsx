@@ -2,31 +2,33 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import React, { FC, lazy, Suspense } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import { EthComponentsContext, IEthComponentsContext } from 'eth-components/models';
-
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
-// import { MainPage } from '~~/components/routes/main/MainPage';
 import '~~/styles/css/tailwind-base.pcss';
 import '~~/styles/css/tailwind-components.pcss';
 import '~~/styles/css/tailwind-utilities.pcss';
 import '~~/styles/css/app.css';
 import { BLOCKNATIVE_DAPPID } from '~~/models/constants/constants';
+import { subgraphUri } from '~~/config/subgraph';
+import { EthersAppContext } from 'eth-hooks/context';
 
 const MainPage = lazy(() => import('./main/MainPage'));
 
+// load saved theme
+const savedTheme = window.localStorage.getItem('theme');
+
+//setup themes for theme switcher
 const themes = {
-  dark: `${process.env.PUBLIC_URL ?? ''}/dark-theme.css`,
-  light: `${process.env.PUBLIC_URL ?? ''}/light-theme.css`,
+  dark: `./dark-theme.css`,
+  light: `./light-theme.css`,
 };
 
-const prevTheme = window.localStorage.getItem('theme');
-
-const subgraphUri = 'http://localhost:8000/subgraphs/name/scaffold-eth/your-contract';
-
+// load graphql client for subgraphs
 const client = new ApolloClient({
   uri: subgraphUri,
   cache: new InMemoryCache(),
 });
 
+// create eth components context for options and API keys
 const context: IEthComponentsContext = {
   apiKeys: {
     BlocknativeDappId: BLOCKNATIVE_DAPPID,
@@ -34,18 +36,21 @@ const context: IEthComponentsContext = {
 };
 
 const App: FC = () => {
+  console.log('app');
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <ApolloProvider client={client}>
-        <ThemeSwitcherProvider themeMap={themes} defaultTheme={prevTheme || 'light'}>
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <EthComponentsContext.Provider value={context}>
-              <Suspense fallback={<div />}>
-                <MainPage subgraphUri={subgraphUri} />
-              </Suspense>
-            </EthComponentsContext.Provider>
-          </ErrorBoundary>
-        </ThemeSwitcherProvider>
+        <EthComponentsContext.Provider value={context}>
+          <EthersAppContext>
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
+              <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme || 'light'}>
+                <Suspense fallback={<div />}>
+                  <MainPage />
+                </Suspense>
+              </ThemeSwitcherProvider>
+            </ErrorBoundary>
+          </EthersAppContext>
+        </EthComponentsContext.Provider>
       </ApolloProvider>
     </ErrorBoundary>
   );

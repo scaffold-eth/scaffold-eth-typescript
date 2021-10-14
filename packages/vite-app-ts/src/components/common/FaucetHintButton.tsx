@@ -3,58 +3,62 @@ import { Button } from 'antd';
 import { useBalance } from 'eth-hooks';
 import { transactor } from 'eth-components/functions';
 import { parseEther } from '@ethersproject/units';
-import { TEthersUser } from 'eth-hooks/models';
-import { EthComponentsContext, IEthComponentsContext } from 'eth-components/models';
+import { EthComponentsContext } from 'eth-components/models';
 import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 import { utils } from 'ethers';
+import { IEthersContext, useEthersContext } from 'eth-hooks/context';
+import { useDebounce } from 'use-debounce';
 
 interface IFaucetButton {
   scaffoldAppProviders: IScaffoldAppProviders;
   gasPrice: number | undefined;
-  currentEthersUser: TEthersUser;
 }
 
-export const getFaucetAvailable = (scaffoldAppProviders: IScaffoldAppProviders, currentEthersUser: TEthersUser) => {
+export const getFaucetAvailable = (scaffoldAppProviders: IScaffoldAppProviders, ethersContext: IEthersContext) => {
   return (
     (true &&
-      currentEthersUser?.provider &&
-      currentEthersUser?.providerNetwork?.chainId === scaffoldAppProviders.targetNetwork.chainId &&
+      ethersContext?.ethersProvider &&
+      ethersContext?.chainId === scaffoldAppProviders.targetNetwork.chainId &&
       scaffoldAppProviders.targetNetwork.name === 'localhost') ??
     false
   );
 };
 
 export const FaucetHintButton: FC<IFaucetButton> = (props) => {
-  const context = useContext(EthComponentsContext);
-  const yourLocalBalance = useBalance(props.currentEthersUser.provider, props.currentEthersUser.address ?? '');
+  const settingsContext = useContext(EthComponentsContext);
+  const ethersContext = useEthersContext();
+  const yourLocalBalance = useBalance(ethersContext.account ?? '');
+  const signer = props.scaffoldAppProviders.localProvider.getSigner();
   /**
    * create transactor for faucet
    */
-  const faucetTx = transactor(context, props.scaffoldAppProviders.localProvider);
+  const faucetTx = transactor(settingsContext, signer, undefined, undefined, true);
 
   /**
    * facuet is only available on localhost
    */
-  const faucetAvailable = getFaucetAvailable(props.scaffoldAppProviders, props.currentEthersUser);
-
+  const faucetAvailable = useDebounce(getFaucetAvailable(props.scaffoldAppProviders, ethersContext), 500, {
+    trailing: true,
+  });
   const [faucetClicked, setFaucetClicked] = useState(false);
 
   const faucetHint = useMemo(() => {
     const min = parseFloat(utils.formatUnits(yourLocalBalance.toBigInt(), 'ether'));
 
-    if (!faucetClicked && faucetAvailable && yourLocalBalance && min < 0.002) {
+    if (!faucetClicked && faucetAvailable && yourLocalBalance && min < 0.002 && ethersContext?.account != null) {
       return (
         <div style={{ paddingTop: 10, paddingLeft: 10 }}>
           <Button
             type="primary"
             onClick={(): void => {
-              if (faucetTx) {
-                void faucetTx({
-                  to: props.currentEthersUser?.address,
-                  value: parseEther('0.01'),
-                });
+              if (faucetTx && ethersContext?.account != null) {
+                faucetTx({
+                  to: ethersContext?.account,
+                  value: parseEther('0.01').toHexString(),
+                })
+                  .then(() => setFaucetClicked(true))
+                  .catch(() => setFaucetClicked(false));
               }
-              setFaucetClicked(true);
             }}>
             💰 Grab funds from the faucet ⛽️
           </Button>
@@ -63,7 +67,7 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
     } else {
       return <></>;
     }
-  }, [faucetAvailable, yourLocalBalance, faucetTx, props.currentEthersUser?.address]);
+  }, [faucetAvailable, yourLocalBalance, faucetTx, ethersContext?.account]);
 
   return <> {faucetHint} </>;
 };

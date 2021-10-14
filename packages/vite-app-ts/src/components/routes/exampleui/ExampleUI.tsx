@@ -5,17 +5,19 @@ import { Signer, Contract } from 'ethers';
 import React, { useState, FC } from 'react';
 
 import { Address, Balance } from 'eth-components/ant';
+import { TTransactor } from 'eth-components/functions';
+import { StaticJsonRpcProvider } from '@ethersproject/providers';
+import { useEthersContext } from 'eth-hooks/context';
 
 interface IExampleUIProps {
   userSigner: Signer | undefined;
   purpose: string;
-  setPurposeEvents: any;
   address: string;
-  mainnetProvider: any;
-  currentProvider: any;
+  mainnetProvider: StaticJsonRpcProvider;
+  setPurposeEvents: any;
   yourCurrentBalance: any;
-  price: any;
-  tx: any;
+  price: number;
+  tx: TTransactor | undefined;
   readContracts: Record<string, Contract>;
   writeContracts: Record<string, Contract>;
 }
@@ -26,7 +28,6 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
     setPurposeEvents,
     address,
     mainnetProvider,
-    currentProvider,
     yourCurrentBalance,
     price,
     tx,
@@ -34,6 +35,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
     writeContracts,
   } = props;
   const [newPurpose, setNewPurpose] = useState('loading...');
+  const ethersContext = useEthersContext();
 
   return (
     <div>
@@ -55,7 +57,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
             onClick={async () => {
               /* look how you call setPurpose on your contract: */
               /* notice how you pass a call back for tx updates too */
-              const result = tx(writeContracts.YourContract.setPurpose(newPurpose), (update: any) => {
+              const result = tx?.(writeContracts?.YourContract?.setPurpose(newPurpose), (update: any) => {
                 console.log('📡 Transaction Update:', update);
                 if (update && (update.status === 'confirmed' || update.status === 1)) {
                   console.log(' 🍾 Transaction ' + update.hash + ' finished!');
@@ -90,26 +92,22 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
         {/* use formatEther to display a BigNumber: */}
         <h2>Your Balance: {yourCurrentBalance ? formatEther(yourCurrentBalance) : '...'}</h2>
         <div>OR</div>
-        <Balance address={address} provider={currentProvider} price={price} />
+        <Balance address={address} price={price} />
         <Divider />
         <div>🐳 Example Whale Balance:</div>
-        <Balance balance={parseEther('1000')} provider={currentProvider} price={price} address={address} />
+        <Balance balance={parseEther('1000')} price={price} address={address} />
         <Divider />
         {/* use formatEther to display a BigNumber: */}
         <h2>Your Balance: {yourCurrentBalance ? formatEther(yourCurrentBalance) : '...'}</h2>
         <Divider />
         Your Contract Address:
-        <Address
-          address={readContracts ? readContracts.YourContract.address : readContracts}
-          ensProvider={mainnetProvider}
-          fontSize={16}
-        />
+        <Address address={readContracts?.YourContract?.address} ensProvider={mainnetProvider} fontSize={16} />
         <Divider />
         <div style={{ margin: 8 }}>
           <Button
             onClick={() => {
               /* look how you call setPurpose on your contract: */
-              tx(writeContracts.YourContract.setPurpose('🍻 Cheers'));
+              tx?.(writeContracts?.YourContract?.setPurpose('🍻 Cheers'));
             }}>
             Set Purpose to &quot;🍻 Cheers&quot;
           </Button>
@@ -121,7 +119,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
               you can also just craft a transaction and send it to the tx() transactor
               here we are sending value straight to the contract's address:
             */
-              tx({
+              tx?.({
                 to: writeContracts.YourContract.address,
                 value: parseEther('0.001'),
               });
@@ -134,8 +132,8 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
           <Button
             onClick={() => {
               /* look how we call setPurpose AND send some value along */
-              tx(
-                writeContracts.YourContract.setPurpose('💵 Paying for this one!', {
+              tx?.(
+                writeContracts?.YourContract?.setPurpose('💵 Paying for this one!', {
                   value: parseEther('0.001'),
                 })
               );
@@ -148,10 +146,10 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
           <Button
             onClick={() => {
               /* you can also just craft a transaction and send it to the tx() transactor */
-              tx({
-                to: writeContracts.YourContract.address,
+              tx?.({
+                to: writeContracts?.YourContract?.address,
                 value: parseEther('0.001'),
-                data: writeContracts.YourContract.interface.encodeFunctionData('setPurpose(string)', [
+                data: writeContracts?.YourContract?.interface?.encodeFunctionData?.('setPurpose(string)', [
                   '🤓 Whoa so 1337!',
                 ]),
               });

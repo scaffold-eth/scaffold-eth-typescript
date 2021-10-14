@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
 import { GenericContract } from 'eth-components/ant/generic-contract';
 import { Contract } from 'ethers';
-import { TEthersUser } from 'eth-hooks/models';
-import { TContractConfig } from 'eth-hooks';
+import { TContractConfig, useContractLoader } from 'eth-hooks';
 import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
+import { useEthersContext } from 'eth-hooks/context';
+import { NETWORKS } from '~~/models/constants/networks';
 
 interface IMainPageContracts {
-  appProviders: IScaffoldAppProviders;
-  currentEthersUser: TEthersUser;
+  scaffoldAppProviders: IScaffoldAppProviders;
   mainnetContracts: Record<string, Contract>;
-  contractConfig: TContractConfig;
+  appContractConfig: TContractConfig;
 }
 
 /**
@@ -20,46 +20,49 @@ interface IMainPageContracts {
  * @returns 
  */
 export const MainPageContracts: FC<IMainPageContracts> = (props) => {
+  const ethersContext = useEthersContext();
+  const contractList = useContractLoader(props.appContractConfig, undefined);
+
   return (
     <>
-      {/*
-        🎛 this scaffolding is full of commonly used components
-        this <Contract/> component will automatically parse your ABI
-        and give you a form to interact with it locally
-      */}
-      {props.currentEthersUser?.signer != null && (
-        <>
+      <>
+        {/* **********
+          ❓ this scaffolding is full of commonly used components
+          this <Contract/> component will automatically parse your ABI
+          and give you a form to interact with it locally
+        ********** */}
+        <GenericContract
+          contractName="YourContract"
+          contract={contractList?.['YourContract']}
+          mainnetProvider={props.scaffoldAppProviders.mainnetProvider}
+          blockExplorer={props.scaffoldAppProviders.targetNetwork.blockExplorer}
+          contractConfig={props.appContractConfig}
+        />
+
+        {/* **********
+         * ❓ uncomment for a second contract:
+         ********** */}
+        {/*
           <GenericContract
-            contractName="YourContract"
-            currentEthersUser={props.currentEthersUser}
+            contractName="SecondContract"
+            contract={contract={contractList?.['SecondContract']}
             mainnetProvider={props.appProviders.mainnetProvider}
             blockExplorer={props.appProviders.targetNetwork.blockExplorer}
             contractConfig={props.contractConfig}
           />
-
-          {/* uncomment for a second contract: 
-        <GenericContract
-          name="SecondContract"
-          currentProviderAndSigner={props.currentProviderAndSigner}
-          blockExplorer={props.blockExplorerUrl}
-          config={props.config}
-        />
         */}
 
-          {/* Uncomment to display and interact with an external contract (DAI on mainnet): 
+        {/***********
+         *  ❓ Uncomment to display and interact with an external contract (DAI on mainnet):
+         ********** */}
         <GenericContract
-          name="DAI"
-          customContract={props.mainnetContracts?.['DAI']}
-          currentProviderAndSigner={props.currentProviderAndSigner}
-          provider={props.mainnetProvider}
-          address={props.userAddress}
-          blockExplorer={props.blockExplorerUrl}
-          config={props.config}
-          chainId={props.mainnetProvider.chainId}
+          contractName="DAI"
+          contract={props.mainnetContracts?.['DAI']}
+          mainnetProvider={props.scaffoldAppProviders.mainnetProvider}
+          blockExplorer={NETWORKS['mainnet'].blockExplorer}
+          contractConfig={props.appContractConfig}
         />
-        */}
-        </>
-      )}
+      </>
     </>
   );
 };

@@ -1,25 +1,30 @@
+import { useEthersContext } from 'eth-hooks/context';
 import { Switch } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useThemeSwitcher } from 'react-css-theme-switcher';
 
+const initialTheme = window.localStorage.getItem('theme') ?? 'light';
 export const ThemeSwitcher = () => {
-  const theme = window.localStorage.getItem('theme');
-  const [isDarkMode, setIsDarkMode] = useState(!(!theme || theme === 'light'));
+  const [isDarkMode, setIsDarkMode] = useState(initialTheme === 'dark');
   const { switcher, currentTheme, status, themes } = useThemeSwitcher();
+  const ethersContext = useEthersContext();
 
   useEffect(() => {
     window.localStorage.setItem('theme', currentTheme ?? '');
+    if (currentTheme == 'light' || currentTheme == 'dark') {
+      ethersContext?.setModalTheme?.(currentTheme);
+    }
   }, [currentTheme]);
 
   const toggleTheme = (isChecked: boolean) => {
     setIsDarkMode(isChecked);
     switcher({ theme: isChecked ? themes.dark : themes.light });
+    ethersContext?.setModalTheme?.(isDarkMode ? 'dark' : 'light');
   };
 
-  // Avoid theme change flicker
-  // if (status === "loading") {
-  //   return null;
-  // }
+  if (status === 'loading' || status === 'idle') {
+    return <></>;
+  }
 
   return (
     <div className="main fade-in" style={{ position: 'fixed', right: 10, bottom: 10 }}>
@@ -27,4 +32,6 @@ export const ThemeSwitcher = () => {
       <Switch checked={isDarkMode} onChange={toggleTheme} />
     </div>
   );
+
+  return null;
 };

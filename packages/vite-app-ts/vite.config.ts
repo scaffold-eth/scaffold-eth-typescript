@@ -4,7 +4,7 @@ import macrosPlugin from 'vite-plugin-babel-macros';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import path, { resolve } from 'path';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
-import request from 'request/lib/helpers';
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [nodePolyfills(), reactRefresh(), macrosPlugin(), tsconfigPaths()],
@@ -31,6 +31,13 @@ export default defineConfig({
       https: 'http-browserify',
       timers: 'timers-browserify',
       process: 'process',
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+      },
     },
   },
 });

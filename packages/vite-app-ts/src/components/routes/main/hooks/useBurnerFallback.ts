@@ -1,24 +1,30 @@
-import { Provider } from '@ethersproject/abstract-provider';
-import { Signer } from 'crypto';
-import { useBurnerSigner, useGetUserFromProviders, useGetUserFromSigners } from 'eth-hooks';
+import { useEthersContext } from 'eth-hooks/context';
+import { useBurnerSigner, useGetUserFromProviders, useGetUserFromSigners, useUserAddress } from 'eth-hooks';
 import { parseProviderOrSigner } from 'eth-hooks/functions';
-import { TEthersProvider, TEthersProviderOrSigner, TEthersUser } from 'eth-hooks/models';
-import { useRef, useState } from 'react';
+import { TEthersProvider } from 'eth-hooks/models';
+import { useEffect, useRef, useState } from 'react';
 import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 
-export const useBurnerFallback = (appProviders: IScaffoldAppProviders, currentEthersUser: TEthersUser): TEthersUser => {
-  const burnerFallback = useBurnerSigner(appProviders.localProvider as TEthersProvider);
-  const burnerUser = useGetUserFromSigners(burnerFallback.signer);
+import { localNetworkInfo } from '~~/config/providersConfig';
 
-  if (
-    currentEthersUser.providerNetwork?.chainId === appProviders.localProvider?.network?.chainId &&
-    currentEthersUser.provider?.connection.url === appProviders.localProvider.connection.url &&
-    appProviders.localProvider?.network != null &&
-    burnerUser.signer != null
-  ) {
-    appProviders.isUsingFallback = true;
-    return burnerUser;
-  } else {
-    return currentEthersUser;
-  }
+export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: boolean) => {
+  const ethersContext = useEthersContext();
+  const burnerFallback = useBurnerSigner(appProviders.localProvider as TEthersProvider);
+  const localAddress = useUserAddress(appProviders.localProvider.getSigner());
+
+  useEffect(() => {
+    /**
+     * if the current provider is local provider then use the burner fallback
+     */
+    if (
+      ethersContext.account === localAddress &&
+      burnerFallback.account != ethersContext.account &&
+      ethersContext.chainId == localNetworkInfo.chainId &&
+      ethersContext.ethersProvider?.connection.url === localNetworkInfo.rpcUrl &&
+      burnerFallback.signer &&
+      enable
+    ) {
+      ethersContext.changeAccount?.(burnerFallback.signer);
+    }
+  }, [ethersContext.account, localAddress, ethersContext.changeAccount, burnerFallback.signer]);
 };

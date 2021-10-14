@@ -3,13 +3,12 @@ import { Row, Col, Button } from 'antd';
 import { Ramp, ThemeSwitcher } from '~~/components/common';
 import { Faucet, GasGauge } from 'eth-components/ant';
 import { NETWORKS } from '~~/models/constants/networks';
-import { TEthersProvider, TEthersUser } from 'eth-hooks/models';
 import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
+import { useEthersContext } from 'eth-hooks/context';
 
 interface IMainPageFooter {
   scaffoldAppProviders: IScaffoldAppProviders;
-  currentEthersUser: TEthersUser;
   price: number;
   gasPrice: number | undefined;
   faucetAvailable: boolean;
@@ -21,6 +20,8 @@ interface IMainPageFooter {
  * @returns
  */
 export const MainPageFooter: FC<IMainPageFooter> = (props) => {
+  const ethersContext = useEthersContext();
+
   const left = (
     <div
       style={{
@@ -32,7 +33,7 @@ export const MainPageFooter: FC<IMainPageFooter> = (props) => {
       }}>
       <Row align="middle" gutter={[4, 4]}>
         <Col span={8}>
-          <Ramp price={props.price} address={props.currentEthersUser?.address ?? ''} networks={NETWORKS} />
+          <Ramp price={props.price} address={ethersContext?.account ?? ''} networks={NETWORKS} />
         </Col>
 
         <Col
@@ -43,8 +44,8 @@ export const MainPageFooter: FC<IMainPageFooter> = (props) => {
           }}>
           <GasGauge
             chainId={props.scaffoldAppProviders.targetNetwork.chainId}
-            currentNetwork={getNetworkInfo(props.currentEthersUser.providerNetwork?.chainId)}
-            provider={props.currentEthersUser.provider}
+            currentNetwork={getNetworkInfo(ethersContext.chainId)}
+            provider={ethersContext.ethersProvider}
             speed="average"
           />
         </Col>

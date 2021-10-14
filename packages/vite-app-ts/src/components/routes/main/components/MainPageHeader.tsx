@@ -1,21 +1,21 @@
 import { Account } from 'eth-components/ant';
 import { getNetwork } from '@ethersproject/networks';
 import { Alert, PageHeader } from 'antd';
-import { TEthersUser, TNetworkInfo } from 'eth-hooks/models';
 import React, { FC, ReactElement } from 'react';
 import { FaucetHintButton } from '~~/components/common/FaucetHintButton';
 import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
+import { useEthersContext } from 'eth-hooks/context';
 
 // displays a page header
 interface IMainPageHeader {
-  currentEthersUser: TEthersUser;
   scaffoldAppProviders: IScaffoldAppProviders;
   price: number;
   gasPrice: number | undefined;
 }
 
 export const MainPageHeader: FC<IMainPageHeader> = (props) => {
-  const selectedChainId = props.currentEthersUser.providerNetwork?.chainId;
+  const ethersContext = useEthersContext();
+  const selectedChainId = ethersContext.chainId;
 
   /**
    * this shows the page header and other informaiton
@@ -51,19 +51,13 @@ export const MainPageHeader: FC<IMainPageHeader> = (props) => {
   const right = (
     <div style={{ position: 'fixed', textAlign: 'right', right: 0, top: 0, padding: 10 }}>
       <Account
-        currentEthersUser={props.currentEthersUser}
+        createLoginConnector={props.scaffoldAppProviders.createLoginConnector}
         mainnetProvider={props.scaffoldAppProviders.mainnetProvider}
-        isWeb3ModalUser={!props.scaffoldAppProviders.isUsingFallback}
         price={props.price}
-        loadWeb3Modal={props.scaffoldAppProviders.web3ModalState.openWeb3ModalCallback}
-        logoutOfWeb3Modal={props.scaffoldAppProviders.web3ModalState.logoutOfWeb3ModalCallback}
         blockExplorer={props.scaffoldAppProviders.targetNetwork.blockExplorer}
+        hasContextConnect={true}
       />
-      <FaucetHintButton
-        scaffoldAppProviders={props.scaffoldAppProviders}
-        currentEthersUser={props.currentEthersUser}
-        gasPrice={props.gasPrice}
-      />
+      <FaucetHintButton scaffoldAppProviders={props.scaffoldAppProviders} gasPrice={props.gasPrice} />
       {props.children}
     </div>
   );
