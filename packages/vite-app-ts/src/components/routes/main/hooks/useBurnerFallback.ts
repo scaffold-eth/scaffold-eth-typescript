@@ -4,7 +4,7 @@ import { parseProviderOrSigner } from 'eth-hooks/functions';
 import { TEthersProvider } from 'eth-hooks/models';
 import { useEffect, useRef, useState } from 'react';
 import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
-import input from 'antd/lib/input';
+
 import { localNetworkInfo } from '~~/config/providersConfig';
 
 export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: boolean) => {
