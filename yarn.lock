@@ -6498,10 +6498,10 @@ eth-block-tracker@^3.0.0:
     pify "^2.3.0"
     tape "^4.6.3"
 
-eth-components@2.1.0-beta08:
-  version "2.1.0-beta08"
-  resolved "https://registry.yarnpkg.com/eth-components/-/eth-components-2.1.0-beta08.tgz#3b1fea3707eea8b950fa5056bcf6076f883dec43"
-  integrity sha512-3AIaI8ovbyZpFQqv1FRIoAzCWzxndDkYzAlo57d9ApCLWVREXRqaaMvr+5cck5CVB3u1aFJEYFucXQUJtDji7w==
+eth-components@2.1.0-beta11:
+  version "2.1.0-beta11"
+  resolved "https://registry.yarnpkg.com/eth-components/-/eth-components-2.1.0-beta11.tgz#4096cdb804ff151acdef9d416d1a273aac4ec943"
+  integrity sha512-P4ioaSKs3yHr5K2loJM6sQhBF4F5Lm8nt9zGQAo2aEavPTmS8V/Djk2WZOkicU5kxNjI3Guw+j8PllW9hY+H0Q==
   dependencies:
     "@ethersproject/abstract-signer" "^5.4.0"
     "@ethersproject/address" "^5.4.0"
@@ -6516,7 +6516,7 @@ eth-components@2.1.0-beta08:
     "@uniswap/token-lists" "^1.0.0-beta.24"
     axios "^0.21.4"
     bnc-notify "^1.9.1"
-    eth-hooks "^3.2.0beta07"
+    eth-hooks "^3.2.0beta12"
     ethers "^5.4.1"
     qrcode.react "^1.0.1"
     react-blockies "^1.4.1"
@@ -6532,10 +6532,10 @@ eth-ens-namehash@2.0.8, eth-ens-namehash@^2.0.8:
     idna-uts46-hx "^2.3.1"
     js-sha3 "^0.5.7"
 
-eth-hooks@3.2.0-beta07, eth-hooks@^3.2.0beta07:
-  version "3.2.0-beta07"
-  resolved "https://registry.yarnpkg.com/eth-hooks/-/eth-hooks-3.2.0-beta07.tgz#107aeded36a4ab465ba00a74c4bdd22b7336584a"
-  integrity sha512-zDiyD+vnRZvBVNY2YEklubGu2lG/ZDzxGKMv5AlUhhEGVGAO4vv3tqj5tF6VPUou3gZrfuOyX+V4nY+DRQfPdg==
+eth-hooks@3.2.0-beta12, eth-hooks@^3.2.0beta12:
+  version "3.2.0-beta12"
+  resolved "https://registry.yarnpkg.com/eth-hooks/-/eth-hooks-3.2.0-beta12.tgz#8cb4012b9e538b31d2794fbd21fd6dd61de6d1fd"
+  integrity sha512-RYKJVTClzYQVy2NYI9a5UrDCJWy7zWsX3Sp1GARGoZrC2YuDKv7eIsynm0Ji018NCEXXbDWjwtY2jCnyLapwNw==
   dependencies:
     "@ethersproject/address" "^5.4.0"
     "@ethersproject/bignumber" "^5.4.0"
