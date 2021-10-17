@@ -1,6 +1,5 @@
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import input from 'antd/lib/input';
-import { IWeb3ModalState, useBurnerSigner, useWeb3Modal } from 'eth-hooks';
 import { TEthersProvider, TNetworkInfo } from 'eth-hooks/models';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ICoreOptions } from 'web3modal';
