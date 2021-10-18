@@ -4,7 +4,7 @@
 import * as nodeBuffer from 'buffer';
 import * as nodeProcess from 'process';
 
-import 'eth-hooks/types/globalDelcarations';
+import 'eth-hooks/models/declarations/globalDelcarations';
 
 (window as any).global = window;
 const global = window;

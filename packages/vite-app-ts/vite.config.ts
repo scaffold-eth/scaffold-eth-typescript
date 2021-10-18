@@ -5,11 +5,12 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import path, { resolve } from 'path';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
 
+console.log('env:dev', process.env.ENVIRONMENT);
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [nodePolyfills(), reactRefresh(), macrosPlugin(), tsconfigPaths()],
   build: {
-    sourcemap: true,
+    sourcemap: process.env.ENVIRONMENT === 'DEVELOPMENT' ? 'inline' : false,
     commonjsOptions: {
       transformMixedEsModules: true,
     },
