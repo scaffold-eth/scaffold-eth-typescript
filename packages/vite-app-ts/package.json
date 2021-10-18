@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "cross-env ENVIRONMENT=DEVELOPMENT vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "serve": "vite preview",
     "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore ./src/**/*",
     "ipfs": "node ./scripts/ipfs.js",

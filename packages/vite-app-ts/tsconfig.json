@@ -12,6 +12,17 @@
     "skipDefaultLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
+    "types": [
+      "vite/client",
+      "@emotion/react",
+      "react",
+      "node",
+      "ethers",
+      "@ethersproject/providers",
+      "@ethersproject/abstract-provider",
+      "@ethersproject/abstract-signer",
+      "@ethersproject/wallet"
+    ],
     "typeRoots": ["node_modules/@types", "helpers/types"] /* List of folders to include type definitions from. */,
     "forceConsistentCasingInFileNames": true,
     "module": "es2020",

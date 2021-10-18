@@ -182,13 +182,7 @@ export const Checkout: FC<ICheckoutProps> = (props) => {
                         ''
                       )}
                       <div style={{ marginTop: 32 }}>
-                        <StackGrid
-                          columnWidth={250}
-                          onClick={() => {
-                            return false;
-                          }}>
-                          {displayCart}
-                        </StackGrid>
+                        <StackGrid columnWidth={250}>{displayCart}</StackGrid>
                       </div>
                       <div style={{ fontSize: 22, marginTop: 32, opacity: 0.5 }}>
                         <Spin /> redirecting to funders page...
