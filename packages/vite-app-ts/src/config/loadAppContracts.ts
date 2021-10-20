@@ -23,7 +23,7 @@ export const loadAppContracts = async (): Promise<TContractConfig> => {
     config.deployedContracts = ((await contractListPromise).default ?? {}) as unknown as TDeployedContracts;
   } catch {
     config.deployedContracts = undefined;
-    console.warn(
+    console.error(
       '😶 No deployed contracts file found: /generated/contracts/hardhat_contracts.json, please run hardhat compile & deploy!'
     );
   }
@@ -31,7 +31,7 @@ export const loadAppContracts = async (): Promise<TContractConfig> => {
     config.externalContracts = ((await externalContractsPromise).default ?? {}) as unknown as TExternalContracts;
   } catch {
     config.externalContracts = undefined;
-    console.warn('😶 No external contracts file found: /generated/contracts/external_contracts');
+    console.error('😶 No external contracts file found: /generated/contracts/external_contracts');
   }
   return config;
 };
