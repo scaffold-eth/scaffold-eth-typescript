@@ -55,15 +55,7 @@
       "packages/vite-app-ts",
       "packages/services/*",
       "packages/subgraph"
-    ],
-    "nohoist": [
-      "**/@graphprotocol/graph-ts",
-      "**/@graphprotocol/graph-ts/**",
-      "**/hardhat",
-      "**/hardhat/**",
-      "**/hardhat-ts",
-      "**/hardhat-ts/**"
     ]
   },
-  "dependencies": {}
+  "packageManager": "yarn@3.0.2"
 }

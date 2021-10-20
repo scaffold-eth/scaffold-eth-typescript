@@ -1,6 +1,12 @@
 import { HardhatEthersHelpers } from '@nomiclabs/hardhat-ethers/dist/src/types';
 import { ethers } from 'ethers';
+
+import '@typechain/hardhat';
+import '@nomiclabs/hardhat-waffle';
 import '@nomiclabs/hardhat-ethers';
+import '@tenderly/hardhat-tenderly';
+import 'hardhat-deploy';
+
 import { HardhatRuntimeEnvironment } from 'hardhat/types';
 import 'hardhat-deploy/src/type-extensions';
 
@@ -15,12 +21,6 @@ import 'hardhat-deploy/src/type-extensions';
 //   address: string;
 // };
 
-export type { HardhatRuntimeEnvironment as HardhatRuntimeEnvironmentT };
-
-export type { Deployment as DeploymentT } from 'hardhat-deploy/types';
+export type { HardhatRuntimeEnvironment as HardhatRuntimeEnvironmentExtended };
 
 export type TEthers = typeof ethers & HardhatEthersHelpers;
-
-// export const castEthersT = (e: (typeof ethers & HardhatEthersHelpers) | any): EthersT => {
-//   return e as EthersT;
-// };
