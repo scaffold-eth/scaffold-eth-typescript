@@ -22,6 +22,7 @@
     "@eth-optimism/hardhat-ovm": "^0.2.2",
     "@ethereumjs/vm": "^5.5.3",
     "@ethersproject/providers": "^5.4.1",
+    "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@^0.3.0-beta.10",
     "@nomiclabs/hardhat-waffle": "^2.0.0",
     "@openzeppelin/contracts": "^4.1.0",
     "@tenderly/hardhat-tenderly": "^1.0.10",

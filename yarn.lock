@@ -1886,6 +1886,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers@^0.3.0-beta.10, hardhat-deploy-ethers@npm:^0.3.0-beta.10":
+  version: 0.3.0-beta.11
+  resolution: "hardhat-deploy-ethers@npm:0.3.0-beta.11"
+  peerDependencies:
+    ethers: ^5.0.0
+    hardhat: ^2.0.0
+  checksum: 0becd3dc7b1b447127cf74ef1018589b8d6d3c73bbeb893e3c27fe7e412aabb3a6d11aec1169fef427d85a6c2c512f1f99017ab1a928cdaab5960b74e445625a
+  languageName: node
+  linkType: hard
+
 "@nomiclabs/hardhat-waffle@npm:^2.0.0, @nomiclabs/hardhat-waffle@npm:^2.0.1":
   version: 2.0.1
   resolution: "@nomiclabs/hardhat-waffle@npm:2.0.1"
@@ -2053,6 +2063,7 @@ __metadata:
     "@eth-optimism/hardhat-ovm": ^0.2.2
     "@ethereumjs/vm": ^5.5.3
     "@ethersproject/providers": ^5.4.1
+    "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@^0.3.0-beta.10"
     "@nomiclabs/hardhat-waffle": ^2.0.0
     "@openzeppelin/contracts": ^4.1.0
     "@tenderly/hardhat-tenderly": ^1.0.10
@@ -11267,16 +11278,6 @@ fsevents@~2.1.1:
   version: 2.1.0
   resolution: "hard-rejection@npm:2.1.0"
   checksum: 7baaf80a0c7fff4ca79687b4060113f1529589852152fa935e6787a2bc96211e784ad4588fb3048136ff8ffc9dfcf3ae385314a5b24db32de20bea0d1597f9dc
-  languageName: node
-  linkType: hard
-
-"hardhat-deploy-ethers@npm:^0.3.0-beta.10":
-  version: 0.3.0-beta.11
-  resolution: "hardhat-deploy-ethers@npm:0.3.0-beta.11"
-  peerDependencies:
-    ethers: ^5.0.0
-    hardhat: ^2.0.0
-  checksum: 0becd3dc7b1b447127cf74ef1018589b8d6d3c73bbeb893e3c27fe7e412aabb3a6d11aec1169fef427d85a6c2c512f1f99017ab1a928cdaab5960b74e445625a
   languageName: node
   linkType: hard
 
