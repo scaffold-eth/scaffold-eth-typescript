@@ -52,6 +52,7 @@
     "prettier": "^2.4.1",
     "prettier-plugin-solidity": "^1.0.0-beta.13",
     "rlp": "^2.2.7",
+    "shx": "^0.3.3",
     "solidity-coverage": "^0.7.17",
     "ts-node": "^10.3.0",
     "tsconfig-paths": "^3.11.0",
