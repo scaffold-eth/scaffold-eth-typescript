@@ -8,8 +8,9 @@ import nodePolyfills from 'rollup-plugin-polyfill-node';
 import { esbuildCommonjs } from '@originjs/vite-plugin-commonjs';
 import React from 'react';
 import reactdom from 'react-dom';
+import { useRef } from 'react';
 
-//console.log('env:dev', process.env.ENVIRONMENT);
+console.log('env:dev', process.env.NODE_ENV);
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [nodePolyfills(), reactPlugin(), macrosPlugin(), tsconfigPaths()],
@@ -21,7 +22,7 @@ export default defineConfig({
       transformMixedEsModules: true,
       ...{
         namedExports: {
-          react: Object.keys(React),
+          react: [...Object.keys(React), 'useRef'],
           'react-dom': Object.keys(reactdom),
           // '@apollo/client': ['ApolloProvider', 'ApolloClient', 'HttpLink', 'InMemoryCache', 'useQuery', 'gql'],
           // 'styled-components': ['styled', 'css', 'ThemeProvider'],

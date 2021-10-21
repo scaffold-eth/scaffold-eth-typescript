@@ -57,5 +57,11 @@
       "packages/subgraph"
     ]
   },
-  "packageManager": "yarn@3.0.2"
+  "packageManager": "yarn@3.0.2",
+  "devDependencies": {
+    "shx": "^0.3.3"
+  },
+  "dependencies": {
+    "react": "^17.0.2"
+  }
 }
