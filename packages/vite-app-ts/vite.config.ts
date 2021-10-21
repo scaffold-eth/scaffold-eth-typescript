@@ -1,37 +1,34 @@
 import { defineConfig } from 'vite';
-import reactRefresh from '@vitejs/plugin-react-refresh';
+//import reactRefresh from '@vitejs/plugin-react-refresh';
 import macrosPlugin from 'vite-plugin-babel-macros';
+import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import path, { resolve } from 'path';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
-import react from 'react';
+import { esbuildCommonjs } from '@originjs/vite-plugin-commonjs';
 
-console.log('env:dev', process.env.ENVIRONMENT);
+//console.log('env:dev', process.env.ENVIRONMENT);
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [nodePolyfills(), reactRefresh(), macrosPlugin(), tsconfigPaths()],
+  plugins: [nodePolyfills(), react(), macrosPlugin(), tsconfigPaths()],
+
   build: {
-    sourcemap: true,
+    // sourcemap: true,
     commonjsOptions: {
+      include: /node_modules/,
       transformMixedEsModules: true,
-      ...{
-        namedExports: {
-          react: Object.keys(react),
-          // 'react-dom': Object.keys(reactDom),
-          // 'react-is': Object.keys(reactIs),
-          // 'prop-types': Object.keys(propTypes),
-        },
-      },
+      // esmExternals: true,
     },
   },
   esbuild: {
-    jsxFactory: 'jsx',
-    jsxInject: `import {jsx, css} from '@emotion/react'`,
+    //jsxFactory: 'jsx',
+    //jsxInject: `import {jsx, css} from '@emotion/react'`,
   },
+
   define: {},
   optimizeDeps: {
-    include: ['eth-hooks', 'eth-components'],
-    exclude: ['@apollo/client', `graphql`],
+    include: ['react', 'react/jsx-runtime'],
+    //exclude: ['@apollo/client', `graphql`, 'react'],
   },
   resolve: {
     alias: {
