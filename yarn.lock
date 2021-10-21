@@ -2160,7 +2160,6 @@ __metadata:
     axios: ^0.23.0
     bnc-notify: ^1.5.0
     buffer: ^6.0.3
-    contract-types: "file:../hardhat-ts/generated/contract-types"
     cross-env: ^7.0.3
     eslint: ^7.32.0
     eslint-config-airbnb: ^18.2.1
@@ -6797,13 +6796,6 @@ __metadata:
   version: 1.0.4
   resolution: "content-type@npm:1.0.4"
   checksum: 3d93585fda985d1554eca5ebd251994327608d2e200978fdbfba21c0c679914d5faf266d17027de44b34a72c7b0745b18584ecccaa7e1fdfb6a68ac7114f12e0
-  languageName: node
-  linkType: hard
-
-"contract-types@file:../hardhat-ts/generated/contract-types::locator=%40scaffold-eth%2Fvite-app%40workspace%3Apackages%2Fvite-app-ts":
-  version: 0.1.0
-  resolution: "contract-types@file:../hardhat-ts/generated/contract-types#../hardhat-ts/generated/contract-types::hash=093b9e&locator=%40scaffold-eth%2Fvite-app%40workspace%3Apackages%2Fvite-app-ts"
-  checksum: fccd5c6b779bad8a0b4080a5ae7c99452b72edacaef0de85eb67db2b55cf948983580a008d4d0f076c937a6295ad81f83f733e2e2939e3d690f56a37bf3dd444
   languageName: node
   linkType: hard
 
