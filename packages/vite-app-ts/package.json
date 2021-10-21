@@ -36,7 +36,6 @@
     "axios": "^0.23.0",
     "bnc-notify": "^1.5.0",
     "buffer": "^6.0.3",
-    "contract-types": "file:../hardhat-ts/generated/contract-types",
     "eth-components": "2.1.0-beta19",
     "eth-hooks": "3.2.0-beta30",
     "ethereum-cryptography": "^0.1.3",
