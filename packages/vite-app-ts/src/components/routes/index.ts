@@ -1,4 +1,4 @@
-import { lazier } from 'eth-hooks/helpers/lazier';
+import { lazier } from 'eth-hooks/helpers';
 
 export const ExampleUI = lazier(() => import('./exampleui/ExampleUI'), 'ExampleUI');
 export const Checkout = lazier(() => import('./checkout/Checkout'), 'Checkout');

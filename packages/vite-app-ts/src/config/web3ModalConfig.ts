@@ -8,7 +8,7 @@ import Fortmatic from 'fortmatic';
 import WalletLink from 'walletlink';
 import WalletConnectProvider from '@walletconnect/ethereum-provider';
 import Authereum from 'authereum';
-import { ConnectToStaticJsonRpcProvider } from 'eth-hooks/context/connectors/StaticJsonRpcProviderConnector';
+import { ConnectToStaticJsonRpcProvider } from 'eth-hooks/context';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { localNetworkInfo } from '~~/config/providersConfig';
 

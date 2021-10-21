@@ -4,10 +4,10 @@
 import * as nodeBuffer from 'buffer';
 import * as nodeProcess from 'process';
 
-import 'eth-hooks/models/declarations/globalDelcarations';
+import 'eth-hooks/helpers/__global';
 
-(window as any).global = window;
-const global = window;
+// (window as any).global = window;
+// const global = window;
 
 if (!global.hasOwnProperty('Buffer')) {
   (global as any).Buffer = nodeBuffer.Buffer;
