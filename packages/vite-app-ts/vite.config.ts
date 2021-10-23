@@ -4,43 +4,31 @@ import macrosPlugin from 'vite-plugin-babel-macros';
 import reactPlugin from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import path, { resolve } from 'path';
-import nodePolyfills from 'rollup-plugin-polyfill-node';
-import { esbuildCommonjs } from '@originjs/vite-plugin-commonjs';
-import React from 'react';
-import reactdom from 'react-dom';
-import { useRef } from 'react';
+//import nodePolyfills from 'rollup-plugin-polyfill-node';
 
 console.log('env:dev', process.env.NODE_ENV);
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [nodePolyfills(), reactPlugin(), macrosPlugin(), tsconfigPaths()],
+  plugins: [reactPlugin(), macrosPlugin(), tsconfigPaths()],
 
   build: {
     // sourcemap: true,
     commonjsOptions: {
       include: /node_modules/,
       transformMixedEsModules: true,
-      ...{
-        namedExports: {
-          react: [...Object.keys(React), 'useRef'],
-          'react-dom': Object.keys(reactdom),
-          // '@apollo/client': ['ApolloProvider', 'ApolloClient', 'HttpLink', 'InMemoryCache', 'useQuery', 'gql'],
-          // 'styled-components': ['styled', 'css', 'ThemeProvider'],
-        },
-      },
     },
   },
   esbuild: {
-    //jsxFactory: 'jsx',
-    //jsxInject: `import {jsx, css} from '@emotion/react'`,
+    jsxFactory: 'jsx',
+    jsxInject: `import {jsx, css} from '@emotion/react'`,
   },
 
   define: {},
   optimizeDeps: {
-    include: ['react', 'react/jsx-runtime'],
-    //exclude: ['@apollo/client', `graphql`, 'react'],
+    exclude: ['@apollo/client', `graphql`],
   },
   resolve: {
+    mainFields: ['module', 'main', 'browser'],
     alias: {
       '~~': resolve(__dirname, 'src'),
       /** browserify for web3 components */

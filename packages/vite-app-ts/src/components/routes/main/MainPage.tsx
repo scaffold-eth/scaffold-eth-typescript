@@ -12,15 +12,12 @@ import { transactor } from 'eth-components/functions';
 import { ethers } from 'ethers';
 
 import { useEventListener } from 'eth-hooks';
-import { MainPageMenu } from './components/MainPageMenu';
-import { MainPageContracts } from './components/MainPageContracts';
-import { MainPageFooter } from './components/MainPageFooter';
+import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from './components/';
 import { useAppContractConfig } from '~~/components/routes/main/hooks/useAppContractConfig';
 import { EthComponentsContext } from 'eth-components/models';
 import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 import { useBurnerFallback } from '~~/components/routes/main/hooks/useBurnerFallback';
 import { getFaucetAvailable } from '../../common/FaucetHintButton';
-import { MainPageHeader } from '~~/components/routes/main/components/MainPageHeader';
 import { useScaffoldHooks } from './hooks/useScaffoldHooks';
 import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
 import { subgraphUri } from '~~/config/subgraph';

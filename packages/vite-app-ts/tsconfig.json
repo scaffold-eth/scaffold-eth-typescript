@@ -2,12 +2,12 @@
   "compilerOptions": {
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext", "ES2017"],
-    //"sourceMap": true,
+    "sourceMap": true,
     // "inlineSources": true,
     "allowJs": false,
     "declarationMap": true,
     "declaration": true,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "allowSyntheticDefaultImports": true,
@@ -33,7 +33,7 @@
     "baseUrl": ".",
     "outDir": "dist",
     "jsx": "react-jsxdev",
-    // "jsxImportSource": "@emotion/react",
+    "jsxImportSource": "@emotion/react",
     "paths": {
       "~~/*": ["./src/*"]
     }

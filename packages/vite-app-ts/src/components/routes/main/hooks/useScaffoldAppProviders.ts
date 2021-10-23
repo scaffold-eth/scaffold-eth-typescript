@@ -21,7 +21,13 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
 
   useEffect(() => {
     // import async to split bundles
-    import('../../../../config/web3ModalConfig').then((value) => setWeb3Config(value.web3ModalConfig));
+    const importedConfig = import('../../../../config/web3ModalConfig');
+
+    importedConfig.then((getter) => {
+      getter.getWeb3ModalConfig().then((config) => {
+        setWeb3Config(config);
+      });
+    });
   }, []);
 
   const { currentTheme } = useThemeSwitcher();

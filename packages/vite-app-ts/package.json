@@ -17,6 +17,7 @@
     "@ant-design/icons": "^4.2.2",
     "@apollo/client": "^3.4.16",
     "@apollo/react-hooks": "^4.0.0",
+    "@babel/runtime": "^7.15.4",
     "@emotion/react": "^11.5.0",
     "@ethersproject/address": "^5.4.0",
     "@ethersproject/bignumber": "^5.4.0",
