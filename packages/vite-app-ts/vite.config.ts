@@ -4,13 +4,12 @@ import macrosPlugin from 'vite-plugin-babel-macros';
 import reactPlugin from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import path, { resolve } from 'path';
-//import nodePolyfills from 'rollup-plugin-polyfill-node';
 
 console.log('env:dev', process.env.NODE_ENV);
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [reactPlugin(), macrosPlugin(), tsconfigPaths()],
-
   build: {
     // sourcemap: true,
     commonjsOptions: {
@@ -25,6 +24,8 @@ export default defineConfig({
 
   define: {},
   optimizeDeps: {
+    entries: ['index.html'],
+    //include: [],
     exclude: ['@apollo/client', `graphql`],
   },
   resolve: {
