@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "start": "cross-env ENVIRONMENT=DEVELOPMENT vite",
-    "build": "tsc && vite build",
+    "build": "tsc && yarn build:anttheme && vite build",
+    "build:anttheme": "yarn lessc -x -js ./src/styles/themes/light-theme.less ./public/light-theme.css && yarn lessc -x -js ./src/styles/themes/dark-theme.less ./public/dark-theme.css",
     "serve": "vite preview",
     "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore ./src/**/*",
     "ipfs": "node ./scripts/ipfs.js",

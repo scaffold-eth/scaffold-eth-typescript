@@ -16,6 +16,12 @@ export default defineConfig({
       include: /node_modules/,
       transformMixedEsModules: true,
     },
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        themes: resolve(__dirname, './src/styles/themes/themes.ts'),
+      },
+    },
   },
   esbuild: {
     jsxFactory: 'jsx',
@@ -24,8 +30,6 @@ export default defineConfig({
 
   define: {},
   optimizeDeps: {
-    entries: ['index.html'],
-    //include: [],
     exclude: ['@apollo/client', `graphql`],
   },
   resolve: {
