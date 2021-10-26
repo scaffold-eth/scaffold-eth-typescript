@@ -2189,8 +2189,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.2.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^1.1.5
-    eth-components: 2.1.0-beta19
-    eth-hooks: 3.2.0-beta30
+    eth-components: 2.1.0-beta20
+    eth-hooks: 3.2.0-beta31
     ethereum-cryptography: ^0.1.3
     ethers: ^5.4.1
     fortmatic: ^2.2.1
@@ -8979,9 +8979,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-components@npm:2.1.0-beta19":
-  version: 2.1.0-beta19
-  resolution: "eth-components@npm:2.1.0-beta19"
+"eth-components@npm:2.1.0-beta20":
+  version: 2.1.0-beta20
+  resolution: "eth-components@npm:2.1.0-beta20"
   dependencies:
     "@ethersproject/abstract-signer": ^5.4.0
     "@ethersproject/address": ^5.4.0
@@ -9009,7 +9009,7 @@ __metadata:
     react: ">=17.0.2"
     react-css-theme-switcher: ^0.3.0
     react-dom: ">=17.0.2"
-  checksum: c68d46204219848164c71c07aec4c7ba8ce22c594e29212df8e734dd43e95486e86fcf90da30e480720f871150d920683682fe56c6965d1dd628302013a475c4
+  checksum: 8b5b823296a9bff16b5aff80b7fcecdbc693ec46f0f3b90a136cf85e581895207ab5019648d29b6f9382b2a4a5d2368710ddbec7e4cb5b7cf854f041d5a20d4c
   languageName: node
   linkType: hard
 
@@ -9023,38 +9023,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:3.2.0-beta30":
-  version: 3.2.0-beta30
-  resolution: "eth-hooks@npm:3.2.0-beta30"
-  dependencies:
-    "@ethersproject/address": ^5.4.0
-    "@ethersproject/bignumber": ^5.4.0
-    "@ethersproject/bytes": ^5.4.0
-    "@ethersproject/contracts": ^5.4.0
-    "@ethersproject/networks": ^5.4.0
-    "@ethersproject/providers": ^5.4.0
-    "@ethersproject/signing-key": ^5.4.0
-    "@ethersproject/solidity": ^5.4.0
-    "@ethersproject/units": ^5.4.0
-    "@uniswap/token-lists": ^1.0.0-beta.24
-    "@web3-react/abstract-connector": ^6.0.7
-    "@web3-react/core": ^6.1.9
-    "@web3-react/types": ^6.0.7
-    axios: ^0.23.0
-    ethers: ^5.4.1
-    tiny-invariant: ^1.1.0
-    use-debounce: ^7.0.0
-    usehooks-ts: ^1.0.5
-    web3modal: ^1.9.1
-  peerDependencies:
-    "@uniswap/sdk": ^3.0.3
-    react: ">=17.0.2"
-    react-dom: ">=17.0.2"
-  checksum: c4bc9d9acfa91e61103e943dbe0c956c2df20633c360641525b8e4cb73e8635cbe72b754d83d7ef29846e21acba491733040735738b47cc7dc4ee43c574d8776
-  languageName: node
-  linkType: hard
-
-"eth-hooks@npm:^3.2.0-beta26":
+"eth-hooks@npm:3.2.0-beta31, eth-hooks@npm:^3.2.0-beta26":
   version: 3.2.0-beta31
   resolution: "eth-hooks@npm:3.2.0-beta31"
   dependencies:
