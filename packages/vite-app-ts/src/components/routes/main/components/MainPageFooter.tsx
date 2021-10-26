@@ -82,7 +82,7 @@ export const MainPageFooter: FC<IMainPageFooter> = (props) => {
               <Faucet
                 localProvider={props.scaffoldAppProviders?.localProvider}
                 price={props.price}
-                ensProvider={props.scaffoldAppProviders.mainnetProvider}
+                mainnetProvider={props.scaffoldAppProviders.mainnetProvider}
               />
             ) : (
               <></>

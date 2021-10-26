@@ -36,7 +36,7 @@ export const ErrorFallback: FC<FallbackProps> = ({ error }) => {
         <>
           <div>{msg} </div>
           <div>
-            <pre css={{ fontFamily: 'inherit' }}>{msgDetails}</pre>
+            <pre style={{ fontFamily: 'inherit' }}>{msgDetails}</pre>
           </div>
         </>
       )}

@@ -1,22 +1,26 @@
 /* eslint-disable */
 
-import React from 'react';
+import { StrictMode } from 'react';
+
+//import React from 'react';
 
 const run = async (): Promise<void> => {
   // dynamic imports for code splitting
-  const { lazy, Suspense } = await import('react');
+  const { lazy, Suspense, StrictMode } = await import('react');
   const ReactDOM = await import('react-dom');
   await import('./helpers/__global');
   const App = lazy(() => import('./components/routes/App'));
 
   ReactDOM.render(
-    <React.StrictMode>
+    <StrictMode>
       <Suspense fallback={<div />}>
         <App />
       </Suspense>
-    </React.StrictMode>,
+    </StrictMode>,
     document.getElementById('root')
   );
 };
 
 void run();
+
+export {};

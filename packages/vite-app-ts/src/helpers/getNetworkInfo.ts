@@ -3,14 +3,15 @@ import { getNetwork } from '@ethersproject/networks';
 import { BaseProvider } from '@ethersproject/providers';
 
 import { TNetworkInfo } from '~~/models/NetworkTypes';
-import { NETWORKS } from '../models/constants/networks';
+import { NETWORKS, TNetworkNames } from '../models/constants/networks';
 
 export const getNetworkInfo = (chainId: number | undefined): TNetworkInfo | undefined => {
   if (!chainId) return;
 
   for (const n in NETWORKS) {
-    if (NETWORKS[n].chainId === chainId) {
-      return NETWORKS[n];
+    const names = n as TNetworkNames;
+    if (NETWORKS[names].chainId === chainId) {
+      return NETWORKS[names];
     }
   }
 

@@ -1,29 +1,38 @@
 import { defineConfig } from 'vite';
-import reactRefresh from '@vitejs/plugin-react-refresh';
+//import reactRefresh from '@vitejs/plugin-react-refresh';
 import macrosPlugin from 'vite-plugin-babel-macros';
+import reactPlugin from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import path, { resolve } from 'path';
-import nodePolyfills from 'rollup-plugin-polyfill-node';
 
-console.log('env:dev', process.env.ENVIRONMENT);
+console.log('env:dev', process.env.NODE_ENV);
+
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [nodePolyfills(), reactRefresh(), macrosPlugin(), tsconfigPaths()],
+  plugins: [reactPlugin(), macrosPlugin(), tsconfigPaths()],
   build: {
-    sourcemap: process.env.ENVIRONMENT === 'DEVELOPMENT' ? 'inline' : false,
+    // sourcemap: true,
     commonjsOptions: {
+      include: /node_modules/,
       transformMixedEsModules: true,
+    },
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+      },
     },
   },
   esbuild: {
     jsxFactory: 'jsx',
     jsxInject: `import {jsx, css} from '@emotion/react'`,
   },
+
   define: {},
   optimizeDeps: {
     exclude: ['@apollo/client', `graphql`],
   },
   resolve: {
+    mainFields: ['module', 'main', 'browser'],
     alias: {
       '~~': resolve(__dirname, 'src'),
       /** browserify for web3 components */

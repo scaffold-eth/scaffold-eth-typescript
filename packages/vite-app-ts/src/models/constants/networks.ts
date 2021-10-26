@@ -1,7 +1,16 @@
 import { TNetworkInfo } from 'eth-hooks/models';
 import { INFURA_ID } from './constants';
 
-type TNetworkNames = 'localhost' | 'mainnet' | 'kovan' | 'rinkeby' | 'ropsten' | 'goerli' | 'xdai' | 'matic' | 'mumbai';
+export type TNetworkNames =
+  | 'localhost'
+  | 'mainnet'
+  | 'kovan'
+  | 'rinkeby'
+  | 'ropsten'
+  | 'goerli'
+  | 'xdai'
+  | 'matic'
+  | 'mumbai';
 
 export const NETWORKS: Record<TNetworkNames, TNetworkInfo> = {
   localhost: {

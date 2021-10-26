@@ -1,18 +1,16 @@
+/* eslint-disable @typescript-eslint/require-await */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable import/order */
 // This adds support for typescript paths mappings
 import 'tsconfig-paths/register';
 
 import { Signer, utils } from 'ethers';
-
 import '@typechain/hardhat';
 import '@nomiclabs/hardhat-waffle';
 import '@nomiclabs/hardhat-ethers';
 import '@tenderly/hardhat-tenderly';
-
 import 'hardhat-deploy';
 // not required as we are using @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers
-// import 'hardhat-deploy-ethers';
 
 // import 'solidity-coverage';
 
@@ -20,11 +18,11 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as chalk from 'chalk';
 
-import { TransactionRequest } from '@ethersproject/providers';
+import { Provider, TransactionRequest } from '@ethersproject/providers';
 
 import { HardhatUserConfig, task } from 'hardhat/config';
 import { HttpNetworkUserConfig } from 'hardhat/types';
-import { TEthers } from 'helpers/types/hardhat-type-extensions';
+import { HardhatRuntimeEnvironmentExtended, TEthers } from 'helpers/types/hardhat-type-extensions';
 
 declare module 'hardhat/types/runtime' {
   // This is an example of an extension to the Hardhat Runtime Environment.
@@ -40,7 +38,7 @@ const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 //
 const defaultNetwork = 'localhost';
 
-const mnemonic = () => {
+const getMnemonic = () => {
   try {
     return fs.readFileSync('./mnemonic.secret').toString().trim();
   } catch (e) {
@@ -78,45 +76,45 @@ const config: HardhatUserConfig = {
     rinkeby: {
       url: 'https://rinkeby.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
       accounts: {
-        mnemonic: mnemonic(),
+        mnemonic: getMnemonic(),
       },
     },
     kovan: {
       url: 'https://kovan.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
       accounts: {
-        mnemonic: mnemonic(),
+        mnemonic: getMnemonic(),
       },
     },
     mainnet: {
       url: 'https://mainnet.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
       accounts: {
-        mnemonic: mnemonic(),
+        mnemonic: getMnemonic(),
       },
     },
     ropsten: {
       url: 'https://ropsten.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
       accounts: {
-        mnemonic: mnemonic(),
+        mnemonic: getMnemonic(),
       },
     },
     goerli: {
       url: 'https://goerli.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
       accounts: {
-        mnemonic: mnemonic(),
+        mnemonic: getMnemonic(),
       },
     },
     xdai: {
       url: 'https://rpc.xdaichain.com/',
       gasPrice: 1000000000,
       accounts: {
-        mnemonic: mnemonic(),
+        mnemonic: getMnemonic(),
       },
     },
     matic: {
       url: 'https://rpc-mainnet.maticvigil.com/',
       gasPrice: 1000000000,
       accounts: {
-        mnemonic: mnemonic(),
+        mnemonic: getMnemonic(),
       },
     },
   },
@@ -180,7 +178,9 @@ task('wallet', 'Create a wallet (pk) link', async (_, { ethers }) => {
 task('fundedwallet', 'Create a wallet (pk) link and fund it with deployer?')
   .addOptionalParam('amount', 'Amount of ETH to send to wallet after generating')
   .addOptionalParam('url', 'URL to add pk to')
-  .setAction(async (taskArgs, { network, ethers }) => {
+  .setAction(async (taskArgs, hre) => {
+    const { ethers } = hre;
+    hre.waffle;
     const randomWallet = ethers.Wallet.createRandom();
     const { privateKey } = randomWallet._signingKey();
     console.log(`🔐 WALLET Generated as ${randomWallet.address}`);
@@ -204,14 +204,14 @@ task('fundedwallet', 'Create a wallet (pk) link and fund it with deployer?')
     // IF NOT SEND USING LOCAL HARDHAT NODE:
     if (localDeployerMnemonic) {
       let deployerWallet = ethers.Wallet.fromMnemonic(localDeployerMnemonic);
-      deployerWallet = deployerWallet.connect(ethers.provider);
+      deployerWallet = deployerWallet.connect(ethers.provider as Provider);
       console.log(`💵 Sending ${amount} ETH to ${randomWallet.address} using deployer account`);
       const sendresult = await deployerWallet.sendTransaction(tx);
       console.log(`\n${url}/pk#${privateKey}\n`);
     } else {
       console.log(`💵 Sending ${amount} ETH to ${randomWallet.address} using local node`);
       console.log(`\n${url}/pk#${privateKey}\n`);
-      return send(ethers.provider.getSigner(), tx);
+      return send(ethers.provider.getSigner() as Signer, tx);
     }
   });
 
@@ -401,5 +401,5 @@ task('send', 'Send ETH')
     debug(`${(txRequest.gasPrice as any) / 1000000000} gwei`);
     debug(JSON.stringify(txRequest, null, 2));
 
-    return send(fromSigner, txRequest);
+    return send(fromSigner as Signer, txRequest);
   });

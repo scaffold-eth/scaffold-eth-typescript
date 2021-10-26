@@ -17,7 +17,6 @@ export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: b
      * if the current provider is local provider then use the burner fallback
      */
     if (
-      ethersContext.account === localAddress &&
       burnerFallback.account != ethersContext.account &&
       ethersContext.chainId == localNetworkInfo.chainId &&
       ethersContext.ethersProvider?.connection.url === localNetworkInfo.rpcUrl &&
