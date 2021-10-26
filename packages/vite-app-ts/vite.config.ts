@@ -19,7 +19,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        themes: resolve(__dirname, './src/styles/themes/themes.ts'),
       },
     },
   },
