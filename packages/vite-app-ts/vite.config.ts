@@ -5,7 +5,7 @@ import reactPlugin from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import path, { resolve } from 'path';
 
-console.log('env:dev', process.env.NODE_ENV);
+console.log('env:dev', process.env.ENVIRONMENT);
 
 // https://vitejs.dev/config/
 export default defineConfig({
