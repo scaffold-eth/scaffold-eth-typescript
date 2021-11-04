@@ -155,7 +155,7 @@ const config: HardhatUserConfig = {
     deployments: './generated/deployments',
   },
   typechain: {
-    outDir: './generated/contract-types',
+    outDir: '../vite-app-ts/src/generated/contract-types',
   },
 };
 export default config;

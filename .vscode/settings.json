@@ -1,5 +1,4 @@
 {
-   "solidity.packageDefaultDependenciesDirectory": "node_modules/@scaffold-eth/hardhat/node_modules/",
    "solidity-va.test.defaultUnittestTemplate": "hardhat",
    "files.exclude": {
       "**/.git": true,
@@ -21,9 +20,35 @@
       "**/obj": true,
       "node_modules": true,
       "node_modules/*/**": true,
+      "**/node_modules": true,
       "yarn-error.log": true,
       "**/yarn-error.log": true,
       "packages\\eth-hooks/lib": true,
+      "**/.yalc": true
+   },
+   "search.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true,
+      "**/.cache": true,
+      "**/.vs/": true,
+      "**/*.cs": true,
+      "**/*.orig": true,
+      "**/bin/": true,
+      "**/build/": true,
+      "**/build/**/*": true,
+      "**/debug/": true,
+      "**/dist/": true,
+      "**/node_modules/": true,
+      "**/obj": true,
+      "node_modules": true,
+      "node_modules/*/**": true,
+      "**/node_modules": true,
+      "yarn-error.log": true,
+      "**/yarn-error.log": true,
       "**/.yalc": true
    },
    "explorerExclude.backup": null,
@@ -33,8 +58,11 @@
       { "directory": "packages/hardhat-ts", "changeProcessCWD": true },
       { "directory": "packages/vite-app-ts", "changeProcessCWD": true },
    ],
-   "search.exclude": {
-      "**/yarn-error.log": true,
-      "**/yarn.lock": true
-   }
+   "solidity.packageDefaultDependenciesDirectory": "packages/hardhat-ts/node_modules",
+   "editor.formatOnSave": true,
+   "solidity.formatter": "prettier", // This is the default so it might be missing.
+   "[solidity]": {
+     "editor.defaultFormatter": "JuanBlanco.solidity"
+   },
+   "solidity.defaultCompiler": "localNodeModule"
 }
