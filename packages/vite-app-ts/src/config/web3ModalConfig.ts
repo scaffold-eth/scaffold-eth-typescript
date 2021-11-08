@@ -3,11 +3,11 @@ import { INFURA_ID } from '~~/models/constants/constants';
 import { localNetworkInfo } from '~~/config/providersConfig';
 
 export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
-  const Portis = await import('@portis/web3');
-  const Fortmatic = await import('fortmatic');
+  const Portis = (await import('@portis/web3')).default;
+  const Fortmatic = (await import('fortmatic')).default;
   const { WalletLink } = await import('walletlink');
-  const WalletConnectProvider = await import('@walletconnect/ethereum-provider');
-  const Authereum = await import('authereum');
+  const WalletConnectProvider = (await import('@walletconnect/ethereum-provider')).default;
+  const Authereum = (await import('authereum')).default;
   const { ConnectToStaticJsonRpcProvider } = await import('eth-hooks/context');
   const { StaticJsonRpcProvider } = await import('@ethersproject/providers');
 
