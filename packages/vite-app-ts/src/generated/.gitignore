@@ -4,3 +4,4 @@
 !.gitignore
 !contracts
 !/contracts/external_contracts.js
+!/contracts/external_contracts.ts

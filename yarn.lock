@@ -2189,8 +2189,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.2.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^1.1.5
-    eth-components: 2.1.0-beta24
-    eth-hooks: 3.3.1-beta02
+    eth-components: 2.1.0-beta25
+    eth-hooks: 3.3.1-beta03
     ethereum-cryptography: ^0.1.3
     ethers: ^5.4.1
     fortmatic: ^2.2.1
@@ -8979,9 +8979,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-components@npm:2.1.0-beta24":
-  version: 2.1.0-beta24
-  resolution: "eth-components@npm:2.1.0-beta24"
+"eth-components@npm:2.1.0-beta25":
+  version: 2.1.0-beta25
+  resolution: "eth-components@npm:2.1.0-beta25"
   dependencies:
     "@ethersproject/abstract-signer": ^5.4.0
     "@ethersproject/address": ^5.4.0
@@ -8996,7 +8996,7 @@ __metadata:
     "@uniswap/token-lists": ^1.0.0-beta.24
     axios: ^0.23.0
     bnc-notify: ^1.9.1
-    eth-hooks: ^3.3.1-beta01
+    eth-hooks: ^3.3.1-beta03
     ethers: ^5.4.1
     qrcode.react: ^1.0.1
     react-blockies: ^1.4.1
@@ -9009,7 +9009,7 @@ __metadata:
     react: ">=17.0.2"
     react-css-theme-switcher: ^0.3.0
     react-dom: ">=17.0.2"
-  checksum: 7ce56211d38f34820ff2705e0c6fdad17b0a6b26f900c597d3b031b3630605648a477273fcf0c41c82d86b34dd83a73beaba5f7973bda859384fedd04cf717b9
+  checksum: dc009b628de845405043bb218293f7cba313e644cc82f07d8b4493a65dce691b7d604f1292fcd81f1a3e61879966bfa11d28cf113b270f73d9493a3cc5b3cc30
   languageName: node
   linkType: hard
 
@@ -9023,9 +9023,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:3.3.1-beta02, eth-hooks@npm:^3.3.1-beta01":
-  version: 3.3.1-beta02
-  resolution: "eth-hooks@npm:3.3.1-beta02"
+"eth-hooks@npm:3.3.1-beta03, eth-hooks@npm:^3.3.1-beta03":
+  version: 3.3.1-beta03
+  resolution: "eth-hooks@npm:3.3.1-beta03"
   dependencies:
     "@ethersproject/address": ^5.4.0
     "@ethersproject/bignumber": ^5.4.0
@@ -9050,7 +9050,7 @@ __metadata:
     "@uniswap/sdk": ^3.0.3
     react: ">=17.0.2"
     react-dom: ">=17.0.2"
-  checksum: d2296d61e4a206b4607795fac7816e7822fe86b5625677e78e500431fed2c54dde654439b840c2f449b4628a9410e14c7bab42e81bbcf8d2889f48e154c368be
+  checksum: 4cc8bc27f9e811ad3d866e1fa8f8c47ce3cbce9f930d186bedb1304b7841635eeccb1d3bf48b0abb908f120ae9d8bffc6cf525833019ddd9b042bb382b48229d
   languageName: node
   linkType: hard
 

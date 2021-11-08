@@ -1,3 +1,5 @@
+import { TExternalContracts } from 'eth-hooks/models';
+
 const ERC20ABI = [
   {
     constant: true,
@@ -798,4 +800,4 @@ export default {
       },
     },
   },
-};
+} as TExternalContracts;

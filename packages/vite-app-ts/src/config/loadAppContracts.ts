@@ -1,5 +1,5 @@
 import { TDeployedContractHelper, TDeployedContractsJson, TExternalContracts } from 'eth-hooks/models';
-import { TContractConfig } from 'eth-hooks';
+import { TContractConfig } from 'eth-hooks/models';
 import { ContractFactory, ethers } from 'ethers';
 //import type {YourContract} from "../generated/contract-types";
 // this import allows hot module reload to work
@@ -10,7 +10,6 @@ const contractTypesPromise = import('../generated/contract-types');
 /**
  * - run yarn compile and yarn deploy to generate hardhhat_contracts.json
  */
-// @ts-ignore
 const externalContractsPromise = import('../generated/contracts/external_contracts');
 
 /**
