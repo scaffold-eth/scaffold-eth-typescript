@@ -37,6 +37,12 @@ const context: IEthComponentsContext = {
   },
 };
 
+/**
+ * ### Summary
+ * The main app component is {@see MainPage} `components/routes/main/MaingPage.tsx`
+ * This component sets up all the providers, Suspense and Error handling
+ * @returns
+ */
 const App: FC = () => {
   console.log('app');
   return (

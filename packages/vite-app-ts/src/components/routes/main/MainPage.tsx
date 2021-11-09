@@ -13,7 +13,7 @@ import { ethers } from 'ethers';
 
 import { useEventListener } from 'eth-hooks';
 import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from './components/';
-import { useAppContractConfig } from '~~/components/routes/main/hooks/useAppContractConfig';
+import { useAppContracts } from '~~/components/routes/main/hooks/useAppContracts';
 import { EthComponentsContext } from 'eth-components/models';
 import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
 import { useBurnerFallback } from '~~/components/routes/main/hooks/useBurnerFallback';
@@ -50,7 +50,7 @@ export const MainPage: FC = (props) => {
 
   // ⚙ contract config
   // get the contracts configuration for the app
-  const appContractConfig = useAppContractConfig();
+  const appContractConfig = useAppContracts();
 
   // Load in your local 📝 contract and read a value from it:
   const readContracts = useContractLoader(appContractConfig);
