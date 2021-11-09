@@ -2,8 +2,8 @@ import { Account } from 'eth-components/ant';
 import { getNetwork } from '@ethersproject/networks';
 import { Alert, PageHeader } from 'antd';
 import React, { FC, ReactElement } from 'react';
-import { FaucetHintButton } from '~~/components/common/FaucetHintButton';
-import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
+import { FaucetHintButton } from '~~/app/common/FaucetHintButton';
+import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
 import { useEthersContext } from 'eth-hooks/context';
 
 // displays a page header

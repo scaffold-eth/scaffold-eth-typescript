@@ -4,7 +4,7 @@ import { useBalance } from 'eth-hooks';
 import { transactor } from 'eth-components/functions';
 import { parseEther } from '@ethersproject/units';
 import { EthComponentsContext } from 'eth-components/models';
-import { IScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
+import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
 import { utils } from 'ethers';
 import { IEthersContext, useEthersContext } from 'eth-hooks/context';
 import { useDebounce } from 'use-debounce';

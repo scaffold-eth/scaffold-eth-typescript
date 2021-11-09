@@ -6,17 +6,17 @@ import { useGasPrice, useContractLoader, useContractReader, useBalance } from 'e
 import { useDexEthPrice } from 'eth-hooks/dapps';
 
 import { GenericContract } from 'eth-components/ant/generic-contract';
-import { Hints, Subgraph, ExampleUI } from '~~/components/routes';
+import { Hints, Subgraph, ExampleUI } from '~~/app/routes';
 import { transactor } from 'eth-components/functions';
 
 import { ethers } from 'ethers';
 
 import { useEventListener } from 'eth-hooks';
-import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from './components/';
-import { useAppContracts } from '~~/components/routes/main/hooks/useAppContracts';
+import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from './components';
+import { useAppContracts } from '~~/app/routes/main/hooks/useAppContracts';
 import { EthComponentsContext } from 'eth-components/models';
-import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/routes/main/hooks/useScaffoldAppProviders';
-import { useBurnerFallback } from '~~/components/routes/main/hooks/useBurnerFallback';
+import { useScaffoldProviders as useScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
+import { useBurnerFallback } from '~~/app/routes/main/hooks/useBurnerFallback';
 import { getFaucetAvailable } from '../../common/FaucetHintButton';
 import { useScaffoldHooks } from './hooks/useScaffoldHooks';
 import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
