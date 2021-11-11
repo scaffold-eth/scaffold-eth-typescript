@@ -66,6 +66,7 @@ yarn start
 > in a third terminal window, 🛰 deploy your contract:
 
 ```bash
+yarn compile
 yarn deploy
 ```
 

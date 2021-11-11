@@ -24,6 +24,7 @@ import { subgraphUri } from '~~/config/subgraph';
 import { useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
 import { mainnetProvider } from '~~/config/providersConfig';
+import { YourContract } from '~~/generated/contract-types';
 
 export const DEBUG = false;
 
@@ -66,6 +67,8 @@ export const MainPage: FC = (props) => {
   // -----------------------------
   // current contract and listners
   // -----------------------------
+
+  const myContract = readContracts['YourContract'] as YourContract;
 
   // keep track of a variable from the contract in the local React state:
   const purpose = useContractReader<string>(readContracts?.['YourContract'], {
