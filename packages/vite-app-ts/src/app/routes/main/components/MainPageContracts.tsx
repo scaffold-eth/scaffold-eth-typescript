@@ -5,7 +5,7 @@ import { useContractLoader } from 'eth-hooks';
 import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
 import { useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
-import { TContractConfig } from '.yalc/eth-hooks/models';
+import { TContractConfig } from 'eth-hooks/models';
 
 export interface IMainPageContractsProps {
   scaffoldAppProviders: IScaffoldAppProviders;
