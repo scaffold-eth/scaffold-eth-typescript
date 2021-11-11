@@ -2189,7 +2189,7 @@ __metadata:
     eslint-plugin-react-hooks: ^4.2.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^1.1.5
-    eth-components: 2.1.2
+    eth-components: 2.1.3
     eth-hooks: 3.3.2
     ethereum-cryptography: ^0.1.3
     ethers: ^5.4.1
@@ -9010,9 +9010,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-components@npm:2.1.2":
-  version: 2.1.2
-  resolution: "eth-components@npm:2.1.2"
+"eth-components@npm:2.1.3":
+  version: 2.1.3
+  resolution: "eth-components@npm:2.1.3"
   dependencies:
     "@ethersproject/abstract-signer": ^5.4.0
     "@ethersproject/address": ^5.4.0
@@ -9040,7 +9040,7 @@ __metadata:
     react: ">=17.0.2"
     react-css-theme-switcher: ^0.3.0
     react-dom: ">=17.0.2"
-  checksum: 6303ecad07e686d794edcb1da7acc1a18cd3a514a21f42fb16f6f7aed6344f5ef5034373230feb49edf7601ed1f7ba3cb15ba1497a823673b437620f091a3281
+  checksum: dd6ccd561e2f79702a316db932ff409b16b9a4f76bf7bf3b5115584cfd91f7acc57048dabb94a510739e071d529225fe501e08914230d5e101a6b5140cb65e65
   languageName: node
   linkType: hard
 
