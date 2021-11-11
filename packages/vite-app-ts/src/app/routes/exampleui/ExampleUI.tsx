@@ -8,34 +8,37 @@ import { Address, Balance } from 'eth-components/ant';
 import { TTransactor } from 'eth-components/functions';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { useEthersContext } from 'eth-hooks/context';
+import { useContractLoader, useContractReader, useEventListener } from 'eth-hooks';
+import { YourContract } from '~~/generated/contract-types';
+import { useAppContracts } from '~~/app/routes/main/hooks/useAppContracts';
 
-interface IExampleUIProps {
-  userSigner: Signer | undefined;
-  purpose: string;
-  address: string;
+export interface IExampleUIProps {
   mainnetProvider: StaticJsonRpcProvider;
-  setPurposeEvents: any;
   yourCurrentBalance: any;
   price: number;
   tx: TTransactor | undefined;
-  readContracts: Record<string, Contract>;
-  writeContracts: Record<string, Contract>;
 }
 
 export const ExampleUI: FC<IExampleUIProps> = (props) => {
-  const {
-    purpose,
-    setPurposeEvents,
-    address,
-    mainnetProvider,
-    yourCurrentBalance,
-    price,
-    tx,
-    readContracts,
-    writeContracts,
-  } = props;
   const [newPurpose, setNewPurpose] = useState('loading...');
   const ethersContext = useEthersContext();
+
+  const appContractConfig = useAppContracts();
+  const readContracts = useContractLoader(appContractConfig);
+  const writeContracts = useContractLoader(appContractConfig, ethersContext?.signer);
+
+  const yourContractRead = readContracts['YourContract'] as YourContract;
+  const yourContractWrite = writeContracts['YourContract'] as YourContract;
+  const purpose = useContractReader<string>(yourContractRead, {
+    contractName: 'YourContract',
+    functionName: 'purpose',
+  });
+  const setPurposeEvents = useEventListener(yourContractRead, 'SetPurpose', 1);
+
+  const signer = ethersContext.signer;
+  const address = ethersContext.account ?? '';
+
+  const { mainnetProvider, yourCurrentBalance, price, tx } = props;
 
   return (
     <div>
@@ -57,7 +60,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
             onClick={async () => {
               /* look how you call setPurpose on your contract: */
               /* notice how you pass a call back for tx updates too */
-              const result = tx?.(writeContracts?.YourContract?.setPurpose(newPurpose), (update: any) => {
+              const result = tx?.(yourContractWrite?.setPurpose(newPurpose), (update: any) => {
                 console.log('📡 Transaction Update:', update);
                 if (update && (update.status === 'confirmed' || update.status === 1)) {
                   console.log(' 🍾 Transaction ' + update.hash + ' finished!');
@@ -107,7 +110,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
           <Button
             onClick={() => {
               /* look how you call setPurpose on your contract: */
-              tx?.(writeContracts?.YourContract?.setPurpose('🍻 Cheers'));
+              tx?.(yourContractWrite?.setPurpose('🍻 Cheers'));
             }}>
             Set Purpose to &quot;🍻 Cheers&quot;
           </Button>
@@ -133,7 +136,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
             onClick={() => {
               /* look how we call setPurpose AND send some value along */
               tx?.(
-                writeContracts?.YourContract?.setPurpose('💵 Paying for this one!', {
+                yourContractWrite?.setPurpose('💵 Paying for this one!', {
                   value: parseEther('0.001'),
                 })
               );
@@ -147,11 +150,9 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
             onClick={() => {
               /* you can also just craft a transaction and send it to the tx() transactor */
               tx?.({
-                to: writeContracts?.YourContract?.address,
+                to: yourContractWrite?.address,
                 value: parseEther('0.001'),
-                data: writeContracts?.YourContract?.interface?.encodeFunctionData?.('setPurpose(string)', [
-                  '🤓 Whoa so 1337!',
-                ]),
+                data: yourContractWrite?.interface?.encodeFunctionData?.('setPurpose', ['🤓 Whoa so 1337!']),
               });
               /* this should throw an error about "no fallback nor receive function" until you add it */
             }}>

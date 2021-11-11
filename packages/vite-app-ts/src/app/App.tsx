@@ -4,7 +4,7 @@ import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import { EthComponentsContext, IEthComponentsContext } from 'eth-components/models';
 import { ErrorBoundary, ErrorFallback } from '~~/app/common/ErrorFallback';
 import { BLOCKNATIVE_DAPPID } from '~~/models/constants/constants';
-import { subgraphUri } from '~~/config/subgraph';
+import { subgraphUri } from '~~/config/subgraphConfig';
 import { EthersAppContext } from 'eth-hooks/context';
 
 /**

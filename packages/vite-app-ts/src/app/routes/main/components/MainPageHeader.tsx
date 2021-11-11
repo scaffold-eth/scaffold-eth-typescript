@@ -7,13 +7,18 @@ import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppPr
 import { useEthersContext } from 'eth-hooks/context';
 
 // displays a page header
-interface IMainPageHeader {
+export interface IMainPageHeaderProps {
   scaffoldAppProviders: IScaffoldAppProviders;
   price: number;
   gasPrice: number | undefined;
 }
 
-export const MainPageHeader: FC<IMainPageHeader> = (props) => {
+/**
+ * ✏ Header: Edit the header and change the title to your project name.  Your account is on the right *
+ * @param props
+ * @returns
+ */
+export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
   const ethersContext = useEthersContext();
   const selectedChainId = ethersContext.chainId;
 

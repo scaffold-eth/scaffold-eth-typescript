@@ -1,6 +1,6 @@
 {
   "name": "@scaffold-eth/vite-app",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "scripts": {
     "start": "cross-env ENVIRONMENT=DEVELOPMENT vite",

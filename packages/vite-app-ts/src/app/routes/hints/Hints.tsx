@@ -9,7 +9,7 @@ import { Address, AddressInput } from 'eth-components/ant';
 
 const { Option } = Select;
 
-interface IHintsProps {
+export interface IHintsProps {
   yourCurrentBalance: BigNumber | undefined;
   mainnetProvider: TEthersProvider;
   price: number;

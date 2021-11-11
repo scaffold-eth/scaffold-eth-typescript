@@ -7,7 +7,7 @@ import { useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
 import { TContractConfig } from '.yalc/eth-hooks/models';
 
-interface IMainPageContracts {
+export interface IMainPageContractsProps {
   scaffoldAppProviders: IScaffoldAppProviders;
   mainnetContracts: Record<string, Contract>;
   appContractConfig: TContractConfig;
@@ -20,9 +20,13 @@ interface IMainPageContracts {
  * @param props 
  * @returns 
  */
-export const MainPageContracts: FC<IMainPageContracts> = (props) => {
+export const MainPageContracts: FC<IMainPageContractsProps> = (props) => {
   const ethersContext = useEthersContext();
   const contractList = useContractLoader(props.appContractConfig, undefined);
+
+  if (ethersContext.account == null) {
+    return <></>;
+  }
 
   return (
     <>

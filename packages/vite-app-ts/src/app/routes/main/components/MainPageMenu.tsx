@@ -2,11 +2,12 @@ import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'antd';
 
-interface IMainPageMenu {
+export interface IMainPageMenuProps {
   route: string;
   setRoute: React.Dispatch<React.SetStateAction<string>>;
 }
-export const MainPageMenu: FC<IMainPageMenu> = (props) => (
+
+export const MainPageMenu: FC<IMainPageMenuProps> = (props) => (
   <Menu
     style={{
       textAlign: 'center',

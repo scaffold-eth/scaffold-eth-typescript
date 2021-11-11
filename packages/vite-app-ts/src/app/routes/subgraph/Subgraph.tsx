@@ -17,7 +17,7 @@ const highlight: React.CSSProperties = {
   fontWeight: 'bolder',
 };
 
-interface ISubgraphProps {
+export interface ISubgraphProps {
   subgraphUri: string;
   tx: TTransactor | undefined;
   writeContracts: Record<string, Contract>;

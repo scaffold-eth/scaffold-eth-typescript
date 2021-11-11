@@ -20,7 +20,7 @@ contract YourContract {
     return _purpose;
   }
 
-  function setPurpose(string memory newPurpose) public {
+  function setPurpose(string memory newPurpose) public payable {
     // if(bytes(newPurpose).length == 0){
     //     revert EmptyPurposeError({
     //         code: 1,

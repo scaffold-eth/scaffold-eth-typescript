@@ -7,7 +7,7 @@ import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppPr
 import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
 import { useEthersContext } from 'eth-hooks/context';
 
-interface IMainPageFooter {
+export interface IMainPageFooterProps {
   scaffoldAppProviders: IScaffoldAppProviders;
   price: number;
   gasPrice: number | undefined;
@@ -19,7 +19,7 @@ interface IMainPageFooter {
  * @param props
  * @returns
  */
-export const MainPageFooter: FC<IMainPageFooter> = (props) => {
+export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
   const ethersContext = useEthersContext();
 
   const left = (

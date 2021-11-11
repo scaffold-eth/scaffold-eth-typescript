@@ -8,7 +8,7 @@ import { TTransactor } from 'eth-components/functions';
 
 import { AddressInput, EtherInput } from 'eth-components/ant';
 
-interface ICheckoutProps {
+export interface ICheckoutProps {
   setRoute: any;
   cart: any;
   setCart: any;

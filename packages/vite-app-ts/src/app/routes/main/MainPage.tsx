@@ -20,7 +20,7 @@ import { useBurnerFallback } from '~~/app/routes/main/hooks/useBurnerFallback';
 import { getFaucetAvailable } from '../../common/FaucetHintButton';
 import { useScaffoldHooks } from './hooks/useScaffoldHooks';
 import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
-import { subgraphUri } from '~~/config/subgraph';
+import { subgraphUri } from '~~/config/subgraphConfig';
 import { useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
 import { mainnetProvider } from '~~/config/providersConfig';
@@ -46,9 +46,8 @@ export const MainPage: FC = (props) => {
   useBurnerFallback(scaffoldAppProviders, true);
 
   // -----------------------------
-  // Contracts
+  // Contracts use examples
   // -----------------------------
-
   // ⚙ contract config
   // get the contracts configuration for the app
   const appContractConfig = useAppContracts();
@@ -59,28 +58,26 @@ export const MainPage: FC = (props) => {
   // If you want to make 🔐 write transactions to your contracts, use the userProvider:
   const writeContracts = useContractLoader(appContractConfig, ethersContext?.signer);
 
-  // EXTERNAL CONTRACT EXAMPLE:
+  // 👾 external contract example
   // If you want to bring in the mainnet DAI contract it would look like:
   // you need to pass the appropriate provider (readonly) or signer (write)
   const mainnetContracts = useContractLoader(appContractConfig, mainnetProvider, NETWORKS['mainnet'].chainId);
 
   // -----------------------------
-  // current contract and listners
+  // example for current contract and listners
   // -----------------------------
-
-  const myContract = readContracts['YourContract'] as YourContract;
-
+  const yourContractRead = readContracts['YourContract'] as YourContract;
   // keep track of a variable from the contract in the local React state:
-  const purpose = useContractReader<string>(readContracts?.['YourContract'], {
+  const purpose = useContractReader<string>(yourContractRead, {
     contractName: 'YourContract',
     functionName: 'purpose',
   });
 
   // 📟 Listen for broadcast events
-  const setPurposeEvents = useEventListener(readContracts?.['YourContract'], 'SetPurpose', 1);
+  const setPurposeEvents = useEventListener(yourContractRead, 'SetPurpose', 1);
 
   // -----------------------------
-  // Hooks
+  // Hooks use and examples
   // -----------------------------
   // For more hooks, check out 🔗eth-hooks at: https://www.npmjs.com/package/eth-hooks
 
@@ -93,10 +90,12 @@ export const MainPage: FC = (props) => {
   // 💰 this hook will get your balance
   const yourCurrentBalance = useBalance(ethersContext.account ?? '');
 
-  // -----------------------------
   // 🎉 Console logs & More hook examples:  Check out this to see how to get
-  // -----------------------------
   useScaffoldHooks(scaffoldAppProviders, readContracts, writeContracts, mainnetContracts);
+
+  // -----------------------------
+  // .... 🎇 End of examples
+  // -----------------------------
 
   // The transactor wraps transactions and provides notificiations
   const tx = transactor(context, ethersContext?.signer, gasPrice);
@@ -111,26 +110,17 @@ export const MainPage: FC = (props) => {
 
   return (
     <div className="App">
-      {/* ✏️ Edit the header and change the title to your project name.  Your account is on the right */}
       <MainPageHeader scaffoldAppProviders={scaffoldAppProviders} price={price} gasPrice={gasPrice} />
+
       <BrowserRouter>
         <MainPageMenu route={route} setRoute={setRoute} />
         <Switch>
           <Route exact path="/">
-            {ethersContext.account != null && (
-              <>
-                {/*
-                🎛 this scaffolding is full of commonly used components
-                this <Contract/> component will automatically parse your ABI
-                and give you a form to interact with it locally
-              */}
-                <MainPageContracts
-                  scaffoldAppProviders={scaffoldAppProviders}
-                  mainnetContracts={mainnetContracts}
-                  appContractConfig={appContractConfig}
-                />
-              </>
-            )}
+            <MainPageContracts
+              scaffoldAppProviders={scaffoldAppProviders}
+              mainnetContracts={mainnetContracts}
+              appContractConfig={appContractConfig}
+            />
           </Route>
           <Route path="/hints">
             <Hints
@@ -142,16 +132,10 @@ export const MainPage: FC = (props) => {
           </Route>
           <Route path="/exampleui">
             <ExampleUI
-              address={ethersContext?.account ?? ''}
-              userSigner={ethersContext?.signer}
               mainnetProvider={scaffoldAppProviders.mainnetProvider}
               yourCurrentBalance={yourCurrentBalance}
               price={price}
               tx={tx}
-              writeContracts={writeContracts}
-              readContracts={readContracts}
-              purpose={purpose ?? ''}
-              setPurposeEvents={setPurposeEvents}
             />
           </Route>
           <Route path="/mainnetdai">
@@ -176,7 +160,6 @@ export const MainPage: FC = (props) => {
         </Switch>
       </BrowserRouter>
 
-      {/* 🗺 Extra UI like gas price, eth price, faucet, and support: */}
       <MainPageFooter
         scaffoldAppProviders={scaffoldAppProviders}
         price={price}
