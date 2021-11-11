@@ -7,7 +7,7 @@ name: Pull Request CI
 on:
   workflow_dispatch: 
   push:
-    branches: [master, develop]
+    branches: [master, develop, main]
   pull_request:
     types: [opened, reopened, ready_for_review, synchronize]
 
