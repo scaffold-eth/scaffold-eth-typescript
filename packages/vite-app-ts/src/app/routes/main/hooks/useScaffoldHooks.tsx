@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { ethers } from 'ethers';
 import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
-import { DEBUG } from '../MainPage';
+import { DEBUG } from '../Main';
 import { useBalance, useContractReader, useOnRepetition } from 'eth-hooks';
 import { useEnsResolveName } from 'eth-hooks/dapps';
 import { useEthersContext } from 'eth-hooks/context';

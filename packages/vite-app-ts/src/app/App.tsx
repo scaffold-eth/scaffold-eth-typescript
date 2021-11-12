@@ -10,7 +10,7 @@ import { EthersAppContext } from 'eth-hooks/context';
 /**
  * See MainPage.tsx for main app component
  */
-const MainPage = lazy(() => import('./routes/main/MainPage'));
+const MainPage = lazy(() => import('./routes/main/Main'));
 
 console.log('load app');
 

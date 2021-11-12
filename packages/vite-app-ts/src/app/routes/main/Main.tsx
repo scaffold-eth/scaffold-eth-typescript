@@ -28,7 +28,7 @@ import { YourContract } from '~~/generated/contract-types';
 
 export const DEBUG = false;
 
-export const MainPage: FC = (props) => {
+export const Main: FC = (props) => {
   const context = useContext(EthComponentsContext);
 
   // -----------------------------
@@ -52,10 +52,10 @@ export const MainPage: FC = (props) => {
   // get the contracts configuration for the app
   const appContractConfig = useAppContracts();
 
-  // Load in your local 📝 contract and read a value from it:
+  // Load in your 📝 readonly contract and read a value from it:
   const readContracts = useContractLoader(appContractConfig);
 
-  // If you want to make 🔐 write transactions to your contracts, use the userProvider:
+  // If you want to make 🔐 write transactions to your contracts, pass the signer:
   const writeContracts = useContractLoader(appContractConfig, ethersContext?.signer);
 
   // 👾 external contract example
@@ -112,8 +112,9 @@ export const MainPage: FC = (props) => {
     <div className="App">
       <MainPageHeader scaffoldAppProviders={scaffoldAppProviders} price={price} gasPrice={gasPrice} />
 
+      <MainPageMenu route={route} setRoute={setRoute} />
+
       <BrowserRouter>
-        <MainPageMenu route={route} setRoute={setRoute} />
         <Switch>
           <Route exact path="/">
             <MainPageContracts
@@ -170,4 +171,4 @@ export const MainPage: FC = (props) => {
   );
 };
 
-export default MainPage;
+export default Main;
