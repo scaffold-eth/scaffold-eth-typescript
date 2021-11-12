@@ -14,6 +14,7 @@ const externalContractsPromise = import('../generated/contracts/external_contrac
 /**
  * LoadsAppContracts
  * - run yarn compile and yarn deploy to generate hardhhat_contracts.json
+ * - called  by useAppContracts
  * @returns
  */
 export const loadAppContracts = async (): Promise<TContractConfig> => {
