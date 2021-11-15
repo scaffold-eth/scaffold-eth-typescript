@@ -112,9 +112,8 @@ export const Main: FC = (props) => {
     <div className="App">
       <MainPageHeader scaffoldAppProviders={scaffoldAppProviders} price={price} gasPrice={gasPrice} />
 
-      <MainPageMenu route={route} setRoute={setRoute} />
-
       <BrowserRouter>
+        <MainPageMenu route={route} setRoute={setRoute} />
         <Switch>
           <Route exact path="/">
             <MainPageContracts
