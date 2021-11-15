@@ -1,8 +1,8 @@
-import { TDeployedContractHelper, TDeployedContractsJson, TExternalContracts } from 'eth-hooks/models';
+import { Provider } from '@ethersproject/abstract-provider';
+import { createContractConnector, TDeployedContractsJson, TExternalContracts } from 'eth-hooks/models';
 import { TContractConfig } from 'eth-hooks/models';
-import { ContractFactory, ethers } from 'ethers';
-//import type {YourContract} from "../generated/contract-types";
-// this import allows hot module reload to work
+import { BaseContract, Contract, ContractFactory, ContractInterface, ethers, Signer } from 'ethers';
+import { Greeter__factory, YourContract, YourContract__factory } from '~~/generated/contract-types';
 
 const contractListJsonPromise = import('../generated/contracts/hardhat_contracts.json');
 
@@ -10,6 +10,11 @@ const contractListJsonPromise = import('../generated/contracts/hardhat_contracts
  * - run yarn compile and yarn deploy to generate hardhhat_contracts.json
  */
 const externalContractsPromise = import('../generated/contracts/external_contracts');
+
+export const appContractFactory = {
+  YourContract: createContractConnector(YourContract__factory),
+  Greeter: createContractConnector(Greeter__factory),
+};
 
 /**
  * LoadsAppContracts

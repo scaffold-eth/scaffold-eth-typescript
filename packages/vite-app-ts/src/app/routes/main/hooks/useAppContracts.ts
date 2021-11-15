@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { loadAppContracts } from '~~/config/loadAppContracts';
+import { loadAppContracts } from '~~/config/loadAppContractConfig';
 import { TContractConfig } from 'eth-hooks/models';
 
 export const useAppContracts = (): TContractConfig => {

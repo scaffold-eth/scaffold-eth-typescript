@@ -103,4 +103,10 @@ export const useScaffoldHooks = (
     writeContracts,
     mainnetContracts,
   ]);
+
+  return (
+    <>
+      <EthersAppContext name="second"></EthersAppContext>
+    </>
+  );
 };
