@@ -5,12 +5,13 @@ import React, { FC, ReactElement } from 'react';
 import { FaucetHintButton } from '~~/app/common/FaucetHintButton';
 import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
 import { useEthersContext } from 'eth-hooks/context';
+import { useGasPrice } from 'eth-hooks';
+import { getNetworkInfo } from '~~/helpers';
 
 // displays a page header
 export interface IMainPageHeaderProps {
   scaffoldAppProviders: IScaffoldAppProviders;
   price: number;
-  gasPrice: number | undefined;
 }
 
 /**
@@ -21,6 +22,9 @@ export interface IMainPageHeaderProps {
 export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
   const ethersContext = useEthersContext();
   const selectedChainId = ethersContext.chainId;
+
+  // 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation
+  const gasPrice = useGasPrice(ethersContext.chainId, 'fast', getNetworkInfo(ethersContext.chainId));
 
   /**
    * this shows the page header and other informaiton
@@ -62,7 +66,7 @@ export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
         blockExplorer={props.scaffoldAppProviders.targetNetwork.blockExplorer}
         hasContextConnect={true}
       />
-      <FaucetHintButton scaffoldAppProviders={props.scaffoldAppProviders} gasPrice={props.gasPrice} />
+      <FaucetHintButton scaffoldAppProviders={props.scaffoldAppProviders} gasPrice={gasPrice} />
       {props.children}
     </div>
   );

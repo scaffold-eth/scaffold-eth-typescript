@@ -5,7 +5,8 @@ import reactPlugin from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import path, { resolve } from 'path';
 
-console.log('env:dev', process.env.ENVIRONMENT);
+const isDev = process.env.ENVIRONMENT == 'DEVELOPMENT';
+console.log('env.dev:', process.env.ENVIRONMENT, ' isDev:', isDev);
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -32,6 +33,7 @@ export default defineConfig({
     exclude: ['@apollo/client', `graphql`],
   },
   resolve: {
+    preserveSymlinks: true,
     mainFields: ['module', 'main', 'browser'],
     alias: {
       '~~': resolve(__dirname, 'src'),
@@ -41,6 +43,14 @@ export default defineConfig({
       https: 'http-browserify',
       timers: 'timers-browserify',
       process: 'process',
+    },
+  },
+  server: {
+    watch: {
+      followSymlinks: true,
+    },
+    fs: {
+      allow: ['../../'],
     },
   },
   css: {

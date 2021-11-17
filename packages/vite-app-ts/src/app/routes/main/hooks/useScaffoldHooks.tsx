@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 import { ethers } from 'ethers';
 import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
 import { DEBUG } from '../Main';
-import { useBalance, useContractReader, useOnRepetition } from 'eth-hooks';
+import { useBalance, useContractReader, useGasPrice, useOnRepetition } from 'eth-hooks';
 import { useEnsResolveName } from 'eth-hooks/dapps';
 import { useEthersContext } from 'eth-hooks/context';
+import { getNetworkInfo } from '~~/helpers';
 
 /**
  * Logs to console current app state.  Shows you examples on how to use hooks!
@@ -43,6 +44,9 @@ export const useScaffoldHooks = (
     functionName: 'balanceOf',
     functionArgs: ['0x34aA3F359A9D614239015126635CE7732c18fDF3'],
   });
+
+  // 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation
+  const gasPrice = useGasPrice(ethersContext.chainId, 'fast', getNetworkInfo(ethersContext.chainId));
 
   // ---------------------
   // 📛 call ens
@@ -94,6 +98,7 @@ export const useScaffoldHooks = (
       console.log('🌍 DAI contract on mainnet:', mainnetContracts);
       console.log('💵 yourMainnetDAIBalance', myMainnetDAIBalance);
       console.log('🔐 writeContracts', writeContracts);
+      console.log('⛽ gasPrice', gasPrice);
     }
   }, [
     scaffoldAppProviders.mainnetProvider,
