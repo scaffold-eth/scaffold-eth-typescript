@@ -6,12 +6,11 @@ import { NETWORKS } from '~~/models/constants/networks';
 import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
 import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
 import { useEthersContext } from 'eth-hooks/context';
+import { getFaucetAvailable } from '~~/app/common/FaucetHintButton';
 
 export interface IMainPageFooterProps {
   scaffoldAppProviders: IScaffoldAppProviders;
   price: number;
-  gasPrice: number | undefined;
-  faucetAvailable: boolean;
 }
 
 /**
@@ -21,6 +20,9 @@ export interface IMainPageFooterProps {
  */
 export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
   const ethersContext = useEthersContext();
+
+  // Faucet Tx can be used to send funds from the faucet
+  let faucetAvailable = getFaucetAvailable(props.scaffoldAppProviders, ethersContext);
 
   const left = (
     <div
@@ -78,9 +80,11 @@ export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
         <Col span={24}>
           {
             /*  if the local provider has a signer, let's show the faucet:  */
-            props.faucetAvailable && props.scaffoldAppProviders.mainnetProvider ? (
+            faucetAvailable &&
+            props.scaffoldAppProviders?.mainnetProvider &&
+            props.scaffoldAppProviders?.localProvider ? (
               <Faucet
-                localProvider={props.scaffoldAppProviders?.localProvider}
+                localProvider={props.scaffoldAppProviders.localProvider}
                 price={props.price}
                 mainnetProvider={props.scaffoldAppProviders.mainnetProvider}
               />

@@ -82,10 +82,7 @@ export const Main: FC = (props) => {
   // For more hooks, check out 🔗eth-hooks at: https://www.npmjs.com/package/eth-hooks
 
   // 💵 This hook will get the price of ETH from 🦄 Uniswap:
-  const price = useDexEthPrice(scaffoldAppProviders.mainnetProvider, scaffoldAppProviders.targetNetwork);
-
-  // 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation
-  const gasPrice = useGasPrice(ethersContext.chainId, 'fast', getNetworkInfo(ethersContext.chainId));
+  const ethPrice = useDexEthPrice(scaffoldAppProviders.mainnetProvider, scaffoldAppProviders.targetNetwork);
 
   // 💰 this hook will get your balance
   const yourCurrentBalance = useBalance(ethersContext.account ?? '');
@@ -97,6 +94,9 @@ export const Main: FC = (props) => {
   // .... 🎇 End of examples
   // -----------------------------
 
+  // 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation
+  const gasPrice = useGasPrice(ethersContext.chainId, 'fast', getNetworkInfo(ethersContext.chainId));
+
   // The transactor wraps transactions and provides notificiations
   const tx = transactor(context, ethersContext?.signer, gasPrice);
 
@@ -105,12 +105,9 @@ export const Main: FC = (props) => {
     setRoute(window.location.pathname);
   }, [setRoute]);
 
-  // Faucet Tx can be used to send funds from the faucet
-  let faucetAvailable = getFaucetAvailable(scaffoldAppProviders, ethersContext);
-
   return (
     <div className="App">
-      <MainPageHeader scaffoldAppProviders={scaffoldAppProviders} price={price} gasPrice={gasPrice} />
+      <MainPageHeader scaffoldAppProviders={scaffoldAppProviders} price={ethPrice} />
 
       <BrowserRouter>
         <MainPageMenu route={route} setRoute={setRoute} />
@@ -127,14 +124,14 @@ export const Main: FC = (props) => {
               address={ethersContext?.account ?? ''}
               yourCurrentBalance={yourCurrentBalance}
               mainnetProvider={scaffoldAppProviders.mainnetProvider}
-              price={price}
+              price={ethPrice}
             />
           </Route>
           <Route path="/exampleui">
             <ExampleUI
               mainnetProvider={scaffoldAppProviders.mainnetProvider}
               yourCurrentBalance={yourCurrentBalance}
-              price={price}
+              price={ethPrice}
               tx={tx}
             />
           </Route>
@@ -160,12 +157,7 @@ export const Main: FC = (props) => {
         </Switch>
       </BrowserRouter>
 
-      <MainPageFooter
-        scaffoldAppProviders={scaffoldAppProviders}
-        price={price}
-        gasPrice={gasPrice}
-        faucetAvailable={faucetAvailable}
-      />
+      <MainPageFooter scaffoldAppProviders={scaffoldAppProviders} price={ethPrice} />
     </div>
   );
 };
