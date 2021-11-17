@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { loadAppContracts } from '~~/config/loadAppContracts';
+import { loadAppContractsConfig } from '~~/config/loadAppContractsConfig';
 import { TContractConfig } from 'eth-hooks/models';
 
 export const useAppContracts = (): TContractConfig => {
@@ -8,7 +8,7 @@ export const useAppContracts = (): TContractConfig => {
   useEffect(() => {
     const loadFunc = async (): Promise<void> => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      const result = await loadAppContracts();
+      const result = await loadAppContractsConfig();
       setContractsConfig(result);
     };
     void loadFunc();

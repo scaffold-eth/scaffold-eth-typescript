@@ -17,7 +17,7 @@ const externalContractsPromise = import('../generated/contracts/external_contrac
  * - called  by useAppContracts
  * @returns
  */
-export const loadAppContracts = async (): Promise<TContractConfig> => {
+export const loadAppContractsConfig = async (): Promise<TContractConfig> => {
   const config: TContractConfig = {};
 
   try {
