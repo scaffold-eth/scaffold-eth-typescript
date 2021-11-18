@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { loadAppContractsConfig } from '~~/config/loadAppContractsConfig';
-import { TContractConfig } from 'eth-hooks/models';
+import { TContractLoaderConfig } from 'eth-hooks/models';
 
-export const useAppContracts = (): TContractConfig => {
-  const [contractsConfig, setContractsConfig] = useState<TContractConfig>({});
+export const useAppContracts = (): TContractLoaderConfig => {
+  const [contractsConfig, setContractsConfig] = useState<TContractLoaderConfig>({});
 
   useEffect(() => {
     const loadFunc = async (): Promise<void> => {
