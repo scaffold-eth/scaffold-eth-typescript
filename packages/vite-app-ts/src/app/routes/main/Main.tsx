@@ -99,6 +99,7 @@ export const Main: FC = () => {
     <div className="App">
       <MainPageHeader scaffoldAppProviders={scaffoldAppProviders} price={ethPrice} />
 
+      {/* Routes should be added between the <Switch> </Switch> as seen below */}
       <BrowserRouter>
         <MainPageMenu route={route} setRoute={setRoute} />
         <Switch>
@@ -109,6 +110,7 @@ export const Main: FC = () => {
               appContractConfig={appContractConfig}
             />
           </Route>
+          {/* you can add routes here like the below examlples */}
           <Route path="/hints">
             <Hints
               address={ethersContext?.account ?? ''}
