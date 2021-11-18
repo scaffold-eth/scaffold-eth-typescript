@@ -5,12 +5,11 @@ import { useContractLoader } from 'eth-hooks';
 import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
 import { useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
-import { TContractConfig } from 'eth-hooks/models';
-
+import { TContractLoaderConfig } from 'eth-hooks/models';
 export interface IMainPageContractsProps {
   scaffoldAppProviders: IScaffoldAppProviders;
   mainnetContracts: Record<string, Contract>;
-  appContractConfig: TContractConfig;
+  appContractConfig: TContractLoaderConfig;
 }
 
 /**

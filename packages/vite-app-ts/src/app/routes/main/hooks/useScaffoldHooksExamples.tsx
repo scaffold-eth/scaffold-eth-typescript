@@ -1,11 +1,16 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { ethers } from 'ethers';
 import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
 import { DEBUG } from '../Main';
 import { useBalance, useContractReader, useGasPrice, useOnRepetition } from 'eth-hooks';
-import { useEnsResolveName } from 'eth-hooks/dapps';
+
 import { useEthersContext } from 'eth-hooks/context';
 import { getNetworkInfo } from '~~/helpers';
+import { transactor } from 'eth-components/functions';
+import { EthComponentsSettingsContext } from 'eth-components/models';
+import { parseEther } from '@ethersproject/units';
+import { config } from 'process';
+import { NETWORKS } from '~~/models/constants/networks';
 
 /**
  * Logs to console current app state.  Shows you examples on how to use hooks!
@@ -23,6 +28,7 @@ export const useScaffoldHooks = (
   mainnetContracts: Record<string, ethers.Contract>
 ) => {
   const ethersContext = useEthersContext();
+  const ethComponentsSettings = useContext(EthComponentsSettingsContext);
 
   let currentChainId: number | undefined = ethersContext.chainId;
 
@@ -74,6 +80,27 @@ export const useScaffoldHooks = (
       provider: scaffoldAppProviders.localProvider,
     }
   );
+
+  //----------------------
+  // ✍🏽 writing to contracts
+  //----------------------
+  // The transactor wraps transactions and provides notificiations
+  // you can use this for read write transactions
+  // check out faucetHintButton.tsx for an example.
+  const tx = transactor(ethComponentsSettings, ethersContext?.signer, gasPrice);
+
+  // here is another example of using tx
+
+  // useEffect(() => {
+  //   // only does it on local host and once cuz of the useeffect for safety
+  //   if (tx && ethersContext?.chainId == NETWORKS.localhost.chainId) {
+  //     const someaddress = ethersContext?.account;
+  //     tx({
+  //       to: someaddress,
+  //       value: parseEther('0.01').toHexString(),
+  //     });
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (

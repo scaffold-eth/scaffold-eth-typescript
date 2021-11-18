@@ -1,11 +1,11 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import React, { FC, lazy, Suspense } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
-import { EthComponentsContext, IEthComponentsContext } from 'eth-components/models';
 import { ErrorBoundary, ErrorFallback } from '~~/app/common/ErrorFallback';
 import { BLOCKNATIVE_DAPPID } from '~~/models/constants/constants';
 import { subgraphUri } from '~~/config/subgraphConfig';
 import { EthersAppContext } from 'eth-hooks/context';
+import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-components/models';
 
 /**
  * See MainPage.tsx for main app component
@@ -36,7 +36,7 @@ const client = new ApolloClient({
 });
 
 // create eth components context for options and API keys
-const context: IEthComponentsContext = {
+const context: IEthComponentsSettings = {
   apiKeys: {
     BlocknativeDappId: BLOCKNATIVE_DAPPID,
   },
@@ -49,11 +49,11 @@ const context: IEthComponentsContext = {
  * @returns
  */
 const App: FC = () => {
-  console.log('app');
+  console.log('loading app...');
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <ApolloProvider client={client}>
-        <EthComponentsContext.Provider value={context}>
+        <EthComponentsSettingsContext.Provider value={context}>
           <EthersAppContext>
             <ErrorBoundary FallbackComponent={ErrorFallback}>
               <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme || 'light'}>
@@ -63,7 +63,7 @@ const App: FC = () => {
               </ThemeSwitcherProvider>
             </ErrorBoundary>
           </EthersAppContext>
-        </EthComponentsContext.Provider>
+        </EthComponentsSettingsContext.Provider>
       </ApolloProvider>
     </ErrorBoundary>
   );

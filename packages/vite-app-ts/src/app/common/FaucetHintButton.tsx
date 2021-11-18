@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import { useBalance } from 'eth-hooks';
 import { transactor } from 'eth-components/functions';
 import { parseEther } from '@ethersproject/units';
-import { EthComponentsContext } from 'eth-components/models';
+import { EthComponentsSettingsContext } from 'eth-components/models';
 import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
 import { utils } from 'ethers';
 import { IEthersContext, useEthersContext } from 'eth-hooks/context';
@@ -25,7 +25,7 @@ export const getFaucetAvailable = (scaffoldAppProviders: IScaffoldAppProviders, 
 };
 
 export const FaucetHintButton: FC<IFaucetButton> = (props) => {
-  const settingsContext = useContext(EthComponentsContext);
+  const settingsContext = useContext(EthComponentsSettingsContext);
   const ethersContext = useEthersContext();
   const yourLocalBalance = useBalance(ethersContext.account ?? '');
   const signer = props.scaffoldAppProviders.localProvider.getSigner();
