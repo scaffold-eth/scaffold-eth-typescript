@@ -1,9 +1,9 @@
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import input from 'antd/lib/input';
-import { TEthersProvider, TNetworkInfo } from 'eth-hooks/models';
+import { TCreateEthersModalConnector, TEthersProvider, TNetworkInfo } from 'eth-hooks/models';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ICoreOptions } from 'web3modal';
-import { EthersModalConnector, useEthersContext, CreateEthersModalConnector } from 'eth-hooks/context';
+import { EthersModalConnector, useEthersContext } from 'eth-hooks/context';
 import { useThemeSwitcher } from 'react-css-theme-switcher';
 import { mainnetProvider, localProvider, targetNetworkInfo } from '~~/config/providersConfig';
 
@@ -12,7 +12,7 @@ export interface IScaffoldAppProviders {
   targetNetwork: TNetworkInfo;
   mainnetProvider: StaticJsonRpcProvider;
   localProvider: StaticJsonRpcProvider;
-  createLoginConnector: CreateEthersModalConnector;
+  createLoginConnector: TCreateEthersModalConnector;
 }
 
 export const useScaffoldProviders = (): IScaffoldAppProviders => {
@@ -32,7 +32,7 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
 
   const { currentTheme } = useThemeSwitcher();
 
-  const createLoginConnector: CreateEthersModalConnector = useCallback(
+  const createLoginConnector: TCreateEthersModalConnector = useCallback(
     (id?: string) => {
       if (web3Config) {
         const connector = new EthersModalConnector(
@@ -54,7 +54,7 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
   }, [web3Config]);
 
   return {
-    currentProvider: ethersContext.ethersProvider ?? localProvider,
+    currentProvider: ethersContext.provider ?? localProvider,
     mainnetProvider: mainnetProvider,
     localProvider: localProvider,
     targetNetwork: targetNetworkInfo,

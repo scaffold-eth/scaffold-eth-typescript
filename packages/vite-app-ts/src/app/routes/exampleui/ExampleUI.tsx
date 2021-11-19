@@ -8,10 +8,16 @@ import { Address, Balance } from 'eth-components/ant';
 import { transactor, TTransactor } from 'eth-components/functions';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { useEthersContext } from 'eth-hooks/context';
-import { useContractLoader, useContractReader, useEventListener, useGasPrice } from 'eth-hooks';
+import {
+  useContractLoader,
+  useContractLoaderConfig,
+  useContractReader,
+  useEventListener,
+  useGasPrice,
+} from 'eth-hooks';
 import { YourContract } from '~~/generated/contract-types';
-import { useAppContracts } from '~~/app/routes/main/hooks/useAppContracts';
 import { EthComponentsSettingsContext } from 'eth-components/models';
+import { loadAppContractsConfig } from '~~/config/loadAppContractsConfig';
 
 export interface IExampleUIProps {
   mainnetProvider: StaticJsonRpcProvider;
@@ -23,9 +29,9 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
   const [newPurpose, setNewPurpose] = useState('loading...');
   const ethersContext = useEthersContext();
 
-  const appContractConfig = useAppContracts();
+  const appContractConfig = useContractLoaderConfig(loadAppContractsConfig);
   const readContracts = useContractLoader(appContractConfig);
-  const writeContracts = useContractLoader(appContractConfig, ethersContext?.signer);
+  const writeContracts = useContractLoader(appContractConfig);
 
   const yourContractRead = readContracts['YourContract'] as YourContract;
   const yourContractWrite = writeContracts['YourContract'] as YourContract;

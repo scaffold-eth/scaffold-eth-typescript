@@ -130,15 +130,9 @@ export const useScaffoldHooks = (
   }, [
     scaffoldAppProviders.mainnetProvider,
     ethersContext.account,
-    ethersContext.ethersProvider,
+    ethersContext.provider,
     readContracts,
     writeContracts,
     mainnetContracts,
   ]);
-
-  return (
-    <>
-      <EthersAppContext name="second"></EthersAppContext>
-    </>
-  );
 };

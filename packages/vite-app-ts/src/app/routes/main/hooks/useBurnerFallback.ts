@@ -19,7 +19,7 @@ export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: b
     if (
       burnerFallback.account != ethersContext.account &&
       ethersContext.chainId == localNetworkInfo.chainId &&
-      ethersContext.ethersProvider?.connection.url === localNetworkInfo.rpcUrl &&
+      ethersContext.provider?.connection.url === localNetworkInfo.rpcUrl &&
       burnerFallback.signer &&
       enable
     ) {

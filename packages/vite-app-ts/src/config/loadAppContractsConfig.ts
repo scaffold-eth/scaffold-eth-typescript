@@ -1,4 +1,4 @@
-import { TContractLoaderConfig, TDeployedContractsJson, TExternalContracts } from 'eth-hooks/models';
+import { TContractLoaderConfig, TExternalContracts, TDeployedHardhatContractsJson } from 'eth-hooks/models';
 import { ContractFactory, ethers } from 'ethers';
 //import type {YourContract} from "../generated/contract-types";
 // this import allows hot module reload to work
@@ -21,7 +21,8 @@ export const loadAppContractsConfig = async (): Promise<TContractLoaderConfig> =
 
   try {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    config.deployedContractsJson = ((await contractListJsonPromise).default ?? {}) as unknown as TDeployedContractsJson;
+    config.deployedContractsJson = ((await contractListJsonPromise).default ??
+      {}) as unknown as TDeployedHardhatContractsJson;
   } catch {
     config.deployedContractsJson = undefined;
     console.error(

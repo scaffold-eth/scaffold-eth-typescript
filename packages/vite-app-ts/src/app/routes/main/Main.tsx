@@ -1,8 +1,8 @@
-import React, { FC, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import '~~/styles/main-page.css';
-import { useGasPrice, useContractLoader, useContractReader, useBalance } from 'eth-hooks';
+import { useContractLoaderConfig, useContractLoader, useContractReader, useBalance } from 'eth-hooks';
 import { useDexEthPrice } from 'eth-hooks/dapps';
 
 import { GenericContract } from 'eth-components/ant/generic-contract';
@@ -22,7 +22,7 @@ import { useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
 import { mainnetProvider } from '~~/config/providersConfig';
 import { YourContract } from '~~/generated/contract-types';
-import { useAppContracts } from '~~/app/routes/main/hooks/useAppContracts';
+import { loadAppContractsConfig } from '~~/config/loadAppContractsConfig';
 
 export const DEBUG = false;
 
@@ -46,18 +46,18 @@ export const Main: FC = () => {
   // -----------------------------
   // ⚙ contract config
   // get the contracts configuration for the app
-  const appContractConfig = useAppContracts();
+  const appContractConfig = useContractLoaderConfig(loadAppContractsConfig);
 
   // Load in your 📝 readonly contract and read a value from it:
   const readContracts = useContractLoader(appContractConfig);
 
   // If you want to make 🔐 write transactions to your contracts, pass the signer:
-  const writeContracts = useContractLoader(appContractConfig, ethersContext?.signer);
+  const writeContracts = useContractLoader(appContractConfig);
 
   // 👾 external contract example
   // If you want to bring in the mainnet DAI contract it would look like:
   // you need to pass the appropriate provider (readonly) or signer (write)
-  const mainnetContracts = useContractLoader(appContractConfig, mainnetProvider, NETWORKS['mainnet'].chainId);
+  const mainnetContracts = useContractLoader(appContractConfig);
 
   // -----------------------------
   // example for current contract and listners

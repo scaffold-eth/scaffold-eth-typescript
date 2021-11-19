@@ -47,7 +47,7 @@ export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
           <GasGauge
             chainId={props.scaffoldAppProviders.targetNetwork.chainId}
             currentNetwork={getNetworkInfo(ethersContext.chainId)}
-            provider={ethersContext.ethersProvider}
+            provider={ethersContext.provider}
             speed="average"
           />
         </Col>
