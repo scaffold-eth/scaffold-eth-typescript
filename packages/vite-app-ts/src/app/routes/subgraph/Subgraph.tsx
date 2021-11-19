@@ -4,10 +4,13 @@ import { Button, Input, Table, Typography } from 'antd';
 import { Contract } from 'ethers';
 import GraphiQL from 'graphiql';
 import 'graphiql/graphiql.min.css';
-import React, { FC, ReactElement, useState } from 'react';
-import { TTransactor } from 'eth-components/functions';
+import React, { FC, ReactElement, useContext, useState } from 'react';
+import { transactor, TTransactor } from 'eth-components/functions';
 
 import { Address } from 'eth-components/ant';
+import { EthComponentsSettingsContext } from 'eth-components/models';
+import { useGasPrice } from 'eth-hooks';
+import { useEthersContext } from 'eth-hooks/context';
 
 const highlight: React.CSSProperties = {
   marginLeft: 4,
@@ -19,7 +22,6 @@ const highlight: React.CSSProperties = {
 
 export interface ISubgraphProps {
   subgraphUri: string;
-  tx: TTransactor | undefined;
   writeContracts: Record<string, Contract>;
   mainnetProvider: JsonRpcProvider | Web3Provider;
 }
@@ -33,6 +35,12 @@ export const Subgraph: FC<ISubgraphProps> = (props) => {
     });
     return response.json() as Record<string, any>;
   };
+
+  const ethersContext = useEthersContext();
+
+  const ethComponentsSettings = useContext(EthComponentsSettingsContext);
+  const gasPrice = useGasPrice(ethersContext.chainId, 'fast');
+  const tx = transactor(ethComponentsSettings, ethersContext?.signer, gasPrice);
 
   const EXAMPLE_GRAPHQL = `
     {
@@ -174,7 +182,7 @@ export const Subgraph: FC<ISubgraphProps> = (props) => {
             onClick={(): void => {
               console.log('newPurpose', newPurpose);
               /* look how you call setPurpose on your contract: */
-              props.tx?.(props.writeContracts.YourContract.setPurpose(newPurpose));
+              tx?.(props.writeContracts.YourContract.setPurpose(newPurpose));
             }}>
             Set Purpose
           </Button>

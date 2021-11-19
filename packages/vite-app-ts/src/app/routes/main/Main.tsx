@@ -13,24 +13,20 @@ import { ethers } from 'ethers';
 
 import { useEventListener } from 'eth-hooks';
 import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from './components';
-import { useAppContracts } from '~~/app/routes/main/hooks/useAppContracts';
-import { EthComponentsContext } from 'eth-components/models';
 import { useScaffoldProviders as useScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
 import { useBurnerFallback } from '~~/app/routes/main/hooks/useBurnerFallback';
-import { getFaucetAvailable } from '../../common/FaucetHintButton';
-import { useScaffoldHooks } from './hooks/useScaffoldHooks';
+import { useScaffoldHooks as useScaffoldHooksExamples } from './hooks/useScaffoldHooksExamples';
 import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
 import { subgraphUri } from '~~/config/subgraphConfig';
 import { useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
 import { mainnetProvider } from '~~/config/providersConfig';
 import { YourContract } from '~~/generated/contract-types';
+import { useAppContracts } from '~~/app/routes/main/hooks/useAppContracts';
 
 export const DEBUG = false;
 
-export const Main: FC = (props) => {
-  const context = useContext(EthComponentsContext);
-
+export const Main: FC = () => {
   // -----------------------------
   // Providers, signers & wallets
   // -----------------------------
@@ -76,9 +72,6 @@ export const Main: FC = (props) => {
   // 📟 Listen for broadcast events
   const setPurposeEvents = useEventListener(yourContractRead, 'SetPurpose', 1);
 
-  // -----------------------------
-  // Hooks use and examples
-  // -----------------------------
   // For more hooks, check out 🔗eth-hooks at: https://www.npmjs.com/package/eth-hooks
 
   // 💵 This hook will get the price of ETH from 🦄 Uniswap:
@@ -87,18 +80,15 @@ export const Main: FC = (props) => {
   // 💰 this hook will get your balance
   const yourCurrentBalance = useBalance(ethersContext.account ?? '');
 
+  // -----------------------------
+  // Hooks use and examples
+  // -----------------------------
   // 🎉 Console logs & More hook examples:  Check out this to see how to get
-  useScaffoldHooks(scaffoldAppProviders, readContracts, writeContracts, mainnetContracts);
+  useScaffoldHooksExamples(scaffoldAppProviders, readContracts, writeContracts, mainnetContracts);
 
   // -----------------------------
   // .... 🎇 End of examples
   // -----------------------------
-
-  // 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation
-  const gasPrice = useGasPrice(ethersContext.chainId, 'fast', getNetworkInfo(ethersContext.chainId));
-
-  // The transactor wraps transactions and provides notificiations
-  const tx = transactor(context, ethersContext?.signer, gasPrice);
 
   const [route, setRoute] = useState<string>('');
   useEffect(() => {
@@ -109,6 +99,7 @@ export const Main: FC = (props) => {
     <div className="App">
       <MainPageHeader scaffoldAppProviders={scaffoldAppProviders} price={ethPrice} />
 
+      {/* Routes should be added between the <Switch> </Switch> as seen below */}
       <BrowserRouter>
         <MainPageMenu route={route} setRoute={setRoute} />
         <Switch>
@@ -119,6 +110,7 @@ export const Main: FC = (props) => {
               appContractConfig={appContractConfig}
             />
           </Route>
+          {/* you can add routes here like the below examlples */}
           <Route path="/hints">
             <Hints
               address={ethersContext?.account ?? ''}
@@ -132,7 +124,6 @@ export const Main: FC = (props) => {
               mainnetProvider={scaffoldAppProviders.mainnetProvider}
               yourCurrentBalance={yourCurrentBalance}
               price={ethPrice}
-              tx={tx}
             />
           </Route>
           <Route path="/mainnetdai">
@@ -149,7 +140,6 @@ export const Main: FC = (props) => {
           <Route path="/subgraph">
             <Subgraph
               subgraphUri={subgraphUri}
-              tx={tx}
               writeContracts={writeContracts}
               mainnetProvider={scaffoldAppProviders.mainnetProvider}
             />
