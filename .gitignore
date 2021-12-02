@@ -8,20 +8,26 @@ packages/hardhat/*.txt
 **/node_modules
 
 packages/hardhat/artifacts*
-packages/hardhat/deployments
+packages/hardhat/deployments/hardhat
+packages/hardhat/deployments/localhost
 packages/react-app/src/contracts/*
 !packages/react-app/src/contracts/external_contracts.js
+!packages/react-app/src/contracts/contracts.js
 packages/hardhat/cache*
 packages/**/data
-!packages/react-app/src/contracts/contracts.js
 
 
 # ts
 packages/hardhat-ts/cache
+typechain
+*.tsbuildinfo
+
 # secrets
 .secret
 
 packages/subgraph/config/config.json
+
+# Tenderly
 tenderly.yaml
 
 # dependencies
@@ -34,16 +40,12 @@ coverage
 
 # production
 build
+
 # yarn / eslint
 .yarn/cache
 .yarn/install-state.gz
 .yarn/build-state.yml
 .eslintcache
-# testing
-coverage
-
-# production
-build
 
 #Hardhat files
 cache
@@ -58,11 +60,14 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# IDE
 .idea
+.vscode
+.vs
 
 # Local Netlify folder
 .netlify
-*.tsbuildinfo
+
 *.stackdump
 .yalc
 yalc.lock
