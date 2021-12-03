@@ -1,14 +1,25 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": ["node", "ethers"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "types": [
+      "node",
+      "ethers"
+    ],
     "allowJs": false,
     "skipLibCheck": false,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "typeRoots": ["node_modules/@types", "src/helpers/definitions"] /* List of folders to include type definitions from. */,
+    "typeRoots": [
+      "node_modules/@types",
+      "generated/typechain"
+    ]
+    /* List of folders to include type definitions from. */,
     "forceConsistentCasingInFileNames": true,
     "module": "commonjs",
     "moduleResolution": "Node",
@@ -18,17 +29,33 @@
     "noEmit": true,
     "rootDir": ".",
     "baseUrl": ".",
-    "outDir": "dist",
     "paths": {
-      "~~/*": ["./src/*"],
-      "scripts/*": ["./scripts/*"],
-      "helpers/*": ["./helpers/*"],
-      "contracts/*": ["./contracts/*"],
-      "tests/*": ["./tests/*"],
-      "typechain/*": ["./typechain/*"]
+      "scripts/*": [
+        "./scripts/*"
+      ],
+      "helpers/*": [
+        "./helpers/*"
+      ],
+      "typechain/*": [
+        "./generated/typechain/*"
+      ]
     }
   },
-  "include": ["types", "scripts", "test", "helpers", "./hardhat.config.ts", "./deploy"],
-  "exclude": ["**/node_modules", ".husky", "./src/styles/css", "./tailwind.config.js"],
-  "files": ["./hardhat.config.ts", "helpers/types/__global.ts"]
+  "files": [
+    "hardhat.config.ts"
+  ],
+  "include": [
+    "./config",
+    "./deploy",
+    "./scripts",
+    "./tasks",
+    "./test",
+    "./helpers",
+  ],
+  "exclude": [
+    "./generated",
+    "./contracts",
+    "./coverage",
+    "./docs"
+  ]
 }

@@ -3,14 +3,14 @@ pragma solidity >=0.8.0 <0.9.0;
 
 import "hardhat/console.sol";
 
-//import "@openzeppelin/contracts/access/Ownable.sol"; //https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract YourContract {
+contract YourContract is Ownable {
     event SetPurpose(address sender, string purpose);
 
-    string _purpose = "Building Unstoppable Apps";
+    error EmptyPurposeError(uint256 code, string message);
 
-    //error EmptyPurposeError(uint code, string message);
+    string public _purpose = "Building Unstoppable Apps";
 
     constructor() {
         // what should we do on deploy?
@@ -21,12 +21,12 @@ contract YourContract {
     }
 
     function setPurpose(string memory newPurpose) public payable {
-        // if(bytes(newPurpose).length == 0){
-        //     revert EmptyPurposeError({
-        //         code: 1,
-        //         message: "Purpose can not be empty"
-        //     });
-        // }
+        if (bytes(newPurpose).length == 0) {
+            revert EmptyPurposeError({
+                code: 1,
+                message: "Purpose can not be empty"
+            });
+        }
 
         _purpose = newPurpose;
         console.log(msg.sender, "set purpose to", _purpose);
