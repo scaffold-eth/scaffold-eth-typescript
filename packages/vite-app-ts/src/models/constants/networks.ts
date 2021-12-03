@@ -1,4 +1,5 @@
 import { TNetworkInfo } from 'eth-hooks/models';
+
 import { INFURA_ID } from './constants';
 
 export type TNetworkNames =

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 
 const componentMessages = (error: Error): { msg: string; showDetails: boolean; msgDetails: string } => {

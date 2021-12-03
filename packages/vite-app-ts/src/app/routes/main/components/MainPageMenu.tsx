@@ -1,6 +1,6 @@
+import { Menu } from 'antd';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu } from 'antd';
 
 export interface IMainPageMenuProps {
   route: string;

@@ -1,11 +1,12 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-import React, { FC, lazy, Suspense } from 'react';
-import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
-import { ErrorBoundary, ErrorFallback } from '~~/app/common/ErrorFallback';
-import { BLOCKNATIVE_DAPPID } from '~~/models/constants/constants';
-import { subgraphUri } from '~~/config/subgraphConfig';
-import { EthersAppContext } from 'eth-hooks/context';
 import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-components/models';
+import { EthersAppContext } from 'eth-hooks/context';
+import { FC, lazy, Suspense } from 'react';
+import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
+
+import { ErrorBoundary, ErrorFallback } from '~~/app/common/ErrorFallback';
+import { subgraphUri } from '~~/config/subgraphConfig';
+import { BLOCKNATIVE_DAPPID } from '~~/models/constants/constants';
 
 /**
  * See MainPage.tsx for main app component
@@ -23,7 +24,7 @@ import '~~/styles/css/app.css';
 // load saved theme
 const savedTheme = window.localStorage.getItem('theme');
 
-//setup themes for theme switcher
+// setup themes for theme switcher
 const themes = {
   dark: './dark-theme.css',
   light: './light-theme.css',

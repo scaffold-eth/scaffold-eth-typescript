@@ -23,7 +23,7 @@ typechain
 *.tsbuildinfo
 
 # secrets
-.secret
+*.secret
 
 packages/subgraph/config/config.json
 

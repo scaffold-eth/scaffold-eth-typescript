@@ -1,28 +1,25 @@
-import React, { FC, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import '~~/styles/main-page.css';
-import { useGasPrice, useContractLoader, useContractReader, useBalance } from 'eth-hooks';
+import { useContractLoader, useContractReader, useBalance, useEventListener } from 'eth-hooks';
 import { useDexEthPrice } from 'eth-hooks/dapps';
-
 import { GenericContract } from 'eth-components/ant/generic-contract';
-import { Hints, Subgraph, ExampleUI } from '~~/app/routes';
-import { transactor } from 'eth-components/functions';
 
-import { ethers } from 'ethers';
-
-import { useEventListener } from 'eth-hooks';
 import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from './components';
-import { useScaffoldProviders as useScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
-import { useBurnerFallback } from '~~/app/routes/main/hooks/useBurnerFallback';
 import { useScaffoldHooks as useScaffoldHooksExamples } from './hooks/useScaffoldHooksExamples';
-import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
-import { subgraphUri } from '~~/config/subgraphConfig';
-import { useEthersContext } from 'eth-hooks/context';
-import { NETWORKS } from '~~/models/constants/networks';
-import { mainnetProvider } from '~~/config/providersConfig';
-import { YourContract } from '~~/generated/contract-types';
+
+import { Hints, Subgraph, ExampleUI } from '~~/app/routes';
 import { useAppContracts } from '~~/app/routes/main/hooks/useAppContracts';
+import { useBurnerFallback } from '~~/app/routes/main/hooks/useBurnerFallback';
+import { useScaffoldProviders as useScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
+import { mainnetProvider } from '~~/config/providersConfig';
+import { subgraphUri } from '~~/config/subgraphConfig';
+
+import { useEthersContext } from 'eth-hooks/context';
+
+import { YourContract } from '~~/generated/contract-types';
+import { NETWORKS } from '~~/models/constants/networks';
 
 export const DEBUG = false;
 

@@ -1,5 +1,6 @@
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { TEthersProvider, TNetworkInfo } from 'eth-hooks/models';
+
 import { INFURA_ID } from '~~/models/constants/constants';
 import { NETWORKS } from '~~/models/constants/networks';
 
@@ -25,7 +26,7 @@ if (DEBUG) console.log('📡 Connecting to Mainnet Ethereum');
 // attempt to connect to our own scaffold eth rpc and if that fails fall back to infura...
 const mainnetScaffoldEthProvider = new StaticJsonRpcProvider('https://rpc.scaffoldeth.io:48544');
 const mainnetInfura = new StaticJsonRpcProvider('https://mainnet.infura.io/v3/' + INFURA_ID);
-//const mainnetLightPool = new StaticJsonRpcProvider('https://main-light.eth.linkpool.io/');
+// const mainnetLightPool = new StaticJsonRpcProvider('https://main-light.eth.linkpool.io/');
 export const mainnetProvider =
   mainnetScaffoldEthProvider && mainnetScaffoldEthProvider._network ? mainnetScaffoldEthProvider : mainnetInfura;
 
