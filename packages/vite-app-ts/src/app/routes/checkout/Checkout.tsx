@@ -1,12 +1,12 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands,@typescript-eslint/no-unsafe-argument */
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { parseEther } from '@ethersproject/units';
 import { Button, Input, Spin, notification } from 'antd';
-import React, { FC, ReactElement, useState } from 'react';
+import { AddressInput, EtherInput } from 'eth-components/ant';
+import { TTransactor } from 'eth-components/functions';
+import { FC, ReactElement, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import StackGrid from 'react-stack-grid';
-import { TTransactor } from 'eth-components/functions';
-
-import { AddressInput, EtherInput } from 'eth-components/ant';
 
 export interface ICheckoutProps {
   setRoute: any;
@@ -102,7 +102,7 @@ export const Checkout: FC<ICheckoutProps> = (props) => {
                   placement: 'bottomRight',
                   description: false,
                 });
-              } else if (cart.length <= 0 && toAddress != '0x97843608a00e2bbc75ab0C1911387E002565DEDE') {
+              } else if (cart.length <= 0 && toAddress !== '0x97843608a00e2bbc75ab0C1911387E002565DEDE') {
                 notification.warning({
                   style: { marginBottom: 64 },
                   message: 'Sorry this 🏰 buidlguidl funding.',
