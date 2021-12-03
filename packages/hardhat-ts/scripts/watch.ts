@@ -1,19 +1,19 @@
-import { exec } from 'child_process';
+import { exec } from 'child_process'
 
-import watch from 'node-watch';
+import watch from 'node-watch'
 
 const run = (): void => {
-  console.log('🛠  Compiling & Deploying...');
+  console.log('🛠  Compiling & Deploying...')
   exec('yarn deploy', function (error, stdout, stderr) {
-    console.log(stdout);
-    if (error) console.log(error);
-    if (stderr) console.log(stderr);
-  });
-};
+    console.log(stdout)
+    if (error) console.log(error)
+    if (stderr) console.log(stderr)
+  })
+}
 
-console.log('🔬 Watching Contracts...');
+console.log('🔬 Watching Contracts...')
 watch('./contracts', { recursive: true }, function (evt, name) {
-  console.log('%s changed.', name);
-  run();
-});
-run();
+  console.log('%s changed.', name)
+  run()
+})
+run()

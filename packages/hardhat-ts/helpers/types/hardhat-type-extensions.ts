@@ -1,11 +1,11 @@
-import '@typechain/hardhat';
-import '@nomiclabs/hardhat-waffle';
-import '@nomiclabs/hardhat-ethers';
-import '@tenderly/hardhat-tenderly';
-import 'hardhat-deploy';
+import '@typechain/hardhat'
+import '@nomiclabs/hardhat-waffle'
+import '@nomiclabs/hardhat-ethers'
+import '@tenderly/hardhat-tenderly'
+import 'hardhat-deploy'
 
-import { HardhatRuntimeEnvironment } from 'hardhat/types';
-import 'hardhat-deploy/src/type-extensions';
+import { HardhatRuntimeEnvironment } from 'hardhat/types'
+import 'hardhat-deploy/src/type-extensions'
 
 // export type ContractJson = {
 //   _format: string;
@@ -18,4 +18,4 @@ import 'hardhat-deploy/src/type-extensions';
 //   address: string;
 // };
 
-export type { HardhatRuntimeEnvironment as HardhatRuntimeEnvironmentExtended };
+export type { HardhatRuntimeEnvironment as HardhatRuntimeEnvironmentExtended }

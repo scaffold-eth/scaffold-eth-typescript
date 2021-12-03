@@ -24,7 +24,7 @@
         "singleQuote": true,
         "bracketSpacing": true,
         "arrowParens": "always",
-        "semi": true
+        "semi": false
       }
     }
   ]
