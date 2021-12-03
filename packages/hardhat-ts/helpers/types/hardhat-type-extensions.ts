@@ -1,6 +1,3 @@
-import { HardhatEthersHelpers } from '@nomiclabs/hardhat-ethers/dist/src/types';
-import { ethers } from 'ethers';
-
 import '@typechain/hardhat';
 import '@nomiclabs/hardhat-waffle';
 import '@nomiclabs/hardhat-ethers';
@@ -22,5 +19,3 @@ import 'hardhat-deploy/src/type-extensions';
 // };
 
 export type { HardhatRuntimeEnvironment as HardhatRuntimeEnvironmentExtended };
-
-export type TEthers = typeof ethers & HardhatEthersHelpers;
