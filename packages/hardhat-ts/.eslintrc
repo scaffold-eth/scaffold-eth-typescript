@@ -71,7 +71,7 @@
     "no-duplicate-imports": "warn",
     //"dynamic-import-chunkname": "warn",
     "import/order": [
-      "warn",
+      "error",
       {
         "alphabetize": {
           "order": "asc",
