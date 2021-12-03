@@ -1,13 +1,14 @@
-import React, { FC, useContext, useMemo, useState } from 'react';
-import { Button } from 'antd';
-import { useBalance } from 'eth-hooks';
-import { transactor } from 'eth-components/functions';
 import { parseEther } from '@ethersproject/units';
+import { Button } from 'antd';
+import { transactor } from 'eth-components/functions';
 import { EthComponentsSettingsContext } from 'eth-components/models';
-import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
-import { utils } from 'ethers';
+import { useBalance } from 'eth-hooks';
 import { IEthersContext, useEthersContext } from 'eth-hooks/context';
+import { utils } from 'ethers';
+import { FC, useContext, useMemo, useState } from 'react';
 import { useDebounce } from 'use-debounce';
+
+import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
 
 interface IFaucetButton {
   scaffoldAppProviders: IScaffoldAppProviders;

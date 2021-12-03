@@ -1,11 +1,12 @@
-import React, { FC } from 'react';
 import { GenericContract } from 'eth-components/ant/generic-contract';
-import { Contract } from 'ethers';
 import { useContractLoader } from 'eth-hooks';
-import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
 import { useEthersContext } from 'eth-hooks/context';
-import { NETWORKS } from '~~/models/constants/networks';
 import { TContractLoaderConfig } from 'eth-hooks/models';
+import { Contract } from 'ethers';
+import { FC } from 'react';
+
+import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
+import { NETWORKS } from '~~/models/constants/networks';
 export interface IMainPageContractsProps {
   scaffoldAppProviders: IScaffoldAppProviders;
   mainnetContracts: Record<string, Contract>;
@@ -56,7 +57,7 @@ export const MainPageContracts: FC<IMainPageContractsProps> = (props) => {
           />
         */}
 
-        {/***********
+        {/** *********
          *  ❓ Uncomment to display and interact with an external contract (DAI on mainnet):
          ********** */}
         <GenericContract

@@ -19,7 +19,7 @@ packages/**/data
 # ts
 packages/hardhat-ts/cache
 # secrets
-.secret
+*.secret
 
 packages/subgraph/config/config.json
 tenderly.yaml

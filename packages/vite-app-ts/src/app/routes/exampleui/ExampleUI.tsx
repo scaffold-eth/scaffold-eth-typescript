@@ -1,17 +1,16 @@
 import { SyncOutlined } from '@ant-design/icons';
+import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { formatEther, parseEther } from '@ethersproject/units';
 import { Button, Card, DatePicker, Divider, Input, List, Progress, Slider, Spin, Switch } from 'antd';
-import { Signer, Contract } from 'ethers';
-import React, { useState, FC, useContext } from 'react';
-
 import { Address, Balance } from 'eth-components/ant';
-import { transactor, TTransactor } from 'eth-components/functions';
-import { StaticJsonRpcProvider } from '@ethersproject/providers';
-import { useEthersContext } from 'eth-hooks/context';
-import { useContractLoader, useContractReader, useEventListener, useGasPrice } from 'eth-hooks';
-import { YourContract } from '~~/generated/contract-types';
-import { useAppContracts } from '~~/app/routes/main/hooks/useAppContracts';
+import { transactor } from 'eth-components/functions';
 import { EthComponentsSettingsContext } from 'eth-components/models';
+import { useContractLoader, useContractReader, useEventListener, useGasPrice } from 'eth-hooks';
+import { useEthersContext } from 'eth-hooks/context';
+import { useState, FC, useContext } from 'react';
+
+import { useAppContracts } from '~~/app/routes/main/hooks/useAppContracts';
+import { YourContract } from '~~/generated/contract-types';
 
 export interface IExampleUIProps {
   mainnetProvider: StaticJsonRpcProvider;
@@ -27,8 +26,8 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
   const readContracts = useContractLoader(appContractConfig);
   const writeContracts = useContractLoader(appContractConfig, ethersContext?.signer);
 
-  const yourContractRead = readContracts['YourContract'] as YourContract;
-  const yourContractWrite = writeContracts['YourContract'] as YourContract;
+  const yourContractRead = readContracts.YourContract as YourContract;
+  const yourContractWrite = writeContracts.YourContract as YourContract;
   const purpose = useContractReader<string>(yourContractRead, {
     contractName: 'YourContract',
     functionName: 'purpose',
@@ -67,15 +66,11 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
               const result = tx?.(yourContractWrite?.setPurpose(newPurpose), (update: any) => {
                 console.log('📡 Transaction Update:', update);
                 if (update && (update.status === 'confirmed' || update.status === 1)) {
-                  console.log(' 🍾 Transaction ' + update.hash + ' finished!');
+                  console.log(` 🍾 Transaction ${update.hash} finished!`);
                   console.log(
-                    ' ⛽️ ' +
-                      update.gasUsed +
-                      '/' +
-                      (update.gasLimit || update.gas) +
-                      ' @ ' +
-                      parseFloat(update.gasPrice) / 1000000000 +
-                      ' gwei'
+                    ` ⛽️ ${update.gasUsed}/${update.gasLimit || update.gas} @ ${
+                      parseFloat(update.gasPrice) / 1000000000
+                    } gwei`
                   );
                 }
               });
@@ -176,7 +171,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
           dataSource={setPurposeEvents}
           renderItem={(item: any) => {
             return (
-              <List.Item key={item.blockNumber + '_' + item.sender + '_' + item.purpose}>
+              <List.Item key={`${item.blockNumber}_${item.sender}_${item.purpose}`}>
                 <Address address={item[0]} ensProvider={mainnetProvider} fontSize={16} /> =&gt
                 {item[1]}
               </List.Item>

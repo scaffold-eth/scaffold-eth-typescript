@@ -1,16 +1,17 @@
 import { gql, useQuery } from '@apollo/client';
 import { JsonRpcProvider, Web3Provider } from '@ethersproject/providers';
 import { Button, Input, Table, Typography } from 'antd';
-import { Contract } from 'ethers';
-import GraphiQL from 'graphiql';
 import 'graphiql/graphiql.min.css';
-import React, { FC, ReactElement, useContext, useState } from 'react';
-import { transactor, TTransactor } from 'eth-components/functions';
-
 import { Address } from 'eth-components/ant';
+import { transactor } from 'eth-components/functions';
 import { EthComponentsSettingsContext } from 'eth-components/models';
 import { useGasPrice } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
+import { Contract } from 'ethers';
+import GraphiQL from 'graphiql';
+import React, { FC, ReactElement, useContext, useState } from 'react';
+
+import { YourContract } from '../../../generated/contract-types';
 
 const highlight: React.CSSProperties = {
   marginLeft: 4,
@@ -88,6 +89,8 @@ export const Subgraph: FC<ISubgraphProps> = (props) => {
   const deployWarning = (
     <div style={{ marginTop: 8, padding: 8 }}>Warning: 🤔 Have you deployed your subgraph yet?</div>
   );
+
+  const YourContract = props.writeContracts.YourContract as YourContract;
 
   return (
     <>
@@ -182,7 +185,7 @@ export const Subgraph: FC<ISubgraphProps> = (props) => {
             onClick={(): void => {
               console.log('newPurpose', newPurpose);
               /* look how you call setPurpose on your contract: */
-              tx?.(props.writeContracts.YourContract.setPurpose(newPurpose));
+              tx?.(YourContract.setPurpose(newPurpose));
             }}>
             Set Purpose
           </Button>

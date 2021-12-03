@@ -1,16 +1,14 @@
-import { useContext, useEffect } from 'react';
-import { ethers } from 'ethers';
-import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
-import { DEBUG } from '../Main';
-import { useBalance, useContractReader, useGasPrice, useOnRepetition } from 'eth-hooks';
-
-import { useEthersContext } from 'eth-hooks/context';
-import { getNetworkInfo } from '~~/helpers';
 import { transactor } from 'eth-components/functions';
 import { EthComponentsSettingsContext } from 'eth-components/models';
-import { parseEther } from '@ethersproject/units';
-import { config } from 'process';
-import { NETWORKS } from '~~/models/constants/networks';
+import { useBalance, useContractReader, useGasPrice, useOnRepetition } from 'eth-hooks';
+import { useEthersContext } from 'eth-hooks/context';
+import { ethers } from 'ethers';
+import { useContext, useEffect } from 'react';
+
+import { DEBUG } from '../Main';
+
+import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
+import { getNetworkInfo } from '~~/helpers';
 
 /**
  * Logs to console current app state.  Shows you examples on how to use hooks!
@@ -30,7 +28,7 @@ export const useScaffoldHooks = (
   const ethersContext = useEthersContext();
   const ethComponentsSettings = useContext(EthComponentsSettingsContext);
 
-  let currentChainId: number | undefined = ethersContext.chainId;
+  const currentChainId: number | undefined = ethersContext.chainId;
 
   // ---------------------
   // 🏦 get your balance
@@ -74,16 +72,15 @@ export const useScaffoldHooks = (
   );
 
   useOnRepetition(
-    async (): Promise<void> =>
-      console.log(`⛓ A new localblock block is here: ${await scaffoldAppProviders.localProvider.blockNumber}`),
+    (): void => console.log(`⛓ A new localblock block is here: ${scaffoldAppProviders.localProvider.blockNumber}`),
     {
       provider: scaffoldAppProviders.localProvider,
     }
   );
 
-  //----------------------
+  // ----------------------
   // ✍🏽 writing to contracts
-  //----------------------
+  // ----------------------
   // The transactor wraps transactions and provides notificiations
   // you can use this for read write transactions
   // check out faucetHintButton.tsx for an example.

@@ -1,6 +1,7 @@
-import Web3Modal, { ICoreOptions } from 'web3modal';
-import { INFURA_ID } from '~~/models/constants/constants';
+import { ICoreOptions } from 'web3modal';
+
 import { localNetworkInfo } from '~~/config/providersConfig';
+import { INFURA_ID } from '~~/models/constants/constants';
 
 export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
   const Portis = (await import('@portis/web3')).default;
@@ -44,7 +45,7 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
       description: 'Connect to your Coinbase Wallet (not coinbase.com)',
     },
     package: walletLinkProvider,
-    connector: async (provider: any, _options: any) => {
+    connector: async (provider: any, _options: any): Promise<any> => {
       await provider.enable();
       return provider;
     },
@@ -54,7 +55,7 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
     package: Authereum,
   };
 
-  //network: 'mainnet', // Optional. If using WalletConnect on xDai, change network to "xdai" and add RPC info below for xDai chain.
+  // network: 'mainnet', // Optional. If using WalletConnect on xDai, change network to "xdai" and add RPC info below for xDai chain.
   const walletConnectEthereum = {
     package: WalletConnectProvider,
     options: {
@@ -106,7 +107,7 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
       walletconnect: walletConnectEthereum,
       portis: portis,
       fortmatic: formatic,
-      //torus: torus,
+      // torus: torus,
       authereum: authereum,
       'custom-walletlink': coinbaseWalletLink,
     },
