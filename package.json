@@ -48,7 +48,6 @@
       "deploy-and-graph": "yarn deploy && yarn graph-ship-local",
       "theme": "yarn app theme",
       "watch-theme": "yarn app watch",
-
       "contracts": "yarn workspace @scaffold-eth/hardhat",
       "app": "yarn workspace @scaffold-eth/vite-app",
       "services": "yarn workspace @scaffold-eth/services",

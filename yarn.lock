@@ -2113,6 +2113,7 @@ __metadata:
     "@types/fs-extra": ^9.0.11
     "@types/mocha": ^9.0.0
     "@types/node": ^16.11.1
+    "@types/semver": ^7.3.9
     "@typescript-eslint/eslint-plugin": ^5.5.0
     "@typescript-eslint/parser": ^5.5.0
     chai: ^4.3.4
@@ -2142,6 +2143,7 @@ __metadata:
     prettier-plugin-solidity: ^1.0.0-beta.19
     qrcode-terminal: ^0.12.0
     rlp: ^2.2.7
+    semver: ^7.3.5
     solhint: ^3.3.6
     solhint-plugin-prettier: ^0.0.5
     solidity-coverage: ^0.7.17
@@ -3196,6 +3198,13 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: 1bd10b9afa724084b655dc81b7b315def3d2d0e272014ef16009fa76e17537411c07c0695fdea412bc7b36d2a02687f5fea33522d55b8ef29eda42992f812913
+  languageName: node
+  linkType: hard
+
+"@types/semver@npm:^7.3.9":
+  version: 7.3.9
+  resolution: "@types/semver@npm:7.3.9"
+  checksum: 60bfcfdfa7f937be2c6f4b37ddb6714fb0f27b05fe4cbdfdd596a97d35ed95d13ee410efdd88e72a66449d0384220bf20055ab7d6b5df10de4990fbd20e5cbe0
   languageName: node
   linkType: hard
 
