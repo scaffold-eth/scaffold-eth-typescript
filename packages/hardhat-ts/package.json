@@ -17,7 +17,6 @@
     "account": "yarn hh account",
     "lint": "eslint '**/*.ts'",
     "format": "prettier --write --loglevel error '**/*.sol' && yarn lint --fix --quiet",
-
     "git:future": "./scripts/git/future.sh",
     "git:portal": "./scripts/git/portal.sh"
   },
@@ -46,6 +45,7 @@
     "hardhat-shorthand": "^1.0.0",
     "moment": "^2.29.1",
     "qrcode-terminal": "^0.12.0",
+    "semver": "^7.3.5",
     "typechain": "^5.1.1"
   },
   "devDependencies": {
@@ -53,6 +53,7 @@
     "@types/fs-extra": "^9.0.11",
     "@types/mocha": "^9.0.0",
     "@types/node": "^16.11.1",
+    "@types/semver": "^7.3.9",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
     "chai": "^4.3.4",

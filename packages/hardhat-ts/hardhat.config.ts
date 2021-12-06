@@ -25,6 +25,13 @@ import {
   NetworkUserConfig,
 } from 'hardhat/types'
 import rrequire from 'helpers/rrequire'
+import * as semver from 'semver'
+
+const NODE_VERSION = 'v16.13.1'
+if (!semver.satisfies(process.version, NODE_VERSION))
+  throw new Error(
+    `Incorrect NodeJS version being used (${process.version}). Expected: ${NODE_VERSION}`
+  )
 
 config()
 const { isAddress, getAddress, formatUnits, parseUnits, parseEther } = utils
