@@ -1,0 +1,69 @@
+{
+   "name": "@scaffold-eth/typescript",
+   "version": "0.2.0",
+   "keywords": [
+      "ethereum",
+      "react",
+      "uniswap",
+      "workspaces",
+      "yarn"
+   ],
+   "private": true,
+   "scripts": {
+      "build": "yarn workspace @scaffold-eth/vite-app build",
+      "serve": "yarn workspace @scaffold-eth/vite-app serve",
+      "chain": "yarn workspace @scaffold-eth/hardhat chain",
+      "fork": "yarn workspace @scaffold-eth/hardhat fork",
+      "node": "yarn workspace @scaffold-eth/hardhat chain",
+      "test": "yarn workspace @scaffold-eth/hardhat test",
+      "start": "yarn workspace @scaffold-eth/vite-app start",
+      "compile": "yarn workspace @scaffold-eth/hardhat compile",
+      "export": "yarn workspace @scaffold-eth/hardhat export",
+      "deploy": "yarn workspace @scaffold-eth/hardhat deploy",
+      "watch": "yarn workspace @scaffold-eth/hardhat watch",
+      "accounts": "yarn workspace @scaffold-eth/hardhat accounts",
+      "balance": "yarn workspace @scaffold-eth/hardhat balance",
+      "send": "yarn workspace @scaffold-eth/hardhat send",
+      "ipfs": "yarn workspace @scaffold-eth/vite-app ipfs",
+      "surge": "yarn workspace @scaffold-eth/vite-app surge",
+      "s3": "yarn workspace @scaffold-eth/vite-app s3",
+      "ship": "yarn workspace @scaffold-eth/vite-app ship",
+      "generate": "yarn workspace @scaffold-eth/hardhat generate",
+      "account": "yarn workspace @scaffold-eth/hardhat account",
+      "mine": "cd packages/hardhat-ts && npx hardhat mine",
+      "wallet": "cd packages/hardhat-ts && npx hardhat wallet",
+      "fundedwallet": "cd packages/hardhat-ts && npx hardhat fundedwallet",
+      "flatten": "cd packages/hardhat-ts && npx hardhat flatten",
+      "clean": "cd packages/hardhat-ts && npx hardhat clean",
+      "run-graph-node": "yarn workspace @scaffold-eth/services run-graph-node",
+      "remove-graph-node": "yarn workspace @scaffold-eth/services remove-graph-node",
+      "clean-graph-node": "yarn workspace @scaffold-eth/services clean-graph-node",
+      "graph-prepare": "mustache packages/subgraph/config/config.json packages/subgraph/src/subgraph.template.yaml > packages/subgraph/subgraph.yaml",
+      "graph-codegen": "yarn workspace @scaffold-eth/subgraph graph codegen",
+      "graph-build": "yarn workspace @scaffold-eth/subgraph graph build",
+      "graph-create-local": "yarn workspace @scaffold-eth/subgraph graph create --node http://localhost:8020/ scaffold-eth/your-contract",
+      "graph-remove-local": "yarn workspace @scaffold-eth/subgraph graph remove --node http://localhost:8020/ scaffold-eth/your-contract",
+      "graph-deploy-local": "yarn workspace @scaffold-eth/subgraph graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 scaffold-eth/your-contract",
+      "graph-ship-local": "yarn graph-prepare && yarn graph-codegen && yarn graph-deploy-local",
+      "deploy-and-graph": "yarn deploy && yarn graph-ship-local",
+      "theme": "yarn workspace @scaffold-eth/react-app theme",
+      "watch-theme": "yarn workspace @scaffold-eth/react-app watch"
+   },
+   "workspaces": {
+      "packages": [
+         "packages/hardhat-ts",
+         "packages/vite-app-ts",
+         "packages/services/*",
+         "packages/subgraph"
+      ]
+   },
+   "packageManager": "yarn@3.1.0",
+   "devDependencies": {
+      "eslint": "^7.32.0",
+      "prettier": "^2.4.1",
+      "shx": "^0.3.3"
+   },
+   "dependencies": {
+      "react": "^17.0.2"
+   }
+}
