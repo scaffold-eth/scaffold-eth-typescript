@@ -114,28 +114,16 @@ interface ContractsGetConfig {
  *  directly
  */
 const updateEtherscanConfig = (hre: HardhatRuntimeEnvironment): void => {
-  let apiKey: string
+  let apiKey: string | undefined
   switch (hre.network.name) {
     case 'polygon':
     case 'matic':
-    case 'mumbai': {
-      const key = process.env.POLYGONSCAN_API_KEY
-      if (!key)
-        throw new Error(
-          'No environment variable set for POLYGON_API_KEY. Check your .env file'
-        )
-      apiKey = key
+    case 'mumbai':
+      apiKey = process.env.POLYGONSCAN_API_KEY
       break
-    }
 
-    default: {
-      const key = process.env.ETHERSCAN_API_KEY
-      if (!key)
-        throw new Error(
-          'No environment variable set for ETHERSCAN_API_KEY. Check your .env file'
-        )
-      apiKey = key
-    }
+    default:
+      apiKey = process.env.ETHERSCAN_API_KEY
   }
 
   hre.config.etherscan.apiKey = apiKey
