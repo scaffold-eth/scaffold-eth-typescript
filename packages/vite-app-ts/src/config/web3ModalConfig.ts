@@ -11,23 +11,8 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
   const { ConnectToStaticJsonRpcProvider } = await import('eth-hooks/context');
   const { StaticJsonRpcProvider } = await import('@ethersproject/providers');
 
-  const portis = {
-    display: {
-      logo: 'https://user-images.githubusercontent.com/9419140/128913641-d025bc0c-e059-42de-a57b-422f196867ce.png',
-      name: 'Portis',
-      description: 'Connect to Portis App',
-    },
-    package: Portis,
-    options: {
-      id: '6255fb2b-58c8-433b-a2c9-62098c05ddc9',
-    },
-  };
-  const formatic = {
-    package: Fortmatic,
-    options: {
-      key: 'pk_live_5A7C91B2FC585A17',
-    },
-  };
+  // note: ⚠️ meta mask and coinbase wallets may clash.
+  // you might need to check this: https://github.com/Web3Modal/web3modal/issues/316
 
   // Coinbase walletLink init
   const walletLink = new WalletLink({
@@ -48,10 +33,6 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
       await provider.enable();
       return provider;
     },
-  };
-
-  const authereum = {
-    package: Authereum,
   };
 
   //network: 'mainnet', // Optional. If using WalletConnect on xDai, change network to "xdai" and add RPC info below for xDai chain.
@@ -95,6 +76,28 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
       rpc: {
         [localNetworkInfo.chainId]: localNetworkInfo.rpcUrl,
       },
+    },
+  };
+
+  const authereum = {
+    package: Authereum,
+  };
+
+  const portis = {
+    display: {
+      logo: 'https://user-images.githubusercontent.com/9419140/128913641-d025bc0c-e059-42de-a57b-422f196867ce.png',
+      name: 'Portis',
+      description: 'Connect to Portis App',
+    },
+    package: Portis,
+    options: {
+      id: '6255fb2b-58c8-433b-a2c9-62098c05ddc9',
+    },
+  };
+  const formatic = {
+    package: Fortmatic,
+    options: {
+      key: 'pk_live_5A7C91B2FC585A17',
     },
   };
 

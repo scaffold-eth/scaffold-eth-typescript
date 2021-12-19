@@ -3,6 +3,6 @@
 # Except this file
 !.gitignore
 !contracts
-!/contracts/external_contracts.js
-!/contracts/external_contracts.ts
 !/contract-types
+!/eth-sdk.config.ts
+!hardhat_contracts.json.bak

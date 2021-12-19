@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import '~~/styles/main-page.css';
-import { useContractLoaderConfig, useContractLoader, useContractReader, useBalance } from 'eth-hooks';
+import { useContractLoader, useContractReader, useBalance } from 'eth-hooks';
 import { useDexEthPrice } from 'eth-hooks/dapps';
 
 import { GenericContract } from 'eth-components/ant/generic-contract';
@@ -18,11 +18,11 @@ import { useBurnerFallback } from '~~/app/routes/main/hooks/useBurnerFallback';
 import { useScaffoldHooks as useScaffoldHooksExamples } from './hooks/useScaffoldHooksExamples';
 import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
 import { subgraphUri } from '~~/config/subgraphConfig';
-import { useEthersContext } from 'eth-hooks/context';
+import { useContractContext, useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
 import { mainnetProvider } from '~~/config/providersConfig';
-import { YourContract } from '~~/generated/contract-types';
-import { loadAppContractsConfig } from '~~/config/loadAppContractsConfig';
+import { loadAppContractsDefinition } from '~~/config/loadAppContractsDefinition';
+import { YourContract } from '~~/generated/contract-types/YourContract';
 
 export const DEBUG = false;
 
@@ -46,7 +46,8 @@ export const Main: FC = () => {
   // -----------------------------
   // ⚙ contract config
   // get the contracts configuration for the app
-  const appContractConfig = useContractLoaderConfig(loadAppContractsConfig);
+  const data = useContractContext();
+  data?.setAppContractConnectorList(loadAppContractsDefinition());
 
   // Load in your 📝 readonly contract and read a value from it:
   const readContracts = useContractLoader(appContractConfig);
