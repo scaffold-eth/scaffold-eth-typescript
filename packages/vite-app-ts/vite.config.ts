@@ -29,7 +29,7 @@ export default defineConfig({
   },
   define: {},
   optimizeDeps: {
-    exclude: ['@apollo/client', `graphql`],
+    exclude: ['@apollo/client', `graphql`, 'ipfs-http-client'],
   },
   resolve: {
     preserveSymlinks: true,

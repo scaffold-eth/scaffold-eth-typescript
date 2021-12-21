@@ -17,7 +17,7 @@ import {
 } from 'eth-hooks';
 import { YourContract } from '~~/generated/contract-types';
 import { EthComponentsSettingsContext } from 'eth-components/models';
-import { loadAppContractsDefinition } from '~~/config/loadAppContractsDefinition';
+import { loadAppContractConnectors } from '~~/config/contracts/loadAppContractConnectors';
 
 export interface IExampleUIProps {
   mainnetProvider: StaticJsonRpcProvider;
@@ -29,7 +29,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
   const [newPurpose, setNewPurpose] = useState('loading...');
   const ethersContext = useEthersContext();
 
-  const appContractConfig = useContractLoaderConfig(loadAppContractsDefinition);
+  const appContractConfig = useContractLoaderConfig(loadAppContractConnectors);
   const readContracts = useContractLoader(appContractConfig);
   const writeContracts = useContractLoader(appContractConfig);
 

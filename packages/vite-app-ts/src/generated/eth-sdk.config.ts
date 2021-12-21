@@ -1,16 +1,18 @@
 import { defineConfig } from '@dethcrypto/eth-sdk';
 import { networkIDtoSymbol } from '@dethcrypto/eth-sdk/dist/abi-management/networks';
-import { externalContractList } from '../config/externalContractList';
+import { externalContractsAddressMap } from '../config/contracts/externalContractsAddressMap';
 
-const contracts: Record<string, any> = {};
-Object.keys(externalContractList)
+const contractsByNetworkName: Record<string, any> = {};
+Object.keys(externalContractsAddressMap)
   .map(Number)
-  .forEach((m) => {
-    const networkName = networkIDtoSymbol[m as keyof typeof networkIDtoSymbol];
-    contracts[networkName] = externalContractList[m];
+  .forEach((chainId) => {
+    const networkName = networkIDtoSymbol[chainId as keyof typeof networkIDtoSymbol];
+    contractsByNetworkName[networkName] = externalContractsAddressMap[chainId];
   });
 
+console.log(contractsByNetworkName);
+
 export default defineConfig({
-  contracts: contracts,
+  contracts: contractsByNetworkName,
   outputPath: './src/generated/external-contracts/',
 });

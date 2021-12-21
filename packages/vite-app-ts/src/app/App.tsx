@@ -4,7 +4,6 @@ import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import { ErrorBoundary, ErrorFallback } from '~~/app/common/ErrorFallback';
 import { BLOCKNATIVE_DAPPID } from '~~/models/constants/constants';
 import { subgraphUri } from '~~/config/subgraphConfig';
-import { EthersAppContext, ContractsContext } from 'eth-hooks/context';
 import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-components/models';
 
 /**
@@ -19,6 +18,9 @@ import '~~/styles/css/tailwind-base.pcss';
 import '~~/styles/css/tailwind-components.pcss';
 import '~~/styles/css/tailwind-utilities.pcss';
 import '~~/styles/css/app.css';
+import { TAppContractNames } from '~~/config/contracts/loadAppContractConnectors';
+import { ContractsContext } from '~~/config/contracts/contractsContextFactory';
+import { EthersAppContext } from 'eth-hooks/context';
 
 // load saved theme
 const savedTheme = window.localStorage.getItem('theme');

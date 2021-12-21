@@ -18,11 +18,10 @@ import { useBurnerFallback } from '~~/app/routes/main/hooks/useBurnerFallback';
 import { useScaffoldHooks as useScaffoldHooksExamples } from './hooks/useScaffoldHooksExamples';
 import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
 import { subgraphUri } from '~~/config/subgraphConfig';
-import { useContractContext, useEthersContext } from 'eth-hooks/context';
+import { useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
 import { mainnetProvider } from '~~/config/providersConfig';
-import { loadAppContractsDefinition } from '~~/config/loadAppContractsDefinition';
-import { YourContract } from '~~/generated/contract-types/YourContract';
+import { loadAppContractConnectors } from '~~/config/contracts/loadAppContractConnectors';
 
 export const DEBUG = false;
 
@@ -46,24 +45,24 @@ export const Main: FC = () => {
   // -----------------------------
   // ⚙ contract config
   // get the contracts configuration for the app
-  const data = useContractContext();
-  data?.setAppContractConnectorList(loadAppContractsDefinition());
+  const contractDispatch = useContractDispatch();
 
-  // Load in your 📝 readonly contract and read a value from it:
-  const readContracts = useContractLoader(appContractConfig);
-
-  // If you want to make 🔐 write transactions to your contracts, pass the signer:
-  const writeContracts = useContractLoader(appContractConfig);
-
-  // 👾 external contract example
-  // If you want to bring in the mainnet DAI contract it would look like:
-  // you need to pass the appropriate provider (readonly) or signer (write)
-  const mainnetContracts = useContractLoader(appContractConfig);
+  useEffect(() => {
+    const loadContracts = async () => {
+      const contractConnectors = await loadAppContractConnectors();
+      if (contractDispatch?.setAppContractConnectorList) {
+        contractDispatch?.setAppContractConnectorList(contractConnectors ?? {});
+      }
+    };
+    loadContracts();
+  }, [contractDispatch?.setAppContractConnectorList]);
 
   // -----------------------------
   // example for current contract and listners
   // -----------------------------
-  const yourContractRead = readContracts['YourContract'] as YourContract;
+  const contractContext = useContract();
+
+  const yourContractRead = contractContext?.appContractDefinitions.connect(ethersContext, 'YourContract');
   // keep track of a variable from the contract in the local React state:
   const purpose = useContractReader<string>(yourContractRead, {
     contractName: 'YourContract',
@@ -85,7 +84,7 @@ export const Main: FC = () => {
   // Hooks use and examples
   // -----------------------------
   // 🎉 Console logs & More hook examples:  Check out this to see how to get
-  useScaffoldHooksExamples(scaffoldAppProviders, readContracts, writeContracts, mainnetContracts);
+  // useScaffoldHooksExamples(scaffoldAppProviders, readContracts, writeContracts, mainnetContracts);
 
   // -----------------------------
   // .... 🎇 End of examples

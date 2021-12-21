@@ -6,6 +6,7 @@ import { ICoreOptions } from 'web3modal';
 import { EthersModalConnector, useEthersContext } from 'eth-hooks/context';
 import { useThemeSwitcher } from 'react-css-theme-switcher';
 import { mainnetProvider, localProvider, targetNetworkInfo } from '~~/config/providersConfig';
+import { useGetUserFromProviders } from 'eth-hooks';
 
 export interface IScaffoldAppProviders {
   currentProvider: TEthersProvider | undefined;
@@ -18,6 +19,8 @@ export interface IScaffoldAppProviders {
 export const useScaffoldProviders = (): IScaffoldAppProviders => {
   const [web3Config, setWeb3Config] = useState<Partial<ICoreOptions>>();
   const ethersContext = useEthersContext();
+
+  const mainnetAdaptor = useGetUserFromProviders;
 
   useEffect(() => {
     // import async to split bundles

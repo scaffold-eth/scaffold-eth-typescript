@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "cross-env ENVIRONMENT=DEVELOPMENT vite",
-    "build:contracts": "cross-env ENVIRONMENT=DEVELOPMENT yarn eth-sdk -p ./src/generated",
+    "build:contracts": "yarn eth-sdk -p ./src/generated",
     "build": "tsc && yarn build:anttheme && cross-env ENVIRONMENT=PRODUCTION vite build",
     "build:anttheme": "yarn lessc -x -js ./src/styles/themes/light-theme.less ./public/light-theme.css && yarn lessc -x -js ./src/styles/themes/dark-theme.less ./public/dark-theme.css",
     "serve": "vite preview",
