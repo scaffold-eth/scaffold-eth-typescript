@@ -14,6 +14,7 @@ import { externalContractsAddressMap } from './externalContractsAddressMap';
  * edit: externalContractAddressMap.ts file to add your own external contracts
  */
 import * as externalContracts from '~~/generated/external-contracts/types';
+import { argsToArgsConfig } from 'graphql/type/definition';
 /**
  * Run `yarn compile` and `yarn deploy` to generate the external types
  * edit: externalContractAddressMap.ts file to add your own external contracts
@@ -34,6 +35,7 @@ const loader = (hardhatJson: THardhatContractsFileJson) => {
     // hardhat: is for your contracts: run `yarn compile` `yarn deploy`
     // external: is for contracts like DAI, UNI, etc.
     //  ⛳️ you need to define them in externalContractList.ts
+
     const result = {
       YourContract: createTypechainContractConnectorHardhatContract('YourContract', YourContract__factory, hardhatJson),
       Greeter: createTypechainContractConnectorHardhatContract('YourContract', Greeter__factory, hardhatJson),
@@ -74,5 +76,9 @@ export const loadAppContractConnectors = async () => {
   return loader(hardhatJson);
 };
 
-export type TAppContractConnectors = NonNullable<ReturnType<typeof loader>>;
-export type TAppContractNames = keyof TAppContractConnectors;
+export type TAppContractConnectorList = NonNullable<ReturnType<typeof loader>>;
+export type TAppContractNames = keyof TAppContractConnectorList;
+export type TAppContractConnector<GContractNames extends TAppContractNames> = TAppContractConnectorList[GContractNames];
+export type TAppContract<GContractNames extends TAppContractNames> = ReturnType<
+  TAppContractConnectorList[GContractNames]['connect']
+>;
