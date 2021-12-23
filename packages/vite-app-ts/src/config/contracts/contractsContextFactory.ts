@@ -1,5 +1,9 @@
 import { contractContextFactory } from 'eth-hooks/context';
-import { TAppContractNames } from '~~/config/contracts/loadAppContractConnectors';
+import {
+  TAppContractConnectorList,
+  TAppContractNames,
+  TAppContractTypes,
+} from '~~/config/contracts/loadAppContractConnectors';
 
 export const {
   ContractsContext,
@@ -7,4 +11,4 @@ export const {
   ContractsStateContext,
   useContractsDispatchContext,
   useContractsStateContext,
-} = contractContextFactory<TAppContractNames>();
+} = contractContextFactory<TAppContractNames, TAppContractConnectorList>();

@@ -1,4 +1,4 @@
-import { THardhatContractsFileJson, TTypechainContractFactory } from 'eth-hooks/models';
+import { TContractTypes, THardhatContractsFileJson, TTypechainContractFactory } from 'eth-hooks/models';
 
 import { YourContract__factory } from '~~/generated/contract-types/factories/YourContract__factory';
 
@@ -15,6 +15,8 @@ import { externalContractsAddressMap } from './externalContractsAddressMap';
  */
 import * as externalContracts from '~~/generated/external-contracts/types';
 import { argsToArgsConfig } from 'graphql/type/definition';
+import { BaseContract, Signer } from 'ethers';
+import { Provider } from 'react';
 /**
  * Run `yarn compile` and `yarn deploy` to generate the external types
  * edit: externalContractAddressMap.ts file to add your own external contracts
@@ -78,7 +80,18 @@ export const loadAppContractConnectors = async () => {
 
 export type TAppContractConnectorList = NonNullable<ReturnType<typeof loader>>;
 export type TAppContractNames = keyof TAppContractConnectorList;
-export type TAppContractConnector<GContractNames extends TAppContractNames> = TAppContractConnectorList[GContractNames];
-export type TAppContract<GContractNames extends TAppContractNames> = ReturnType<
-  TAppContractConnectorList[GContractNames]['connect']
+export type TAppContractConnectorTypes<GContractNames extends TAppContractNames> =
+  TAppContractConnectorList[GContractNames];
+export type TAppContractTypes<GContractName extends TAppContractNames> = TContractTypes<
+  GContractName,
+  TAppContractConnectorList
 >;
+
+// export type TAppContractTypes<GContractNames extends TAppContractNames> =
+//   TAppContractConnectorList[GContractNames]['connect'];
+
+// export type TAppContractTypes<GContractNames extends TAppContractNames, TList> = TList extends {
+//   [key in GContractNames]: { connect: (address: any, signerOrProvider: any) => infer U };
+// }
+//   ? U
+//   : BaseContract;

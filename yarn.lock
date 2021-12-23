@@ -2339,7 +2339,7 @@ __metadata:
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^1.1.5
     eth-components: 3.0.0-beta01
-    eth-hooks: 4.0.0-beta04
+    eth-hooks: 4.0.0-beta05
     ethereum-cryptography: ^0.1.3
     ethers: ^5.4.1
     fortmatic: ^2.2.1
@@ -9304,9 +9304,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:4.0.0-beta04":
-  version: 4.0.0-beta04
-  resolution: "eth-hooks@npm:4.0.0-beta04"
+"eth-hooks@npm:4.0.0-beta05":
+  version: 4.0.0-beta05
+  resolution: "eth-hooks@npm:4.0.0-beta05"
   dependencies:
     "@ethersproject/address": ^5.4.0
     "@ethersproject/bignumber": ^5.4.0
@@ -9332,7 +9332,7 @@ __metadata:
     "@uniswap/sdk": ^3.0.3
     react: ">=17.0.2"
     react-dom: ">=17.0.2"
-  checksum: b54cbb6fecfda8338b7b5bcb7637c16967a50e557b06adccfaedc3b1dc044f97f2326fc90ea7d0b887c8cbeeacc4942e804049477e815c5b53733fc0c2f22c0a
+  checksum: 7d203cf39152922ac7a395a30eac74ba5a8154d9554ef1ee9467f4e22685f791dd77dfc1018991398fad71fbc873458bb7b319a2627267567874ffa7e761815f
   languageName: node
   linkType: hard
 

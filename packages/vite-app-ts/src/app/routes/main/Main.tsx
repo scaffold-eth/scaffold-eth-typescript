@@ -22,6 +22,7 @@ import { useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
 import { mainnetProvider } from '~~/config/providersConfig';
 import { loadAppContractConnectors } from '~~/config/contracts/loadAppContractConnectors';
+import { useContractsDispatchContext, useContractsStateContext } from '~~/config/contracts/contractsContextFactory';
 
 export const DEBUG = false;
 
@@ -60,7 +61,15 @@ export const Main: FC = () => {
   // -----------------------------
   // example for current contract and listners
   // -----------------------------
-  const contractContext = useContract();
+  const contractContext = useContractsDispatchContext();
+  if (contractContext) {
+    loadAppContractConnectors().then((contractConnectors) => {
+      contractContext.setAppContractConnectors(contractConnectors);
+    }
+  }
+
+  const state = useContractsStateContext();
+  state?.appcontractDefinitions.
 
   const yourContractRead = contractContext?.appContractDefinitions.connect(ethersContext, 'YourContract');
   // keep track of a variable from the contract in the local React state:
