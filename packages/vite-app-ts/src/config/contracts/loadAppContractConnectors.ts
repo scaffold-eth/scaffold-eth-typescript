@@ -40,14 +40,14 @@ const loader = (hardhatJson: THardhatContractsFileJson) => {
 
     const result = {
       YourContract: createTypechainContractConnectorHardhatContract('YourContract', YourContract__factory, hardhatJson),
-      Greeter: createTypechainContractConnectorHardhatContract('YourContract', Greeter__factory, hardhatJson),
+      Greeter: createTypechainContractConnectorHardhatContract('Greeter', Greeter__factory, hardhatJson),
       DAI: createTypechainContractConnectorForExternalContract(
         'DAI',
         externalContracts.DAI__factory,
         externalContractsAddressMap
       ),
       UNI: createTypechainContractConnectorForExternalContract(
-        'DAI',
+        'UNI',
         externalContracts.UNI__factory,
         externalContractsAddressMap
       ),
@@ -86,12 +86,3 @@ export type TAppContractTypes<GContractName extends TAppContractNames> = TContra
   GContractName,
   TAppContractConnectorList
 >;
-
-// export type TAppContractTypes<GContractNames extends TAppContractNames> =
-//   TAppContractConnectorList[GContractNames]['connect'];
-
-// export type TAppContractTypes<GContractNames extends TAppContractNames, TList> = TList extends {
-//   [key in GContractNames]: { connect: (address: any, signerOrProvider: any) => infer U };
-// }
-//   ? U
-//   : BaseContract;

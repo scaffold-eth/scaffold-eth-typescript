@@ -21,8 +21,9 @@ import { subgraphUri } from '~~/config/subgraphConfig';
 import { useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
 import { mainnetProvider } from '~~/config/providersConfig';
-import { loadAppContractConnectors } from '~~/config/contracts/loadAppContractConnectors';
+import { loadAppContractConnectors, TAppContractNames } from '~~/config/contracts/loadAppContractConnectors';
 import { useContractsDispatchContext, useContractsStateContext } from '~~/config/contracts/contractsContextFactory';
+import { AppContractDefinitions } from 'eth-hooks/models';
 
 export const DEBUG = false;
 
@@ -46,17 +47,17 @@ export const Main: FC = () => {
   // -----------------------------
   // ⚙ contract config
   // get the contracts configuration for the app
-  const contractDispatch = useContractDispatch();
+  const contractDispatch = useContractsDispatchContext();
 
   useEffect(() => {
     const loadContracts = async () => {
       const contractConnectors = await loadAppContractConnectors();
-      if (contractDispatch?.setAppContractConnectorList) {
-        contractDispatch?.setAppContractConnectorList(contractConnectors ?? {});
+      if (contractDispatch) {
+        contractDispatch.setAppContractConnectors(contractConnectors ?? {});
       }
     };
     loadContracts();
-  }, [contractDispatch?.setAppContractConnectorList]);
+  }, [contractDispatch?.setAppContractConnectors]);
 
   // -----------------------------
   // example for current contract and listners
@@ -66,10 +67,15 @@ export const Main: FC = () => {
     loadAppContractConnectors().then((contractConnectors) => {
       contractContext.setAppContractConnectors(contractConnectors);
     }
-  }
+  };
+
+
 
   const state = useContractsStateContext();
-  state?.appcontractDefinitions.
+  if (state) {
+    state.appContractDefinitions.getmonkeys;
+    
+  }
 
   const yourContractRead = contractContext?.appContractDefinitions.connect(ethersContext, 'YourContract');
   // keep track of a variable from the contract in the local React state:
