@@ -51,7 +51,7 @@ const loader = (hardhatJson: THardhatContractsFileJson) => {
         externalContracts.UNI__factory,
         externalContractsAddressMap
       ),
-    };
+    } as const;
 
     return result;
   } catch {
@@ -79,10 +79,3 @@ export const loadAppContractConnectors = async () => {
 };
 
 export type TAppContractConnectorList = NonNullable<ReturnType<typeof loader>>;
-export type TAppContractNames = keyof TAppContractConnectorList;
-export type TAppContractConnectorTypes<GContractNames extends TAppContractNames> =
-  TAppContractConnectorList[GContractNames];
-export type TAppContractTypes<GContractName extends TAppContractNames> = TContractTypes<
-  GContractName,
-  TAppContractConnectorList
->;
