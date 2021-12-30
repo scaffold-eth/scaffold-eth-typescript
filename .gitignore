@@ -67,3 +67,4 @@ yarn-error.log*
 .yalc
 yalc.lock
 packages/vite-app-ts/dist
+packages/hardhat-ts/mnemonic.secret
