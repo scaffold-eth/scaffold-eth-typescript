@@ -9,7 +9,7 @@
     "serve": "vite preview",
     "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore ./src/**/*",
     "ipfs": "node ./scripts/ipfs.js",
-    "surge": "surge ./build",
+    "surge": "surge ./dist",
     "s3": "node ./scripts/s3.js",
     "ship": "yarn surge",
     "dev:link:components": "yalc link eth-components",
