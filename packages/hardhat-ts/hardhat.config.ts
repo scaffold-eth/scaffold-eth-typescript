@@ -24,6 +24,8 @@ import { HardhatUserConfig, task } from 'hardhat/config';
 import { HttpNetworkUserConfig } from 'hardhat/types';
 import { HardhatRuntimeEnvironmentExtended, TEthers } from 'helpers/types/hardhat-type-extensions';
 
+import { create } from 'ipfs-http-client';
+
 declare module 'hardhat/types/runtime' {
   // This is an example of an extension to the Hardhat Runtime Environment.
   // This new field will be available in tasks' actions, scripts, and tests.
@@ -403,3 +405,7 @@ task('send', 'Send ETH')
 
     return send(fromSigner as Signer, txRequest);
   });
+
+const sleep = (ms: number) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
