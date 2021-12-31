@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { ethers } from 'ethers';
 import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
-import { DEBUG } from '../Main';
+import { DEBUG } from '../../../../MainPage';
 import { useBalance, useContractReader, useGasPrice, useOnRepetition } from 'eth-hooks';
 
 import { useEthersContext } from 'eth-hooks/context';

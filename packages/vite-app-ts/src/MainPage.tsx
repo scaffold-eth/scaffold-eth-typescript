@@ -12,18 +12,17 @@ import { transactor } from 'eth-components/functions';
 import { ethers } from 'ethers';
 
 import { useEventListener } from 'eth-hooks';
-import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from './components';
+import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from './app/routes/main/components';
 import { useScaffoldProviders as useScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
 import { useBurnerFallback } from '~~/app/routes/main/hooks/useBurnerFallback';
-import { useScaffoldHooks as useScaffoldHooksExamples } from './hooks/useScaffoldHooksExamples';
+import { useScaffoldHooks as useScaffoldHooksExamples } from './app/routes/main/hooks/useScaffoldHooksExamples';
 import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
 import { subgraphUri } from '~~/config/subgraphConfig';
 import { useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
 import { mainnetProvider } from '~~/config/providersConfig';
-import { loadAppContractConnectors, TAppContractNames } from '~~/config/contracts/loadAppContractConnectors';
-import { useContractsDispatchContext, useContractsStateContext } from '~~/config/contracts/contractsContextFactory';
-import { AppContractDefinitions } from 'eth-hooks/models';
+import { contractsLoadConnectorsAsync } from '~~/config/contractsLoadConnectors';
+
 
 export const DEBUG = false;
 
@@ -51,7 +50,7 @@ export const Main: FC = () => {
 
   useEffect(() => {
     const loadContracts = async () => {
-      const contractConnectors = await loadAppContractConnectors();
+      const contractConnectors = await contractsLoadConnectorsAsync();
       if (contractDispatch) {
         contractDispatch.setAppContractConnectors(contractConnectors ?? {});
       }
@@ -64,7 +63,7 @@ export const Main: FC = () => {
   // -----------------------------
   const contractContext = useContractsDispatchContext();
   if (contractContext) {
-    loadAppContractConnectors().then((contractConnectors) => {
+    contractsLoadConnectorsAsync().then((contractConnectors) => {
       contractContext.setAppContractConnectors(contractConnectors);
     }
   };

@@ -7,9 +7,13 @@ import { subgraphUri } from '~~/config/subgraphConfig';
 import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-components/models';
 
 /**
- * See MainPage.tsx for main app component
+ * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
+ * See MainPage.tsx for main app component!
+ * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
+ *
+ * This file loads the app and sets up the react context.
+ * You don't need to change this file.
  */
-const MainPage = lazy(() => import('./routes/main/Main'));
 
 console.log('load app');
 
@@ -18,9 +22,8 @@ import '~~/styles/css/tailwind-base.pcss';
 import '~~/styles/css/tailwind-components.pcss';
 import '~~/styles/css/tailwind-utilities.pcss';
 import '~~/styles/css/app.css';
-import { TAppContractNames } from '~~/config/contracts/loadAppContractConnectors';
-import { ContractsContext } from '~~/config/contracts/contractsContextFactory';
 import { EthersAppContext } from 'eth-hooks/context';
+import { ContractsContext } from '~~/config/createContractsContext';
 
 // load saved theme
 const savedTheme = window.localStorage.getItem('theme');
@@ -43,6 +46,11 @@ const ethComponentsSettings: IEthComponentsSettings = {
     BlocknativeDappId: BLOCKNATIVE_DAPPID,
   },
 };
+
+/**
+ * Lazy load the main app component
+ */
+const MainPage = lazy(() => import('./MainPage'));
 
 /**
  * ### Summary
