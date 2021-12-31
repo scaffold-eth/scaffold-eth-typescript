@@ -23,7 +23,7 @@ import '~~/styles/css/tailwind-components.pcss';
 import '~~/styles/css/tailwind-utilities.pcss';
 import '~~/styles/css/app.css';
 import { EthersAppContext } from 'eth-hooks/context';
-import { ContractsContext } from '~~/config/createContractsContext';
+import { ContractsAppContext } from '~~/config/contractFactory';
 
 // load saved theme
 const savedTheme = window.localStorage.getItem('theme');
@@ -66,13 +66,13 @@ const App: FC = () => {
         <EthComponentsSettingsContext.Provider value={ethComponentsSettings}>
           <EthersAppContext>
             <ErrorBoundary FallbackComponent={ErrorFallback}>
-              <ContractsContext>
+              <ContractsAppContext>
                 <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme || 'light'}>
                   <Suspense fallback={<div />}>
                     <MainPage />
                   </Suspense>
                 </ThemeSwitcherProvider>
-              </ContractsContext>
+              </ContractsAppContext>
             </ErrorBoundary>
           </EthersAppContext>
         </EthComponentsSettingsContext.Provider>

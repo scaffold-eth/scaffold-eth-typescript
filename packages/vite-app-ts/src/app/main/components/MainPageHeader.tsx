@@ -3,7 +3,7 @@ import { getNetwork } from '@ethersproject/networks';
 import { Alert, PageHeader } from 'antd';
 import React, { FC, ReactElement } from 'react';
 import { FaucetHintButton } from '~~/app/common/FaucetHintButton';
-import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
+import { IScaffoldAppProviders } from '~~/app/main/hooks/useScaffoldAppProviders';
 import { useEthersContext } from 'eth-hooks/context';
 import { useGasPrice } from 'eth-hooks';
 import { getNetworkInfo } from '~~/helpers';

@@ -6,23 +6,28 @@ import { useContractLoader, useContractReader, useBalance } from 'eth-hooks';
 import { useDexEthPrice } from 'eth-hooks/dapps';
 
 import { GenericContract } from 'eth-components/ant/generic-contract';
-import { Hints, Subgraph, ExampleUI } from '~~/app/routes';
+import { Hints, Subgraph, ExampleUI } from '~~/app/pages';
 import { transactor } from 'eth-components/functions';
 
 import { ethers } from 'ethers';
 
 import { useEventListener } from 'eth-hooks';
-import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from './app/routes/main/components';
-import { useScaffoldProviders as useScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
-import { useBurnerFallback } from '~~/app/routes/main/hooks/useBurnerFallback';
-import { useScaffoldHooks as useScaffoldHooksExamples } from './app/routes/main/hooks/useScaffoldHooksExamples';
+import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from './app/main/components';
+import { useScaffoldProviders as useScaffoldAppProviders } from '~~/app/main/hooks/useScaffoldAppProviders';
+import { useBurnerFallback } from '~~/app/main/hooks/useBurnerFallback';
+import { useScaffoldHooks as useScaffoldHooksExamples } from './app/main/hooks/useScaffoldHooksExamples';
 import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
 import { subgraphUri } from '~~/config/subgraphConfig';
 import { useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
 import { mainnetProvider } from '~~/config/providersConfig';
-import { contractsLoadConnectorsAsync } from '~~/config/contractsLoadConnectors';
-
+import { loadAppContractConnectors } from '~~/config/loadAppContractConnectors';
+import {
+  useAppContracts,
+  useAppContractsActions,
+  useAppContractsContext,
+  useLoadAppContracts,
+} from '~~/config/contractFactory';
 
 export const DEBUG = false;
 
@@ -42,43 +47,17 @@ export const Main: FC = () => {
   useBurnerFallback(scaffoldAppProviders, true);
 
   // -----------------------------
-  // Contracts use examples
+  // Contracts
   // -----------------------------
-  // ⚙ contract config
-  // get the contracts configuration for the app
-  const contractDispatch = useContractsDispatchContext();
-
-  useEffect(() => {
-    const loadContracts = async () => {
-      const contractConnectors = await contractsLoadConnectorsAsync();
-      if (contractDispatch) {
-        contractDispatch.setAppContractConnectors(contractConnectors ?? {});
-      }
-    };
-    loadContracts();
-  }, [contractDispatch?.setAppContractConnectors]);
+  // ⚙ contract config are located in ./config/contractFactory.ts
+  useLoadAppContracts();
 
   // -----------------------------
   // example for current contract and listners
   // -----------------------------
-  const contractContext = useContractsDispatchContext();
-  if (contractContext) {
-    contractsLoadConnectorsAsync().then((contractConnectors) => {
-      contractContext.setAppContractConnectors(contractConnectors);
-    }
-  };
-
-
-
-  const state = useContractsStateContext();
-  if (state) {
-    state.appContractDefinitions.getmonkeys;
-    
-  }
-
-  const yourContractRead = contractContext?.appContractDefinitions.connect(ethersContext, 'YourContract');
+  const yourContract = useAppContracts('YourContract', scaffoldAppProviders.targetNetwork.chainId);
   // keep track of a variable from the contract in the local React state:
-  const purpose = useContractReader<string>(yourContractRead, {
+  const purpose = useContractReader<string>(yourContract, {
     contractName: 'YourContract',
     functionName: 'purpose',
   });

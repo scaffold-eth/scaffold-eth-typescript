@@ -24,7 +24,7 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
 
   useEffect(() => {
     // import async to split bundles
-    const importedConfig = import('../../../../config/web3ModalConfig');
+    const importedConfig = import('../../../config/web3ModalConfig');
 
     importedConfig.then((getter) => {
       getter.getWeb3ModalConfig().then((config) => {

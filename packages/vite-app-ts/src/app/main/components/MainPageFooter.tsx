@@ -3,7 +3,7 @@ import { Row, Col, Button } from 'antd';
 import { Ramp, ThemeSwitcher } from '~~/app/common';
 import { Faucet, GasGauge } from 'eth-components/ant';
 import { NETWORKS } from '~~/models/constants/networks';
-import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
+import { IScaffoldAppProviders } from '~~/app/main/hooks/useScaffoldAppProviders';
 import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
 import { useEthersContext } from 'eth-hooks/context';
 import { getFaucetAvailable } from '~~/app/common/FaucetHintButton';

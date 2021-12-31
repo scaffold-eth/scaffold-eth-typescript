@@ -1,6 +1,6 @@
 import { defineConfig } from '@dethcrypto/eth-sdk';
 import { networkIDtoSymbol } from '@dethcrypto/eth-sdk/dist/abi-management/networks';
-import { externalContractsAddressMap } from '../config/contractsExternal';
+import { externalContractsAddressMap } from '../config/externalContractsConfig';
 
 const contractsByNetworkName: Record<string, any> = {};
 Object.keys(externalContractsAddressMap)

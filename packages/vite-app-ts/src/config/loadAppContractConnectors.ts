@@ -4,7 +4,7 @@ import { YourContract__factory } from '~~/generated/contract-types/factories/You
 
 import { Greeter__factory } from '~~/generated/contract-types/factories/Greeter__factory';
 
-import { externalContractsAddressMap } from './contractsExternal';
+import { externalContractsAddressMap } from './externalContractsConfig';
 
 /**
  * Run `yarn build:contracts` to generate the external types
@@ -26,24 +26,19 @@ const hardhatContractJsonPromise = import('../generated/hardhat_contracts.json')
  * 2. run yarn build:contracts to generate types for external contracts
  * 3. edit externalContractList.ts to add your external contract addresses.
  * 4. edit `loader` function below and add them to the list
- * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
  *
  * ### Summary
  * - called  by useAppContracts
  * @returns
  */
-const contractsLoadConnectors = (hardhatJson: THardhatContractsFileJson) => {
+const appContractConnectors = (hardhatJson: THardhatContractsFileJson) => {
   try {
-    // ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
-    // add your contracts to the list here
-    // you need to define them in externalContractList.ts
-
     const result = {
       // 🙋🏽‍♂️ Add your hadrdhat contracts here
       YourContract: createConnectorsForHardhatContracts('YourContract', YourContract__factory, hardhatJson),
       Greeter: createConnectorsForHardhatContracts('Greeter', Greeter__factory, hardhatJson),
 
-      // 🙋🏽‍♂️ Add your external contracts here
+      // 🙋🏽‍♂️ Add your external contracts here, make sure to define the address in `externalContractsConfig.ts`
       DAI: createConnectorsForExternalContract('DAI', externalContracts.DAI__factory, externalContractsAddressMap),
       UNI: createConnectorsForExternalContract('UNI', externalContracts.UNI__factory, externalContractsAddressMap),
     } as const;
@@ -58,19 +53,19 @@ const contractsLoadConnectors = (hardhatJson: THardhatContractsFileJson) => {
 
 /**
  * ### Summary
- * This type describes all your contracts, it is the return of {@link contractsLoadConnectors}
+ * This type describes all your contracts, it is the return of {@link appContractConnectors}
  */
-export type TAppContractConnectors = NonNullable<ReturnType<typeof contractsLoadConnectors>>;
+export type TAppConnectorList = NonNullable<ReturnType<typeof appContractConnectors>>;
 
 /**
  * LoadsAppContractsAsync: 🙋🏽‍♂️ Edit your contract definition here!!!
  * ### Summary
- * See {@link loadAppContracts} to add contracts and definitions
+ * See {@link loadAppContractConnectors} to add contracts and definitions
  * A helper function to load the app contracts async
  *
  * @returns
  */
-export const contractsLoadConnectorsAsync = async () => {
+export const loadAppContractConnectors = async (): Promise<TAppConnectorList | undefined> => {
   const hardhatJson = ((await hardhatContractJsonPromise).default ?? {}) as unknown as THardhatContractsFileJson;
-  return contractsLoadConnectors(hardhatJson);
+  return appContractConnectors(hardhatJson);
 };
