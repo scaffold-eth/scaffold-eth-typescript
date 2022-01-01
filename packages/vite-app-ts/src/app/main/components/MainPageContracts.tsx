@@ -19,7 +19,7 @@ export interface IMainPageContractsProps {
  */
 export const MainPageContracts: FC<IMainPageContractsProps> = (props) => {
   const ethersContext = useEthersContext();
-  const daiContract = useAppContracts('DAI', 1);
+  const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
   const yourContract = useAppContracts('YourContract', ethersContext.chainId);
 
   if (ethersContext.account == null) {
@@ -39,7 +39,6 @@ export const MainPageContracts: FC<IMainPageContractsProps> = (props) => {
           contract={yourContract}
           mainnetProvider={props.scaffoldAppProviders.mainnetProvider}
           blockExplorer={props.scaffoldAppProviders.targetNetwork.blockExplorer}
-          contractConfig={props.appContractConfig}
         />
 
         {/* **********
@@ -61,10 +60,9 @@ export const MainPageContracts: FC<IMainPageContractsProps> = (props) => {
         {
           <GenericContract
             contractName="DAI"
-            contract={daiContract}
+            contract={mainnetDai}
             mainnetProvider={props.scaffoldAppProviders.mainnetProvider}
-            blockExplorer={NETWORKS['mainnet'].blockExplorer}
-            contractConfig={props.appContractConfig}
+            blockExplorer={NETWORKS.mainnet.blockExplorer}
           />
         }
       </>

@@ -57,8 +57,10 @@ export const Main: FC = () => {
   // -----------------------------
   const yourContract = useAppContracts('YourContract', scaffoldAppProviders.targetNetwork.chainId);
 
+  const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
+
   // keep track of a variable from the contract in the local React state:
-  const purpose = useContractReader(yourContract, yourContract.purpose);
+  const purpose = useContractReader(yourContract, yourContract?.purpose);
 
   // 📟 Listen for broadcast events
   const [setPurposeEvents] = useEventListener(yourContract, 'SetPurpose', 0);
@@ -117,20 +119,19 @@ export const Main: FC = () => {
             {mainnetProvider != null && (
               <GenericContract
                 contractName="DAI"
-                contract={mainnetContracts?.['DAI']}
+                contract={mainnetDai}
                 mainnetProvider={scaffoldAppProviders.mainnetProvider}
-                blockExplorer={NETWORKS['mainnet'].blockExplorer}
-                contractConfig={appContractConfig}
+                blockExplorer={NETWORKS.mainnet.blockExplorer}
               />
             )}
           </Route>
-          <Route path="/subgraph">
+          {/* <Route path="/subgraph">
             <Subgraph
               subgraphUri={subgraphUri}
               writeContracts={writeContracts}
               mainnetProvider={scaffoldAppProviders.mainnetProvider}
             />
-          </Route>
+          </Route> */}
         </Switch>
       </BrowserRouter>
 
