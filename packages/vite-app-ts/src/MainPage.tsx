@@ -56,22 +56,20 @@ export const Main: FC = () => {
   // example for current contract and listners
   // -----------------------------
   const yourContract = useAppContracts('YourContract', scaffoldAppProviders.targetNetwork.chainId);
+
   // keep track of a variable from the contract in the local React state:
-  const purpose = useContractReader<string>(yourContract, {
-    contractName: 'YourContract',
-    functionName: 'purpose',
-  });
+  const purpose = useContractReader(yourContract, yourContract.purpose);
 
   // 📟 Listen for broadcast events
-  const setPurposeEvents = useEventListener(yourContractRead, 'SetPurpose', 1);
+  const [setPurposeEvents] = useEventListener(yourContract, 'SetPurpose', 0);
 
   // For more hooks, check out 🔗eth-hooks at: https://www.npmjs.com/package/eth-hooks
 
   // 💵 This hook will get the price of ETH from 🦄 Uniswap:
-  const ethPrice = useDexEthPrice(scaffoldAppProviders.mainnetProvider, scaffoldAppProviders.targetNetwork);
+  const [ethPrice] = useDexEthPrice(scaffoldAppProviders.mainnetProvider, scaffoldAppProviders.targetNetwork);
 
   // 💰 this hook will get your balance
-  const yourCurrentBalance = useBalance(ethersContext.account ?? '');
+  const [yourCurrentBalance] = useBalance(ethersContext.account ?? '');
 
   // -----------------------------
   // Hooks use and examples
@@ -97,11 +95,7 @@ export const Main: FC = () => {
         <MainPageMenu route={route} setRoute={setRoute} />
         <Switch>
           <Route exact path="/">
-            <MainPageContracts
-              scaffoldAppProviders={scaffoldAppProviders}
-              mainnetContracts={mainnetContracts}
-              appContractConfig={appContractConfig}
-            />
+            <MainPageContracts scaffoldAppProviders={scaffoldAppProviders} />
           </Route>
           {/* you can add routes here like the below examlples */}
           <Route path="/hints">

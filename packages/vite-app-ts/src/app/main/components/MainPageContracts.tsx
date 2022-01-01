@@ -5,11 +5,9 @@ import { useContractLoader } from 'eth-hooks';
 import { IScaffoldAppProviders } from '~~/app/main/hooks/useScaffoldAppProviders';
 import { useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
-import { TContractLoaderConfig } from 'eth-hooks/models';
+import { useAppContracts } from '~~/config/contractFactory';
 export interface IMainPageContractsProps {
   scaffoldAppProviders: IScaffoldAppProviders;
-  mainnetContracts: Record<string, Contract>;
-  appContractConfig: TContractLoaderConfig;
 }
 
 /**
@@ -21,7 +19,8 @@ export interface IMainPageContractsProps {
  */
 export const MainPageContracts: FC<IMainPageContractsProps> = (props) => {
   const ethersContext = useEthersContext();
-  const contractList = useContractLoader(props.appContractConfig, undefined);
+  const daiContract = useAppContracts('DAI', 1);
+  const yourContract = useAppContracts('YourContract', ethersContext.chainId);
 
   if (ethersContext.account == null) {
     return <></>;
@@ -37,7 +36,7 @@ export const MainPageContracts: FC<IMainPageContractsProps> = (props) => {
         ********** */}
         <GenericContract
           contractName="YourContract"
-          contract={contractList?.['YourContract']}
+          contract={yourContract}
           mainnetProvider={props.scaffoldAppProviders.mainnetProvider}
           blockExplorer={props.scaffoldAppProviders.targetNetwork.blockExplorer}
           contractConfig={props.appContractConfig}
@@ -59,13 +58,15 @@ export const MainPageContracts: FC<IMainPageContractsProps> = (props) => {
         {/***********
          *  ❓ Uncomment to display and interact with an external contract (DAI on mainnet):
          ********** */}
-        <GenericContract
-          contractName="DAI"
-          contract={props.mainnetContracts?.['DAI']}
-          mainnetProvider={props.scaffoldAppProviders.mainnetProvider}
-          blockExplorer={NETWORKS['mainnet'].blockExplorer}
-          contractConfig={props.appContractConfig}
-        />
+        {
+          <GenericContract
+            contractName="DAI"
+            contract={daiContract}
+            mainnetProvider={props.scaffoldAppProviders.mainnetProvider}
+            blockExplorer={NETWORKS['mainnet'].blockExplorer}
+            contractConfig={props.appContractConfig}
+          />
+        }
       </>
     </>
   );
