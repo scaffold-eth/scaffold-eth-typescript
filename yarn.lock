@@ -2488,8 +2488,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.2.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^1.1.5
-    eth-components: 3.0.0-beta11
-    eth-hooks: 4.0.1-beta07
+    eth-components: 3.0.0-beta12
+    eth-hooks: 4.0.1-beta09
     ethereum-cryptography: ^0.1.3
     ethers: ^5.4.1
     fortmatic: ^2.2.1
@@ -2505,7 +2505,6 @@ __metadata:
     process: ^0.11.10
     qrcode.react: ^1.0.1
     react: ^17.0.2
-    react-async-hook: ^4.0.0
     react-blockies: ^1.4.1
     react-css-theme-switcher: ^0.3.0
     react-dom: ^17.0.2
@@ -9512,9 +9511,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-components@npm:3.0.0-beta11":
-  version: 3.0.0-beta11
-  resolution: "eth-components@npm:3.0.0-beta11"
+"eth-components@npm:3.0.0-beta12":
+  version: 3.0.0-beta12
+  resolution: "eth-components@npm:3.0.0-beta12"
   dependencies:
     "@ethersproject/abstract-signer": ^5.5.0
     "@ethersproject/address": ^5.5.0
@@ -9529,7 +9528,7 @@ __metadata:
     "@uniswap/token-lists": ^1.0.0-beta.27
     axios: ^0.24.0
     bnc-notify: ^1.9.2
-    eth-hooks: ^4.0.1-beta07
+    eth-hooks: ^4.0.1-beta09
     ethers: ^5.5.2
     qrcode.react: ^1.0.1
     react-blockies: ^1.4.1
@@ -9542,7 +9541,7 @@ __metadata:
     react: ">=17.0.2"
     react-css-theme-switcher: ^0.3.0
     react-dom: ">=17.0.2"
-  checksum: fbe19a7b32c0012d18bcb3f3c6fa1fd9dbbfc9f92ea5484283d549cf299d0ae78122077538a1dcf69849e8dc6dabefed4806c1642c17a1d7b457664490490606
+  checksum: 8d4fa49c0603f69f70f950f26ce870cdc54af5429b706fd56d27f2cac2aaf8e2f362dac28b00d12da36fb2d799b03ef618f5e906f69d9484d41a2e93830d7731
   languageName: node
   linkType: hard
 
@@ -9556,9 +9555,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:4.0.1-beta07, eth-hooks@npm:^4.0.1-beta07":
-  version: 4.0.1-beta07
-  resolution: "eth-hooks@npm:4.0.1-beta07"
+"eth-hooks@npm:4.0.1-beta09, eth-hooks@npm:^4.0.1-beta09":
+  version: 4.0.1-beta09
+  resolution: "eth-hooks@npm:4.0.1-beta09"
   dependencies:
     "@ethersproject/address": ^5.5.0
     "@ethersproject/bignumber": ^5.5.0
@@ -9576,8 +9575,7 @@ __metadata:
     axios: ^0.24.0
     ethers: ^5.5.2
     merge-anything: ^4.0.2
-    tiny-invariant: ^1.2.0
-    tiny-warning: ^1.0.3
+    ts-invariant: ^0.9.4
     use-debounce: ^7.0.1
     usehooks-ts: ^2.1.1
     web3modal: ^1.9.4
@@ -9585,7 +9583,7 @@ __metadata:
     "@uniswap/sdk": ^3.0.3
     react: ">=17.0.2"
     react-dom: ">=17.0.2"
-  checksum: cfced3fbcbec0e130e394f101fcbd8d9f76d92945dd4bd579e0f416e3a09d85c99405b68794860b8a5c454eefa300f392eabc65881b7dca9a13830209122f87c
+  checksum: 089bc4c3098959d2f65ed35e3663632497cfd1369eb81e1e324126e2d7f9c7b2ae4be296c1b9fd6d82859a990e1991a23a53e5ffdd8359b34861b57fa2478619
   languageName: node
   linkType: hard
 
@@ -19636,15 +19634,6 @@ fsevents@~2.1.1:
   languageName: node
   linkType: hard
 
-"react-async-hook@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "react-async-hook@npm:4.0.0"
-  peerDependencies:
-    react: ">=16.8"
-  checksum: 059042027bff2751c89d1226ce7b463e73b54ad4018c627bd27d57c029469280d8e37e282bb943b35f91050fbd7d330965f65f0d8b1b7c0b9492fc848c6d82a3
-  languageName: node
-  linkType: hard
-
 "react-blockies@npm:^1.4.1":
   version: 1.4.1
   resolution: "react-blockies@npm:1.4.1"
@@ -22436,13 +22425,6 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"tiny-invariant@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "tiny-invariant@npm:1.2.0"
-  checksum: e09a718a7c4a499ba592cdac61f015d87427a0867ca07f50c11fd9b623f90cdba18937b515d4a5e4f43dac92370498d7bdaee0d0e7a377a61095e02c4a92eade
-  languageName: node
-  linkType: hard
-
 "tiny-warning@npm:^1.0.0, tiny-warning@npm:^1.0.3":
   version: 1.0.3
   resolution: "tiny-warning@npm:1.0.3"
@@ -22722,6 +22704,15 @@ resolve@^2.0.0-next.3:
   dependencies:
     tslib: ^2.1.0
   checksum: 593c096b8ae21073eb6a0faa76db76752c1e929ca9042b02cedab64dd78d67b8b73fb4b965857e889a2df492fdfb2f9737b486640e212d32dc6b39d188c9151c
+  languageName: node
+  linkType: hard
+
+"ts-invariant@npm:^0.9.4":
+  version: 0.9.4
+  resolution: "ts-invariant@npm:0.9.4"
+  dependencies:
+    tslib: ^2.1.0
+  checksum: c9e5726361fa266916966b2070605f8664b6dd1d8b0ef7565dbf056abb6a87be26195985ef62dd97aeb0894cf2f4ad5b7f0d89dadadc197eaa38e99222afa29c
   languageName: node
   linkType: hard
 

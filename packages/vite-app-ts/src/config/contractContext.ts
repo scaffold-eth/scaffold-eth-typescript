@@ -22,8 +22,6 @@ export const useAppContracts = <GContractName extends TAppContractNames>(
   contractName: GContractName,
   chainId: number | undefined
 ): TAppContractTypes<GContractName> | undefined => {
-  if (chainId == undefined) return undefined;
-
   const result = useAppContractsContext(contractName, chainId);
   return result as TAppContractTypes<GContractName>;
 };
