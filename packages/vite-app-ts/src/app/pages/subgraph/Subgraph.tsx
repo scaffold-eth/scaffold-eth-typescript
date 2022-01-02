@@ -11,6 +11,8 @@ import { Address } from 'eth-components/ant';
 import { EthComponentsSettingsContext } from 'eth-components/models';
 import { useGasPrice } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
+import { useAppContracts } from '~~/config/contractContext';
+import { TEthersProvider } from '.yalc/eth-hooks/models';
 
 const highlight: React.CSSProperties = {
   marginLeft: 4,
@@ -22,8 +24,7 @@ const highlight: React.CSSProperties = {
 
 export interface ISubgraphProps {
   subgraphUri: string;
-  writeContracts: Record<string, Contract>;
-  mainnetProvider: JsonRpcProvider | Web3Provider;
+  mainnetProvider: TEthersProvider | undefined;
 }
 
 export const Subgraph: FC<ISubgraphProps> = (props) => {
@@ -40,6 +41,7 @@ export const Subgraph: FC<ISubgraphProps> = (props) => {
   const ethersContext = useEthersContext();
   const [gasPrice] = useGasPrice(ethersContext.chainId, 'fast');
   const tx = transactor(ethComponentsSettings, ethersContext?.signer, gasPrice);
+  const yourContract = useAppContracts('YourContract', ethersContext.chainId);
 
   const EXAMPLE_GRAPHQL = `
     {
@@ -181,7 +183,7 @@ export const Subgraph: FC<ISubgraphProps> = (props) => {
             onClick={(): void => {
               console.log('newPurpose', newPurpose);
               /* look how you call setPurpose on your contract: */
-              tx?.(props.writeContracts.YourContract.setPurpose(newPurpose));
+              tx?.(yourContract?.setPurpose(newPurpose));
             }}>
             Set Purpose
           </Button>

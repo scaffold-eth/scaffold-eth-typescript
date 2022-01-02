@@ -23,6 +23,7 @@ import {
   useLoadAppContracts,
 } from '~~/config/contractContext';
 import { asEthersAdaptor } from 'eth-hooks/functions';
+import { subgraphUri } from '~~/config/subgraphConfig';
 
 export const DEBUG = false;
 
@@ -124,13 +125,9 @@ export const Main: FC = () => {
               />
             )}
           </Route>
-          {/* <Route path="/subgraph">
-            <Subgraph
-              subgraphUri={subgraphUri}
-              writeContracts={writeContracts}
-              mainnetProvider={scaffoldAppProviders.mainnetProvider}
-            />
-          </Route> */}
+          <Route path="/subgraph">
+            <Subgraph subgraphUri={subgraphUri} mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider} />
+          </Route>
         </Switch>
       </BrowserRouter>
 
