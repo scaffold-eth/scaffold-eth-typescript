@@ -9,8 +9,8 @@ import { localNetworkInfo } from '~~/config/providersConfig';
 
 export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: boolean) => {
   const ethersContext = useEthersContext();
-  const burnerFallback = useBurnerSigner(appProviders.localProvider as TEthersProvider);
-  const localAddress = useSignerAddress(appProviders.localProvider.getSigner());
+  const burnerFallback = useBurnerSigner(appProviders.localAdaptor?.provider);
+  const localAddress = appProviders.localAdaptor?.signer;
 
   useEffect(() => {
     /**

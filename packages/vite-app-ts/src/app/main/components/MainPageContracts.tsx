@@ -37,7 +37,7 @@ export const MainPageContracts: FC<IMainPageContractsProps> = (props) => {
         <GenericContract
           contractName="YourContract"
           contract={yourContract}
-          mainnetProvider={props.scaffoldAppProviders.mainnetProvider}
+          mainnetAdaptor={props.scaffoldAppProviders.mainnetAdaptor}
           blockExplorer={props.scaffoldAppProviders.targetNetwork.blockExplorer}
         />
 
@@ -61,7 +61,7 @@ export const MainPageContracts: FC<IMainPageContractsProps> = (props) => {
           <GenericContract
             contractName="DAI"
             contract={mainnetDai}
-            mainnetProvider={props.scaffoldAppProviders.mainnetProvider}
+            mainnetAdaptor={props.scaffoldAppProviders.mainnetAdaptor}
             blockExplorer={NETWORKS.mainnet.blockExplorer}
           />
         }

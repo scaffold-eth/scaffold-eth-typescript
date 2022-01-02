@@ -30,7 +30,7 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
   const ethersContext = useEthersContext();
 
   const [yourLocalBalance] = useBalance(ethersContext.account ?? '');
-  const signer = props.scaffoldAppProviders.localProvider.getSigner();
+  const signer = props.scaffoldAppProviders.localAdaptor?.signer;
   /**
    * create transactor for faucet
    */

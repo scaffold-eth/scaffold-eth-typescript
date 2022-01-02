@@ -61,7 +61,7 @@ export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
     <div style={{ position: 'fixed', textAlign: 'right', right: 0, top: 0, padding: 10 }}>
       <Account
         createLoginConnector={props.scaffoldAppProviders.createLoginConnector}
-        ensProvider={props.scaffoldAppProviders.mainnetProvider}
+        ensProvider={props.scaffoldAppProviders.mainnetAdaptor?.provider}
         price={props.price}
         blockExplorer={props.scaffoldAppProviders.targetNetwork.blockExplorer}
         hasContextConnect={true}

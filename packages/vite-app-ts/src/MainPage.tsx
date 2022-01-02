@@ -16,7 +16,12 @@ import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './app/main
 import { useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
 import { mainnetProvider } from '~~/config/providersConfig';
-import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~~/config/contractContext';
+import {
+  useAppContracts,
+  useAppContractsActions,
+  useConnectAppContracts,
+  useLoadAppContracts,
+} from '~~/config/contractContext';
 import { asEthersAdaptor } from 'eth-hooks/functions';
 
 export const DEBUG = false;
@@ -62,7 +67,7 @@ export const Main: FC = () => {
   // For more hooks, check out 🔗eth-hooks at: https://www.npmjs.com/package/eth-hooks
 
   // 💵 This hook will get the price of ETH from 🦄 Uniswap:
-  const [ethPrice] = useDexEthPrice(scaffoldAppProviders.mainnetProvider, scaffoldAppProviders.targetNetwork);
+  const [ethPrice] = useDexEthPrice(scaffoldAppProviders.mainnetAdaptor?.provider, scaffoldAppProviders.targetNetwork);
 
   // 💰 this hook will get your balance
   const [yourCurrentBalance] = useBalance(ethersContext.account ?? '');
@@ -98,13 +103,13 @@ export const Main: FC = () => {
             <Hints
               address={ethersContext?.account ?? ''}
               yourCurrentBalance={yourCurrentBalance}
-              mainnetProvider={scaffoldAppProviders.mainnetProvider}
+              mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider}
               price={ethPrice}
             />
           </Route>
           <Route path="/exampleui">
             <ExampleUI
-              mainnetProvider={scaffoldAppProviders.mainnetProvider}
+              mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider}
               yourCurrentBalance={yourCurrentBalance}
               price={ethPrice}
             />
@@ -114,7 +119,7 @@ export const Main: FC = () => {
               <GenericContract
                 contractName="DAI"
                 contract={mainnetDai}
-                mainnetProvider={scaffoldAppProviders.mainnetProvider}
+                mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
                 blockExplorer={NETWORKS.mainnet.blockExplorer}
               />
             )}

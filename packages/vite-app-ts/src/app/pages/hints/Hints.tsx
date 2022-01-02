@@ -11,7 +11,7 @@ const { Option } = Select;
 
 export interface IHintsProps {
   yourCurrentBalance: BigNumber | undefined;
-  mainnetProvider: TEthersProvider;
+  mainnetProvider: TEthersProvider | undefined;
   price: number;
   address: string;
 }

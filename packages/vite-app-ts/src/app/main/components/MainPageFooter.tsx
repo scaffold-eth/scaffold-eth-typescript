@@ -81,12 +81,12 @@ export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
           {
             /*  if the local provider has a signer, let's show the faucet:  */
             faucetAvailable &&
-            props.scaffoldAppProviders?.mainnetProvider &&
-            props.scaffoldAppProviders?.localProvider ? (
+            props.scaffoldAppProviders?.mainnetAdaptor &&
+            props.scaffoldAppProviders?.localAdaptor ? (
               <Faucet
-                localProvider={props.scaffoldAppProviders.localProvider}
+                localAdaptor={props.scaffoldAppProviders.localAdaptor}
                 price={props.price}
-                mainnetProvider={props.scaffoldAppProviders.mainnetProvider}
+                mainnetAdaptor={props.scaffoldAppProviders.mainnetAdaptor}
               />
             ) : (
               <></>

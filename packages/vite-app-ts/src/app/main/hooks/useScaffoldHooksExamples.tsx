@@ -59,11 +59,11 @@ export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProvi
   // ---------------------
   // This hook will let you invoke a callback on every block or with a polling time!
   // 🙋🏽‍♂️ on block is preffered!
-  useBlockNumber(scaffoldAppProviders.mainnetProvider, (blockNumber) =>
+  useBlockNumber(scaffoldAppProviders.mainnetAdaptor?.provider, (blockNumber) =>
     console.log(`⛓ A new mainnet block is here: ${blockNumber}`)
   );
 
-  useBlockNumber(scaffoldAppProviders.localProvider, (blockNumber) =>
+  useBlockNumber(scaffoldAppProviders.localAdaptor?.provider, (blockNumber) =>
     console.log(`⛓ A new local block is here: ${blockNumber}`)
   );
 
@@ -89,10 +89,10 @@ export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProvi
   // }, []);
 
   useEffect(() => {
-    if (DEBUG && scaffoldAppProviders.mainnetProvider && ethersContext.account && currentChainId && yourLocalBalance) {
+    if (DEBUG && scaffoldAppProviders.mainnetAdaptor && ethersContext.account && currentChainId && yourLocalBalance) {
       console.log('_____________________________________ 🏗 scaffold-eth _____________________________________');
-      console.log('🌎 mainnetProvider', scaffoldAppProviders.mainnetProvider);
-      console.log('🏠 localChainId', scaffoldAppProviders.localProvider.network.chainId);
+      console.log('🌎 mainnetProvider', scaffoldAppProviders.mainnetAdaptor);
+      console.log('🏠 localChainId', scaffoldAppProviders?.localAdaptor?.chainId);
       console.log('👩‍💼 selected address:', ethersContext.account);
       console.log('🕵🏻‍♂️ currentChainId:', currentChainId);
       console.log('💵 yourLocalBalance', yourLocalBalance ? ethers.utils.formatEther(yourLocalBalance) : '...');
@@ -101,5 +101,5 @@ export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProvi
       console.log('💵 yourMainnetDAIBalance', myMainnetDAIBalance);
       console.log('⛽ gasPrice', gasPrice);
     }
-  }, [scaffoldAppProviders.mainnetProvider, ethersContext.account, ethersContext.provider]);
+  }, [scaffoldAppProviders.mainnetAdaptor, ethersContext.account, ethersContext.provider]);
 };

@@ -1,23 +1,26 @@
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import input from 'antd/lib/input';
-import { TCreateEthersModalConnector, TEthersProvider, TNetworkInfo } from 'eth-hooks/models';
+import { TCreateEthersModalConnector, TEthersAdaptor, TEthersProvider, TNetworkInfo } from 'eth-hooks/models';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ICoreOptions } from 'web3modal';
 import { EthersModalConnector, useEthersContext } from 'eth-hooks/context';
 import { useThemeSwitcher } from 'react-css-theme-switcher';
 import { mainnetProvider, localProvider, targetNetworkInfo } from '~~/config/providersConfig';
+import { useGetEthersAdaptorFromProviders } from 'eth-hooks';
 
 export interface IScaffoldAppProviders {
   currentProvider: TEthersProvider | undefined;
   targetNetwork: TNetworkInfo;
-  mainnetProvider: StaticJsonRpcProvider;
-  localProvider: StaticJsonRpcProvider;
+  mainnetAdaptor: TEthersAdaptor | undefined;
+  localAdaptor: TEthersAdaptor | undefined;
   createLoginConnector: TCreateEthersModalConnector;
 }
 
 export const useScaffoldProviders = (): IScaffoldAppProviders => {
   const [web3Config, setWeb3Config] = useState<Partial<ICoreOptions>>();
   const ethersContext = useEthersContext();
+  const mainnetAdaptor = useGetEthersAdaptorFromProviders(mainnetProvider);
+  const localAdaptor = useGetEthersAdaptorFromProviders(localProvider);
 
   useEffect(() => {
     // import async to split bundles
@@ -55,8 +58,8 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
 
   return {
     currentProvider: ethersContext.provider ?? localProvider,
-    mainnetProvider: mainnetProvider,
-    localProvider: localProvider,
+    mainnetAdaptor: mainnetAdaptor,
+    localAdaptor: localAdaptor,
     targetNetwork: targetNetworkInfo,
     createLoginConnector: createLoginConnector,
   };

@@ -15,7 +15,7 @@ import { createConnectorsForExternalContract, createConnectorsForHardhatContract
  * Run `yarn compile` and `yarn deploy` to generate the external types
  * edit: externalContractAddressMap.ts file to add your own external contracts
  */
-const hardhatContractJsonPromise = import('../generated/hardhat_contracts.json');
+import hardhatContractsJson from '../generated/hardhat_contracts.json';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
@@ -29,11 +29,11 @@ const hardhatContractJsonPromise = import('../generated/hardhat_contracts.json')
  * - called  by useAppContracts
  * @returns
  */
-const appContractConnectors = (hardhatJson: THardhatContractsFileJson) => {
+export const contractConnectorConfig = () => {
   try {
     const result = {
       // 🙋🏽‍♂️ Add your hadrdhat contracts here
-      YourContract: createConnectorsForHardhatContracts('YourContract', YourContract__factory, hardhatJson),
+      YourContract: createConnectorsForHardhatContracts('YourContract', YourContract__factory, hardhatContractsJson),
 
       // 🙋🏽‍♂️ Add your external contracts here, make sure to define the address in `externalContractsConfig.ts`
       DAI: createConnectorsForExternalContract('DAI', externalContracts.DAI__factory, externalContractsAddressMap),
@@ -53,19 +53,6 @@ const appContractConnectors = (hardhatJson: THardhatContractsFileJson) => {
 
 /**
  * ### Summary
- * This type describes all your contracts, it is the return of {@link appContractConnectors}
+ * This type describes all your contracts, it is the return of {@link contractConnectorConfig}
  */
-export type TAppConnectorList = NonNullable<ReturnType<typeof appContractConnectors>>;
-
-/**
- * LoadsAppContractsAsync: 🙋🏽‍♂️ Edit your contract definition here!!!
- * ### Summary
- * See {@link loadAppContractConnectors} to add contracts and definitions
- * A helper function to load the app contracts async
- *
- * @returns
- */
-export const loadAppContractConnectors = async (): Promise<TAppConnectorList | undefined> => {
-  const hardhatJson = ((await hardhatContractJsonPromise).default ?? {}) as unknown as THardhatContractsFileJson;
-  return appContractConnectors(hardhatJson);
-};
+export type TAppConnectorList = NonNullable<ReturnType<typeof contractConnectorConfig>>;

@@ -14,7 +14,7 @@ import { useAppContracts, useAppContractsContext } from '~~/config/contractConte
 import { SetPurposeEvent } from '~~/generated/contract-types/YourContract';
 
 export interface IExampleUIProps {
-  mainnetProvider: StaticJsonRpcProvider;
+  mainnetProvider: StaticJsonRpcProvider | undefined;
   yourCurrentBalance: any;
   price: number;
 }
