@@ -13,10 +13,15 @@ export type TAppContractTypes<GContractName extends TAppContractNames> = TTypedC
   TAppConnectorList
 >;
 
-export const { ContractsAppContext, useAppContractsActions, useAppContractsContext, useLoadAppContracts } =
-  contractsContextFactory<TAppContractNames, TAppConnectorList, TAppContractTypes<TAppContractNames>>(
-    loadAppContractConnectors
-  );
+export const {
+  ContractsAppContext,
+  useAppContractsActions,
+  useAppContractsContext,
+  useLoadAppContracts,
+  useConnectAppContracts,
+} = contractsContextFactory<TAppContractNames, TAppConnectorList, TAppContractTypes<TAppContractNames>>(
+  loadAppContractConnectors
+);
 
 export const useAppContracts = <GContractName extends TAppContractNames>(
   contractName: GContractName,

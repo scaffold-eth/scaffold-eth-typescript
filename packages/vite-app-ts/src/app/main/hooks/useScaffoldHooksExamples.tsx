@@ -11,7 +11,7 @@ import { EthComponentsSettingsContext } from 'eth-components/models';
 import { parseEther } from '@ethersproject/units';
 import { config } from 'process';
 import { NETWORKS } from '~~/models/constants/networks';
-import { useAppContracts } from '~~/config/contractFactory';
+import { useAppContracts } from '~~/config/contractContext';
 
 /**
  * Logs to console current app state.  Shows you examples on how to use hooks!

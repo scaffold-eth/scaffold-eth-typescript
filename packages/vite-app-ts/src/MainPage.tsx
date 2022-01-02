@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import '~~/styles/main-page.css';
-import { useContractReader, useBalance } from 'eth-hooks';
+import { useContractReader, useBalance, useGetEthersAdaptorFromProviders } from 'eth-hooks';
 import { useDexEthPrice } from 'eth-hooks/dapps';
 
 import { GenericContract } from 'eth-components/ant/generic-contract';
@@ -16,7 +16,8 @@ import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './app/main
 import { useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
 import { mainnetProvider } from '~~/config/providersConfig';
-import { useAppContracts, useLoadAppContracts } from '~~/config/contractFactory';
+import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~~/config/contractContext';
+import { asEthersAdaptor } from 'eth-hooks/functions';
 
 export const DEBUG = false;
 
@@ -24,7 +25,6 @@ export const Main: FC = () => {
   // -----------------------------
   // Providers, signers & wallets
   // -----------------------------
-
   // 🛰 providers
   // see useLoadProviders.ts for everything to do with loading the right providers
   const scaffoldAppProviders = useScaffoldAppProviders();
@@ -36,16 +36,21 @@ export const Main: FC = () => {
   useBurnerFallback(scaffoldAppProviders, true);
 
   // -----------------------------
-  // Contracts
+  // Load Contracts
   // -----------------------------
-  // ⚙ contract config are located in ./config/contractFactory.ts
+  // 🛻 load contracts
   useLoadAppContracts();
+  // 🏭 connect to contracts for mainnet network & signer
+  const mainnetAdaptor = useGetEthersAdaptorFromProviders(mainnetProvider);
+  useConnectAppContracts(mainnetAdaptor);
+  // 🏭 connec to  contracts for current network & signer
+  useConnectAppContracts(asEthersAdaptor(ethersContext));
 
   // -----------------------------
-  // example for current contract and listners
+  // examples on how to get contracts
   // -----------------------------
+  // init contracts
   const yourContract = useAppContracts('YourContract', scaffoldAppProviders.targetNetwork.chainId);
-
   const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
 
   // keep track of a variable from the contract in the local React state:
