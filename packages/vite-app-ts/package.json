@@ -55,6 +55,7 @@
     "process": "^0.11.10",
     "qrcode.react": "^1.0.1",
     "react": "^17.0.2",
+    "react-async-hook": "^4.0.0",
     "react-blockies": "^1.4.1",
     "react-css-theme-switcher": "^0.3.0",
     "react-dom": "^17.0.2",

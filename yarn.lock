@@ -2505,6 +2505,7 @@ __metadata:
     process: ^0.11.10
     qrcode.react: ^1.0.1
     react: ^17.0.2
+    react-async-hook: ^4.0.0
     react-blockies: ^1.4.1
     react-css-theme-switcher: ^0.3.0
     react-dom: ^17.0.2
@@ -19632,6 +19633,15 @@ fsevents@~2.1.1:
     react: "*"
     react-dom: "*"
   checksum: ed0954c6a0263de9fda48c213a38f20852851ce9292c413ce982f45b50ea837841aafa7ab81d06ad7fc8b11289ca56552c69ff01c7967d941ab2cafee41ffaff
+  languageName: node
+  linkType: hard
+
+"react-async-hook@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "react-async-hook@npm:4.0.0"
+  peerDependencies:
+    react: ">=16.8"
+  checksum: 059042027bff2751c89d1226ce7b463e73b54ad4018c627bd27d57c029469280d8e37e282bb943b35f91050fbd7d330965f65f0d8b1b7c0b9492fc848c6d82a3
   languageName: node
   linkType: hard
 
