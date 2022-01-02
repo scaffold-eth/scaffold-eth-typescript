@@ -2,16 +2,14 @@ import { THardhatContractsFileJson } from 'eth-hooks/models';
 
 import { YourContract__factory } from '~~/generated/contract-types/factories/YourContract__factory';
 
-import { Greeter__factory } from '~~/generated/contract-types/factories/Greeter__factory';
-
 import { externalContractsAddressMap } from './externalContractsConfig';
 
 /**
  * Run `yarn build:contracts` to generate the external types
  * edit: externalContractAddressMap.ts file to add your own external contracts
  */
-import * as externalContracts from '~~/generated/external-contracts/types';
-import { createConnectorsForExternalContract, createConnectorsForHardhatContracts } from '.yalc/eth-hooks/functions';
+import * as externalContracts from '~~/generated/external-contracts/esm/types';
+import { createConnectorsForExternalContract, createConnectorsForHardhatContracts } from 'eth-hooks/functions';
 
 /**
  * Run `yarn compile` and `yarn deploy` to generate the external types
@@ -36,7 +34,6 @@ const appContractConnectors = (hardhatJson: THardhatContractsFileJson) => {
     const result = {
       // 🙋🏽‍♂️ Add your hadrdhat contracts here
       YourContract: createConnectorsForHardhatContracts('YourContract', YourContract__factory, hardhatJson),
-      Greeter: createConnectorsForHardhatContracts('Greeter', Greeter__factory, hardhatJson),
 
       // 🙋🏽‍♂️ Add your external contracts here, make sure to define the address in `externalContractsConfig.ts`
       DAI: createConnectorsForExternalContract('DAI', externalContracts.DAI__factory, externalContractsAddressMap),
@@ -44,8 +41,11 @@ const appContractConnectors = (hardhatJson: THardhatContractsFileJson) => {
     } as const;
 
     return result;
-  } catch {
-    console.error('😶 ERROR with loading contracts please run `yarn compile`, `yarn deploy`, `yarn compile:external`!');
+  } catch (e) {
+    console.error(
+      '❌ ERROR with loading contracts please run `yarn compile`, `yarn deploy`, `yarn build:contracts`!',
+      e
+    );
   }
 
   return undefined;

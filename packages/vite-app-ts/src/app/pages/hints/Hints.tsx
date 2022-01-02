@@ -20,7 +20,7 @@ export const Hints: FC<IHintsProps> = (props) => {
   const { yourCurrentBalance, mainnetProvider, price, address } = props;
   // Get a list of tokens from a tokenlist -> see tokenlists.org!
   const [selectedToken, setSelectedToken] = useState('Pick a token!');
-  const listOfTokens = useDexTokenList(
+  const [listOfTokens] = useDexTokenList(
     'https://raw.githubusercontent.com/SetProtocol/uniswap-tokenlist/main/set.tokenlist.json'
   );
 

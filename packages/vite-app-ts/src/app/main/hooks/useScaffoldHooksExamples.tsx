@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { ethers } from 'ethers';
 import { IScaffoldAppProviders } from '~~/app/main/hooks/useScaffoldAppProviders';
 import { DEBUG } from '../../../MainPage';
-import { useBalance, useContractReader, useGasPrice, useOnRepetition } from 'eth-hooks';
+import { useBalance, useBlockNumber, useContractReader, useGasPrice, useSignerAddress } from 'eth-hooks';
 
 import { useEthersContext } from 'eth-hooks/context';
 import { getNetworkInfo } from '~~/helpers';
@@ -11,6 +11,7 @@ import { EthComponentsSettingsContext } from 'eth-components/models';
 import { parseEther } from '@ethersproject/units';
 import { config } from 'process';
 import { NETWORKS } from '~~/models/constants/networks';
+import { useAppContracts } from '~~/config/contractFactory';
 
 /**
  * Logs to console current app state.  Shows you examples on how to use hooks!
@@ -21,14 +22,10 @@ import { NETWORKS } from '~~/models/constants/networks';
  * @param writeContracts
  * @param mainnetContracts
  */
-export const useScaffoldHooks = (
-  scaffoldAppProviders: IScaffoldAppProviders,
-  readContracts: Record<string, ethers.Contract>,
-  writeContracts: Record<string, ethers.Contract>,
-  mainnetContracts: Record<string, ethers.Contract>
-) => {
-  const ethersContext = useEthersContext();
+export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProviders) => {
   const ethComponentsSettings = useContext(EthComponentsSettingsContext);
+  const ethersContext = useEthersContext();
+  const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
 
   let currentChainId: number | undefined = ethersContext.chainId;
 
@@ -36,7 +33,7 @@ export const useScaffoldHooks = (
   // 🏦 get your balance
   // ---------------------
   // 🏗 scaffold-eth is full of handy hooks like this one to get your balance:
-  const yourLocalBalance = useBalance(ethersContext.account ?? '');
+  const [yourLocalBalance] = useBalance(ethersContext.account ?? '');
 
   // ---------------------
   // 🤙🏽 calling an external function
@@ -45,14 +42,11 @@ export const useScaffoldHooks = (
   // const yourMainnetBalance = useBalance(scaffoldAppProviders.mainnetProvider, currentEthersUser.address ?? '');
 
   // 💰 Then read your DAI balance like:
-  const myMainnetDAIBalance = useContractReader(mainnetContracts?.['DAI'], {
-    contractName: 'DAI',
-    functionName: 'balanceOf',
-    functionArgs: ['0x34aA3F359A9D614239015126635CE7732c18fDF3'],
-  });
+  const [myAddress] = useSignerAddress(ethersContext.signer);
+  const myMainnetDAIBalance = useContractReader(mainnetDai, mainnetDai?.balanceOf, [myAddress ?? '']);
 
   // 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation
-  const gasPrice = useGasPrice(ethersContext.chainId, 'fast', getNetworkInfo(ethersContext.chainId));
+  const [gasPrice] = useGasPrice(ethersContext.chainId, 'fast', getNetworkInfo(ethersContext.chainId));
 
   // ---------------------
   // 📛 call ens
@@ -65,20 +59,12 @@ export const useScaffoldHooks = (
   // ---------------------
   // This hook will let you invoke a callback on every block or with a polling time!
   // 🙋🏽‍♂️ on block is preffered!
-  useOnRepetition(
-    async (): Promise<void> =>
-      console.log(`⛓ A new mainnet block is here: ${await scaffoldAppProviders.mainnetProvider.getBlockNumber()}`),
-    {
-      provider: scaffoldAppProviders.mainnetProvider,
-    }
+  useBlockNumber(scaffoldAppProviders.mainnetProvider, (blockNumber) =>
+    console.log(`⛓ A new mainnet block is here: ${blockNumber}`)
   );
 
-  useOnRepetition(
-    async (): Promise<void> =>
-      console.log(`⛓ A new localblock block is here: ${await scaffoldAppProviders.localProvider.blockNumber}`),
-    {
-      provider: scaffoldAppProviders.localProvider,
-    }
+  useBlockNumber(scaffoldAppProviders.localProvider, (blockNumber) =>
+    console.log(`⛓ A new local block is here: ${blockNumber}`)
   );
 
   //----------------------
@@ -103,17 +89,7 @@ export const useScaffoldHooks = (
   // }, []);
 
   useEffect(() => {
-    if (
-      DEBUG &&
-      scaffoldAppProviders.mainnetProvider &&
-      ethersContext.account &&
-      currentChainId &&
-      yourLocalBalance &&
-      // yourMainnetBalance &&
-      readContracts &&
-      writeContracts &&
-      mainnetContracts
-    ) {
+    if (DEBUG && scaffoldAppProviders.mainnetProvider && ethersContext.account && currentChainId && yourLocalBalance) {
       console.log('_____________________________________ 🏗 scaffold-eth _____________________________________');
       console.log('🌎 mainnetProvider', scaffoldAppProviders.mainnetProvider);
       console.log('🏠 localChainId', scaffoldAppProviders.localProvider.network.chainId);
@@ -121,18 +97,9 @@ export const useScaffoldHooks = (
       console.log('🕵🏻‍♂️ currentChainId:', currentChainId);
       console.log('💵 yourLocalBalance', yourLocalBalance ? ethers.utils.formatEther(yourLocalBalance) : '...');
       // console.log('💵 yourMainnetBalance', yourMainnetBalance ? ethers.utils.formatEther(yourMainnetBalance) : '...');
-      console.log('📝 readContracts', readContracts);
-      console.log('🌍 DAI contract on mainnet:', mainnetContracts);
+      console.log('🌍 DAI contract on mainnet:', mainnetDai);
       console.log('💵 yourMainnetDAIBalance', myMainnetDAIBalance);
-      console.log('🔐 writeContracts', writeContracts);
       console.log('⛽ gasPrice', gasPrice);
     }
-  }, [
-    scaffoldAppProviders.mainnetProvider,
-    ethersContext.account,
-    ethersContext.provider,
-    readContracts,
-    writeContracts,
-    mainnetContracts,
-  ]);
+  }, [scaffoldAppProviders.mainnetProvider, ethersContext.account, ethersContext.provider]);
 };

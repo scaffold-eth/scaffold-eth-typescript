@@ -24,7 +24,7 @@ export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
   const selectedChainId = ethersContext.chainId;
 
   // 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation
-  const gasPrice = useGasPrice(ethersContext.chainId, 'fast', getNetworkInfo(ethersContext.chainId));
+  const [gasPrice] = useGasPrice(ethersContext.chainId, 'fast', getNetworkInfo(ethersContext.chainId));
 
   /**
    * this shows the page header and other informaiton

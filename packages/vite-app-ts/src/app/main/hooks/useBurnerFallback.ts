@@ -1,5 +1,5 @@
 import { useEthersContext } from 'eth-hooks/context';
-import { useBurnerSigner, useUserAddress } from 'eth-hooks';
+import { useBurnerSigner, useSignerAddress } from 'eth-hooks';
 import { parseProviderOrSigner } from 'eth-hooks/functions';
 import { TEthersProvider } from 'eth-hooks/models';
 import { useEffect, useRef, useState } from 'react';
@@ -10,7 +10,7 @@ import { localNetworkInfo } from '~~/config/providersConfig';
 export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: boolean) => {
   const ethersContext = useEthersContext();
   const burnerFallback = useBurnerSigner(appProviders.localProvider as TEthersProvider);
-  const localAddress = useUserAddress(appProviders.localProvider.getSigner());
+  const localAddress = useSignerAddress(appProviders.localProvider.getSigner());
 
   useEffect(() => {
     /**

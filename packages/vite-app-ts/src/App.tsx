@@ -11,11 +11,11 @@ import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-compon
  * See MainPage.tsx for main app component!
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
  *
- * This file loads the app and sets up the react context.
+ * This file loads the app and styles async.  It sets up context, apollo, error boundaries, etc.
  * You don't need to change this file.
  */
 
-console.log('load app');
+console.log('init app...');
 
 // import postcss style file
 import '~~/styles/css/tailwind-base.pcss';

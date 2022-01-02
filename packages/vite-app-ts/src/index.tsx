@@ -10,7 +10,7 @@
  */
 
 /**
- * Loads {@see App} which sets up the application.
+ * Loads {@see App} which sets up the application async.
  * The main page is in the component {@see MainPage}
  */
 const run = async (): Promise<void> => {

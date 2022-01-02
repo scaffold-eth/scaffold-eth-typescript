@@ -1,4 +1,4 @@
-import { TExternalContractsAddressMap } from '.yalc/eth-hooks/models';
+import { TExternalContractsAddressMap } from 'eth-hooks/models';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️

@@ -5,7 +5,7 @@ import { Contract } from 'ethers';
 import GraphiQL from 'graphiql';
 import 'graphiql/graphiql.min.css';
 import React, { FC, ReactElement, useContext, useState } from 'react';
-import { transactor, TTransactor } from 'eth-components/functions';
+import { transactor } from 'eth-components/functions';
 
 import { Address } from 'eth-components/ant';
 import { EthComponentsSettingsContext } from 'eth-components/models';
@@ -27,6 +27,7 @@ export interface ISubgraphProps {
 }
 
 export const Subgraph: FC<ISubgraphProps> = (props) => {
+  const ethComponentsSettings = useContext(EthComponentsSettingsContext);
   const graphQLFetcher = async (graphQLParams: any): Promise<Record<string, any>> => {
     const response = await fetch(props.subgraphUri, {
       method: 'post',
@@ -37,9 +38,7 @@ export const Subgraph: FC<ISubgraphProps> = (props) => {
   };
 
   const ethersContext = useEthersContext();
-
-  const ethComponentsSettings = useContext(EthComponentsSettingsContext);
-  const gasPrice = useGasPrice(ethersContext.chainId, 'fast');
+  const [gasPrice] = useGasPrice(ethersContext.chainId, 'fast');
   const tx = transactor(ethComponentsSettings, ethersContext?.signer, gasPrice);
 
   const EXAMPLE_GRAPHQL = `
