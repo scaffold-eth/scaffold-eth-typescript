@@ -24,7 +24,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
   const ethersContext = useEthersContext();
 
   const yourContract = useAppContracts('YourContract', ethersContext.chainId);
-  const purpose = useContractReader(yourContract, yourContract?.purpose);
+  const [purpose] = useContractReader(yourContract, yourContract?.purpose);
 
   const [setPurposeEvents] = useEventListener<SetPurposeEvent>(yourContract, yourContract?.filters.SetPurpose(), 1);
 

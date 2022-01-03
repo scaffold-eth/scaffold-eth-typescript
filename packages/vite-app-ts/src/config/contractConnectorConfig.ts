@@ -9,13 +9,13 @@ import { externalContractsAddressMap } from './externalContractsConfig';
  * edit: externalContractAddressMap.ts file to add your own external contracts
  */
 import * as externalContracts from '~~/generated/external-contracts/esm/types';
-import { createConnectorsForExternalContract, createConnectorsForHardhatContracts } from 'eth-hooks/functions';
 
 /**
  * Run `yarn compile` and `yarn deploy` to generate the external types
  * edit: externalContractAddressMap.ts file to add your own external contracts
  */
 import hardhatContractsJson from '../generated/hardhat_contracts.json';
+import { createConnectorsForExternalContract, createConnectorsForHardhatContracts } from 'eth-hooks/context';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
