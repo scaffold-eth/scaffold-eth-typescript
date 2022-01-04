@@ -1,4 +1,3 @@
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import React, { FC, lazy, Suspense } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import { ErrorBoundary, ErrorFallback } from '~~/app/common/ErrorFallback';
@@ -11,7 +10,7 @@ import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-compon
  * See MainPage.tsx for main app component!
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
  *
- * This file loads the app and styles async.  It sets up context, apollo, error boundaries, etc.
+ * This file loads the app and styles async.  It sets up context, error boundaries, etc.
  * You don't need to change this file.
  */
 
@@ -33,12 +32,6 @@ const themes = {
   dark: './dark-theme.css',
   light: './light-theme.css',
 };
-
-// load graphql client for subgraphs
-const client = new ApolloClient({
-  uri: subgraphUri,
-  cache: new InMemoryCache(),
-});
 
 // create eth components context for options and API keys
 const ethComponentsSettings: IEthComponentsSettings = {
@@ -62,21 +55,19 @@ const App: FC = () => {
   console.log('loading app...');
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <ApolloProvider client={client}>
-        <EthComponentsSettingsContext.Provider value={ethComponentsSettings}>
-          <EthersAppContext>
-            <ErrorBoundary FallbackComponent={ErrorFallback}>
-              <ContractsAppContext>
-                <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme || 'light'}>
-                  <Suspense fallback={<div />}>
-                    <MainPage />
-                  </Suspense>
-                </ThemeSwitcherProvider>
-              </ContractsAppContext>
-            </ErrorBoundary>
-          </EthersAppContext>
-        </EthComponentsSettingsContext.Provider>
-      </ApolloProvider>
+      <EthComponentsSettingsContext.Provider value={ethComponentsSettings}>
+        <EthersAppContext>
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <ContractsAppContext>
+              <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme || 'light'}>
+                <Suspense fallback={<div />}>
+                  <MainPage />
+                </Suspense>
+              </ThemeSwitcherProvider>
+            </ContractsAppContext>
+          </ErrorBoundary>
+        </EthersAppContext>
+      </EthComponentsSettingsContext.Provider>
     </ErrorBoundary>
   );
 };

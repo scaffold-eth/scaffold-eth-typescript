@@ -1,10 +1,6 @@
-import { gql, useQuery } from '@apollo/client';
-import { JsonRpcProvider, Web3Provider } from '@ethersproject/providers';
 import { Button, Input, Table, Typography } from 'antd';
-import { Contract } from 'ethers';
-import GraphiQL from 'graphiql';
 import 'graphiql/graphiql.min.css';
-import React, { FC, ReactElement, useContext, useState } from 'react';
+import React, { FC, lazy, ReactElement, Suspense, useContext, useState } from 'react';
 import { transactor } from 'eth-components/functions';
 
 import { Address } from 'eth-components/ant';
@@ -13,6 +9,10 @@ import { useGasPrice } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
 import { useAppContracts } from '~~/config/contractContext';
 import { TEthersProvider } from '.yalc/eth-hooks/models';
+import { useQuery } from 'react-query';
+import { gql } from 'graphql-request';
+
+const GraphiQL = lazy(() => import('graphiql'));
 
 const highlight: React.CSSProperties = {
   marginLeft: 4,
@@ -43,7 +43,7 @@ export const Subgraph: FC<ISubgraphProps> = (props) => {
   const tx = transactor(ethComponentsSettings, ethersContext?.signer, gasPrice);
   const yourContract = useAppContracts('YourContract', ethersContext.chainId);
 
-  const EXAMPLE_GRAPHQL = `
+  const EXAMPLE_GQL = gql`
     {
       purposes(first: 25, orderBy: createdAt, orderDirection: desc) {
         id
@@ -59,9 +59,9 @@ export const Subgraph: FC<ISubgraphProps> = (props) => {
         purposeCount
       }
     }
-    `;
-  const EXAMPLE_GQL = gql(EXAMPLE_GRAPHQL);
-  const { loading, data } = useQuery(EXAMPLE_GQL, { pollInterval: 2500 });
+  `;
+  const { isLoading, data } = useQuery(EXAMPLE_GQL, {});
+  const graphqlData = data as any;
 
   const purposeColumns = [
     {
@@ -189,14 +189,16 @@ export const Subgraph: FC<ISubgraphProps> = (props) => {
           </Button>
         </div>
 
-        {data?.purposes ? (
-          <Table dataSource={data.purposes} columns={purposeColumns} rowKey="id" />
+        {graphqlData?.purposes ? (
+          <Table dataSource={graphqlData.purposes} columns={purposeColumns} rowKey="id" />
         ) : (
-          <Typography>{loading ? 'Loading...' : deployWarning}</Typography>
+          <Typography>{isLoading ? 'Loading...' : deployWarning}</Typography>
         )}
 
         <div style={{ margin: 32, height: 400, border: '1px solid #888888', textAlign: 'left' }}>
-          <GraphiQL fetcher={graphQLFetcher} docExplorerOpen query={EXAMPLE_GRAPHQL} />
+          <Suspense fallback={<div>⏳ Loading GraphiQl...</div>}>
+            <GraphiQL fetcher={graphQLFetcher} docExplorerOpen query={EXAMPLE_GQL} />
+          </Suspense>
         </div>
       </div>
 
