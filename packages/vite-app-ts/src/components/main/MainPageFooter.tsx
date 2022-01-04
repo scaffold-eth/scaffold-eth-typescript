@@ -4,7 +4,7 @@ import { Ramp, ThemeSwitcher } from '~~/components/common';
 import { Faucet, GasGauge } from 'eth-components/ant';
 import { NETWORKS } from '~~/models/constants/networks';
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
-import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
+import { getNetworkInfo } from '~~/functions/getNetworkInfo';
 import { useEthersContext } from 'eth-hooks/context';
 import { getFaucetAvailable } from '~~/components/common/FaucetHintButton';
 

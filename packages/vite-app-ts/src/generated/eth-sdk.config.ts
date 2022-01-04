@@ -1,5 +1,5 @@
 import { defineConfig } from '@dethcrypto/eth-sdk';
-import { contractsByNetworkName } from '../helpers/contractsByNetworkName';
+import { contractsByNetworkName } from '../functions/contractsByNetworkName';
 
 console.log(contractsByNetworkName);
 

@@ -6,7 +6,7 @@ import { FaucetHintButton } from '~~/components/common/FaucetHintButton';
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 import { useEthersContext } from 'eth-hooks/context';
 import { useGasPrice } from 'eth-hooks';
-import { getNetworkInfo } from '~~/helpers';
+import { getNetworkInfo } from '~~/functions';
 
 // displays a page header
 export interface IMainPageHeaderProps {

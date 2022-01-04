@@ -43,7 +43,7 @@ export const contractConnectorConfig = () => {
     return result;
   } catch (e) {
     console.error(
-      '❌ ERROR with loading contracts please run `yarn contracts:build or yarn contracts:rebuild`.  Then run `yarn deploy`!',
+      '❌ contractConnectorConfig: ERROR with loading contracts please run `yarn contracts:build or yarn contracts:rebuild`.  Then run `yarn deploy`!',
       e
     );
   }

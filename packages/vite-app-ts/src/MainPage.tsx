@@ -25,7 +25,7 @@ import {
 import { asEthersAdaptor } from 'eth-hooks/functions';
 import { subgraphUri } from '~~/config/subgraphConfig';
 
-export const DEBUG = false;
+const DEBUG = false;
 
 export const Main: FC = () => {
   // -----------------------------
@@ -135,5 +135,3 @@ export const Main: FC = () => {
     </div>
   );
 };
-
-export default Main;

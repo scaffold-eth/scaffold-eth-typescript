@@ -23,6 +23,7 @@ import '~~/styles/css/tailwind-utilities.pcss';
 import '~~/styles/css/app.css';
 import { EthersAppContext } from 'eth-hooks/context';
 import { ContractsAppContext } from '~~/config/contractContext';
+import { lazier } from 'eth-hooks/helpers';
 
 // load saved theme
 const savedTheme = window.localStorage.getItem('theme');
@@ -43,7 +44,7 @@ const ethComponentsSettings: IEthComponentsSettings = {
 /**
  * Lazy load the main app component
  */
-const MainPage = lazy(() => import('./MainPage'));
+const MainPage = lazier(() => import('./MainPage'), 'Main');
 
 /**
  * ### Summary
@@ -57,15 +58,15 @@ const App: FC = () => {
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <EthComponentsSettingsContext.Provider value={ethComponentsSettings}>
         <EthersAppContext>
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <ContractsAppContext>
+          <ContractsAppContext>
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
               <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme || 'light'}>
                 <Suspense fallback={<div />}>
                   <MainPage />
                 </Suspense>
               </ThemeSwitcherProvider>
-            </ContractsAppContext>
-          </ErrorBoundary>
+            </ErrorBoundary>
+          </ContractsAppContext>
         </EthersAppContext>
       </EthComponentsSettingsContext.Provider>
     </ErrorBoundary>
