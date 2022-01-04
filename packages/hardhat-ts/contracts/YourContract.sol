@@ -6,21 +6,21 @@ import 'hardhat/console.sol';
 //import "@openzeppelin/contracts/access/Ownable.sol"; //https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol
 
 contract YourContract {
-  event SetPurpose(address sender, string purpose);
+  string public purpose = 'Building Unstoppable Apps!!!';
 
-  string _purpose = 'Building Unstoppable Apps';
-
+  // this is an error handler
   //error EmptyPurposeError(uint code, string message);
 
   constructor() {
     // what should we do on deploy?
   }
 
-  function purpose() public view returns (string memory) {
-    return _purpose;
-  }
+  // this is an event for the function below
+  event SetPurpose(address sender, string purpose);
 
   function setPurpose(string memory newPurpose) public payable {
+    // you can add error handling!
+
     // if(bytes(newPurpose).length == 0){
     //     revert EmptyPurposeError({
     //         code: 1,
@@ -28,8 +28,8 @@ contract YourContract {
     //     });
     // }
 
-    _purpose = newPurpose;
-    console.log(msg.sender, 'set purpose to', _purpose);
-    emit SetPurpose(msg.sender, _purpose);
+    purpose = newPurpose;
+    console.log(msg.sender, 'set purpose to', purpose);
+    emit SetPurpose(msg.sender, purpose);
   }
 }
