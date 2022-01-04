@@ -6,13 +6,13 @@ import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners } 
 import { useDexEthPrice } from 'eth-hooks/dapps';
 
 import { GenericContract } from 'eth-components/ant/generic-contract';
-import { Hints, Subgraph, ExampleUI } from '~~/app/pages';
+import { Hints, Subgraph, ExampleUI } from '~~/components/pages';
 
 import { useEventListener } from 'eth-hooks';
-import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from './app/main/components';
-import { useScaffoldProviders as useScaffoldAppProviders } from '~~/app/main/hooks/useScaffoldAppProviders';
-import { useBurnerFallback } from '~~/app/main/hooks/useBurnerFallback';
-import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './app/main/hooks/useScaffoldHooksExamples';
+import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from './components/main';
+import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
+import { useBurnerFallback } from '~~/components/main/hooks/useBurnerFallback';
+import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './components/main/hooks/useScaffoldHooksExamples';
 import { useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
 import { mainnetProvider } from '~~/config/providersConfig';

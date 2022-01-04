@@ -20,10 +20,10 @@ import { createConnectorsForExternalContract, createConnectorsForHardhatContract
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
  * ### Instructions
- * 1. run yarn compile yarn deploy to generate hardhat_contracts.json
- * 2. run yarn build:contracts to generate types for external contracts
- * 3. edit externalContractList.ts to add your external contract addresses.
- * 4. edit `loader` function below and add them to the list
+ * 1. edit externalContractList.ts to add your external contract addresses.
+ * 2. edit `loader` function below and add them to the list
+ * 3. run yarn compile `yarn build:contracts` to generate types for contracts
+ * 4. run `yarn deploy` to generate hardhat_contracts.json
  *
  * ### Summary
  * - called  by useAppContracts
@@ -43,7 +43,7 @@ export const contractConnectorConfig = () => {
     return result;
   } catch (e) {
     console.error(
-      '❌ ERROR with loading contracts please run `yarn compile`, `yarn deploy`, `yarn build:contracts`!',
+      '❌ ERROR with loading contracts please run `yarn contracts:build or yarn contracts:rebuild`.  Then run `yarn deploy`!',
       e
     );
   }

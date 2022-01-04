@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { ethers } from 'ethers';
-import { IScaffoldAppProviders } from '~~/app/main/hooks/useScaffoldAppProviders';
+import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 import { DEBUG } from '../../../MainPage';
 import { useBalance, useBlockNumber, useContractReader, useGasPrice, useSignerAddress } from 'eth-hooks';
 

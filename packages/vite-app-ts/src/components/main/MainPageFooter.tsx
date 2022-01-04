@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import { Row, Col, Button } from 'antd';
-import { Ramp, ThemeSwitcher } from '~~/app/common';
+import { Ramp, ThemeSwitcher } from '~~/components/common';
 import { Faucet, GasGauge } from 'eth-components/ant';
 import { NETWORKS } from '~~/models/constants/networks';
-import { IScaffoldAppProviders } from '~~/app/main/hooks/useScaffoldAppProviders';
+import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
 import { useEthersContext } from 'eth-hooks/context';
-import { getFaucetAvailable } from '~~/app/common/FaucetHintButton';
+import { getFaucetAvailable } from '~~/components/common/FaucetHintButton';
 
 export interface IMainPageFooterProps {
   scaffoldAppProviders: IScaffoldAppProviders;

@@ -3,7 +3,7 @@ import { useBurnerSigner, useSignerAddress } from 'eth-hooks';
 import { parseProviderOrSigner } from 'eth-hooks/functions';
 import { TEthersProvider } from 'eth-hooks/models';
 import { useEffect, useRef, useState } from 'react';
-import { IScaffoldAppProviders } from '~~/app/main/hooks/useScaffoldAppProviders';
+import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 
 import { localNetworkInfo } from '~~/config/providersConfig';
 
