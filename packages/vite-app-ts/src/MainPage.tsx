@@ -60,7 +60,7 @@ export const Main: FC = () => {
   const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
 
   // keep track of a variable from the contract in the local React state:
-  const purpose = useContractReader(yourContract, yourContract?.purpose);
+  const purpose = useContractReader(yourContract, yourContract?.purpose, [], yourContract?.filters.SetPurpose());
 
   // 📟 Listen for broadcast events
   const [setPurposeEvents] = useEventListener(yourContract, 'SetPurpose', 0);
@@ -77,7 +77,7 @@ export const Main: FC = () => {
   // Hooks use and examples
   // -----------------------------
   // 🎉 Console logs & More hook examples:  Check out this to see how to get
-  useScaffoldHooksExamples(scaffoldAppProviders);
+  // useScaffoldHooksExamples(scaffoldAppProviders);
 
   // -----------------------------
   // .... 🎇 End of examples

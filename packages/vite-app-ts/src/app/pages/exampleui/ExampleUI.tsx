@@ -11,7 +11,7 @@ import { useEthersContext } from 'eth-hooks/context';
 import { useContractLoader, useContractReader, useEventListener, useGasPrice } from 'eth-hooks';
 import { EthComponentsSettingsContext } from 'eth-components/models';
 import { useAppContracts, useAppContractsContext } from '~~/config/contractContext';
-import { SetPurposeEvent } from '~~/generated/contract-types/YourContract';
+import { SetPurposeEvent, YourContract } from '~~/generated/contract-types/YourContract';
 
 export interface IExampleUIProps {
   mainnetProvider: StaticJsonRpcProvider | undefined;
@@ -24,7 +24,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
   const ethersContext = useEthersContext();
 
   const yourContract = useAppContracts('YourContract', ethersContext.chainId);
-  const [purpose] = useContractReader(yourContract, yourContract?.purpose);
+  const [purpose] = useContractReader(yourContract, yourContract?.purpose, [], yourContract?.filters.SetPurpose());
 
   const [setPurposeEvents] = useEventListener<SetPurposeEvent>(yourContract, yourContract?.filters.SetPurpose(), 1);
 

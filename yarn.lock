@@ -2498,7 +2498,7 @@ __metadata:
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^1.1.5
     eth-components: 3.0.0-beta13
-    eth-hooks: 4.0.2-beta01
+    eth-hooks: 4.0.2-beta02
     ethereum-cryptography: ^0.1.3
     ethers: ^5.4.1
     fortmatic: ^2.2.1
@@ -9588,9 +9588,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:4.0.2-beta01":
-  version: 4.0.2-beta01
-  resolution: "eth-hooks@npm:4.0.2-beta01"
+"eth-hooks@npm:4.0.2-beta02":
+  version: 4.0.2-beta02
+  resolution: "eth-hooks@npm:4.0.2-beta02"
   dependencies:
     "@ethersproject/address": ^5.5.0
     "@ethersproject/bignumber": ^5.5.0
@@ -9607,6 +9607,7 @@ __metadata:
     "@web3-react/types": ^6.0.7
     axios: ^0.24.0
     ethers: ^5.5.2
+    lodash.isequal: ^4.5.0
     merge-anything: ^4.0.2
     react-query: ^3.34.7
     react-use-promise: ^0.4.1
@@ -9618,7 +9619,7 @@ __metadata:
     "@uniswap/sdk": ^3.0.3
     react: ">=17.0.2"
     react-dom: ">=17.0.2"
-  checksum: b8922992b6b00bf1b7cdc2999cc3b84856850cde301210b0df1580fef316b3d569b554fe23b368d12829fd20e18e6f0be12eebb9f532790bb4c482bbf536c789
+  checksum: 2a49e343faf7d99b4a93d9b0e03d919305ef838b0609db69bcd037c3904356eb2e2c20574d96cf5b16ed45fa1ca3ebe74b48d49e141955d4f5761bf047125a2b
   languageName: node
   linkType: hard
 
@@ -15586,6 +15587,13 @@ fsevents@~2.1.1:
   version: 4.4.2
   resolution: "lodash.get@npm:4.4.2"
   checksum: e403047ddb03181c9d0e92df9556570e2b67e0f0a930fcbbbd779370972368f5568e914f913e93f3b08f6d492abc71e14d4e9b7a18916c31fa04bd2306efe545
+  languageName: node
+  linkType: hard
+
+"lodash.isequal@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "lodash.isequal@npm:4.5.0"
+  checksum: da27515dc5230eb1140ba65ff8de3613649620e8656b19a6270afe4866b7bd461d9ba2ac8a48dcc57f7adac4ee80e1de9f965d89d4d81a0ad52bb3eec2609644
   languageName: node
   linkType: hard
 

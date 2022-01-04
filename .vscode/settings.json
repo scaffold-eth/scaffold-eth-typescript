@@ -16,14 +16,9 @@
       "**/build/**/*": true,
       "**/debug/": true,
       "**/dist/": true,
-      "**/node_modules/": true,
       "**/obj": true,
-      "node_modules": true,
-      "node_modules/*/**": true,
-      "**/node_modules": true,
       "yarn-error.log": true,
       "**/yarn-error.log": true,
-      "packages\\eth-hooks/lib": true,
       "**/.yalc": true
    },
    "search.exclude": {
@@ -42,14 +37,14 @@
       "**/build/**/*": true,
       "**/debug/": true,
       "**/dist/": true,
-      "**/node_modules/": true,
       "**/obj": true,
       "node_modules": true,
       "node_modules/*/**": true,
       "**/node_modules": true,
       "yarn-error.log": true,
       "**/yarn-error.log": true,
-      "**/.yalc": true
+      "**/.yalc": true,
+      "**/.yarn": true
    },
    "explorerExclude.backup": null,
    "eslint.workingDirectories": [

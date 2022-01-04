@@ -95,7 +95,7 @@ export const Subgraph: FC<ISubgraphProps> = (props) => {
       <div style={{ margin: 'auto', marginTop: 32 }}>
         You will find that parsing/tracking events with the{' '}
         <span className="highlight" style={highlight}>
-          useEventListener
+          Listener
         </span>
         hook becomes a chore for every new project.
       </div>
