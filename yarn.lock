@@ -2363,7 +2363,7 @@ __metadata:
     tailwindcss: ^2.2.17
     tailwindcss-elevation: ^1.0.1
     timers-browserify: ^2.0.12
-    tiny-invariant: ^1.1.0
+    ts-invariant: ^0.9.4
     ts-node: ^10.3.0
     twin.macro: ^2.8.0
     typescript: ^4.3.4

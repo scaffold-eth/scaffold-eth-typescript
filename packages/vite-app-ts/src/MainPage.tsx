@@ -15,7 +15,7 @@ import { useBurnerFallback } from '~~/components/main/hooks/useBurnerFallback';
 import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './components/main/hooks/useScaffoldHooksExamples';
 import { useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
-import { mainnetProvider } from '~~/config/providersConfig';
+import { const_UseBurnerWalletAsFallback, mainnetProvider } from '~~/config/providersConfig';
 import {
   useAppContracts,
   useAppContractsActions,
@@ -24,8 +24,6 @@ import {
 } from '~~/config/contractContext';
 import { asEthersAdaptor } from 'eth-hooks/functions';
 import { subgraphUri } from '~~/config/subgraphConfig';
-
-const DEBUG = false;
 
 export const Main: FC = () => {
   // -----------------------------
@@ -39,7 +37,7 @@ export const Main: FC = () => {
   const ethersContext = useEthersContext();
 
   // if no user is found use a burner wallet on localhost as fallback if enabled
-  useBurnerFallback(scaffoldAppProviders, true);
+  useBurnerFallback(scaffoldAppProviders, const_UseBurnerWalletAsFallback);
 
   // -----------------------------
   // Load Contracts

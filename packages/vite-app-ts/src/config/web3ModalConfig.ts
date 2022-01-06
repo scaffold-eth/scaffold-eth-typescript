@@ -2,6 +2,11 @@ import Web3Modal, { ICoreOptions } from 'web3modal';
 import { INFURA_ID } from '~~/models/constants/constants';
 import { localNetworkInfo } from '~~/config/providersConfig';
 
+export const web3ModalConfigKeys = {
+  coinbaseKey: 'custom-walletlink',
+  localhostKey: 'custom-localhost',
+} as const;
+
 export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
   const Portis = (await import('@portis/web3')).default;
   const Fortmatic = (await import('fortmatic')).default;
@@ -105,13 +110,13 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
     cacheProvider: true,
     theme: 'light',
     providerOptions: {
-      'custom-localhost': localhostStaticConnector,
+      [web3ModalConfigKeys.localhostKey]: localhostStaticConnector,
       walletconnect: walletConnectEthereum,
       portis: portis,
       fortmatic: formatic,
       //torus: torus,
       authereum: authereum,
-      'custom-walletlink': coinbaseWalletLink,
+      [web3ModalConfigKeys.coinbaseKey]: coinbaseWalletLink,
     },
   };
 };

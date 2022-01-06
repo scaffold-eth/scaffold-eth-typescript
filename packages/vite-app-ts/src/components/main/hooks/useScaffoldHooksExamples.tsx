@@ -1,17 +1,17 @@
 import { useContext, useEffect } from 'react';
 import { ethers } from 'ethers';
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
-import { DEBUG } from '../../../MainPage';
 import { useBalance, useBlockNumber, useContractReader, useGasPrice, useSignerAddress } from 'eth-hooks';
 
 import { useEthersContext } from 'eth-hooks/context';
-import { getNetworkInfo } from '~~/helpers';
 import { transactor } from 'eth-components/functions';
 import { EthComponentsSettingsContext } from 'eth-components/models';
 import { parseEther } from '@ethersproject/units';
 import { config } from 'process';
 import { NETWORKS } from '~~/models/constants/networks';
 import { useAppContracts } from '~~/config/contractContext';
+import { getNetworkInfo } from '~~/functions';
+import { DEBUG } from '~~/config/debug';
 
 /**
  * Logs to console current app state.  Shows you examples on how to use hooks!
@@ -51,7 +51,7 @@ export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProvi
   // ---------------------
   // 📛 call ens
   // ---------------------
-  // const addressFromENS = useEnsResolveName(scaffoldAppProviders.mainnetProvider, 'austingriffith.eth');
+  // const [addressFromENS] = useEnsResolveName(scaffoldAppProviders.mainnetProvider, 'austingriffith.eth');
   // console.log('🏷 Resolved austingriffith.eth as:', addressFromENS);
 
   // ---------------------
