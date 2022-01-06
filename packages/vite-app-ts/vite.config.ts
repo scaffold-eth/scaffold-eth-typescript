@@ -4,15 +4,22 @@ import macrosPlugin from 'vite-plugin-babel-macros';
 import reactPlugin from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import path, { resolve } from 'path';
+import { viteExternalsPlugin } from 'vite-plugin-externals';
 
 const isDev = process.env.ENVIRONMENT == 'DEVELOPMENT';
 console.log('env.dev:', process.env.ENVIRONMENT, ' isDev:', isDev);
 
-// https://vitejs.dev/config/
+const externals = viteExternalsPlugin({
+  // added due to ipfs-http-client
+  //  it has very poor esm compatibility and a ton of dependency bugs.
+  //  see: https://github.com/ipfs/js-ipfs/issues/3452
+  electron: 'electron',
+  'electron-fetch': 'electron-fetch',
+});
+
 export default defineConfig({
-  plugins: [reactPlugin(), macrosPlugin(), tsconfigPaths()],
+  plugins: [reactPlugin(), macrosPlugin(), tsconfigPaths(), externals],
   build: {
-    // sourcemap: true,
     commonjsOptions: {
       include: /node_modules/,
       transformMixedEsModules: true,
@@ -49,6 +56,7 @@ export default defineConfig({
       followSymlinks: true,
     },
     fs: {
+      // compatability for yarn workspaces
       allow: ['../../'],
     },
   },
