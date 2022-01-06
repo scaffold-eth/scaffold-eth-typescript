@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import { Row, Col, Button } from 'antd';
-import { Ramp, ThemeSwitcher } from '~~/app/common';
+import { Ramp, ThemeSwitcher } from '~~/components/common';
 import { Faucet, GasGauge } from 'eth-components/ant';
 import { NETWORKS } from '~~/models/constants/networks';
-import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
-import { getNetworkInfo } from '~~/helpers/getNetworkInfo';
+import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
+import { getNetworkInfo } from '~~/functions/getNetworkInfo';
 import { useEthersContext } from 'eth-hooks/context';
-import { getFaucetAvailable } from '~~/app/common/FaucetHintButton';
+import { getFaucetAvailable } from '~~/components/common/FaucetHintButton';
 
 export interface IMainPageFooterProps {
   scaffoldAppProviders: IScaffoldAppProviders;
@@ -47,7 +47,7 @@ export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
           <GasGauge
             chainId={props.scaffoldAppProviders.targetNetwork.chainId}
             currentNetwork={getNetworkInfo(ethersContext.chainId)}
-            provider={ethersContext.ethersProvider}
+            provider={ethersContext.provider}
             speed="average"
           />
         </Col>
@@ -81,12 +81,12 @@ export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
           {
             /*  if the local provider has a signer, let's show the faucet:  */
             faucetAvailable &&
-            props.scaffoldAppProviders?.mainnetProvider &&
-            props.scaffoldAppProviders?.localProvider ? (
+            props.scaffoldAppProviders?.mainnetAdaptor &&
+            props.scaffoldAppProviders?.localAdaptor ? (
               <Faucet
-                localProvider={props.scaffoldAppProviders.localProvider}
+                localAdaptor={props.scaffoldAppProviders.localAdaptor}
                 price={props.price}
-                mainnetProvider={props.scaffoldAppProviders.mainnetProvider}
+                mainnetAdaptor={props.scaffoldAppProviders.mainnetAdaptor}
               />
             ) : (
               <></>

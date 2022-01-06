@@ -18,6 +18,8 @@
       "test": "yarn workspace @scaffold-eth/hardhat test",
       "start": "yarn workspace @scaffold-eth/vite-app start",
       "compile": "yarn workspace @scaffold-eth/hardhat compile",
+      "contracts:build": "yarn workspace @scaffold-eth/hardhat hardhat compile && yarn workspace @scaffold-eth/vite-app contracts:external",
+      "contracts:rebuild": "yarn workspace @scaffold-eth/hardhat hardhat clean && yarn contracts:build",
       "export": "yarn workspace @scaffold-eth/hardhat export",
       "deploy": "yarn workspace @scaffold-eth/hardhat deploy",
       "watch": "yarn workspace @scaffold-eth/hardhat watch",
@@ -62,8 +64,5 @@
       "eslint": "^7.32.0",
       "prettier": "^2.4.1",
       "shx": "^0.3.3"
-   },
-   "dependencies": {
-      "react": "^17.0.2"
    }
 }

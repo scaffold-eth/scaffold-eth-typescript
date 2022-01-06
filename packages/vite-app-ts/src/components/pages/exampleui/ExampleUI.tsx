@@ -5,16 +5,16 @@ import { Signer, Contract } from 'ethers';
 import React, { useState, FC, useContext } from 'react';
 
 import { Address, Balance } from 'eth-components/ant';
-import { transactor, TTransactor } from 'eth-components/functions';
+import { transactor } from 'eth-components/functions';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { useEthersContext } from 'eth-hooks/context';
 import { useContractLoader, useContractReader, useEventListener, useGasPrice } from 'eth-hooks';
-import { YourContract } from '~~/generated/contract-types';
-import { useAppContracts } from '~~/app/routes/main/hooks/useAppContracts';
 import { EthComponentsSettingsContext } from 'eth-components/models';
+import { useAppContracts, useAppContractsContext } from '~~/config/contractContext';
+import { SetPurposeEvent, YourContract } from '~~/generated/contract-types/YourContract';
 
 export interface IExampleUIProps {
-  mainnetProvider: StaticJsonRpcProvider;
+  mainnetProvider: StaticJsonRpcProvider | undefined;
   yourCurrentBalance: any;
   price: number;
 }
@@ -23,23 +23,16 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
   const [newPurpose, setNewPurpose] = useState('loading...');
   const ethersContext = useEthersContext();
 
-  const appContractConfig = useAppContracts();
-  const readContracts = useContractLoader(appContractConfig);
-  const writeContracts = useContractLoader(appContractConfig, ethersContext?.signer);
+  const yourContract = useAppContracts('YourContract', ethersContext.chainId);
+  const [purpose] = useContractReader(yourContract, yourContract?.purpose, [], yourContract?.filters.SetPurpose());
 
-  const yourContractRead = readContracts['YourContract'] as YourContract;
-  const yourContractWrite = writeContracts['YourContract'] as YourContract;
-  const purpose = useContractReader<string>(yourContractRead, {
-    contractName: 'YourContract',
-    functionName: 'purpose',
-  });
-  const setPurposeEvents = useEventListener(yourContractRead, 'SetPurpose', 1);
+  const [setPurposeEvents] = useEventListener<SetPurposeEvent>(yourContract, yourContract?.filters.SetPurpose(), 1);
 
   const signer = ethersContext.signer;
   const address = ethersContext.account ?? '';
 
   const ethComponentsSettings = useContext(EthComponentsSettingsContext);
-  const gasPrice = useGasPrice(ethersContext.chainId, 'fast');
+  const [gasPrice] = useGasPrice(ethersContext.chainId, 'fast');
   const tx = transactor(ethComponentsSettings, ethersContext?.signer, gasPrice);
 
   const { mainnetProvider, yourCurrentBalance, price } = props;
@@ -64,7 +57,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
             onClick={async () => {
               /* look how you call setPurpose on your contract: */
               /* notice how you pass a call back for tx updates too */
-              const result = tx?.(yourContractWrite?.setPurpose(newPurpose), (update: any) => {
+              const result = tx?.(yourContract?.setPurpose(newPurpose), (update: any) => {
                 console.log('📡 Transaction Update:', update);
                 if (update && (update.status === 'confirmed' || update.status === 1)) {
                   console.log(' 🍾 Transaction ' + update.hash + ' finished!');
@@ -108,13 +101,13 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
         <h2>Your Balance: {yourCurrentBalance ? formatEther(yourCurrentBalance) : '...'}</h2>
         <Divider />
         Your Contract Address:
-        <Address address={readContracts?.YourContract?.address} ensProvider={mainnetProvider} fontSize={16} />
+        <Address address={yourContract?.address} ensProvider={mainnetProvider} fontSize={16} />
         <Divider />
         <div style={{ margin: 8 }}>
           <Button
             onClick={() => {
               /* look how you call setPurpose on your contract: */
-              tx?.(yourContractWrite?.setPurpose('🍻 Cheers'));
+              tx?.(yourContract?.setPurpose('🍻 Cheers'));
             }}>
             Set Purpose to &quot;🍻 Cheers&quot;
           </Button>
@@ -127,7 +120,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
               here we are sending value straight to the contract's address:
             */
               tx?.({
-                to: writeContracts.YourContract.address,
+                to: yourContract?.address,
                 value: parseEther('0.001'),
               });
               /* this should throw an error about "no fallback nor receive function" until you add it */
@@ -140,7 +133,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
             onClick={() => {
               /* look how we call setPurpose AND send some value along */
               tx?.(
-                yourContractWrite?.setPurpose('💵 Paying for this one!', {
+                yourContract?.setPurpose('💵 Paying for this one!', {
                   value: parseEther('0.001'),
                 })
               );
@@ -154,9 +147,9 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
             onClick={() => {
               /* you can also just craft a transaction and send it to the tx() transactor */
               tx?.({
-                to: yourContractWrite?.address,
+                to: yourContract?.address,
                 value: parseEther('0.001'),
-                data: yourContractWrite?.interface?.encodeFunctionData?.('setPurpose', ['🤓 Whoa so 1337!']),
+                data: yourContract?.interface?.encodeFunctionData?.('setPurpose', ['🤓 Whoa so 1337!']),
               });
               /* this should throw an error about "no fallback nor receive function" until you add it */
             }}>

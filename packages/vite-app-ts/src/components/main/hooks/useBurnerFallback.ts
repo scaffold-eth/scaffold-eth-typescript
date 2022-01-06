@@ -1,16 +1,16 @@
 import { useEthersContext } from 'eth-hooks/context';
-import { useBurnerSigner, useGetUserFromProviders, useGetUserFromSigners, useUserAddress } from 'eth-hooks';
+import { useBurnerSigner, useSignerAddress } from 'eth-hooks';
 import { parseProviderOrSigner } from 'eth-hooks/functions';
 import { TEthersProvider } from 'eth-hooks/models';
 import { useEffect, useRef, useState } from 'react';
-import { IScaffoldAppProviders } from '~~/app/routes/main/hooks/useScaffoldAppProviders';
+import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 
 import { localNetworkInfo } from '~~/config/providersConfig';
 
 export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: boolean) => {
   const ethersContext = useEthersContext();
-  const burnerFallback = useBurnerSigner(appProviders.localProvider as TEthersProvider);
-  const localAddress = useUserAddress(appProviders.localProvider.getSigner());
+  const burnerFallback = useBurnerSigner(appProviders.localAdaptor?.provider);
+  const localAddress = appProviders.localAdaptor?.signer;
 
   useEffect(() => {
     /**
@@ -19,7 +19,7 @@ export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: b
     if (
       burnerFallback.account != ethersContext.account &&
       ethersContext.chainId == localNetworkInfo.chainId &&
-      ethersContext.ethersProvider?.connection.url === localNetworkInfo.rpcUrl &&
+      ethersContext.provider?.connection.url === localNetworkInfo.rpcUrl &&
       burnerFallback.signer &&
       enable
     ) {
