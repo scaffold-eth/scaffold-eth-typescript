@@ -7,7 +7,7 @@ import { Address } from 'eth-components/ant';
 import { EthComponentsSettingsContext } from 'eth-components/models';
 import { useGasPrice } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
-import { useAppContracts } from '~~/config/contractContext';
+import { useAppContracts } from '~~/components/common/hooks/contractContext';
 import { TEthersProvider } from '.yalc/eth-hooks/models';
 import { useQuery } from 'react-query';
 import { gql } from 'graphql-request';

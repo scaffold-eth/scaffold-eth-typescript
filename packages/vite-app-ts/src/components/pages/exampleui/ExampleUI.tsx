@@ -1,7 +1,7 @@
 import { SyncOutlined } from '@ant-design/icons';
 import { formatEther, parseEther } from '@ethersproject/units';
 import { Button, Card, DatePicker, Divider, Input, List, Progress, Slider, Spin, Switch } from 'antd';
-import { Signer, Contract } from 'ethers';
+import { Signer, Contract, BigNumber } from 'ethers';
 import React, { useState, FC, useContext } from 'react';
 
 import { Address, Balance } from 'eth-components/ant';
@@ -10,12 +10,12 @@ import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { useEthersContext } from 'eth-hooks/context';
 import { useContractLoader, useContractReader, useEventListener, useGasPrice } from 'eth-hooks';
 import { EthComponentsSettingsContext } from 'eth-components/models';
-import { useAppContracts, useAppContractsContext } from '~~/config/contractContext';
+import { useAppContracts, useAppContractsContext } from '~~/components/common/hooks/contractContext';
 import { SetPurposeEvent, YourContract } from '~~/generated/contract-types/YourContract';
 
 export interface IExampleUIProps {
   mainnetProvider: StaticJsonRpcProvider | undefined;
-  yourCurrentBalance: any;
+  yourCurrentBalance: BigNumber | undefined;
   price: number;
 }
 

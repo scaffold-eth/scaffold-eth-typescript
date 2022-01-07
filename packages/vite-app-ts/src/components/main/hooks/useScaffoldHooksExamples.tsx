@@ -9,7 +9,7 @@ import { EthComponentsSettingsContext } from 'eth-components/models';
 import { parseEther } from '@ethersproject/units';
 import { config } from 'process';
 import { NETWORKS } from '~~/models/constants/networks';
-import { useAppContracts } from '~~/config/contractContext';
+import { useAppContracts } from '~~/components/common/hooks/contractContext';
 import { getNetworkInfo } from '~~/functions';
 import { DEBUG } from '~~/config/debug';
 
@@ -98,7 +98,7 @@ export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProvi
       console.log('💵 yourLocalBalance', yourLocalBalance ? ethers.utils.formatEther(yourLocalBalance) : '...');
       // console.log('💵 yourMainnetBalance', yourMainnetBalance ? ethers.utils.formatEther(yourMainnetBalance) : '...');
       console.log('🌍 DAI contract on mainnet:', mainnetDai);
-      console.log('💵 yourMainnetDAIBalance', myMainnetDAIBalance);
+      console.log('💵 yourMainnetDAIBalance', myMainnetDAIBalance ?? '...');
       console.log('⛽ gasPrice', gasPrice);
     }
   }, [scaffoldAppProviders.mainnetAdaptor, ethersContext.account, ethersContext.provider]);

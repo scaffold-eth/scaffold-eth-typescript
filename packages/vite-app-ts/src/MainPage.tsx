@@ -21,7 +21,7 @@ import {
   useAppContractsActions,
   useConnectAppContracts,
   useLoadAppContracts,
-} from '~~/config/contractContext';
+} from '~~/components/common/hooks/contractContext';
 import { asEthersAdaptor } from 'eth-hooks/functions';
 import { subgraphUri } from '~~/config/subgraphConfig';
 
@@ -69,7 +69,7 @@ export const Main: FC = () => {
   const [ethPrice] = useDexEthPrice(scaffoldAppProviders.mainnetAdaptor?.provider, scaffoldAppProviders.targetNetwork);
 
   // 💰 this hook will get your balance
-  const [yourCurrentBalance] = useBalance(ethersContext.account ?? '');
+  const [yourCurrentBalance] = useBalance(ethersContext.account);
 
   // -----------------------------
   // Hooks use and examples

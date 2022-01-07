@@ -121,7 +121,7 @@ export const Hints: FC<IHintsProps> = (props) => {
           style={{ margin: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: 'bolder' }}>
           useBalance()
         </span>{' '}
-        hook keeps track of your balance: <b>{formatEther(yourCurrentBalance || 0)}</b>
+        hook keeps track of your balance: <b>{formatEther(yourCurrentBalance ?? 0)}</b>
       </div>
 
       <div style={{ margin: 8 }}>
