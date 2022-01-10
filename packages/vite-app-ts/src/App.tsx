@@ -22,7 +22,7 @@ import '~~/styles/css/tailwind-components.pcss';
 import '~~/styles/css/tailwind-utilities.pcss';
 import '~~/styles/css/app.css';
 import { EthersAppContext } from 'eth-hooks/context';
-import { ContractsAppContext } from '~~/components/common/hooks/contractContext';
+import { ContractsAppContext } from '~~/config/contractContext';
 import { lazier } from 'eth-hooks/helpers';
 
 // load saved theme
@@ -57,8 +57,8 @@ const App: FC = () => {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <EthComponentsSettingsContext.Provider value={ethComponentsSettings}>
-        <EthersAppContext>
-          <ContractsAppContext>
+        <ContractsAppContext>
+          <EthersAppContext>
             <ErrorBoundary FallbackComponent={ErrorFallback}>
               <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme || 'light'}>
                 <Suspense fallback={<div />}>
@@ -66,8 +66,8 @@ const App: FC = () => {
                 </Suspense>
               </ThemeSwitcherProvider>
             </ErrorBoundary>
-          </ContractsAppContext>
-        </EthersAppContext>
+          </EthersAppContext>
+        </ContractsAppContext>
       </EthComponentsSettingsContext.Provider>
     </ErrorBoundary>
   );

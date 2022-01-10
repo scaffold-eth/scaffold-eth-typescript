@@ -5,7 +5,7 @@ import { useContractLoader } from 'eth-hooks';
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 import { useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
-import { useAppContracts } from '~~/components/common/hooks/contractContext';
+import { useAppContracts } from '~~/config/contractContext';
 export interface IMainPageContractsProps {
   scaffoldAppProviders: IScaffoldAppProviders;
 }
@@ -57,14 +57,14 @@ export const MainPageContracts: FC<IMainPageContractsProps> = (props) => {
         {/***********
          *  ❓ Uncomment to display and interact with an external contract (DAI on mainnet):
          ********** */}
-        {
+        {/* {
           <GenericContract
             contractName="DAI"
             contract={mainnetDai}
             mainnetAdaptor={props.scaffoldAppProviders.mainnetAdaptor}
             blockExplorer={NETWORKS.mainnet.blockExplorer}
           />
-        }
+        } */}
       </>
     </>
   );
