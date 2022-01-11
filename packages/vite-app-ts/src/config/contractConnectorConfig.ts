@@ -1,19 +1,6 @@
-import { THardhatContractsFileJson } from 'eth-hooks/models';
-
-import { YourContract__factory } from '~~/generated/contract-types/factories/YourContract__factory';
-
+import * as hardhatContracts from '~~/generated/contract-types';
 import { externalContractsAddressMap } from './externalContractsConfig';
-
-/**
- * Run `yarn build:contracts` to generate the external types
- * edit: externalContractAddressMap.ts file to add your own external contracts
- */
 import * as externalContracts from '~~/generated/external-contracts/esm/types';
-
-/**
- * Run `yarn compile` and `yarn deploy` to generate the external types
- * edit: externalContractAddressMap.ts file to add your own external contracts
- */
 import hardhatContractsJson from '../generated/hardhat_contracts.json';
 import {
   createConnectorForExternalAbi,
@@ -37,7 +24,11 @@ export const contractConnectorConfig = () => {
   try {
     const result = {
       // 🙋🏽‍♂️ Add your hadrdhat contracts here
-      YourContract: createConnectorForHardhatContract('YourContract', YourContract__factory, hardhatContractsJson),
+      YourContract: createConnectorForHardhatContract(
+        'YourContract',
+        hardhatContracts.YourContract__factory,
+        hardhatContractsJson
+      ),
 
       // 🙋🏽‍♂️ Add your external contracts here, make sure to define the address in `externalContractsConfig.ts`
       DAI: createConnectorForExternalContract('DAI', externalContracts.DAI__factory, externalContractsAddressMap),

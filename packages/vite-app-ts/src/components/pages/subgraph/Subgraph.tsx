@@ -11,8 +11,10 @@ import { useAppContracts } from '~~/config/contractContext';
 import { TEthersProvider } from 'eth-hooks/models';
 import { useQuery } from 'react-query';
 import { gql } from 'graphql-request';
+import { Source } from 'graphql';
+import GraphiQL from 'graphiql';
 
-const GraphiQL = lazy(() => import('graphiql'));
+// const GraphiQL = lazy(() => import('graphiql'));
 
 const highlight: React.CSSProperties = {
   marginLeft: 4,
