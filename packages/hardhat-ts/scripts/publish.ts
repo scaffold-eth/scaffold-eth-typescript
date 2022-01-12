@@ -3,7 +3,6 @@ import '@nomiclabs/hardhat-waffle';
 import * as fs from 'fs';
 import * as chalk from 'chalk';
 import * as hre from 'hardhat';
-import { DeploymentT } from 'helpers/types/hardhat-type-extensions';
 import path from 'path';
 
 const publishGenerated = '../vite-app-ts/src/generated/contracts';
@@ -15,7 +14,7 @@ const graphDir = '../subgraph';
 const publishContract = (contractName: string, networkName: string) => {
   try {
     let contract = fs.readFileSync(`${deploymentsDir}/${networkName}/${contractName}.json`).toString();
-    const contractJson: DeploymentT = JSON.parse(contract);
+    const contractJson: { address: string; abi: [] } = JSON.parse(contract);
     const graphConfigPath = `${graphDir}/config/config.json`;
     let graphConfigStr = '{}';
     try {

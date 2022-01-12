@@ -9,13 +9,32 @@ import { viteExternalsPlugin } from 'vite-plugin-externals';
 const isDev = process.env.ENVIRONMENT == 'DEVELOPMENT';
 console.log('env.dev:', process.env.ENVIRONMENT, ' isDev:', isDev);
 
+/**
+ * browserify for web3 components
+ */
+const nodeExternals = {
+  util: 'util',
+  stream: 'stream-browserify',
+  http: 'http-browserify',
+  https: 'http-browserify',
+  timers: 'timers-browserify',
+};
+
+/**
+ * Externals:
+ * - node externals are required because web3 are terribly bundled and some of them use commonjs libraries.  modern libs like ethers help with this.
+ * - electron:  added due to ipfs-http-client.  it has very poor esm compatibility and a ton of dependency bugs. see: https://github.com/ipfs/js-ipfs/issues/3452
+ */
 const externals = viteExternalsPlugin({
-  // added due to ipfs-http-client
-  //  it has very poor esm compatibility and a ton of dependency bugs.
-  //  see: https://github.com/ipfs/js-ipfs/issues/3452
   electron: 'electron',
   'electron-fetch': 'electron-fetch',
+  ...nodeExternals,
 });
+
+/**
+ * These libraries should not be egarly bundled by vite.  They have strange dependencies and are not needed for the app.
+ */
+const excludeDeps = ['@apollo/client', `graphql`, 'ipfs-http-client'];
 
 export default defineConfig({
   plugins: [reactPlugin(), macrosPlugin(), tsconfigPaths(), externals],
@@ -36,19 +55,15 @@ export default defineConfig({
   },
   define: {},
   optimizeDeps: {
-    exclude: ['@apollo/client', `graphql`],
+    exclude: excludeDeps,
   },
   resolve: {
     preserveSymlinks: true,
     mainFields: ['module', 'main', 'browser'],
     alias: {
       '~~': resolve(__dirname, 'src'),
-      /** browserify for web3 components */
-      stream: 'stream-browserify',
-      http: 'http-browserify',
-      https: 'http-browserify',
-      timers: 'timers-browserify',
       process: 'process',
+      ...nodeExternals,
     },
   },
   server: {

@@ -1,10 +1,13 @@
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { TEthersProvider, TNetworkInfo } from 'eth-hooks/models';
+import { DEBUG } from '~~/config/debug';
 import { INFURA_ID } from '~~/models/constants/constants';
 import { NETWORKS } from '~~/models/constants/networks';
 
+export const const_UseBurnerWalletAsFallback = true;
+export const const_ConnectToBurnerOnFirstLoad = true;
+
 // 😬 Sorry for all the console logging
-const DEBUG = true;
 // -------------------
 // useful overview:  https://docs.ethers.io/v5/api-keys/
 // -------------------
