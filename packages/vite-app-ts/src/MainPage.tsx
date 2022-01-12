@@ -123,9 +123,12 @@ export const Main: FC = () => {
               />
             )}
           </Route>
+          {/* Subgraph also disabled in MainPageMenu */}
+          {/* 
           <Route path="/subgraph">
             <Subgraph subgraphUri={subgraphUri} mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider} />
-          </Route>
+          </Route> 
+          */}
         </Switch>
       </BrowserRouter>
 

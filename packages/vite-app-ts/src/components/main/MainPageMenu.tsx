@@ -50,7 +50,7 @@ export const MainPageMenu: FC<IMainPageMenuProps> = (props) => (
         Mainnet DAI
       </Link>
     </Menu.Item>
-    <Menu.Item key="/subgraph">
+    {/* <Menu.Item key="/subgraph">
       <Link
         onClick={() => {
           props.setRoute('/subgraph');
@@ -58,6 +58,6 @@ export const MainPageMenu: FC<IMainPageMenuProps> = (props) => (
         to="/subgraph">
         Subgraph
       </Link>
-    </Menu.Item>
+    </Menu.Item> */}
   </Menu>
 );
