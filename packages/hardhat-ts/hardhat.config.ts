@@ -10,7 +10,6 @@ import '@nomiclabs/hardhat-waffle';
 import '@nomiclabs/hardhat-ethers';
 import '@tenderly/hardhat-tenderly';
 import 'hardhat-deploy';
-// not required as we are using @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers
 
 // import 'solidity-coverage';
 
@@ -25,14 +24,6 @@ import { HttpNetworkUserConfig } from 'hardhat/types';
 import { HardhatRuntimeEnvironmentExtended, TEthers } from 'helpers/types/hardhat-type-extensions';
 
 import { create } from 'ipfs-http-client';
-
-declare module 'hardhat/types/runtime' {
-  // This is an example of an extension to the Hardhat Runtime Environment.
-  // This new field will be available in tasks' actions, scripts, and tests.
-  export interface HardhatRuntimeEnvironment {
-    ethers: TEthers;
-  }
-}
 
 const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 //

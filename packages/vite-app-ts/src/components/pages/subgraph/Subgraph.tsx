@@ -7,12 +7,12 @@ import { Address } from 'eth-components/ant';
 import { EthComponentsSettingsContext } from 'eth-components/models';
 import { useGasPrice } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
-import { useAppContracts } from '~~/components/common/hooks/contractContext';
+import { useAppContracts } from '~~/config/contractContext';
 import { TEthersProvider } from 'eth-hooks/models';
 import { useQuery } from 'react-query';
-import { gql } from 'graphql-request';
+import GraphiQL from 'graphiql';
 
-const GraphiQL = lazy(() => import('graphiql'));
+// const GraphiQL = lazy(() => import('graphiql'));
 
 const highlight: React.CSSProperties = {
   marginLeft: 4,
@@ -43,7 +43,7 @@ export const Subgraph: FC<ISubgraphProps> = (props) => {
   const tx = transactor(ethComponentsSettings, ethersContext?.signer, gasPrice);
   const yourContract = useAppContracts('YourContract', ethersContext.chainId);
 
-  const EXAMPLE_GQL = gql`
+  const EXAMPLE_GQL = `
     {
       purposes(first: 25, orderBy: createdAt, orderDirection: desc) {
         id
@@ -196,9 +196,7 @@ export const Subgraph: FC<ISubgraphProps> = (props) => {
         )}
 
         <div style={{ margin: 32, height: 400, border: '1px solid #888888', textAlign: 'left' }}>
-          <Suspense fallback={<div>⏳ Loading GraphiQl...</div>}>
-            <GraphiQL fetcher={graphQLFetcher} docExplorerOpen query={EXAMPLE_GQL} />
-          </Suspense>
+          <GraphiQL fetcher={graphQLFetcher} docExplorerOpen query={EXAMPLE_GQL} />
         </div>
       </div>
 

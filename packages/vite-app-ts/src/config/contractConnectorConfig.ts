@@ -1,21 +1,12 @@
-import { THardhatContractsFileJson } from 'eth-hooks/models';
-
-import { YourContract__factory } from '~~/generated/contract-types/factories/YourContract__factory';
-
+import * as hardhatContracts from '~~/generated/contract-types';
 import { externalContractsAddressMap } from './externalContractsConfig';
-
-/**
- * Run `yarn build:contracts` to generate the external types
- * edit: externalContractAddressMap.ts file to add your own external contracts
- */
 import * as externalContracts from '~~/generated/external-contracts/esm/types';
-
-/**
- * Run `yarn compile` and `yarn deploy` to generate the external types
- * edit: externalContractAddressMap.ts file to add your own external contracts
- */
 import hardhatContractsJson from '../generated/hardhat_contracts.json';
-import { createConnectorsForExternalContract, createConnectorsForHardhatContracts } from 'eth-hooks/context';
+import {
+  createConnectorForExternalAbi,
+  createConnectorForExternalContract,
+  createConnectorForHardhatContract,
+} from 'eth-hooks/context';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
@@ -33,11 +24,18 @@ export const contractConnectorConfig = () => {
   try {
     const result = {
       // 🙋🏽‍♂️ Add your hadrdhat contracts here
-      YourContract: createConnectorsForHardhatContracts('YourContract', YourContract__factory, hardhatContractsJson),
+      YourContract: createConnectorForHardhatContract(
+        'YourContract',
+        hardhatContracts.YourContract__factory,
+        hardhatContractsJson
+      ),
 
       // 🙋🏽‍♂️ Add your external contracts here, make sure to define the address in `externalContractsConfig.ts`
-      DAI: createConnectorsForExternalContract('DAI', externalContracts.DAI__factory, externalContractsAddressMap),
-      UNI: createConnectorsForExternalContract('UNI', externalContracts.UNI__factory, externalContractsAddressMap),
+      DAI: createConnectorForExternalContract('DAI', externalContracts.DAI__factory, externalContractsAddressMap),
+      UNI: createConnectorForExternalContract('UNI', externalContracts.UNI__factory, externalContractsAddressMap),
+
+      // 🙋🏽‍♂️ Add your external abi here (unverified contracts)`
+      // DAI: createConnectorForExternalAbi('DAI', { 1: {address: 'xxxx'}}, abi),
     } as const;
 
     return result;

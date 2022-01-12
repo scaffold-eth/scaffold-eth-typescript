@@ -21,7 +21,7 @@ import {
   useAppContractsActions,
   useConnectAppContracts,
   useLoadAppContracts,
-} from '~~/components/common/hooks/contractContext';
+} from '~~/config/contractContext';
 import { asEthersAdaptor } from 'eth-hooks/functions';
 import { subgraphUri } from '~~/config/subgraphConfig';
 
@@ -54,7 +54,7 @@ export const Main: FC = () => {
   // examples on how to get contracts
   // -----------------------------
   // init contracts
-  const yourContract = useAppContracts('YourContract', scaffoldAppProviders.targetNetwork.chainId);
+  const yourContract = useAppContracts('YourContract', ethersContext.chainId);
   const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
 
   // keep track of a variable from the contract in the local React state:
@@ -123,9 +123,12 @@ export const Main: FC = () => {
               />
             )}
           </Route>
+          {/* Subgraph also disabled in MainPageMenu */}
+          {/* 
           <Route path="/subgraph">
             <Subgraph subgraphUri={subgraphUri} mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider} />
-          </Route>
+          </Route> 
+          */}
         </Switch>
       </BrowserRouter>
 
