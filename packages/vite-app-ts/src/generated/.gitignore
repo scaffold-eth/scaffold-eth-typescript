@@ -4,5 +4,5 @@
 !.gitignore
 !contracts
 !/contract-types
+!/external-contracts
 !/eth-sdk.config.ts
-!hardhat_contracts.json.bak
