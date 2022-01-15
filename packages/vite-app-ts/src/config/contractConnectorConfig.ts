@@ -11,9 +11,9 @@ import {
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
  * ### Instructions
- * 1. edit externalContractList.ts to add your external contract addresses.
- * 2. edit `loader` function below and add them to the list
- * 3. run yarn compile `yarn build:contracts` to generate types for contracts
+ * 1. edit externalContractsConfig.ts to add your external contract addresses.
+ * 2. edit `contractConnectorConfig` function below and add them to the list
+ * 3. run `yarn contracts:build` to generate types for contracts
  * 4. run `yarn deploy` to generate hardhat_contracts.json
  *
  * ### Summary
