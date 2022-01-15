@@ -50,14 +50,11 @@ export const Main: FC = () => {
   // 🏭 connec to  contracts for current network & signer
   useConnectAppContracts(asEthersAdaptor(ethersContext));
 
-
   const yourContract = useAppContracts('YourContract', ethersContext.chainId);
 
-  yourContract?.setPurpose('newPurpose')
-  
-  const daiContract = useAppContracts('DAI', NETWORKS.mainnet.chainId)
-  daiContract.
-  
+  yourContract?.setPurpose('newPurpose');
+
+  const daiContract = useAppContracts('DAI', NETWORKS.mainnet.chainId);
 
   // -----------------------------
   // examples on how to get contracts
@@ -67,9 +64,12 @@ export const Main: FC = () => {
   const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
 
   // keep track of a variable from the contract in the local React state:
-  const [purpose, update] = useContractReader(yourContract, yourContract?.purpose, [], yourContract?.filters.SetPurpose());
-
-
+  const [purpose, update] = useContractReader(
+    yourContract,
+    yourContract?.purpose,
+    [],
+    yourContract?.filters.SetPurpose()
+  );
 
   // 📟 Listen for broadcast events
   const [setPurposeEvents] = useEventListener(yourContract, 'SetPurpose', 0);
