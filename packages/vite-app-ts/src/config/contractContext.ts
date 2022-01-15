@@ -15,7 +15,7 @@ import { contractsContextFactory, useEthersContext } from 'eth-hooks/context';
 export const {
   ContractsAppContext,
   useAppContractsActions,
-  useAppContractsContext,
+  useAppContracts,
   useLoadAppContracts,
   useConnectAppContracts,
 } = contractsContextFactory<
@@ -23,17 +23,3 @@ export const {
   TAppConnectorList,
   TTypedContract<keyof TAppConnectorList, TAppConnectorList>
 >(contractConnectorConfig);
-
-/**
- * Wraps useAppContractsContext to provide narrowly typed contracts for app contracts
- * @param contractName
- * @param chainId
- * @returns
- */
-export const useAppContracts = <GContractName extends keyof TAppConnectorList>(
-  contractName: GContractName,
-  chainId: number | undefined
-): TTypedContract<GContractName, TAppConnectorList> | undefined => {
-  const result = useAppContractsContext(contractName, chainId);
-  return result as TTypedContract<GContractName, TAppConnectorList>;
-};

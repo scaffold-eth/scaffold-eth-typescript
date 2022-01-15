@@ -46,7 +46,10 @@ export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProvi
 
   // Just plug in different 🛰 providers to get your balance on different chains:
   const [mainnetAdaptor] = useEthersAdaptorFromProviderOrSigners(exampleMainnetProvider);
-  const yourMainnetBalance = useBalance(ethersContext.account ?? '', { adaptorEnabled: true, adaptor: mainnetAdaptor });
+  const [yourMainnetBalance] = useBalance(ethersContext.account ?? '', {
+    adaptorEnabled: true,
+    adaptor: mainnetAdaptor,
+  });
 
   // ---------------------
   // 🤙🏽 calling an external function

@@ -36,7 +36,7 @@ export const contractConnectorConfig = () => {
 
       // 🙋🏽‍♂️ Add your external abi here (unverified contracts)`
       // DAI: createConnectorForExternalAbi('DAI', { 1: {address: 'xxxx'}}, abi),
-    };
+    } as const;
 
     return result;
   } catch (e) {

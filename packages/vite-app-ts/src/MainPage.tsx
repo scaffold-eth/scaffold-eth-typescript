@@ -51,9 +51,6 @@ export const Main: FC = () => {
   useConnectAppContracts(asEthersAdaptor(ethersContext));
 
   const yourContract = useAppContracts('YourContract', ethersContext.chainId);
-
-  yourContract?.setPurpose('newPurpose');
-
   const daiContract = useAppContracts('DAI', NETWORKS.mainnet.chainId);
 
   // -----------------------------
