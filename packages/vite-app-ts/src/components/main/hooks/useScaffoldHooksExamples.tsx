@@ -1,7 +1,14 @@
 import { useContext, useEffect } from 'react';
 import { ethers } from 'ethers';
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
-import { useBalance, useBlockNumber, useContractReader, useGasPrice, useSignerAddress } from 'eth-hooks';
+import {
+  useBalance,
+  useBlockNumber,
+  useContractReader,
+  useEthersAdaptorFromProviderOrSigners,
+  useGasPrice,
+  useSignerAddress,
+} from 'eth-hooks';
 
 import { useEthersContext } from 'eth-hooks/context';
 import { transactor } from 'eth-components/functions';
@@ -27,6 +34,8 @@ export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProvi
   const ethersContext = useEthersContext();
   const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
 
+  const exampleMainnetProvider = scaffoldAppProviders.mainnetAdaptor?.provider;
+
   let currentChainId: number | undefined = ethersContext.chainId;
 
   // ---------------------
@@ -35,11 +44,16 @@ export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProvi
   // 🏗 scaffold-eth is full of handy hooks like this one to get your balance:
   const [yourLocalBalance] = useBalance(ethersContext.account ?? '');
 
+  // Just plug in different 🛰 providers to get your balance on different chains:
+  const [mainnetAdaptor] = useEthersAdaptorFromProviderOrSigners(exampleMainnetProvider);
+  const [yourMainnetBalance] = useBalance(ethersContext.account ?? '', {
+    adaptorEnabled: true,
+    adaptor: mainnetAdaptor,
+  });
+
   // ---------------------
   // 🤙🏽 calling an external function
   // ---------------------
-  // Just plug in different 🛰 providers to get your balance on different chains:
-  // const yourMainnetBalance = useBalance(scaffoldAppProviders.mainnetProvider, currentEthersUser.address ?? '');
 
   // 💰 Then read your DAI balance like:
   const [myAddress] = useSignerAddress(ethersContext.signer);

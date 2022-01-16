@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import '~~/styles/main-page.css';
-import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners } from 'eth-hooks';
+import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useGasPrice } from 'eth-hooks';
 import { useDexEthPrice } from 'eth-hooks/dapps';
 
 import { GenericContract } from 'eth-components/ant/generic-contract';
@@ -50,15 +50,23 @@ export const Main: FC = () => {
   // 🏭 connec to  contracts for current network & signer
   useConnectAppContracts(asEthersAdaptor(ethersContext));
 
+  const yourContract = useAppContracts('YourContract', ethersContext.chainId);
+  const daiContract = useAppContracts('DAI', NETWORKS.mainnet.chainId);
+
   // -----------------------------
   // examples on how to get contracts
   // -----------------------------
   // init contracts
-  const yourContract = useAppContracts('YourContract', ethersContext.chainId);
+  //const yourContract = useAppContracts('YourContract', ethersContext.chainId);
   const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
 
   // keep track of a variable from the contract in the local React state:
-  const purpose = useContractReader(yourContract, yourContract?.purpose, [], yourContract?.filters.SetPurpose());
+  const [purpose, update] = useContractReader(
+    yourContract,
+    yourContract?.purpose,
+    [],
+    yourContract?.filters.SetPurpose()
+  );
 
   // 📟 Listen for broadcast events
   const [setPurposeEvents] = useEventListener(yourContract, 'SetPurpose', 0);

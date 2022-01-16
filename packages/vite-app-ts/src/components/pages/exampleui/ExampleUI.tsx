@@ -10,7 +10,7 @@ import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { useEthersContext } from 'eth-hooks/context';
 import { useContractLoader, useContractReader, useEventListener, useGasPrice } from 'eth-hooks';
 import { EthComponentsSettingsContext } from 'eth-components/models';
-import { useAppContracts, useAppContractsContext } from '~~/config/contractContext';
+import { useAppContracts } from '~~/config/contractContext';
 import { SetPurposeEvent, YourContract } from '~~/generated/contract-types/YourContract';
 
 export interface IExampleUIProps {

@@ -658,11 +658,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@dethcrypto/eth-sdk@npm:^0.2.4":
-  version: 0.2.4
-  resolution: "@dethcrypto/eth-sdk@npm:0.2.4"
+"@dethcrypto/eth-sdk@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@dethcrypto/eth-sdk@npm:0.3.0"
   dependencies:
-    "@typechain/ethers-v5": ^8.0.1
+    "@typechain/ethers-v5": ^9.0.0
     chalk: ^4.1.2
     commander: ^8.3.0
     debug: ^4.3.2
@@ -673,7 +673,7 @@ __metadata:
     mkdirp: ^1.0.4
     ora: ^5.4.1
     tmp-promise: ^3.0.3
-    typechain: ^6.0.2
+    typechain: ^7.0.0
     zod: ^3.11.5
   peerDependencies:
     "@ethersproject/abi": ^5
@@ -682,7 +682,7 @@ __metadata:
     ethers: ^5
   bin:
     eth-sdk: dist/cli.js
-  checksum: cdcfdf08ee53e749a913624367c291a9885a8e83f5a4775112c740526124082c939b8deb0111347d857848f270fd3698fe698d9f6320e2297cef8d270cfd88f0
+  checksum: bb3bb3a8d1d3100eb283331991f67514deb58a733babe80b859820c88e8d26f87c872fd63966d6f22d2f83d7859cd88891bcf007ec93e4da5587604e94afbd7e
   languageName: node
   linkType: hard
 
@@ -1526,9 +1526,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphprotocol/graph-cli@npm:^0.25.2":
-  version: 0.25.2
-  resolution: "@graphprotocol/graph-cli@npm:0.25.2"
+"@graphprotocol/graph-cli@npm:^0.25.3":
+  version: 0.25.3
+  resolution: "@graphprotocol/graph-cli@npm:0.25.3"
   dependencies:
     assemblyscript: 0.19.10
     binary-install-raw: 0.0.13
@@ -1555,7 +1555,7 @@ __metadata:
     yaml: ^1.5.1
   bin:
     graph: bin/graph
-  checksum: 493ff8ab18a04661ff3a6e80bf0d7a9d0023cfe1fadcddbe5ee91c8f6879dece27e16b3e33c22e68becfe5fb78347cd7a5b8e7c4d3ddf50d7a7e56ff2fe62ec4
+  checksum: 690dd22381368ecea55928f4526bd5b0e52b8738bae09820cad36e5aa6f29e69dbbbe33d6213ec65ec6a0ed8be7b66fffa12e527dc55ac2e96cf2c92f0ead368
   languageName: node
   linkType: hard
 
@@ -2141,7 +2141,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers@^0.3.0-beta.10, hardhat-deploy-ethers@npm:^0.3.0-beta.10":
+"@nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers@^0.3.0-beta.10, hardhat-deploy-ethers@npm:^0.3.0-beta.13":
   version: 0.3.0-beta.13
   resolution: "hardhat-deploy-ethers@npm:0.3.0-beta.13"
   peerDependencies:
@@ -2186,10 +2186,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@openzeppelin/contracts@npm:^4.4.1":
-  version: 4.4.1
-  resolution: "@openzeppelin/contracts@npm:4.4.1"
-  checksum: 87ee7ebe8e6493fc4d657b05c5ddb5f254b73bf55d80c25a790f8e74087b6d90c0a6ec504fe45949c27501f73bca7d64129aad29488707a2c9b5afdb035966df
+"@openzeppelin/contracts@npm:^4.4.2":
+  version: 4.4.2
+  resolution: "@openzeppelin/contracts@npm:4.4.2"
+  checksum: 5c6be7bfe757c6a43eb5b24aa9c61a79deaed9de4bc5f59356b35f5519b0fb340f4da8b4df99588bded5e6b6a773fc54961917a1c657063247c1763f9752bd0e
   languageName: node
   linkType: hard
 
@@ -2200,7 +2200,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@portis/web3@npm:^4.0.6":
+"@portis/web3@npm:^4.1.0":
   version: 4.1.0
   resolution: "@portis/web3@npm:4.1.0"
   dependencies:
@@ -2384,12 +2384,12 @@ __metadata:
     "@ethersproject/providers": ^5.5.2
     "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@^0.3.0-beta.10"
     "@nomiclabs/hardhat-waffle": ^2.0.1
-    "@openzeppelin/contracts": ^4.4.1
+    "@openzeppelin/contracts": ^4.4.2
     "@tenderly/hardhat-tenderly": ^1.0.13
-    "@typechain/ethers-v5": ^7.2.0
-    "@typechain/hardhat": ^2.3.1
+    "@typechain/ethers-v5": ^9.0.0
+    "@typechain/hardhat": ^4.0.0
     "@types/jest": ^27.4.0
-    "@types/node": ^16.11.19
+    "@types/node": ^17.0.8
     chalk: ^4.1.2
     eslint: ^8.6.0
     eslint-config-airbnb: ^19.0.4
@@ -2402,7 +2402,7 @@ __metadata:
     ethers: ^5.5.3
     hardhat: ^2.8.2
     hardhat-deploy: ^0.9.24
-    hardhat-deploy-ethers: ^0.3.0-beta.10
+    hardhat-deploy-ethers: ^0.3.0-beta.13
     ipfs-http-client: ^54.0.2
     jest: ^27.4.7
     node-watch: ^0.7.2
@@ -2413,7 +2413,7 @@ __metadata:
     solidity-coverage: ^0.7.17
     ts-node: ^10.4.0
     tsconfig-paths: ^3.12.0
-    typechain: ^5.2.0
+    typechain: ^7.0.0
     typescript: ^4.5.4
   languageName: unknown
   linkType: soft
@@ -2422,7 +2422,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@scaffold-eth/subgraph@workspace:packages/subgraph"
   dependencies:
-    "@graphprotocol/graph-cli": ^0.25.2
+    "@graphprotocol/graph-cli": ^0.25.3
     "@graphprotocol/graph-ts": ^0.24.1
     mustache: ^4.2.0
   languageName: unknown
@@ -2444,7 +2444,7 @@ __metadata:
   dependencies:
     "@ant-design/icons": ^4.7.0
     "@babel/runtime": ^7.16.7
-    "@dethcrypto/eth-sdk": ^0.2.4
+    "@dethcrypto/eth-sdk": ^0.3.0
     "@emotion/react": ^11.7.1
     "@emotion/types": ^0.7.0
     "@ethersproject/abi": ^5.5.0
@@ -2458,19 +2458,19 @@ __metadata:
     "@maticnetwork/maticjs": ^3.1.0
     "@nomiclabs/hardhat-ethers": ^2.0.4
     "@nomiclabs/hardhat-waffle": ^2.0.1
-    "@portis/web3": ^4.0.6
+    "@portis/web3": ^4.1.0
     "@ramp-network/ramp-instant-sdk": ^3.0.0
     "@tailwindcss/aspect-ratio": ^0.4.0
     "@tailwindcss/forms": ^0.4.0
-    "@tailwindcss/line-clamp": ^0.3.0
+    "@tailwindcss/line-clamp": ^0.3.1
     "@tailwindcss/typography": ^0.5.0
     "@testing-library/jest-dom": ^5.16.1
     "@testing-library/react": ^12.1.2
     "@testing-library/user-event": ^13.5.0
-    "@typechain/hardhat": ^2.3.1
+    "@typechain/hardhat": ^4.0.0
     "@types/isomorphic-fetch": ^0.0.35
     "@types/jest": ^27.4.0
-    "@types/node": ^16.11.19
+    "@types/node": ^17.0.8
     "@types/pretty-time": ^1.1.2
     "@types/qrcode.react": ^1.0.2
     "@types/react": ^17.0.38
@@ -2504,8 +2504,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.3.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: 3.0.10
-    eth-hooks: 4.0.9
+    eth-components: 3.0.12
+    eth-hooks: 4.0.10
     ethereum-cryptography: ^0.1.3
     ethers: ^5.5.3
     fortmatic: ^2.2.1
@@ -2526,7 +2526,7 @@ __metadata:
     react-dom: ^17.0.2
     react-error-boundary: ^3.1.4
     react-qr-reader: ^2.2.1
-    react-query: ^3.34.7
+    react-query: ^3.34.8
     react-router-dom: ^5.3.0
     react-stack-grid: ^0.7.1
     request: ^2.88.2
@@ -2536,7 +2536,7 @@ __metadata:
     stream-browserify: ^3.0.0
     stylelint: ^14.2.0
     stylelint-config-recommended: ^6.0.0
-    tailwindcss: ^3.0.13
+    tailwindcss: ^3.0.15
     tailwindcss-elevation: ^1.0.1
     timers-browserify: ^2.0.12
     ts-invariant: ^0.9.4
@@ -2545,12 +2545,12 @@ __metadata:
     typescript: ^4.5.4
     use-debounce: ^7.0.1
     util: ^0.12.4
-    vite: ^2.7.10
+    vite: ^2.7.12
     vite-plugin-babel-macros: ^1.0.5
     vite-plugin-externals: ^0.3.2
-    vite-plugin-imp: ^2.1.2
+    vite-plugin-imp: ^2.1.3
     vite-tsconfig-paths: ^3.3.17
-    walletlink: ^2.4.1
+    walletlink: ^2.4.3
     web3modal: ^1.9.5
   languageName: unknown
   linkType: soft
@@ -2734,12 +2734,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tailwindcss/line-clamp@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "@tailwindcss/line-clamp@npm:0.3.0"
+"@tailwindcss/line-clamp@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "@tailwindcss/line-clamp@npm:0.3.1"
   peerDependencies:
     tailwindcss: ">=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1"
-  checksum: 9b1d306d1001f6f297ef555cfa5a9e69bd1643a982d0f9dc5a929a2e1afa099ae8844fc02ba3395af229d00bab9c40d1bab79872ca154d9e0e607d49d043b524
+  checksum: 805322a6333f029d6d961e02f23099d16f55d31f4736511bc741efff4097a1ad1574a7dff0530b17dbc974e08138b3beb13766f809e0116ebc192b0edf38b737
   languageName: node
   linkType: hard
 
@@ -2903,9 +2903,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typechain/ethers-v5@npm:^7.2.0":
-  version: 7.2.0
-  resolution: "@typechain/ethers-v5@npm:7.2.0"
+"@typechain/ethers-v5@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "@typechain/ethers-v5@npm:9.0.0"
   dependencies:
     lodash: ^4.17.15
     ts-essentials: ^7.0.1
@@ -2914,39 +2914,22 @@ __metadata:
     "@ethersproject/bytes": ^5.0.0
     "@ethersproject/providers": ^5.0.0
     ethers: ^5.1.3
-    typechain: ^5.0.0
+    typechain: ^7.0.0
     typescript: ">=4.0.0"
-  checksum: 23c7bcb6ef3582fe7ec32dec26bd5067a751b7e3b88ece0b98b2c4bb9623ac074f079ebe3dbcdf57f7e659d8d3a3f018105bd660806f6e7bdafa0dc56c5de450
+  checksum: 8b04bf08796a6318c90592d168ce7127a57dac1f8f7394501bc2181808ad03c269275a81a13509650213eb2d02e85dc6b26e39373208a319f604ca21a63340a1
   languageName: node
   linkType: hard
 
-"@typechain/ethers-v5@npm:^8.0.1":
-  version: 8.0.5
-  resolution: "@typechain/ethers-v5@npm:8.0.5"
-  dependencies:
-    lodash: ^4.17.15
-    ts-essentials: ^7.0.1
-  peerDependencies:
-    "@ethersproject/abi": ^5.0.0
-    "@ethersproject/bytes": ^5.0.0
-    "@ethersproject/providers": ^5.0.0
-    ethers: ^5.1.3
-    typechain: ^6.0.4
-    typescript: ">=4.0.0"
-  checksum: d6c0f3114a9b853b6288ca00406f21e2ade75908cac8e230510be1d130c05da5a239923428cf221d547d2f9d79bdf234285f070948e62d4f87526e8ab433215b
-  languageName: node
-  linkType: hard
-
-"@typechain/hardhat@npm:^2.3.1":
-  version: 2.3.1
-  resolution: "@typechain/hardhat@npm:2.3.1"
+"@typechain/hardhat@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@typechain/hardhat@npm:4.0.0"
   dependencies:
     fs-extra: ^9.1.0
   peerDependencies:
     hardhat: ^2.0.10
     lodash: ^4.17.15
-    typechain: ^5.1.2
-  checksum: f6090b80e3c75e47bb02c9b2c669258e976ccf06502c168b851ad7ca20f53cb554dcb8104bc7ca608f2111baa047ee8e52ce6153eb80450edb9736ba5ebfb12f
+    typechain: ^7.0.0
+  checksum: 7fc57e4b274d96a3c533c59306a086644b514af881bcac7e258a24cb5a563ecdff2a6b81ab6d8d790618a28de9243f3bf4c85894cbab05b1625bd3087c7972ac
   languageName: node
   linkType: hard
 
@@ -3256,7 +3239,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:14 || 16 || 17, @types/node@npm:>=13.7.0":
+"@types/node@npm:*, @types/node@npm:14 || 16 || 17, @types/node@npm:>=13.7.0, @types/node@npm:^17.0.8":
   version: 17.0.8
   resolution: "@types/node@npm:17.0.8"
   checksum: f4cadeb9e602027520abc88c77142697e33cf6ac98bb02f8b595a398603cbd33df1f94d01c055c9f13cde0c8eaafc5e396ca72645458d42b4318b845bc7f1d0f
@@ -3267,13 +3250,6 @@ __metadata:
   version: 12.20.41
   resolution: "@types/node@npm:12.20.41"
   checksum: ff90d10f9831e86abf1f17581a70a81e5b6c3be97ec0b02972e6c3201fd19a40f6b230d4346ef7aaf023f24fef07a2131aeb68773ef3b14c3a17da8fbe05e439
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^16.11.19":
-  version: 16.11.19
-  resolution: "@types/node@npm:16.11.19"
-  checksum: a9ba0cd1e61c8ad50f3fc9c2b37b795bf0286dacb39dcc985da90328abf0c5151dffe9932d20bc9a6a52c3ce7bfc1e5a7c2dc1416480fb84f1c2d70e25caeba0
   languageName: node
   linkType: hard
 
@@ -9474,9 +9450,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-components@npm:3.0.10":
-  version: 3.0.10
-  resolution: "eth-components@npm:3.0.10"
+"eth-components@npm:3.0.12":
+  version: 3.0.12
+  resolution: "eth-components@npm:3.0.12"
   dependencies:
     "@ethersproject/abstract-signer": ^5.5.0
     "@ethersproject/address": ^5.5.0
@@ -9491,7 +9467,7 @@ __metadata:
     "@uniswap/token-lists": ^1.0.0-beta.27
     axios: ^0.24.0
     bnc-notify: ^1.9.2
-    eth-hooks: ^4.0.9
+    eth-hooks: ^4.0.10
     ethers: ^5.5.3
     qrcode.react: ^1.0.1
     react-blockies: ^1.4.1
@@ -9506,7 +9482,7 @@ __metadata:
     react: ">=17.0.2"
     react-css-theme-switcher: ^0.3.0
     react-dom: ">=17.0.2"
-  checksum: 2d4dacafb7d220756bdf502a10d0c9b09ed0e9d7ee76f64c0021d217e1a1a907d897e13712e024bbfa777bd650dc943b803da645b7b364ed4ea97d2af9f7b871
+  checksum: 035ff9a13eabe646c20a7d2c18e2bc1b7ad7482199f60482835b1b3e17cd5400c2201da210e7935f26a60e95f8e2f0feb4b21f4753ab8dfb90f4b6b207196008
   languageName: node
   linkType: hard
 
@@ -9520,9 +9496,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:4.0.9, eth-hooks@npm:^4.0.9":
-  version: 4.0.9
-  resolution: "eth-hooks@npm:4.0.9"
+"eth-hooks@npm:4.0.10, eth-hooks@npm:^4.0.10":
+  version: 4.0.10
+  resolution: "eth-hooks@npm:4.0.10"
   dependencies:
     "@ethersproject/address": ^5.5.0
     "@ethersproject/bignumber": ^5.5.0
@@ -9551,7 +9527,7 @@ __metadata:
     "@uniswap/sdk": ^3.0.3
     react: ">=17.0.2"
     react-dom: ">=17.0.2"
-  checksum: 68a2ee4876b05ee3c6fc03c3a5a61ba454c10a8c19f5bc4ff237234d33f94df43809770511b02d26530c360f3c831ffae75cc7cc6371a001ee6dc655c3ad1852
+  checksum: f4feded4ea8abb5c9b39e0a629b6c5aca38fb4d2267e184fba52492db1d95d66c5c40e54ec97b8518a22c6985116a2fdda34b5041d9ee7642808db45144b81d5
   languageName: node
   linkType: hard
 
@@ -19517,6 +19493,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-query@npm:^3.34.8":
+  version: 3.34.8
+  resolution: "react-query@npm:3.34.8"
+  dependencies:
+    "@babel/runtime": ^7.5.5
+    broadcast-channel: ^3.4.1
+    match-sorter: ^6.0.2
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+    react-native:
+      optional: true
+  checksum: 0e071561422170b0115959e5c2d9d648ac893f72b45f1e3ae3f83291e973bf51827376487bb8535487da59ce682f0e4c0291992946fb54cd4989b6d8c5b7336a
+  languageName: node
+  linkType: hard
+
 "react-refresh@npm:^0.10.0":
   version: 0.10.0
   resolution: "react-refresh@npm:0.10.0"
@@ -22032,9 +22026,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:^3.0.13":
-  version: 3.0.13
-  resolution: "tailwindcss@npm:3.0.13"
+"tailwindcss@npm:^3.0.15":
+  version: 3.0.15
+  resolution: "tailwindcss@npm:3.0.15"
   dependencies:
     arg: ^5.0.1
     chalk: ^4.1.2
@@ -22062,7 +22056,7 @@ __metadata:
   bin:
     tailwind: lib/cli.js
     tailwindcss: lib/cli.js
-  checksum: ede2b886587be42ef2e3fdd6cc87a5f6853e8eb86c0124960e325c04aabb90d71bb037464f8dbb6b5a719f7602b48d829132a408469a952d2911700b519a7a35
+  checksum: acbf45202d3046e87c3a55e80ca93f7344960fb4d0daa3d5f5a2b28e8afd7a26d023f9142632168d1a3076eff701499bed40cafa3823c371de596f42e98ba84d
   languageName: node
   linkType: hard
 
@@ -22846,31 +22840,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typechain@npm:^5.2.0":
-  version: 5.2.0
-  resolution: "typechain@npm:5.2.0"
-  dependencies:
-    "@types/prettier": ^2.1.1
-    command-line-args: ^4.0.7
-    debug: ^4.1.1
-    fs-extra: ^7.0.0
-    glob: ^7.1.6
-    js-sha3: ^0.8.0
-    lodash: ^4.17.15
-    mkdirp: ^1.0.4
-    prettier: ^2.1.2
-    ts-essentials: ^7.0.1
-  peerDependencies:
-    typescript: ">=4.1.0"
-  bin:
-    typechain: dist/cli/cli.js
-  checksum: 1116e835a355b0d9dc9be77ebbfe972e1fe93eec6dc71cabaaada9e606c2bbaa18c786a22388e41ea3d2745fee1479b542b45dd9ebab4f60b2773524668a5d05
-  languageName: node
-  linkType: hard
-
-"typechain@npm:^6.0.2":
-  version: 6.1.0
-  resolution: "typechain@npm:6.1.0"
+"typechain@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "typechain@npm:7.0.0"
   dependencies:
     "@types/prettier": ^2.1.1
     debug: ^4.1.1
@@ -22886,7 +22858,7 @@ __metadata:
     typescript: ">=4.1.0"
   bin:
     typechain: dist/cli/cli.js
-  checksum: 9803a61d2c316a9f5cfbdbb88718ea9bdeff5485401b3d584d035069b96316d5bb4923129bfdcdd4327a7d44b9d37de95e38c7cd6d83ce1368ec38fab9d419b4
+  checksum: a6d67427d01b82d2f224e8b4b83c2e84df81b2a12b5a1df9907092d0668a8a747e12474b4367b8887ff60a8f9a055b22f6dc46b31383623d52ceccce84a3b618
   languageName: node
   linkType: hard
 
@@ -23446,9 +23418,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-imp@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "vite-plugin-imp@npm:2.1.2"
+"vite-plugin-imp@npm:^2.1.3":
+  version: 2.1.3
+  resolution: "vite-plugin-imp@npm:2.1.3"
   dependencies:
     "@babel/core": ^7.12.10
     "@babel/generator": ^7.12.11
@@ -23459,7 +23431,7 @@ __metadata:
     pascal-case: ^3.1.2
   peerDependencies:
     vite: ">= 2.0.0-beta.5"
-  checksum: 1f36254c06d2432cea96e8cf05e8b7b5373550b159266718640a43794b06a6f6206e3d42ab77224fe62e10ff7419491ef4279a50353b3ec6d0e3203bf037d0d4
+  checksum: ee0b494cda1ac506c7e050781df82aaa939a76b221647bab00dbdc318ff59ec045e4e6770436a86c8711b0af71a1cd29d4c2c2ae1bee9e084da649f778d52b23
   languageName: node
   linkType: hard
 
@@ -23477,9 +23449,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^2.7.10":
-  version: 2.7.10
-  resolution: "vite@npm:2.7.10"
+"vite@npm:^2.7.12":
+  version: 2.7.12
+  resolution: "vite@npm:2.7.12"
   dependencies:
     esbuild: ^0.13.12
     fsevents: ~2.3.2
@@ -23502,7 +23474,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 1757108547ca34bd01a8ee3973cb04b484492c9e5690fc75f54bbcbde5965ab6e0a5b8355c336adf0a9117aa0fdae3053af3aafa9e5eb783282fffa948cfbe11
+  checksum: 56d62ae8131b02891f2dbd81f26a3ca28a02bfe390f9cb4e0c2d8dc831c2e2f8264dd3c45b14c7dd48e79d83d323a35148f92729e1f3385fae04fcd691f3f985
   languageName: node
   linkType: hard
 
@@ -23547,9 +23519,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"walletlink@npm:^2.4.1":
-  version: 2.4.1
-  resolution: "walletlink@npm:2.4.1"
+"walletlink@npm:^2.4.3":
+  version: 2.4.3
+  resolution: "walletlink@npm:2.4.3"
   dependencies:
     "@metamask/safe-event-emitter": 2.0.0
     bind-decorator: ^1.0.11
@@ -23564,7 +23536,7 @@ __metadata:
     preact: ^10.5.9
     rxjs: ^6.6.3
     stream-browserify: ^3.0.0
-  checksum: 799f459fe94b48ea596bebfac82e559d97a3f6777f0018593458f9258e9fde1a44d3f34c3df3d1db280be925b31ddf88c2698464ea81e226768f1efb5a32b0cd
+  checksum: 30fbe6df4939102946cf2f7890c4003493cf89ee234ae2276f13fd55cea0107e3666a5b5311cf79d05131788facbb3b59c54aa035ea29b0e64721a49ebb9f3b7
   languageName: node
   linkType: hard
 
