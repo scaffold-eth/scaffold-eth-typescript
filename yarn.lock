@@ -2504,8 +2504,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.3.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: 3.0.15
-    eth-hooks: 4.0.13
+    eth-components: 3.0.16
+    eth-hooks: 4.0.15
     ethereum-cryptography: ^0.1.3
     ethers: ^5.5.3
     fortmatic: ^2.2.1
@@ -9450,9 +9450,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-components@npm:3.0.15":
-  version: 3.0.15
-  resolution: "eth-components@npm:3.0.15"
+"eth-components@npm:3.0.16":
+  version: 3.0.16
+  resolution: "eth-components@npm:3.0.16"
   dependencies:
     "@ethersproject/abstract-signer": ^5.5.0
     "@ethersproject/address": ^5.5.0
@@ -9467,7 +9467,7 @@ __metadata:
     "@uniswap/token-lists": ^1.0.0-beta.27
     axios: ^0.24.0
     bnc-notify: ^1.9.2
-    eth-hooks: ^4.0.13
+    eth-hooks: ^4.0.15
     ethers: ^5.5.3
     qrcode.react: ^1.0.1
     react-blockies: ^1.4.1
@@ -9482,7 +9482,7 @@ __metadata:
     react: ">=17.0.2"
     react-css-theme-switcher: ^0.3.0
     react-dom: ">=17.0.2"
-  checksum: 13eb6de98d52aa820abb63406cb60da47c429cdecc93b6f41cb8606b4b2ce4b3fa14e8c341abe9d63f60925bfbf16e3d4654afd8a6582868d464184ce24d45b6
+  checksum: e807e378e852428152987c13f6f1f1719269ba67232de4e4d1c084f92b5981a1c978cbf8d9caab08b88d04334cfd1706047acbedc8516ed3bece32d8a94f4421
   languageName: node
   linkType: hard
 
@@ -9496,9 +9496,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:4.0.13, eth-hooks@npm:^4.0.13":
-  version: 4.0.13
-  resolution: "eth-hooks@npm:4.0.13"
+"eth-hooks@npm:4.0.15, eth-hooks@npm:^4.0.15":
+  version: 4.0.15
+  resolution: "eth-hooks@npm:4.0.15"
   dependencies:
     "@ethersproject/address": ^5.5.0
     "@ethersproject/bignumber": ^5.5.0
@@ -9518,7 +9518,6 @@ __metadata:
     lodash.isequal: ^4.5.0
     merge-anything: ^4.0.2
     react-query: ^3.34.7
-    react-use-promise: ^0.4.1
     ts-invariant: ^0.9.4
     use-debounce: ^7.0.1
     usehooks-ts: ^2.2.0
@@ -9527,7 +9526,7 @@ __metadata:
     "@uniswap/sdk": ^3.0.3
     react: ">=17.0.2"
     react-dom: ">=17.0.2"
-  checksum: 5c8a53adca188b67852ef6c5b1576db4261072af959a9194513dcd8bd638d49f93768e8d7f40257b6578ccfb9fe1cab7dc5e25cc1e9e9cbd9fc8b0731966f94f
+  checksum: 91e4a6c1c37818a366bd0b1e4e9a2460a1044830a923195cf68e8baa4655fb5a196b5f326bb1a29501029e3714b94bb1ecab3dec6e244e0b061f73e0de29056c
   languageName: node
   linkType: hard
 
@@ -19610,15 +19609,6 @@ __metadata:
     react: ^15.0.0 || ^16.0.0
     react-dom: ^15.0.0 || ^16.0.0
   checksum: a0b98d07b7295f07464a75ee2ead944efdf37e1b74638528b2af26045f345a6c334afb93f42cb7aa262c0b36c7a74777632467e49eebc4fd771be7c2eec4a462
-  languageName: node
-  linkType: hard
-
-"react-use-promise@npm:^0.4.1":
-  version: 0.4.1
-  resolution: "react-use-promise@npm:0.4.1"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.2
-  checksum: 9801e74dddcc64c8ab0b21aad734e25249685af5e6db1e3f089dae75223c8bdba03a0f51a605b6fd6244eba0bad78b5c029daaea58b66cd9909f3144d4feee72
   languageName: node
   linkType: hard
 

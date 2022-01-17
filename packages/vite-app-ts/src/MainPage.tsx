@@ -15,7 +15,6 @@ import { useBurnerFallback } from '~~/components/main/hooks/useBurnerFallback';
 import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './components/main/hooks/useScaffoldHooksExamples';
 import { useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
-import { const_UseBurnerWalletAsFallback, mainnetProvider } from '~~/config/providersConfig';
 import {
   useAppContracts,
   useAppContractsActions,
@@ -23,6 +22,7 @@ import {
   useLoadAppContracts,
 } from '~~/config/contractContext';
 import { asEthersAdaptor } from 'eth-hooks/functions';
+import { const_UseBurnerWalletAsFallback, MAINNET_PROVIDER } from '~~/config/appConfig';
 
 export const Main: FC = () => {
   // -----------------------------
@@ -44,7 +44,7 @@ export const Main: FC = () => {
   // 🛻 load contracts
   useLoadAppContracts();
   // 🏭 connect to contracts for mainnet network & signer
-  const [mainnetAdaptor] = useEthersAdaptorFromProviderOrSigners(mainnetProvider);
+  const [mainnetAdaptor] = useEthersAdaptorFromProviderOrSigners(MAINNET_PROVIDER);
   useConnectAppContracts(mainnetAdaptor);
   // 🏭 connec to  contracts for current network & signer
   useConnectAppContracts(asEthersAdaptor(ethersContext));
@@ -118,7 +118,7 @@ export const Main: FC = () => {
             />
           </Route>
           <Route path="/mainnetdai">
-            {mainnetProvider != null && (
+            {MAINNET_PROVIDER != null && (
               <GenericContract
                 contractName="DAI"
                 contract={mainnetDai}

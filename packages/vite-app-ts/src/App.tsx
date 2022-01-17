@@ -1,7 +1,6 @@
 import React, { FC, lazy, Suspense } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
-import { BLOCKNATIVE_DAPPID } from '~~/models/constants/constants';
 import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-components/models';
 
 /**
@@ -23,6 +22,7 @@ import '~~/styles/css/app.css';
 import { EthersAppContext } from 'eth-hooks/context';
 import { ContractsAppContext } from '~~/config/contractContext';
 import { lazier } from 'eth-hooks/helpers';
+import { BLOCKNATIVE_DAPPID } from '~~/config/apiKeysConfig';
 
 // load saved theme
 const savedTheme = window.localStorage.getItem('theme');

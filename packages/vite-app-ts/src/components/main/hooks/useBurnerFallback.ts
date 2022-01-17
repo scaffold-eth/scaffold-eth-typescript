@@ -4,8 +4,7 @@ import { parseProviderOrSigner } from 'eth-hooks/functions';
 import { TEthersProvider } from 'eth-hooks/models';
 import { useEffect, useRef, useState } from 'react';
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
-
-import { localNetworkInfo } from '~~/config/providersConfig';
+import { NETWORKS } from '~~/models/constants/networks';
 
 export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: boolean) => {
   const ethersContext = useEthersContext();
@@ -18,8 +17,8 @@ export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: b
      */
     if (
       burnerFallback.account != ethersContext.account &&
-      ethersContext.chainId == localNetworkInfo.chainId &&
-      ethersContext.provider?.connection.url === localNetworkInfo.rpcUrl &&
+      ethersContext.chainId == NETWORKS.localhost.chainId &&
+      ethersContext.provider?.connection.url === NETWORKS.localhost.rpcUrl &&
       burnerFallback.signer &&
       enable
     ) {

@@ -5,15 +5,16 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ICoreOptions } from 'web3modal';
 import { EthersModalConnector, TEthersModalConnector, useEthersContext } from 'eth-hooks/context';
 import { useThemeSwitcher } from 'react-css-theme-switcher';
-import {
-  mainnetProvider,
-  localProvider,
-  targetNetworkInfo,
-  const_ConnectToBurnerOnFirstLoad,
-} from '~~/config/providersConfig';
+
 import { useEthersAdaptorFromProviderOrSigners } from 'eth-hooks';
 import { web3ModalConfigKeys } from '~~/config/web3ModalConfig';
 import invariant from 'ts-invariant';
+import {
+  MAINNET_PROVIDER,
+  LOCAL_PROVIDER,
+  const_ConnectToBurnerOnFirstLoad,
+  TARGET_NETWORK_INFO,
+} from '~~/config/appConfig';
 
 export interface IScaffoldAppProviders {
   currentProvider: TEthersProvider | undefined;
@@ -26,8 +27,8 @@ export interface IScaffoldAppProviders {
 export const useScaffoldProviders = (): IScaffoldAppProviders => {
   const [web3Config, setWeb3Config] = useState<Partial<ICoreOptions>>();
   const ethersContext = useEthersContext();
-  const [mainnetAdaptor] = useEthersAdaptorFromProviderOrSigners(mainnetProvider);
-  const [localAdaptor] = useEthersAdaptorFromProviderOrSigners(localProvider);
+  const [mainnetAdaptor] = useEthersAdaptorFromProviderOrSigners(MAINNET_PROVIDER);
+  const [localAdaptor] = useEthersAdaptorFromProviderOrSigners(LOCAL_PROVIDER);
 
   const firstLoadRef = useRef(true);
 
@@ -87,10 +88,10 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
   }, [web3Config]);
 
   return {
-    currentProvider: ethersContext.provider ?? localProvider,
+    currentProvider: ethersContext.provider ?? LOCAL_PROVIDER,
     mainnetAdaptor: mainnetAdaptor,
     localAdaptor: localAdaptor,
-    targetNetwork: targetNetworkInfo,
+    targetNetwork: TARGET_NETWORK_INFO,
     createLoginConnector: createLoginConnector,
   };
 };

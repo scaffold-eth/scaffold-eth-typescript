@@ -1,6 +1,6 @@
 import Web3Modal, { ICoreOptions } from 'web3modal';
-import { INFURA_ID } from '~~/models/constants/constants';
-import { localNetworkInfo } from '~~/config/providersConfig';
+import { INFURA_ID } from '~~/config/apiKeysConfig';
+import { NETWORKS } from '~~/models/constants/networks';
 
 export const web3ModalConfigKeys = {
   coinbaseKey: 'custom-walletlink',
@@ -77,9 +77,9 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
     package: StaticJsonRpcProvider,
     connector: ConnectToStaticJsonRpcProvider,
     options: {
-      chainId: localNetworkInfo.chainId,
+      chainId: NETWORKS.localhost.chainId,
       rpc: {
-        [localNetworkInfo.chainId]: localNetworkInfo.rpcUrl,
+        [NETWORKS.localhost.chainId]: NETWORKS.localhost.rpcUrl,
       },
     },
   };
