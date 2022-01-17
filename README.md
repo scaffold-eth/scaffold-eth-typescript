@@ -28,8 +28,8 @@ Running the app
 3. run the app, `you'll need to open a new command prompt`
 
    ```bash
-   yarn deploy
    yarn contracts:external
+   yarn deploy
    yarn start
    ```
 
