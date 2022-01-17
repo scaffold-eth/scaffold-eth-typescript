@@ -14,7 +14,7 @@ export const DEBUG = false;
  * This constant is your target network that the app is pointed at
  * 🤚🏽  Set your target frontend network <--- select your target frontend network(localhost, rinkeby, xdai, mainnet)
  */
-export const TARGET_NETWORK_INFO: TNetworkInfo = NETWORKS.ropsten;
+export const TARGET_NETWORK_INFO: TNetworkInfo = NETWORKS.localhost;
 
 if (DEBUG) console.log(`📡 Connecting to ${TARGET_NETWORK_INFO.name}`);
 

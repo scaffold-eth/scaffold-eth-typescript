@@ -5,11 +5,11 @@ import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-compon
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
- * See MainPage.tsx for main app component!
+ * 🏹 See MainPage.tsx for main app component!
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
  *
- * This file loads the app and styles async.  It sets up context, error boundaries, etc.
- * You don't need to change this file.
+ * This file loads the app async.  It sets up context, error boundaries, styles etc.
+ * You don't need to change this file!!
  */
 
 console.log('init app...');

@@ -24,6 +24,20 @@ import {
 import { asEthersAdaptor } from 'eth-hooks/functions';
 import { const_UseBurnerWalletAsFallback, MAINNET_PROVIDER } from '~~/config/appConfig';
 
+/**
+ * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
+ * See config/appConfig.ts for configuration, such as TARGET_NETWORK
+ * See MainPageContracts.tsx for your contracts component
+ * See contractsConnectorConfig.ts for how to configure your contracts
+ * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
+ *
+ * For more
+ */
+
+/**
+ * The main component
+ * @returns
+ */
 export const Main: FC = () => {
   // -----------------------------
   // Providers, signers & wallets
@@ -53,8 +67,8 @@ export const Main: FC = () => {
   // Hooks use and examples
   // -----------------------------
   // 🎉 Console logs & More hook examples:
-  // ✋🏽 disable this hook to stop console logs
-  // 👉🏽👉🏽👉🏽 go here to see how to use hooks!
+  // 🚦 disable this hook to stop console logs
+  // 🏹🏹🏹 go here to see how to use hooks!
   useScaffoldHooksExamples(scaffoldAppProviders);
 
   // -----------------------------
