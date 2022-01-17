@@ -57,7 +57,7 @@ Running the app
 
 Documentation, tutorials, challenges, and many more resources, visit: [docs.scaffoldeth.io](https://docs.scaffoldeth.io)
 
-Eth-hooks documentation is [here](https://scaffold-eth.github.io/eth-hooks/)
+Eth-hooks documentation is [here](https://scaffold-eth.github.io/eth-hooks/).  Learn how to use the contexts here.
 
 
 # 🔭 Learning Solidity
