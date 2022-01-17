@@ -30,7 +30,7 @@ Running the app
    ```bash
    # build hardhat & external contracts types
    yarn contracts:build 
-   # deploy your hard hat contracts
+   # deploy your hardhat contracts
    yarn deploy
    # start vite 
    yarn start 
