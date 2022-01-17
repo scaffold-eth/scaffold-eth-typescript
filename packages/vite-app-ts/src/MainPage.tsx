@@ -23,7 +23,6 @@ import {
   useLoadAppContracts,
 } from '~~/config/contractContext';
 import { asEthersAdaptor } from 'eth-hooks/functions';
-import { subgraphUri } from '~~/config/subgraphConfig';
 
 export const Main: FC = () => {
   // -----------------------------
@@ -50,14 +49,20 @@ export const Main: FC = () => {
   // 🏭 connec to  contracts for current network & signer
   useConnectAppContracts(asEthersAdaptor(ethersContext));
 
-  const yourContract = useAppContracts('YourContract', ethersContext.chainId);
-  const daiContract = useAppContracts('DAI', NETWORKS.mainnet.chainId);
+  // -----------------------------
+  // Hooks use and examples
+  // -----------------------------
+  // 🎉 Console logs & More hook examples:
+  // ✋🏽 disable this hook to stop console logs
+  // 👉🏽👉🏽👉🏽 go here to see how to use hooks!
+  useScaffoldHooksExamples(scaffoldAppProviders);
 
   // -----------------------------
-  // examples on how to get contracts
+  // These are the contracts!
   // -----------------------------
+
   // init contracts
-  //const yourContract = useAppContracts('YourContract', ethersContext.chainId);
+  const yourContract = useAppContracts('YourContract', ethersContext.chainId);
   const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
 
   // keep track of a variable from the contract in the local React state:
@@ -71,23 +76,14 @@ export const Main: FC = () => {
   // 📟 Listen for broadcast events
   const [setPurposeEvents] = useEventListener(yourContract, 'SetPurpose', 0);
 
-  // For more hooks, check out 🔗eth-hooks at: https://www.npmjs.com/package/eth-hooks
-
+  // -----------------------------
+  // .... 🎇 End of examples
+  // -----------------------------
   // 💵 This hook will get the price of ETH from 🦄 Uniswap:
   const [ethPrice] = useDexEthPrice(scaffoldAppProviders.mainnetAdaptor?.provider, scaffoldAppProviders.targetNetwork);
 
   // 💰 this hook will get your balance
   const [yourCurrentBalance] = useBalance(ethersContext.account);
-
-  // -----------------------------
-  // Hooks use and examples
-  // -----------------------------
-  // 🎉 Console logs & More hook examples:  Check out this to see how to get
-  // useScaffoldHooksExamples(scaffoldAppProviders);
-
-  // -----------------------------
-  // .... 🎇 End of examples
-  // -----------------------------
 
   const [route, setRoute] = useState<string>('');
   useEffect(() => {
@@ -131,7 +127,7 @@ export const Main: FC = () => {
               />
             )}
           </Route>
-          {/* Subgraph also disabled in MainPageMenu */}
+          {/* Subgraph also disabled in MainPageMenu, it does not work, see github issue! */}
           {/* 
           <Route path="/subgraph">
             <Subgraph subgraphUri={subgraphUri} mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider} />

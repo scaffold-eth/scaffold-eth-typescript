@@ -9,8 +9,12 @@ import { contractsContextFactory, useEthersContext } from 'eth-hooks/context';
 
 /**
  * #### Summary
- * Call contractContextFactory with the contractConnectorConfig.
- * This will create your Context and hooks.
+ * Call contractContextFactory with the `contractConnectorConfig` from `contractConnectorConfig.ts`
+ *
+ * ##### Notes
+ * - This will create your ContractContext used by App.tsx
+ * - This will create your hooks to access contracts
+ * - The type is your contract connect config.
  */
 export const {
   ContractsAppContext,

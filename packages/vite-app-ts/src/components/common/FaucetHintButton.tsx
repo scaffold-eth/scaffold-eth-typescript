@@ -9,7 +9,7 @@ import { utils } from 'ethers';
 import { useEthersContext } from 'eth-hooks/context';
 import { useDebounce } from 'use-debounce';
 import { IEthersContext } from 'eth-hooks/models';
-import { FAUCET_ENABLED } from '~~/config/config';
+import { FAUCET_ENABLED } from '~~/config/appConfig';
 
 interface IFaucetButton {
   scaffoldAppProviders: IScaffoldAppProviders;

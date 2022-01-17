@@ -18,7 +18,8 @@ import { config } from 'process';
 import { NETWORKS } from '~~/models/constants/networks';
 import { useAppContracts } from '~~/config/contractContext';
 import { getNetworkInfo } from '~~/functions';
-import { DEBUG } from '~~/config/config';
+import { DEBUG } from '~~/config/appConfig';
+import { useResolveEnsName } from 'eth-hooks/dapps';
 
 /**
  * Logs to console current app state.  Shows you examples on how to use hooks!
@@ -35,7 +36,6 @@ export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProvi
   const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
 
   const exampleMainnetProvider = scaffoldAppProviders.mainnetAdaptor?.provider;
-
   let currentChainId: number | undefined = ethersContext.chainId;
 
   // ---------------------
@@ -65,7 +65,7 @@ export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProvi
   // ---------------------
   // 📛 call ens
   // ---------------------
-  // const [addressFromENS] = useEnsResolveName(scaffoldAppProviders.mainnetProvider, 'austingriffith.eth');
+  // const [addressFromENS] = useResolveEnsName(scaffoldAppProviders.mainnetAdaptor?.provider, 'austingriffith.eth');
   // console.log('🏷 Resolved austingriffith.eth as:', addressFromENS);
 
   // ---------------------
@@ -101,6 +101,12 @@ export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProvi
   //     });
   //   }
   // }, []);
+
+  // ---------------------
+  // 🏭 check out eth-hooks!!!
+  // ---------------------
+  // docs: https://scaffold-eth.github.io/eth-hooks/
+  // npm: https://www.npmjs.com/package/eth-hooks
 
   useEffect(() => {
     if (DEBUG && scaffoldAppProviders.mainnetAdaptor && ethersContext.account && currentChainId && yourLocalBalance) {

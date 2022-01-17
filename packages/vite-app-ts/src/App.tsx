@@ -2,7 +2,6 @@ import React, { FC, lazy, Suspense } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 import { BLOCKNATIVE_DAPPID } from '~~/models/constants/constants';
-import { subgraphUri } from '~~/config/subgraphConfig';
 import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-components/models';
 
 /**
