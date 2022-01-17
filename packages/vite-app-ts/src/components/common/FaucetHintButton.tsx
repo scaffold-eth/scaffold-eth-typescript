@@ -9,6 +9,7 @@ import { utils } from 'ethers';
 import { useEthersContext } from 'eth-hooks/context';
 import { useDebounce } from 'use-debounce';
 import { IEthersContext } from 'eth-hooks/models';
+import { FAUCET_ENABLED } from '~~/config/config';
 
 interface IFaucetButton {
   scaffoldAppProviders: IScaffoldAppProviders;
@@ -17,7 +18,7 @@ interface IFaucetButton {
 
 export const getFaucetAvailable = (scaffoldAppProviders: IScaffoldAppProviders, ethersContext: IEthersContext) => {
   return (
-    (true &&
+    (FAUCET_ENABLED &&
       ethersContext?.provider &&
       ethersContext?.chainId === scaffoldAppProviders.targetNetwork.chainId &&
       scaffoldAppProviders.targetNetwork.name === 'localhost') ??
@@ -46,8 +47,10 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
 
   const faucetHint = useMemo(() => {
     const min = parseFloat(utils.formatUnits(yourLocalBalance?.toBigInt() ?? 0, 'ether'));
+    const lowFunds = yourLocalBalance && min < 0.002;
+    const allowFaucet = faucetAvailable && !faucetClicked && lowFunds;
 
-    if (!faucetClicked && faucetAvailable && yourLocalBalance && min < 0.002 && ethersContext?.account != null) {
+    if (allowFaucet && faucetAvailable && ethersContext?.account != null) {
       return (
         <div style={{ paddingTop: 10, paddingLeft: 10 }}>
           <Button

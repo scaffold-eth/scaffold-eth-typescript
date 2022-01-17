@@ -18,7 +18,7 @@ import { config } from 'process';
 import { NETWORKS } from '~~/models/constants/networks';
 import { useAppContracts } from '~~/config/contractContext';
 import { getNetworkInfo } from '~~/functions';
-import { DEBUG } from '~~/config/debug';
+import { DEBUG } from '~~/config/config';
 
 /**
  * Logs to console current app state.  Shows you examples on how to use hooks!
