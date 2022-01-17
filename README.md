@@ -29,6 +29,7 @@ Running the app
 
    ```bash
    yarn deploy
+   yarn contracts:external
    yarn start
    ```
 
