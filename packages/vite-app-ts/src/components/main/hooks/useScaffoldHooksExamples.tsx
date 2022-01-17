@@ -20,6 +20,7 @@ import { useAppContracts } from '~~/config/contractContext';
 import { getNetworkInfo } from '~~/functions';
 import { DEBUG } from '~~/config/appConfig';
 import { useResolveEnsName } from 'eth-hooks/dapps';
+import { mergeDefaultUpdateOptions } from 'eth-hooks/functions';
 
 /**
  * Logs to console current app state.  Shows you examples on how to use hooks!
@@ -42,13 +43,23 @@ export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProvi
   // 🏦 get your balance
   // ---------------------
   // 🏗 scaffold-eth is full of handy hooks like this one to get your balance:
-  const [yourLocalBalance] = useBalance(ethersContext.account ?? '');
+  const [yourLocalBalance] = useBalance(ethersContext.account);
 
   // Just plug in different 🛰 providers to get your balance on different chains:
   const [mainnetAdaptor] = useEthersAdaptorFromProviderOrSigners(exampleMainnetProvider);
-  const [yourMainnetBalance] = useBalance(ethersContext.account ?? '', {
+  const [yourMainnetBalance, yUpdate, yStatus] = useBalance(ethersContext.account, mergeDefaultUpdateOptions(), {
     adaptorEnabled: true,
     adaptor: mainnetAdaptor,
+  });
+
+  // you can change the update schedule to every 10 blocks, the default is every 1 block:
+  const [secondbalance] = useBalance(ethersContext.account, { blockNumberInterval: 10 });
+  // you can change the update schedule to every polling, min is 10000ms
+  const [thirdbalance] = useBalance(ethersContext.account, { refetchInterval: 100000, blockNumberInterval: undefined });
+  // you can use advanced react-query update options
+  const [fourthbalance] = useBalance(ethersContext.account, {
+    blockNumberInterval: 1,
+    query: { refetchOnWindowFocus: true },
   });
 
   // ---------------------
