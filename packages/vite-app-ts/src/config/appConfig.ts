@@ -14,7 +14,7 @@ export const DEBUG = false;
  * This constant is your target network that the app is pointed at
  * 🤚🏽  Set your target frontend network <--- select your target frontend network(localhost, rinkeby, xdai, mainnet)
  */
-export const TARGET_NETWORK_INFO: TNetworkInfo = NETWORKS.localhost;
+export const TARGET_NETWORK_INFO: TNetworkInfo = NETWORKS.rinkeby;
 
 if (DEBUG) console.log(`📡 Connecting to ${TARGET_NETWORK_INFO.name}`);
 
@@ -77,4 +77,5 @@ export const MAINNET_PROVIDER =
 // -------------------
 
 if (DEBUG) console.log('🏠 Connecting to provider:', NETWORKS.localhost.rpcUrl);
-export const LOCAL_PROVIDER: TEthersProvider = new StaticJsonRpcProvider(NETWORKS.localhost.rpcUrl);
+export const LOCAL_PROVIDER: TEthersProvider | undefined =
+  TARGET_NETWORK_INFO === NETWORKS.localhost ? new StaticJsonRpcProvider(NETWORKS.localhost.rpcUrl) : undefined;
