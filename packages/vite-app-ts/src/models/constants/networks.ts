@@ -1,5 +1,5 @@
 import { TNetworkInfo } from 'eth-hooks/models';
-import { INFURA_ID } from '~~/config/apiKeysConfig';
+import { INFURA_ID } from '../../config/apiKeysConfig';
 
 export type TNetworkNames =
   | 'localhost'
