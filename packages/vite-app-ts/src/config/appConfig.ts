@@ -77,4 +77,5 @@ export const MAINNET_PROVIDER =
 // -------------------
 
 if (DEBUG) console.log('🏠 Connecting to provider:', NETWORKS.localhost.rpcUrl);
-export const LOCAL_PROVIDER: TEthersProvider = new StaticJsonRpcProvider(NETWORKS.localhost.rpcUrl);
+export const LOCAL_PROVIDER: TEthersProvider | undefined =
+  TARGET_NETWORK_INFO === NETWORKS.localhost ? new StaticJsonRpcProvider(NETWORKS.localhost.rpcUrl) : undefined;
