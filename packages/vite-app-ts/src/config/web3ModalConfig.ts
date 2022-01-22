@@ -25,7 +25,7 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
       },
     };
   } catch (e) {
-    console.log('Failed to load config for Portis: ', e);
+    console.log('Failed to load config for web3 connector Portis: ', e);
   }
 
   // === FORTMATIC
@@ -38,7 +38,7 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
       },
     };
   } catch (e) {
-    console.log('Failed to load config for Fortmatic: ', e);
+    console.log('Failed to load config for web3 connector Fortmatic: ', e);
   }
 
   // === COINBASE WALLETLINK
@@ -68,7 +68,7 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
     };
     providerOptions[web3ModalConfigKeys.coinbaseKey] = coinbaseWalletLink;
   } catch (e) {
-    console.log('Failed to load config for Coinbase WalletLink: ', e);
+    console.log('Failed to load config for web3 connector Coinbase WalletLink: ', e);
   }
 
   // === WALLETCONNECT
@@ -88,7 +88,7 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
     };
     providerOptions.walletconnect = walletConnectEthereum;
   } catch (e) {
-    console.log('Failed to load config for WalletConnect: ', e);
+    console.log('Failed to load config for web3 connector WalletConnect: ', e);
   }
 
   // === AUTHEREUM
@@ -98,28 +98,32 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
       package: Authereum,
     };
   } catch (e) {
-    console.log('Failed to load config for Authereum: ', e);
+    console.log('Failed to load config for web3 connector Authereum: ', e);
   }
 
   // === LOCALHOST STATIC
-  const { ConnectToStaticJsonRpcProvider } = await import('eth-hooks/context');
-  const { StaticJsonRpcProvider } = await import('@ethersproject/providers');
-  const localhostStaticConnector = {
-    display: {
-      logo: 'https://avatars.githubusercontent.com/u/56928858?s=200&v=4',
-      name: 'BurnerWallet',
-      description: '🔥 Connect to localhost with a burner wallet 🔥',
-    },
-    package: StaticJsonRpcProvider,
-    connector: ConnectToStaticJsonRpcProvider,
-    options: {
-      chainId: NETWORKS.localhost.chainId,
-      rpc: {
-        [NETWORKS.localhost.chainId]: NETWORKS.localhost.rpcUrl,
+  try {
+    const { ConnectToStaticJsonRpcProvider } = await import('eth-hooks/context');
+    const { StaticJsonRpcProvider } = await import('@ethersproject/providers');
+    const localhostStaticConnector = {
+      display: {
+        logo: 'https://avatars.githubusercontent.com/u/56928858?s=200&v=4',
+        name: 'BurnerWallet',
+        description: '🔥 Connect to localhost with a burner wallet 🔥',
       },
-    },
-  };
-  providerOptions[web3ModalConfigKeys.localhostKey] = localhostStaticConnector;
+      package: StaticJsonRpcProvider,
+      connector: ConnectToStaticJsonRpcProvider,
+      options: {
+        chainId: NETWORKS.localhost.chainId,
+        rpc: {
+          [NETWORKS.localhost.chainId]: NETWORKS.localhost.rpcUrl,
+        },
+      },
+    };
+    providerOptions[web3ModalConfigKeys.localhostKey] = localhostStaticConnector;
+  } catch (e) {
+    console.log('Failed to load config for Localhost Static Connector: ', e);
+  }
 
   //network: 'mainnet', // Optional. If using WalletConnect on xDai, change network to "xdai" and add RPC info below for xDai chain.
 
