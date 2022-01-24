@@ -16,13 +16,13 @@ export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: b
      * if the current provider is local provider then use the burner fallback
      */
     if (
+      burnerFallback?.signer &&
       burnerFallback.account != ethersContext.account &&
       ethersContext.chainId == NETWORKS.localhost.chainId &&
       ethersContext.provider?.connection.url === NETWORKS.localhost.rpcUrl &&
-      burnerFallback.signer &&
       enable
     ) {
       ethersContext.changeSigner?.(burnerFallback.signer);
     }
-  }, [ethersContext.account, localAddress, ethersContext.changeSigner, burnerFallback.signer]);
+  }, [ethersContext.account, localAddress, ethersContext.changeSigner, burnerFallback?.signer]);
 };

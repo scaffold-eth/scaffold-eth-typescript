@@ -39,6 +39,7 @@ const excludeDeps = ['@apollo/client', `graphql`, 'ipfs-http-client'];
 export default defineConfig({
   plugins: [reactPlugin(), macrosPlugin(), tsconfigPaths(), externals],
   build: {
+    sourcemap: true,
     commonjsOptions: {
       include: /node_modules/,
       transformMixedEsModules: true,
