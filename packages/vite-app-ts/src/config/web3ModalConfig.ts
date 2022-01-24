@@ -1,5 +1,6 @@
 import Web3Modal, { ICoreOptions } from 'web3modal';
 import { INFURA_ID } from '~~/config/apiKeysConfig';
+import { LOCAL_PROVIDER } from '~~/config/appConfig';
 import { NETWORKS } from '~~/models/constants/networks';
 
 export const web3ModalConfigKeys = {
@@ -103,24 +104,26 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
 
   // === LOCALHOST STATIC
   try {
-    const { ConnectToStaticJsonRpcProvider } = await import('eth-hooks/context');
-    const { StaticJsonRpcProvider } = await import('@ethersproject/providers');
-    const localhostStaticConnector = {
-      display: {
-        logo: 'https://avatars.githubusercontent.com/u/56928858?s=200&v=4',
-        name: 'BurnerWallet',
-        description: '🔥 Connect to localhost with a burner wallet 🔥',
-      },
-      package: StaticJsonRpcProvider,
-      connector: ConnectToStaticJsonRpcProvider,
-      options: {
-        chainId: NETWORKS.localhost.chainId,
-        rpc: {
-          [NETWORKS.localhost.chainId]: NETWORKS.localhost.rpcUrl,
+    if (LOCAL_PROVIDER) {
+      const { ConnectToStaticJsonRpcProvider } = await import('eth-hooks/context');
+      const { StaticJsonRpcProvider } = await import('@ethersproject/providers');
+      const localhostStaticConnector = {
+        display: {
+          logo: 'https://avatars.githubusercontent.com/u/56928858?s=200&v=4',
+          name: 'BurnerWallet',
+          description: '🔥 Connect to localhost with a burner wallet 🔥',
         },
-      },
-    };
-    providerOptions[web3ModalConfigKeys.localhostKey] = localhostStaticConnector;
+        package: StaticJsonRpcProvider,
+        connector: ConnectToStaticJsonRpcProvider,
+        options: {
+          chainId: NETWORKS.localhost.chainId,
+          rpc: {
+            [NETWORKS.localhost.chainId]: NETWORKS.localhost.rpcUrl,
+          },
+        },
+      };
+      providerOptions[web3ModalConfigKeys.localhostKey] = localhostStaticConnector;
+    }
   } catch (e) {
     console.log('Failed to load config for Localhost Static Connector: ', e);
   }

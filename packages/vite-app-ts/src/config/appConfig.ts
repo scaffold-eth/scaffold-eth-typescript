@@ -25,17 +25,17 @@ if (DEBUG) console.log(`📡 Connecting to ${TARGET_NETWORK_INFO.name}`);
 /**
  * localhost faucet enabled
  */
-export const const_FaucetEnabled = true && IS_DEVELOPMENT_ENV;
+export const FAUCET_ENABLED = true && IS_DEVELOPMENT_ENV;
 /**
  * Use burner wallet as fallback
  */
-export const const_UseBurnerWalletAsFallback = true && IS_DEVELOPMENT_ENV;
+export const USE_BURNER_FALLBACK = true && IS_DEVELOPMENT_ENV;
 /**
- * Connect to burner on first load
+ * Connect to burner on first load if there are no cached providers
  */
-export const const_ConnectToBurnerOnFirstLoad = true && IS_DEVELOPMENT_ENV;
+export const CONNECT_TO_BURNER_ON_FIRST_LOAD = true && IS_DEVELOPMENT_ENV;
 
-export const subgraphUri = 'http://localhost:8000/subgraphs/name/scaffold-eth/your-contract';
+export const SUBGRAPH_URI = 'http://localhost:8000/subgraphs/name/scaffold-eth/your-contract';
 
 /** ******************************
  * OTHER FILES

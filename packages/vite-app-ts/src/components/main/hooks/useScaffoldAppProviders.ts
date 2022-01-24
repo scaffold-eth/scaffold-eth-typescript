@@ -12,7 +12,7 @@ import invariant from 'ts-invariant';
 import {
   MAINNET_PROVIDER,
   LOCAL_PROVIDER,
-  const_ConnectToBurnerOnFirstLoad,
+  CONNECT_TO_BURNER_ON_FIRST_LOAD,
   TARGET_NETWORK_INFO,
 } from '~~/config/appConfig';
 
@@ -37,9 +37,14 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
     const importedConfig = import('../../../config/web3ModalConfig');
 
     importedConfig.then((getter) => {
-      getter.getWeb3ModalConfig().then((config) => {
-        setWeb3Config(config);
-      });
+      getter
+        .getWeb3ModalConfig()
+        .then((config) => {
+          setWeb3Config(config);
+        })
+        .catch((e) => {
+          invariant.error('Web3Modal", "cannot load web3 modal config', e);
+        });
     });
   }, []);
 
@@ -67,7 +72,7 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
      * @returns
      */
     const autoConnectToBurner = (connector: TEthersModalConnector | undefined) => {
-      if (const_ConnectToBurnerOnFirstLoad && connector) {
+      if (CONNECT_TO_BURNER_ON_FIRST_LOAD && connector) {
         (connector as EthersModalConnector).loadCore();
         if (connector != null && !connector.hasCachedProvider()) {
           connector = new EthersModalConnector(
