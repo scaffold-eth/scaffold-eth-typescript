@@ -4,6 +4,7 @@ import { NETWORKS } from '../models/constants/networks';
 import { INFURA_ID } from './apiKeysConfig';
 
 export const DEBUG = false;
+export const IS_DEVELOPMENT_ENV = process.env.NODE_ENV === 'DEVELOPMENT';
 
 /** ******************************
  * TARGET NETWORK CONFIG
