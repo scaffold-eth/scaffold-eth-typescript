@@ -8,51 +8,124 @@ export const web3ModalConfigKeys = {
 } as const;
 
 export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
-  const Portis = (await import('@portis/web3')).default;
-  const Fortmatic = (await import('fortmatic')).default;
-  const { WalletLink } = await import('walletlink');
-  const WalletConnectProvider = (await import('@walletconnect/ethereum-provider')).default;
-  const Authereum = (await import('authereum')).default;
-  const { ConnectToStaticJsonRpcProvider } = await import('eth-hooks/context');
-  const { StaticJsonRpcProvider } = await import('@ethersproject/providers');
+  const providerOptions: Record<string, any> = {};
 
-  // note: ⚠️ meta mask and coinbase wallets may clash.
-  // you might need to check this: https://github.com/Web3Modal/web3modal/issues/316
+  // === PORTIS
+  try {
+    const Portis = (await import('@portis/web3')).default;
+    providerOptions.portis = {
+      display: {
+        logo: 'https://user-images.githubusercontent.com/9419140/128913641-d025bc0c-e059-42de-a57b-422f196867ce.png',
+        name: 'Portis',
+        description: 'Connect to Portis App',
+      },
+      package: Portis,
+      options: {
+        id: '6255fb2b-58c8-433b-a2c9-62098c05ddc9',
+      },
+    };
+  } catch (e) {
+    console.log('Failed to load config for web3 connector Portis: ', e);
+  }
 
-  // Coinbase walletLink init
-  const walletLink = new WalletLink({
-    appName: 'coinbase',
-  });
+  // === FORTMATIC
+  try {
+    const Fortmatic = (await import('fortmatic')).default;
+    providerOptions.fortmatic = {
+      package: Fortmatic,
+      options: {
+        key: 'pk_live_5A7C91B2FC585A17',
+      },
+    };
+  } catch (e) {
+    console.log('Failed to load config for web3 connector Fortmatic: ', e);
+  }
 
-  // WalletLink provider
-  const walletLinkProvider = walletLink.makeWeb3Provider(`https://mainnet.infura.io/v3/${INFURA_ID}`, 1);
+  // === COINBASE WALLETLINK
+  try {
+    const { WalletLink } = await import('walletlink');
+    // note: ⚠️ meta mask and coinbase wallets may clash.
+    // you might need to check this: https://github.com/Web3Modal/web3modal/issues/316
 
-  const coinbaseWalletLink = {
-    display: {
-      logo: 'https://play-lh.googleusercontent.com/PjoJoG27miSglVBXoXrxBSLveV6e3EeBPpNY55aiUUBM9Q1RCETKCOqdOkX2ZydqVf0',
-      name: 'Coinbase',
-      description: 'Connect to your Coinbase Wallet (not coinbase.com)',
-    },
-    package: walletLinkProvider,
-    connector: async (provider: any, _options: any) => {
-      await provider.enable();
-      return provider;
-    },
-  };
+    // Coinbase walletLink init
+    const walletLink = new WalletLink({
+      appName: 'coinbase',
+    });
+    // WalletLink provider
+    const walletLinkProvider = walletLink.makeWeb3Provider(`https://mainnet.infura.io/v3/${INFURA_ID}`, 1);
+
+    const coinbaseWalletLink = {
+      display: {
+        logo: 'https://play-lh.googleusercontent.com/PjoJoG27miSglVBXoXrxBSLveV6e3EeBPpNY55aiUUBM9Q1RCETKCOqdOkX2ZydqVf0',
+        name: 'Coinbase',
+        description: 'Connect to your Coinbase Wallet (not coinbase.com)',
+      },
+      package: walletLinkProvider,
+      connector: async (provider: any, _options: any) => {
+        await provider.enable();
+        return provider;
+      },
+    };
+    providerOptions[web3ModalConfigKeys.coinbaseKey] = coinbaseWalletLink;
+  } catch (e) {
+    console.log('Failed to load config for web3 connector Coinbase WalletLink: ', e);
+  }
+
+  // === WALLETCONNECT
+  try {
+    const WalletConnectProvider = (await import('@walletconnect/ethereum-provider')).default;
+    const walletConnectEthereum = {
+      package: WalletConnectProvider,
+      options: {
+        bridge: 'https://polygon.bridge.walletconnect.org',
+        infuraId: INFURA_ID,
+        rpc: {
+          1: `https://mainnet.infura.io/v3/${INFURA_ID}`,
+          42: `https://kovan.infura.io/v3/${INFURA_ID}`,
+          100: 'https://dai.poa.network',
+        },
+      },
+    };
+    providerOptions.walletconnect = walletConnectEthereum;
+  } catch (e) {
+    console.log('Failed to load config for web3 connector WalletConnect: ', e);
+  }
+
+  // === AUTHEREUM
+  try {
+    const Authereum = (await import('authereum')).default;
+    providerOptions.authereum = {
+      package: Authereum,
+    };
+  } catch (e) {
+    console.log('Failed to load config for web3 connector Authereum: ', e);
+  }
+
+  // === LOCALHOST STATIC
+  try {
+    const { ConnectToStaticJsonRpcProvider } = await import('eth-hooks/context');
+    const { StaticJsonRpcProvider } = await import('@ethersproject/providers');
+    const localhostStaticConnector = {
+      display: {
+        logo: 'https://avatars.githubusercontent.com/u/56928858?s=200&v=4',
+        name: 'BurnerWallet',
+        description: '🔥 Connect to localhost with a burner wallet 🔥',
+      },
+      package: StaticJsonRpcProvider,
+      connector: ConnectToStaticJsonRpcProvider,
+      options: {
+        chainId: NETWORKS.localhost.chainId,
+        rpc: {
+          [NETWORKS.localhost.chainId]: NETWORKS.localhost.rpcUrl,
+        },
+      },
+    };
+    providerOptions[web3ModalConfigKeys.localhostKey] = localhostStaticConnector;
+  } catch (e) {
+    console.log('Failed to load config for Localhost Static Connector: ', e);
+  }
 
   //network: 'mainnet', // Optional. If using WalletConnect on xDai, change network to "xdai" and add RPC info below for xDai chain.
-  const walletConnectEthereum = {
-    package: WalletConnectProvider,
-    options: {
-      bridge: 'https://polygon.bridge.walletconnect.org',
-      infuraId: INFURA_ID,
-      rpc: {
-        1: `https://mainnet.infura.io/v3/${INFURA_ID}`,
-        42: `https://kovan.infura.io/v3/${INFURA_ID}`,
-        100: 'https://dai.poa.network',
-      },
-    },
-  };
 
   // const torus = {
   //   package: Torus,
@@ -68,55 +141,9 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
   //   },
   // };
 
-  const localhostStaticConnector = {
-    display: {
-      logo: 'https://avatars.githubusercontent.com/u/56928858?s=200&v=4',
-      name: 'BurnerWallet',
-      description: '🔥 Connect to localhost with a burner wallet 🔥',
-    },
-    package: StaticJsonRpcProvider,
-    connector: ConnectToStaticJsonRpcProvider,
-    options: {
-      chainId: NETWORKS.localhost.chainId,
-      rpc: {
-        [NETWORKS.localhost.chainId]: NETWORKS.localhost.rpcUrl,
-      },
-    },
-  };
-
-  const authereum = {
-    package: Authereum,
-  };
-
-  const portis = {
-    display: {
-      logo: 'https://user-images.githubusercontent.com/9419140/128913641-d025bc0c-e059-42de-a57b-422f196867ce.png',
-      name: 'Portis',
-      description: 'Connect to Portis App',
-    },
-    package: Portis,
-    options: {
-      id: '6255fb2b-58c8-433b-a2c9-62098c05ddc9',
-    },
-  };
-  const formatic = {
-    package: Fortmatic,
-    options: {
-      key: 'pk_live_5A7C91B2FC585A17',
-    },
-  };
-
   return {
     cacheProvider: true,
     theme: 'light',
-    providerOptions: {
-      [web3ModalConfigKeys.localhostKey]: localhostStaticConnector,
-      walletconnect: walletConnectEthereum,
-      portis: portis,
-      fortmatic: formatic,
-      //torus: torus,
-      authereum: authereum,
-      [web3ModalConfigKeys.coinbaseKey]: coinbaseWalletLink,
-    },
+    providerOptions,
   };
 };
