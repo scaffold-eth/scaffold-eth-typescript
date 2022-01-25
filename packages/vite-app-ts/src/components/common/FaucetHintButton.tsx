@@ -9,7 +9,7 @@ import { utils } from 'ethers';
 import { useEthersContext } from 'eth-hooks/context';
 import { useDebounce } from 'use-debounce';
 import { IEthersContext } from 'eth-hooks/models';
-import { const_FaucetEnabled } from '~~/config/appConfig';
+import { FAUCET_ENABLED } from '~~/config/appConfig';
 
 interface IFaucetButton {
   scaffoldAppProviders: IScaffoldAppProviders;
@@ -18,7 +18,7 @@ interface IFaucetButton {
 
 export const getFaucetAvailable = (scaffoldAppProviders: IScaffoldAppProviders, ethersContext: IEthersContext) => {
   return (
-    (const_FaucetEnabled &&
+    (FAUCET_ENABLED &&
       ethersContext?.provider &&
       ethersContext?.chainId === scaffoldAppProviders.targetNetwork.chainId &&
       scaffoldAppProviders.targetNetwork.name === 'localhost') ??

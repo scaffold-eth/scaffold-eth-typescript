@@ -4,6 +4,7 @@ import { NETWORKS } from '../models/constants/networks';
 import { INFURA_ID } from './apiKeysConfig';
 
 export const DEBUG = false;
+export const IS_DEVELOPMENT_ENV = process.env.NODE_ENV === 'DEVELOPMENT';
 
 /** ******************************
  * TARGET NETWORK CONFIG
@@ -24,17 +25,17 @@ if (DEBUG) console.log(`📡 Connecting to ${TARGET_NETWORK_INFO.name}`);
 /**
  * localhost faucet enabled
  */
-export const const_FaucetEnabled = true;
+export const FAUCET_ENABLED = true && IS_DEVELOPMENT_ENV;
 /**
  * Use burner wallet as fallback
  */
-export const const_UseBurnerWalletAsFallback = true;
+export const USE_BURNER_FALLBACK = true && IS_DEVELOPMENT_ENV;
 /**
- * Connect to burner on first load
+ * Connect to burner on first load if there are no cached providers
  */
-export const const_ConnectToBurnerOnFirstLoad = true;
+export const CONNECT_TO_BURNER_ON_FIRST_LOAD = true && IS_DEVELOPMENT_ENV;
 
-export const subgraphUri = 'http://localhost:8000/subgraphs/name/scaffold-eth/your-contract';
+export const SUBGRAPH_URI = 'http://localhost:8000/subgraphs/name/scaffold-eth/your-contract';
 
 /** ******************************
  * OTHER FILES
@@ -78,4 +79,6 @@ export const MAINNET_PROVIDER =
 
 if (DEBUG) console.log('🏠 Connecting to provider:', NETWORKS.localhost.rpcUrl);
 export const LOCAL_PROVIDER: TEthersProvider | undefined =
-  TARGET_NETWORK_INFO === NETWORKS.localhost ? new StaticJsonRpcProvider(NETWORKS.localhost.rpcUrl) : undefined;
+  TARGET_NETWORK_INFO === NETWORKS.localhost && IS_DEVELOPMENT_ENV
+    ? new StaticJsonRpcProvider(NETWORKS.localhost.rpcUrl)
+    : undefined;

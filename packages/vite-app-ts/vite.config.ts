@@ -12,12 +12,16 @@ console.log('env.dev:', process.env.ENVIRONMENT, ' isDev:', isDev);
 /**
  * browserify for web3 components
  */
-const nodeExternals = {
-  util: 'util',
-  stream: 'stream-browserify',
+const externals = {
   http: 'http-browserify',
   https: 'http-browserify',
   timers: 'timers-browserify',
+  electron: 'electron',
+  'electron-fetch': 'electron-fetch',
+};
+
+const nodeShims = {
+  util: 'util',
 };
 
 /**
@@ -25,10 +29,11 @@ const nodeExternals = {
  * - node externals are required because web3 are terribly bundled and some of them use commonjs libraries.  modern libs like ethers help with this.
  * - electron:  added due to ipfs-http-client.  it has very poor esm compatibility and a ton of dependency bugs. see: https://github.com/ipfs/js-ipfs/issues/3452
  */
-const externals = viteExternalsPlugin({
+const externalPlugin = viteExternalsPlugin({
   electron: 'electron',
   'electron-fetch': 'electron-fetch',
-  ...nodeExternals,
+  ...externals,
+  ...(isDev ? { ...nodeShims } : {}),
 });
 
 /**
@@ -37,8 +42,9 @@ const externals = viteExternalsPlugin({
 const excludeDeps = ['@apollo/client', `graphql`, 'ipfs-http-client'];
 
 export default defineConfig({
-  plugins: [reactPlugin(), macrosPlugin(), tsconfigPaths(), externals],
+  plugins: [reactPlugin(), macrosPlugin(), tsconfigPaths(), externalPlugin],
   build: {
+    sourcemap: true,
     commonjsOptions: {
       include: /node_modules/,
       transformMixedEsModules: true,
@@ -62,8 +68,10 @@ export default defineConfig({
     mainFields: ['module', 'main', 'browser'],
     alias: {
       '~~': resolve(__dirname, 'src'),
+      ...externals,
+      ...nodeShims,
       process: 'process',
-      ...nodeExternals,
+      stream: 'stream-browserify',
     },
   },
   server: {
