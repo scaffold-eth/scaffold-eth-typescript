@@ -1,6 +1,8 @@
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { TNetworkInfo, TEthersProvider } from 'eth-hooks/models';
+
 import { NETWORKS } from '../models/constants/networks';
+
 import { INFURA_ID } from './apiKeysConfig';
 
 export const DEBUG = false;

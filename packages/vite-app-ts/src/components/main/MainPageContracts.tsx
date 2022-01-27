@@ -1,11 +1,10 @@
-import React, { FC } from 'react';
 import { GenericContract } from 'eth-components/ant/generic-contract';
-import { Contract } from 'ethers';
-import { useContractLoader } from 'eth-hooks';
-import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 import { useEthersContext } from 'eth-hooks/context';
-import { NETWORKS } from '~~/models/constants/networks';
+import React, { FC } from 'react';
+
+import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 import { useAppContracts } from '~~/config/contractContext';
+import { NETWORKS } from '~~/models/constants/networks';
 export interface IMainPageContractsProps {
   scaffoldAppProviders: IScaffoldAppProviders;
 }

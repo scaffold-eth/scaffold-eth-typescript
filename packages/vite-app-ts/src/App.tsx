@@ -1,7 +1,8 @@
-import React, { FC, lazy, Suspense } from 'react';
-import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
-import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-components/models';
+import React, { FC, Suspense } from 'react';
+import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
+
+import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
@@ -20,14 +21,16 @@ import '~~/styles/css/tailwind-components.pcss';
 import '~~/styles/css/tailwind-utilities.pcss';
 import '~~/styles/css/app.css';
 import { EthersAppContext } from 'eth-hooks/context';
-import { ContractsAppContext } from '~~/config/contractContext';
-import { lazier } from 'eth-hooks/helpers';
+
 import { BLOCKNATIVE_DAPPID } from '~~/config/apiKeysConfig';
+import { ContractsAppContext } from '~~/config/contractContext';
+
+import { lazier } from 'eth-hooks/helpers';
 
 // load saved theme
 const savedTheme = window.localStorage.getItem('theme');
 
-//setup themes for theme switcher
+// setup themes for theme switcher
 const themes = {
   dark: './dark-theme.css',
   light: './light-theme.css',

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { useState } from 'react';
 // Hook from useHooks! (https://usehooks.com/useLocalStorage/)
 
@@ -31,7 +32,7 @@ export const useLocalStorage = (key: string, initialValue: any, ttl: number): [a
 
   // Return a wrapped version of useState's setter function that ...
   // ... persists the new value to localStorage.
-  const setValue = (value: any) => {
+  const setValue = (value: any): void => {
     try {
       // Allow value to be a function so we have same API as useState
       const valueToStore = value instanceof Function ? value(storedValue) : value;

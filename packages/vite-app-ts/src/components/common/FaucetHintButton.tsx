@@ -1,14 +1,15 @@
-import React, { FC, useContext, useMemo, useState } from 'react';
-import { Button } from 'antd';
-import { useBalance } from 'eth-hooks';
-import { transactor } from 'eth-components/functions';
 import { parseEther } from '@ethersproject/units';
+import { Button } from 'antd';
+import { transactor } from 'eth-components/functions';
 import { EthComponentsSettingsContext } from 'eth-components/models';
-import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
-import { utils } from 'ethers';
+import { useBalance } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
-import { useDebounce } from 'use-debounce';
 import { IEthersContext } from 'eth-hooks/models';
+import { utils } from 'ethers';
+import React, { FC, useContext, useMemo, useState } from 'react';
+import { useDebounce } from 'use-debounce';
+
+import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 import { FAUCET_ENABLED } from '~~/config/appConfig';
 
 interface IFaucetButton {
@@ -16,7 +17,10 @@ interface IFaucetButton {
   gasPrice: number | undefined;
 }
 
-export const getFaucetAvailable = (scaffoldAppProviders: IScaffoldAppProviders, ethersContext: IEthersContext) => {
+export const getFaucetAvailable = (
+  scaffoldAppProviders: IScaffoldAppProviders,
+  ethersContext: IEthersContext
+): boolean => {
   return (
     (FAUCET_ENABLED &&
       ethersContext?.provider &&
@@ -72,7 +76,7 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
     } else {
       return <></>;
     }
-  }, [faucetAvailable, yourLocalBalance, faucetTx, ethersContext?.account]);
+  }, [yourLocalBalance, faucetAvailable, faucetClicked, ethersContext?.account, faucetTx]);
 
   return <> {faucetHint} </>;
 };

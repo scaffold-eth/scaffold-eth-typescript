@@ -1,4 +1,5 @@
 import { TExternalContractsAddressMap } from 'eth-hooks/models';
+
 import { NETWORKS } from '../models/constants/networks';
 
 /**
