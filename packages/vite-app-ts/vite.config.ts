@@ -39,7 +39,7 @@ const externalPlugin = viteExternalsPlugin({
 /**
  * These libraries should not be egarly bundled by vite.  They have strange dependencies and are not needed for the app.
  */
-const excludeDeps = ['@apollo/client', `graphql`, 'ipfs-http-client'];
+const excludeDeps = ['@apollo/client', `graphql`];
 
 export default defineConfig({
   plugins: [reactPlugin(), macrosPlugin(), tsconfigPaths(), externalPlugin],
