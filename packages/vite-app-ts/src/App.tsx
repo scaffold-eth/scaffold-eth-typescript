@@ -1,8 +1,11 @@
 import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-components/models';
+import { EthersAppContext } from 'eth-hooks/context';
+import { lazier } from 'eth-hooks/helpers';
 import React, { FC, Suspense } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
+import { ContractsAppContext } from '~~/config/contractContext';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
@@ -13,19 +16,15 @@ import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback
  * You don't need to change this file!!
  */
 
-console.log('init app...');
-
 // import postcss style file
 import '~~/styles/css/tailwind-base.pcss';
 import '~~/styles/css/tailwind-components.pcss';
 import '~~/styles/css/tailwind-utilities.pcss';
 import '~~/styles/css/app.css';
-import { EthersAppContext } from 'eth-hooks/context';
 
-import { BLOCKNATIVE_DAPPID } from '~~/config/apiKeysConfig';
-import { ContractsAppContext } from '~~/config/contractContext';
+console.log('init app...');
 
-import { lazier } from 'eth-hooks/helpers';
+const BLOCKNATIVE_DAPPID = import.meta.env.VITE_KEY_BLOCKNATIVE_DAPPID;
 
 // load saved theme
 const savedTheme = window.localStorage.getItem('theme');

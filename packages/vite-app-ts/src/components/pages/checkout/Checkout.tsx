@@ -94,7 +94,7 @@ export const Checkout: FC<ICheckoutProps> = (props) => {
         </div>
         <div style={{ marginTop: 16 }}>
           <Button
-            onClick={async (): void => {
+            onClick={async (): Promise<void> => {
               if (!amount) {
                 console.log('AMOUNT', amount);
                 notification.warning({
