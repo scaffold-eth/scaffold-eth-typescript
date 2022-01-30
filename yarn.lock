@@ -2179,8 +2179,8 @@ __metadata:
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-testing-library: ^5.0.4
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: 3.0.20
-    eth-hooks: 4.0.18
+    eth-components: 3.0.26
+    eth-hooks: 4.0.24
     ethereum-cryptography: ^0.1.3
     ethers: ^5.5.3
     fortmatic: ^2.2.1
@@ -4571,15 +4571,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^0.24.0":
-  version: 0.24.0
-  resolution: "axios@npm:0.24.0"
-  dependencies:
-    follow-redirects: ^1.14.4
-  checksum: 468cf496c08a6aadfb7e699bebdac02851e3043d4e7d282350804ea8900e30d368daa6e3cd4ab83b8ddb5a3b1e17a5a21ada13fc9cebd27b74828f47a4236316
-  languageName: node
-  linkType: hard
-
 "axios@npm:^0.25.0":
   version: 0.25.0
   resolution: "axios@npm:0.25.0"
@@ -5571,27 +5562,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bnc-notify@npm:^1.9.2":
-  version: 1.9.2
-  resolution: "bnc-notify@npm:1.9.2"
+"bnc-notify@npm:^1.9.3":
+  version: 1.9.3
+  resolution: "bnc-notify@npm:1.9.3"
   dependencies:
     bignumber.js: ^9.0.0
-    bnc-sdk: ^3.5.0
+    bnc-sdk: 4.0.0
     lodash.debounce: ^4.0.8
     regenerator-runtime: ^0.13.3
     uuid: ^3.3.3
-  checksum: ccdeda606d17a56cc3d01d43f296cd293bde6667701d7232a4e1f1992c29d934f63a085f523454aafd617ab68a196a64788735c7cf20591ebf7a7850f31bb328
+  checksum: 7e45545c38141212ee996eca9a92f855f9c9d2556fa75c73e7fdab2f77ee84cf49207a1ad3916880baf3ef6b3bd788aef05e1cf6b64b8555621fde0d46769a23
   languageName: node
   linkType: hard
 
-"bnc-sdk@npm:^3.5.0":
-  version: 3.7.1
-  resolution: "bnc-sdk@npm:3.7.1"
+"bnc-sdk@npm:4.0.0":
+  version: 4.0.0
+  resolution: "bnc-sdk@npm:4.0.0"
   dependencies:
     crypto-es: ^1.2.2
     rxjs: ^6.6.3
     sturdy-websocket: ^0.1.12
-  checksum: 3fe0ec21337fcccdd46040a2b73be13ecbfa6ed9e0c77e7e2aa49611e8f99f922f199c0614687a7cf1c68666e7a129a844726457343cff07c80e3e2278cb9353
+  checksum: 389510864889964e32a5ffa2884f3550d51277025ee17987e24aba0e9a89982f70a5e01d014b3afd0680d4b28ea231eaf9cab137b306ccf957b7c3e927719cb0
   languageName: node
   linkType: hard
 
@@ -9076,9 +9067,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-components@npm:3.0.20":
-  version: 3.0.20
-  resolution: "eth-components@npm:3.0.20"
+"eth-components@npm:3.0.26":
+  version: 3.0.26
+  resolution: "eth-components@npm:3.0.26"
   dependencies:
     "@ethersproject/abstract-signer": ^5.5.0
     "@ethersproject/address": ^5.5.0
@@ -9091,9 +9082,9 @@ __metadata:
     "@ethersproject/solidity": ^5.5.0
     "@ethersproject/units": ^5.5.0
     "@uniswap/token-lists": ^1.0.0-beta.27
-    axios: ^0.24.0
-    bnc-notify: ^1.9.2
-    eth-hooks: ^4.0.18
+    axios: ^0.25.0
+    bnc-notify: ^1.9.3
+    eth-hooks: ^4.0.24
     ethers: ^5.5.3
     qrcode.react: ^1.0.1
     react-blockies: ^1.4.1
@@ -9101,14 +9092,14 @@ __metadata:
     ts-invariant: ^0.9.4
     use-async-memo: ^1.2.3
     use-debounce: ^7.0.1
-    usehooks-ts: ^2.2.0
+    usehooks-ts: ^2.2.2
   peerDependencies:
     "@ant-design/icons": ^4.2.2
     antd: ^4.7.0
     react: ">=17.0.2"
     react-css-theme-switcher: ^0.3.0
     react-dom: ">=17.0.2"
-  checksum: 05e3a06f17bb85411b1fe547a2d4c0849058ef9fee899cb0dd6565e506922e2700f094c522360de8269a7636f90d8c5f1a091b0c29b3555966d17ba2f677f3ea
+  checksum: 9e4926e2e5e9c77c7f9633ec7cc8e06cb7bcdc4167bf515d3384017c72f5085d049356384c7b68864d39be4a10c66b0ab2e1764f4ef9530e5e9842a6bbfddbaa
   languageName: node
   linkType: hard
 
@@ -9122,9 +9113,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:4.0.18, eth-hooks@npm:^4.0.18":
-  version: 4.0.18
-  resolution: "eth-hooks@npm:4.0.18"
+"eth-hooks@npm:4.0.24, eth-hooks@npm:^4.0.24":
+  version: 4.0.24
+  resolution: "eth-hooks@npm:4.0.24"
   dependencies:
     "@ethersproject/address": ^5.5.0
     "@ethersproject/bignumber": ^5.5.0
@@ -9139,20 +9130,20 @@ __metadata:
     "@web3-react/abstract-connector": ^6.0.7
     "@web3-react/core": ^6.1.9
     "@web3-react/types": ^6.0.7
-    axios: ^0.24.0
+    axios: ^0.25.0
     ethers: ^5.5.3
     lodash.isequal: ^4.5.0
-    merge-anything: ^4.0.2
-    react-query: ^3.34.7
+    merge-anything: ^5.0.2
+    react-query: ^3.34.12
     ts-invariant: ^0.9.4
     use-debounce: ^7.0.1
-    usehooks-ts: ^2.2.0
+    usehooks-ts: ^2.2.2
     web3modal: ^1.9.5
   peerDependencies:
     "@uniswap/sdk": ^3.0.3
     react: ">=17.0.2"
     react-dom: ">=17.0.2"
-  checksum: ce45cf15c2f2610446abf6d40e5bcd9f120edddd88d44257bed223e6fce9b8ea0edd38d3c59fcae54c20471cea4cad0ca7f012442602c7e7d58c56dcce5b7c62
+  checksum: b589a00d4bfc1eb42082032ef4105bb9b80535dea90b671a723f06a44081689bce57ed0d30f674aa3d3ea923a4145751f96214de61e8c110c6fa8c2a767ce0dd
   languageName: node
   linkType: hard
 
@@ -10508,7 +10499,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.12.1, follow-redirects@npm:^1.14.0, follow-redirects@npm:^1.14.4, follow-redirects@npm:^1.14.7":
+"follow-redirects@npm:^1.12.1, follow-redirects@npm:^1.14.0, follow-redirects@npm:^1.14.7":
   version: 1.14.7
   resolution: "follow-redirects@npm:1.14.7"
   peerDependenciesMeta:
@@ -13144,10 +13135,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-what@npm:^3.12.0, is-what@npm:^3.14.1":
+"is-what@npm:^3.12.0":
   version: 3.14.1
   resolution: "is-what@npm:3.14.1"
   checksum: a9a6ce92d33799f1ae0916c7afb6f8128a23ce9d28bd69d9ec3ec88910e7a1f68432e6236c3c8a4d544cf0b864675e5d828437efde60ee0cf8102061d395c1df
+  languageName: node
+  linkType: hard
+
+"is-what@npm:^4.1.6":
+  version: 4.1.7
+  resolution: "is-what@npm:4.1.7"
+  checksum: aade39dcc45a209d6cb2f2d5dbcf0e63ed894aadbae37bd5693c64e9876a27632431b43fc9d9332ebf0795eddd2abc11a2d0f3c6fa41c36330616a645660530e
   languageName: node
   linkType: hard
 
@@ -15084,13 +15082,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"merge-anything@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "merge-anything@npm:4.0.2"
+"merge-anything@npm:^5.0.2":
+  version: 5.0.2
+  resolution: "merge-anything@npm:5.0.2"
   dependencies:
-    is-what: ^3.14.1
+    is-what: ^4.1.6
     ts-toolbelt: ^9.6.0
-  checksum: 39f68b7909f40f58c1a134abc7b10fab6a83fdfe07f6b28dfc71c60f3b10ece3b0c15467d314b7794adb2a0d99715c50b0d9bcf2e070cc3f9c389d80fcaee205
+  checksum: 5dccdb681e707177a110825f8f1a8b2618b3a3e3f204ab69288a32383de0d6e906bed40beace75104e805ceef1a06c0bde0933f7cdb6952242e3b739672998c7
   languageName: node
   linkType: hard
 
@@ -18685,24 +18683,6 @@ __metadata:
     react-native:
       optional: true
   checksum: 2a4284d79abe106d7d1f38bf02da52f53567a07694c18581e096b90d0d4b61e1801929c9c9c950df3acdf099cff38c710014bc30d31ee738cc4ad724c173a6c7
-  languageName: node
-  linkType: hard
-
-"react-query@npm:^3.34.7":
-  version: 3.34.8
-  resolution: "react-query@npm:3.34.8"
-  dependencies:
-    "@babel/runtime": ^7.5.5
-    broadcast-channel: ^3.4.1
-    match-sorter: ^6.0.2
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0
-  peerDependenciesMeta:
-    react-dom:
-      optional: true
-    react-native:
-      optional: true
-  checksum: 0e071561422170b0115959e5c2d9d648ac893f72b45f1e3ae3f83291e973bf51827376487bb8535487da59ce682f0e4c0291992946fb54cd4989b6d8c5b7336a
   languageName: node
   linkType: hard
 
@@ -22487,12 +22467,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"usehooks-ts@npm:^2.2.0":
-  version: 2.2.1
-  resolution: "usehooks-ts@npm:2.2.1"
+"usehooks-ts@npm:^2.2.2":
+  version: 2.2.2
+  resolution: "usehooks-ts@npm:2.2.2"
   peerDependencies:
     react: ">=16.8.0"
-  checksum: 019be04d601f2af72238b3e983d9bad95d6db49bd78a1ed83fb6e9a4c57a669630a34ad3e8c71b8f02c25e0f80ea5149c7323a5a9e8b8c8251533e88f99249af
+  checksum: 4fd4a6e091c96f454df2ee97ed870e1740ea361b9760f0d3dd81e37dea8bc07fd110ff14ed533d076a20df284719854a617846fcea364d6420a149561ea27f8d
   languageName: node
   linkType: hard
 
