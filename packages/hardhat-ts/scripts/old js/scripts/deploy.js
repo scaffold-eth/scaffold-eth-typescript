@@ -140,7 +140,7 @@ function sleep(ms) {
 // If you want to verify on https://tenderly.co/
 const tenderlyVerify = async ({ contractName, contractAddress }) => {
   let tenderlyNetworks = ['kovan', 'goerli', 'mainnet', 'rinkeby', 'ropsten', 'matic', 'mumbai', 'xDai', 'POA'];
-  let targetNetwork = process.env.HARDHAT_NETWORK || config.defaultNetwork;
+  let targetNetwork = process.env.HARDHAT_TARGET_NETWORK || config.defaultNetwork;
 
   if (tenderlyNetworks.includes(targetNetwork)) {
     console.log(chalk.blue(` 📁 Attempting tenderly verification of ${contractName} on ${targetNetwork}`));

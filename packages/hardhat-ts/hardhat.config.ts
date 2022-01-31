@@ -35,7 +35,7 @@ envConfig({ path: '../vite-app-ts/.env' });
 /**
  * Set your target network!!!
  */
-console.log('TARGET_NETWORK: ', process.env.HARDHAT_TARGET_NETWORK);
+console.log('HARDHAT_TARGET_NETWORK: ', process.env.HARDHAT_TARGET_NETWORK);
 
 const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 //
