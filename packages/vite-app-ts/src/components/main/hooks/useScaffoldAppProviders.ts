@@ -9,7 +9,7 @@ import { ICoreOptions } from 'web3modal';
 import {
   MAINNET_PROVIDER,
   LOCAL_PROVIDER,
-  CONNECT_TO_BURNER_ON_FIRST_LOAD,
+  CONNECT_TO_BURNER_AUTOMATICALLY,
   TARGET_NETWORK_INFO,
 } from '~~/config/appConfig';
 import { web3ModalConfigKeys } from '~~/config/web3ModalConfig';
@@ -73,7 +73,7 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
      */
     const autoConnectToBurner = (connector: TEthersModalConnector | undefined): TEthersModalConnector | undefined => {
       let newConnector = connector;
-      if (CONNECT_TO_BURNER_ON_FIRST_LOAD && connector) {
+      if (CONNECT_TO_BURNER_AUTOMATICALLY && connector) {
         (connector as EthersModalConnector).loadCore();
         if (connector != null && !connector.hasCachedProvider()) {
           newConnector = new EthersModalConnector(

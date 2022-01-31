@@ -12,23 +12,29 @@ import { useDebounce } from 'use-debounce';
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 import { FAUCET_ENABLED } from '~~/config/appConfig';
 
-interface IFaucetButton {
-  scaffoldAppProviders: IScaffoldAppProviders;
-  gasPrice: number | undefined;
-}
-
+/**
+ * Is Faucet available?
+ * @param scaffoldAppProviders
+ * @param ethersContext
+ * @returns
+ */
 export const getFaucetAvailable = (
   scaffoldAppProviders: IScaffoldAppProviders,
   ethersContext: IEthersContext
 ): boolean => {
-  return (
-    (FAUCET_ENABLED &&
-      ethersContext?.provider &&
+  const result =
+    (ethersContext?.provider &&
+      ethersContext?.chainId != null &&
       ethersContext?.chainId === scaffoldAppProviders.targetNetwork.chainId &&
       scaffoldAppProviders.targetNetwork.name === 'localhost') ??
-    false
-  );
+    false;
+  return result && FAUCET_ENABLED;
 };
+
+interface IFaucetButton {
+  scaffoldAppProviders: IScaffoldAppProviders;
+  gasPrice: number | undefined;
+}
 
 export const FaucetHintButton: FC<IFaucetButton> = (props) => {
   const settingsContext = useContext(EthComponentsSettingsContext);
@@ -44,7 +50,8 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
   /**
    * facuet is only available on localhost
    */
-  const [faucetAvailable] = useDebounce(getFaucetAvailable(props.scaffoldAppProviders, ethersContext), 500, {
+  const isAvailable = getFaucetAvailable(props.scaffoldAppProviders, ethersContext);
+  const [faucetAvailable] = useDebounce(isAvailable, 500, {
     trailing: true,
   });
   const [faucetClicked, setFaucetClicked] = useState(false);
@@ -54,7 +61,7 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
     const lowFunds = yourLocalBalance && min < 0.002;
     const allowFaucet = faucetAvailable && !faucetClicked && lowFunds;
 
-    if (allowFaucet && faucetAvailable && ethersContext?.account != null) {
+    if (allowFaucet && ethersContext?.account != null) {
       return (
         <div style={{ paddingTop: 10, paddingLeft: 10 }}>
           <Button

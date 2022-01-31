@@ -15,7 +15,7 @@ import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './componen
 import { useBurnerFallback } from '~~/components/main/hooks/useBurnerFallback';
 import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 import { Hints, ExampleUI } from '~~/components/pages';
-import { USE_BURNER_FALLBACK, MAINNET_PROVIDER } from '~~/config/appConfig';
+import { BURNER_FALLBACK_ENABLED, MAINNET_PROVIDER } from '~~/config/appConfig';
 import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~~/config/contractContext';
 import { NETWORKS } from '~~/models/constants/networks';
 
@@ -45,7 +45,7 @@ export const Main: FC = () => {
   const ethersContext = useEthersContext();
 
   // if no user is found use a burner wallet on localhost as fallback if enabled
-  useBurnerFallback(scaffoldAppProviders, USE_BURNER_FALLBACK);
+  useBurnerFallback(scaffoldAppProviders, BURNER_FALLBACK_ENABLED);
 
   // -----------------------------
   // Load Contracts
