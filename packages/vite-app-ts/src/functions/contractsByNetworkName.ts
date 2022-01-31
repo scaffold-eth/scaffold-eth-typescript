@@ -2,6 +2,9 @@ import { networkIDtoSymbol } from '@dethcrypto/eth-sdk/dist/abi-management/netwo
 
 import { externalContractsAddressMap } from '../config/externalContractsConfig';
 
+/**
+ * used by eth-sdk and `yarn contracts:build`
+ */
 export const contractsByNetworkName: Record<string, any> = {};
 Object.keys(externalContractsAddressMap)
   .map(Number)
