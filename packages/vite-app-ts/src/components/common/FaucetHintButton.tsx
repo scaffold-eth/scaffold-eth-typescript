@@ -1,30 +1,40 @@
-import React, { FC, useContext, useMemo, useState } from 'react';
-import { Button } from 'antd';
-import { useBalance } from 'eth-hooks';
-import { transactor } from 'eth-components/functions';
 import { parseEther } from '@ethersproject/units';
+import { Button } from 'antd';
+import { transactor } from 'eth-components/functions';
 import { EthComponentsSettingsContext } from 'eth-components/models';
-import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
-import { utils } from 'ethers';
+import { useBalance } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
-import { useDebounce } from 'use-debounce';
 import { IEthersContext } from 'eth-hooks/models';
+import { utils } from 'ethers';
+import React, { FC, useContext, useMemo, useState } from 'react';
+import { useDebounce } from 'use-debounce';
+
+import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 import { FAUCET_ENABLED } from '~~/config/appConfig';
+
+/**
+ * Is Faucet available?
+ * @param scaffoldAppProviders
+ * @param ethersContext
+ * @returns
+ */
+export const getFaucetAvailable = (
+  scaffoldAppProviders: IScaffoldAppProviders,
+  ethersContext: IEthersContext
+): boolean => {
+  const result =
+    (ethersContext?.provider &&
+      ethersContext?.chainId != null &&
+      ethersContext?.chainId === scaffoldAppProviders.targetNetwork.chainId &&
+      scaffoldAppProviders.targetNetwork.name === 'localhost') ??
+    false;
+  return result && FAUCET_ENABLED;
+};
 
 interface IFaucetButton {
   scaffoldAppProviders: IScaffoldAppProviders;
   gasPrice: number | undefined;
 }
-
-export const getFaucetAvailable = (scaffoldAppProviders: IScaffoldAppProviders, ethersContext: IEthersContext) => {
-  return (
-    (FAUCET_ENABLED &&
-      ethersContext?.provider &&
-      ethersContext?.chainId === scaffoldAppProviders.targetNetwork.chainId &&
-      scaffoldAppProviders.targetNetwork.name === 'localhost') ??
-    false
-  );
-};
 
 export const FaucetHintButton: FC<IFaucetButton> = (props) => {
   const settingsContext = useContext(EthComponentsSettingsContext);
@@ -40,7 +50,8 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
   /**
    * facuet is only available on localhost
    */
-  const [faucetAvailable] = useDebounce(getFaucetAvailable(props.scaffoldAppProviders, ethersContext), 500, {
+  const isAvailable = getFaucetAvailable(props.scaffoldAppProviders, ethersContext);
+  const [faucetAvailable] = useDebounce(isAvailable, 500, {
     trailing: true,
   });
   const [faucetClicked, setFaucetClicked] = useState(false);
@@ -50,7 +61,7 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
     const lowFunds = yourLocalBalance && min < 0.002;
     const allowFaucet = faucetAvailable && !faucetClicked && lowFunds;
 
-    if (allowFaucet && faucetAvailable && ethersContext?.account != null) {
+    if (allowFaucet && ethersContext?.account != null) {
       return (
         <div style={{ paddingTop: 10, paddingLeft: 10 }}>
           <Button
@@ -72,7 +83,8 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
     } else {
       return <></>;
     }
-  }, [faucetAvailable, yourLocalBalance, faucetTx, ethersContext?.account]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [yourLocalBalance, faucetAvailable, ethersContext?.account, faucetTx]);
 
   return <> {faucetHint} </>;
 };

@@ -1,7 +1,9 @@
-import Web3Modal, { ICoreOptions } from 'web3modal';
-import { INFURA_ID } from '~~/config/apiKeysConfig';
+import { ICoreOptions } from 'web3modal';
+
 import { LOCAL_PROVIDER } from '~~/config/appConfig';
 import { NETWORKS } from '~~/models/constants/networks';
+
+const INFURA_ID = import.meta.env.VITE_KEY_INFURA;
 
 export const web3ModalConfigKeys = {
   coinbaseKey: 'custom-walletlink',
@@ -62,8 +64,9 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
         description: 'Connect to your Coinbase Wallet (not coinbase.com)',
       },
       package: walletLinkProvider,
-      connector: async (provider: any, _options: any) => {
+      connector: async (provider: any, _options: any): Promise<any> => {
         await provider.enable();
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return provider;
       },
     };
@@ -128,7 +131,7 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
     console.log('Failed to load config for Localhost Static Connector: ', e);
   }
 
-  //network: 'mainnet', // Optional. If using WalletConnect on xDai, change network to "xdai" and add RPC info below for xDai chain.
+  // network: 'mainnet', // Optional. If using WalletConnect on xDai, change network to "xdai" and add RPC info below for xDai chain.
 
   // const torus = {
   //   package: Torus,

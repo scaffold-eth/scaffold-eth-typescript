@@ -1,16 +1,18 @@
 import { Button, Input, Table, Typography } from 'antd';
+
 import 'graphiql/graphiql.min.css';
-import React, { FC, lazy, ReactElement, Suspense, useContext, useState } from 'react';
-import { transactor } from 'eth-components/functions';
 
 import { Address } from 'eth-components/ant';
+import { transactor } from 'eth-components/functions';
 import { EthComponentsSettingsContext } from 'eth-components/models';
 import { useGasPrice } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
-import { useAppContracts } from '~~/config/contractContext';
 import { TEthersProvider } from 'eth-hooks/models';
-import { useQuery } from 'react-query';
 import GraphiQL from 'graphiql';
+import React, { FC, ReactElement, useContext, useState } from 'react';
+import { useQuery } from 'react-query';
+
+import { useAppContracts } from '~~/config/contractContext';
 
 // const GraphiQL = lazy(() => import('graphiql'));
 
@@ -183,7 +185,7 @@ export const Subgraph: FC<ISubgraphProps> = (props) => {
             onClick={(): void => {
               console.log('newPurpose', newPurpose);
               /* look how you call setPurpose on your contract: */
-              tx?.(yourContract?.setPurpose(newPurpose));
+              void tx?.(yourContract?.setPurpose(newPurpose));
             }}>
             Set Purpose
           </Button>

@@ -1,5 +1,6 @@
 import { TNetworkInfo } from 'eth-hooks/models';
-import { INFURA_ID } from '../../config/apiKeysConfig';
+
+const INFURA_ID = import.meta.env.VITE_KEY_INFURA;
 
 export type TNetworkNames =
   | 'localhost'

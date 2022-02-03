@@ -46,7 +46,6 @@ artifacts
 
 # misc
 .DS_Store
-.env*
 .netlify
 
 # debug

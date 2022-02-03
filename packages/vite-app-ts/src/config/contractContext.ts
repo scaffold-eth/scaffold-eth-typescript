@@ -1,6 +1,7 @@
+import { contractsContextFactory } from 'eth-hooks/context';
+import { TTypedContract } from 'eth-hooks/models';
+
 import { contractConnectorConfig, TAppConnectorList } from '~~/config/contractConnectorConfig';
-import { TAppContractsContext, TTypedContract } from 'eth-hooks/models';
-import { contractsContextFactory, useEthersContext } from 'eth-hooks/context';
 
 /**
  * This file initalises the contractContextFactory and exports the types

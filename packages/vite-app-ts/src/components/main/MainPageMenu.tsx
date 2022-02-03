@@ -1,6 +1,6 @@
+import { Menu } from 'antd';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu } from 'antd';
 
 export interface IMainPageMenuProps {
   route: string;
@@ -16,7 +16,7 @@ export const MainPageMenu: FC<IMainPageMenuProps> = (props) => (
     mode="horizontal">
     <Menu.Item key="/">
       <Link
-        onClick={() => {
+        onClick={(): void => {
           props.setRoute('/');
         }}
         to="/">
@@ -25,7 +25,7 @@ export const MainPageMenu: FC<IMainPageMenuProps> = (props) => (
     </Menu.Item>
     <Menu.Item key="/hints">
       <Link
-        onClick={() => {
+        onClick={(): void => {
           props.setRoute('/hints');
         }}
         to="/hints">
@@ -34,7 +34,7 @@ export const MainPageMenu: FC<IMainPageMenuProps> = (props) => (
     </Menu.Item>
     <Menu.Item key="/exampleui">
       <Link
-        onClick={() => {
+        onClick={(): void => {
           props.setRoute('/exampleui');
         }}
         to="/exampleui">
@@ -43,7 +43,7 @@ export const MainPageMenu: FC<IMainPageMenuProps> = (props) => (
     </Menu.Item>
     <Menu.Item key="/mainnetdai">
       <Link
-        onClick={() => {
+        onClick={(): void => {
           props.setRoute('/mainnetdai');
         }}
         to="/mainnetdai">
