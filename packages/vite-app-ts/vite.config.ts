@@ -7,7 +7,6 @@ import path, { resolve } from 'path';
 import { viteExternalsPlugin } from 'vite-plugin-externals';
 
 // test comment
-// another test
 
 const isDev = process.env.ENVIRONMENT == 'DEVELOPMENT';
 console.log('env.dev:', process.env.ENVIRONMENT, ' isDev:', isDev);

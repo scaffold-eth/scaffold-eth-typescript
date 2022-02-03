@@ -41,7 +41,6 @@ export const Main: FC = () => {
   // see useLoadProviders.ts for everything to do with loading the right providers
   const scaffoldAppProviders = useScaffoldAppProviders();
 
-  const foo = { hi: 'there' };
   // 🦊 Get your web3 ethers context from current providers
   const ethersContext = useEthersContext();
 
