@@ -1,14 +1,13 @@
-import { defineConfig } from 'vite';
-//import reactRefresh from '@vitejs/plugin-react-refresh';
-import macrosPlugin from 'vite-plugin-babel-macros';
+import { resolve } from 'path';
+
 import reactPlugin from '@vitejs/plugin-react';
-import tsconfigPaths from 'vite-tsconfig-paths';
-import path, { resolve } from 'path';
+import { defineConfig } from 'vite';
+// import reactRefresh from '@vitejs/plugin-react-refresh';
+import macrosPlugin from 'vite-plugin-babel-macros';
 import { viteExternalsPlugin } from 'vite-plugin-externals';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
-// test comment
-
-const isDev = process.env.ENVIRONMENT == 'DEVELOPMENT';
+const isDev = process.env.ENVIRONMENT === 'DEVELOPMENT';
 console.log('env.dev:', process.env.ENVIRONMENT, ' isDev:', isDev);
 
 /**
@@ -32,8 +31,6 @@ const nodeShims = {
  * - electron:  added due to ipfs-http-client.  it has very poor esm compatibility and a ton of dependency bugs. see: https://github.com/ipfs/js-ipfs/issues/3452
  */
 const externalPlugin = viteExternalsPlugin({
-  electron: 'electron',
-  'electron-fetch': 'electron-fetch',
   ...externals,
   ...(isDev ? { ...nodeShims } : {}),
 });

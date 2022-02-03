@@ -38,7 +38,7 @@
       "~~/*": ["./src/*"]
     }
   },
-  "include": ["src", "src/helpers/__global.ts"],
+  "include": ["src", "src/helpers/__global.ts", "vite.config.ts"],
   "exclude": [
     "**/node_modules",
     ".husky",
