@@ -2180,8 +2180,8 @@ __metadata:
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-testing-library: ^5.0.4
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: 3.0.26
-    eth-hooks: 4.0.24
+    eth-components: 3.0.28
+    eth-hooks: 4.0.29
     ethereum-cryptography: ^0.1.3
     ethers: ^5.5.3
     fortmatic: ^2.2.1
@@ -9075,9 +9075,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-components@npm:3.0.26":
-  version: 3.0.26
-  resolution: "eth-components@npm:3.0.26"
+"eth-components@npm:3.0.28":
+  version: 3.0.28
+  resolution: "eth-components@npm:3.0.28"
   dependencies:
     "@ethersproject/abstract-signer": ^5.5.0
     "@ethersproject/address": ^5.5.0
@@ -9092,7 +9092,7 @@ __metadata:
     "@uniswap/token-lists": ^1.0.0-beta.27
     axios: ^0.25.0
     bnc-notify: ^1.9.3
-    eth-hooks: ^4.0.24
+    eth-hooks: ^4.0.29
     ethers: ^5.5.3
     qrcode.react: ^1.0.1
     react-blockies: ^1.4.1
@@ -9107,7 +9107,7 @@ __metadata:
     react: ">=17.0.2"
     react-css-theme-switcher: ^0.3.0
     react-dom: ">=17.0.2"
-  checksum: 9e4926e2e5e9c77c7f9633ec7cc8e06cb7bcdc4167bf515d3384017c72f5085d049356384c7b68864d39be4a10c66b0ab2e1764f4ef9530e5e9842a6bbfddbaa
+  checksum: e1d3294c5b006978c30b16801fc35197fbbe4b50e645b85b9feb370ba51c6fd12ccb54700bf4c531e0a4f62c18fab0834e69f5c649dc3b5430726628c0087c7f
   languageName: node
   linkType: hard
 
@@ -9121,9 +9121,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:4.0.24, eth-hooks@npm:^4.0.24":
-  version: 4.0.24
-  resolution: "eth-hooks@npm:4.0.24"
+"eth-hooks@npm:4.0.29, eth-hooks@npm:^4.0.29":
+  version: 4.0.29
+  resolution: "eth-hooks@npm:4.0.29"
   dependencies:
     "@ethersproject/address": ^5.5.0
     "@ethersproject/bignumber": ^5.5.0
@@ -9151,7 +9151,7 @@ __metadata:
     "@uniswap/sdk": ^3.0.3
     react: ">=17.0.2"
     react-dom: ">=17.0.2"
-  checksum: b589a00d4bfc1eb42082032ef4105bb9b80535dea90b671a723f06a44081689bce57ed0d30f674aa3d3ea923a4145751f96214de61e8c110c6fa8c2a767ce0dd
+  checksum: 79723240d1f2349bc66ff92e7e09431a210816df5526278d6e1c7edeb5c91ab54bb312fce76e057da843f0196f99a602dafb01e07218e300cb5d4bc848b412c1
   languageName: node
   linkType: hard
 
