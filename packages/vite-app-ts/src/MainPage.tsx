@@ -41,6 +41,7 @@ export const Main: FC = () => {
   // see useLoadProviders.ts for everything to do with loading the right providers
   const scaffoldAppProviders = useScaffoldAppProviders();
 
+  const foo = { hi: 'there' };
   // 🦊 Get your web3 ethers context from current providers
   const ethersContext = useEthersContext();
 
@@ -137,10 +138,10 @@ export const Main: FC = () => {
             )}
           </Route>
           {/* Subgraph also disabled in MainPageMenu, it does not work, see github issue! */}
-          {/* 
+          {/*
           <Route path="/subgraph">
             <Subgraph subgraphUri={subgraphUri} mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider} />
-          </Route> 
+          </Route>
           */}
         </Switch>
       </BrowserRouter>
