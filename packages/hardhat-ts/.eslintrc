@@ -8,7 +8,8 @@
     },
     "tsconfigRootDir": ".",
     "project": ["./tsconfig.json"],
-    "projectFolderIgnoreList": ["node_modules", "dist", "build", ".yarn", "build-utils"]
+    "projectFolderIgnoreList": ["node_modules", "dist", "build", ".yarn", "build-utils"],
+    "extraFileExtensions": [".sol"]
   },
   "env": {
     "browser": true,
@@ -16,7 +17,6 @@
     "node": true
   },
   "extends": [
-    "airbnb-typescript",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
@@ -24,13 +24,13 @@
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:jest/recommended"
+    "standard-kit/prettier/typescript",
+    "standard-kit/prettier/node",
+    "plugin:mocha/recommended"
   ],
-  "plugins": ["prettier", "formatjs", "react", "react-hooks"],
+  "plugins": ["prettier", "@typescript-eslint"],
   "rules": {
-    "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off",
-    "prettier/prettier": 0,
+    "prettier/prettier": "warn",
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-empty-function": "warn",
     "no-unused-vars": 0,
@@ -59,7 +59,7 @@
     "import/no-unresolved": 0,
     "import/prefer-default-export": 0,
     "import/no-extraneous-dependencies": [
-      "error",
+      "warn",
       {
         "devDependencies": true,
         "optionalDependencies": false,
@@ -78,18 +78,17 @@
     "no-restricted-globals": "off",
     "eslint linebreak-style": 0,
     "object-curly-newline": 0,
-    "no-shadow": 0
+    "no-shadow": 0,
+    "mocha/no-mocha-arrows": "off",
+    "mocha/no-hooks-for-single-case": "off"
   },
-  "settings": {
-    "react": {
-      "createClass": "createReactClass", // Regex for Component Factory to use,
-      // default to "createReactClass"
-      "pragma": "React", // Pragma to use, default to "React"
-      "fragment": "Fragment", // Fragment to use (may be a property of <pragma>), default to "Fragment"
-      "version": "detect" // React version. "detect" automatically picks the version you have installed.
-      // You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
-      // default to latest and warns if missing
-      // It will default to "detect" in the future
+  "overrides": [
+    {
+      "files": ["*.test.ts"],
+      "rules": {
+        "@typescript-eslint/no-non-null-assertion": "off"
+      }
     }
-  }
+  ],
+  "settings": {}
 }

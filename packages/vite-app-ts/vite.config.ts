@@ -1,23 +1,28 @@
-import { defineConfig } from 'vite';
-//import reactRefresh from '@vitejs/plugin-react-refresh';
-import macrosPlugin from 'vite-plugin-babel-macros';
-import reactPlugin from '@vitejs/plugin-react';
-import tsconfigPaths from 'vite-tsconfig-paths';
-import path, { resolve } from 'path';
-import { viteExternalsPlugin } from 'vite-plugin-externals';
+import { resolve } from 'path';
 
-const isDev = process.env.ENVIRONMENT == 'DEVELOPMENT';
+import reactPlugin from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
+// import reactRefresh from '@vitejs/plugin-react-refresh';
+import macrosPlugin from 'vite-plugin-babel-macros';
+import { viteExternalsPlugin } from 'vite-plugin-externals';
+import tsconfigPaths from 'vite-tsconfig-paths';
+
+const isDev = process.env.ENVIRONMENT === 'DEVELOPMENT';
 console.log('env.dev:', process.env.ENVIRONMENT, ' isDev:', isDev);
 
 /**
  * browserify for web3 components
  */
-const nodeExternals = {
-  util: 'util',
-  stream: 'stream-browserify',
+const externals = {
   http: 'http-browserify',
   https: 'http-browserify',
   timers: 'timers-browserify',
+  electron: 'electron',
+  'electron-fetch': 'electron-fetch',
+};
+
+const nodeShims = {
+  util: 'util',
 };
 
 /**
@@ -25,20 +30,20 @@ const nodeExternals = {
  * - node externals are required because web3 are terribly bundled and some of them use commonjs libraries.  modern libs like ethers help with this.
  * - electron:  added due to ipfs-http-client.  it has very poor esm compatibility and a ton of dependency bugs. see: https://github.com/ipfs/js-ipfs/issues/3452
  */
-const externals = viteExternalsPlugin({
-  electron: 'electron',
-  'electron-fetch': 'electron-fetch',
-  ...nodeExternals,
+const externalPlugin = viteExternalsPlugin({
+  ...externals,
+  ...(isDev ? { ...nodeShims } : {}),
 });
 
 /**
  * These libraries should not be egarly bundled by vite.  They have strange dependencies and are not needed for the app.
  */
-const excludeDeps = ['@apollo/client', `graphql`, 'ipfs-http-client'];
+const excludeDeps = ['@apollo/client', `graphql`];
 
 export default defineConfig({
-  plugins: [reactPlugin(), macrosPlugin(), tsconfigPaths(), externals],
+  plugins: [reactPlugin(), macrosPlugin(), tsconfigPaths(), externalPlugin],
   build: {
+    sourcemap: true,
     commonjsOptions: {
       include: /node_modules/,
       transformMixedEsModules: true,
@@ -62,8 +67,10 @@ export default defineConfig({
     mainFields: ['module', 'main', 'browser'],
     alias: {
       '~~': resolve(__dirname, 'src'),
+      ...externals,
+      ...nodeShims,
       process: 'process',
-      ...nodeExternals,
+      stream: 'stream-browserify',
     },
   },
   server: {

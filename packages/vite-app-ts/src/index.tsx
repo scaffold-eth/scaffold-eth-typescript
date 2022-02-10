@@ -3,11 +3,11 @@
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
- * See MainPage.tsx for main app component!
+ * 🏹 See MainPage.tsx for main app component!
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
  *
  * This file loads react.
- * You don't need to change this file.
+ * You don't need to change this file!!
  */
 
 /**

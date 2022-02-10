@@ -49,7 +49,9 @@
       "graph-ship-local": "yarn graph-prepare && yarn graph-codegen && yarn graph-deploy-local",
       "deploy-and-graph": "yarn deploy && yarn graph-ship-local",
       "theme": "yarn workspace @scaffold-eth/react-app theme",
-      "watch-theme": "yarn workspace @scaffold-eth/react-app watch"
+      "watch-theme": "yarn workspace @scaffold-eth/react-app watch",
+      "prepare": "husky install",
+      "postinstall": "husky install"
    },
    "workspaces": {
       "packages": [
@@ -61,8 +63,37 @@
    },
    "packageManager": "yarn@3.1.0",
    "devDependencies": {
-      "eslint": "^8.6.0",
+      "eslint": "^8.7.0",
+      "husky": "^7.0.4",
+      "lint-staged": "^12.3.2",
       "prettier": "^2.5.1",
+      "prettier-plugin-solidity": "^1.0.0-beta.19",
       "shx": "^0.3.4"
+   },
+   "lint-staged": {
+      "packages/vite-app-ts/src/**/*.{ts,tsx}": [
+         "yarn workspace @scaffold-eth/vite-app lint --fix",
+         "yarn workspace @scaffold-eth/vite-app format"
+      ],
+      "packages/hardhat-ts/test/**/*.ts": [
+         "yarn workspace @scaffold-eth/hardhat lint --fix",
+         "yarn workspace @scaffold-eth/hardhat format"
+      ],
+      "packages/hardhat-ts/helpers/**/*.ts": [
+         "yarn workspace @scaffold-eth/hardhat lint --fix",
+         "yarn workspace @scaffold-eth/hardhat format"
+      ],
+      "packages/hardhat-ts/scripts/**/*.ts": [
+         "yarn workspace @scaffold-eth/hardhat lint --fix",
+         "yarn workspace @scaffold-eth/hardhat format"
+      ],
+      "packages/hardhat-ts/deploy/**/*.ts": [
+         "yarn workspace @scaffold-eth/hardhat lint --fix",
+         "yarn workspace @scaffold-eth/hardhat format"
+      ],
+      "packages/hardhat-ts/**/*.sol": [
+         "yarn workspace @scaffold-eth/hardhat format",
+         "yarn workspace @scaffold-eth/hardhat solhint --fix"
+      ]
    }
 }
