@@ -4,7 +4,7 @@
   "trailingComma": "es5",
   "requirePragma": false,
   "arrowParens": "always",
-  "jsxBracketSameLine": true,
+  "bracketSameLine": true,
   "tabWidth": 2,
   "printWidth": 120,
   "endOfLine": "lf"

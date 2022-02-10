@@ -2,29 +2,37 @@ import React, { FC, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import '~~/styles/main-page.css';
-import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners } from 'eth-hooks';
-import { useDexEthPrice } from 'eth-hooks/dapps';
 
 import { GenericContract } from 'eth-components/ant/generic-contract';
-import { Hints, Subgraph, ExampleUI } from '~~/components/pages';
-
-import { useEventListener } from 'eth-hooks';
-import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from './components/main';
-import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
-import { useBurnerFallback } from '~~/components/main/hooks/useBurnerFallback';
-import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './components/main/hooks/useScaffoldHooksExamples';
+import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useEventListener } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
-import { NETWORKS } from '~~/models/constants/networks';
-import { const_UseBurnerWalletAsFallback, mainnetProvider } from '~~/config/providersConfig';
-import {
-  useAppContracts,
-  useAppContractsActions,
-  useConnectAppContracts,
-  useLoadAppContracts,
-} from '~~/config/contractContext';
+import { useDexEthPrice } from 'eth-hooks/dapps';
 import { asEthersAdaptor } from 'eth-hooks/functions';
-import { subgraphUri } from '~~/config/subgraphConfig';
 
+import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from './components/main';
+import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './components/main/hooks/useScaffoldHooksExamples';
+
+import { useBurnerFallback } from '~~/components/main/hooks/useBurnerFallback';
+import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
+import { Hints, ExampleUI } from '~~/components/pages';
+import { BURNER_FALLBACK_ENABLED, MAINNET_PROVIDER } from '~~/config/appConfig';
+import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~~/config/contractContext';
+import { NETWORKS } from '~~/models/constants/networks';
+
+/**
+ * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
+ * See config/appConfig.ts for configuration, such as TARGET_NETWORK
+ * See MainPageContracts.tsx for your contracts component
+ * See contractsConnectorConfig.ts for how to configure your contracts
+ * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
+ *
+ * For more
+ */
+
+/**
+ * The main component
+ * @returns
+ */
 export const Main: FC = () => {
   // -----------------------------
   // Providers, signers & wallets
@@ -37,7 +45,7 @@ export const Main: FC = () => {
   const ethersContext = useEthersContext();
 
   // if no user is found use a burner wallet on localhost as fallback if enabled
-  useBurnerFallback(scaffoldAppProviders, const_UseBurnerWalletAsFallback);
+  useBurnerFallback(scaffoldAppProviders, BURNER_FALLBACK_ENABLED);
 
   // -----------------------------
   // Load Contracts
@@ -45,41 +53,46 @@ export const Main: FC = () => {
   // 🛻 load contracts
   useLoadAppContracts();
   // 🏭 connect to contracts for mainnet network & signer
-  const [mainnetAdaptor] = useEthersAdaptorFromProviderOrSigners(mainnetProvider);
+  const [mainnetAdaptor] = useEthersAdaptorFromProviderOrSigners(MAINNET_PROVIDER);
   useConnectAppContracts(mainnetAdaptor);
   // 🏭 connec to  contracts for current network & signer
   useConnectAppContracts(asEthersAdaptor(ethersContext));
 
   // -----------------------------
-  // examples on how to get contracts
+  // Hooks use and examples
   // -----------------------------
+  // 🎉 Console logs & More hook examples:
+  // 🚦 disable this hook to stop console logs
+  // 🏹🏹🏹 go here to see how to use hooks!
+  useScaffoldHooksExamples(scaffoldAppProviders);
+
+  // -----------------------------
+  // These are the contracts!
+  // -----------------------------
+
   // init contracts
   const yourContract = useAppContracts('YourContract', ethersContext.chainId);
   const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
 
   // keep track of a variable from the contract in the local React state:
-  const purpose = useContractReader(yourContract, yourContract?.purpose, [], yourContract?.filters.SetPurpose());
+  const [purpose, update] = useContractReader(
+    yourContract,
+    yourContract?.purpose,
+    [],
+    yourContract?.filters.SetPurpose()
+  );
 
   // 📟 Listen for broadcast events
   const [setPurposeEvents] = useEventListener(yourContract, 'SetPurpose', 0);
 
-  // For more hooks, check out 🔗eth-hooks at: https://www.npmjs.com/package/eth-hooks
-
+  // -----------------------------
+  // .... 🎇 End of examples
+  // -----------------------------
   // 💵 This hook will get the price of ETH from 🦄 Uniswap:
   const [ethPrice] = useDexEthPrice(scaffoldAppProviders.mainnetAdaptor?.provider, scaffoldAppProviders.targetNetwork);
 
   // 💰 this hook will get your balance
   const [yourCurrentBalance] = useBalance(ethersContext.account);
-
-  // -----------------------------
-  // Hooks use and examples
-  // -----------------------------
-  // 🎉 Console logs & More hook examples:  Check out this to see how to get
-  // useScaffoldHooksExamples(scaffoldAppProviders);
-
-  // -----------------------------
-  // .... 🎇 End of examples
-  // -----------------------------
 
   const [route, setRoute] = useState<string>('');
   useEffect(() => {
@@ -114,7 +127,7 @@ export const Main: FC = () => {
             />
           </Route>
           <Route path="/mainnetdai">
-            {mainnetProvider != null && (
+            {MAINNET_PROVIDER != null && (
               <GenericContract
                 contractName="DAI"
                 contract={mainnetDai}
@@ -123,11 +136,11 @@ export const Main: FC = () => {
               />
             )}
           </Route>
-          {/* Subgraph also disabled in MainPageMenu */}
-          {/* 
+          {/* Subgraph also disabled in MainPageMenu, it does not work, see github issue! */}
+          {/*
           <Route path="/subgraph">
             <Subgraph subgraphUri={subgraphUri} mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider} />
-          </Route> 
+          </Route>
           */}
         </Switch>
       </BrowserRouter>

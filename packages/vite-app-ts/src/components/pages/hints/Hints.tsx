@@ -1,11 +1,10 @@
 import { formatEther } from '@ethersproject/units';
 import { Select } from 'antd';
+import { Address, AddressInput } from 'eth-components/ant';
 import { useDexTokenList } from 'eth-hooks/dapps';
 import { TEthersProvider } from 'eth-hooks/models';
 import { BigNumber } from 'ethers';
 import React, { FC, useState } from 'react';
-
-import { Address, AddressInput } from 'eth-components/ant';
 
 const { Option } = Select;
 
@@ -134,7 +133,7 @@ export const Hints: FC<IHintsProps> = (props) => {
         <Select
           showSearch
           value={selectedToken}
-          onChange={(value) => {
+          onChange={(value): void => {
             console.log(`selected ${value}`);
             setSelectedToken(value);
           }}
