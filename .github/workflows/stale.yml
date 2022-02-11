@@ -7,7 +7,7 @@ name: Mark stale issues and pull requests
 
 on:
   schedule:
-  - cron: '6 6 * */1 *'
+  - cron: '0 4 * * *'
 
 jobs:
   stale:
@@ -39,4 +39,4 @@ jobs:
           recent activity. It will be closed if no further activity occurs. Thank you
           for your contributions.
         # Comment to post when closing a stale issue. Set to `false` to disable
-        closeComment: false
+        closeComment: true

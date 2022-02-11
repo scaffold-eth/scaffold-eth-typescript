@@ -1,5 +1,4 @@
 {
-   "solidity-va.test.defaultUnittestTemplate": "hardhat",
    "files.exclude": {
       "**/.git": true,
       "**/.svn": true,

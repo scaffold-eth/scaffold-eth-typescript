@@ -1,12 +1,13 @@
-import React, { FC } from 'react';
 import { Row, Col, Button } from 'antd';
-import { Ramp, ThemeSwitcher } from '~~/components/common';
 import { Faucet, GasGauge } from 'eth-components/ant';
-import { NETWORKS } from '~~/models/constants/networks';
+import { useEthersContext } from 'eth-hooks/context';
+import React, { FC } from 'react';
+
+import { Ramp, ThemeSwitcher } from '~~/components/common';
+import { getFaucetAvailable } from '~~/components/common/FaucetHintButton';
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 import { getNetworkInfo } from '~~/functions/getNetworkInfo';
-import { useEthersContext } from 'eth-hooks/context';
-import { getFaucetAvailable } from '~~/components/common/FaucetHintButton';
+import { NETWORKS } from '~~/models/constants/networks';
 
 export interface IMainPageFooterProps {
   scaffoldAppProviders: IScaffoldAppProviders;
@@ -22,7 +23,7 @@ export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
   const ethersContext = useEthersContext();
 
   // Faucet Tx can be used to send funds from the faucet
-  let faucetAvailable = getFaucetAvailable(props.scaffoldAppProviders, ethersContext);
+  const faucetAvailable = getFaucetAvailable(props.scaffoldAppProviders, ethersContext);
 
   const left = (
     <div
@@ -58,7 +59,7 @@ export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
             opacity: 1,
           }}>
           <Button
-            onClick={() => {
+            onClick={(): void => {
               window.open('https://t.me/joinchat/KByvmRe5wkR-8F_zz6AjpA');
             }}
             size="large"

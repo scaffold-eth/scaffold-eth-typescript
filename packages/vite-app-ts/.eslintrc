@@ -35,7 +35,7 @@
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
   ],
   "plugins": ["prettier", "react", "react-hooks", "unused-imports", "testing-library"],
   "rules": {
@@ -90,7 +90,7 @@
     "@typescript-eslint/explicit-function-return-type": "error",
     "@typescript-eslint/unbound-method": "off",
     "@typescript-eslint/no-unsafe-member-access": "warn",
-    "@typescript-eslint/restrict-template-expressions": ["error", { "allowBoolean": true, "allowNumber": true }],
+    "@typescript-eslint/restrict-template-expressions": ["warn", { "allowBoolean": true, "allowNumber": true }],
     "prefer-destructuring": "off",
     "prefer-template": "off",
     "react/destructuring-assignment": "off",
@@ -124,8 +124,9 @@
       }
     ],
     "no-underscore-dangle": [
-      "warn",
+      "off",
       {
+        "allow": ["obj"],
         "allowFunctionParams": false,
         "allowAfterSuper": true,
         "allowAfterThis": true,
@@ -149,6 +150,14 @@
     "no-shadow": "off",
     "no-void": ["error", { "allowAsStatement": true }]
   },
+  "overrides": [
+    {
+      "files": ["*.test.ts", "*.test.tsx"],
+      "rules": {
+        "@typescript-eslint/no-non-null-assertion": "off"
+      }
+    }
+  ],
   "settings": {
     "react": {
       "createClass": "createReactClass", // Regex for Component Factory to use,
@@ -160,5 +169,6 @@
       // default to latest and warns if missing
       // It will default to "detect" in the future
     }
-  }
+  },
+  "reportUnusedDisableDirectives": true
 }

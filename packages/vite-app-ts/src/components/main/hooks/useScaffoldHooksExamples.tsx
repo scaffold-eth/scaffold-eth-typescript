@@ -1,6 +1,5 @@
-import { useContext, useEffect } from 'react';
-import { ethers } from 'ethers';
-import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
+import { transactor } from 'eth-components/functions';
+import { EthComponentsSettingsContext } from 'eth-components/models';
 import {
   useBalance,
   useBlockNumber,
@@ -9,18 +8,16 @@ import {
   useGasPrice,
   useSignerAddress,
 } from 'eth-hooks';
-
 import { useEthersContext } from 'eth-hooks/context';
-import { transactor } from 'eth-components/functions';
-import { EthComponentsSettingsContext } from 'eth-components/models';
-import { parseEther } from '@ethersproject/units';
-import { config } from 'process';
-import { NETWORKS } from '~~/models/constants/networks';
+import { mergeDefaultUpdateOptions } from 'eth-hooks/functions';
+import { ethers } from 'ethers';
+import { useContext, useEffect } from 'react';
+
+import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
+import { DEBUG } from '~~/config/appConfig';
 import { useAppContracts } from '~~/config/contractContext';
 import { getNetworkInfo } from '~~/functions';
-import { DEBUG } from '~~/config/appConfig';
-import { useResolveEnsName } from 'eth-hooks/dapps';
-import { mergeDefaultUpdateOptions } from 'eth-hooks/functions';
+import { NETWORKS } from '~~/models/constants/networks';
 
 /**
  * Logs to console current app state.  Shows you examples on how to use hooks!
@@ -31,13 +28,13 @@ import { mergeDefaultUpdateOptions } from 'eth-hooks/functions';
  * @param writeContracts
  * @param mainnetContracts
  */
-export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProviders) => {
+export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProviders): void => {
   const ethComponentsSettings = useContext(EthComponentsSettingsContext);
   const ethersContext = useEthersContext();
   const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
 
   const exampleMainnetProvider = scaffoldAppProviders.mainnetAdaptor?.provider;
-  let currentChainId: number | undefined = ethersContext.chainId;
+  const currentChainId: number | undefined = ethersContext.chainId;
 
   // ---------------------
   // 🏦 get your balance
@@ -92,9 +89,9 @@ export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProvi
     console.log(`⛓ A new local block is here: ${blockNumber}`)
   );
 
-  //----------------------
+  // ----------------------
   // ✍🏽 writing to contracts
-  //----------------------
+  // ----------------------
   // The transactor wraps transactions and provides notificiations
   // you can use this for read write transactions
   // check out faucetHintButton.tsx for an example.

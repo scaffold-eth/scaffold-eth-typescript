@@ -1,17 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { SyncOutlined } from '@ant-design/icons';
+import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { formatEther, parseEther } from '@ethersproject/units';
 import { Button, Card, DatePicker, Divider, Input, List, Progress, Slider, Spin, Switch } from 'antd';
-import { Signer, Contract, BigNumber } from 'ethers';
-import React, { useState, FC, useContext } from 'react';
-
 import { Address, Balance } from 'eth-components/ant';
 import { transactor } from 'eth-components/functions';
-import { StaticJsonRpcProvider } from '@ethersproject/providers';
-import { useEthersContext } from 'eth-hooks/context';
-import { useContractLoader, useContractReader, useEventListener, useGasPrice } from 'eth-hooks';
 import { EthComponentsSettingsContext } from 'eth-components/models';
+import { useContractReader, useEventListener, useGasPrice } from 'eth-hooks';
+import { useEthersContext } from 'eth-hooks/context';
+import { BigNumber } from 'ethers';
+import React, { useState, FC, useContext, ReactNode } from 'react';
+
 import { useAppContracts } from '~~/config/contractContext';
-import { SetPurposeEvent, YourContract } from '~~/generated/contract-types/YourContract';
+import { SetPurposeEvent } from '~~/generated/contract-types/YourContract';
 
 export interface IExampleUIProps {
   mainnetProvider: StaticJsonRpcProvider | undefined;
@@ -48,13 +50,13 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
         <Divider />
         <div style={{ margin: 8 }}>
           <Input
-            onChange={(e) => {
+            onChange={(e): void => {
               setNewPurpose(e.target.value);
             }}
           />
           <Button
             style={{ marginTop: 8 }}
-            onClick={async () => {
+            onClick={async (): Promise<void> => {
               /* look how you call setPurpose on your contract: */
               /* notice how you pass a call back for tx updates too */
               const result = tx?.(yourContract?.setPurpose(newPurpose), (update: any) => {
@@ -105,21 +107,21 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
         <Divider />
         <div style={{ margin: 8 }}>
           <Button
-            onClick={() => {
+            onClick={(): void => {
               /* look how you call setPurpose on your contract: */
-              tx?.(yourContract?.setPurpose('🍻 Cheers'));
+              void tx?.(yourContract?.setPurpose('🍻 Cheers'));
             }}>
             Set Purpose to &quot;🍻 Cheers&quot;
           </Button>
         </div>
         <div style={{ margin: 8 }}>
           <Button
-            onClick={() => {
+            onClick={(): void => {
               /*
               you can also just craft a transaction and send it to the tx() transactor
               here we are sending value straight to the contract's address:
             */
-              tx?.({
+              void tx?.({
                 to: yourContract?.address,
                 value: parseEther('0.001'),
               });
@@ -130,9 +132,9 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
         </div>
         <div style={{ margin: 8 }}>
           <Button
-            onClick={() => {
+            onClick={(): void => {
               /* look how we call setPurpose AND send some value along */
-              tx?.(
+              void tx?.(
                 yourContract?.setPurpose('💵 Paying for this one!', {
                   value: parseEther('0.001'),
                 })
@@ -144,9 +146,9 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
         </div>
         <div style={{ margin: 8 }}>
           <Button
-            onClick={() => {
+            onClick={(): void => {
               /* you can also just craft a transaction and send it to the tx() transactor */
-              tx?.({
+              void tx?.({
                 to: yourContract?.address,
                 value: parseEther('0.001'),
                 data: yourContract?.interface?.encodeFunctionData?.('setPurpose', ['🤓 Whoa so 1337!']),
@@ -167,7 +169,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
         <List
           bordered
           dataSource={setPurposeEvents}
-          renderItem={(item: any) => {
+          renderItem={(item: any): ReactNode => {
             return (
               <List.Item key={item.blockNumber + '_' + item.sender + '_' + item.purpose}>
                 <Address address={item[0]} ensProvider={mainnetProvider} fontSize={16} /> =&gt
@@ -209,16 +211,16 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
           <div style={{ marginTop: 8 }}>
             Date Pickers?
             <div style={{ marginTop: 2 }}>
-              <DatePicker onChange={() => {}} />
+              <DatePicker onChange={(): void => {}} />
             </div>
           </div>
 
           <div style={{ marginTop: 32 }}>
-            <Slider range defaultValue={[20, 50]} onChange={() => {}} />
+            <Slider range defaultValue={[20, 50]} onChange={(): void => {}} />
           </div>
 
           <div style={{ marginTop: 32 }}>
-            <Switch defaultChecked onChange={() => {}} />
+            <Switch defaultChecked onChange={(): void => {}} />
           </div>
 
           <div style={{ marginTop: 32 }}>

@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { parseEther } from '@ethersproject/units';
 import { Button, Input, Spin, notification } from 'antd';
+import { AddressInput, EtherInput } from 'eth-components/ant';
+import { TTransactorFunc } from 'eth-components/functions';
 import React, { FC, ReactElement, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import StackGrid from 'react-stack-grid';
-
-import { AddressInput, EtherInput } from 'eth-components/ant';
-import { TTransactorFunc } from 'eth-components/functions';
 
 export interface ICheckoutProps {
   setRoute: any;
@@ -77,7 +78,7 @@ export const Checkout: FC<ICheckoutProps> = (props) => {
             }
             price={undefined}
             value={amount ?? ''}
-            onChange={(value: string) => {
+            onChange={(value: string): void => {
               setAmount(value);
             }}
           />
@@ -86,14 +87,14 @@ export const Checkout: FC<ICheckoutProps> = (props) => {
           <Input
             placeholder="optional reason / guidance"
             value={reason}
-            onChange={(e) => {
+            onChange={(e): void => {
               setReason(e.target.value);
             }}
           />
         </div>
         <div style={{ marginTop: 16 }}>
           <Button
-            onClick={async () => {
+            onClick={async (): Promise<void> => {
               if (!amount) {
                 console.log('AMOUNT', amount);
                 notification.warning({
@@ -102,7 +103,7 @@ export const Checkout: FC<ICheckoutProps> = (props) => {
                   placement: 'bottomRight',
                   description: false,
                 });
-              } else if (cart.length <= 0 && toAddress != '0x97843608a00e2bbc75ab0C1911387E002565DEDE') {
+              } else if (cart.length <= 0 && toAddress !== '0x97843608a00e2bbc75ab0C1911387E002565DEDE') {
                 notification.warning({
                   style: { marginBottom: 64 },
                   message: 'Sorry this 🏰 buidlguidl funding.',
@@ -123,7 +124,7 @@ export const Checkout: FC<ICheckoutProps> = (props) => {
 
                   // replace "0x8A791620dd6260079BF849Dc5567aDC3F2FdC318",//"0x90FC815Fe9338BB3323bAC84b82B9016ED021e70",
                   // and "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",//"0x21e18260357D33d2e18482584a8F39D532fb71cC",
-                  const translateAddressesForLocal = (addy: string) => {
+                  const translateAddressesForLocal = (addy: string): string => {
                     // if(addy=="0x90FC815Fe9338BB3323bAC84b82B9016ED021e70") return "0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE"
                     // if(addy=="0x21e18260357D33d2e18482584a8F39D532fb71cC") return "0x3Aa5ebB10DC797CAC828524e59A333d0A371443c"
                     return addy;

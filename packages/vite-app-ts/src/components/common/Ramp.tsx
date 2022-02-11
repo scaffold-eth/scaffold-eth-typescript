@@ -1,10 +1,8 @@
 import { DollarCircleOutlined } from '@ant-design/icons';
-import { Network } from '@ethersproject/providers';
 import { RampInstantSDK } from '@ramp-network/ramp-instant-sdk';
 import { Button, Divider, Modal } from 'antd';
-import React, { useState, FC } from 'react';
-
 import { TNetworkInfo } from 'eth-hooks/models/networkTypes';
+import React, { useState, FC } from 'react';
 
 interface IRampProps {
   price: number;
@@ -39,7 +37,7 @@ export const Ramp: FC<IRampProps> = (props) => {
             type={type}
             size="large"
             shape="round"
-            onClick={() => {
+            onClick={(): void => {
               window.open(props.networks[n].faucet);
             }}>
             {props.networks[n].name}
@@ -54,7 +52,7 @@ export const Ramp: FC<IRampProps> = (props) => {
       <Button
         size="large"
         shape="round"
-        onClick={() => {
+        onClick={(): void => {
           setModalUp('up');
         }}>
         <DollarCircleOutlined style={{ color: '#52c41a' }} />{' '}
@@ -63,13 +61,13 @@ export const Ramp: FC<IRampProps> = (props) => {
       <Modal
         title="Buy ETH"
         visible={modalUp === 'up'}
-        onCancel={() => {
+        onCancel={(): void => {
           setModalUp('down');
         }}
         footer={[
           <Button
             key="back"
-            onClick={() => {
+            onClick={(): void => {
               setModalUp('down');
             }}>
             cancel
@@ -80,7 +78,7 @@ export const Ramp: FC<IRampProps> = (props) => {
             type={type}
             size="large"
             shape="round"
-            onClick={() => {
+            onClick={(): void => {
               window.open('https://pay.sendwyre.com/purchase?destCurrency=ETH&sourceAmount=25&dest=' + props.address);
             }}>
             <span style={{ paddingRight: 15 }} role="img">
@@ -97,7 +95,7 @@ export const Ramp: FC<IRampProps> = (props) => {
             type={type}
             size="large"
             shape="round"
-            onClick={() => {
+            onClick={(): void => {
               new RampInstantSDK({
                 hostAppName: 'scaffold-eth',
                 hostLogoUrl: 'https://scaffoldeth.io/scaffold-eth.png',
@@ -122,7 +120,7 @@ export const Ramp: FC<IRampProps> = (props) => {
             type={type}
             size="large"
             shape="round"
-            onClick={() => {
+            onClick={(): void => {
               window.open('https://www.coinbase.com/buy-ethereum');
             }}>
             <span style={{ paddingRight: 15 }} role="img" aria-label="bank">

@@ -2,27 +2,22 @@ import React, { FC, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import '~~/styles/main-page.css';
-import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useGasPrice } from 'eth-hooks';
-import { useDexEthPrice } from 'eth-hooks/dapps';
 
 import { GenericContract } from 'eth-components/ant/generic-contract';
-import { Hints, Subgraph, ExampleUI } from '~~/components/pages';
-
-import { useEventListener } from 'eth-hooks';
-import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from './components/main';
-import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
-import { useBurnerFallback } from '~~/components/main/hooks/useBurnerFallback';
-import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './components/main/hooks/useScaffoldHooksExamples';
+import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useEventListener } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
-import { NETWORKS } from '~~/models/constants/networks';
-import {
-  useAppContracts,
-  useAppContractsActions,
-  useConnectAppContracts,
-  useLoadAppContracts,
-} from '~~/config/contractContext';
+import { useDexEthPrice } from 'eth-hooks/dapps';
 import { asEthersAdaptor } from 'eth-hooks/functions';
-import { USE_BURNER_FALLBACK, MAINNET_PROVIDER } from '~~/config/appConfig';
+
+import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from './components/main';
+import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './components/main/hooks/useScaffoldHooksExamples';
+
+import { useBurnerFallback } from '~~/components/main/hooks/useBurnerFallback';
+import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
+import { Hints, ExampleUI } from '~~/components/pages';
+import { BURNER_FALLBACK_ENABLED, MAINNET_PROVIDER } from '~~/config/appConfig';
+import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~~/config/contractContext';
+import { NETWORKS } from '~~/models/constants/networks';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
@@ -50,7 +45,7 @@ export const Main: FC = () => {
   const ethersContext = useEthersContext();
 
   // if no user is found use a burner wallet on localhost as fallback if enabled
-  useBurnerFallback(scaffoldAppProviders, USE_BURNER_FALLBACK);
+  useBurnerFallback(scaffoldAppProviders, BURNER_FALLBACK_ENABLED);
 
   // -----------------------------
   // Load Contracts
@@ -142,10 +137,10 @@ export const Main: FC = () => {
             )}
           </Route>
           {/* Subgraph also disabled in MainPageMenu, it does not work, see github issue! */}
-          {/* 
+          {/*
           <Route path="/subgraph">
             <Subgraph subgraphUri={subgraphUri} mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider} />
-          </Route> 
+          </Route>
           */}
         </Switch>
       </BrowserRouter>
