@@ -59,39 +59,39 @@ Running the app
 
 📱 Open http://localhost:3000 to see the app
 
-# More Information!
-## 📚 Documentation
+## More Information!
+### 📚 Documentation
 
 Documentation, tutorials, challenges, and many more resources, visit: [docs.scaffoldeth.io](https://docs.scaffoldeth.io)
 
 Eth-hooks documentation is [here](https://scaffold-eth.github.io/eth-hooks/).  Learn how to use the contexts here.
 
 
-## 🔭 Learning Solidity
+### 🔭 Learning Solidity
 
 📕 Read the docs: https://docs.soliditylang.org
 
 📚 Go through each topic from [solidity by example](https://solidity-by-example.org) editing `YourContract.sol` in **🏗 scaffold-eth**
 
 
-## 🏃💨 Speedrun Ethereum
+### 🏃💨 Speedrun Ethereum
 Register as a builder [here](https://speedrunethereum.com) and start on some of the challenges and build a portfolio.
 
-## 🛠 Buidl
+### 🛠 Buidl
 
 Check out all the [active branches](https://github.com/austintgriffith/scaffold-eth/branches/active), [open issues](https://github.com/austintgriffith/scaffold-eth/issues), and join/fund the 🏰 [BuidlGuidl](https://BuidlGuidl.com)!
 
 -  🚤 [Follow the full Ethereum Speed Run](https://medium.com/@austin_48503/%EF%B8%8Fethereum-dev-speed-run-bd72bcba6a4c)
 
 
-## 💌 P.S.
+### 💌 P.S.
 
 🌍 You need an RPC key for testnets and production deployments, create an [Alchemy](https://www.alchemy.com/) account and replace the value of `ALCHEMY_KEY = xxx` in `packages/react-app/src/constants.js` with your new key.
 
-## 💬 Support Chat
+### 💬 Support Chat
 
 Join the telegram [support chat 💬](https://t.me/joinchat/KByvmRe5wkR-8F_zz6AjpA) to ask questions and find others building with 🏗 scaffold-eth!
 
-## 🙏🏽 Support us!
+### 🙏🏽 Support us!
 
 🙏 Please check out our [Gitcoin grant](https://gitcoin.co/grants/2851/scaffold-eth) too!
