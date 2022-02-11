@@ -35,6 +35,14 @@ Running the app
    # start vite 
    yarn start 
    ```
+   
+## Guides
+
+- Check out [eth-hooks docs](https://scaffold-eth.github.io/eth-hooks/docs/overview) for example of how to use hooks
+- you can look at [speedrun ethereum](https://speedrunethereum.com/) to get started with scaffold-eth-typescript and web3.  
+  - 🏁 Make sure to click on the typescript tab!
+
+
 
 ## Overview
 
