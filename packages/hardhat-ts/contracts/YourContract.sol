@@ -18,7 +18,7 @@ contract YourContract {
   // this is an event for the function below
   event SetPurpose(address sender, string purpose);
 
-  function setPurpose(string memory newPurpose) public payable {
+  function setPurpose(string memory newPurpose) public {
     // you can add error handling!
 
     // if(bytes(newPurpose).length == 0){

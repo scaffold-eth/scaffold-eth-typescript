@@ -6,7 +6,6 @@ import { defineConfig } from 'vite';
 import macrosPlugin from 'vite-plugin-babel-macros';
 import { viteExternalsPlugin } from 'vite-plugin-externals';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { viteExternalsPlugin } from 'vite-plugin-externals';
 
 const isDev = process.env.ENVIRONMENT === 'DEVELOPMENT';
 console.log('env.dev:', process.env.ENVIRONMENT, ' isDev:', isDev);
