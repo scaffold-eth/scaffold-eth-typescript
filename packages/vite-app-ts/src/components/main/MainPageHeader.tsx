@@ -34,7 +34,7 @@ export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
     <>
       <div>
         <PageHeader
-          title="🏰 BuidlGuidl"
+          title="🏭 Scaffold-Eth"
           subTitle={
             <span>
               v2.1 - [
@@ -84,7 +84,7 @@ export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
       </div>
     );
     networkDisplay = (
-      <div style={{ zIndex: 2, position: 'absolute', right: 0, top: 60, padding: 16 }}>
+      <div style={{ zIndex: 2, position: 'absolute', right: 0, top: 90, padding: 16 }}>
         <Alert message="⚠️ Wrong Network" description={description} type="error" closable={false} />
       </div>
     );

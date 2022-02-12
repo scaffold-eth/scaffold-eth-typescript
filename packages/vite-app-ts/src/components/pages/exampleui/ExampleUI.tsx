@@ -134,11 +134,7 @@ export const ExampleUI: FC<IExampleUIProps> = (props) => {
           <Button
             onClick={(): void => {
               /* look how we call setPurpose AND send some value along */
-              void tx?.(
-                yourContract?.setPurpose('💵 Paying for this one!', {
-                  value: parseEther('0.001'),
-                })
-              );
+              void tx?.(yourContract?.setPurpose('💵 Paying for this one!'));
               /* this will fail until you make the setPurpose function payable */
             }}>
             Set Purpose With Value
