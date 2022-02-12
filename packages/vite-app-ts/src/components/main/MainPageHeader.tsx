@@ -93,8 +93,8 @@ export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
       <div
         style={{
           position: 'absolute',
-          right: 18,
-          top: 54,
+          right: 16,
+          top: 84,
           padding: 10,
           color: props.scaffoldAppProviders.targetNetwork.color,
         }}>
