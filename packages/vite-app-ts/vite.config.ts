@@ -61,7 +61,7 @@ export default defineConfig({
   define: {},
   optimizeDeps: {
     exclude: excludeDeps,
-    include: ['eth-hooks', 'web3Modal', 'eth-components'],
+    include: ['eth-hooks', 'eth-components'],
   },
   resolve: {
     preserveSymlinks: true,
