@@ -9,9 +9,9 @@ interface ImportMetaEnv {
   readonly VITE_KEY_INFURA: string;
   readonly VITE_KEY_ETHERSCAN: string;
   readonly VITE_KEY_BLOCKNATIVE_DAPPID: string;
-  readonly VITE_FAUCET_ALLOWED: boolean;
-  readonly VITE_BURNER_FALLBACK_ALLOWED: boolean;
-  readonly VITE_CONNECT_TO_BURNER_AUTOMATICALLY: boolean;
+  readonly VITE_FAUCET_ALLOWED: string;
+  readonly VITE_BURNER_FALLBACK_ALLOWED: string;
+  readonly VITE_CONNECT_TO_BURNER_AUTOMATICALLY: string;
 }
 
 interface ImportMeta {

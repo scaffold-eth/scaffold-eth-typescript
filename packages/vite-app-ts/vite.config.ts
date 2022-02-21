@@ -71,6 +71,7 @@ export default defineConfig({
       ...nodeShims,
       process: 'process',
       stream: 'stream-browserify',
+      Web3Modal: 'web3Modal',
     },
   },
   server: {
