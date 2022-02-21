@@ -28,9 +28,13 @@ packages/hardhat-ts/cache
 /.pnp
 .pnp.js
 # yarn / eslint
-.yarn/cache
-.yarn/install-state.gz
-.yarn/build-state.yml
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 .eslintcache
 
 # testing

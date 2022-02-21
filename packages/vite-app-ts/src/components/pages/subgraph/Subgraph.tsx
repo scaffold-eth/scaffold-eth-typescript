@@ -1,6 +1,6 @@
 import { Button, Input, Table, Typography } from 'antd';
 
-import 'graphiql/graphiql.min.css';
+// import 'graphiql/graphiql.min.css';
 
 import { Address } from 'eth-components/ant';
 import { transactor } from 'eth-components/functions';
@@ -8,7 +8,7 @@ import { EthComponentsSettingsContext } from 'eth-components/models';
 import { useGasPrice } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
 import { TEthersProvider } from 'eth-hooks/models';
-import GraphiQL from 'graphiql';
+// import GraphiQL from 'graphiql';
 import React, { FC, ReactElement, useContext, useState } from 'react';
 import { useQuery } from 'react-query';
 
@@ -198,7 +198,7 @@ export const Subgraph: FC<ISubgraphProps> = (props) => {
         )}
 
         <div style={{ margin: 32, height: 400, border: '1px solid #888888', textAlign: 'left' }}>
-          <GraphiQL fetcher={graphQLFetcher} docExplorerOpen query={EXAMPLE_GQL} />
+          {/* <GraphiQL fetcher={graphQLFetcher} docExplorerOpen query={EXAMPLE_GQL} /> */}
         </div>
       </div>
 

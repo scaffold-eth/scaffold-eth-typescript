@@ -28,16 +28,24 @@ if (DEBUG) console.log(`📡 Connecting to ${TARGET_NETWORK_INFO.name}`);
 /**
  * localhost faucet enabled
  */
-export const FAUCET_ENABLED = import.meta.env.VITE_FAUCET_ALLOWED && import.meta.env.DEV;
+export const FAUCET_ENABLED = import.meta.env.VITE_FAUCET_ALLOWED === 'true' && import.meta.env.DEV;
 /**
  * Use burner wallet as fallback
  */
-export const BURNER_FALLBACK_ENABLED = import.meta.env.VITE_BURNER_FALLBACK_ALLOWED && import.meta.env.DEV;
+export const BURNER_FALLBACK_ENABLED = import.meta.env.VITE_BURNER_FALLBACK_ALLOWED === 'true' && import.meta.env.DEV;
 /**
  * Connect to burner on first load if there are no cached providers
  */
 export const CONNECT_TO_BURNER_AUTOMATICALLY =
-  import.meta.env.VITE_CONNECT_TO_BURNER_AUTOMATICALLY && import.meta.env.DEV;
+  import.meta.env.VITE_CONNECT_TO_BURNER_AUTOMATICALLY === 'true' && import.meta.env.DEV;
+
+if (DEBUG)
+  invariant.log(
+    `import.meta.env.DEV: ${import.meta.env.DEV}`,
+    `import.meta.env.VITE_FAUCET_ALLOWED: ${import.meta.env.VITE_FAUCET_ALLOWED}`,
+    `import.meta.env.VITE_BURNER_FALLBACK_ALLOWED: ${import.meta.env.VITE_BURNER_FALLBACK_ALLOWED}`,
+    `import.meta.env.VITE_CONNECT_TO_BURNER_AUTOMATICALLY: ${import.meta.env.VITE_CONNECT_TO_BURNER_AUTOMATICALLY}`
+  );
 
 if (DEBUG)
   invariant.log(
