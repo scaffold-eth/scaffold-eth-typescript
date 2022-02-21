@@ -1844,7 +1844,6 @@ __metadata:
     prettier: ^2.5.1
     prettier-plugin-solidity: ^1.0.0-beta.19
     shx: ^0.3.4
-    web3modal: ^1.9.5
   languageName: unknown
   linkType: soft
 

@@ -95,8 +95,5 @@
          "yarn workspace @scaffold-eth/hardhat format",
          "yarn workspace @scaffold-eth/hardhat solhint --fix"
       ]
-   },
-   "dependencies": {
-      "web3modal": "^1.9.5"
    }
 }
