@@ -17,7 +17,7 @@ invariant.log('MODE', import.meta.env.MODE, import.meta.env.DEV);
 
 const targetNetwork: TNetworkNames = import.meta.env.VITE_APP_TARGET_NETWORK as TNetworkNames;
 invariant.log('VITE_APP_TARGET_NETWORK', import.meta.env.VITE_APP_TARGET_NETWORK);
-invariant.error(NETWORKS[targetNetwork] != null, `Invalid target network: ${targetNetwork}`);
+invariant(NETWORKS[targetNetwork] != null, `Invalid target network: ${targetNetwork}`);
 
 export const TARGET_NETWORK_INFO: TNetworkInfo = NETWORKS[targetNetwork];
 if (DEBUG) console.log(`📡 Connecting to ${TARGET_NETWORK_INFO.name}`);
@@ -28,15 +28,24 @@ if (DEBUG) console.log(`📡 Connecting to ${TARGET_NETWORK_INFO.name}`);
 /**
  * localhost faucet enabled
  */
-export const FAUCET_ENABLED = import.meta.env.VITE_FAUCET_ALLOWED && import.meta.env.DEV;
+export const FAUCET_ENABLED = import.meta.env.VITE_FAUCET_ALLOWED === 'true' && import.meta.env.DEV;
 /**
  * Use burner wallet as fallback
  */
-export const BURNER_FALLBACK_ENABLED = import.meta.env.VITE_BUERNER_FALLBACK_ALLOWED && import.meta.env.DEV;
+export const BURNER_FALLBACK_ENABLED = import.meta.env.VITE_BURNER_FALLBACK_ALLOWED === 'true' && import.meta.env.DEV;
 /**
  * Connect to burner on first load if there are no cached providers
  */
-export const CONNECT_TO_BURNER_AUTOMATICALLY = import.meta.env.CONNECT_TO_BURNER_AUTOMATICALLY && import.meta.env.DEV;
+export const CONNECT_TO_BURNER_AUTOMATICALLY =
+  import.meta.env.VITE_CONNECT_TO_BURNER_AUTOMATICALLY === 'true' && import.meta.env.DEV;
+
+if (DEBUG)
+  invariant.log(
+    `import.meta.env.DEV: ${import.meta.env.DEV}`,
+    `import.meta.env.VITE_FAUCET_ALLOWED: ${import.meta.env.VITE_FAUCET_ALLOWED}`,
+    `import.meta.env.VITE_BURNER_FALLBACK_ALLOWED: ${import.meta.env.VITE_BURNER_FALLBACK_ALLOWED}`,
+    `import.meta.env.VITE_CONNECT_TO_BURNER_AUTOMATICALLY: ${import.meta.env.VITE_CONNECT_TO_BURNER_AUTOMATICALLY}`
+  );
 
 if (DEBUG)
   invariant.log(
@@ -73,7 +82,7 @@ export const SUBGRAPH_URI = 'http://localhost:8000/subgraphs/name/scaffold-eth/y
 // attempt to connect to our own scaffold eth rpc and if that fails fall back to infura...
 const mainnetScaffoldEthProvider = new StaticJsonRpcProvider(import.meta.env.VITE_RPC_MAINNET);
 const mainnetInfura = new StaticJsonRpcProvider(
-  `${import.meta.env.VITE_RPC_MAINNET}/${import.meta.env.VITE_KEY_INFURA}`
+  `${import.meta.env.VITE_RPC_MAINNET_INFURA}/${import.meta.env.VITE_KEY_INFURA}`
 );
 // const mainnetProvider = new InfuraProvider("mainnet",import.meta.env.VITE_KEY_INFURA);
 

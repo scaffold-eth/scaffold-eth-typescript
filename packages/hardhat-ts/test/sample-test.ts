@@ -1,15 +1,15 @@
 import { expect } from 'chai';
 import { ethers } from 'hardhat';
 
-describe('Greeter', function () {
-  it("Should return the new greeting once it's changed", async function () {
-    const Greeter = await ethers.getContractFactory('Greeter');
-    const greeter = await Greeter.deploy('Hello, world!');
+describe('YourContract', function () {
+  it("Should return the new purpose once it's changed", async function () {
+    const YourContract = await ethers.getContractFactory('YourContract');
+    const yourContract = await YourContract.deploy();
 
-    await greeter.deployed();
-    expect(await greeter.greet()).to.equal('Hello, world!');
+    await yourContract.deployed();
+    expect(await yourContract.purpose()).to.equal('Building Unstoppable Apps!!!');
 
-    await greeter.setGreeting('Hola, mundo!');
-    expect(await greeter.greet()).to.equal('Hola, mundo!');
+    await yourContract.setPurpose('Hola, mundo!');
+    expect(await yourContract.purpose()).to.equal('Hola, mundo!');
   });
 });
