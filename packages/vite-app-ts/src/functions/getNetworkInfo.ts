@@ -1,8 +1,6 @@
 import { getNetwork } from '@ethersproject/networks';
-
-import { NETWORKS, TNetworkNames } from '../models/constants/networks';
-
-import { TNetworkInfo } from '~~/models/NetworkTypes';
+import { TNetworkInfo } from 'eth-hooks/models';
+import { NETWORKS, TNetworkNames } from 'scaffold-common/lib/constants';
 
 export const getNetworkInfo = (chainId: number | undefined): TNetworkInfo | undefined => {
   if (!chainId) return;

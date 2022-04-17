@@ -4,7 +4,7 @@ import React, { FC } from 'react';
 
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 import { useAppContracts } from '~~/config/contractContext';
-import { NETWORKS } from '~~/models/constants/networks';
+import { NETWORKS } from 'scaffold-common/lib/constants';
 export interface IMainPageContractsProps {
   scaffoldAppProviders: IScaffoldAppProviders;
 }

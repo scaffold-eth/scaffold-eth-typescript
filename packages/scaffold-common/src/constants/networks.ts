@@ -1,25 +1,9 @@
 import { TNetworkInfo } from 'eth-hooks/models';
+import { TNetworkNames } from '~~/models/TNetworkNames';
 
-const INFURA_ID = import.meta.env.VITE_KEY_INFURA;
 
-export type TNetworkNames =
-  | 'localhost'
-  | 'mainnet'
-  | 'kovan'
-  | 'rinkeby'
-  | 'ropsten'
-  | 'goerli'
-  | 'xdai'
-  | 'matic'
-  | 'mumbai'
-  | 'rinkebyArbitrum'
-  | 'arbitrum'
-  | 'kovanOptimism'
-  | 'optimism'
-  | 'fujiAvalanche'
-  | 'avalanche'
-  | 'testnetFantom'
-  | 'fantom';
+const INFURA_ID = import.meta?.env?.VITE_KEY_INFURA ?? process.env.VITE_RPC_MAINNET_INFURA;
+
 
 let hostname = '';
 if (typeof window !== 'undefined') {

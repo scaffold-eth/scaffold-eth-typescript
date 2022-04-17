@@ -59,7 +59,8 @@
          "packages/hardhat-ts",
          "packages/vite-app-ts",
          "packages/services/*",
-         "packages/subgraph"
+         "packages/subgraph",
+         "packages/*"
       ]
    },
    "packageManager": "yarn@3.2.0",

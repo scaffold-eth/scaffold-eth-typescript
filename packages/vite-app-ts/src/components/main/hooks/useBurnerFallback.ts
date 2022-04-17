@@ -1,9 +1,9 @@
 import { useBurnerSigner } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
 import { useEffect } from 'react';
+import { NETWORKS } from 'scaffold-common/lib/constants';
 
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
-import { NETWORKS } from '~~/models/constants/networks';
 
 export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: boolean): void => {
   const ethersContext = useEthersContext();

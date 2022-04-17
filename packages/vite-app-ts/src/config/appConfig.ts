@@ -1,8 +1,7 @@
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { TNetworkInfo, TEthersProvider } from 'eth-hooks/models';
+import { NETWORKS, TNetworkNames } from 'scaffold-common/lib/constants';
 import { invariant } from 'ts-invariant';
-
-import { NETWORKS, TNetworkNames } from '../models/constants/networks';
 
 export const DEBUG = true;
 invariant.log('MODE', import.meta.env.MODE, import.meta.env.DEV);
