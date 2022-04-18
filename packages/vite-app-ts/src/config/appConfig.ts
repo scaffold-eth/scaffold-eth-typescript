@@ -92,8 +92,8 @@ export const MAINNET_PROVIDER = mainnetScaffoldEthProvider;
 // connecting to local provider
 // -------------------
 
-if (DEBUG) console.log('🏠 Connecting to provider:', NETWORKS.localhost.rpcUrl);
+if (DEBUG) console.log('🏠 Connecting to provider:', NETWORKS.localhost.url);
 export const LOCAL_PROVIDER: TEthersProvider | undefined =
   TARGET_NETWORK_INFO === NETWORKS.localhost && import.meta.env.DEV
-    ? new StaticJsonRpcProvider(NETWORKS.localhost.rpcUrl)
+    ? new StaticJsonRpcProvider(NETWORKS.localhost.url)
     : undefined;

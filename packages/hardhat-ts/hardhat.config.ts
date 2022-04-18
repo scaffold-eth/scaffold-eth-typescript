@@ -68,7 +68,7 @@ const networks = {
       (you can put in a mnemonic here to set the deployer locally)
     */
     // accounts: {
-    //   mnemonic: mnemonic(),
+    //   mnemonic: getMnemonic(),
     // },
   },
 };

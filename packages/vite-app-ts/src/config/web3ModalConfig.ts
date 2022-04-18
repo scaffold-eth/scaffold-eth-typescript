@@ -121,7 +121,7 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
         options: {
           chainId: NETWORKS.localhost.chainId,
           rpc: {
-            [NETWORKS.localhost.chainId]: NETWORKS.localhost.rpcUrl,
+            [NETWORKS.localhost.chainId]: NETWORKS.localhost.url,
           },
         },
       };
