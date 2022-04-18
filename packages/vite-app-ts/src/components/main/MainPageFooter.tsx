@@ -25,6 +25,8 @@ export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
   // Faucet Tx can be used to send funds from the faucet
   const faucetAvailable = getFaucetAvailable(props.scaffoldAppProviders, ethersContext);
 
+  const network = getNetworkInfo(ethersContext.chainId);
+
   const left = (
     <div
       style={{
@@ -47,7 +49,7 @@ export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
           }}>
           <GasGauge
             chainId={props.scaffoldAppProviders.targetNetwork.chainId}
-            currentNetwork={getNetworkInfo(ethersContext.chainId)}
+            currentNetwork={network}
             provider={ethersContext.provider}
             speed="average"
           />

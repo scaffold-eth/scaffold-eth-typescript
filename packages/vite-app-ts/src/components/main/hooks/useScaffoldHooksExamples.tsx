@@ -12,12 +12,12 @@ import { useEthersContext } from 'eth-hooks/context';
 import { mergeDefaultUpdateOptions } from 'eth-hooks/functions';
 import { ethers } from 'ethers';
 import { useContext, useEffect } from 'react';
+import { NETWORKS } from 'scaffold-common/src/constants';
 
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 import { DEBUG } from '~~/config/appConfig';
 import { useAppContracts } from '~~/config/contractContext';
 import { getNetworkInfo } from '~~/functions';
-import { NETWORKS } from 'scaffold-common/src/constants';
 
 /**
  * Logs to console current app state.  Shows you examples on how to use hooks!
