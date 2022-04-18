@@ -51,6 +51,7 @@
     "hardhat-deploy-ethers": "^0.3.0-beta.13",
     "ipfs-http-client": "^54.0.2",
     "qrcode-terminal": "^0.12.0",
+    "scaffold-common": "^1.0.0",
     "typechain": "^7.0.0"
   },
   "devDependencies": {

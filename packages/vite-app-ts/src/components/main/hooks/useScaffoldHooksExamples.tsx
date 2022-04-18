@@ -17,7 +17,7 @@ import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppPr
 import { DEBUG } from '~~/config/appConfig';
 import { useAppContracts } from '~~/config/contractContext';
 import { getNetworkInfo } from '~~/functions';
-import { NETWORKS } from 'scaffold-common/lib/constants';
+import { NETWORKS } from 'scaffold-common/src/constants';
 
 /**
  * Logs to console current app state.  Shows you examples on how to use hooks!

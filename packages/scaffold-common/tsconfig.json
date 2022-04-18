@@ -26,12 +26,8 @@
     "baseUrl": ".",
     "types": [],
     "typeRoots": ["node_modules/@types"],
-    "paths": {
-      "~~": ["./src/"],
-      "~~/*": ["./src/*"]
-    }
   },
-  "include": ["src", "test", "test-files", "hardhat.config.ts", "test-files/deploy"],
+  "include": ["src", ],
   "exclude": [
     "lib/**/*",
     "node_modules",

@@ -15,6 +15,7 @@ esbuild
       './src/index.ts',
       './src/models/index.ts',
       './src/constants/index.ts',
+      './src/functions/index.ts',
     ],
     outdir: 'lib',
     bundle: true,

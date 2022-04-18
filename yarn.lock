@@ -2262,6 +2262,7 @@ __metadata:
     prettier-plugin-solidity: ^1.0.0-beta.19
     qrcode-terminal: ^0.12.0
     rlp: ^2.2.7
+    scaffold-common: ^1.0.0
     solhint: ^3.3.7
     solhint-plugin-prettier: ^0.0.5
     solidity-coverage: ^0.7.20
@@ -2374,7 +2375,7 @@ __metadata:
     eslint-plugin-testing-library: ^5.0.5
     eslint-plugin-unused-imports: ^2.0.0
     eth-components: 3.0.41
-    eth-hooks: 4.0.45
+    eth-hooks: 4.1.0
     ethereum-cryptography: ^0.1.3
     ethers: ^5.5.4
     fortmatic: ^2.2.1
@@ -9615,9 +9616,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:*":
-  version: 4.0.48
-  resolution: "eth-hooks@npm:4.0.48"
+"eth-hooks@npm:4.1.0, eth-hooks@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "eth-hooks@npm:4.1.0"
   dependencies:
     "@ethersproject/abi": ^5.5.0
     "@ethersproject/abstract-provider": ^5.5.1
@@ -9647,11 +9648,11 @@ __metadata:
     "@uniswap/sdk": ^3.0.3
     react: ">=17.0.2"
     react-dom: ">=17.0.2"
-  checksum: 01e45bcf2e194c59441323df233a4afd46a6873cabb956d8d6769f73e6aa1c5e8f399c827c6ecca2cac4a7c5b2001925a4fedf2518729700eaaf418653dce9f4
+  checksum: 0965e91857817034d8750b4e2cf4d895aedd787393da0fa5ed374d1e9cdb75be77d699599a315832b78901d7d64b9e8f4d99049f9b0370ca19748065a0ad53d3
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:4.0.45, eth-hooks@npm:^4.0.45":
+"eth-hooks@npm:^4.0.45":
   version: 4.0.45
   resolution: "eth-hooks@npm:4.0.45"
   dependencies:
@@ -19952,14 +19953,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scaffold-common@workspace:^, scaffold-common@workspace:packages/scaffold-common":
+"scaffold-common@^1.0.0, scaffold-common@workspace:^, scaffold-common@workspace:packages/scaffold-common":
   version: 0.0.0-use.local
   resolution: "scaffold-common@workspace:packages/scaffold-common"
   dependencies:
     "@types/node": ^16.11.25
     esbuild: ^0.14.23
     esbuild-node-externals: ^1.4.1
-    eth-hooks: "*"
+    eth-hooks: ^4.1.0
     ethers: "*"
     husky: ^7.0.4
     lint-staged: ^12.3.4

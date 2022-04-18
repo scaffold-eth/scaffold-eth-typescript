@@ -14,7 +14,7 @@
     "format:check": "yarn prettier -c ./src ./test ./test-files"
   },
   "dependencies": {
-    "eth-hooks": "*",
+    "eth-hooks": "^4.1.0",
     "ethers": "*"
   },
   "devDependencies": {

@@ -1,7 +1,7 @@
 import { useBurnerSigner } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
 import { useEffect } from 'react';
-import { NETWORKS } from 'scaffold-common/lib/constants';
+import { NETWORKS } from 'scaffold-common/src/constants';
 
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 

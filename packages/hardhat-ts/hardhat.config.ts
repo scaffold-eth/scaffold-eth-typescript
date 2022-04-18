@@ -23,6 +23,7 @@ import * as path from 'path';
 import * as chalk from 'chalk';
 
 import { Provider, TransactionRequest, TransactionResponse } from '@ethersproject/providers';
+import { getNetworks } from 'scaffold-common/src/functions';
 
 import { HardhatUserConfig, task } from 'hardhat/config';
 import { HttpNetworkUserConfig } from 'hardhat/types';
@@ -54,6 +55,24 @@ const getMnemonic = (): string => {
   return '';
 };
 
+const networks = {
+  ...getNetworks({
+    accounts: {
+      mnemonic: getMnemonic(),
+    },
+  }),
+  localhost: {
+    url: 'http://localhost:8545',
+    /*
+      if there is no mnemonic, it will just use account 0 of the hardhat node to deploy
+      (you can put in a mnemonic here to set the deployer locally)
+    */
+    // accounts: {
+    //   mnemonic: mnemonic(),
+    // },
+  },
+};
+
 const config: HardhatUserConfig = {
   defaultNetwork: process.env.HARDHAT_TARGET_NETWORK,
   namedAccounts: {
@@ -66,84 +85,11 @@ const config: HardhatUserConfig = {
   // (then your frontend will talk to your contracts on the live network!)
   // (you will need to restart the `yarn run start` dev server after editing the .env)
 
-  networks: {
-    localhost: {
-      url: 'http://localhost:8545',
-      /*
-        if there is no mnemonic, it will just use account 0 of the hardhat node to deploy
-        (you can put in a mnemonic here to set the deployer locally)
-      */
-      // accounts: {
-      //   mnemonic: mnemonic(),
-      // },
-    },
-    rinkeby: {
-      url: 'https://rinkeby.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
-      accounts: {
-        mnemonic: getMnemonic(),
-      },
-    },
-    kovan: {
-      url: 'https://kovan.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
-      accounts: {
-        mnemonic: getMnemonic(),
-      },
-    },
-    mainnet: {
-      url: 'https://mainnet.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
-      accounts: {
-        mnemonic: getMnemonic(),
-      },
-    },
-    ropsten: {
-      url: 'https://ropsten.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
-      accounts: {
-        mnemonic: getMnemonic(),
-      },
-    },
-    goerli: {
-      url: 'https://goerli.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
-      accounts: {
-        mnemonic: getMnemonic(),
-      },
-    },
-    xdai: {
-      url: 'https://rpc.xdaichain.com/',
-      gasPrice: 1000000000,
-      accounts: {
-        mnemonic: getMnemonic(),
-      },
-    },
-    matic: {
-      url: 'https://rpc-mainnet.maticvigil.com/',
-      gasPrice: 1000000000,
-      accounts: {
-        mnemonic: getMnemonic(),
-      },
-    },
-  },
+  networks: networks,
   solidity: {
     compilers: [
       {
         version: '0.8.6',
-        settings: {
-          optimizer: {
-            enabled: true,
-            runs: 200,
-          },
-        },
-      },
-      {
-        version: '0.7.6',
-        settings: {
-          optimizer: {
-            enabled: true,
-            runs: 200,
-          },
-        },
-      },
-      {
-        version: '0.6.7',
         settings: {
           optimizer: {
             enabled: true,
