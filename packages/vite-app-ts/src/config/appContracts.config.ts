@@ -3,7 +3,7 @@ import { createConnectorForExternalContract, createConnectorForHardhatContract }
 
 import hardhatContractsJson from '../generated/hardhat_contracts.json';
 
-import { externalContractsAddressMap } from './externalContractsConfig';
+import { externalContractsAddressMap } from './externalContracts.config';
 
 import * as hardhatContracts from '~~/generated/contract-types';
 import * as externalContracts from '~~/generated/external-contracts/esm/types';
@@ -20,7 +20,7 @@ import * as externalContracts from '~~/generated/external-contracts/esm/types';
  * - called  by useAppContracts
  * @returns
  */
-export const contractConnectorConfig = () => {
+export const appContractsConfig = () => {
   try {
     const result = {
       // 🙋🏽‍♂️ Add your hadrdhat contracts here
@@ -32,10 +32,19 @@ export const contractConnectorConfig = () => {
 
       // 🙋🏽‍♂️ Add your external contracts here, make sure to define the address in `externalContractsConfig.ts`
       DAI: createConnectorForExternalContract('DAI', externalContracts.DAI__factory, externalContractsAddressMap),
-      UNI: createConnectorForExternalContract('UNI', externalContracts.UNI__factory, externalContractsAddressMap),
 
       // 🙋🏽‍♂️ Add your external abi here (unverified contracts)`
-      // DAI: createConnectorForExternalAbi('DAI', { 1: {address: 'xxxx'}}, abi),
+      // YourContract: createConnectorForExternalAbi(
+      //   'YourContract',
+      //   {
+      //     [TARGET_NETWORK_INFO.chainId]: {
+      //       address: 'xxx',
+      //       chainId: TARGET_NETWORK_INFO.chainId,
+      //     },
+      //   },
+      //   hardhatContracts.YourContract__factory.abi,
+      //   hardhatContracts.YourContract__factory.connect
+      // ),
     } as const;
 
     return result;
@@ -51,6 +60,6 @@ export const contractConnectorConfig = () => {
 
 /**
  * ### Summary
- * This type describes all your contracts, it is the return of {@link contractConnectorConfig}
+ * This type describes all your contracts, it is the return of {@link appContractsConfig}
  */
-export type TAppConnectorList = NonNullable<ReturnType<typeof contractConnectorConfig>>;
+export type TAppConnectorList = NonNullable<ReturnType<typeof appContractsConfig>>;

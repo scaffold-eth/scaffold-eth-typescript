@@ -11,8 +11,8 @@ import {
   LOCAL_PROVIDER,
   CONNECT_TO_BURNER_AUTOMATICALLY,
   TARGET_NETWORK_INFO,
-} from '~~/config/appConfig';
-import { web3ModalConfigKeys } from '~~/config/web3ModalConfig';
+} from '~~/config/app.config';
+import { web3ModalConfigKeys } from '~~/config/web3Modal.config';
 
 export interface IScaffoldAppProviders {
   currentProvider: TEthersProvider | undefined;
@@ -30,7 +30,7 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
 
   useEffect(() => {
     // import async to split bundles
-    const importedConfig = import('../../../config/web3ModalConfig');
+    const importedConfig = import('../../../config/web3Modal.config');
 
     importedConfig
       .then((getter) => {

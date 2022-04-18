@@ -1,7 +1,7 @@
 import { NETWORKS } from 'scaffold-common/src/constants';
 import { ICoreOptions } from 'web3modal';
 
-import { LOCAL_PROVIDER } from '~~/config/appConfig';
+import { LOCAL_PROVIDER } from '~~/config/app.config';
 
 const INFURA_ID = import.meta.env.VITE_KEY_INFURA;
 

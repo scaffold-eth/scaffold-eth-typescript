@@ -9,8 +9,6 @@
 // This adds support for typescript paths mappings
 import 'tsconfig-paths/register';
 
-import { BigNumber, Signer, utils } from 'ethers';
-
 import '@typechain/hardhat';
 import '@nomiclabs/hardhat-waffle';
 import '@nomiclabs/hardhat-ethers';
@@ -18,9 +16,12 @@ import '@tenderly/hardhat-tenderly';
 import 'hardhat-deploy';
 import 'solidity-coverage';
 
-import * as fs from 'fs';
-import * as path from 'path';
-import * as chalk from 'chalk';
+import { BigNumber, Signer, utils } from 'ethers';
+
+import fs from 'fs';
+import path from 'path';
+import chalk from 'chalk';
+import glob from 'glob';
 
 import { Provider, TransactionRequest, TransactionResponse } from '@ethersproject/providers';
 import { getNetworks } from 'scaffold-common/src/functions';
@@ -31,7 +32,15 @@ import { THardhatDeployEthers } from 'helpers/types/hardhat-type-extensions';
 import { create } from 'ipfs-http-client';
 
 import { config as envConfig } from 'dotenv';
+import { getMnemonic, mnemonicPath } from './tasks/functions/mnemonic';
 envConfig({ path: '../vite-app-ts/.env' });
+
+// load all tasks
+if (process.env.BUILDING !== 'true') {
+  glob.sync('./tasks/**/*.ts').forEach((file: string) => {
+    require(path.resolve(file));
+  });
+}
 
 /**
  * Set your target network!!!
@@ -39,21 +48,7 @@ envConfig({ path: '../vite-app-ts/.env' });
 console.log('HARDHAT_TARGET_NETWORK: ', process.env.HARDHAT_TARGET_NETWORK);
 
 const { isAddress, getAddress, formatUnits, parseUnits } = utils;
-//
-// Select the network you want to deploy to here:
-//
 
-const mnemonicPath = './generated/mnemonic.secret';
-const getMnemonic = (): string => {
-  try {
-    return fs.readFileSync(mnemonicPath).toString().trim();
-  } catch (e) {
-    if (process.env.HARDHAT_TARGET_NETWORK !== 'localhost') {
-      console.log('☢️ WARNING: No mnemonic file created for a deploy account. Try `yarn run generate` and then `yarn run account`.');
-    }
-  }
-  return '';
-};
 
 const networks = {
   ...getNetworks({
@@ -73,7 +68,7 @@ const networks = {
   },
 };
 
-const config: HardhatUserConfig = {
+export const config: HardhatUserConfig = {
   defaultNetwork: process.env.HARDHAT_TARGET_NETWORK,
   namedAccounts: {
     deployer: {
@@ -89,7 +84,7 @@ const config: HardhatUserConfig = {
   solidity: {
     compilers: [
       {
-        version: '0.8.6',
+        version: '0.8.10',
         settings: {
           optimizer: {
             enabled: true,
@@ -105,12 +100,12 @@ const config: HardhatUserConfig = {
     deployments: './generated/deployments',
   },
   typechain: {
-    outDir: '../vite-app-ts/src/generated/contract-types',
+    outDir: './generated/contract-types',
   },
 };
 export default config;
 
-const DEBUG = false;
+export const DEBUG = false;
 
 function debug(text: string): void {
   if (DEBUG) {
@@ -175,30 +170,6 @@ task('fundedwallet', 'Create a wallet (pk) link and fund it with deployer?')
     }
   });
 
-task('generate', 'Create a mnemonic for builder deploys', async (_, { ethers }) => {
-  const bip39 = require('bip39');
-  const hdkey = require('ethereumjs-wallet/hdkey');
-  const mnemonic = bip39.generateMnemonic();
-  if (DEBUG) console.log('mnemonic', mnemonic);
-  const seed = await bip39.mnemonicToSeed(mnemonic);
-  if (DEBUG) console.log('seed', seed);
-  const hdwallet = hdkey.fromMasterSeed(seed);
-  const walletHdPath = "m/44'/60'/0'/0/";
-  const accountIndex = 0;
-  const fullPath = walletHdPath + accountIndex;
-  if (DEBUG) console.log('fullPath', fullPath);
-  const wallet = hdwallet.derivePath(fullPath).getWallet();
-  const privateKey = `0x${wallet._privKey.toString('hex')}`;
-  if (DEBUG) console.log('privateKey', privateKey);
-  const EthUtil = require('ethereumjs-util');
-  const address = `0x${EthUtil.privateToAddress(wallet._privKey).toString('hex')}`;
-  console.log(`🔐 Account Generated as ${address} and set as mnemonic in packages/hardhat`);
-  console.log("💬 Use 'yarn run account' to get more information about the deployment account.");
-
-  fs.writeFileSync(`./generated/${address}.secret`, mnemonic.toString());
-  fs.writeFileSync(mnemonicPath, mnemonic.toString());
-});
-
 task('mineContractAddress', 'Looks for a deployer account that will give leading zeros')
   .addParam('searchFor', 'String to search for')
   .setAction(async (taskArgs, { network, ethers }) => {
@@ -246,42 +217,6 @@ task('mineContractAddress', 'Looks for a deployer account that will give leading
     fs.writeFileSync(`./generated/${address}_produces${contractAddress}.txt`, mnemonic.toString());
     fs.writeFileSync(mnemonicPath, mnemonic.toString());
   });
-
-task('account', 'Get balance informations for the deployment account.', async (_, { ethers }) => {
-  const hdkey = require('ethereumjs-wallet/hdkey');
-  const bip39 = require('bip39');
-  const mnemonic = fs.readFileSync(mnemonicPath).toString().trim();
-  if (DEBUG) console.log('mnemonic', mnemonic);
-  const seed = await bip39.mnemonicToSeed(mnemonic);
-  if (DEBUG) console.log('seed', seed);
-  const hdwallet = hdkey.fromMasterSeed(seed);
-  const walletHdPath = "m/44'/60'/0'/0/";
-  const accountIndex = 0;
-  const fullPath = walletHdPath + accountIndex;
-  if (DEBUG) console.log('fullPath', fullPath);
-  const wallet = hdwallet.derivePath(fullPath).getWallet();
-  const privateKey = `0x${wallet._privKey.toString('hex')}`;
-  if (DEBUG) console.log('privateKey', privateKey);
-  const EthUtil = require('ethereumjs-util');
-  const address = `0x${EthUtil.privateToAddress(wallet._privKey).toString('hex')}`;
-
-  const qrcode = require('qrcode-terminal');
-  qrcode.generate(address);
-  console.log(`‍📬 Deployer Account is ${address}`);
-  for (const n in config.networks) {
-    // console.log(config.networks[n],n)
-    try {
-      const { url } = config.networks[n] as HttpNetworkUserConfig;
-      const provider = new ethers.providers.JsonRpcProvider(url);
-      const balance = await provider.getBalance(address);
-      console.log(` -- ${n} --  -- -- 📡 `);
-      console.log(`   balance: ${ethers.utils.formatEther(balance)}`);
-      console.log(`   nonce: ${await provider.getTransactionCount(address)}`);
-    } catch (e) {
-      if (DEBUG) console.log(e);
-    }
-  }
-});
 
 const findFirstAddr = async (ethers: THardhatDeployEthers, addr: string): Promise<string> => {
   if (isAddress(addr)) {

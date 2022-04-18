@@ -1,10 +1,10 @@
 import '@nomiclabs/hardhat-ethers';
 import '@nomiclabs/hardhat-waffle';
-import * as fs from 'fs';
+import fs from 'fs';
 import path from 'path';
 
-import * as chalk from 'chalk';
-import * as hre from 'hardhat';
+import chalk from 'chalk';
+import hre from 'hardhat';
 
 const publishGenerated = '../vite-app-ts/src/generated/contracts';
 const publishDir = `${publishGenerated}/contracts`;

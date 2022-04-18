@@ -4,6 +4,7 @@ import reactPlugin from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 // import reactRefresh from '@vitejs/plugin-react-refresh';
 import macrosPlugin from 'vite-plugin-babel-macros';
+import checker from 'vite-plugin-checker';
 import { viteExternalsPlugin } from 'vite-plugin-externals';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
@@ -41,7 +42,7 @@ const externalPlugin = viteExternalsPlugin({
 const excludeDeps = ['@apollo/client', `graphql`, 'electron', 'electron-fetch'];
 
 export default defineConfig({
-  plugins: [reactPlugin(), macrosPlugin(), tsconfigPaths(), externalPlugin],
+  plugins: [reactPlugin(), macrosPlugin(), tsconfigPaths(), externalPlugin, checker({ typescript: true })],
   build: {
     sourcemap: true,
     commonjsOptions: {

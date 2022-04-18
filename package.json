@@ -18,14 +18,13 @@
       "test": "yarn workspace @scaffold-eth/hardhat test",
       "start": "yarn workspace @scaffold-eth/vite-app start",
       "compile": "yarn workspace @scaffold-eth/hardhat compile",
-      "contracts:build": "yarn workspace @scaffold-eth/hardhat hardhat compile && yarn workspace @scaffold-eth/vite-app contracts:external",
-      "contracts:rebuild": "yarn workspace @scaffold-eth/hardhat hardhat clean && yarn contracts:build",
+      "contracts:build": "yarn workspace @scaffold-eth/hardhat compile && yarn workspace @scaffold-eth/vite-app contracts:hardhat && yarn workspace @scaffold-eth/vite-app contracts:external",
+      "contracts:rebuild": "yarn workspace @scaffold-eth/hardhat clean && yarn contracts:build",
       "export": "yarn workspace @scaffold-eth/hardhat export",
       "deploy": "yarn workspace @scaffold-eth/hardhat deploy",
       "watch": "yarn workspace @scaffold-eth/hardhat watch",
       "accounts": "yarn workspace @scaffold-eth/hardhat accounts",
       "balance": "yarn workspace @scaffold-eth/hardhat balance",
-      "verify": "yarn workspace @scaffold-eth/hardhat verify",
       "send": "yarn workspace @scaffold-eth/hardhat send",
       "ipfs": "yarn workspace @scaffold-eth/vite-app ipfs",
       "surge": "yarn workspace @scaffold-eth/vite-app surge",
@@ -85,7 +84,7 @@
          "yarn workspace @scaffold-eth/hardhat lint --fix",
          "yarn workspace @scaffold-eth/hardhat format"
       ],
-      "packages/hardhat-ts/scripts/**/*.ts": [
+      "packages/hardhat-ts/tasks/**/*.ts": [
          "yarn workspace @scaffold-eth/hardhat lint --fix",
          "yarn workspace @scaffold-eth/hardhat format"
       ],

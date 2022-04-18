@@ -12,7 +12,7 @@ import { TEthersProvider } from 'eth-hooks/models';
 import React, { FC, ReactElement, useContext, useState } from 'react';
 import { useQuery } from 'react-query';
 
-import { useAppContracts } from '~~/config/contractContext';
+import { useAppContracts } from '~~/components/contractContext';
 
 // const GraphiQL = lazy(() => import('graphiql'));
 

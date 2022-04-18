@@ -1,6 +1,6 @@
 
 import { NETWORKS } from '../constants';
-import { TNetworkInfo } from '../models';
+import { TNetworkInfo } from 'eth-hooks/models';
 import { TNetworkNames } from '../models/TNetworkNames';
 
 export const getNetworks = (additionalFields: Record<string, any>) : Record<string, TNetworkInfo | any> => {

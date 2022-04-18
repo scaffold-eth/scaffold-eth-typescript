@@ -3,8 +3,8 @@ import { useEthersContext } from 'eth-hooks/context';
 import React, { FC } from 'react';
 import { NETWORKS } from 'scaffold-common/src/constants';
 
+import { useAppContracts } from '~~/components/contractContext';
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
-import { useAppContracts } from '~~/config/contractContext';
 export interface IMainPageContractsProps {
   scaffoldAppProviders: IScaffoldAppProviders;
 }

@@ -1,23 +1,22 @@
-import React, { FC, useEffect, useState } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
-import '~~/styles/main-page.css';
-
+import { Menu } from 'antd';
 import { GenericContract } from 'eth-components/ant/generic-contract';
 import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useEventListener } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
 import { useDexEthPrice } from 'eth-hooks/dapps';
 import { asEthersAdaptor } from 'eth-hooks/functions';
+import React, { FC, useEffect, useState } from 'react';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+
+import '~~/styles/main-page.css';
 import { NETWORKS } from 'scaffold-common/src/constants';
 
-import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from './components/main';
+import { MainPageContracts, MainPageFooter, MainPageHeader } from './components/main';
 import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './components/main/hooks/useScaffoldHooksExamples';
 
+import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~~/components/contractContext';
 import { useBurnerFallback } from '~~/components/main/hooks/useBurnerFallback';
 import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
-import { Hints, ExampleUI } from '~~/components/pages';
-import { BURNER_FALLBACK_ENABLED, MAINNET_PROVIDER } from '~~/config/appConfig';
-import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~~/config/contractContext';
+import { BURNER_FALLBACK_ENABLED, MAINNET_PROVIDER } from '~~/config/app.config';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
@@ -28,6 +27,75 @@ import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~~
  *
  * For more
  */
+
+export interface IMainPageMenuProps {
+  route: string;
+  setRoute: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const MainPageMenu: FC<IMainPageMenuProps> = (props) => (
+  <Menu
+    style={{
+      textAlign: 'center',
+    }}
+    selectedKeys={[props.route]}
+    mode="horizontal">
+    <Menu.Item key="/">
+      <Link
+        onClick={(): void => {
+          props.setRoute('/');
+        }}
+        to="/">
+        Profile
+      </Link>
+    </Menu.Item>
+    <Menu.Item key="/my-profile">
+      <Link
+        onClick={(): void => {
+          props.setRoute('/my-profile');
+        }}
+        to="/my-profile">
+        My Profile Details
+      </Link>
+    </Menu.Item>
+    <Menu.Item key="/follow-module">
+      <Link
+        onClick={(): void => {
+          props.setRoute('/follow-module');
+        }}
+        to="/follow-module">
+        ⚙️ PatronFollowModule
+      </Link>
+    </Menu.Item>
+    <Menu.Item key="/lens-hub">
+      <Link
+        onClick={(): void => {
+          props.setRoute('/lens-hub');
+        }}
+        to="/lens-hub">
+        ⚙️ TestProfileModule
+      </Link>
+    </Menu.Item>
+    <Menu.Item key="/mainnetdai">
+      <Link
+        onClick={(): void => {
+          props.setRoute('/mainnetdai');
+        }}
+        to="/mainnetdai">
+        ⚙️ Mainnet DAI
+      </Link>
+    </Menu.Item>
+    {/* <Menu.Item key="/subgraph">
+      <Link
+        onClick={() => {
+          props.setRoute('/subgraph');
+        }}
+        to="/subgraph">
+        Subgraph
+      </Link>
+    </Menu.Item> */}
+  </Menu>
+);
 
 /**
  * The main component
@@ -110,22 +178,7 @@ export const Main: FC = () => {
           <Route exact path="/">
             <MainPageContracts scaffoldAppProviders={scaffoldAppProviders} />
           </Route>
-          {/* you can add routes here like the below examlples */}
-          <Route path="/hints">
-            <Hints
-              address={ethersContext?.account ?? ''}
-              yourCurrentBalance={yourCurrentBalance}
-              mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider}
-              price={ethPrice}
-            />
-          </Route>
-          <Route path="/exampleui">
-            <ExampleUI
-              mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider}
-              yourCurrentBalance={yourCurrentBalance}
-              price={ethPrice}
-            />
-          </Route>
+
           <Route path="/mainnetdai">
             {MAINNET_PROVIDER != null && (
               <GenericContract

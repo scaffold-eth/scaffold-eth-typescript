@@ -14,9 +14,9 @@ import { ethers } from 'ethers';
 import { useContext, useEffect } from 'react';
 import { NETWORKS } from 'scaffold-common/src/constants';
 
+import { useAppContracts } from '~~/components/contractContext';
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
-import { DEBUG } from '~~/config/appConfig';
-import { useAppContracts } from '~~/config/contractContext';
+import { DEBUG } from '~~/config/app.config';
 import { getNetworkInfo } from '~~/functions';
 
 /**
