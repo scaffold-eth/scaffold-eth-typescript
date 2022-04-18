@@ -1,107 +1,38 @@
-import { Menu } from 'antd';
 import { GenericContract } from 'eth-components/ant/generic-contract';
 import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useEventListener } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
 import { useDexEthPrice } from 'eth-hooks/dapps';
 import { asEthersAdaptor } from 'eth-hooks/functions';
 import React, { FC, useEffect, useState } from 'react';
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
 
 import '~~/styles/main-page.css';
 import { NETWORKS } from 'scaffold-common/src/constants';
 
-import { MainPageContracts, MainPageFooter, MainPageHeader } from './components/main';
+import { MainPageFooter, MainPageHeader } from './components/main';
+import { TContractPageList, createPagesAndTabs } from './components/main/createPagesAndTabs';
 import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './components/main/hooks/useScaffoldHooksExamples';
 
 import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~~/components/contractContext';
 import { useBurnerFallback } from '~~/components/main/hooks/useBurnerFallback';
 import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 import { BURNER_FALLBACK_ENABLED, MAINNET_PROVIDER } from '~~/config/app.config';
-
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
- * See config/appConfig.ts for configuration, such as TARGET_NETWORK
- * See MainPageContracts.tsx for your contracts component
- * See contractsConnectorConfig.ts for how to configure your contracts
+ * See config/app.config.ts for configuration, such as TARGET_NETWORK
+ * See appContracts.config.ts and externalContracts.config.ts to configure your contracts
+ * See pageList variable below to configure your pages
+ * See web3Modal.config.ts to configure the web3 modal
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
  *
  * For more
  */
 
-export interface IMainPageMenuProps {
-  route: string;
-  setRoute: React.Dispatch<React.SetStateAction<string>>;
-}
-
-export const MainPageMenu: FC<IMainPageMenuProps> = (props) => (
-  <Menu
-    style={{
-      textAlign: 'center',
-    }}
-    selectedKeys={[props.route]}
-    mode="horizontal">
-    <Menu.Item key="/">
-      <Link
-        onClick={(): void => {
-          props.setRoute('/');
-        }}
-        to="/">
-        Profile
-      </Link>
-    </Menu.Item>
-    <Menu.Item key="/my-profile">
-      <Link
-        onClick={(): void => {
-          props.setRoute('/my-profile');
-        }}
-        to="/my-profile">
-        My Profile Details
-      </Link>
-    </Menu.Item>
-    <Menu.Item key="/follow-module">
-      <Link
-        onClick={(): void => {
-          props.setRoute('/follow-module');
-        }}
-        to="/follow-module">
-        ⚙️ PatronFollowModule
-      </Link>
-    </Menu.Item>
-    <Menu.Item key="/lens-hub">
-      <Link
-        onClick={(): void => {
-          props.setRoute('/lens-hub');
-        }}
-        to="/lens-hub">
-        ⚙️ TestProfileModule
-      </Link>
-    </Menu.Item>
-    <Menu.Item key="/mainnetdai">
-      <Link
-        onClick={(): void => {
-          props.setRoute('/mainnetdai');
-        }}
-        to="/mainnetdai">
-        ⚙️ Mainnet DAI
-      </Link>
-    </Menu.Item>
-    {/* <Menu.Item key="/subgraph">
-      <Link
-        onClick={() => {
-          props.setRoute('/subgraph');
-        }}
-        to="/subgraph">
-        Subgraph
-      </Link>
-    </Menu.Item> */}
-  </Menu>
-);
-
 /**
  * The main component
  * @returns
  */
-export const Main: FC = () => {
+export const MainPage: FC = () => {
   // -----------------------------
   // Providers, signers & wallets
   // -----------------------------
@@ -167,28 +98,46 @@ export const Main: FC = () => {
     setRoute(window.location.pathname);
   }, [setRoute]);
 
+  // -----------------------------
+  // 📃 Page List
+  // -----------------------------
+  // This is the list of pages and tabs
+  const pageList: TContractPageList = {
+    mainPage: {
+      name: 'YourContract',
+      element: (
+        <GenericContract
+          contractName="YourContract"
+          contract={yourContract}
+          mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
+          blockExplorer={scaffoldAppProviders.targetNetwork.blockExplorer}
+        />
+      ),
+    },
+    pages: [
+      {
+        name: 'Dai',
+        element: (
+          <GenericContract
+            contractName="Dai"
+            contract={mainnetDai}
+            mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
+            blockExplorer={scaffoldAppProviders.targetNetwork.blockExplorer}
+          />
+        ),
+      },
+    ],
+  };
+  const { pageElements, menuElement } = createPagesAndTabs(pageList, route, setRoute);
+
   return (
     <div className="App">
       <MainPageHeader scaffoldAppProviders={scaffoldAppProviders} price={ethPrice} />
-
       {/* Routes should be added between the <Switch> </Switch> as seen below */}
       <BrowserRouter>
-        <MainPageMenu route={route} setRoute={setRoute} />
+        {menuElement}
         <Switch>
-          <Route exact path="/">
-            <MainPageContracts scaffoldAppProviders={scaffoldAppProviders} />
-          </Route>
-
-          <Route path="/mainnetdai">
-            {MAINNET_PROVIDER != null && (
-              <GenericContract
-                contractName="DAI"
-                contract={mainnetDai}
-                mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
-                blockExplorer={NETWORKS.mainnet.blockExplorer}
-              />
-            )}
-          </Route>
+          {pageElements}
           {/* Subgraph also disabled in MainPageMenu, it does not work, see github issue! */}
           {/*
           <Route path="/subgraph">
