@@ -3,7 +3,7 @@ import { mnemonicToSeed } from 'bip39';
 import { privateToAddress } from 'ethereumjs-util';
 import { hdkey } from 'ethereumjs-wallet';
 import { Wallet } from 'ethers';
-import { THardhatRuntimeEnvironmentExtended } from 'helpers/types/HardhatRuntimeEnvironmentExtended';
+import { THardhatRuntimeEnvironmentExtended } from 'helpers/types/THardhatRuntimeEnvironmentExtended';
 import { debugLog } from 'tasks/functions/debug';
 
 export const getAccountData = async (mnemonic: string): Promise<{ address: string; wallet: Wallet }> => {

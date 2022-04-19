@@ -2,7 +2,7 @@ import { Provider, TransactionRequest } from '@ethersproject/abstract-provider';
 import { parseUnits } from '@ethersproject/units';
 import { Signer } from 'ethers';
 import { task } from 'hardhat/config';
-import { THardhatRuntimeEnvironmentExtended } from 'helpers/types/HardhatRuntimeEnvironmentExtended';
+import { THardhatRuntimeEnvironmentExtended } from 'helpers/types/THardhatRuntimeEnvironmentExtended';
 import { findFirstAddress } from 'tasks/functions/account';
 import { debugLog } from 'tasks/functions/debug';
 import { getMnemonic } from 'tasks/functions/mnemonic';

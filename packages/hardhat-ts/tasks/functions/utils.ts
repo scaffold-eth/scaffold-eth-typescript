@@ -79,6 +79,6 @@ export async function initEnv(hre: HardhatRuntimeEnvironment): Promise<SignerWit
   return [governance, treasury, user, accounts[4], accounts[5], accounts[6], accounts[7]];
 }
 
-async function delay(ms: number): Promise<void> {
+export async function sleep(ms: number): Promise<void> {
   return await new Promise((resolve) => setTimeout(resolve, ms));
 }

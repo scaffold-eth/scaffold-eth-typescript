@@ -2,7 +2,7 @@ import { formatUnits } from '@ethersproject/units';
 import { ethers } from 'ethers';
 import { task } from 'hardhat/config';
 import { HttpNetworkUserConfig } from 'hardhat/types';
-import { THardhatRuntimeEnvironmentExtended } from 'helpers/types/HardhatRuntimeEnvironmentExtended';
+import { THardhatRuntimeEnvironmentExtended } from 'helpers/types/THardhatRuntimeEnvironmentExtended';
 import * as qrcode from 'qrcode-terminal';
 import { findFirstAddress, getAccountData } from 'tasks/functions/account';
 import { DEBUG } from 'tasks/functions/debug';
