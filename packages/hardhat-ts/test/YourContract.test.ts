@@ -1,5 +1,9 @@
+import { FakeContract, smock } from '@defi-wonderland/smock';
 import { expect } from 'chai';
 import { ethers } from 'hardhat';
+
+chai.should(); // if you like should syntax
+chai.use(smock.matchers);
 
 describe('YourContract', function () {
   it("Should return the new purpose once it's changed", async function () {

@@ -2,9 +2,9 @@ import { Provider, TransactionRequest } from '@ethersproject/abstract-provider';
 import { parseUnits } from '@ethersproject/units';
 import { Signer } from 'ethers';
 import { task } from 'hardhat/config';
-import { findFirstAddr } from 'tasks/functions/account';
+import { findFirstAddress } from 'tasks/functions/account';
+import { debugLog } from 'tasks/functions/debug';
 import { getMnemonic } from 'tasks/functions/mnemonic';
-import { debugLog } from 'tasks/helpers/debug';
 
 import { send } from './functions/send';
 
@@ -64,13 +64,13 @@ task('send', 'Send ETH')
   .addOptionalParam('gasLimit', 'Limit of how much gas to spend')
 
   .setAction(async (taskArgs: { to?: string; from: string; amount?: string; gasPrice?: string; gasLimit?: number; data?: any }, { network, ethers }) => {
-    const from = await findFirstAddr(ethers, taskArgs.from);
+    const from = await findFirstAddress(ethers, taskArgs.from);
     debugLog(`Normalized from address: ${from}`);
     const fromSigner = ethers.provider.getSigner(from);
 
     let to;
     if (taskArgs.to != null) {
-      to = await findFirstAddr(ethers, taskArgs.to);
+      to = await findFirstAddress(ethers, taskArgs.to);
       debugLog(`Normalized to address: ${to}`);
     }
 

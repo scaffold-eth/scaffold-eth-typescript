@@ -94,6 +94,24 @@ export const config: HardhatUserConfig = {
       },
     ],
   },
+  watcher: {
+    'auto-compile': {
+      tasks: ['compile'],
+      files: ['./contracts'],
+      verbose: false,
+    },
+  },
+  gasReporter: {
+    coinmarketcap: process.env.COINMARKETCAP_API_KEY,
+  },
+  dodoc: {
+    runOnCompile: true,
+    debugMode: false,
+    keepFileStructure: true,
+    freshOutput: true,
+    outputDir: './generated/docs',
+    include: ['contracts'],
+  },
   paths: {
     cache: './generated/cache',
     artifacts: './generated/artifacts',

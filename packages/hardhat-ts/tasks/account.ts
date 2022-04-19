@@ -1,9 +1,9 @@
 import { formatUnits } from '@ethersproject/units';
 import { task } from 'hardhat/config';
 import { HttpNetworkUserConfig } from 'hardhat/types';
-import { generate } from 'qrcode-terminal';
-import { findFirstAddr, getAccountData } from 'tasks/functions/account';
-import { DEBUG } from 'tasks/helpers/debug';
+import * as qrcode from 'qrcode-terminal';
+import { findFirstAddress, getAccountData } from 'tasks/functions/account';
+import { DEBUG } from 'tasks/functions/debug';
 
 import { config } from '../hardhat.config';
 
@@ -12,7 +12,7 @@ import { getMnemonic, mnemonicPath } from './functions/mnemonic';
 task('account', 'Get balance informations for the deployment account.', async (_, hre) => {
   const { address } = await getAccountData(getMnemonic());
 
-  generate(address);
+  qrcode.generate(address);
   console.log(`‍📬 Deployer Account is ${address}`);
   for (const n in config.networks) {
     // console.log(config.networks[n],n)
@@ -32,7 +32,7 @@ task('account', 'Get balance informations for the deployment account.', async (_
 task('balance', "Prints an account's balance")
   .addPositionalParam('account', "The account's address")
   .setAction(async (taskArgs: { account: string }, { ethers }) => {
-    const balance = await ethers.provider.getBalance(await findFirstAddr(ethers, taskArgs.account));
+    const balance = await ethers.provider.getBalance(await findFirstAddress(ethers, taskArgs.account));
     console.log(formatUnits(balance, 'ether'), 'ETH');
   });
 

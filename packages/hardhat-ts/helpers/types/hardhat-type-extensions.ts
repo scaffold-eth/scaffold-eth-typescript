@@ -1,8 +1,4 @@
-import '@typechain/hardhat';
-import '@nomiclabs/hardhat-waffle';
-import '@nomiclabs/hardhat-ethers';
-import '@tenderly/hardhat-tenderly';
-import 'hardhat-deploy';
+import '../hardhat-imports';
 
 import { ethers } from 'ethers';
 import { HardhatEthersHelpers } from 'hardhat-deploy-ethers/types';
