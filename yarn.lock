@@ -2236,8 +2236,10 @@ __metadata:
     "@types/chai": ^4.3.0
     "@types/mocha": ^9.1.0
     "@types/node": ^16.11.25
+    "@types/qrcode-terminal": ^0.12.0
     "@typescript-eslint/eslint-plugin": ^5.12.0
     "@typescript-eslint/parser": ^5.12.0
+    bip39: ^3.0.4
     chai: ^4.3.6
     chalk: ^4.1.2
     dotenv: ^14.3.2
@@ -2251,11 +2253,16 @@ __metadata:
     eslint-plugin-node: ^11.1.0
     eslint-plugin-prettier: ^4.0.0
     ethereum-waffle: ^3.4.0
+    ethereumjs-util: ^7.1.4
+    ethereumjs-wallet: ^1.0.2
     ethers: ^5.5.4
     glob: ^7.2.0
     hardhat: ^2.8.4
     hardhat-deploy: ^0.9.29
     hardhat-deploy-ethers: ^0.3.0-beta.13
+    hardhat-preprocessor: ^0.1.4
+    hardhat-storage-layout: ^0.1.6
+    hardhat-watcher: ^2.1.1
     ipfs-http-client: ^54.0.2
     mocha: ^9.2.1
     node-watch: ^0.7.3
@@ -3062,6 +3069,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:11.11.6":
+  version: 11.11.6
+  resolution: "@types/node@npm:11.11.6"
+  checksum: 075f1c011cf568e49701419acbcb55c24906b3bb5a34d9412a3b88f228a7a78401a5ad4d3e1cd6855c99aaea5ef96e37fc86ca097e50f06da92cf822befc1fff
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:^12.12.54, @types/node@npm:^12.12.6":
   version: 12.20.46
   resolution: "@types/node@npm:12.20.46"
@@ -3117,6 +3131,13 @@ __metadata:
   version: 15.7.4
   resolution: "@types/prop-types@npm:15.7.4"
   checksum: ef6e1899e59b876c273811b1bd845022fc66d5a3d11cb38a25b6c566b30514ae38fe20a40f67622f362a4f4f7f9224e22d8da101cff3d6e97e11d7b4c307cfc1
+  languageName: node
+  linkType: hard
+
+"@types/qrcode-terminal@npm:^0.12.0":
+  version: 0.12.0
+  resolution: "@types/qrcode-terminal@npm:0.12.0"
+  checksum: facd2511643ad0b68b1c5ac90f745ca0f1807bb24a3c8b84cd8c486a057759e27b15998afdb930c0d364e2fbf3c0f2d7a2d4bba664e236725b387ce63629c832
   languageName: node
   linkType: hard
 
@@ -5672,6 +5693,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bip39@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "bip39@npm:3.0.4"
+  dependencies:
+    "@types/node": 11.11.6
+    create-hash: ^1.1.0
+    pbkdf2: ^3.0.9
+    randombytes: ^2.0.1
+  checksum: 79ce1600a03d1ba5053bdd4e6323f9463ec340764c7e52918b6c6b9dca81221940f2d9a65656447f108f9bc2c8d9ae8df319cca83bbd1dad63f53ef2768d9bae
+  languageName: node
+  linkType: hard
+
 "bip66@npm:^1.1.5":
   version: 1.1.5
   resolution: "bip66@npm:1.1.5"
@@ -6487,7 +6520,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chokidar@npm:3.5.3, chokidar@npm:^3.0.2, chokidar@npm:^3.4.0, chokidar@npm:^3.5.1, chokidar@npm:^3.5.2, chokidar@npm:^3.5.3":
+"chokidar@npm:3.5.3, chokidar@npm:^3.0.2, chokidar@npm:^3.4.0, chokidar@npm:^3.4.3, chokidar@npm:^3.5.1, chokidar@npm:^3.5.2, chokidar@npm:^3.5.3":
   version: 3.5.3
   resolution: "chokidar@npm:3.5.3"
   dependencies:
@@ -7009,6 +7042,15 @@ __metadata:
   version: 1.1.0
   resolution: "console-control-strings@npm:1.1.0"
   checksum: 8755d76787f94e6cf79ce4666f0c5519906d7f5b02d4b884cf41e11dcd759ed69c57da0670afd9236d229a46e0f9cf519db0cd829c6dca820bb5a5c3def584ed
+  languageName: node
+  linkType: hard
+
+"console-table-printer@npm:^2.9.0":
+  version: 2.11.0
+  resolution: "console-table-printer@npm:2.11.0"
+  dependencies:
+    simple-wcswidth: ^1.0.1
+  checksum: 125797e3b936eb08182cc704eb8d6aaa6ab82c6fb1f739afad3dd06847b8a89227fe80f84ed105accfa6f4487ff12821f931727624bfda67d8a8ebdc1314f168
   languageName: node
   linkType: hard
 
@@ -10264,7 +10306,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ethereumjs-util@npm:^7.0.10, ethereumjs-util@npm:^7.0.2, ethereumjs-util@npm:^7.1.0, ethereumjs-util@npm:^7.1.1, ethereumjs-util@npm:^7.1.3, ethereumjs-util@npm:^7.1.4":
+"ethereumjs-util@npm:^7.0.10, ethereumjs-util@npm:^7.0.2, ethereumjs-util@npm:^7.1.0, ethereumjs-util@npm:^7.1.1, ethereumjs-util@npm:^7.1.2, ethereumjs-util@npm:^7.1.3, ethereumjs-util@npm:^7.1.4":
   version: 7.1.4
   resolution: "ethereumjs-util@npm:7.1.4"
   dependencies:
@@ -10333,6 +10375,22 @@ __metadata:
     utf8: ^3.0.0
     uuid: ^3.3.2
   checksum: 54a9cc8beb8ea55e9be9b024b6ed09349423145fd8c49b8662d60d9258039330163c830fec055f92becc71ea54b430d2ef29f6bd73fa49d93ea854af01d13e58
+  languageName: node
+  linkType: hard
+
+"ethereumjs-wallet@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "ethereumjs-wallet@npm:1.0.2"
+  dependencies:
+    aes-js: ^3.1.2
+    bs58check: ^2.1.2
+    ethereum-cryptography: ^0.1.3
+    ethereumjs-util: ^7.1.2
+    randombytes: ^2.1.0
+    scrypt-js: ^3.0.1
+    utf8: ^3.0.0
+    uuid: ^8.3.2
+  checksum: 555effe571c633ca9189e08639928e7bfcb601474f5a37653a3d028b06a10fb8577408c32d425ccecb3ac25d7165322cb9786239fa09ce276532d262206feb8c
   languageName: node
   linkType: hard
 
@@ -11912,6 +11970,39 @@ __metadata:
     "@ethersproject/hardware-wallets": ^5.0.14
     hardhat: ^2.6.8
   checksum: 065495376ccb9c1508fec16eeaf54f86d4cb40ccbdd9f2debceb90d8c0b3d75be1c163c08000d3190bd3729b79ba8f47ddfab3d448b918dafef2cc441a5eb487
+  languageName: node
+  linkType: hard
+
+"hardhat-preprocessor@npm:^0.1.4":
+  version: 0.1.4
+  resolution: "hardhat-preprocessor@npm:0.1.4"
+  dependencies:
+    murmur-128: ^0.2.1
+  peerDependencies:
+    hardhat: ^2.0.5
+  checksum: 1dcc8dee877661d5e52fd6107bb22d94a9f207eb685db655a2210991c8e3ae079a0a38b8c327cafe4520336c38406371f1f11ddf997af55c6dbe55cc588d9c56
+  languageName: node
+  linkType: hard
+
+"hardhat-storage-layout@npm:^0.1.6":
+  version: 0.1.6
+  resolution: "hardhat-storage-layout@npm:0.1.6"
+  dependencies:
+    console-table-printer: ^2.9.0
+  peerDependencies:
+    hardhat: ^2.0.3
+  checksum: 041041582ca32ccce90a71a8c243c8cbf0cb09d908fcf69e3994b2805b84f37310cc825ad63ad47ccb803260a6c94237881b2ed9098ac4704e022c19045cd075
+  languageName: node
+  linkType: hard
+
+"hardhat-watcher@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "hardhat-watcher@npm:2.1.1"
+  dependencies:
+    chokidar: ^3.4.3
+  peerDependencies:
+    hardhat: ^2.0.0
+  checksum: 1bd2e5b136c189260b9c38995e264eb76ee4b510abae79fe9193ced4817d01c5568eb1944bb9b83628448d927c689c3aa9aed6205ff7e6ad17aa6f14b77a2031
   languageName: node
   linkType: hard
 
@@ -20450,6 +20541,13 @@ __metadata:
   dependencies:
     is-arrayish: ^0.3.1
   checksum: a7f3f2ab5c76c4472d5c578df892e857323e452d9f392e1b5cf74b74db66e6294a1e1b8b390b519fa1b96b5b613f2a37db6cffef52c3f1f8f3c5ea64eb2d54c0
+  languageName: node
+  linkType: hard
+
+"simple-wcswidth@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "simple-wcswidth@npm:1.0.1"
+  checksum: dc5bf4cb131d9c386825d1355add2b1ecc408b37dc2c2334edd7a1a4c9f527e6b594dedcdbf6d949bce2740c3a332e39af1183072a2d068e40d9e9146067a37f
   languageName: node
   linkType: hard
 

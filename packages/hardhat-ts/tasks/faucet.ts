@@ -1,8 +1,5 @@
 import { ethers } from 'hardhat';
 import { task } from 'hardhat/config';
-import { string } from 'hardhat/internal/core/params/argumentTypes';
-import { getAccountData } from 'tasks/functions/getAccountData';
-import { getMnemonic } from 'tasks/functions/mnemonic';
 
 task('faucet', 'Sends ETH and tokens to an address')
   .addPositionalParam('receiver', 'The address that will receive them')

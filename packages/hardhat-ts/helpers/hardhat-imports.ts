@@ -4,3 +4,4 @@ import '@nomiclabs/hardhat-ethers';
 import '@tenderly/hardhat-tenderly';
 import 'hardhat-deploy';
 import 'solidity-coverage';
+import 'hardhat-watcher';

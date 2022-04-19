@@ -65,7 +65,7 @@ export const SUBGRAPH_URI = 'http://localhost:8000/subgraphs/name/scaffold-eth/y
  */
 
 /**
- * See contractConnectorConfig.ts for your contract configuration
+ * See appContractsConfig.ts for your contract configuration
  */
 
 /**

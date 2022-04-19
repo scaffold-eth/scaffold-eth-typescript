@@ -41,7 +41,7 @@
     "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/no-unsafe-call": "warn",
     "@typescript-eslint/unbound-method": 0,
-    "@typescript-eslint/restrict-template-expressions": ["error", { "allowBoolean": true, "allowNumber": true }],
+    "@typescript-eslint/restrict-template-expressions": ["warn", { "allowBoolean": true, "allowNumber": true }],
     "no-param-reassign": "error",
     "no-duplicate-imports": "warn",
     //"dynamic-import-chunkname": "warn",

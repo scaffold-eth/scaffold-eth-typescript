@@ -10,7 +10,7 @@ import { appContractsConfig, TAppConnectorList } from '~~/config/appContracts.co
 
 /**
  * #### Summary
- * Call contractContextFactory with the `contractConnectorConfig` from `contractConnectorConfig.ts`
+ * Call contractContextFactory with the `appContractsConfig` from `appContracts.config.ts`
  *
  * ##### Notes
  * - This will create your ContractContext used by App.tsx
