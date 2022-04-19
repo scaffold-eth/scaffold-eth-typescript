@@ -2,7 +2,7 @@ import { formatUnits } from '@ethersproject/units';
 import { ethers } from 'ethers';
 import { task } from 'hardhat/config';
 import { HttpNetworkUserConfig } from 'hardhat/types';
-import { HardhatRuntimeEnvironmentExtended } from 'helpers/types/hardhat-type-extensions';
+import { THardhatRuntimeEnvironmentExtended } from 'helpers/types/HardhatRuntimeEnvironmentExtended';
 import * as qrcode from 'qrcode-terminal';
 import { findFirstAddress, getAccountData } from 'tasks/functions/account';
 import { DEBUG } from 'tasks/functions/debug';
@@ -33,7 +33,7 @@ task('account', 'Get balance informations for the deployment account.', async (_
 
 task('balance', "Prints an account's balance")
   .addPositionalParam('account', "The account's address")
-  .setAction(async (taskArgs: { account: string }, hre: HardhatRuntimeEnvironmentExtended) => {
+  .setAction(async (taskArgs: { account: string }, hre: THardhatRuntimeEnvironmentExtended) => {
     const balance = await hre.ethers.provider.getBalance(await findFirstAddress(hre, taskArgs.account));
     console.log(formatUnits(balance, 'ether'), 'ETH');
   });

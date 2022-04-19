@@ -3,7 +3,7 @@ import { mnemonicToSeed } from 'bip39';
 import { privateToAddress } from 'ethereumjs-util';
 import { hdkey } from 'ethereumjs-wallet';
 import { Wallet } from 'ethers';
-import { HardhatRuntimeEnvironmentExtended } from 'helpers/types/hardhat-type-extensions';
+import { THardhatRuntimeEnvironmentExtended } from 'helpers/types/HardhatRuntimeEnvironmentExtended';
 import { debugLog } from 'tasks/functions/debug';
 
 export const getAccountData = async (mnemonic: string): Promise<{ address: string; wallet: Wallet }> => {
@@ -22,7 +22,7 @@ export const getAccountData = async (mnemonic: string): Promise<{ address: strin
 
   return { address, wallet: Wallet.fromMnemonic(mnemonic, fullPath) };
 };
-export const findFirstAddress = async (hre: HardhatRuntimeEnvironmentExtended, addr: string): Promise<string> => {
+export const findFirstAddress = async (hre: THardhatRuntimeEnvironmentExtended, addr: string): Promise<string> => {
   if (isAddress(addr)) {
     return getAddress(addr);
   }

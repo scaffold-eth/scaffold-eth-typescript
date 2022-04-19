@@ -2,7 +2,7 @@ import { Provider, TransactionRequest } from '@ethersproject/abstract-provider';
 import { parseUnits } from '@ethersproject/units';
 import { Signer } from 'ethers';
 import { task } from 'hardhat/config';
-import { HardhatRuntimeEnvironmentExtended } from 'helpers/types/hardhat-type-extensions';
+import { THardhatRuntimeEnvironmentExtended } from 'helpers/types/HardhatRuntimeEnvironmentExtended';
 import { findFirstAddress } from 'tasks/functions/account';
 import { debugLog } from 'tasks/functions/debug';
 import { getMnemonic } from 'tasks/functions/mnemonic';
@@ -67,7 +67,7 @@ task('send', 'Send ETH')
   .setAction(
     async (
       taskArgs: { to?: string; from: string; amount?: string; gasPrice?: string; gasLimit?: number; data?: any },
-      hre: HardhatRuntimeEnvironmentExtended
+      hre: THardhatRuntimeEnvironmentExtended
     ) => {
       const { network, ethers } = hre;
       const from = await findFirstAddress(hre, taskArgs.from);
