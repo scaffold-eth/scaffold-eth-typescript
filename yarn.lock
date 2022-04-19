@@ -1824,6 +1824,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@scaffold-eth/services@workspace:packages/services":
+  version: 0.0.0-use.local
+  resolution: "@scaffold-eth/services@workspace:packages/services"
+  languageName: unknown
+  linkType: soft
+
 "@scaffold-eth/subgraph@workspace:packages/subgraph":
   version: 0.0.0-use.local
   resolution: "@scaffold-eth/subgraph@workspace:packages/subgraph"
