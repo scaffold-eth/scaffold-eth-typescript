@@ -1,3 +1,4 @@
+import '../helpers/hardhat-imports';
 import { FakeContract, smock } from '@defi-wonderland/smock';
 import { expect } from 'chai';
 import { ethers } from 'hardhat';

@@ -47,7 +47,7 @@ Everything you need to build on Ethereum! 🚀 Quickly experiment with Solidity 
 - 📝 Edit your frontend `MainPage.tsx` in `packages/vite-app-ts/src`
 - 💼 Edit your deployment scripts in `packages/hardhat-ts/deploy`
 - 📱 Open http://localhost:3000 to see the app
-- 👷🏽‍♂️ run `yarn hardhat` to get a list of all the tasks
+- 👷🏽‍♂️ run `yarn hardhat` to get a list of all the tasks.  Run `yarn hardhat taskname` to run the task.
 
 ## Guides
 

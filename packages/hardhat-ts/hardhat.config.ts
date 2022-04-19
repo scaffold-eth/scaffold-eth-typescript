@@ -94,6 +94,18 @@ export const config: HardhatUserConfig = {
       },
     ],
   },
+  mocha: {
+    bail: false,
+    allowUncaught: false,
+    require: ['ts-node/register'],
+    timeout: 30000,
+    slow: 9900,
+    reporter: process.env.GITHUB_ACTIONS === 'true' ? 'mocha-junit-reporter' : 'spec',
+    reporterOptions: {
+      mochaFile: 'testresult.xml',
+      toConsole: true,
+    },
+  },
   watcher: {
     'auto-compile': {
       tasks: ['compile'],
