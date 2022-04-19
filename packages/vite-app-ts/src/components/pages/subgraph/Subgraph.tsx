@@ -29,6 +29,11 @@ export interface ISubgraphProps {
   mainnetProvider: TEthersProvider | undefined;
 }
 
+/**
+ * Subgraph also disabled in MainPageMenu, it does not work, see github issue https://github.com/scaffold-eth/scaffold-eth-typescript/issues/48!
+ * @param props
+ * @returns
+ */
 export const Subgraph: FC<ISubgraphProps> = (props) => {
   const ethComponentsSettings = useContext(EthComponentsSettingsContext);
   const graphQLFetcher = async (graphQLParams: any): Promise<Record<string, any>> => {

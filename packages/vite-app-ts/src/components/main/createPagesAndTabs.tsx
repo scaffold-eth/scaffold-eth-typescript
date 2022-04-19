@@ -19,6 +19,7 @@ export type TContractPageList = {
    */
   pages: TContractPage[];
 };
+
 /**
  * Helper function that creates pages with routes.  It also creates tabs (menu items) associated with those routes, so that you can click on them to navigate to the page.
  * @param pageList

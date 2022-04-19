@@ -1,3 +1,4 @@
+import '~~/styles/main-page.css';
 import { GenericContract } from 'eth-components/ant/generic-contract';
 import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useEventListener } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
@@ -5,18 +6,16 @@ import { useDexEthPrice } from 'eth-hooks/dapps';
 import { asEthersAdaptor } from 'eth-hooks/functions';
 import React, { FC, useEffect, useState } from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
-
-import '~~/styles/main-page.css';
 import { NETWORKS } from 'scaffold-common/src/constants';
 
-import { MainPageFooter, MainPageHeader } from './components/main';
-import { TContractPageList, createPagesAndTabs } from './components/main/createPagesAndTabs';
+import { MainPageFooter, MainPageHeader, createPagesAndTabs, TContractPageList } from './components/main';
 import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './components/main/hooks/useScaffoldHooksExamples';
 
 import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~~/components/contractContext';
 import { useBurnerFallback } from '~~/components/main/hooks/useBurnerFallback';
 import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 import { BURNER_FALLBACK_ENABLED, MAINNET_PROVIDER } from '~~/config/app.config';
+
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
  * See config/app.config.ts for configuration, such as TARGET_NETWORK
@@ -138,7 +137,7 @@ export const MainPage: FC = () => {
         {menuElement}
         <Switch>
           {pageElements}
-          {/* Subgraph also disabled in MainPageMenu, it does not work, see github issue! */}
+          {/* Subgraph also disabled in MainPageMenu, it does not work, see github issue https://github.com/scaffold-eth/scaffold-eth-typescript/issues/48! */}
           {/*
           <Route path="/subgraph">
             <Subgraph subgraphUri={subgraphUri} mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider} />
