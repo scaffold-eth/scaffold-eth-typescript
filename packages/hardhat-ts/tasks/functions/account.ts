@@ -3,7 +3,7 @@ import { mnemonicToSeed } from 'bip39';
 import { privateToAddress } from 'ethereumjs-util';
 import { hdkey } from 'ethereumjs-wallet';
 import { Wallet } from 'ethers';
-import { THardhatDeployEthers } from 'helpers/types/hardhat-type-extensions';
+import { HardhatRuntimeEnvironmentExtended } from 'helpers/types/hardhat-type-extensions';
 import { debugLog } from 'tasks/functions/debug';
 
 export const getAccountData = async (mnemonic: string): Promise<{ address: string; wallet: Wallet }> => {
@@ -22,14 +22,14 @@ export const getAccountData = async (mnemonic: string): Promise<{ address: strin
 
   return { address, wallet: Wallet.fromMnemonic(mnemonic, fullPath) };
 };
-export const findFirstAddress = async (ethers: THardhatDeployEthers, addr: string): Promise<string> => {
+export const findFirstAddress = async (hre: HardhatRuntimeEnvironmentExtended, addr: string): Promise<string> => {
   if (isAddress(addr)) {
     return getAddress(addr);
   }
-  const accounts = await ethers.provider.listAccounts();
+  const accounts = await hre.ethers.provider.listAccounts();
   if (accounts !== undefined) {
     const temp: string | undefined = accounts.find((f: string) => f === addr);
-    if (temp != null && ethers.utils.isAddress(temp)) return temp[0];
+    if (temp != null && hre.ethers.utils.isAddress(temp)) return temp[0];
   }
   throw new Error(`Could not normalize address: ${addr}`);
 };

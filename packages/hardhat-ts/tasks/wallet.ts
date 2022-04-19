@@ -2,6 +2,7 @@ import { Provider, TransactionRequest } from '@ethersproject/abstract-provider';
 import { parseUnits } from '@ethersproject/units';
 import { Signer } from 'ethers';
 import { task } from 'hardhat/config';
+import { HardhatRuntimeEnvironmentExtended } from 'helpers/types/hardhat-type-extensions';
 import { findFirstAddress } from 'tasks/functions/account';
 import { debugLog } from 'tasks/functions/debug';
 import { getMnemonic } from 'tasks/functions/mnemonic';
@@ -63,33 +64,39 @@ task('send', 'Send ETH')
   .addOptionalParam('gasPrice', 'Price you are willing to pay in gwei')
   .addOptionalParam('gasLimit', 'Limit of how much gas to spend')
 
-  .setAction(async (taskArgs: { to?: string; from: string; amount?: string; gasPrice?: string; gasLimit?: number; data?: any }, { network, ethers }) => {
-    const from = await findFirstAddress(ethers, taskArgs.from);
-    debugLog(`Normalized from address: ${from}`);
-    const fromSigner = ethers.provider.getSigner(from);
+  .setAction(
+    async (
+      taskArgs: { to?: string; from: string; amount?: string; gasPrice?: string; gasLimit?: number; data?: any },
+      hre: HardhatRuntimeEnvironmentExtended
+    ) => {
+      const { network, ethers } = hre;
+      const from = await findFirstAddress(hre, taskArgs.from);
+      debugLog(`Normalized from address: ${from}`);
+      const fromSigner = ethers.provider.getSigner(from);
 
-    let to;
-    if (taskArgs.to != null) {
-      to = await findFirstAddress(ethers, taskArgs.to);
-      debugLog(`Normalized to address: ${to}`);
+      let to;
+      if (taskArgs.to != null) {
+        to = await findFirstAddress(hre, taskArgs.to);
+        debugLog(`Normalized to address: ${to}`);
+      }
+
+      const txRequest: TransactionRequest = {
+        from: await fromSigner.getAddress(),
+        to,
+        value: parseUnits(taskArgs.amount != null ? taskArgs.amount : '0', 'ether').toHexString(),
+        nonce: await fromSigner.getTransactionCount(),
+        gasPrice: parseUnits(taskArgs.gasPrice != null ? taskArgs.gasPrice : '1.001', 'gwei').toHexString(),
+        gasLimit: taskArgs.gasLimit != null ? taskArgs.gasLimit : 24000,
+        chainId: network.config.chainId,
+      };
+
+      if (taskArgs.data != null) {
+        txRequest.data = taskArgs.data;
+        debugLog(`Adding data to payload: ${txRequest.data}`);
+      }
+      debugLog(`${(txRequest.gasPrice as any) / 1000000000} gwei`);
+      debugLog(JSON.stringify(txRequest, null, 2));
+
+      return await send(fromSigner as Signer, txRequest);
     }
-
-    const txRequest: TransactionRequest = {
-      from: await fromSigner.getAddress(),
-      to,
-      value: parseUnits(taskArgs.amount != null ? taskArgs.amount : '0', 'ether').toHexString(),
-      nonce: await fromSigner.getTransactionCount(),
-      gasPrice: parseUnits(taskArgs.gasPrice != null ? taskArgs.gasPrice : '1.001', 'gwei').toHexString(),
-      gasLimit: taskArgs.gasLimit != null ? taskArgs.gasLimit : 24000,
-      chainId: network.config.chainId,
-    };
-
-    if (taskArgs.data != null) {
-      txRequest.data = taskArgs.data;
-      debugLog(`Adding data to payload: ${txRequest.data}`);
-    }
-    debugLog(`${(txRequest.gasPrice as any) / 1000000000} gwei`);
-    debugLog(JSON.stringify(txRequest, null, 2));
-
-    return await send(fromSigner as Signer, txRequest);
-  });
+  );

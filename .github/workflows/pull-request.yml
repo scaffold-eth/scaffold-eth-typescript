@@ -41,6 +41,7 @@ jobs:
       - name: 'hardhat compile'  
         run: |
           yarn compile --force
+          yarn hardhat
 
       - name: 'build contracts'
         run: |
