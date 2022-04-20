@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": ["node", "ethers"],
+    "types": ["node", "ethers", "chai", "mocha"],
     "allowJs": false,
     "skipLibCheck": false,
     "esModuleInterop": true,
@@ -29,5 +29,13 @@
     }
   },
   "include": ["types", "scripts", "test", "helpers", "./hardhat.config.ts", "deploy", "tasks", "scripts"],
-  "exclude": ["**/node_modules", ".husky", "./src/styles/css", "./tailwind.config.js"]
+  "exclude": ["**/node_modules"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    },
+    "moduleTypes": {
+      "**/*": "cjs"
+    }
+  }
 }

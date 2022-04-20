@@ -117,7 +117,7 @@ export const config: HardhatUserConfig = {
     coinmarketcap: process.env.COINMARKETCAP_API_KEY,
   },
   dodoc: {
-    runOnCompile: true,
+    runOnCompile: false,
     debugMode: false,
     keepFileStructure: true,
     freshOutput: true,

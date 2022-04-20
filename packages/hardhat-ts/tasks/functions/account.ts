@@ -2,7 +2,8 @@ import { isAddress, getAddress } from '@ethersproject/address';
 import { mnemonicToSeed } from 'bip39';
 import { privateToAddress } from 'ethereumjs-util';
 import { hdkey } from 'ethereumjs-wallet';
-import { Wallet } from 'ethers';
+import { ethers, Wallet } from 'ethers';
+import { keccak256, randomBytes } from 'ethers/lib/utils';
 import { THardhatRuntimeEnvironmentExtended } from 'helpers/types/THardhatRuntimeEnvironmentExtended';
 import { debugLog } from 'tasks/functions/debug';
 
@@ -32,4 +33,12 @@ export const findFirstAddress = async (hre: THardhatRuntimeEnvironmentExtended, 
     if (temp != null && hre.ethers.utils.isAddress(temp)) return temp[0];
   }
   throw new Error(`Could not normalize address: ${addr}`);
+};
+
+export const createAddress = (from: string, initCode: string): { address: string; from: string; salt: Uint8Array; initCodeHash: string; initCode: string } => {
+  const salt = randomBytes(32);
+  const initCodeHash = keccak256(initCode);
+
+  const address = ethers.utils.getCreate2Address(from, salt, initCodeHash);
+  return { address, from, salt, initCodeHash, initCode };
 };

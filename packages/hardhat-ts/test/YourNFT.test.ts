@@ -1,13 +1,11 @@
 import '../helpers/hardhat-imports';
 
-import { use, expect } from 'chai';
-import { solidity } from 'ethereum-waffle';
-import { keccak256 } from 'ethers/lib/utils';
-import { ethers, network, run } from 'hardhat';
+import { expect } from 'chai';
+import { ethers, run } from 'hardhat';
 
 import { YourNFT } from '../generated/contract-types/YourNFT';
 
-use(solidity);
+import './helpers/chai-imports';
 
 //
 // this script executes when you run 'yarn test'

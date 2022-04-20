@@ -1,12 +1,11 @@
 import '../helpers/hardhat-imports';
 import { FakeContract, smock } from '@defi-wonderland/smock';
-import { expect } from 'chai';
+import { expect, use, should } from 'chai';
 import { ethers } from 'hardhat';
 
 import { YourContract } from '../generated/contract-types/YourContract';
 
-chai.should(); // if you like should syntax
-chai.use(smock.matchers);
+import './helpers/chai-imports';
 
 describe('YourContract', function () {
   let yourContract: YourContract;
