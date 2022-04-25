@@ -41,7 +41,7 @@
       "run-graph-node": "yarn workspace @scaffold-eth/services run-graph-node",
       "remove-graph-node": "yarn workspace @scaffold-eth/services remove-graph-node",
       "clean-graph-node": "yarn workspace @scaffold-eth/services clean-graph-node",
-      "graph-prepare": "mustache packages/subgraph/config/config.json packages/subgraph/src/subgraph.template.yaml > packages/subgraph/subgraph.yaml",
+      "graph-prepare": "yarn workspace @scaffold-eth/subgraph prepare",
       "graph-codegen": "yarn workspace @scaffold-eth/subgraph graph codegen",
       "graph-build": "yarn workspace @scaffold-eth/subgraph graph build",
       "graph-create-local": "yarn workspace @scaffold-eth/subgraph graph create --node http://localhost:8020/ scaffold-eth/your-contract",
@@ -59,6 +59,7 @@
          "packages/hardhat-ts",
          "packages/vite-app-ts",
          "packages/services/*",
+         "packages/services",
          "packages/subgraph"
       ]
    },
