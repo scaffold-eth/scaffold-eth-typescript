@@ -15,10 +15,15 @@ describe('🚩 Challenge 0: 🎟 Simple NFT Example 🤓', function () {
 
   describe('YourNFT', function () {
     let yourNFTContract: YourNFT;
-    beforeEach(async () => {
+
+    before(async () => {
       const { deployer } = await getHardhatSigners(hre);
       const factory = new YourNFT__factory(deployer);
       yourNFTContract = await factory.deploy();
+    });
+
+    beforeEach(async () => {
+      // put stuff you need to run before each test here
     });
 
     describe('mintItem()', function () {
@@ -40,13 +45,6 @@ describe('🚩 Challenge 0: 🎟 Simple NFT Example 🤓', function () {
 
         console.log('\t', ' 🔎 Checking new balance: ', startingBalance.toNumber());
         expect(await yourNFTContract.balanceOf(user1.address)).to.equal(startingBalance.add(1));
-      });
-
-      it('Should track tokens of owner by index', async function () {
-        const { user1 } = await getHardhatSigners(hre);
-        const startingBalance = await yourNFTContract.balanceOf(user1.address);
-        const token = await yourNFTContract.tokenOfOwnerByIndex(user1.address, startingBalance.sub(1));
-        expect(token.toNumber()).to.greaterThan(0);
       });
     });
   });

@@ -9,7 +9,11 @@ import { viteExternalsPlugin } from 'vite-plugin-externals';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 const isDev = process.env.ENVIRONMENT === 'DEVELOPMENT';
+
 console.log('env.dev:', process.env.ENVIRONMENT, ' isDev:', isDev);
+console.log();
+console.log('Make sure to build the contracts with `yarn contracts:build` and deploy them with `yarn deploy`');
+console.log();
 
 /**
  * browserify for web3 components

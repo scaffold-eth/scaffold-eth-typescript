@@ -10,16 +10,23 @@ import { YourContract } from '../generated/contract-types/YourContract';
 
 describe('YourContract', function () {
   let yourContract: YourContract;
-  beforeEach(async () => {
+
+  before(async () => {
     const { deployer } = await getHardhatSigners(hre);
     const factory = new YourContract__factory(deployer);
     yourContract = await factory.deploy();
   });
+
+  beforeEach(async () => {
+    // put stuff you need to run before each test here
+  });
+
   it("Should return the new purpose once it's changed", async function () {
     await yourContract.deployed();
     expect(await yourContract.purpose()).to.equal('Building Unstoppable Apps!!!');
 
-    await yourContract.setPurpose('Hola, mundo!');
-    expect(await yourContract.purpose()).to.equal('Hola, mundo!');
+    const newPurpose = 'Hola, mundo!';
+    await yourContract.setPurpose(newPurpose);
+    expect(await yourContract.purpose()).to.equal(newPurpose);
   });
 });

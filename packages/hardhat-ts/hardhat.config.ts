@@ -73,7 +73,7 @@ export const config: HardhatUserConfig = {
         settings: {
           optimizer: {
             enabled: true,
-            runs: 500,
+            runs: 250,
           },
           outputSelection: {
             '*': {
@@ -105,6 +105,7 @@ export const config: HardhatUserConfig = {
   },
   gasReporter: {
     coinmarketcap: process.env.COINMARKETCAP_API_KEY,
+    currency: 'USD',
   },
   dodoc: {
     runOnCompile: false,
