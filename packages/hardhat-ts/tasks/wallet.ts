@@ -49,9 +49,11 @@ task('fundedwallet', 'Create a wallet (pk) link and fund it with deployer?')
       console.log(`💵 Sending ${amount} ETH to ${randomWallet.address} using deployer account`);
       const sendresult = await deployerWallet.sendTransaction(tx);
       console.log(`\n${url}/pk#${privateKey}\n`);
+      console.log(sendresult);
     } else {
       console.log(`💵 Sending ${amount} ETH to ${randomWallet.address} using local node`);
       console.log(`\n${url}/pk#${privateKey}\n`);
+
       return await send(ethers.provider.getSigner() as Signer, tx);
     }
   });
