@@ -1,21 +1,12 @@
 import '../helpers/hardhat-imports';
-
-import { expect } from 'chai';
-import { ethers, run } from 'hardhat';
-
-import { YourNFT } from '../generated/contract-types/YourNFT';
-
 import './helpers/chai-imports';
 
-//
-// this script executes when you run 'yarn test'
-//
-// you can also test remote submissions like:
-// CONTRACT_ADDRESS=0x43Ab1FCd430C1f20270C2470f857f7a006117bbb yarn test --network rinkeby
-//
-// you can even run mint commands if the tests pass like:
-// yarn test && echo "PASSED" || echo "FAILED"
-//
+import { expect } from 'chai';
+import { YourNFT__factory } from 'generated/contract-types';
+import hre, { ethers } from 'hardhat';
+import { getHardhatSigners } from 'tasks/functions/accounts';
+
+import { YourNFT } from '../generated/contract-types/YourNFT';
 
 describe('🚩 Challenge 0: 🎟 Simple NFT Example 🤓', function () {
   this.timeout(180000);
@@ -25,16 +16,9 @@ describe('🚩 Challenge 0: 🎟 Simple NFT Example 🤓', function () {
   describe('YourNFT', function () {
     let yourNFTContract: YourNFT;
     beforeEach(async () => {
-      const from = '0x8ba1f109551bD432803012645Ac136ddd64DBA72';
-      const salt = Math.random().toString();
-      const initCode = '0x6394198df16000526103ff60206004601c335afa6040516060f3';
-      const initCodeHash = keccak256(initCode);
-
-      const address = ethers.utils.getCreate2Address(from, salt, initCodeHash);
-      await run('mint', { toAddress: address });
-
-      const factory = await ethers.getContractFactory('YourNFT');
-      yourNFTContract = (await factory.deploy(address)) as YourNFT;
+      const { deployer } = await getHardhatSigners(hre);
+      const factory = new YourNFT__factory(deployer);
+      yourNFTContract = await factory.deploy();
     });
 
     describe('mintItem()', function () {

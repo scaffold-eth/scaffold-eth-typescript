@@ -4,6 +4,7 @@ import { privateToAddress } from 'ethereumjs-util';
 import { hdkey } from 'ethereumjs-wallet';
 import { ethers, Wallet } from 'ethers';
 import { keccak256, randomBytes } from 'ethers/lib/utils';
+import { SignerWithAddress } from 'hardhat-deploy-ethers/signers';
 import { THardhatRuntimeEnvironmentExtended } from 'helpers/types/THardhatRuntimeEnvironmentExtended';
 import { debugLog } from 'tasks/functions/debug';
 
@@ -41,4 +42,28 @@ export const createAddress = (from: string, initCode: string): { address: string
 
   const address = ethers.utils.getCreate2Address(from, salt, initCodeHash);
   return { address, from, salt, initCodeHash, initCode };
+};
+
+export interface THardhatAccounts {
+  deployer: SignerWithAddress;
+  user1: SignerWithAddress;
+  user2: SignerWithAddress;
+  user3: SignerWithAddress;
+  user4: SignerWithAddress;
+  user5: SignerWithAddress;
+  governance: SignerWithAddress;
+}
+
+export const getHardhatSigners = async (hre: THardhatRuntimeEnvironmentExtended): Promise<THardhatAccounts> => {
+  const accounts = await hre.getNamedAccounts();
+
+  return {
+    deployer: await hre.ethers.getSigner(accounts.deployer),
+    user1: await hre.ethers.getSigner(accounts.user1),
+    user2: await hre.ethers.getSigner(accounts.user2),
+    user3: await hre.ethers.getSigner(accounts.user3),
+    user4: await hre.ethers.getSigner(accounts.user4),
+    user5: await hre.ethers.getSigner(accounts.user5),
+    governance: await hre.ethers.getSigner(accounts.governance),
+  };
 };

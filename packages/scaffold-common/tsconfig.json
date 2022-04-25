@@ -27,7 +27,7 @@
     "types": [],
     "typeRoots": ["node_modules/@types"],
   },
-  "include": ["src", ],
+  "include": ["src"],
   "exclude": [
     "lib/**/*",
     "node_modules",

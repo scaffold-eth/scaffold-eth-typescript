@@ -58,5 +58,6 @@
    "[solidity]": {
      "editor.defaultFormatter": "JuanBlanco.solidity"
    },
-   "solidity.defaultCompiler": "localNodeModule"
+   "solidity.defaultCompiler": "localNodeModule",
+   "mochaExplorer.configFile": "./packages/hardhat-ts/.mocharc.json",
 }

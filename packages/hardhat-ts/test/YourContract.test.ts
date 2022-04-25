@@ -1,17 +1,19 @@
 import '../helpers/hardhat-imports';
-import { FakeContract, smock } from '@defi-wonderland/smock';
-import { expect, use, should } from 'chai';
-import { ethers } from 'hardhat';
+import './helpers/chai-imports';
+
+import { expect } from 'chai';
+import { YourContract__factory } from 'generated/contract-types';
+import hre from 'hardhat';
+import { getHardhatSigners } from 'tasks/functions/accounts';
 
 import { YourContract } from '../generated/contract-types/YourContract';
-
-import './helpers/chai-imports';
 
 describe('YourContract', function () {
   let yourContract: YourContract;
   beforeEach(async () => {
-    const factory = await ethers.getContractFactory('YourContract');
-    yourContract = (await factory.deploy()) as YourContract;
+    const { deployer } = await getHardhatSigners(hre);
+    const factory = new YourContract__factory(deployer);
+    yourContract = await factory.deploy();
   });
   it("Should return the new purpose once it's changed", async function () {
     await yourContract.deployed();
