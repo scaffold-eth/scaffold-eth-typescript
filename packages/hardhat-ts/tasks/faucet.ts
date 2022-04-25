@@ -1,4 +1,3 @@
-import { ethers } from 'hardhat';
 import { task } from 'hardhat/config';
 
 task('faucet', 'Sends ETH and tokens to an address')
