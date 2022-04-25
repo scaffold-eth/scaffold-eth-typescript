@@ -3,6 +3,7 @@
   "license": "UNLICENSED",
   "version": "1.0.0",
   "scripts": {
+    "prepare": "mustache config/config.json src/subgraph.template.yaml > subgraph.yaml",
     "codegen": "graph codegen",
     "build": "graph build",
     "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ GITHUB_USERNAME/your-contract",

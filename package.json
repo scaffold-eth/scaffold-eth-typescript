@@ -30,6 +30,7 @@
       "surge": "yarn workspace @scaffold-eth/vite-app surge",
       "s3": "yarn workspace @scaffold-eth/vite-app s3",
       "ship": "yarn workspace @scaffold-eth/vite-app ship",
+      "subgraph": "yarn workspace @scaffold-eth/subgraph",
       "prepare": "husky install",
       "postinstall": "husky install"
    },
@@ -38,6 +39,7 @@
          "packages/hardhat-ts",
          "packages/vite-app-ts",
          "packages/services/*",
+         "packages/services",
          "packages/subgraph",
          "packages/*"
       ]

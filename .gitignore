@@ -17,6 +17,7 @@ tenderly.yaml
 yalc.lock
 packages/vite-app-ts/dist
 packages/hardhat-ts/mnemonic.secret
+packages/**/data
 
 # ts
 packages/hardhat-ts/cache

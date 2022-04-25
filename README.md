@@ -32,10 +32,17 @@ Running the app
    yarn contracts:build 
    # deploy your hardhat contracts
    yarn deploy
-   # start vite 
+   # start the app
    yarn start 
    ```
-   
+
+4. other commands
+   ```bash
+   # run hardhat commands for the workspace, or see all tasks
+   yarn hardhat 'xxx'
+   # run subgraph commands for the workspace
+   yarn subgraph 'xxx'
+   ```
 
 ## Overview
 
