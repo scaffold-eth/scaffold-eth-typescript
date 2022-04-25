@@ -1,0 +1,56 @@
+{
+  "name": "scaffold-common",
+  "version": "1.0.0",
+  "author": "Shravan Sunder<shravan.sunder.dev@gmail.com>",
+  "description": "Common package to be used by hardaht-ts and vite-app-ts in the scaffold-eth-typescript workspace",
+  "main": "index.ts",
+  "scripts": {
+    "watch": "tsc -w --noEmit",
+    "clean": "shx rm -rf ./lib",
+    "build": "yarn clean && node esbuild.config.mjs && ts-patch i -s && tsc -p tsconfig.build.json",
+    "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore ./src/**/*.(ts|tsx) ./test/**/*.(ts|tsx)",
+    "lint:report": "eslint --config ./.eslintrc --ignore-path ./.eslintignore --output-file eslint_report.json --format json ./src/**/*.(ts|tsx)",
+    "format": "yarn prettier -w ./src ./test ./test-files",
+    "format:check": "yarn prettier -c ./src ./test ./test-files"
+  },
+  "dependencies": {
+    "eth-hooks": "^4.1.0",
+    "ethers": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.25",
+    "esbuild": "^0.14.23",
+    "esbuild-node-externals": "^1.4.1",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.4",
+    "pinst": "^2.1.6",
+    "prettier": "^2.5.1",
+    "prettier-eslint": "^13.0.0",
+    "shx": "^0.3.4",
+    "ts-patch": "^1.4.5",
+    "tsconfig-paths": "^3.12.0",
+    "typescript": "^4.5.5",
+    "typescript-transform-paths": "^3.3.1"
+  },
+  "keywords": [
+    "blockchain",
+    "ethereum",
+    "react",
+    "create-eth-app",
+    "typescript"
+  ],
+  "license": "MIT",
+  "packageManager": "yarn@3.1.1",
+  "volta": {
+    "node": "16.13.1"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx,js,jsx}": [
+      "yarn lint --fix",
+      "yarn format"
+    ],
+    "**/*.{json}": [
+      "yarn format"
+    ]
+  }
+}

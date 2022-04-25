@@ -1,6 +1,6 @@
 {
    "name": "@scaffold-eth/typescript",
-   "version": "0.2.0",
+   "version": "0.3.0",
    "keywords": [
       "ethereum",
       "react",
@@ -12,44 +12,25 @@
    "scripts": {
       "build": "yarn workspace @scaffold-eth/vite-app build",
       "serve": "yarn workspace @scaffold-eth/vite-app serve",
+      "start": "yarn workspace @scaffold-eth/vite-app start",
+      "contracts:build": "yarn workspace @scaffold-eth/hardhat compile && yarn workspace @scaffold-eth/vite-app contracts:hardhat && yarn workspace @scaffold-eth/vite-app contracts:external",
+      "contracts:rebuild": "yarn workspace @scaffold-eth/hardhat clean && yarn contracts:build",
+      "hardhat": "yarn workspace @scaffold-eth/hardhat hardhat",
+      "compile": "yarn workspace @scaffold-eth/hardhat compile",
       "chain": "yarn workspace @scaffold-eth/hardhat chain",
       "fork": "yarn workspace @scaffold-eth/hardhat fork",
-      "node": "yarn workspace @scaffold-eth/hardhat chain",
       "test": "yarn workspace @scaffold-eth/hardhat test",
-      "start": "yarn workspace @scaffold-eth/vite-app start",
-      "compile": "yarn workspace @scaffold-eth/hardhat compile",
-      "contracts:build": "yarn workspace @scaffold-eth/hardhat hardhat compile && yarn workspace @scaffold-eth/vite-app contracts:external",
-      "contracts:rebuild": "yarn workspace @scaffold-eth/hardhat hardhat clean && yarn contracts:build",
       "export": "yarn workspace @scaffold-eth/hardhat export",
       "deploy": "yarn workspace @scaffold-eth/hardhat deploy",
       "watch": "yarn workspace @scaffold-eth/hardhat watch",
-      "accounts": "yarn workspace @scaffold-eth/hardhat accounts",
+      "generate": "yarn workspace @scaffold-eth/hardhat generate",
+      "account": "yarn workspace @scaffold-eth/hardhat account",
       "balance": "yarn workspace @scaffold-eth/hardhat balance",
-      "send": "yarn workspace @scaffold-eth/hardhat send",
       "ipfs": "yarn workspace @scaffold-eth/vite-app ipfs",
       "surge": "yarn workspace @scaffold-eth/vite-app surge",
       "s3": "yarn workspace @scaffold-eth/vite-app s3",
       "ship": "yarn workspace @scaffold-eth/vite-app ship",
-      "generate": "yarn workspace @scaffold-eth/hardhat generate",
-      "account": "yarn workspace @scaffold-eth/hardhat account",
-      "mine": "cd packages/hardhat-ts && npx hardhat mine",
-      "wallet": "cd packages/hardhat-ts && npx hardhat wallet",
-      "fundedwallet": "cd packages/hardhat-ts && npx hardhat fundedwallet",
-      "flatten": "cd packages/hardhat-ts && npx hardhat flatten",
-      "clean": "cd packages/hardhat-ts && npx hardhat clean",
-      "run-graph-node": "yarn workspace @scaffold-eth/services run-graph-node",
-      "remove-graph-node": "yarn workspace @scaffold-eth/services remove-graph-node",
-      "clean-graph-node": "yarn workspace @scaffold-eth/services clean-graph-node",
-      "graph-prepare": "mustache packages/subgraph/config/config.json packages/subgraph/src/subgraph.template.yaml > packages/subgraph/subgraph.yaml",
-      "graph-codegen": "yarn workspace @scaffold-eth/subgraph graph codegen",
-      "graph-build": "yarn workspace @scaffold-eth/subgraph graph build",
-      "graph-create-local": "yarn workspace @scaffold-eth/subgraph graph create --node http://localhost:8020/ scaffold-eth/your-contract",
-      "graph-remove-local": "yarn workspace @scaffold-eth/subgraph graph remove --node http://localhost:8020/ scaffold-eth/your-contract",
-      "graph-deploy-local": "yarn workspace @scaffold-eth/subgraph graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 scaffold-eth/your-contract",
-      "graph-ship-local": "yarn graph-prepare && yarn graph-codegen && yarn graph-deploy-local",
-      "deploy-and-graph": "yarn deploy && yarn graph-ship-local",
-      "theme": "yarn workspace @scaffold-eth/react-app theme",
-      "watch-theme": "yarn workspace @scaffold-eth/react-app watch",
+      "subgraph": "yarn workspace @scaffold-eth/subgraph",
       "prepare": "husky install",
       "postinstall": "husky install"
    },
@@ -58,17 +39,21 @@
          "packages/hardhat-ts",
          "packages/vite-app-ts",
          "packages/services/*",
-         "packages/subgraph"
+         "packages/services",
+         "packages/subgraph",
+         "packages/*"
       ]
    },
    "packageManager": "yarn@3.2.0",
    "devDependencies": {
+      "cross-env": "^7.0.3",
       "eslint": "^8.9.0",
       "husky": "^7.0.4",
       "lint-staged": "^12.3.4",
       "prettier": "^2.5.1",
       "prettier-plugin-solidity": "^1.0.0-beta.19",
-      "shx": "^0.3.4"
+      "shx": "^0.3.4",
+      "ts-node": "^10.5.0"
    },
    "lint-staged": {
       "packages/vite-app-ts/src/**/*.{ts,tsx}": [
@@ -83,7 +68,7 @@
          "yarn workspace @scaffold-eth/hardhat lint --fix",
          "yarn workspace @scaffold-eth/hardhat format"
       ],
-      "packages/hardhat-ts/scripts/**/*.ts": [
+      "packages/hardhat-ts/tasks/**/*.ts": [
          "yarn workspace @scaffold-eth/hardhat lint --fix",
          "yarn workspace @scaffold-eth/hardhat format"
       ],

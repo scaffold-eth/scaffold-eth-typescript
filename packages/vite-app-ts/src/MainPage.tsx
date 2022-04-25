@@ -1,29 +1,27 @@
-import React, { FC, useEffect, useState } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
 import '~~/styles/main-page.css';
-
 import { GenericContract } from 'eth-components/ant/generic-contract';
 import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useEventListener } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
 import { useDexEthPrice } from 'eth-hooks/dapps';
 import { asEthersAdaptor } from 'eth-hooks/functions';
+import React, { FC, useEffect, useState } from 'react';
+import { BrowserRouter, Switch } from 'react-router-dom';
+import { NETWORKS } from 'scaffold-common/src/constants';
 
-import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from './components/main';
+import { MainPageFooter, MainPageHeader, createPagesAndTabs, TContractPageList } from './components/main';
 import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './components/main/hooks/useScaffoldHooksExamples';
 
+import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~~/components/contractContext';
 import { useBurnerFallback } from '~~/components/main/hooks/useBurnerFallback';
 import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
-import { Hints, ExampleUI } from '~~/components/pages';
-import { BURNER_FALLBACK_ENABLED, MAINNET_PROVIDER } from '~~/config/appConfig';
-import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~~/config/contractContext';
-import { NETWORKS } from '~~/models/constants/networks';
+import { BURNER_FALLBACK_ENABLED, MAINNET_PROVIDER } from '~~/config/app.config';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
- * See config/appConfig.ts for configuration, such as TARGET_NETWORK
- * See MainPageContracts.tsx for your contracts component
- * See contractsConnectorConfig.ts for how to configure your contracts
+ * See config/app.config.ts for configuration, such as TARGET_NETWORK
+ * See appContracts.config.ts and externalContracts.config.ts to configure your contracts
+ * See pageList variable below to configure your pages
+ * See web3Modal.config.ts to configure the web3 modal
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
  *
  * For more
@@ -33,7 +31,7 @@ import { NETWORKS } from '~~/models/constants/networks';
  * The main component
  * @returns
  */
-export const Main: FC = () => {
+export const MainPage: FC = () => {
   // -----------------------------
   // Providers, signers & wallets
   // -----------------------------
@@ -99,44 +97,47 @@ export const Main: FC = () => {
     setRoute(window.location.pathname);
   }, [setRoute]);
 
+  // -----------------------------
+  // 📃 Page List
+  // -----------------------------
+  // This is the list of pages and tabs
+  const pageList: TContractPageList = {
+    mainPage: {
+      name: 'YourContract',
+      element: (
+        <GenericContract
+          contractName="YourContract"
+          contract={yourContract}
+          mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
+          blockExplorer={scaffoldAppProviders.targetNetwork.blockExplorer}
+        />
+      ),
+    },
+    pages: [
+      {
+        name: 'Dai',
+        element: (
+          <GenericContract
+            contractName="Dai"
+            contract={mainnetDai}
+            mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
+            blockExplorer={scaffoldAppProviders.targetNetwork.blockExplorer}
+          />
+        ),
+      },
+    ],
+  };
+  const { pageElements, menuElement } = createPagesAndTabs(pageList, route, setRoute);
+
   return (
     <div className="App">
       <MainPageHeader scaffoldAppProviders={scaffoldAppProviders} price={ethPrice} />
-
       {/* Routes should be added between the <Switch> </Switch> as seen below */}
       <BrowserRouter>
-        <MainPageMenu route={route} setRoute={setRoute} />
+        {menuElement}
         <Switch>
-          <Route exact path="/">
-            <MainPageContracts scaffoldAppProviders={scaffoldAppProviders} />
-          </Route>
-          {/* you can add routes here like the below examlples */}
-          <Route path="/hints">
-            <Hints
-              address={ethersContext?.account ?? ''}
-              yourCurrentBalance={yourCurrentBalance}
-              mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider}
-              price={ethPrice}
-            />
-          </Route>
-          <Route path="/exampleui">
-            <ExampleUI
-              mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider}
-              yourCurrentBalance={yourCurrentBalance}
-              price={ethPrice}
-            />
-          </Route>
-          <Route path="/mainnetdai">
-            {MAINNET_PROVIDER != null && (
-              <GenericContract
-                contractName="DAI"
-                contract={mainnetDai}
-                mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
-                blockExplorer={NETWORKS.mainnet.blockExplorer}
-              />
-            )}
-          </Route>
-          {/* Subgraph also disabled in MainPageMenu, it does not work, see github issue! */}
+          {pageElements}
+          {/* Subgraph also disabled in MainPageMenu, it does not work, see github issue https://github.com/scaffold-eth/scaffold-eth-typescript/issues/48! */}
           {/*
           <Route path="/subgraph">
             <Subgraph subgraphUri={subgraphUri} mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider} />

@@ -5,7 +5,7 @@ import React, { FC, Suspense } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
-import { ContractsAppContext } from '~~/config/contractContext';
+import { ContractsAppContext } from '~~/components/contractContext';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
@@ -45,7 +45,7 @@ const ethComponentsSettings: IEthComponentsSettings = {
 /**
  * Lazy load the main app component
  */
-const MainPage = lazier(() => import('./MainPage'), 'Main');
+const MainPage = lazier(() => import('./MainPage'), 'MainPage');
 
 /**
  * ### Summary

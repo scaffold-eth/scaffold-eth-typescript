@@ -2,12 +2,12 @@ import { Row, Col, Button } from 'antd';
 import { Faucet, GasGauge } from 'eth-components/ant';
 import { useEthersContext } from 'eth-hooks/context';
 import React, { FC } from 'react';
+import { NETWORKS } from 'scaffold-common/src/constants';
 
 import { Ramp, ThemeSwitcher } from '~~/components/common';
 import { getFaucetAvailable } from '~~/components/common/FaucetHintButton';
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 import { getNetworkInfo } from '~~/functions/getNetworkInfo';
-import { NETWORKS } from '~~/models/constants/networks';
 
 export interface IMainPageFooterProps {
   scaffoldAppProviders: IScaffoldAppProviders;
@@ -24,6 +24,8 @@ export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
 
   // Faucet Tx can be used to send funds from the faucet
   const faucetAvailable = getFaucetAvailable(props.scaffoldAppProviders, ethersContext);
+
+  const network = getNetworkInfo(ethersContext.chainId);
 
   const left = (
     <div
@@ -47,7 +49,7 @@ export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
           }}>
           <GasGauge
             chainId={props.scaffoldAppProviders.targetNetwork.chainId}
-            currentNetwork={getNetworkInfo(ethersContext.chainId)}
+            currentNetwork={network}
             provider={ethersContext.provider}
             speed="average"
           />

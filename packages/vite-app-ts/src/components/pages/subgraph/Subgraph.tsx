@@ -12,7 +12,7 @@ import { TEthersProvider } from 'eth-hooks/models';
 import React, { FC, ReactElement, useContext, useState } from 'react';
 import { useQuery } from 'react-query';
 
-import { useAppContracts } from '~~/config/contractContext';
+import { useAppContracts } from '~~/components/contractContext';
 
 // const GraphiQL = lazy(() => import('graphiql'));
 
@@ -29,6 +29,11 @@ export interface ISubgraphProps {
   mainnetProvider: TEthersProvider | undefined;
 }
 
+/**
+ * Subgraph also disabled in MainPageMenu, it does not work, see github issue https://github.com/scaffold-eth/scaffold-eth-typescript/issues/48!
+ * @param props
+ * @returns
+ */
 export const Subgraph: FC<ISubgraphProps> = (props) => {
   const ethComponentsSettings = useContext(EthComponentsSettingsContext);
   const graphQLFetcher = async (graphQLParams: any): Promise<Record<string, any>> => {

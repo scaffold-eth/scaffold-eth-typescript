@@ -1,9 +1,9 @@
 import { useBurnerSigner } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
 import { useEffect } from 'react';
+import { NETWORKS } from 'scaffold-common/src/constants';
 
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
-import { NETWORKS } from '~~/models/constants/networks';
 
 export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: boolean): void => {
   const ethersContext = useEthersContext();
@@ -18,7 +18,7 @@ export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: b
       burnerFallback?.signer &&
       burnerFallback?.account !== ethersContext.account &&
       ethersContext.chainId === NETWORKS.localhost.chainId &&
-      ethersContext.provider?.connection?.url === NETWORKS.localhost.rpcUrl &&
+      ethersContext.provider?.connection?.url === NETWORKS.localhost.url &&
       ethersContext.changeSigner &&
       localAddress != null &&
       enable

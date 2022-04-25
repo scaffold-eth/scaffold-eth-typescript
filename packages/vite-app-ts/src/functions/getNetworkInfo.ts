@@ -1,8 +1,7 @@
 import { getNetwork } from '@ethersproject/networks';
-
-import { NETWORKS, TNetworkNames } from '../models/constants/networks';
-
-import { TNetworkInfo } from '~~/models/NetworkTypes';
+import { TNetworkInfo } from 'eth-hooks/models';
+import { NETWORKS } from 'scaffold-common/src/constants';
+import { TNetworkNames } from 'scaffold-common/src/models/TNetworkNames';
 
 export const getNetworkInfo = (chainId: number | undefined): TNetworkInfo | undefined => {
   if (!chainId) return;
@@ -17,5 +16,5 @@ export const getNetworkInfo = (chainId: number | undefined): TNetworkInfo | unde
   const network = getNetwork(chainId) ?? {};
   // @ts-expect-error
   const url = network?._defaultProvider?.connection?.url ?? '';
-  return { ...network, blockExplorer: '', color: '#666666', rpcUrl: url };
+  return { ...network, blockExplorer: '', color: '#666666', url: url };
 };
