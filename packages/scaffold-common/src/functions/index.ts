@@ -1,1 +1,1 @@
-export * from './getNetworks';
+export * from "./getNetworks";

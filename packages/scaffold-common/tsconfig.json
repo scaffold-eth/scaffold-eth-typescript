@@ -1,44 +1,41 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "module": "esNext",
-    "outDir": "lib",
-    "lib": ["dom", "ESNext", "ES2017"],
+    "target": "ESNext",
+    "lib": ["ESNext", "ES2017"],
     "sourceMap": true,
-    "inlineSources": true,
-    "jsx": "react-jsxdev",
+    // "inlineSources": true,
     "allowJs": false,
-    "declaration": true,
-    "declarationDir": "lib",
     "declarationMap": true,
-    "resolveJsonModule": true,
-    "moduleResolution": "node",
-    "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true,
-    "downlevelIteration": true,
-    "esModuleInterop": true,
-    "isolatedModules": true,
-    "noImplicitAny": true,
+    "declaration": true,
+    "esModuleInterop": false,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ] /* List of folders to include type definitions from. */,
+    "forceConsistentCasingInFileNames": false,
+    "module": "es2020",
+    "moduleResolution": "Node",
+    "incremental": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
     "rootDir": ".",
     "baseUrl": ".",
-    "types": [],
-    "typeRoots": ["node_modules/@types"],
+    "outDir": "dist",
+    "jsx": "react-jsxdev",
+    "paths": {
+      "~~/*": ["./src/*"]
+    }
   },
   "include": ["src"],
   "exclude": [
-    "lib/**/*",
-    "node_modules",
     "**/node_modules",
-    "**/node_modules/**",
     ".husky",
-    "./.yalc/**/*",
-    "**/*.md",
-    "docs/**/*",
-    "docusaurus/**/*",
-    "website/**/*",
-    "**/*.json"
+    "node_modules",
+    "**/.yalc/**/*",
+    ".yalc/**/*"
   ]
 }

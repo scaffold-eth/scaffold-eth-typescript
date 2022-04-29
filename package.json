@@ -37,6 +37,7 @@
    "workspaces": {
       "packages": [
          "packages/hardhat-ts",
+         "packages/scaffold-common",
          "packages/vite-app-ts",
          "packages/services/*",
          "packages/services",
@@ -59,6 +60,10 @@
       "packages/vite-app-ts/src/**/*.{ts,tsx}": [
          "yarn workspace @scaffold-eth/vite-app lint --fix",
          "yarn workspace @scaffold-eth/vite-app format"
+      ],
+      "packages/scaffold-common/src/**/*.{ts,tsx}": [
+         "yarn workspace @scaffold-eth/scaffold-common lint --fix",
+         "yarn workspace @scaffold-eth/scaffold-common format"
       ],
       "packages/hardhat-ts/test/**/*.ts": [
          "yarn workspace @scaffold-eth/hardhat lint --fix",

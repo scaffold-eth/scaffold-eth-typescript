@@ -1,7 +1,7 @@
 interface ImportMetaEnv {
   readonly DEV: boolean;
   readonly PROD: boolean;
-  readonly MODE: 'development' | 'production';
+  readonly MODE: "development" | "production";
 
   readonly VITE_APP_TARGET_NETWORK: string;
   readonly VITE_RPC_MAINNET: string;
