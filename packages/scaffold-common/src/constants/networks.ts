@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-
 import { TNetworkInfo } from "eth-hooks/models";
 
 import { TNetworkNames } from "../models/TNetworkNames";

@@ -25,10 +25,7 @@
     "rootDir": ".",
     "baseUrl": ".",
     "outDir": "dist",
-    "jsx": "react-jsxdev",
-    "paths": {
-      "~~/*": ["./src/*"]
-    }
+    "jsx": "react-jsxdev"
   },
   "include": ["src"],
   "exclude": [

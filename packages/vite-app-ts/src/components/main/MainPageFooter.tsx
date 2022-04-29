@@ -1,8 +1,8 @@
+import { NETWORKS } from '@scaffold-eth/scaffold-common/src/constants';
 import { Row, Col, Button } from 'antd';
 import { Faucet, GasGauge } from 'eth-components/ant';
 import { useEthersContext } from 'eth-hooks/context';
 import React, { FC } from 'react';
-import { NETWORKS } from 'scaffold-common/src/constants';
 
 import { Ramp, ThemeSwitcher } from '~~/components/common';
 import { getFaucetAvailable } from '~~/components/common/FaucetHintButton';

@@ -1,4 +1,5 @@
 import '~~/styles/main-page.css';
+import { NETWORKS } from '@scaffold-eth/scaffold-common/src/constants';
 import { GenericContract } from 'eth-components/ant/generic-contract';
 import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useEventListener } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
@@ -6,7 +7,6 @@ import { useDexEthPrice } from 'eth-hooks/dapps';
 import { asEthersAdaptor } from 'eth-hooks/functions';
 import React, { FC, useEffect, useState } from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
-import { NETWORKS } from 'scaffold-common/src/constants';
 
 import { MainPageFooter, MainPageHeader, createPagesAndTabs, TContractPageList } from './components/main';
 import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './components/main/hooks/useScaffoldHooksExamples';

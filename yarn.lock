@@ -2532,7 +2532,6 @@ __metadata:
     prettier-plugin-solidity: ^1.0.0-beta.19
     qrcode-terminal: ^0.12.0
     rlp: ^2.2.7
-    scaffold-common: ^1.0.0
     shx: ^0.3.4
     solhint: ^3.3.7
     solhint-plugin-prettier: ^0.0.5
@@ -2541,6 +2540,44 @@ __metadata:
     tsconfig-paths: ^3.14.1
     typechain: ^7.0.0
     typescript: ^4.6.3
+  languageName: unknown
+  linkType: soft
+
+"@scaffold-eth/scaffold-common@workspace:^, @scaffold-eth/scaffold-common@workspace:packages/scaffold-common":
+  version: 0.0.0-use.local
+  resolution: "@scaffold-eth/scaffold-common@workspace:packages/scaffold-common"
+  dependencies:
+    "@types/node": ^16.11.29
+    "@typescript-eslint/eslint-plugin": ^5.21.0
+    "@typescript-eslint/parser": ^5.21.0
+    esbuild: ^0.14.38
+    esbuild-node-externals: ^1.4.1
+    eslint: ^8.14.0
+    eslint-config-airbnb: ^19.0.4
+    eslint-config-airbnb-typescript: ^16.1.0
+    eslint-config-prettier: ^8.5.0
+    eslint-plugin-import: ^2.26.0
+    eslint-plugin-jest: ^26.1.5
+    eslint-plugin-jsx-a11y: ^6.5.1
+    eslint-plugin-mocha: ^10.0.4
+    eslint-plugin-prettier: ^4.0.0
+    eslint-plugin-react: ^7.29.4
+    eslint-plugin-react-hooks: ^4.4.0
+    eslint-plugin-tailwind: ^0.2.1
+    eslint-plugin-testing-library: ^5.3.1
+    eslint-plugin-unused-imports: ^2.0.0
+    eth-hooks: ^4
+    ethers: ^5
+    husky: ^7.0.4
+    lint-staged: ^12.4.0
+    pinst: ^2.1.6
+    prettier: ^2.6.2
+    prettier-eslint: ^14.0.1
+    shx: ^0.3.4
+    ts-patch: ^1.4.5
+    tsconfig-paths: ^3.14.1
+    typescript: ^4.6.3
+    typescript-transform-paths: ^3.3.1
   languageName: unknown
   linkType: soft
 
@@ -2600,6 +2637,7 @@ __metadata:
     "@nomiclabs/hardhat-waffle": ^2.0.3
     "@portis/web3": ^4.1.0
     "@ramp-network/ramp-instant-sdk": ^3.1.0
+    "@scaffold-eth/scaffold-common": "workspace:^"
     "@tailwindcss/aspect-ratio": ^0.4.0
     "@tailwindcss/forms": ^0.5.0
     "@tailwindcss/line-clamp": ^0.3.1
@@ -2674,7 +2712,6 @@ __metadata:
     react-stack-grid: ^0.7.1
     request: ^2.88.2
     rollup-plugin-polyfill-node: ^0.9.0
-    scaffold-common: "workspace:^"
     shx: ^0.3.4
     stream: ^0.0.2
     stream-browserify: ^3.0.0
@@ -20928,44 +20965,6 @@ __metadata:
   checksum: 256472ebd35787985be7fc924f817f3e0fcf0ed17655250555bf24f76d44af18fd1b25a91c33458e17a4c57b80375bea22d46e2a982880ffbde1b1a94dfeed19
   languageName: node
   linkType: hard
-
-"scaffold-common@^1.0.0, scaffold-common@workspace:^, scaffold-common@workspace:packages/scaffold-common":
-  version: 0.0.0-use.local
-  resolution: "scaffold-common@workspace:packages/scaffold-common"
-  dependencies:
-    "@types/node": ^16.11.29
-    "@typescript-eslint/eslint-plugin": ^5.21.0
-    "@typescript-eslint/parser": ^5.21.0
-    esbuild: ^0.14.38
-    esbuild-node-externals: ^1.4.1
-    eslint: ^8.14.0
-    eslint-config-airbnb: ^19.0.4
-    eslint-config-airbnb-typescript: ^16.1.0
-    eslint-config-prettier: ^8.5.0
-    eslint-plugin-import: ^2.26.0
-    eslint-plugin-jest: ^26.1.5
-    eslint-plugin-jsx-a11y: ^6.5.1
-    eslint-plugin-mocha: ^10.0.4
-    eslint-plugin-prettier: ^4.0.0
-    eslint-plugin-react: ^7.29.4
-    eslint-plugin-react-hooks: ^4.4.0
-    eslint-plugin-tailwind: ^0.2.1
-    eslint-plugin-testing-library: ^5.3.1
-    eslint-plugin-unused-imports: ^2.0.0
-    eth-hooks: ^4
-    ethers: ^5
-    husky: ^7.0.4
-    lint-staged: ^12.4.0
-    pinst: ^2.1.6
-    prettier: ^2.6.2
-    prettier-eslint: ^14.0.1
-    shx: ^0.3.4
-    ts-patch: ^1.4.5
-    tsconfig-paths: ^3.14.1
-    typescript: ^4.6.3
-    typescript-transform-paths: ^3.3.1
-  languageName: unknown
-  linkType: soft
 
 "scheduler@npm:^0.19.1":
   version: 0.19.1

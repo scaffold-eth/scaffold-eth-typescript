@@ -1,1 +1,1 @@
-import 'scaffold-common/src/env';
+import '@scaffold-eth/scaffold-common/src/env';

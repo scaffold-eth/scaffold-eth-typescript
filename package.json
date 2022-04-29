@@ -32,12 +32,13 @@
       "ship": "yarn workspace @scaffold-eth/vite-app ship",
       "subgraph": "yarn workspace @scaffold-eth/subgraph",
       "prepare": "husky install",
-      "postinstall": "husky install"
+      "postinstall": "husky install",
+      "lint": "yarn workspace @scaffold-eth/vite-app lint --fix && yarn workspace @scaffold-eth/scaffold-common lint --fix && yarn workspace @scaffold-eth/hardhat lint --fix"
    },
    "workspaces": {
       "packages": [
-         "packages/hardhat-ts",
          "packages/scaffold-common",
+         "packages/hardhat-ts",
          "packages/vite-app-ts",
          "packages/services/*",
          "packages/services",
