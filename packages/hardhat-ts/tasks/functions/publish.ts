@@ -1,15 +1,13 @@
 import '@nomiclabs/hardhat-ethers';
 import '@nomiclabs/hardhat-waffle';
 import fs from 'fs';
-import path from 'path';
 
 import chalk from 'chalk';
-import hre from 'hardhat';
 
-const publishGenerated = '../vite-app-ts/src/generated/contracts';
-const publishDir = `${publishGenerated}/contracts`;
+// const publishGenerated = '../vite-app-ts/src/generated/contracts';
+// const publishDir = `${publishGenerated}/contracts`;
 const deploymentsDir = './generated/deployments';
-const typechainDir = './generated/typechain';
+// const typechainDir = './generated/typechain';
 const graphDir = '../subgraph';
 
 const publishContract = (contractName: string, networkName: string): boolean => {

@@ -10,26 +10,26 @@
     "build": "yarn clean && node esbuild.config.mjs && ts-patch i -s && tsc -p tsconfig.build.json",
     "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore ./src/**/*.(ts|tsx) ./test/**/*.(ts|tsx)",
     "lint:report": "eslint --config ./.eslintrc --ignore-path ./.eslintignore --output-file eslint_report.json --format json ./src/**/*.(ts|tsx)",
-    "format": "yarn prettier -w ./src ./test ./test-files",
-    "format:check": "yarn prettier -c ./src ./test ./test-files"
+    "format": "yarn prettier -w ./src ",
+    "format:check": "yarn prettier -c ./src"
   },
   "dependencies": {
-    "eth-hooks": "^4.1.0",
-    "ethers": "*"
+    "eth-hooks": "^4",
+    "ethers": "^5"
   },
   "devDependencies": {
-    "@types/node": "^16.11.25",
-    "esbuild": "^0.14.23",
+    "@types/node": "^16.11.29",
+    "esbuild": "^0.14.38",
     "esbuild-node-externals": "^1.4.1",
     "husky": "^7.0.4",
-    "lint-staged": "^12.3.4",
+    "lint-staged": "^12.4.0",
     "pinst": "^2.1.6",
-    "prettier": "^2.5.1",
-    "prettier-eslint": "^13.0.0",
+    "prettier": "^2.6.2",
+    "prettier-eslint": "^14.0.1",
     "shx": "^0.3.4",
     "ts-patch": "^1.4.5",
-    "tsconfig-paths": "^3.12.0",
-    "typescript": "^4.5.5",
+    "tsconfig-paths": "^3.14.1",
+    "typescript": "^4.6.3",
     "typescript-transform-paths": "^3.3.1"
   },
   "keywords": [
