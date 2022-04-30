@@ -33,11 +33,11 @@
       "subgraph": "yarn workspace @scaffold-eth/subgraph",
       "prepare": "husky install",
       "postinstall": "husky install",
-      "lint": "yarn workspace @scaffold-eth/vite-app lint --fix && yarn workspace @scaffold-eth/scaffold-common lint --fix && yarn workspace @scaffold-eth/hardhat lint --fix"
+      "lint": "yarn workspace @scaffold-eth/vite-app lint --fix && yarn workspace @scaffold-eth/common lint --fix && yarn workspace @scaffold-eth/hardhat lint --fix"
    },
    "workspaces": {
       "packages": [
-         "packages/scaffold-common",
+         "packages/common",
          "packages/hardhat-ts",
          "packages/vite-app-ts",
          "packages/services/*",
@@ -62,9 +62,9 @@
          "yarn workspace @scaffold-eth/vite-app lint --fix",
          "yarn workspace @scaffold-eth/vite-app format"
       ],
-      "packages/scaffold-common/src/**/*.{ts,tsx}": [
-         "yarn workspace @scaffold-eth/scaffold-common lint --fix",
-         "yarn workspace @scaffold-eth/scaffold-common format"
+      "packages/common/src/**/*.{ts,tsx}": [
+         "yarn workspace @scaffold-eth/common lint --fix",
+         "yarn workspace @scaffold-eth/common format"
       ],
       "packages/hardhat-ts/test/**/*.ts": [
          "yarn workspace @scaffold-eth/hardhat lint --fix",

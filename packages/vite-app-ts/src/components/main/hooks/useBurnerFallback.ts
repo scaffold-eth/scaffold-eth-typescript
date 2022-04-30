@@ -1,4 +1,4 @@
-import { NETWORKS } from '@scaffold-eth/scaffold-common/src/constants';
+import { NETWORKS } from '@scaffold-eth/common/src/constants';
 import { useBurnerSigner } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
 import { useEffect } from 'react';

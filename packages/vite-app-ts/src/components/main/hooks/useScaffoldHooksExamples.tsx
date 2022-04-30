@@ -1,4 +1,4 @@
-import { NETWORKS } from '@scaffold-eth/scaffold-common/src/constants';
+import { NETWORKS } from '@scaffold-eth/common/src/constants';
 import { transactor } from 'eth-components/functions';
 import { EthComponentsSettingsContext } from 'eth-components/models';
 import {

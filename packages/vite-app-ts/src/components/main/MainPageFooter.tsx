@@ -1,4 +1,4 @@
-import { NETWORKS } from '@scaffold-eth/scaffold-common/src/constants';
+import { NETWORKS } from '@scaffold-eth/common/src/constants';
 import { Row, Col, Button } from 'antd';
 import { Faucet, GasGauge } from 'eth-components/ant';
 import { useEthersContext } from 'eth-hooks/context';

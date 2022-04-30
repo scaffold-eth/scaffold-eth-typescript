@@ -39,7 +39,7 @@
     "@maticnetwork/maticjs": "^3.2.5",
     "@portis/web3": "^4.1.0",
     "@ramp-network/ramp-instant-sdk": "^3.1.0",
-    "@scaffold-eth/scaffold-common": "workspace:^",
+    "@scaffold-eth/common": "workspace:^",
     "@uniswap/sdk": "^3.0.3",
     "@uniswap/token-lists": "^1.0.0-beta.28",
     "antd": "^4.20.0",

@@ -1,5 +1,5 @@
 {
-  "name": "@scaffold-eth/scaffold-common",
+  "name": "@scaffold-eth/common",
   "version": "1.0.0",
   "author": "Shravan Sunder<shravan.sunder.dev@gmail.com>",
   "description": "Common package to be used by hardaht-ts and vite-app-ts in the scaffold-eth-typescript workspace",

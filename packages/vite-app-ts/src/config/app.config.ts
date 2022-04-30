@@ -1,6 +1,6 @@
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
-import { NETWORKS } from '@scaffold-eth/scaffold-common/src/constants';
-import { TNetworkNames } from '@scaffold-eth/scaffold-common/src/models/TNetworkNames';
+import { NETWORKS } from '@scaffold-eth/common/src/constants';
+import { TNetworkNames } from '@scaffold-eth/common/src/models/TNetworkNames';
 import { TNetworkInfo, TEthersProvider } from 'eth-hooks/models';
 import { invariant } from 'ts-invariant';
 

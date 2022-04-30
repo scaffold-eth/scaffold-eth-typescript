@@ -1,5 +1,5 @@
 import '~~/styles/main-page.css';
-import { NETWORKS } from '@scaffold-eth/scaffold-common/src/constants';
+import { NETWORKS } from '@scaffold-eth/common/src/constants';
 import { GenericContract } from 'eth-components/ant/generic-contract';
 import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useEventListener } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
