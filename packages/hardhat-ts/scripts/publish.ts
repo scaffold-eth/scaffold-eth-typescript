@@ -61,7 +61,7 @@ const publishContract = (contractName: string, networkName: string): boolean => 
 };
 
 // eslint-disable-next-line @typescript-eslint/require-await
-async function main(): Promise<void> {
+export async function main(): Promise<void> {
   const deploymentSubdirs = fs.readdirSync(deploymentsDir);
   deploymentSubdirs.forEach(function (directory) {
     const files = fs.readdirSync(`${deploymentsDir}/${directory}`);
@@ -74,9 +74,5 @@ async function main(): Promise<void> {
   });
   console.log('?  Published contracts to the subgraph package.');
 }
-main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
+
+main().catch(console.error);
