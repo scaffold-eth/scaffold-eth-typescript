@@ -52,7 +52,7 @@ export const createPagesAndTabs = (
           {pageList.mainPage.name}
         </Link>
       </Menu.Item>
-      {pageList.pages.map(({ name, content: element }) => (
+      {pageList.pages.map(({ name }) => (
         <Menu.Item key={name}>
           <Link
             onClick={(): void => {
@@ -68,12 +68,12 @@ export const createPagesAndTabs = (
 
   const pageContent = (
     <>
-      <Route key={'main'} exact path={'/'}>
+      <Route key={'main'} path={'/'}>
         {pageList.mainPage.content}
       </Route>
-      {pageList.pages.map(({ name, content: element }) => (
+      {pageList.pages.map(({ name, content }) => (
         <Route key={name} path={'/' + getPath(name)}>
-          {element}
+          {content}
         </Route>
       ))}
     </>

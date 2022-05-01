@@ -3,7 +3,7 @@ import { Alert, PageHeader } from 'antd';
 import { Account } from 'eth-components/ant';
 import { useGasPrice } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, ReactNode } from 'react';
 
 import { FaucetHintButton } from '~~/components/common/FaucetHintButton';
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
@@ -13,6 +13,7 @@ import { getNetworkInfo } from '~~/functions';
 export interface IMainPageHeaderProps {
   scaffoldAppProviders: IScaffoldAppProviders;
   price: number;
+  children?: ReactNode;
 }
 
 /**

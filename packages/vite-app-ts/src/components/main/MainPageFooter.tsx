@@ -12,6 +12,7 @@ import { getNetworkInfo } from '~~/functions/getNetworkInfo';
 export interface IMainPageFooterProps {
   scaffoldAppProviders: IScaffoldAppProviders;
   price: number;
+  children?: React.ReactNode;
 }
 
 /**
