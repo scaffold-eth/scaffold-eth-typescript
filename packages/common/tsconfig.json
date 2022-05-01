@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["ESNext", "ES2017"],
+    "sourceMap": true,
+    // "inlineSources": true,
+    "allowJs": false,
+    "declarationMap": true,
+    "declaration": true,
+    "esModuleInterop": false,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ] /* List of folders to include type definitions from. */,
+    "forceConsistentCasingInFileNames": false,
+    "module": "es2020",
+    "moduleResolution": "Node",
+    "incremental": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "rootDir": ".",
+    "baseUrl": ".",
+    "outDir": "dist",
+    "jsx": "react-jsxdev"
+  },
+  "include": ["src"],
+  "exclude": [
+    "**/node_modules",
+    ".husky",
+    "node_modules",
+    "**/.yalc/**/*",
+    ".yalc/**/*"
+  ]
+}

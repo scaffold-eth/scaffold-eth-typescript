@@ -1,6 +1,6 @@
 {
    "name": "@scaffold-eth/typescript",
-   "version": "0.3.0",
+   "version": "0.4.0",
    "keywords": [
       "ethereum",
       "react",
@@ -32,10 +32,12 @@
       "ship": "yarn workspace @scaffold-eth/vite-app ship",
       "subgraph": "yarn workspace @scaffold-eth/subgraph",
       "prepare": "husky install",
-      "postinstall": "husky install"
+      "postinstall": "husky install",
+      "lint": "yarn workspace @scaffold-eth/vite-app lint --fix && yarn workspace @scaffold-eth/common lint --fix && yarn workspace @scaffold-eth/hardhat lint --fix"
    },
    "workspaces": {
       "packages": [
+         "packages/common",
          "packages/hardhat-ts",
          "packages/vite-app-ts",
          "packages/services/*",
@@ -47,18 +49,22 @@
    "packageManager": "yarn@3.2.0",
    "devDependencies": {
       "cross-env": "^7.0.3",
-      "eslint": "^8.9.0",
+      "eslint": "^8.14.0",
       "husky": "^7.0.4",
-      "lint-staged": "^12.3.4",
-      "prettier": "^2.5.1",
+      "lint-staged": "^12.4.1",
+      "prettier": "^2.6.2",
       "prettier-plugin-solidity": "^1.0.0-beta.19",
       "shx": "^0.3.4",
-      "ts-node": "^10.5.0"
+      "ts-node": "^10.7.0"
    },
    "lint-staged": {
       "packages/vite-app-ts/src/**/*.{ts,tsx}": [
          "yarn workspace @scaffold-eth/vite-app lint --fix",
          "yarn workspace @scaffold-eth/vite-app format"
+      ],
+      "packages/common/src/**/*.{ts,tsx}": [
+         "yarn workspace @scaffold-eth/common lint --fix",
+         "yarn workspace @scaffold-eth/common format"
       ],
       "packages/hardhat-ts/test/**/*.ts": [
          "yarn workspace @scaffold-eth/hardhat lint --fix",

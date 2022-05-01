@@ -1,8 +1,8 @@
+import { NETWORKS } from '@scaffold-eth/common/src/constants';
 import { Row, Col, Button } from 'antd';
 import { Faucet, GasGauge } from 'eth-components/ant';
 import { useEthersContext } from 'eth-hooks/context';
 import React, { FC } from 'react';
-import { NETWORKS } from 'scaffold-common/src/constants';
 
 import { Ramp, ThemeSwitcher } from '~~/components/common';
 import { getFaucetAvailable } from '~~/components/common/FaucetHintButton';
@@ -12,6 +12,7 @@ import { getNetworkInfo } from '~~/functions/getNetworkInfo';
 export interface IMainPageFooterProps {
   scaffoldAppProviders: IScaffoldAppProviders;
   price: number;
+  children?: React.ReactNode;
 }
 
 /**

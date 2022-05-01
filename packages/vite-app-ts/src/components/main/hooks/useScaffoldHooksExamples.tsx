@@ -1,3 +1,4 @@
+import { NETWORKS } from '@scaffold-eth/common/src/constants';
 import { transactor } from 'eth-components/functions';
 import { EthComponentsSettingsContext } from 'eth-components/models';
 import {
@@ -12,7 +13,6 @@ import { useEthersContext } from 'eth-hooks/context';
 import { mergeDefaultUpdateOptions } from 'eth-hooks/functions';
 import { ethers } from 'ethers';
 import { useContext, useEffect } from 'react';
-import { NETWORKS } from 'scaffold-common/src/constants';
 
 import { useAppContracts } from '~~/components/contractContext';
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';

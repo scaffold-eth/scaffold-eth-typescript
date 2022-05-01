@@ -1,8 +1,3 @@
-packages/subgraph/subgraph.yaml
-packages/subgraph/generated
-packages/subgraph/abis/*
-packages/hardhat/*.txt
-**/aws.json
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 **/node_modules
@@ -16,15 +11,28 @@ tenderly.yaml
 .yalc
 yalc.lock
 packages/vite-app-ts/dist
-packages/hardhat-ts/mnemonic.secret
 packages/**/data
+build
+dist
 
-# ts
+# hardhat ts
 packages/hardhat-ts/cache
+packages/hardhat-ts/generated
+!packages/hardhat-ts/generated/.gitignore
+cache
+artifacts
+
 # secrets
 .secret
+**/aws.json
+packages/hardhat-ts/mnemonic.secret
 
-# dependencies
+#subgraph
+packages/subgraph/subgraph.yaml
+packages/subgraph/generated
+packages/subgraph/abis/*
+
+# dependencies, yarn, etc
 /node_modules
 /.pnp
 .pnp.js
@@ -40,14 +48,6 @@ packages/hardhat-ts/cache
 
 # testing
 coverage
-
-# production
-build
-dist
-
-#Hardhat files
-cache
-artifacts
 
 # misc
 .DS_Store

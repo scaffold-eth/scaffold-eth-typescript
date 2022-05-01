@@ -1,15 +1,13 @@
 import '@nomiclabs/hardhat-ethers';
 import '@nomiclabs/hardhat-waffle';
 import fs from 'fs';
-import path from 'path';
 
 import chalk from 'chalk';
-import hre from 'hardhat';
 
-const publishGenerated = '../vite-app-ts/src/generated/contracts';
-const publishDir = `${publishGenerated}/contracts`;
+// const publishGenerated = '../vite-app-ts/src/generated/contracts';
+// const publishDir = `${publishGenerated}/contracts`;
 const deploymentsDir = './generated/deployments';
-const typechainDir = './generated/typechain';
+// const typechainDir = './generated/typechain';
 const graphDir = '../subgraph';
 
 const publishContract = (contractName: string, networkName: string): boolean => {
@@ -63,7 +61,7 @@ const publishContract = (contractName: string, networkName: string): boolean => 
 };
 
 // eslint-disable-next-line @typescript-eslint/require-await
-async function main(): Promise<void> {
+export async function main(): Promise<void> {
   const deploymentSubdirs = fs.readdirSync(deploymentsDir);
   deploymentSubdirs.forEach(function (directory) {
     const files = fs.readdirSync(`${deploymentsDir}/${directory}`);
@@ -76,9 +74,5 @@ async function main(): Promise<void> {
   });
   console.log('?  Published contracts to the subgraph package.');
 }
-main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
+
+main().catch(console.error);

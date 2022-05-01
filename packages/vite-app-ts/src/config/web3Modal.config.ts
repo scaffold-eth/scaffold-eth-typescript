@@ -1,4 +1,4 @@
-import { NETWORKS } from 'scaffold-common/src/constants';
+import { NETWORKS } from '@scaffold-eth/common/src/constants';
 import { ICoreOptions } from 'web3modal';
 
 import { LOCAL_PROVIDER } from '~~/config/app.config';

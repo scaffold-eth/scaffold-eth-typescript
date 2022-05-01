@@ -1,4 +1,5 @@
 import '~~/styles/main-page.css';
+import { NETWORKS } from '@scaffold-eth/common/src/constants';
 import { GenericContract } from 'eth-components/ant/generic-contract';
 import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useEventListener } from 'eth-hooks';
 import { useEthersContext } from 'eth-hooks/context';
@@ -6,7 +7,6 @@ import { useDexEthPrice } from 'eth-hooks/dapps';
 import { asEthersAdaptor } from 'eth-hooks/functions';
 import React, { FC, useEffect, useState } from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
-import { NETWORKS } from 'scaffold-common/src/constants';
 
 import { MainPageFooter, MainPageHeader, createPagesAndTabs, TContractPageList } from './components/main';
 import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './components/main/hooks/useScaffoldHooksExamples';
@@ -70,6 +70,7 @@ export const MainPage: FC = () => {
 
   // init contracts
   const yourContract = useAppContracts('YourContract', ethersContext.chainId);
+  const yourNFT = useAppContracts('YourNFT', ethersContext.chainId);
   const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
 
   // keep track of a variable from the contract in the local React state:
@@ -100,11 +101,11 @@ export const MainPage: FC = () => {
   // -----------------------------
   // 📃 Page List
   // -----------------------------
-  // This is the list of pages and tabs
+  // This is the list of tabs and their contents
   const pageList: TContractPageList = {
     mainPage: {
       name: 'YourContract',
-      element: (
+      content: (
         <GenericContract
           contractName="YourContract"
           contract={yourContract}
@@ -115,8 +116,18 @@ export const MainPage: FC = () => {
     },
     pages: [
       {
+        name: 'YourNFT',
+        content: (
+          <GenericContract
+            contractName="YourNFT"
+            contract={yourNFT}
+            mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
+            blockExplorer={scaffoldAppProviders.targetNetwork.blockExplorer}></GenericContract>
+        ),
+      },
+      {
         name: 'Dai',
-        element: (
+        content: (
           <GenericContract
             contractName="Dai"
             contract={mainnetDai}
@@ -127,16 +138,16 @@ export const MainPage: FC = () => {
       },
     ],
   };
-  const { pageElements, menuElement } = createPagesAndTabs(pageList, route, setRoute);
+  const { tabContents, tabMenu } = createPagesAndTabs(pageList, route, setRoute);
 
   return (
     <div className="App">
       <MainPageHeader scaffoldAppProviders={scaffoldAppProviders} price={ethPrice} />
       {/* Routes should be added between the <Switch> </Switch> as seen below */}
       <BrowserRouter>
-        {menuElement}
+        {tabMenu}
         <Switch>
-          {pageElements}
+          {tabContents}
           {/* Subgraph also disabled in MainPageMenu, it does not work, see github issue https://github.com/scaffold-eth/scaffold-eth-typescript/issues/48! */}
           {/*
           <Route path="/subgraph">
