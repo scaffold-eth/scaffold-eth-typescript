@@ -2070,7 +2070,7 @@ __metadata:
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-testing-library: ^5.3.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: 3.2.3
+    eth-components: 3.2.4
     eth-hooks: 4.2.5
     ethereum-cryptography: ^1.0.3
     ethers: ^5.6.4
@@ -9216,9 +9216,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-components@npm:3.2.3":
-  version: 3.2.3
-  resolution: "eth-components@npm:3.2.3"
+"eth-components@npm:3.2.4":
+  version: 3.2.4
+  resolution: "eth-components@npm:3.2.4"
   dependencies:
     "@ethersproject/abstract-signer": ^5.6.0
     "@ethersproject/address": ^5.6.0
@@ -9232,7 +9232,7 @@ __metadata:
     "@ethersproject/units": ^5.6.0
     axios: ^0.27.2
     bnc-notify: ^1.9.4
-    eth-hooks: ^4.2.5
+    eth-hooks: ^4.2.6
     ethers: ^5.6.4
     qrcode.react: ^3.0.1
     react-blockies: ^1.4.1
@@ -9246,7 +9246,7 @@ __metadata:
     react: ">=17"
     react-css-theme-switcher: ^0.3.0
     react-dom: ">=17"
-  checksum: 5eef13badaec9f6ff5f72daadaa2e62832e3772b67c11dadf4aa9e7234619f70eecb9b705179ff0ab5d6a0cb360c84e39997ef8a39bc5aa17a95ca2f857e5af7
+  checksum: 00be4d4839138e54c03fb90b9cdc69530982cabf219790279bf7e842fef57fd6f6aab572200e3082a3ad1051c5ebc9781181a593a2f6671839a14963a084ae13
   languageName: node
   linkType: hard
 
@@ -9324,7 +9324,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:^4.2.*, eth-hooks@npm:^4.2.5":
+"eth-hooks@npm:^4.2.*, eth-hooks@npm:^4.2.6":
   version: 4.2.6
   resolution: "eth-hooks@npm:4.2.6"
   dependencies:
