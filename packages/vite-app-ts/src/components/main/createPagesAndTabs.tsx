@@ -6,7 +6,7 @@ import { Link, Route } from 'react-router-dom';
  */
 type TContractPage = {
   name: string;
-  element: JSX.Element;
+  content: JSX.Element;
 };
 
 export type TContractPageList = {
@@ -31,12 +31,12 @@ export const createPagesAndTabs = (
   pageList: TContractPageList,
   route: string,
   setRoute: (route: string) => void
-): { menuElement: JSX.Element; pageElements: JSX.Element } => {
+): { tabMenu: JSX.Element; tabContents: JSX.Element } => {
   const getPath = (n: string): string => {
     return n.replaceAll(' ', '-');
   };
 
-  const menuElement = (
+  const tabMenu = (
     <Menu
       style={{
         textAlign: 'center',
@@ -52,7 +52,7 @@ export const createPagesAndTabs = (
           {pageList.mainPage.name}
         </Link>
       </Menu.Item>
-      {pageList.pages.map(({ name, element }) => (
+      {pageList.pages.map(({ name, content: element }) => (
         <Menu.Item key={name}>
           <Link
             onClick={(): void => {
@@ -66,12 +66,12 @@ export const createPagesAndTabs = (
     </Menu>
   );
 
-  const pageElements = (
+  const pageContent = (
     <>
       <Route key={'main'} exact path={'/'}>
-        {pageList.mainPage.element}
+        {pageList.mainPage.content}
       </Route>
-      {pageList.pages.map(({ name, element }) => (
+      {pageList.pages.map(({ name, content: element }) => (
         <Route key={name} path={'/' + getPath(name)}>
           {element}
         </Route>
@@ -79,5 +79,5 @@ export const createPagesAndTabs = (
     </>
   );
 
-  return { menuElement, pageElements };
+  return { tabMenu: tabMenu, tabContents: pageContent };
 };

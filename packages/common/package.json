@@ -13,8 +13,8 @@
     "format:check": "yarn prettier -c ./src"
   },
   "dependencies": {
-    "eth-hooks": "^4",
-    "ethers": "^5"
+    "eth-hooks": "^4.2.*",
+    "ethers": "^5.6.*"
   },
   "devDependencies": {
     "@types/node": "^16.11.29",
