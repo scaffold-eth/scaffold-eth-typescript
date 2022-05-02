@@ -2,10 +2,17 @@ import { getNetwork } from '@ethersproject/networks';
 import { Alert, PageHeader } from 'antd';
 import { Account } from 'eth-components/ant';
 import { useGasPrice } from 'eth-hooks';
-import { useEthersContext } from 'eth-hooks/context';
-import React, { FC, ReactElement, ReactNode } from 'react';
+import {
+  useEthersContext,
+  connectorErrorText,
+  NoStaticJsonRPCProviderFoundError,
+  CouldNotActivateError,
+  UserClosedModalError,
+} from 'eth-hooks/context';
+import React, { FC, ReactElement, ReactNode, useCallback } from 'react';
 
 import { FaucetHintButton } from '~~/components/common/FaucetHintButton';
+import { useAntNotification } from '~~/components/main/hooks/useAntNotification';
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 import { getNetworkInfo } from '~~/functions';
 
@@ -24,6 +31,8 @@ export interface IMainPageHeaderProps {
 export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
   const ethersContext = useEthersContext();
   const selectedChainId = ethersContext.chainId;
+
+  const notification = useAntNotification();
 
   // 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation
   const [gasPrice] = useGasPrice(ethersContext.chainId, 'fast', getNetworkInfo(ethersContext.chainId));
@@ -56,6 +65,30 @@ export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
     </>
   );
 
+  const onLoginError = useCallback(
+    (e: Error) => {
+      if (e instanceof UserClosedModalError) {
+        notification.info({
+          message: connectorErrorText.UserClosedModalError,
+          description: e.message,
+        });
+      } else if (e instanceof NoStaticJsonRPCProviderFoundError) {
+        notification.error({
+          message: 'Login Error: ' + connectorErrorText.NoStaticJsonRPCProviderFoundError,
+          description: e.message,
+        });
+      } else if (e instanceof CouldNotActivateError) {
+        notification.error({
+          message: 'Login Error: ' + connectorErrorText.CouldNotActivateError,
+          description: e.message,
+        });
+      } else {
+        notification.error({ message: 'Login Error: ', description: e.message });
+      }
+    },
+    [notification]
+  );
+
   /**
    * 👨‍💼 Your account is in the top right with a wallet at connect options
    */
@@ -63,6 +96,7 @@ export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
     <div style={{ position: 'fixed', textAlign: 'right', right: 0, top: 0, padding: 10, zIndex: 1 }}>
       <Account
         createLoginConnector={props.scaffoldAppProviders.createLoginConnector}
+        loginOnError={onLoginError}
         ensProvider={props.scaffoldAppProviders.mainnetAdaptor?.provider}
         price={props.price}
         blockExplorer={props.scaffoldAppProviders.targetNetwork.blockExplorer}
