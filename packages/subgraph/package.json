@@ -17,5 +17,8 @@
   },
   "devDependencies": {
     "mustache": "^4.2.0"
+  },
+  "installConfig": {
+    "hoistingLimits": "workspaces"
   }
 }
