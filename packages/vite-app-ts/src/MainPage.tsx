@@ -12,6 +12,7 @@ import { MainPageFooter, MainPageHeader, createPagesAndTabs, TContractPageList }
 import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './components/main/hooks/useScaffoldHooksExamples';
 
 import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~~/components/contractContext';
+import { useCreateAntNotificationHolder } from '~~/components/main/hooks/useAntNotification';
 import { useBurnerFallback } from '~~/components/main/hooks/useBurnerFallback';
 import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 import { BURNER_FALLBACK_ENABLED, MAINNET_PROVIDER } from '~~/config/app.config';
@@ -32,6 +33,7 @@ import { BURNER_FALLBACK_ENABLED, MAINNET_PROVIDER } from '~~/config/app.config'
  * @returns
  */
 export const MainPage: FC = () => {
+  const notificationHolder = useCreateAntNotificationHolder();
   // -----------------------------
   // Providers, signers & wallets
   // -----------------------------
@@ -158,6 +160,7 @@ export const MainPage: FC = () => {
       </BrowserRouter>
 
       <MainPageFooter scaffoldAppProviders={scaffoldAppProviders} price={ethPrice} />
+      <div style={{ position: 'absolute' }}>{notificationHolder}</div>
     </div>
   );
 };
