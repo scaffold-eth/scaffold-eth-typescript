@@ -24,7 +24,7 @@ export interface IScaffoldAppProviders {
 
 export const useScaffoldProviders = (): IScaffoldAppProviders => {
   const [web3Config, setWeb3Config] = useState<Partial<ICoreOptions>>();
-  const ethersContext = useEthersAppContext();
+  const ethersAppContext = useEthersAppContext();
   const [mainnetAdaptor] = useEthersAdaptorFromProviderOrSigners(MAINNET_PROVIDER);
   const [localAdaptor] = useEthersAdaptorFromProviderOrSigners(LOCAL_PROVIDER);
 
@@ -86,15 +86,15 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
       return newConnector;
     };
 
-    if (!ethersContext.active && createLoginConnector) {
+    if (!ethersAppContext.active && createLoginConnector) {
       let connector = createLoginConnector(undefined);
       connector = autoConnectToBurner(connector);
-      if (connector) void ethersContext.activate(connector);
+      if (connector) void ethersAppContext.activate(connector);
     }
   }, [web3Config]);
 
   return {
-    currentProvider: ethersContext.provider ?? LOCAL_PROVIDER,
+    currentProvider: ethersAppContext.provider ?? LOCAL_PROVIDER,
     mainnetAdaptor: mainnetAdaptor,
     localAdaptor: localAdaptor,
     targetNetwork: TARGET_NETWORK_INFO,

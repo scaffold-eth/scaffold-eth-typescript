@@ -30,31 +30,34 @@ import { getNetworkInfo } from '~~/functions';
  */
 export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProviders): void => {
   const ethComponentsSettings = useContext(EthComponentsSettingsContext);
-  const ethersContext = useEthersAppContext();
+  const ethersAppContext = useEthersAppContext();
   const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
 
   const exampleMainnetProvider = scaffoldAppProviders.mainnetAdaptor?.provider;
-  const currentChainId: number | undefined = ethersContext.chainId;
+  const currentChainId: number | undefined = ethersAppContext.chainId;
 
   // ---------------------
   // 🏦 get your balance
   // ---------------------
   // 🏗 scaffold-eth is full of handy hooks like this one to get your balance:
-  const [yourLocalBalance] = useBalance(ethersContext.account);
+  const [yourLocalBalance] = useBalance(ethersAppContext.account);
 
   // Just plug in different 🛰 providers to get your balance on different chains:
   const [mainnetAdaptor] = useEthersAdaptorFromProviderOrSigners(exampleMainnetProvider);
-  const [yourMainnetBalance, yUpdate, yStatus] = useBalance(ethersContext.account, mergeDefaultUpdateOptions(), {
+  const [yourMainnetBalance, yUpdate, yStatus] = useBalance(ethersAppContext.account, mergeDefaultUpdateOptions(), {
     adaptorEnabled: true,
     adaptor: mainnetAdaptor,
   });
 
   // you can change the update schedule to every 10 blocks, the default is every 1 block:
-  const [secondbalance] = useBalance(ethersContext.account, { blockNumberInterval: 10 });
+  const [secondbalance] = useBalance(ethersAppContext.account, { blockNumberInterval: 10 });
   // you can change the update schedule to every polling, min is 10000ms
-  const [thirdbalance] = useBalance(ethersContext.account, { refetchInterval: 100000, blockNumberInterval: undefined });
+  const [thirdbalance] = useBalance(ethersAppContext.account, {
+    refetchInterval: 100000,
+    blockNumberInterval: undefined,
+  });
   // you can use advanced react-query update options
-  const [fourthbalance] = useBalance(ethersContext.account, {
+  const [fourthbalance] = useBalance(ethersAppContext.account, {
     blockNumberInterval: 1,
     query: { refetchOnWindowFocus: true },
   });
@@ -64,11 +67,11 @@ export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProvi
   // ---------------------
 
   // 💰 Then read your DAI balance like:
-  const [myAddress] = useSignerAddress(ethersContext.signer);
+  const [myAddress] = useSignerAddress(ethersAppContext.signer);
   const myMainnetDAIBalance = useContractReader(mainnetDai, mainnetDai?.balanceOf, [myAddress ?? '']);
 
   // 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation
-  const [gasPrice] = useGasPrice(ethersContext.chainId, 'fast', getNetworkInfo(ethersContext.chainId));
+  const [gasPrice] = useGasPrice(ethersAppContext.chainId, 'fast', getNetworkInfo(ethersAppContext.chainId));
 
   // ---------------------
   // 📛 call ens
@@ -95,14 +98,14 @@ export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProvi
   // The transactor wraps transactions and provides notificiations
   // you can use this for read write transactions
   // check out faucetHintButton.tsx for an example.
-  const tx = transactor(ethComponentsSettings, ethersContext?.signer, gasPrice);
+  const tx = transactor(ethComponentsSettings, ethersAppContext?.signer, gasPrice);
 
   // here is another example of using tx
 
   // useEffect(() => {
   //   // only does it on local host and once cuz of the useeffect for safety
-  //   if (tx && ethersContext?.chainId == NETWORKS.localhost.chainId) {
-  //     const someaddress = ethersContext?.account;
+  //   if (tx && ethersAppContext?.chainId == NETWORKS.localhost.chainId) {
+  //     const someaddress = ethersAppContext?.account;
   //     tx({
   //       to: someaddress,
   //       value: parseEther('0.01').toHexString(),
@@ -117,11 +120,17 @@ export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProvi
   // npm: https://www.npmjs.com/package/eth-hooks
 
   useEffect(() => {
-    if (DEBUG && scaffoldAppProviders.mainnetAdaptor && ethersContext.account && currentChainId && yourLocalBalance) {
+    if (
+      DEBUG &&
+      scaffoldAppProviders.mainnetAdaptor &&
+      ethersAppContext.account &&
+      currentChainId &&
+      yourLocalBalance
+    ) {
       console.log('_____________________________________ 🏗 scaffold-eth _____________________________________');
       console.log('🌎 mainnetProvider', scaffoldAppProviders.mainnetAdaptor);
       console.log('🏠 localChainId', scaffoldAppProviders?.localAdaptor?.chainId);
-      console.log('👩‍💼 selected address:', ethersContext.account);
+      console.log('👩‍💼 selected address:', ethersAppContext.account);
       console.log('🕵🏻‍♂️ currentChainId:', currentChainId);
       console.log('💵 yourLocalBalance', yourLocalBalance ? ethers.utils.formatEther(yourLocalBalance) : '...');
       // console.log('💵 yourMainnetBalance', yourMainnetBalance ? ethers.utils.formatEther(yourMainnetBalance) : '...');
@@ -129,5 +138,5 @@ export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProvi
       console.log('💵 yourMainnetDAIBalance', myMainnetDAIBalance ?? '...');
       console.log('⛽ gasPrice', gasPrice);
     }
-  }, [scaffoldAppProviders.mainnetAdaptor, ethersContext.account, ethersContext.provider]);
+  }, [scaffoldAppProviders.mainnetAdaptor, ethersAppContext.account, ethersAppContext.provider]);
 };

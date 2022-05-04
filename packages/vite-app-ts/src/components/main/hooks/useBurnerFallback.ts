@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 
 export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: boolean): void => {
-  const ethersContext = useEthersAppContext();
+  const ethersAppContext = useEthersAppContext();
   const burnerFallback = useBurnerSigner(appProviders.localAdaptor?.provider);
   const localAddress = appProviders.localAdaptor?.signer;
 
@@ -16,22 +16,22 @@ export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: b
      */
     if (
       burnerFallback?.signer &&
-      burnerFallback?.account !== ethersContext.account &&
-      ethersContext.chainId === NETWORKS.localhost.chainId &&
-      ethersContext.provider?.connection?.url === NETWORKS.localhost.url &&
-      ethersContext.changeSigner &&
+      burnerFallback?.account !== ethersAppContext.account &&
+      ethersAppContext.chainId === NETWORKS.localhost.chainId &&
+      ethersAppContext.provider?.connection?.url === NETWORKS.localhost.url &&
+      ethersAppContext.changeSigner &&
       localAddress != null &&
       enable
     ) {
-      void ethersContext.changeSigner?.(burnerFallback.signer);
+      void ethersAppContext.changeSigner?.(burnerFallback.signer);
     }
   }, [
-    ethersContext.account,
+    ethersAppContext.account,
     localAddress,
-    ethersContext.changeSigner,
+    ethersAppContext.changeSigner,
     burnerFallback.signer,
     burnerFallback?.account,
-    ethersContext,
+    ethersAppContext,
     enable,
   ]);
 };

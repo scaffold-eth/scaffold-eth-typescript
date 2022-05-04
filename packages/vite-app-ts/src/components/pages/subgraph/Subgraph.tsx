@@ -47,10 +47,10 @@ import { FC } from 'react';
 //     return response.json() as Record<string, any>;
 //   };
 
-//   const ethersContext = useEthersAppContext();
-//   const [gasPrice] = useGasPrice(ethersContext.chainId, 'fast');
-//   const tx = transactor(ethComponentsSettings, ethersContext?.signer, gasPrice);
-//   const yourContract = useAppContracts('YourContract', ethersContext.chainId);
+//   const ethersAppContext = useEthersAppContext();
+//   const [gasPrice] = useGasPrice(ethersAppContext.chainId, 'fast');
+//   const tx = transactor(ethComponentsSettings, ethersAppContext?.signer, gasPrice);
+//   const yourContract = useAppContracts('YourContract', ethersAppContext.chainId);
 
 //   const EXAMPLE_GQL = `
 //     {

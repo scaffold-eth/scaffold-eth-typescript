@@ -42,7 +42,7 @@ export const MainPage: FC = () => {
   const scaffoldAppProviders = useScaffoldAppProviders();
 
   // 🦊 Get your web3 ethers context from current providers
-  const ethersContext = useEthersAppContext();
+  const ethersAppContext = useEthersAppContext();
 
   // if no user is found use a burner wallet on localhost as fallback if enabled
   useBurnerFallback(scaffoldAppProviders, BURNER_FALLBACK_ENABLED);
@@ -56,7 +56,7 @@ export const MainPage: FC = () => {
   const [mainnetAdaptor] = useEthersAdaptorFromProviderOrSigners(MAINNET_PROVIDER);
   useConnectAppContracts(mainnetAdaptor);
   // 🏭 connec to  contracts for current network & signer
-  useConnectAppContracts(asEthersAdaptor(ethersContext));
+  useConnectAppContracts(asEthersAdaptor(ethersAppContext));
 
   // -----------------------------
   // Hooks use and examples
@@ -71,8 +71,8 @@ export const MainPage: FC = () => {
   // -----------------------------
 
   // init contracts
-  const yourContract = useAppContracts('YourContract', ethersContext.chainId);
-  const yourNFT = useAppContracts('YourNFT', ethersContext.chainId);
+  const yourContract = useAppContracts('YourContract', ethersAppContext.chainId);
+  const yourNFT = useAppContracts('YourNFT', ethersAppContext.chainId);
   const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
 
   // keep track of a variable from the contract in the local React state:
@@ -93,7 +93,7 @@ export const MainPage: FC = () => {
   const [ethPrice] = useDexEthPrice(scaffoldAppProviders.mainnetAdaptor?.provider, scaffoldAppProviders.targetNetwork);
 
   // 💰 this hook will get your balance
-  const [yourCurrentBalance] = useBalance(ethersContext.account);
+  const [yourCurrentBalance] = useBalance(ethersAppContext.account);
 
   const [route, setRoute] = useState<string>('');
   useEffect(() => {

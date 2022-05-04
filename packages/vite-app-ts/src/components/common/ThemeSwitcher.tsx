@@ -7,19 +7,19 @@ const initialTheme = window.localStorage.getItem('theme') ?? 'light';
 export const ThemeSwitcher: FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(initialTheme === 'dark');
   const { switcher, currentTheme, status, themes } = useThemeSwitcher();
-  const ethersContext = useEthersAppContext();
+  const ethersAppContext = useEthersAppContext();
 
   useEffect(() => {
     window.localStorage.setItem('theme', currentTheme ?? '');
     if (currentTheme === 'light' || currentTheme === 'dark') {
-      ethersContext?.setModalTheme?.(currentTheme);
+      ethersAppContext?.setModalTheme?.(currentTheme);
     }
   }, [currentTheme]);
 
   const toggleTheme = (isChecked: boolean): void => {
     setIsDarkMode(isChecked);
     switcher({ theme: isChecked ? themes.dark : themes.light });
-    ethersContext?.setModalTheme?.(isDarkMode ? 'dark' : 'light');
+    ethersAppContext?.setModalTheme?.(isDarkMode ? 'dark' : 'light');
   };
 
   if (status === 'loading' || status === 'idle') {

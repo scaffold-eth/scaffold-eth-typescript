@@ -15,17 +15,17 @@ import { FAUCET_ENABLED } from '~~/config/app.config';
 /**
  * Is Faucet available?
  * @param scaffoldAppProviders
- * @param ethersContext
+ * @param ethersAppContext
  * @returns
  */
 export const getFaucetAvailable = (
   scaffoldAppProviders: IScaffoldAppProviders,
-  ethersContext: IEthersContext
+  ethersAppContext: IEthersContext
 ): boolean => {
   const result =
-    (ethersContext?.provider &&
-      ethersContext?.chainId != null &&
-      ethersContext?.chainId === scaffoldAppProviders.targetNetwork.chainId &&
+    (ethersAppContext?.provider &&
+      ethersAppContext?.chainId != null &&
+      ethersAppContext?.chainId === scaffoldAppProviders.targetNetwork.chainId &&
       scaffoldAppProviders.targetNetwork.name === 'localhost') ??
     false;
   return result && FAUCET_ENABLED;
@@ -38,9 +38,9 @@ interface IFaucetButton {
 
 export const FaucetHintButton: FC<IFaucetButton> = (props) => {
   const settingsContext = useContext(EthComponentsSettingsContext);
-  const ethersContext = useEthersAppContext();
+  const ethersAppContext = useEthersAppContext();
 
-  const [yourLocalBalance] = useBalance(ethersContext.account ?? '');
+  const [yourLocalBalance] = useBalance(ethersAppContext.account ?? '');
   const signer = props.scaffoldAppProviders.localAdaptor?.signer;
   /**
    * create transactor for faucet
@@ -50,7 +50,7 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
   /**
    * facuet is only available on localhost
    */
-  const isAvailable = getFaucetAvailable(props.scaffoldAppProviders, ethersContext);
+  const isAvailable = getFaucetAvailable(props.scaffoldAppProviders, ethersAppContext);
   const [faucetAvailable] = useDebounce(isAvailable, 500, {
     trailing: true,
   });
@@ -61,15 +61,15 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
     const lowFunds = yourLocalBalance && min < 0.002;
     const allowFaucet = faucetAvailable && !faucetClicked && lowFunds;
 
-    if (allowFaucet && ethersContext?.account != null) {
+    if (allowFaucet && ethersAppContext?.account != null) {
       return (
         <div style={{ paddingTop: 10, paddingLeft: 10 }}>
           <Button
             type="primary"
             onClick={(): void => {
-              if (faucetTx && ethersContext?.account != null) {
+              if (faucetTx && ethersAppContext?.account != null) {
                 faucetTx({
-                  to: ethersContext?.account,
+                  to: ethersAppContext?.account,
                   value: parseEther('0.01').toHexString(),
                 })
                   .then(() => setFaucetClicked(true))
@@ -84,7 +84,7 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
       return <></>;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [yourLocalBalance, faucetAvailable, ethersContext?.account, faucetTx]);
+  }, [yourLocalBalance, faucetAvailable, ethersAppContext?.account, faucetTx]);
 
   return <> {faucetHint} </>;
 };

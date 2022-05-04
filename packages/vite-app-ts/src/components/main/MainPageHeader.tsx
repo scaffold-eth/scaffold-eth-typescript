@@ -29,13 +29,13 @@ export interface IMainPageHeaderProps {
  * @returns
  */
 export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
-  const ethersContext = useEthersAppContext();
-  const selectedChainId = ethersContext.chainId;
+  const ethersAppContext = useEthersAppContext();
+  const selectedChainId = ethersAppContext.chainId;
 
   const notification = useAntNotification();
 
   // 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation
-  const [gasPrice] = useGasPrice(ethersContext.chainId, 'fast', getNetworkInfo(ethersContext.chainId));
+  const [gasPrice] = useGasPrice(ethersAppContext.chainId, 'fast', getNetworkInfo(ethersAppContext.chainId));
 
   /**
    * this shows the page header and other informaiton

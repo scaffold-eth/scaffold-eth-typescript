@@ -21,12 +21,12 @@ export interface IMainPageFooterProps {
  * @returns
  */
 export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
-  const ethersContext = useEthersAppContext();
+  const ethersAppContext = useEthersAppContext();
 
   // Faucet Tx can be used to send funds from the faucet
-  const faucetAvailable = getFaucetAvailable(props.scaffoldAppProviders, ethersContext);
+  const faucetAvailable = getFaucetAvailable(props.scaffoldAppProviders, ethersAppContext);
 
-  const network = getNetworkInfo(ethersContext.chainId);
+  const network = getNetworkInfo(ethersAppContext.chainId);
 
   const left = (
     <div
@@ -39,7 +39,7 @@ export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
       }}>
       <Row align="middle" gutter={[4, 4]}>
         <Col span={8}>
-          <Ramp price={props.price} address={ethersContext?.account ?? ''} networks={NETWORKS} />
+          <Ramp price={props.price} address={ethersAppContext?.account ?? ''} networks={NETWORKS} />
         </Col>
 
         <Col
@@ -51,7 +51,7 @@ export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
           <GasGauge
             chainId={props.scaffoldAppProviders.targetNetwork.chainId}
             currentNetwork={network}
-            provider={ethersContext.provider}
+            provider={ethersAppContext.provider}
             speed="average"
           />
         </Col>
