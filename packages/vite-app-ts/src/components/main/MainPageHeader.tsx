@@ -3,7 +3,7 @@ import { Alert, PageHeader } from 'antd';
 import { Account } from 'eth-components/ant';
 import { useGasPrice } from 'eth-hooks';
 import {
-  useEthersContext,
+  useEthersAppContext,
   connectorErrorText,
   NoStaticJsonRPCProviderFoundError,
   CouldNotActivateError,
@@ -29,7 +29,7 @@ export interface IMainPageHeaderProps {
  * @returns
  */
 export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
-  const ethersContext = useEthersContext();
+  const ethersContext = useEthersAppContext();
   const selectedChainId = ethersContext.chainId;
 
   const notification = useAntNotification();

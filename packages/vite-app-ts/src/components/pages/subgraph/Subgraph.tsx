@@ -8,7 +8,7 @@ import { FC } from 'react';
 // import { transactor } from 'eth-components/functions';
 // import { EthComponentsSettingsContext } from 'eth-components/models';
 // import { useGasPrice } from 'eth-hooks';
-// import { useEthersContext } from 'eth-hooks/context';
+// import { useEthersAppContext } from 'eth-hooks/context';
 // import { TEthersProvider } from 'eth-hooks/models';
 // // import GraphiQL from 'graphiql';
 // import React, { FC, ReactElement, useContext, useState } from 'react';
@@ -47,7 +47,7 @@ import { FC } from 'react';
 //     return response.json() as Record<string, any>;
 //   };
 
-//   const ethersContext = useEthersContext();
+//   const ethersContext = useEthersAppContext();
 //   const [gasPrice] = useGasPrice(ethersContext.chainId, 'fast');
 //   const tx = transactor(ethComponentsSettings, ethersContext?.signer, gasPrice);
 //   const yourContract = useAppContracts('YourContract', ethersContext.chainId);

@@ -1,5 +1,5 @@
 import { useEthersAdaptorFromProviderOrSigners } from 'eth-hooks';
-import { EthersModalConnector, TEthersModalConnector, useEthersContext } from 'eth-hooks/context';
+import { EthersModalConnector, TEthersModalConnector, useEthersAppContext } from 'eth-hooks/context';
 import { TCreateEthersModalConnector, TEthersAdaptor, TEthersProvider, TNetworkInfo } from 'eth-hooks/models';
 import { useCallback, useEffect, useState } from 'react';
 import { useThemeSwitcher } from 'react-css-theme-switcher';
@@ -24,7 +24,7 @@ export interface IScaffoldAppProviders {
 
 export const useScaffoldProviders = (): IScaffoldAppProviders => {
   const [web3Config, setWeb3Config] = useState<Partial<ICoreOptions>>();
-  const ethersContext = useEthersContext();
+  const ethersContext = useEthersAppContext();
   const [mainnetAdaptor] = useEthersAdaptorFromProviderOrSigners(MAINNET_PROVIDER);
   const [localAdaptor] = useEthersAdaptorFromProviderOrSigners(LOCAL_PROVIDER);
 

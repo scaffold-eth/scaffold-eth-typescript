@@ -9,7 +9,7 @@ import {
   useGasPrice,
   useSignerAddress,
 } from 'eth-hooks';
-import { useEthersContext } from 'eth-hooks/context';
+import { useEthersAppContext } from 'eth-hooks/context';
 import { mergeDefaultUpdateOptions } from 'eth-hooks/functions';
 import { ethers } from 'ethers';
 import { useContext, useEffect } from 'react';
@@ -30,7 +30,7 @@ import { getNetworkInfo } from '~~/functions';
  */
 export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProviders): void => {
   const ethComponentsSettings = useContext(EthComponentsSettingsContext);
-  const ethersContext = useEthersContext();
+  const ethersContext = useEthersAppContext();
   const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
 
   const exampleMainnetProvider = scaffoldAppProviders.mainnetAdaptor?.provider;

@@ -2,7 +2,7 @@ import '~~/styles/main-page.css';
 import { NETWORKS } from '@scaffold-eth/common/src/constants';
 import { GenericContract } from 'eth-components/ant/generic-contract';
 import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useEventListener } from 'eth-hooks';
-import { useEthersContext } from 'eth-hooks/context';
+import { useEthersAppContext } from 'eth-hooks/context';
 import { useDexEthPrice } from 'eth-hooks/dapps';
 import { asEthersAdaptor } from 'eth-hooks/functions';
 import React, { FC, useEffect, useState } from 'react';
@@ -42,7 +42,7 @@ export const MainPage: FC = () => {
   const scaffoldAppProviders = useScaffoldAppProviders();
 
   // 🦊 Get your web3 ethers context from current providers
-  const ethersContext = useEthersContext();
+  const ethersContext = useEthersAppContext();
 
   // if no user is found use a burner wallet on localhost as fallback if enabled
   useBurnerFallback(scaffoldAppProviders, BURNER_FALLBACK_ENABLED);

@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import { transactor } from 'eth-components/functions';
 import { EthComponentsSettingsContext } from 'eth-components/models';
 import { useBalance } from 'eth-hooks';
-import { useEthersContext } from 'eth-hooks/context';
+import { useEthersAppContext } from 'eth-hooks/context';
 import { IEthersContext } from 'eth-hooks/models';
 import { utils } from 'ethers';
 import React, { FC, useContext, useMemo, useState } from 'react';
@@ -38,7 +38,7 @@ interface IFaucetButton {
 
 export const FaucetHintButton: FC<IFaucetButton> = (props) => {
   const settingsContext = useContext(EthComponentsSettingsContext);
-  const ethersContext = useEthersContext();
+  const ethersContext = useEthersAppContext();
 
   const [yourLocalBalance] = useBalance(ethersContext.account ?? '');
   const signer = props.scaffoldAppProviders.localAdaptor?.signer;

@@ -1,12 +1,12 @@
 import { NETWORKS } from '@scaffold-eth/common/src/constants';
 import { useBurnerSigner } from 'eth-hooks';
-import { useEthersContext } from 'eth-hooks/context';
+import { useEthersAppContext } from 'eth-hooks/context';
 import { useEffect } from 'react';
 
 import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 
 export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: boolean): void => {
-  const ethersContext = useEthersContext();
+  const ethersContext = useEthersAppContext();
   const burnerFallback = useBurnerSigner(appProviders.localAdaptor?.provider);
   const localAddress = appProviders.localAdaptor?.signer;
 
