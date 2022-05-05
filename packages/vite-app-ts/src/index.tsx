@@ -1,8 +1,6 @@
 /* eslint-disable */
 //import './helpers/__global';
 
-import React from 'react';
-
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
  * 🏹 See MainPage.tsx for main app component!
@@ -24,15 +22,22 @@ const run = async (): Promise<void> => {
 
   const App = lazy(() => import('./App'));
 
-  // @ts-ignore
-  const root = ReactDOM.createRoot(document.getElementById('root'));
-  root.render(
+  ReactDOM.render(
     <StrictMode>
       <Suspense fallback={<div />}>
         <App />
       </Suspense>
-    </StrictMode>
+    </StrictMode>,
+    document.getElementById('root')
   );
+  // const root = ReactDOM.createRoot(document.getElementById('root'));
+  // root.render(
+  //   <StrictMode>
+  //     <Suspense fallback={<div />}>
+  //       <App />
+  //     </Suspense>
+  //   </StrictMode>
+  // );
 };
 
 void run();
