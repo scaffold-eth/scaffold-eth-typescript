@@ -37,7 +37,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking"
   ],
-  "plugins": ["prettier", "react", "react-hooks", "unused-imports", "testing-library"],
+  "plugins": ["prettier", "react", "react-hooks", "unused-imports" ],
   "rules": {
     "eqeqeq": ["error", "smart"],
     "react/jsx-wrap-multilines": "warn",

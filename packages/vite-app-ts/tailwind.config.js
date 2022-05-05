@@ -2,6 +2,9 @@ module.exports = {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   darkMode: 'class', // or 'media' or 'class'
   important: false,
+  corePlugins: {
+    preflight: false,
+  },
   theme: {
     extend: {
       extend: {
@@ -28,5 +31,5 @@ module.exports = {
       borderWidth: ['hover', 'focus'],
     },
   },
-  plugins: [require('daisyui')],
+  // plugins: [require('daisyui')],
 };
