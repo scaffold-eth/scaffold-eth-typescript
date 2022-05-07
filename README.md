@@ -2,7 +2,7 @@
 
 ## Typescript
 
-This is the typescript repo of scaffold.eth. The directories that you'll use are:
+This is the typescript repo of scaffold-eth and it uses `hardhat` and `vite`. The directories that you'll use are:
 
 ```bash
 packages/vite-app-ts/
@@ -38,6 +38,8 @@ Running the app
 
 4. other commands
    ```bash
+   # rebuild all contracts, incase of inconsistent state
+   yarn contracts:rebuild
    # run hardhat commands for the workspace, or see all tasks
    yarn hardhat 'xxx'
    # run subgraph commands for the workspace
@@ -56,15 +58,23 @@ Everything you need to build on Ethereum! 🚀 Quickly experiment with Solidity 
 - 📱 Open http://localhost:3000 to see the app
 - 👷🏽‍♂️ run `yarn hardhat` to get a list of all the tasks.  Run `yarn hardhat taskname` to run the task.
 
-## Guides
+<br/><br/><br/>
 
+--------------------------------------
+# Guides
+
+## Documentation
 
 - Check out [eth-hooks docs](https://scaffold-eth.github.io/eth-hooks) for example of how to use hooks
-- you can look at [speedrun ethereum](https://speedrunethereum.com/) to get started with scaffold-eth-typescript and web3.  
-  - 🏁 Make sure to click on the typescript tab!
+
 
 ## 🏃💨 Speedrun Ethereum
 Register as a builder [here](https://speedrunethereum.com) and start on some of the challenges and build a portfolio.
+>  🏁 Make sure to click on the typescript tab!
+
+<br/><br/><br/>
+
+--------------------------------------
 # More Information!
 
 ## 📚 Documentation
