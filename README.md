@@ -69,7 +69,7 @@ Everything you need to build on Ethereum! 🚀 Quickly experiment with Solidity 
 
 
 ## 🏃💨 Speedrun Ethereum
-Register as a builder [here](https://speedrunethereum.com) and start on some of the challenges and build a portfolio.
+Register as a builder [here](https://speedrunethereum.com) and start on some of the challenges and build a portfolio.  
 >  🏁 Make sure to click on the typescript tab!
 
 <br/><br/><br/>
@@ -83,23 +83,26 @@ Documentation, tutorials, challenges, and many more resources, visit: [docs.scaf
 
 Eth-hooks documentation is [here](https://scaffold-eth.github.io/eth-hooks/).  Learn how to use the contexts here.
 
+## 💬 Support Chat
 
-### 🔭 Learning Solidity
+Join the telegram [support chat 💬](https://t.me/joinchat/KByvmRe5wkR-8F_zz6AjpA) to ask questions and find others building with 🏗 scaffold-eth!
+
+
+## 🛠 Buidl
+
+Check out 
+- [Typescript challenges](https://github.com/scaffold-eth/scaffold-eth-typescript-challenges)
+- [Typescript examples](https://github.com/scaffold-eth/scaffold-eth-typescript-examples) 
+- [Vanilla JS active branches](https://github.com/scaffold-eth/scaffold-eth/branches/active) 
+- Join/fund the 🏰 [BuidlGuidl](https://BuidlGuidl.com)!
+- [Follow the full Ethereum Speed Run](https://medium.com/@austin_48503/%EF%B8%8Fethereum-dev-speed-run-bd72bcba6a4c)
+
+## 🔭 Learning Solidity
 
 Read the docs: https://docs.soliditylang.org
 
 Go through each topic from [solidity by example](https://solidity-by-example.org) editing `YourContract.sol` in **🏗 scaffold-eth**
 
-
-## 🛠 Buidl
-
-Check out all the [active branches](https://github.com/austintgriffith/scaffold-eth/branches/active), [open issues](https://github.com/austintgriffith/scaffold-eth/issues), and join/fund the 🏰 [BuidlGuidl](https://BuidlGuidl.com)!
-
-[Follow the full Ethereum Speed Run](https://medium.com/@austin_48503/%EF%B8%8Fethereum-dev-speed-run-bd72bcba6a4c)
-
-### 💬 Support Chat
-
-Join the telegram [support chat 💬](https://t.me/joinchat/KByvmRe5wkR-8F_zz6AjpA) to ask questions and find others building with 🏗 scaffold-eth!
 
 ### 🙏🏽 Support us!
 
