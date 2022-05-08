@@ -8,7 +8,7 @@ export type TNetworkNames =
   | "ropsten"
   | "goerli"
   | "xdai"
-  | "matic"
+  | "polygon"
   | "mumbai"
   | "rinkebyArbitrum"
   | "arbitrum"

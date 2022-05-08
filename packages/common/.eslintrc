@@ -31,7 +31,6 @@
     "plugin:import/typescript",
     "plugin:react-hooks/recommended",
     "plugin:react/recommended",
-    "plugin:tailwind/recommended",
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
