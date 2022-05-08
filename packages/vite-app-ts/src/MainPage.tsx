@@ -128,7 +128,7 @@ export const MainPage: FC = () => {
         ),
       },
       {
-        name: 'Dai',
+        name: 'Mainnet-Dai',
         content: (
           <GenericContract
             contractName="Dai"

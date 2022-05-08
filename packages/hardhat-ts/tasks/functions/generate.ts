@@ -25,7 +25,7 @@ task('generate', 'Create a mnemonic for builder deploys', async (_, _hre) => {
   debugLog('privateKey', privateKey);
   const address = `0x${privateToAddress(wallet.getPrivateKey()).toString('hex')}`;
   console.log(`🔐 Account Generated as ${address} and set as mnemonic in packages/hardhat`);
-  console.log("💬 Use 'yarn hardhat account' to get more information about the deployment account.");
+  console.log("💬 Use 'yarn account' to get more information about the deployment account.");
 
   fs.writeFileSync(`./generated/${address}.secret`, mnemonic.toString());
   fs.writeFileSync(mnemonicPath, mnemonic.toString());
