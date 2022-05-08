@@ -24,6 +24,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@babel/runtime": "^7.17.9",
+    "@coinbase/wallet-sdk": "^3.0.11",
     "@emotion/react": "^11.9.0",
     "@ethersproject/abi": "^5.6.1",
     "@ethersproject/abstract-provider": "^5.6.0",
@@ -47,7 +48,7 @@
     "axios": "^0.27.2",
     "buffer": "^6.0.3",
     "daisyui": "^2.14.3",
-    "eth-components": "3.2.13",
+    "eth-components": "3.2.16",
     "eth-hooks": "4.2.17",
     "ethereum-cryptography": "^1.0.3",
     "ethers": "^5.6.4",
@@ -76,7 +77,6 @@
     "ts-invariant": "^0.10.2",
     "use-debounce": "^8.0.0",
     "util": "^0.12.4",
-    "walletlink": "^2.5.0",
     "web3modal": "^1.9.7"
   },
   "devDependencies": {

@@ -46,7 +46,8 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
 
   // === COINBASE WALLETLINK
   try {
-    const { WalletLink } = await import('walletlink');
+    const { CoinbaseWalletSDK: WalletLink } = await import('@coinbase/wallet-sdk');
+
     // note: ⚠️ meta mask and coinbase wallets may clash.
     // you might need to check this: https://github.com/Web3Modal/web3modal/issues/316
 

@@ -439,6 +439,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@coinbase/wallet-sdk@npm:^3.0.11":
+  version: 3.0.11
+  resolution: "@coinbase/wallet-sdk@npm:3.0.11"
+  dependencies:
+    "@metamask/safe-event-emitter": 2.0.0
+    bind-decorator: ^1.0.11
+    bn.js: ^5.1.1
+    clsx: ^1.1.0
+    eth-block-tracker: 4.4.3
+    eth-json-rpc-filters: 4.2.2
+    eth-rpc-errors: 4.0.2
+    js-sha256: 0.9.0
+    json-rpc-engine: 6.1.0
+    keccak: ^3.0.1
+    preact: ^10.5.9
+    qs: ^6.10.3
+    rxjs: ^6.6.3
+    stream-browserify: ^3.0.0
+  checksum: b660db0b2e81796d36ff707bfeafb433d8dbe7887a0ed0bb6fed8f4d0a444de8c74e0de9706fe520e820f8feebf86b3ea06c47e1ff24d1bd759e225956f62517
+  languageName: node
+  linkType: hard
+
 "@colors/colors@npm:1.5.0":
   version: 1.5.0
   resolution: "@colors/colors@npm:1.5.0"
@@ -1999,6 +2021,7 @@ __metadata:
   dependencies:
     "@ant-design/icons": ^4.7.0
     "@babel/runtime": ^7.17.9
+    "@coinbase/wallet-sdk": ^3.0.11
     "@dethcrypto/eth-sdk": ^0.3.0
     "@emotion/react": ^11.9.0
     "@emotion/types": ^0.7.0
@@ -2060,7 +2083,7 @@ __metadata:
     eslint-plugin-react-hooks: ^4.5.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: 3.2.13
+    eth-components: 3.2.16
     eth-hooks: 4.2.17
     ethereum-cryptography: ^1.0.3
     ethers: ^5.6.4
@@ -2108,7 +2131,6 @@ __metadata:
     vite-plugin-externals: ^0.4.0
     vite-plugin-imp: ^2.1.8
     vite-tsconfig-paths: ^3.4.1
-    walletlink: ^2.5.0
     web3modal: ^1.9.7
   languageName: unknown
   linkType: soft
@@ -9093,9 +9115,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-components@npm:3.2.13":
-  version: 3.2.13
-  resolution: "eth-components@npm:3.2.13"
+"eth-components@npm:3.2.16":
+  version: 3.2.16
+  resolution: "eth-components@npm:3.2.16"
   dependencies:
     "@ethersproject/abstract-signer": ^5.6.0
     "@ethersproject/address": ^5.6.0
@@ -9123,7 +9145,7 @@ __metadata:
     react: ">=17"
     react-css-theme-switcher: ^0.3.0
     react-dom: ">=17"
-  checksum: 649324ac56f1b32ece02aa2d988192a1729615cde86d5d9a41f0faa91b474ae079f8b2379b401a2de895074baa869c071251bd23f2fca710cc4b22f8112ec85d
+  checksum: 59b7c152531a96ad4591a24d6b27e8f8c2506430638467922fdff4ead9b0169d724dddcd1e5c2f5dd04c355d5c78ee7d0a9e7e75f1017fb67cbd28d215196db9
   languageName: node
   linkType: hard
 
@@ -17462,9 +17484,9 @@ __metadata:
   linkType: hard
 
 "preact@npm:^10.5.9":
-  version: 10.7.1
-  resolution: "preact@npm:10.7.1"
-  checksum: e99d08bd38372e78ce1c84e68685cad66adf076bd95069bc8bcd32c9903a4df09c01d5b04aad849527362b67cc2c09446b647f72de4e67d0578fdea0f904f28f
+  version: 10.7.2
+  resolution: "preact@npm:10.7.2"
+  checksum: 2f0655e0430f1c6927b40cb4abffb2c0ee4fe63e3201d44e37d0992c0ab534346f206cf23c0405572b70908e3eba2f7f60ab8e4531f409ebcbc35af06920cd60
   languageName: node
   linkType: hard
 
@@ -17955,7 +17977,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:6.10.3, qs@npm:^6.4.0, qs@npm:^6.5.2, qs@npm:^6.7.0, qs@npm:^6.9.4":
+"qs@npm:6.10.3, qs@npm:^6.10.3, qs@npm:^6.4.0, qs@npm:^6.5.2, qs@npm:^6.7.0, qs@npm:^6.9.4":
   version: 6.10.3
   resolution: "qs@npm:6.10.3"
   dependencies:
@@ -22974,27 +22996,6 @@ __metadata:
   peerDependencies:
     eslint: ">=6.0.0"
   checksum: 8cc751e9fc2bfba93664ad8945732ab1c97791f9123e703de8669b65670d1e01906d80436bf4932d7ee6fa6174ed4545e8abb059206c88f4bd71957ca6cf7ba8
-  languageName: node
-  linkType: hard
-
-"walletlink@npm:^2.5.0":
-  version: 2.5.0
-  resolution: "walletlink@npm:2.5.0"
-  dependencies:
-    "@metamask/safe-event-emitter": 2.0.0
-    bind-decorator: ^1.0.11
-    bn.js: ^5.1.1
-    clsx: ^1.1.0
-    eth-block-tracker: 4.4.3
-    eth-json-rpc-filters: 4.2.2
-    eth-rpc-errors: 4.0.2
-    js-sha256: 0.9.0
-    json-rpc-engine: 6.1.0
-    keccak: ^3.0.1
-    preact: ^10.5.9
-    rxjs: ^6.6.3
-    stream-browserify: ^3.0.0
-  checksum: 6c730674533e071ded3f782ace3a21b835dbc71050c5e08ffb4f7e2eb0c90c395d1821ff845b2d56820aa576533802325af16c45aff430b9ce03f22b148c265e
   languageName: node
   linkType: hard
 

@@ -61,15 +61,15 @@ export const SUBGRAPH_URI = 'http://localhost:8000/subgraphs/name/scaffold-eth/y
  ****************************** */
 
 /**
- * See web3ModalConfig.ts to setup your wallet connectors
+ * See web3Modal.config.ts to setup your wallet connectors
  */
 
 /**
- * See appContractsConfig.ts for your contract configuration
+ * See appContracts.config.ts for your contract configuration
  */
 
 /**
- * see apiKeysConfig.ts for your api keys
+ * see .env files for api keys
  */
 
 /** ******************************
