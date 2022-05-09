@@ -8,11 +8,11 @@ import "hardhat/console.sol";
 contract YourContract {
   string public purpose = "Building Unstoppable Apps!!!";
 
-  // this is an error handler
-  //error EmptyPurposeError(uint code, string message);
+  // 🙋🏽‍♂️ this is an error handler
+  // error EmptyPurposeError(uint code, string message);
 
   constructor() {
-    // what should we do on deploy?
+    // 🙋🏽‍♂️ what should we do on deploy?
   }
 
   // this is an event for the function below
