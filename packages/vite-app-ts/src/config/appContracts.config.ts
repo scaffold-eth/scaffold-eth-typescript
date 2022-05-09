@@ -65,9 +65,3 @@ export const appContractsConfig = () => {
 
   return undefined;
 };
-
-/**
- * ### Summary
- * This type describes all your contracts, it is the return of {@link appContractsConfig}
- */
-export type TAppConnectorList = NonNullable<ReturnType<typeof appContractsConfig>>;
