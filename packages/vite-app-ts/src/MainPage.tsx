@@ -90,7 +90,10 @@ export const MainPage: FC = () => {
   // .... 🎇 End of examples
   // -----------------------------
   // 💵 This hook will get the price of ETH from 🦄 Uniswap:
-  const [ethPrice] = useDexEthPrice(scaffoldAppProviders.mainnetAdaptor?.provider, scaffoldAppProviders.targetNetwork);
+  const [ethPrice] = useDexEthPrice(
+    scaffoldAppProviders.mainnetAdaptor?.provider,
+    ethersAppContext.chainId !== 1 ? scaffoldAppProviders.targetNetwork : undefined
+  );
 
   // 💰 this hook will get your balance
   const [yourCurrentBalance] = useBalance(ethersAppContext.account);
