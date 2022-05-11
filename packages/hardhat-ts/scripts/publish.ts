@@ -8,7 +8,7 @@ import chalk from 'chalk';
 // const publishDir = `${publishGenerated}/contracts`;
 const deploymentsDir = './generated/deployments';
 // const typechainDir = './generated/typechain';
-const graphDir = '../subgraph';
+const graphDir = '../advanced/subgraph';
 
 const publishContract = (contractName: string, networkName: string): boolean => {
   try {

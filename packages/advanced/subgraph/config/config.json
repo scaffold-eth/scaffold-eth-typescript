@@ -1,0 +1,8 @@
+{
+  "kovan_YourContractAddress": "0xFd523a08d63918848f1A8B97FaDd49427C508B1E",
+  "localhost_YourContractAddress": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+  "localhost_YourNFTAddress": "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+  "ropsten_YourContractAddress": "0xB38e43670ae14382bdc5560C522DFeBeaE43efCA",
+  "mumbai_YourContractAddress": "0xF42378276ee14cc7cD0a9eb487E20ad30209f736",
+  "mumbai_YourNFTAddress": "0x4D2021EC2143c986bdD74B6a67a924407d719a33"
+}
