@@ -1,25 +1,12 @@
 {
-  "name": "@scaffold-eth/vite-app",
-  "version": "0.3.0",
-  "license": "MIT",
+  "name": "@scaffold-eth/nextjs-app",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "cross-env ENVIRONMENT=DEVELOPMENT vite --force",
-    "contracts:hardhat": "yarn shx rm -rf './src/generated/contracts-types' && yarn shx cp -r '../hardhat-ts/generated/contract-types' './src/generated'",
-    "contracts:external": "yarn shx rm -rf './src/generated/external-contracts' && yarn shx cp -r './scripts/eth-sdk-config.ts.bak' './src/generated/eth-sdk.config.ts' && yarn eth-sdk -p ./src/generated",
-    "build": "tsc && yarn build:anttheme && cross-env ENVIRONMENT=PRODUCTION vite build",
-    "build:anttheme": "yarn lessc -x -js ./src/styles/themes/light-theme.less ./public/light-theme.css && yarn lessc -x -js ./src/styles/themes/dark-theme.less ./public/dark-theme.css",
-    "serve": "vite preview --host",
-    "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore ./src/**/*.(ts|tsx)",
-    "format": "yarn prettier -w ./src ",
-    "format:check": "yarn prettier -c ./src ",
-    "ipfs": "node ./scripts/ipfs.js",
-    "surge": "surge ./dist",
-    "s3": "node ./scripts/s3.js",
-    "ship": "yarn surge",
-    "dev:link:components": "yalc link eth-components",
-    "dev:link:hooks": "yalc link eth-hooks",
-    "dev:unlink": "yalc remove eth-hooks && yalc remove eth-components"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
@@ -57,6 +44,7 @@
     "history": "^5.3.0",
     "http-browserify": "^1.7.0",
     "ipfs-http-client": "^54.0.2",
+    "next": "12.1.6",
     "pretty-time": "^1.1.0",
     "process": "^0.11.10",
     "qrcode.react": "^3.0.1",
@@ -128,25 +116,6 @@
     "surge": "^0.23.1",
     "tailwindcss": "^3.0.24",
     "tailwindcss-elevation": "^1.0.1",
-    "ts-node": "^10.7.0",
-    "typescript": "^4.6.4",
-    "vite": "^2.9.8",
-    "vite-plugin-babel-macros": "^1.0.6",
-    "vite-plugin-checker": "^0.4.6",
-    "vite-plugin-externals": "^0.4.0",
-    "vite-plugin-imp": "^2.1.8",
-    "vite-tsconfig-paths": "^3.4.1"
-  },
-  "browserslist": {
-    "production": [
-      "last 4 chrome major versions",
-      "last 4 firefox major versions",
-      "last 2 safari major versions"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "typescript": "^4.6.4"
   }
 }

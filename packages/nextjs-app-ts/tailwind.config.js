@@ -1,6 +1,10 @@
 module.exports = {
-  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
-  darkMode: 'class', // or 'media' or 'class'
+  content: [
+    "./index.html",
+    "./pages/**/*.{vue,js,ts,jsx,tsx}",
+    "./components/**/*.{vue,js,ts,jsx,tsx}",
+  ],
+  darkMode: "class", // or 'media' or 'class'
   important: false,
   corePlugins: {
     preflight: false,
@@ -13,14 +17,14 @@ module.exports = {
          * @param theme
          */
         maxWidth: (theme) => ({
-          ...theme('spacing'),
+          ...theme("spacing"),
         }),
         minWidth: (theme) => ({
-          ...theme('spacing'),
+          ...theme("spacing"),
         }),
-        backgroundColor: ['group-focus'],
+        backgroundColor: ["group-focus"],
         borderWidth: {
-          1: '1px',
+          1: "1px",
         },
       },
     },
@@ -28,8 +32,8 @@ module.exports = {
   variants: {
     extend: {
       // ...
-      borderWidth: ['hover', 'focus'],
+      borderWidth: ["hover", "focus"],
     },
   },
-  plugins: [require('daisyui')],
+  plugins: [require("daisyui")],
 };
