@@ -3,7 +3,7 @@ import { useBurnerSigner } from 'eth-hooks';
 import { useEthersAppContext } from 'eth-hooks/context';
 import { useEffect } from 'react';
 
-import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
+import { IScaffoldAppProviders } from '~~/pages/main/hooks/useScaffoldAppProviders';
 
 export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: boolean): void => {
   const ethersAppContext = useEthersAppContext();

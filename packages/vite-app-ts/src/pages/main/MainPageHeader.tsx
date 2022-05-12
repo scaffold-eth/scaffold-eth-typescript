@@ -12,8 +12,8 @@ import {
 import React, { FC, ReactElement, ReactNode, useCallback } from 'react';
 
 import { FaucetHintButton } from '~~/components/common/FaucetHintButton';
-import { useAntNotification } from '~~/components/main/hooks/useAntNotification';
-import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
+import { useAntNotification } from '~~/pages/main/hooks/useAntNotification';
+import { IScaffoldAppProviders } from '~~/pages/main/hooks/useScaffoldAppProviders';
 import { getNetworkInfo } from '~~/functions';
 
 // displays a page header

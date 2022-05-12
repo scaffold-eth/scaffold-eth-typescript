@@ -6,12 +6,21 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint:next": "next lint",
+    "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore ./src/**/*.(ts|tsx)",
+    "contracts:hardhat": "yarn shx rm -rf './src/generated/contracts-types' && yarn shx cp -r '../hardhat-ts/generated/contract-types' './src/generated'",
+    "contracts:external": "yarn shx rm -rf './src/generated/external-contracts' && yarn shx cp -r './scripts/eth-sdk-config.ts.bak' './src/generated/eth-sdk.config.ts' && yarn eth-sdk -p ./src/generated",
+    "format": "yarn prettier -w ./src ",
+    "format:check": "yarn prettier -c ./src ",
+    "dev:link:components": "yalc link eth-components",
+    "dev:link:hooks": "yalc link eth-hooks",
+    "dev:unlink": "yalc remove eth-hooks && yalc remove eth-components"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@babel/runtime": "^7.17.9",
     "@coinbase/wallet-sdk": "^3.0.11",
+    "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11.9.0",
     "@ethersproject/abi": "^5.6.1",
     "@ethersproject/abstract-provider": "^5.6.0",
@@ -70,6 +79,7 @@
   "devDependencies": {
     "@dethcrypto/eth-sdk": "^0.3.0",
     "@emotion/types": "^0.7.0",
+    "@next/eslint-plugin-next": "^12.1.6",
     "@nomiclabs/hardhat-ethers": "^2.0.5",
     "@nomiclabs/hardhat-waffle": "^2.0.3",
     "@tailwindcss/aspect-ratio": "^0.4.0",
@@ -97,6 +107,7 @@
     "eslint": "^8.14.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-next": "^12.1.6",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",

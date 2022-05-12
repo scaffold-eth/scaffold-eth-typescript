@@ -8,13 +8,13 @@ import { asEthersAdaptor } from 'eth-hooks/functions';
 import React, { FC, useEffect, useState } from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 
-import { MainPageFooter, MainPageHeader, createPagesAndTabs, TContractPageList } from './components/main';
-import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './components/main/hooks/useScaffoldHooksExamples';
+import { MainPageFooter, MainPageHeader, createPagesAndTabs, TContractPageList } from './pages/main';
+import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './pages/main/hooks/useScaffoldHooksExamples';
 
 import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~~/components/contractContext';
-import { useCreateAntNotificationHolder } from '~~/components/main/hooks/useAntNotification';
-import { useBurnerFallback } from '~~/components/main/hooks/useBurnerFallback';
-import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
+import { useCreateAntNotificationHolder } from '~~/pages/main/hooks/useAntNotification';
+import { useBurnerFallback } from '~~/pages/main/hooks/useBurnerFallback';
+import { useScaffoldProviders as useScaffoldAppProviders } from '~~/pages/main/hooks/useScaffoldAppProviders';
 import { BURNER_FALLBACK_ENABLED, MAINNET_PROVIDER } from '~~/config/app.config';
 
 /**
