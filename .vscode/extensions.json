@@ -23,6 +23,7 @@
     "planbcoding.vscode-react-refactor",
     "tintinweb.graphviz-interactive-preview",
     "graphql.vscode-graphql",
-    "natqe.reload"
+    "natqe.reload",
+    "EditorConfig.EditorConfig"
   ]
 }

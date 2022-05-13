@@ -35,8 +35,7 @@
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:@next/next/recommended"
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
   ],
   "plugins": ["prettier", "react", "react-hooks", "unused-imports"],
   "rules": {
