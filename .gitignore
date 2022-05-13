@@ -23,9 +23,9 @@ cache
 artifacts
 
 # secrets
-.secret
+**/*.secret
 **/aws.json
-packages/hardhat-ts/mnemonic.secret
+**/mnemonics/**/*
 
 #subgraph
 packages/subgraph/subgraph.yaml
