@@ -7,8 +7,8 @@
   "scripts": {
     "watch": "tsc -w --noEmit",
     "clean": "shx rm -rf ./lib",
-    "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore ./src/**/*.(ts|tsx)",
-    "lint:report": "eslint --config ./.eslintrc --ignore-path ./.eslintignore --output-file eslint_report.json --format json ./src/**/*.(ts|tsx)",
+    "lint": "eslint --config ./.eslintrc.js --ignore-path ./.eslintignore ./src",
+    "lint:report": "eslint --config ./.eslintrc.js --ignore-path ./.eslintignore --output-file eslint_report.json --format json ./src",
     "format": "yarn prettier -w ./src ",
     "format:check": "yarn prettier -c ./src"
   },

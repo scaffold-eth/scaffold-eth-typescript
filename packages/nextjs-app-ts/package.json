@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint:next": "next lint",
-    "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore ./src/**/*.(ts|tsx)",
+    "lint": "eslint --config ./.eslintrc.js --ignore-path ./.eslintignore ./src",
     "contracts:hardhat": "yarn shx rm -rf './src/generated/contracts-types' && yarn shx cp -r '../hardhat-ts/generated/contract-types' './src/generated'",
     "contracts:external": "yarn shx rm -rf './src/generated/external-contracts' && yarn shx cp -r './scripts/eth-sdk-config.ts.bak' './src/generated/eth-sdk.config.ts' && yarn eth-sdk -p ./src/generated",
     "format": "yarn prettier -w ./src ",

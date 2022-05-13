@@ -37,7 +37,7 @@
     "@🔖🔖🔖🔖🔖 utilities": "echo 📖 utilities commands",
     "prepare": "husky install",
     "postinstall": "husky install",
-    "lint": "yarn workspace @scaffold-eth/vite-app lint --fix && yarn workspace @scaffold-eth/common lint --fix && yarn workspace @scaffold-eth/hardhat lint --fix"
+    "lint": "yarn workspace @scaffold-eth/vite-app lint --fix && yarn workspace @scaffold-eth/common lint --fix && yarn workspace @scaffold-eth/hardhat lint --fix && yarn workspace @scaffold-eth/nextjs-app lint --fix"
   },
   "workspaces": {
     "packages": [

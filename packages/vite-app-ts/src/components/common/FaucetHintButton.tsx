@@ -9,8 +9,8 @@ import { utils } from 'ethers';
 import React, { FC, useContext, useMemo, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 
-import { IScaffoldAppProviders } from '~~/pages/main/hooks/useScaffoldAppProviders';
 import { FAUCET_ENABLED } from '~~/config/app.config';
+import { IScaffoldAppProviders } from '~~/pages/main/hooks/useScaffoldAppProviders';
 
 /**
  * Is Faucet available?

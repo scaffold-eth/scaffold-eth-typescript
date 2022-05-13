@@ -14,6 +14,7 @@ export const ThemeSwitcher: FC = () => {
     if (currentTheme === 'light' || currentTheme === 'dark') {
       ethersAppContext?.setModalTheme?.(currentTheme);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentTheme]);
 
   const toggleTheme = (isChecked: boolean): void => {

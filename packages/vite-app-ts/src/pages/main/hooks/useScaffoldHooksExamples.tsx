@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable unused-imports/no-unused-vars-ts */
 import { NETWORKS } from '@scaffold-eth/common/src/constants';
 import { transactor } from 'eth-components/functions';
 import { EthComponentsSettingsContext } from 'eth-components/models';
@@ -15,9 +17,9 @@ import { ethers } from 'ethers';
 import { useContext, useEffect } from 'react';
 
 import { useAppContracts } from '~~/components/contractContext';
-import { IScaffoldAppProviders } from '~~/pages/main/hooks/useScaffoldAppProviders';
 import { DEBUG } from '~~/config/app.config';
 import { getNetworkInfo } from '~~/functions';
+import { IScaffoldAppProviders } from '~~/pages/main/hooks/useScaffoldAppProviders';
 
 /**
  * Logs to console current app state.  Shows you examples on how to use hooks!

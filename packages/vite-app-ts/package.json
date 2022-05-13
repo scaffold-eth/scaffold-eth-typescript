@@ -10,7 +10,7 @@
     "build": "tsc && yarn build:anttheme && cross-env ENVIRONMENT=PRODUCTION vite build",
     "build:anttheme": "yarn lessc -x -js ./src/styles/themes/light-theme.less ./public/light-theme.css && yarn lessc -x -js ./src/styles/themes/dark-theme.less ./public/dark-theme.css",
     "serve": "vite preview --host",
-    "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore ./src/**/*.(ts|tsx)",
+    "lint": "eslint --config ./.eslintrc.js --ignore-path ./.eslintignore ./src",
     "format": "yarn prettier -w ./src ",
     "format:check": "yarn prettier -c ./src ",
     "ipfs": "node ./scripts/ipfs.js",

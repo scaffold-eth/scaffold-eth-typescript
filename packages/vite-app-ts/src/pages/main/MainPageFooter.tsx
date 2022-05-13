@@ -6,8 +6,8 @@ import React, { FC } from 'react';
 
 import { Ramp, ThemeSwitcher } from '~~/components/common';
 import { getFaucetAvailable } from '~~/components/common/FaucetHintButton';
-import { IScaffoldAppProviders } from '~~/pages/main/hooks/useScaffoldAppProviders';
 import { getNetworkInfo } from '~~/functions/getNetworkInfo';
+import { IScaffoldAppProviders } from '~~/pages/main/hooks/useScaffoldAppProviders';
 
 export interface IMainPageFooterProps {
   scaffoldAppProviders: IScaffoldAppProviders;

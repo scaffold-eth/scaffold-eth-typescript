@@ -1,1 +1,1 @@
-export const packageName = "common";
+export const packageName = 'common';
