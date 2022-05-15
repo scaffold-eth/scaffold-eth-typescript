@@ -21,7 +21,8 @@ artifacts
 tenderly.yaml
 
 
-# secrets
+# secrets / env
+**/.env.*.local
 **/*.secret
 **/aws.json
 **/mnemonics/**/*

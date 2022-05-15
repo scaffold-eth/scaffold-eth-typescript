@@ -11,6 +11,8 @@ packages/hardhat-ts/
 
 ## Quick Start
 
+### Commands to run the app
+
 Running the app
 
 1. install your dependencies
@@ -45,6 +47,12 @@ Running the app
    # run subgraph commands for the workspace
    yarn subgraph 'xxx'
    ```
+
+### Environment Variables
+
+Vite and next app folders have `.env` files. To create local variables that overrride these, create a file called `.env.local`, or `.env.development.local` or `.env.production.local` and put your overrides in there.
+
+You can set your `TARGET_NETWORK` with them.
 
 ## Overview
 
