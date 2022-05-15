@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable unused-imports/no-unused-vars-ts */
+import { useAppContracts } from '@scaffold-eth/common/src/components/contractContext';
 import { NETWORKS } from '@scaffold-eth/common/src/constants';
 import { transactor } from 'eth-components/functions';
 import { EthComponentsSettingsContext } from 'eth-components/models';
@@ -16,9 +17,8 @@ import { mergeDefaultUpdateOptions } from 'eth-hooks/functions';
 import { ethers } from 'ethers';
 import { useContext, useEffect } from 'react';
 
-import { useAppContracts } from '~~/components/contractContext';
 import { DEBUG } from '~~/config/app.config';
-import { getNetworkInfo } from '~~/functions';
+import { getNetworkInfo } from '@scaffold-eth/common/src/functions';
 import { IScaffoldAppProviders } from '~~/pages/main/hooks/useScaffoldAppProviders';
 
 /**

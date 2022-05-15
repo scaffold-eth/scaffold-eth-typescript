@@ -3,7 +3,7 @@
  */
  
 import { defineConfig } from '@dethcrypto/eth-sdk';
-import { contractsByNetworkName } from '../functions/contractsByNetworkName';
+import { contractsByNetworkName } from '~common/functions/contractsByNetworkName';
 
 console.log(contractsByNetworkName);
 

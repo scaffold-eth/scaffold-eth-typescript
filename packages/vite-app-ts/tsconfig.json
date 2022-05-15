@@ -20,20 +20,21 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "rootDir": ".",
+    "rootDirs": [".", "../common"],
     "baseUrl": ".",
     "outDir": "dist",
     "jsx": "react-jsxdev",
     "jsxImportSource": "@emotion/react",
     "paths": {
-      "~~/*": ["./src/*"]
+      "~~/*": ["./src/*"],
+      "~common/*": ["../common/src/*"]
     }
   },
   "include": ["src", "src/helpers/__global.ts", "vite.config.ts"],
   "exclude": [
     "**/node_modules",
     ".husky",
-    "./src/styles/css",
+    "**/*.css",
     "./tailwind.config.js",
     "node_modules",
     "**/.yalc/**/*",

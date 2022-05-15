@@ -1,7 +1,6 @@
-import { NETWORKS } from '@scaffold-eth/common/src/constants';
 import { ICoreOptions } from 'web3modal';
 
-import { LOCAL_PROVIDER } from '~~/config/app.config';
+import { NETWORKS } from '~common/constants/networks';
 
 const INFURA_ID = import.meta.env.VITE_KEY_INFURA;
 
@@ -10,7 +9,7 @@ export const web3ModalConfigKeys = {
   localhostKey: 'custom-localhost',
 } as const;
 
-export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
+export const getWeb3ModalConfig = async (hasLocalProvider: boolean): Promise<Partial<ICoreOptions>> => {
   const providerOptions: Record<string, any> = {};
 
   // === PORTIS
@@ -108,7 +107,7 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
 
   // === LOCALHOST STATIC
   try {
-    if (LOCAL_PROVIDER) {
+    if (hasLocalProvider) {
       const { ConnectToStaticJsonRpcProvider } = await import('eth-hooks/context');
       const { StaticJsonRpcProvider } = await import('@ethersproject/providers');
       const localhostStaticConnector = {

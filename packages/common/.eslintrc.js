@@ -18,6 +18,8 @@ module.exports = {
       'build-utils',
       'docs',
       './src/styles',
+      './src/generated/*',
+      'generated/*',
     ],
   },
   env: {

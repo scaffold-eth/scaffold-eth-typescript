@@ -14,7 +14,7 @@ import { FC } from 'react';
 // import React, { FC, ReactElement, useContext, useState } from 'react';
 // import { useQuery } from 'react-query';
 
-// import { useAppContracts } from '~~/components/contractContext';
+// import { useAppContracts } from ;
 
 // // const GraphiQL = lazy(() => import('graphiql'));
 

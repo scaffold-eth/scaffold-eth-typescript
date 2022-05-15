@@ -1,3 +1,9 @@
+import '~~/styles/css/tailwind-base.pcss';
+import '~~/styles/css/tailwind-components.pcss';
+import '~~/styles/css/tailwind-utilities.pcss';
+import '~~/styles/css/app.css';
+
+import { ContractsAppContext } from '@scaffold-eth/common/src/components/contractContext';
 import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-components/models';
 import { EthersAppContext } from 'eth-hooks/context';
 import { lazier } from 'eth-hooks/helpers';
@@ -5,7 +11,6 @@ import React, { FC, Suspense } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
-import { ContractsAppContext } from '~~/components/contractContext';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
@@ -15,12 +20,6 @@ import { ContractsAppContext } from '~~/components/contractContext';
  * This file loads the app async.  It sets up context, error boundaries, styles etc.
  * You don't need to change this file!!
  */
-
-// import postcss style file
-import '~~/styles/css/tailwind-base.pcss';
-import '~~/styles/css/tailwind-components.pcss';
-import '~~/styles/css/tailwind-utilities.pcss';
-import '~~/styles/css/app.css';
 
 console.log('init app...');
 
@@ -61,7 +60,7 @@ const App: FC = () => {
         <ContractsAppContext>
           <EthersAppContext>
             <ErrorBoundary FallbackComponent={ErrorFallback}>
-              <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme || 'light'}>
+              <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme ?? 'light'}>
                 <Suspense fallback={<div />}>
                   <MainPage />
                 </Suspense>

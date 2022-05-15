@@ -12,7 +12,6 @@
     "skipDefaultLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "typeRoots": ["node_modules/@types", "helpers/types"] /* List of folders to include type definitions from. */,
     "forceConsistentCasingInFileNames": true,
     "module": "es2020",
     "moduleResolution": "Node",
@@ -22,14 +21,8 @@
     "noEmit": true,
     "rootDir": ".",
     "baseUrl": ".",
-    "outDir": "dist",
-    "jsx": "react-jsxdev",
-    "jsxImportSource": "@emotion/react",
-    "paths": {
-      "~common/*": ["./src/*"]
-    }
+    "outDir": "dist"
   },
-  "include": ["src", "src/helpers/__global.ts"],
   "exclude": [
     "**/node_modules",
     ".husky",

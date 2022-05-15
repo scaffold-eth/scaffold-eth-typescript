@@ -1,18 +1,17 @@
 import { useEthersAdaptorFromProviderOrSigners } from 'eth-hooks';
 import { EthersModalConnector, TEthersModalConnector, useEthersAppContext } from 'eth-hooks/context';
 import { TCreateEthersModalConnector, TEthersAdaptor, TEthersProvider, TNetworkInfo } from 'eth-hooks/models';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useThemeSwitcher } from 'react-css-theme-switcher';
-import { invariant } from 'ts-invariant';
-import { ICoreOptions } from 'web3modal';
 
+import { useGetWeb3ModalConfig } from '~common/components/web3-modal/hooks/useGetWeb3ModalConfig';
+import { web3ModalConfigKeys } from '~common/config/web3Modal.config';
 import {
   MAINNET_PROVIDER,
   LOCAL_PROVIDER,
   CONNECT_TO_BURNER_AUTOMATICALLY,
   TARGET_NETWORK_INFO,
 } from '~~/config/app.config';
-import { web3ModalConfigKeys } from '~~/config/web3Modal.config';
 
 export interface IScaffoldAppProviders {
   currentProvider: TEthersProvider | undefined;
@@ -23,30 +22,11 @@ export interface IScaffoldAppProviders {
 }
 
 export const useScaffoldProviders = (): IScaffoldAppProviders => {
-  const [web3Config, setWeb3Config] = useState<Partial<ICoreOptions>>();
   const ethersAppContext = useEthersAppContext();
   const [mainnetAdaptor] = useEthersAdaptorFromProviderOrSigners(MAINNET_PROVIDER);
   const [localAdaptor] = useEthersAdaptorFromProviderOrSigners(LOCAL_PROVIDER);
 
-  useEffect(() => {
-    // import async to split bundles
-    const importedConfig = import('../../../config/web3Modal.config');
-
-    importedConfig
-      .then((getter) => {
-        getter
-          .getWeb3ModalConfig()
-          .then((config) => {
-            setWeb3Config(config);
-          })
-          .catch((e) => {
-            invariant.error('Web3Modal", "cannot load web3 modal config', e);
-          });
-      })
-      .catch((e) => {
-        invariant.error('Web3Modal", "cannot load web3 modal config', e);
-      });
-  }, []);
+  const web3Config = useGetWeb3ModalConfig();
 
   const { currentTheme } = useThemeSwitcher();
 

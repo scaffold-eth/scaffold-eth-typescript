@@ -1,4 +1,4 @@
-import { TNetworkNames } from '../models/TNetworkNames';
+import { TNetworkNames } from '~common/models/TNetworkNames';
 
 type TChain = TNetworkNames | number;
 type TAccountName = 'deployer' | 'user1' | 'user2' | 'user3' | 'user4' | 'user5' | 'governance';

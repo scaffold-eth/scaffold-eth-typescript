@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { createConnectorForExternalContract, createConnectorForHardhatContract } from 'eth-hooks/context';
 
-import hardhatContractsJson from '../generated/hardhat_contracts.json';
-
 import { externalContractsAddressMap } from './externalContracts.config';
 
-import * as hardhatContracts from '~~/generated/contract-types';
-import * as externalContracts from '~~/generated/external-contracts/esm/types';
+import * as hardhatContracts from '~common/generated/contract-types';
+import * as externalContracts from '~common/generated/external-contracts/esm/types';
+import hardhatContractsJson from '~common/generated/hardhat_contracts.json';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️

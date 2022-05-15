@@ -1,1 +1,1 @@
-export * from './useLocalStorage';
+export const dummy = 'not-implemented';

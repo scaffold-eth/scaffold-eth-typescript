@@ -1,5 +1,10 @@
 /* eslint-disable unused-imports/no-unused-vars-ts */
 import '~~/styles/main-page.css';
+import {
+  useAppContracts,
+  useConnectAppContracts,
+  useLoadAppContracts,
+} from '@scaffold-eth/common/src/components/contractContext';
 import { NETWORKS } from '@scaffold-eth/common/src/constants';
 import { GenericContract } from 'eth-components/ant/generic-contract';
 import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useEventListener } from 'eth-hooks';
@@ -12,7 +17,6 @@ import { BrowserRouter, Switch } from 'react-router-dom';
 import { MainPageFooter, MainPageHeader, createPagesAndTabs, TContractPageList } from './pages/main';
 import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './pages/main/hooks/useScaffoldHooksExamples';
 
-import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~~/components/contractContext';
 import { BURNER_FALLBACK_ENABLED, MAINNET_PROVIDER } from '~~/config/app.config';
 import { useCreateAntNotificationHolder } from '~~/pages/main/hooks/useAntNotification';
 import { useBurnerFallback } from '~~/pages/main/hooks/useBurnerFallback';
@@ -105,7 +109,7 @@ export const MainPage: FC = () => {
   }, [setRoute]);
 
   // -----------------------------
-  // 📃 Page List
+  // 📃 App Page List
   // -----------------------------
   // This is the list of tabs and their contents
   const pageList: TContractPageList = {
@@ -145,6 +149,10 @@ export const MainPage: FC = () => {
     ],
   };
   const { tabContents, tabMenu } = createPagesAndTabs(pageList, route, setRoute);
+
+  // -----------------------------
+  // 📃 React Render
+  // -----------------------------
 
   return (
     <div className="App">

@@ -73,6 +73,7 @@ export default defineConfig({
     mainFields: ['module', 'main', 'browser'],
     alias: {
       '~~': resolve(__dirname, 'src'),
+      '~common': resolve(__dirname, '../common/src'),
       ...externals,
       ...nodeShims,
       process: 'process',

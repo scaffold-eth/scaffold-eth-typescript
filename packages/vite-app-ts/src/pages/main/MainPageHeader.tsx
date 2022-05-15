@@ -12,7 +12,7 @@ import {
 import React, { FC, ReactElement, ReactNode, useCallback } from 'react';
 
 import { FaucetHintButton } from '~~/components/common/FaucetHintButton';
-import { getNetworkInfo } from '~~/functions';
+import { getNetworkInfo } from '@scaffold-eth/common/src/functions';
 import { useAntNotification } from '~~/pages/main/hooks/useAntNotification';
 import { IScaffoldAppProviders } from '~~/pages/main/hooks/useScaffoldAppProviders';
 
