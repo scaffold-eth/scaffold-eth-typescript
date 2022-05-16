@@ -15,7 +15,7 @@
     "serve": "yarn workspace @scaffold-eth/vite-app serve",
     "start": "yarn workspace @scaffold-eth/vite-app start",
     "@🔖🔖🔖🔖🔖 hardhat": "echo 📖 hardhat commands",
-    "contracts:build": "yarn workspace @scaffold-eth/hardhat compile && yarn workspace @scaffold-eth/vite-app contracts:hardhat && yarn workspace @scaffold-eth/vite-app contracts:external",
+    "contracts:build": "yarn workspace @scaffold-eth/hardhat compile && yarn workspace @scaffold-eth/common contracts:hardhat && yarn workspace @scaffold-eth/common contracts:external",
     "contracts:rebuild": "yarn workspace @scaffold-eth/hardhat clean && yarn contracts:build",
     "chain": "yarn workspace @scaffold-eth/hardhat chain",
     "deploy": "yarn workspace @scaffold-eth/hardhat deploy",
