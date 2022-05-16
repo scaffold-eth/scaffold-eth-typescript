@@ -8,7 +8,6 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "typeRoots": ["node_modules/@types", "src/helpers/definitions"] /* List of folders to include type definitions from. */,
     "forceConsistentCasingInFileNames": true,
     "module": "commonjs",
     "moduleResolution": "Node",
@@ -16,7 +15,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "rootDir": ".",
+    "rootDirs": [".", "../common/src"],
     "baseUrl": ".",
     "outDir": "dist",
     "paths": {
@@ -25,7 +24,8 @@
       "contracts/*": ["./contracts/*"],
       "tests/*": ["./tests/*"],
       "generated/*": ["./generated/*"],
-      "tasks/*": ["./tasks/*"]
+      "tasks/*": ["./tasks/*"],
+      "~common/*": ["../common/src/*"]
     }
   },
   "include": ["types", "scripts", "test", "helpers", "./hardhat.config.ts", "deploy", "tasks", "scripts"],

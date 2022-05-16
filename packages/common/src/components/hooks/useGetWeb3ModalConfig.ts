@@ -7,7 +7,7 @@ export const useGetWeb3ModalConfig = (hasLocalProvider: boolean = false): Partia
 
   useEffect(() => {
     // import async to split bundles
-    const importedConfig = import('../../../config/web3Modal.config');
+    const importedConfig = import('../../config/web3Modal.config');
 
     importedConfig
       .then((getter) => {

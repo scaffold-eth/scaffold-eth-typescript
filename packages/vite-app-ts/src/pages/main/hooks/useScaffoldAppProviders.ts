@@ -4,7 +4,7 @@ import { TCreateEthersModalConnector, TEthersAdaptor, TEthersProvider, TNetworkI
 import { useCallback, useEffect } from 'react';
 import { useThemeSwitcher } from 'react-css-theme-switcher';
 
-import { useGetWeb3ModalConfig } from '~common/components/web3-modal/hooks/useGetWeb3ModalConfig';
+import { useGetWeb3ModalConfig } from '~common/components/hooks/useGetWeb3ModalConfig';
 import { web3ModalConfigKeys } from '~common/config/web3Modal.config';
 import {
   MAINNET_PROVIDER,
