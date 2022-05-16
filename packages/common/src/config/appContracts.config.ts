@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { createConnectorForExternalContract, createConnectorForHardhatContract } from 'eth-hooks/context';
+import { invariant } from 'ts-invariant';
 
 import { externalContractsAddressMap } from './externalContracts.config';
 
 import * as hardhatContracts from '~common/generated/contract-types';
 import * as externalContracts from '~common/generated/external-contracts/esm/types';
-import * as hardhatContractsJson from '~common/generated/hardhat_contracts.json';
+import hardhatContractsJson from '~common/generated/hardhat_contracts.json';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
@@ -56,10 +57,10 @@ export const appContractsConfig = () => {
 
     return result;
   } catch (e) {
-    console.error(
-      '❌ appContractsConfig: ERROR with loading contracts please run `yarn contracts:build or yarn contracts:rebuild`.  Then run `yarn deploy`!',
-      e
+    invariant.error(
+      '❌ appContractsConfig: ERROR with loading contracts please run `yarn contracts:build or yarn contracts:rebuild`.  Then run `yarn deploy`!'
     );
+    invariant.error(e);
   }
 
   return undefined;
