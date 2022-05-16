@@ -25,7 +25,9 @@ tenderly.yaml
 **/.env.*.local
 **/*.secret
 **/aws.json
-**/mnemonics/**/*
+!packages/hardhat-ts/mnemonics/README.md
+**/mnemonics/*.secret
+**/mnemonics/*.txt
 
 #subgraph
 packages/advanced/subgraph/config/config.json

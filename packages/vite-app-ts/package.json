@@ -78,7 +78,6 @@
     "web3modal": "^1.9.7"
   },
   "devDependencies": {
-    "@dethcrypto/eth-sdk": "^0.3.0",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.5.1",
     "@tailwindcss/line-clamp": "^0.4.0",
