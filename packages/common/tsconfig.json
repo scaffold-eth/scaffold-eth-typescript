@@ -28,7 +28,7 @@
       "~common/*": ["./src/*"]
     }
   },
-  "include": ["src", "src/helpers/__global.ts", "../vite-app-ts/src/components/contractContext.ts"],
+  "include": ["src", "src/helpers/__global.ts"],
   "exclude": [
     "**/node_modules",
     ".husky",

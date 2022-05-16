@@ -20,7 +20,8 @@ export const useScaffoldAppProviders = (config: {
   const [mainnetAdaptor] = useEthersAdaptorFromProviderOrSigners(config.mainnetProvider);
   const [localAdaptor] = useEthersAdaptorFromProviderOrSigners(config.localProvider);
 
-  const web3Config = useGetWeb3ModalConfig();
+  const hasLocalProvider = config?.localProvider !== undefined;
+  const web3Config = useGetWeb3ModalConfig(hasLocalProvider);
 
   const { currentTheme } = useThemeSwitcher();
 

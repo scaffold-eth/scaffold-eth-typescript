@@ -10,7 +10,6 @@ export const getNetworkInfo = (chainId: number | undefined): TNetworkInfo | unde
   for (const n in NETWORKS) {
     const names = n as TNetworkNames;
     if (NETWORKS[names].chainId === chainId) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return NETWORKS[names];
     }
   }
