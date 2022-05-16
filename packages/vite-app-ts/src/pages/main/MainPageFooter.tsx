@@ -5,9 +5,9 @@ import { Faucet, GasGauge } from 'eth-components/ant';
 import { useEthersAppContext } from 'eth-hooks/context';
 import React, { FC } from 'react';
 
+import { IScaffoldAppProviders } from '~common/components/hooks/useScaffoldAppProviders';
 import { Ramp, ThemeSwitcher } from '~~/components/common';
 import { getFaucetAvailable } from '~~/components/common/FaucetHintButton';
-import { IScaffoldAppProviders } from '~~/pages/main/hooks/useScaffoldAppProviders';
 
 export interface IMainPageFooterProps {
   scaffoldAppProviders: IScaffoldAppProviders;

@@ -7,7 +7,7 @@
     "fork": "cross-env BUILDING=true hardhat node --fork https://mainnet.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad",
     "test": "yarn hardhat test --network hardhat",
     "compile": "cross-env BUILDING=true hardhat compile",
-    "deploy": "cross-env BUILDING=true hardhat deploy --export-all ../vite-app-ts/src/generated/hardhat_contracts.json && yarn run deploy:post",
+    "deploy": "cross-env BUILDING=true hardhat deploy --export-all ../common/src/generated/hardhat_contracts.json && yarn run deploy:post",
     "clean": "cross-env BUILDING=true hardhat clean",
     "deploy:post": "hardhat run scripts/publish.ts",
     "watch:compile": "yarn hardhat watch compile",
@@ -102,6 +102,10 @@
     "ts-node": "^10.7.0",
     "tsconfig-paths": "^3.14.1",
     "typescript": "^4.6.4"
+  },
+  "resolutions": {
+    "typechain": "^7.0.1",
+    "eth-sdk": "0.3.0"
   },
   "installConfig": {
     "hoistingLimits": "workspaces"

@@ -1,4 +1,5 @@
 import { getNetwork } from '@ethersproject/networks';
+import { getNetworkInfo } from '@scaffold-eth/common/src/functions';
 import { Alert, PageHeader } from 'antd';
 import { Account } from 'eth-components/ant';
 import { useGasPrice } from 'eth-hooks';
@@ -11,10 +12,9 @@ import {
 } from 'eth-hooks/context';
 import React, { FC, ReactElement, ReactNode, useCallback } from 'react';
 
+import { useAntNotification } from '~common/components/hooks/useAntNotification';
+import { IScaffoldAppProviders } from '~common/components/hooks/useScaffoldAppProviders';
 import { FaucetHintButton } from '~~/components/common/FaucetHintButton';
-import { getNetworkInfo } from '@scaffold-eth/common/src/functions';
-import { useAntNotification } from '~~/pages/main/hooks/useAntNotification';
-import { IScaffoldAppProviders } from '~~/pages/main/hooks/useScaffoldAppProviders';
 
 // displays a page header
 export interface IMainPageHeaderProps {

@@ -7,7 +7,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: false, // Allows for the parsing of JSX,
     },
-    project: 'tsconfig.json',
+    project: './tsconfig.json',
     tsconfigRootDir: '.',
     projectFolderIgnoreList: [
       'node_modules/*',

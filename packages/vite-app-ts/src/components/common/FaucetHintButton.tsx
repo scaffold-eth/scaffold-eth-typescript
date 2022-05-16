@@ -10,7 +10,7 @@ import React, { FC, useContext, useMemo, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 
 import { FAUCET_ENABLED } from '~~/config/app.config';
-import { IScaffoldAppProviders } from '~~/pages/main/hooks/useScaffoldAppProviders';
+import { IScaffoldAppProviders } from '~common/components/hooks/useScaffoldAppProviders';
 
 /**
  * Is Faucet available?

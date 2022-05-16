@@ -31,6 +31,6 @@ export const {
   useConnectAppContracts,
 } = contractsContextFactory<
   keyof TAppConnectorList,
-  TAppConnectorList,
+  typeof NonNullable<ReturnType<typeof appContractsConfig>>,
   TTypedContract<keyof TAppConnectorList, TAppConnectorList>
 >(appContractsConfig);

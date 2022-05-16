@@ -15,12 +15,12 @@ import React, { FC, useEffect, useState } from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 
 import { MainPageFooter, MainPageHeader, createPagesAndTabs, TContractPageList } from './pages/main';
-import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './pages/main/hooks/useScaffoldHooksExamples';
 
+import { useCreateAntNotificationHolder } from '~common/components/hooks/useAntNotification';
+import { useBurnerFallback } from '~common/components/hooks/useBurnerFallback';
+import { useScaffoldProviders as useScaffoldAppProviders } from '~common/components/hooks/useScaffoldAppProviders';
+import { useScaffoldHooksExamples as useScaffoldHooksExamples } from '~common/components/hooks/useScaffoldHooksExamples';
 import { BURNER_FALLBACK_ENABLED, MAINNET_PROVIDER } from '~~/config/app.config';
-import { useCreateAntNotificationHolder } from '~~/pages/main/hooks/useAntNotification';
-import { useBurnerFallback } from '~~/pages/main/hooks/useBurnerFallback';
-import { useScaffoldProviders as useScaffoldAppProviders } from '~~/pages/main/hooks/useScaffoldAppProviders';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
