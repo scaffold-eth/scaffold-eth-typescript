@@ -1,10 +1,5 @@
 /* eslint-disable unused-imports/no-unused-vars-ts */
 import '~~/styles/main-page.css';
-import {
-  useAppContracts,
-  useConnectAppContracts,
-  useLoadAppContracts,
-} from '@scaffold-eth/common/src/components/contractContext';
 import { NETWORKS } from '@scaffold-eth/common/src/constants';
 import { GenericContract } from 'eth-components/ant/generic-contract';
 import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useEventListener } from 'eth-hooks';
@@ -14,13 +9,20 @@ import { asEthersAdaptor } from 'eth-hooks/functions';
 import React, { FC, useEffect, useState } from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 
-import { MainPageFooter, MainPageHeader, createPagesAndTabs, TContractPageList } from './pages/main';
+import { MainPageFooter, MainPageHeader, createPagesAndTabs, TContractPageList } from './components/main';
 
 import { useCreateAntNotificationHolder } from '~common/components/hooks/useAntNotification';
 import { useBurnerFallback } from '~common/components/hooks/useBurnerFallback';
-import { useScaffoldProviders as useScaffoldAppProviders } from '~common/components/hooks/useScaffoldAppProviders';
+import { useScaffoldAppProviders } from '~common/components/hooks/useScaffoldAppProviders';
 import { useScaffoldHooksExamples as useScaffoldHooksExamples } from '~common/components/hooks/useScaffoldHooksExamples';
-import { BURNER_FALLBACK_ENABLED, MAINNET_PROVIDER } from '~~/config/app.config';
+import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~~/components/contractContext';
+import {
+  BURNER_FALLBACK_ENABLED,
+  CONNECT_TO_BURNER_AUTOMATICALLY,
+  LOCAL_PROVIDER,
+  MAINNET_PROVIDER,
+  TARGET_NETWORK_INFO,
+} from '~~/config/app.config';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
@@ -44,7 +46,12 @@ export const MainPage: FC = () => {
   // -----------------------------
   // 🛰 providers
   // see useLoadProviders.ts for everything to do with loading the right providers
-  const scaffoldAppProviders = useScaffoldAppProviders();
+  const scaffoldAppProviders = useScaffoldAppProviders({
+    targetNetwork: TARGET_NETWORK_INFO,
+    connectToBurnerAutomatically: CONNECT_TO_BURNER_AUTOMATICALLY,
+    localProvider: LOCAL_PROVIDER,
+    mainnetProvider: MAINNET_PROVIDER,
+  });
 
   // 🦊 Get your web3 ethers context from current providers
   const ethersAppContext = useEthersAppContext();

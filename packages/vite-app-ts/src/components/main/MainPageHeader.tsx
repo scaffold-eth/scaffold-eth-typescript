@@ -12,9 +12,10 @@ import {
 } from 'eth-hooks/context';
 import React, { FC, ReactElement, ReactNode, useCallback } from 'react';
 
+import { FaucetHintButton } from '~common/components/FaucetHintButton';
 import { useAntNotification } from '~common/components/hooks/useAntNotification';
-import { IScaffoldAppProviders } from '~common/components/hooks/useScaffoldAppProviders';
-import { FaucetHintButton } from '~~/components/common/FaucetHintButton';
+import { IScaffoldAppProviders } from '~common/models/IScaffoldAppProviders';
+import { FAUCET_ENABLED } from '~~/config/app.config';
 
 // displays a page header
 export interface IMainPageHeaderProps {
@@ -102,7 +103,11 @@ export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
         blockExplorer={props.scaffoldAppProviders.targetNetwork.blockExplorer}
         hasContextConnect={true}
       />
-      <FaucetHintButton scaffoldAppProviders={props.scaffoldAppProviders} gasPrice={gasPrice} />
+      <FaucetHintButton
+        scaffoldAppProviders={props.scaffoldAppProviders}
+        gasPrice={gasPrice}
+        faucetEnabled={FAUCET_ENABLED}
+      />
       {props.children}
     </div>
   );

@@ -5,9 +5,10 @@ import { Faucet, GasGauge } from 'eth-components/ant';
 import { useEthersAppContext } from 'eth-hooks/context';
 import React, { FC } from 'react';
 
-import { IScaffoldAppProviders } from '~common/components/hooks/useScaffoldAppProviders';
-import { Ramp, ThemeSwitcher } from '~~/components/common';
-import { getFaucetAvailable } from '~~/components/common/FaucetHintButton';
+import { Ramp, ThemeSwitcher } from '~common/components';
+import { getFaucetAvailable } from '~common/components/FaucetHintButton';
+import { IScaffoldAppProviders } from '~common/models/IScaffoldAppProviders';
+import { FAUCET_ENABLED } from '~~/config/app.config';
 
 export interface IMainPageFooterProps {
   scaffoldAppProviders: IScaffoldAppProviders;
@@ -24,7 +25,7 @@ export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
   const ethersAppContext = useEthersAppContext();
 
   // Faucet Tx can be used to send funds from the faucet
-  const faucetAvailable = getFaucetAvailable(props.scaffoldAppProviders, ethersAppContext);
+  const faucetAvailable = getFaucetAvailable(props.scaffoldAppProviders, ethersAppContext, FAUCET_ENABLED);
 
   const network = getNetworkInfo(ethersAppContext.chainId);
 

@@ -1,48 +1,30 @@
 import { useEthersAdaptorFromProviderOrSigners } from 'eth-hooks';
 import { EthersModalConnector, TEthersModalConnector, useEthersAppContext } from 'eth-hooks/context';
-import { TCreateEthersModalConnector, TEthersAdaptor, TEthersProvider, TNetworkInfo } from 'eth-hooks/models';
-import { useCallback, useEffect } from 'react';
+import { TEthersProvider, TEthersProviderOrSigner, TNetworkInfo } from 'eth-hooks/models';
+import { useEffect } from 'react';
 import { useThemeSwitcher } from 'react-css-theme-switcher';
 
+import { IScaffoldAppProviders } from '../../models/IScaffoldAppProviders';
+
+import { useGetCreateLoginConnector } from '~common/components/hooks/useGetLoginConnector';
 import { useGetWeb3ModalConfig } from '~common/components/hooks/useGetWeb3ModalConfig';
 import { web3ModalConfigKeys } from '~common/config/web3Modal.config';
-import {
-  MAINNET_PROVIDER,
-  LOCAL_PROVIDER,
-  CONNECT_TO_BURNER_AUTOMATICALLY,
-  TARGET_NETWORK_INFO,
-} from '~~/config/app.config';
 
-export interface IScaffoldAppProviders {
-  currentProvider: TEthersProvider | undefined;
+export const useScaffoldAppProviders = (config: {
+  mainnetProvider: TEthersProviderOrSigner | undefined;
+  localProvider: TEthersProvider | undefined;
   targetNetwork: TNetworkInfo;
-  mainnetAdaptor: TEthersAdaptor | undefined;
-  localAdaptor: TEthersAdaptor | undefined;
-  createLoginConnector: TCreateEthersModalConnector;
-}
-
-export const useScaffoldProviders = (): IScaffoldAppProviders => {
+  connectToBurnerAutomatically: boolean;
+}): IScaffoldAppProviders => {
   const ethersAppContext = useEthersAppContext();
-  const [mainnetAdaptor] = useEthersAdaptorFromProviderOrSigners(MAINNET_PROVIDER);
-  const [localAdaptor] = useEthersAdaptorFromProviderOrSigners(LOCAL_PROVIDER);
+  const [mainnetAdaptor] = useEthersAdaptorFromProviderOrSigners(config.mainnetProvider);
+  const [localAdaptor] = useEthersAdaptorFromProviderOrSigners(config.localProvider);
 
   const web3Config = useGetWeb3ModalConfig();
 
   const { currentTheme } = useThemeSwitcher();
 
-  const createLoginConnector: TCreateEthersModalConnector = useCallback(
-    (id?: string) => {
-      if (web3Config) {
-        const connector = new EthersModalConnector(
-          { ...web3Config, theme: currentTheme },
-          { reloadOnNetworkChange: false, immutableProvider: false },
-          id
-        );
-        return connector;
-      }
-    },
-    [web3Config, currentTheme]
-  );
+  const createLoginConnector = useGetCreateLoginConnector(currentTheme, web3Config);
 
   useEffect(() => {
     /**
@@ -53,7 +35,7 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
      */
     const autoConnectToBurner = (connector: TEthersModalConnector | undefined): TEthersModalConnector | undefined => {
       let newConnector = connector;
-      if (CONNECT_TO_BURNER_AUTOMATICALLY && connector && connector?.loadWeb3Modal) {
+      if (config.connectToBurnerAutomatically && connector && connector?.loadWeb3Modal) {
         connector.loadWeb3Modal();
         if (connector != null && !connector.hasCachedProvider()) {
           newConnector = new EthersModalConnector(
@@ -71,13 +53,14 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
       connector = autoConnectToBurner(connector);
       if (connector) void ethersAppContext.activate(connector);
     }
-  }, [web3Config]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [web3Config, config.connectToBurnerAutomatically, createLoginConnector]);
 
   return {
-    currentProvider: ethersAppContext.provider ?? LOCAL_PROVIDER,
+    currentProvider: ethersAppContext.provider ?? config.localProvider,
     mainnetAdaptor: mainnetAdaptor,
     localAdaptor: localAdaptor,
-    targetNetwork: TARGET_NETWORK_INFO,
+    targetNetwork: config.targetNetwork,
     createLoginConnector: createLoginConnector,
   };
 };

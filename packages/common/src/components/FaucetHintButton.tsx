@@ -9,7 +9,7 @@ import { utils } from 'ethers';
 import React, { FC, useContext, useMemo, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 
-import { IScaffoldAppProviders } from '~common/components/hooks/useScaffoldAppProviders';
+import { IScaffoldAppProviders } from '~common/models/IScaffoldAppProviders';
 
 /**
  * Is Faucet available?

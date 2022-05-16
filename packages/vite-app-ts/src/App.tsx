@@ -3,14 +3,14 @@ import '~~/styles/css/tailwind-components.pcss';
 import '~~/styles/css/tailwind-utilities.pcss';
 import '~~/styles/css/app.css';
 
-import { ContractsAppContext } from '@scaffold-eth/common/src/components/contractContext';
 import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-components/models';
 import { EthersAppContext } from 'eth-hooks/context';
 import { lazier } from 'eth-hooks/helpers';
 import React, { FC, Suspense } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 
-import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
+import { ErrorBoundary, ErrorFallback } from '~common/components/ErrorFallback';
+import { ContractsAppContext } from '~~/components/contractContext';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
