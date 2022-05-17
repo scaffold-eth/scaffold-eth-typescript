@@ -2,6 +2,7 @@ import { getNetwork } from '@ethersproject/networks';
 import { getNetworkInfo } from '@scaffold-eth/common/src/functions';
 import { Alert, PageHeader } from 'antd';
 import { Account } from 'eth-components/ant';
+import { EthComponentsSettingsContext } from 'eth-components/models';
 import { useGasPrice } from 'eth-hooks';
 import {
   useEthersAppContext,
@@ -10,7 +11,7 @@ import {
   CouldNotActivateError,
   UserClosedModalError,
 } from 'eth-hooks/context';
-import React, { FC, ReactElement, ReactNode, useCallback } from 'react';
+import React, { FC, ReactElement, ReactNode, useCallback, useContext } from 'react';
 
 import { FaucetHintButton } from '~common/components/FaucetHintButton';
 import { useAntNotification } from '~common/components/hooks/useAntNotification';
@@ -30,6 +31,7 @@ export interface IMainPageHeaderProps {
  * @returns
  */
 export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
+  const settingsContext = useContext(EthComponentsSettingsContext);
   const ethersAppContext = useEthersAppContext();
   const selectedChainId = ethersAppContext.chainId;
 
@@ -104,6 +106,7 @@ export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
         hasContextConnect={true}
       />
       <FaucetHintButton
+        ethComponentSettings={settingsContext}
         scaffoldAppProviders={props.scaffoldAppProviders}
         gasPrice={gasPrice}
         faucetEnabled={FAUCET_ENABLED}

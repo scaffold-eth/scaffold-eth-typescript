@@ -7,7 +7,7 @@
     "allowJs": false,
     "declarationMap": true,
     "declaration": true,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "allowSyntheticDefaultImports": true,

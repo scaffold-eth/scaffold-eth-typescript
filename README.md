@@ -44,6 +44,8 @@ Running the app
    yarn contracts:rebuild
    # run hardhat commands for the workspace, or see all tasks
    yarn hardhat 'xxx'
+   # get eth for testing locally
+   yarn hardhat faucet xxx
    # run subgraph commands for the workspace
    yarn subgraph 'xxx'
    ```

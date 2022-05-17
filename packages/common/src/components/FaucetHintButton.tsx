@@ -1,12 +1,12 @@
 import { parseEther } from '@ethersproject/units';
 import { Button } from 'antd';
 import { transactor } from 'eth-components/functions';
-import { EthComponentsSettingsContext } from 'eth-components/models';
+import { IEthComponentsSettings } from 'eth-components/models';
 import { useBalance } from 'eth-hooks';
 import { useEthersAppContext } from 'eth-hooks/context';
 import { IEthersContext } from 'eth-hooks/models';
 import { utils } from 'ethers';
-import React, { FC, useContext, useMemo, useState } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 
 import { IScaffoldAppProviders } from '~common/models/IScaffoldAppProviders';
@@ -35,10 +35,10 @@ interface IFaucetButton {
   scaffoldAppProviders: IScaffoldAppProviders;
   gasPrice: number | undefined;
   faucetEnabled: boolean;
+  ethComponentSettings: IEthComponentsSettings;
 }
 
 export const FaucetHintButton: FC<IFaucetButton> = (props) => {
-  const settingsContext = useContext(EthComponentsSettingsContext);
   const ethersAppContext = useEthersAppContext();
 
   const [yourLocalBalance] = useBalance(ethersAppContext.account ?? '');
@@ -46,7 +46,7 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
   /**
    * create transactor for faucet
    */
-  const faucetTx = transactor(settingsContext, signer, undefined, undefined, true);
+  const faucetTx = transactor(props.ethComponentSettings, signer, undefined, undefined, true);
 
   /**
    * facuet is only available on localhost

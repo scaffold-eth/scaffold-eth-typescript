@@ -1,6 +1,7 @@
+import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { useEthersAdaptorFromProviderOrSigners } from 'eth-hooks';
 import { EthersModalConnector, TEthersModalConnector, useEthersAppContext } from 'eth-hooks/context';
-import { TEthersProvider, TEthersProviderOrSigner, TNetworkInfo } from 'eth-hooks/models';
+import { TNetworkInfo } from 'eth-hooks/models';
 import { useEffect } from 'react';
 import { useThemeSwitcher } from 'react-css-theme-switcher';
 
@@ -11,8 +12,8 @@ import { useGetWeb3ModalConfig } from '~common/components/hooks/useGetWeb3ModalC
 import { web3ModalConfigKeys } from '~common/config/web3Modal.config';
 
 export const useScaffoldAppProviders = (config: {
-  mainnetProvider: TEthersProviderOrSigner | undefined;
-  localProvider: TEthersProvider | undefined;
+  mainnetProvider: StaticJsonRpcProvider | undefined;
+  localProvider: StaticJsonRpcProvider | undefined;
   targetNetwork: TNetworkInfo;
   connectToBurnerAutomatically: boolean;
 }): IScaffoldAppProviders => {
