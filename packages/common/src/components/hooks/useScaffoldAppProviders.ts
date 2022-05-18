@@ -5,16 +5,16 @@ import { TNetworkInfo } from 'eth-hooks/models';
 import { useEffect } from 'react';
 import { useThemeSwitcher } from 'react-css-theme-switcher';
 
-import { IScaffoldAppProviders } from '../../models/IScaffoldAppProviders';
-
 import { useGetCreateLoginConnector } from '~common/components/hooks/useGetLoginConnector';
 import { useGetWeb3ModalConfig } from '~common/components/hooks/useGetWeb3ModalConfig';
-import { web3ModalConfigKeys } from '~common/config/web3Modal.config';
+import { customWeb3ModalProviders } from '~common/config/web3Modal.config';
+import { IScaffoldAppProviders } from '~common/models/IScaffoldAppProviders';
 
 export const useScaffoldAppProviders = (config: {
   mainnetProvider: StaticJsonRpcProvider | undefined;
   localProvider: StaticJsonRpcProvider | undefined;
   targetNetwork: TNetworkInfo;
+  infuraId: string;
   connectToBurnerAutomatically: boolean;
 }): IScaffoldAppProviders => {
   const ethersAppContext = useEthersAppContext();
@@ -22,7 +22,7 @@ export const useScaffoldAppProviders = (config: {
   const [localAdaptor] = useEthersAdaptorFromProviderOrSigners(config.localProvider);
 
   const hasLocalProvider = config?.localProvider !== undefined;
-  const web3Config = useGetWeb3ModalConfig(hasLocalProvider);
+  const web3Config = useGetWeb3ModalConfig(hasLocalProvider, { infuraId: config.infuraId });
 
   const { currentTheme } = useThemeSwitcher();
 
@@ -43,7 +43,7 @@ export const useScaffoldAppProviders = (config: {
           newConnector = new EthersModalConnector(
             { ...web3Config, theme: currentTheme },
             { reloadOnNetworkChange: false, immutableProvider: false },
-            web3ModalConfigKeys.localhostKey
+            customWeb3ModalProviders.localhostKey
           );
         }
       }

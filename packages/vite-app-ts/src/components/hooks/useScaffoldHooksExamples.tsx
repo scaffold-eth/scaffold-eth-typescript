@@ -15,10 +15,9 @@ import { mergeDefaultUpdateOptions } from 'eth-hooks/functions';
 import { ethers } from 'ethers';
 import { useContext, useEffect } from 'react';
 
-import { IScaffoldAppProviders } from '../../models/IScaffoldAppProviders';
-
 import { NETWORKS } from '~common/constants';
 import { getNetworkInfo } from '~common/functions';
+import { IScaffoldAppProviders } from '~common/models/IScaffoldAppProviders';
 import { useAppContracts } from '~~/components/contractContext';
 
 const DEBUG = false;

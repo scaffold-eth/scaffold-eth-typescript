@@ -1,13 +1,12 @@
-import { NETWORKS } from '@scaffold-eth/common/src/constants';
-import { getNetworkInfo } from '@scaffold-eth/common/src/functions/getNetworkInfo';
 import { Row, Col, Button } from 'antd';
 import { Faucet, GasGauge } from 'eth-components/ant';
 import { useEthersAppContext } from 'eth-hooks/context';
 import React, { FC } from 'react';
 
-import { Ramp, ThemeSwitcher } from '~common/components';
-import { getFaucetAvailable } from '~common/components/FaucetHintButton';
-import { IScaffoldAppProviders } from '~common/models/IScaffoldAppProviders';
+import { Ramp, ThemeSwitcher, getFaucetAvailable } from '~common/components';
+import { NETWORKS } from '~common/constants';
+import { getNetworkInfo } from '~common/functions';
+import { IScaffoldAppProviders } from '~common/models';
 import { FAUCET_ENABLED } from '~~/config/app.config';
 
 export interface IMainPageFooterProps {

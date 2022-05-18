@@ -1,6 +1,5 @@
 /* eslint-disable unused-imports/no-unused-vars-ts */
 import '~~/styles/main-page.css';
-import { NETWORKS } from '@scaffold-eth/common/src/constants';
 import { GenericContract } from 'eth-components/ant/generic-contract';
 import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useEventListener } from 'eth-hooks';
 import { useEthersAppContext } from 'eth-hooks/context';
@@ -14,26 +13,26 @@ import { MainPageFooter, MainPageHeader, createPagesAndTabs, TContractPageList }
 import { useCreateAntNotificationHolder } from '~common/components/hooks/useAntNotification';
 import { useBurnerFallback } from '~common/components/hooks/useBurnerFallback';
 import { useScaffoldAppProviders } from '~common/components/hooks/useScaffoldAppProviders';
-import { useScaffoldHooksExamples as useScaffoldHooksExamples } from '~common/components/hooks/useScaffoldHooksExamples';
+import { NETWORKS } from '~common/constants';
 import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~~/components/contractContext';
+import { useScaffoldHooksExamples } from '~~/components/hooks/useScaffoldHooksExamples';
 import {
   BURNER_FALLBACK_ENABLED,
   CONNECT_TO_BURNER_AUTOMATICALLY,
+  INFURA_ID,
   LOCAL_PROVIDER,
   MAINNET_PROVIDER,
   TARGET_NETWORK_INFO,
 } from '~~/config/app.config';
 
-/**
+/** ********************************
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
- * See config/app.config.ts for configuration, such as TARGET_NETWORK
- * See appContracts.config.ts and externalContracts.config.ts to configure your contracts
+ * See ./config/app.config.ts for configuration, such as TARGET_NETWORK
+ * See ../common/src/config/appContracts.config.ts and ../common/src/config/externalContracts.config.ts to configure your contracts
  * See pageList variable below to configure your pages
- * See web3Modal.config.ts to configure the web3 modal
+ * See ../common/src/config/web3Modal.config.ts to configure the web3 modal
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
- *
- * For more
- */
+ * ******************************** */
 
 /**
  * The main component
@@ -51,6 +50,7 @@ export const MainPage: FC = () => {
     connectToBurnerAutomatically: CONNECT_TO_BURNER_AUTOMATICALLY,
     localProvider: LOCAL_PROVIDER,
     mainnetProvider: MAINNET_PROVIDER,
+    infuraId: INFURA_ID,
   });
 
   // 🦊 Get your web3 ethers context from current providers
@@ -158,7 +158,7 @@ export const MainPage: FC = () => {
   const { tabContents, tabMenu } = createPagesAndTabs(pageList, route, setRoute);
 
   // -----------------------------
-  // 📃 React Render
+  // 📃 Render the react components
   // -----------------------------
 
   return (

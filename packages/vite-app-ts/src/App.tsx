@@ -9,7 +9,7 @@ import { lazier } from 'eth-hooks/helpers';
 import React, { FC, Suspense } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 
-import { ErrorBoundary, ErrorFallback } from '~common/components/ErrorFallback';
+import { ErrorBoundary, ErrorFallback } from '~common/components';
 import { ContractsAppContext } from '~~/components/contractContext';
 
 /**

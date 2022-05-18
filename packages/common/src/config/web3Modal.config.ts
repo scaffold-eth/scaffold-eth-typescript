@@ -2,14 +2,15 @@ import { ICoreOptions } from 'web3modal';
 
 import { NETWORKS } from '~common/constants/networks';
 
-const INFURA_ID = import.meta.env.VITE_KEY_INFURA;
-
-export const web3ModalConfigKeys = {
+export const customWeb3ModalProviders = {
   coinbaseKey: 'custom-walletlink',
   localhostKey: 'custom-localhost',
 } as const;
 
-export const getWeb3ModalConfig = async (hasLocalProvider: boolean): Promise<Partial<ICoreOptions>> => {
+export const getWeb3ModalConfig = async (
+  hasLocalProvider: boolean,
+  config: { infuraId: string }
+): Promise<Partial<ICoreOptions>> => {
   const providerOptions: Record<string, any> = {};
 
   // === PORTIS
@@ -55,7 +56,7 @@ export const getWeb3ModalConfig = async (hasLocalProvider: boolean): Promise<Par
       appName: 'coinbase',
     });
     // WalletLink provider
-    const walletLinkProvider = walletLink.makeWeb3Provider(`https://mainnet.infura.io/v3/${INFURA_ID}`, 1);
+    const walletLinkProvider = walletLink.makeWeb3Provider(`https://mainnet.infura.io/v3/${config.infuraId}`, 1);
 
     const coinbaseWalletLink = {
       display: {
@@ -70,7 +71,7 @@ export const getWeb3ModalConfig = async (hasLocalProvider: boolean): Promise<Par
         return provider;
       },
     };
-    providerOptions[web3ModalConfigKeys.coinbaseKey] = coinbaseWalletLink;
+    providerOptions[customWeb3ModalProviders.coinbaseKey] = coinbaseWalletLink;
   } catch (e) {
     console.log('Failed to load config for web3 connector Coinbase WalletLink: ', e);
   }
@@ -82,10 +83,10 @@ export const getWeb3ModalConfig = async (hasLocalProvider: boolean): Promise<Par
       package: WalletConnectProvider,
       options: {
         bridge: 'https://polygon.bridge.walletconnect.org',
-        infuraId: INFURA_ID,
+        infuraId: config.infuraId,
         rpc: {
-          1: `https://mainnet.infura.io/v3/${INFURA_ID}`,
-          42: `https://kovan.infura.io/v3/${INFURA_ID}`,
+          1: `https://mainnet.infura.io/v3/${config.infuraId}`,
+          42: `https://kovan.infura.io/v3/${config.infuraId}`,
           100: 'https://dai.poa.network',
         },
       },
@@ -125,7 +126,7 @@ export const getWeb3ModalConfig = async (hasLocalProvider: boolean): Promise<Par
           },
         },
       };
-      providerOptions[web3ModalConfigKeys.localhostKey] = localhostStaticConnector;
+      providerOptions[customWeb3ModalProviders.localhostKey] = localhostStaticConnector;
     }
   } catch (e) {
     console.log('Failed to load config for Localhost Static Connector: ', e);

@@ -2,7 +2,7 @@ import { getNetwork } from '@ethersproject/networks';
 import { TNetworkInfo } from 'eth-hooks/models';
 
 import { NETWORKS } from '~common/constants';
-import { TNetworkNames } from '~common/models/TNetworkNames';
+import { TNetworkNames } from '~common/models';
 
 export const getNetworkInfo = (chainId: number | undefined): TNetworkInfo | undefined => {
   if (!chainId) return;

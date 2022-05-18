@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react';
 import { invariant } from 'ts-invariant';
 import { ICoreOptions } from 'web3modal';
 
-export const useGetWeb3ModalConfig = (hasLocalProvider: boolean = false): Partial<ICoreOptions> | undefined => {
+export const useGetWeb3ModalConfig = (
+  hasLocalProvider: boolean = false,
+  config: { infuraId: string }
+): Partial<ICoreOptions> | undefined => {
   const [web3Config, setWeb3Config] = useState<Partial<ICoreOptions>>();
 
   useEffect(() => {
@@ -12,7 +15,7 @@ export const useGetWeb3ModalConfig = (hasLocalProvider: boolean = false): Partia
     importedConfig
       .then((getter) => {
         getter
-          .getWeb3ModalConfig(hasLocalProvider)
+          .getWeb3ModalConfig(hasLocalProvider, config)
           .then((config) => {
             setWeb3Config(config);
           })

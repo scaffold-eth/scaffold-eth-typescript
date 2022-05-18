@@ -74,6 +74,8 @@ export default defineConfig({
     alias: {
       '~~': resolve(__dirname, 'src'),
       '~common': resolve(__dirname, '../common/src'),
+      'eth-hooks': resolve(__dirname, './node_modules/eth-hooks'),
+      'eth-components': resolve(__dirname, './node_modules/eth-components'),
       ...externals,
       ...nodeShims,
       process: 'process',

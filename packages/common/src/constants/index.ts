@@ -1,3 +1,3 @@
-export * from './externalAddresses';
+export * from './addresses';
 export * from './hardhatNamedAccounts';
 export * from './networks';
