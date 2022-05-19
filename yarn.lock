@@ -1991,6 +1991,7 @@ __metadata:
     "@walletconnect/ethereum-provider": ^1.7.8
     antd: ^4.20.5
     authereum: ^0.1.14
+    buffer: ^6.0.3
     esbuild: ^0.14.39
     esbuild-node-externals: ^1.4.1
     eslint: ^8.15.0
@@ -2017,7 +2018,11 @@ __metadata:
     react-css-theme-switcher: ^0.3.0
     react-dom: ^18.1.0
     react-error-boundary: ^3.1.4
+    request: ^2.88.2
     shx: ^0.3.4
+    stream: ^0.0.2
+    stream-browserify: ^3.0.0
+    timers-browserify: ^2.0.12
     ts-invariant: ^0.10.3
     ts-patch: ^2.0.1
     tsconfig-paths: ^3.14.1
@@ -2307,8 +2312,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.5.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: ^3.2.21
-    eth-hooks: ^4.2.22
+    eth-components: ^3.2.22
+    eth-hooks: ^4.2.23
     ethereum-cryptography: ^1.0.3
     ethers: ^5.6.6
     events: ^3.3.0
@@ -9345,6 +9350,40 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eth-components@npm:^3.2.22":
+  version: 3.2.22
+  resolution: "eth-components@npm:3.2.22"
+  dependencies:
+    "@ethersproject/abstract-signer": ^5.6.0
+    "@ethersproject/address": ^5.6.0
+    "@ethersproject/bignumber": ^5.6.0
+    "@ethersproject/bytes": ^5.6.1
+    "@ethersproject/contracts": ^5.6.0
+    "@ethersproject/networks": ^5.6.2
+    "@ethersproject/providers": ^5.6.4
+    "@ethersproject/signing-key": ^5.6.0
+    "@ethersproject/solidity": ^5.6.0
+    "@ethersproject/units": ^5.6.0
+    axios: ^0.27.2
+    bnc-notify: ^1.9.4
+    eth-hooks: ^4.2.23
+    ethers: ^5.6.4
+    qrcode.react: ^3.0.1
+    react-blockies: ^1.4.1
+    react-qr-reader: ^3.0.0-beta-1
+    ts-invariant: ^0.9.4
+    use-debounce: ^8.0.0
+    usehooks-ts: ^2.5.2
+  peerDependencies:
+    "@ant-design/icons": ^4.2
+    antd: ^4.7
+    react: ">=17"
+    react-css-theme-switcher: ^0.3.0
+    react-dom: ">=17"
+  checksum: aba22a091893c3ffaaf1a3c20bc5c732e5478f2521c7727a400d36e9466a0a12596935d3965b18826421c6df97f334124ce430c52a33d418780f2c321978e2eb
+  languageName: node
+  linkType: hard
+
 "eth-ens-namehash@npm:2.0.8, eth-ens-namehash@npm:^2.0.8":
   version: 2.0.8
   resolution: "eth-ens-namehash@npm:2.0.8"
@@ -9415,6 +9454,41 @@ __metadata:
     react: ">=17"
     react-dom: ">=17"
   checksum: fbede387cd7d96c17b815998cfc930cb6ca2e42e1c223b09c8810bf3c674e8c982c0c2d2763cf7f3da54a08a1383edb9372070244faa5234a9fd003f6b291e65
+  languageName: node
+  linkType: hard
+
+"eth-hooks@npm:^4.2.23":
+  version: 4.2.23
+  resolution: "eth-hooks@npm:4.2.23"
+  dependencies:
+    "@ethersproject/abi": ^5.6.1
+    "@ethersproject/abstract-provider": ^5.6.0
+    "@ethersproject/address": ^5.6.0
+    "@ethersproject/bignumber": ^5.6.0
+    "@ethersproject/bytes": ^5.6.1
+    "@ethersproject/contracts": ^5.6.0
+    "@ethersproject/networks": ^5.6.2
+    "@ethersproject/providers": ^5.6.4
+    "@ethersproject/signing-key": ^5.6.0
+    "@ethersproject/solidity": ^5.6.0
+    "@ethersproject/units": ^5.6.0
+    "@uniswap/token-lists": ^1.0.0-beta.28
+    "@web3-react/abstract-connector": ^6.0.7
+    "@web3-react/core": ^6.1.9
+    "@web3-react/types": ^6.0.7
+    ethers: ^5.6.4
+    lodash.isequal: ^4.5.0
+    merge-anything: ^5.0.2
+    react-query: ^3.38.*
+    ts-invariant: ^0.9.4
+    use-debounce: ^8.0.0
+    usehooks-ts: ^2.5.2
+    web3modal: ^1.9.7
+  peerDependencies:
+    "@uniswap/sdk": ^3
+    react: ">=17"
+    react-dom: ">=17"
+  checksum: a4c7f45a87dc8aaa7f778ff8c39153c3b6e02cf51397480dd07bed89d5346c88ec6960d8937ae9d9280cbc692abe5ccf75bc7145460e1497d51344389af9402d
   languageName: node
   linkType: hard
 
