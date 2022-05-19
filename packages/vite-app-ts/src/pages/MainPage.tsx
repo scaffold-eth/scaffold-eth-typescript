@@ -8,7 +8,7 @@ import { asEthersAdaptor } from 'eth-hooks/functions';
 import React, { FC, useEffect, useState } from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 
-import { MainPageFooter, MainPageHeader, createPagesAndTabs, TContractPageList } from './components/main';
+import { MainPageFooter, MainPageHeader, createPagesAndTabs, TContractPageList } from '../components/main';
 
 import { useCreateAntNotificationHolder } from '~common/components/hooks/useAntNotification';
 import { useBurnerFallback } from '~common/components/hooks/useBurnerFallback';

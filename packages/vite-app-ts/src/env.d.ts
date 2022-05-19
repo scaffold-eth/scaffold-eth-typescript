@@ -1,1 +1,1 @@
-import '~common/env';
+import '~common/vite.env';
