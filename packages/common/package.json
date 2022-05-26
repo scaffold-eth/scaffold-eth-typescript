@@ -13,7 +13,10 @@
     "lint": "eslint --config ./.eslintrc.js --ignore-path ./.eslintignore ./src",
     "lint:report": "eslint --config ./.eslintrc.js --ignore-path ./.eslintignore --output-file eslint_report.json --format json ./src",
     "format": "yarn prettier -w ./src ",
-    "format:check": "yarn prettier -c ./src"
+    "format:check": "yarn prettier -c ./src",
+    "dev:link:components": "yalc link eth-components",
+    "dev:link:hooks": "yalc link eth-hooks",
+    "dev:unlink": "yalc remove eth-hooks && yalc remove eth-components"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
@@ -37,8 +40,8 @@
     "antd": "^4.20.5",
     "authereum": "^0.1.14",
     "buffer": "^6.0.3",
-    "eth-components": "^3.2.20",
-    "eth-hooks": "^4.2.21",
+    "eth-components": "^3.2.36",
+    "eth-hooks": "^4.2.32",
     "ethers": "^5.6.6",
     "fortmatic": "^2.3.0",
     "react": "^18.1.0",
@@ -86,7 +89,8 @@
     "tsconfig-paths": "^3.14.1",
     "typescript": "^4.6.4",
     "typescript-transform-paths": "^3.3.1",
-    "utf-8-validate": "^5.0.9"
+    "utf-8-validate": "^5.0.9",
+    "yalc": "^1.0.0-pre.53"
   },
   "keywords": [
     "blockchain",

@@ -1,16 +1,33 @@
 import { Switch } from 'antd';
 import { useEthersAppContext } from 'eth-hooks/context';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useLayoutEffect, useState } from 'react';
 import { useThemeSwitcher } from 'react-css-theme-switcher';
 
-const initialTheme = window.localStorage.getItem('theme') ?? 'light';
+const loadTheme = (): string => {
+  if (typeof window != null) {
+    return window?.localStorage?.getItem('theme') ?? 'light';
+  }
+  return 'light';
+};
+
+const saveTheme = (theme: string): void => {
+  if (typeof window != null) {
+    window?.localStorage?.setItem('theme', theme);
+  }
+};
+
 export const ThemeSwitcher: FC = () => {
-  const [isDarkMode, setIsDarkMode] = useState(initialTheme === 'dark');
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const { switcher, currentTheme, status, themes } = useThemeSwitcher();
   const ethersAppContext = useEthersAppContext();
 
+  useLayoutEffect(() => {
+    const theme = loadTheme();
+    setIsDarkMode(theme === 'dark');
+  }, []);
+
   useEffect(() => {
-    window.localStorage.setItem('theme', currentTheme ?? '');
+    saveTheme(currentTheme ?? '');
     if (currentTheme === 'light' || currentTheme === 'dark') {
       ethersAppContext?.setModalTheme?.(currentTheme);
     }

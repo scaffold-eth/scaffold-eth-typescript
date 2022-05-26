@@ -27,7 +27,7 @@ console.log('init app...');
 const BLOCKNATIVE_DAPPID = process.env.VITE_KEY_BLOCKNATIVE_DAPPID;
 
 // load saved theme
-const savedTheme = window.localStorage.getItem('theme');
+const savedTheme = 'light';
 
 // setup themes for theme switcher
 const themes = {

@@ -40,9 +40,13 @@
     "s3": "yarn workspace @scaffold-eth/vite-app s3",
     "ship": "yarn workspace @scaffold-eth/vite-app ship",
     "@🔖🔖🔖🔖🔖 utilities": "echo 📖 utilities commands",
+    "syncpack:fix": "yarn syncpack fix-mismatches",
     "prepare": "husky install",
     "postinstall": "husky install",
-    "lint": "yarn workspace @scaffold-eth/vite-app lint --fix && yarn workspace @scaffold-eth/common lint --fix && yarn workspace @scaffold-eth/hardhat lint --fix && yarn workspace @scaffold-eth/nextjs-app lint --fix"
+    "lint": "yarn workspace @scaffold-eth/vite-app lint --fix && yarn workspace @scaffold-eth/common lint --fix && yarn workspace @scaffold-eth/hardhat lint --fix && yarn workspace @scaffold-eth/nextjs-app lint --fix",
+    "dev:link:components": "yarn workspace @scaffold-eth/vite-app dev:link:components && yarn workspace @scaffold-eth/common dev:link:components",
+    "dev:link:hooks": "yarn workspace @scaffold-eth/vite-app dev:link:hooks && yarn workspace @scaffold-eth/common dev:link:hooks",
+    "dev:unlink": "yarn workspace @scaffold-eth/vite-app dev:unlink && yarn workspace @scaffold-eth/vite-app dev:unlink && yarn workspace @scaffold-eth/common dev:unlink && yarn workspace @scaffold-eth/common dev:unlink"
   },
   "workspaces": {
     "packages": [

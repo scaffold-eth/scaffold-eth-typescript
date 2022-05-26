@@ -5,7 +5,7 @@ import { TNetworkNames } from '../models/TNetworkNames';
 const INFURA_ID = process.env.VITE_RPC_MAINNET_INFURA;
 
 let hostname = 'localhost';
-if (typeof window !== 'undefined') {
+if (typeof window !== 'undefined' && window != null) {
   hostname = window?.location?.hostname ?? 'localhost';
 }
 

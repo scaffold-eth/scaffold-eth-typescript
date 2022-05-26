@@ -32,4 +32,9 @@ module.exports = {
     },
   },
   plugins: [require('daisyui')],
+  daisyui: {
+    darkTheme: 'business',
+    themes: ['light', 'luxury', 'business', 'haloween'],
+    prefix: 'daisy',
+  },
 };
