@@ -1989,9 +1989,11 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.23.0
     "@typescript-eslint/parser": ^5.23.0
     "@walletconnect/ethereum-provider": ^1.7.8
+    "@walletconnect/web3-provider": ^1.7.8
     antd: ^4.20.5
     authereum: ^0.1.14
     buffer: ^6.0.3
+    bufferutil: ^4.0.6
     esbuild: ^0.14.39
     esbuild-node-externals: ^1.4.1
     eslint: ^8.15.0
@@ -2005,8 +2007,8 @@ __metadata:
     eslint-plugin-react: ^7.29.4
     eslint-plugin-react-hooks: ^4.5.0
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: ^3.2.21
-    eth-hooks: ^4.2.22
+    eth-components: ^3.2.20
+    eth-hooks: ^4.2.21
     ethers: ^5.6.6
     fortmatic: ^2.3.0
     husky: ^7.0.4
@@ -2029,7 +2031,9 @@ __metadata:
     typescript: ^4.6.4
     typescript-transform-paths: ^3.3.1
     use-debounce: ^8.0.1
+    utf-8-validate: ^5.0.9
     util: ^0.12.4
+    walletconnect: ^1.7.8
     web3modal: ^1.9.7
   languageName: unknown
   linkType: soft
@@ -2159,8 +2163,6 @@ __metadata:
     "@typescript-eslint/parser": ^5.23.0
     "@uniswap/sdk": ^3.0.3
     "@uniswap/token-lists": ^1.0.0-beta.28
-    "@vitejs/plugin-react": ^1.3.2
-    "@vitejs/plugin-react-refresh": ^1.3.6
     "@web3-react/types": ^6.0.7
     antd: ^4.20.5
     autoprefixer: ^10.4.7
@@ -2180,8 +2182,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.5.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: ^3.2.21
-    eth-hooks: ^4.2.22
+    eth-components: ^3.2.25
+    eth-hooks: ^4.2.26
     ethereum-cryptography: ^1.0.3
     ethers: ^5.6.6
     events: ^3.3.0
@@ -2306,8 +2308,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.5.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: ^3.2.22
-    eth-hooks: ^4.2.23
+    eth-components: ^3.2.20
+    eth-hooks: ^4.2.21
     ethereum-cryptography: ^1.0.3
     ethers: ^5.6.6
     events: ^3.3.0
@@ -3486,6 +3488,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@walletconnect/http-connection@npm:^1.7.8":
+  version: 1.7.8
+  resolution: "@walletconnect/http-connection@npm:1.7.8"
+  dependencies:
+    "@walletconnect/types": ^1.7.8
+    "@walletconnect/utils": ^1.7.8
+    eventemitter3: 4.0.7
+    xhr2-cookies: 1.1.0
+  checksum: 83b2fba6bdc321a3a411fb3aaa2fcd49b0a866e6a35d1858dfca80e217375ee55582d7a286235b3e5079dd99fd2f5103f7c542845c5bca685a4aba74894644d0
+  languageName: node
+  linkType: hard
+
 "@walletconnect/iso-crypto@npm:^1.7.8":
   version: 1.7.8
   resolution: "@walletconnect/iso-crypto@npm:1.7.8"
@@ -3620,6 +3634,20 @@ __metadata:
     js-sha3: 0.8.0
     query-string: 6.13.5
   checksum: 272f49bcf1a725147088e897b1a504fe45bc72d176f5e16166c8858da0288aed4294638d187db37ef8f0e10673c8d8ea7ee0769615c6d24cfe2dba8407402b25
+  languageName: node
+  linkType: hard
+
+"@walletconnect/web3-provider@npm:^1.7.8":
+  version: 1.7.8
+  resolution: "@walletconnect/web3-provider@npm:1.7.8"
+  dependencies:
+    "@walletconnect/client": ^1.7.8
+    "@walletconnect/http-connection": ^1.7.8
+    "@walletconnect/qrcode-modal": ^1.7.8
+    "@walletconnect/types": ^1.7.8
+    "@walletconnect/utils": ^1.7.8
+    web3-provider-engine: 16.0.1
+  checksum: 45e7b4054212fb49f2de72fb3621bcf8e6ff1c1d7cbcd6637e1a4a73c4a551c6b6d662608265463800833119c0fb8b661d01e3f6ba8f6d3a83bd96fb40b55911
   languageName: node
   linkType: hard
 
@@ -6028,7 +6056,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bufferutil@npm:^4.0.1":
+"bufferutil@npm:^4.0.1, bufferutil@npm:^4.0.6":
   version: 4.0.6
   resolution: "bufferutil@npm:4.0.6"
   dependencies:
@@ -9310,9 +9338,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-components@npm:^3.2.21":
-  version: 3.2.21
-  resolution: "eth-components@npm:3.2.21"
+"eth-components@npm:^3.2.20, eth-components@npm:^3.2.25":
+  version: 3.2.25
+  resolution: "eth-components@npm:3.2.25"
   dependencies:
     "@ethersproject/abstract-signer": ^5.6.0
     "@ethersproject/address": ^5.6.0
@@ -9326,7 +9354,7 @@ __metadata:
     "@ethersproject/units": ^5.6.0
     axios: ^0.27.2
     bnc-notify: ^1.9.4
-    eth-hooks: ^4.2.22
+    eth-hooks: ^4.2.26
     ethers: ^5.6.4
     qrcode.react: ^3.0.1
     react-blockies: ^1.4.1
@@ -9340,41 +9368,7 @@ __metadata:
     react: ">=17"
     react-css-theme-switcher: ^0.3.0
     react-dom: ">=17"
-  checksum: 62aff62f3f6419c4cc51b57010ecff26425481e41c8023c8f5a70a80cfc31828eeec1928aedc83d06155329d7ae79f152b73798977c23d3f2bf318a18b62b99f
-  languageName: node
-  linkType: hard
-
-"eth-components@npm:^3.2.22":
-  version: 3.2.22
-  resolution: "eth-components@npm:3.2.22"
-  dependencies:
-    "@ethersproject/abstract-signer": ^5.6.0
-    "@ethersproject/address": ^5.6.0
-    "@ethersproject/bignumber": ^5.6.0
-    "@ethersproject/bytes": ^5.6.1
-    "@ethersproject/contracts": ^5.6.0
-    "@ethersproject/networks": ^5.6.2
-    "@ethersproject/providers": ^5.6.4
-    "@ethersproject/signing-key": ^5.6.0
-    "@ethersproject/solidity": ^5.6.0
-    "@ethersproject/units": ^5.6.0
-    axios: ^0.27.2
-    bnc-notify: ^1.9.4
-    eth-hooks: ^4.2.23
-    ethers: ^5.6.4
-    qrcode.react: ^3.0.1
-    react-blockies: ^1.4.1
-    react-qr-reader: ^3.0.0-beta-1
-    ts-invariant: ^0.9.4
-    use-debounce: ^8.0.0
-    usehooks-ts: ^2.5.2
-  peerDependencies:
-    "@ant-design/icons": ^4.2
-    antd: ^4.7
-    react: ">=17"
-    react-css-theme-switcher: ^0.3.0
-    react-dom: ">=17"
-  checksum: aba22a091893c3ffaaf1a3c20bc5c732e5478f2521c7727a400d36e9466a0a12596935d3965b18826421c6df97f334124ce430c52a33d418780f2c321978e2eb
+  checksum: 82f2c35222921ede18b7152b6b2161084140e5713697683e0ee045acf65cc14c755af5bb5c054c72697d92d03a9b23a9d4643006b2abee51efa9e07844bd779f
   languageName: node
   linkType: hard
 
@@ -9416,9 +9410,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:^4.2.22":
-  version: 4.2.22
-  resolution: "eth-hooks@npm:4.2.22"
+"eth-hooks@npm:^4.2.21, eth-hooks@npm:^4.2.26":
+  version: 4.2.26
+  resolution: "eth-hooks@npm:4.2.26"
   dependencies:
     "@ethersproject/abi": ^5.6.1
     "@ethersproject/abstract-provider": ^5.6.0
@@ -9447,42 +9441,7 @@ __metadata:
     "@uniswap/sdk": ^3
     react: ">=17"
     react-dom: ">=17"
-  checksum: fbede387cd7d96c17b815998cfc930cb6ca2e42e1c223b09c8810bf3c674e8c982c0c2d2763cf7f3da54a08a1383edb9372070244faa5234a9fd003f6b291e65
-  languageName: node
-  linkType: hard
-
-"eth-hooks@npm:^4.2.23":
-  version: 4.2.23
-  resolution: "eth-hooks@npm:4.2.23"
-  dependencies:
-    "@ethersproject/abi": ^5.6.1
-    "@ethersproject/abstract-provider": ^5.6.0
-    "@ethersproject/address": ^5.6.0
-    "@ethersproject/bignumber": ^5.6.0
-    "@ethersproject/bytes": ^5.6.1
-    "@ethersproject/contracts": ^5.6.0
-    "@ethersproject/networks": ^5.6.2
-    "@ethersproject/providers": ^5.6.4
-    "@ethersproject/signing-key": ^5.6.0
-    "@ethersproject/solidity": ^5.6.0
-    "@ethersproject/units": ^5.6.0
-    "@uniswap/token-lists": ^1.0.0-beta.28
-    "@web3-react/abstract-connector": ^6.0.7
-    "@web3-react/core": ^6.1.9
-    "@web3-react/types": ^6.0.7
-    ethers: ^5.6.4
-    lodash.isequal: ^4.5.0
-    merge-anything: ^5.0.2
-    react-query: ^3.38.*
-    ts-invariant: ^0.9.4
-    use-debounce: ^8.0.0
-    usehooks-ts: ^2.5.2
-    web3modal: ^1.9.7
-  peerDependencies:
-    "@uniswap/sdk": ^3
-    react: ">=17"
-    react-dom: ">=17"
-  checksum: a4c7f45a87dc8aaa7f778ff8c39153c3b6e02cf51397480dd07bed89d5346c88ec6960d8937ae9d9280cbc692abe5ccf75bc7145460e1497d51344389af9402d
+  checksum: d2ce43338ad1dbff732f8278d04137d89e10202727b0e98dbad2ee8a984cb955bea3f6e8ce8b64f72533fee4668732b4bacc1cb18df7b2907672e5604b1ff475
   languageName: node
   linkType: hard
 
@@ -22830,7 +22789,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"utf-8-validate@npm:^5.0.2":
+"utf-8-validate@npm:^5.0.2, utf-8-validate@npm:^5.0.9":
   version: 5.0.9
   resolution: "utf-8-validate@npm:5.0.9"
   dependencies:
@@ -23193,6 +23152,19 @@ __metadata:
   peerDependencies:
     eslint: ">=6.0.0"
   checksum: 8cc751e9fc2bfba93664ad8945732ab1c97791f9123e703de8669b65670d1e01906d80436bf4932d7ee6fa6174ed4545e8abb059206c88f4bd71957ca6cf7ba8
+  languageName: node
+  linkType: hard
+
+"walletconnect@npm:^1.7.8":
+  version: 1.7.8
+  resolution: "walletconnect@npm:1.7.8"
+  dependencies:
+    "@walletconnect/client": ^1.7.8
+    "@walletconnect/qrcode-modal": ^1.7.8
+    "@walletconnect/types": ^1.7.8
+    "@walletconnect/utils": ^1.7.8
+    "@walletconnect/web3-provider": ^1.7.8
+  checksum: 6024da3a74e5774f61e8ef10f8956ced3e2bb05256002eab12113dceb14e67aa17b4b8d3072d00aa576f4cd9cb77e6e27ccc1611fe9de53382f6e1ca4d442004
   languageName: node
   linkType: hard
 

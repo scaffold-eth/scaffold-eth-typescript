@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-namespace */
+
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { TNetworkInfo, TEthersProvider } from 'eth-hooks/models';
 import { invariant } from 'ts-invariant';
@@ -5,13 +7,30 @@ import { invariant } from 'ts-invariant';
 import { NETWORKS } from '~common/constants';
 import { TNetworkNames } from '~common/models/TNetworkNames';
 
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      readonly DEV: boolean;
+
+      readonly NEXT_PUBLIC_APP_TARGET_NETWORK: string;
+      readonly NEXT_PUBLIC_RPC_MAINNET: string;
+      readonly NEXT_PUBLIC_RPC_MAINNET_INFURA: string;
+      readonly NEXT_PUBLIC_KEY_INFURA: string;
+      readonly NEXT_PUBLIC_KEY_ETHERSCAN: string;
+      readonly NEXT_PUBLIC_KEY_BLOCKNATIVE_DAPPID: string;
+      readonly NEXT_PUBLIC_FAUCET_ALLOWED: string;
+      readonly NEXT_PUBLIC_BURNER_FALLBACK_ALLOWED: string;
+      readonly NEXT_PUBLIC_CONNECT_TO_BURNER_AUTOMATICALLY: string;
+    }
+  }
+}
 /** ******************************
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
  * See ../../common/src/config for other config files
  ****************************** */
 
 export const DEBUG = true;
-invariant.log('MODE', import.meta.env.MODE, import.meta.env.DEV);
+invariant.log('env', process.env);
 /** ******************************
  * TARGET NETWORK CONFIG: 📡 What chain are your contracts deployed to?
  ****************************** */
@@ -21,8 +40,8 @@ invariant.log('MODE', import.meta.env.MODE, import.meta.env.DEV);
  * 🤚🏽  Set your target frontend network <--- select your target frontend network(localhost, rinkeby, xdai, mainnet)
  */
 
-const targetNetwork: TNetworkNames = import.meta.env.VITE_APP_TARGET_NETWORK as TNetworkNames;
-invariant.log('VITE_APP_TARGET_NETWORK', import.meta.env.VITE_APP_TARGET_NETWORK);
+const targetNetwork: TNetworkNames = process.env.NEXT_PUBLIC_TARGET_NETWORK as TNetworkNames;
+invariant.log('VITE_APP_TARGET_NETWORK', process.env.NEXT_PUBLIC_TARGET_NETWORK);
 invariant(NETWORKS[targetNetwork] != null, `Invalid target network: ${targetNetwork}`);
 
 export const TARGET_NETWORK_INFO: TNetworkInfo = NETWORKS[targetNetwork];
@@ -34,23 +53,24 @@ if (DEBUG) console.log(`📡 Connecting to ${TARGET_NETWORK_INFO.name}`);
 /**
  * localhost faucet enabled
  */
-export const FAUCET_ENABLED = import.meta.env.VITE_FAUCET_ALLOWED === 'true' && import.meta.env.DEV;
+export const FAUCET_ENABLED: boolean = process.env.NEXT_PUBLIC_FAUCET_ALLOWED === 'true' && process.env.DEV;
 /**
  * Use burner wallet as fallback
  */
-export const BURNER_FALLBACK_ENABLED = import.meta.env.VITE_BURNER_FALLBACK_ALLOWED === 'true' && import.meta.env.DEV;
+export const BURNER_FALLBACK_ENABLED: boolean =
+  process.env.NEXT_PUBLIC_BURNER_FALLBACK_ALLOWED === 'true' && process.env.DEV;
 /**
  * Connect to burner on first load if there are no cached providers
  */
 export const CONNECT_TO_BURNER_AUTOMATICALLY =
-  import.meta.env.VITE_CONNECT_TO_BURNER_AUTOMATICALLY === 'true' && import.meta.env.DEV;
+  process.env.NEXT_PUBLIC_CONNECT_TO_BURNER_AUTOMATICALLY === 'true' && process.env.DEV;
 
 if (DEBUG)
   invariant.log(
-    `import.meta.env.DEV: ${import.meta.env.DEV}`,
-    `import.meta.env.VITE_FAUCET_ALLOWED: ${import.meta.env.VITE_FAUCET_ALLOWED}`,
-    `import.meta.env.VITE_BURNER_FALLBACK_ALLOWED: ${import.meta.env.VITE_BURNER_FALLBACK_ALLOWED}`,
-    `import.meta.env.VITE_CONNECT_TO_BURNER_AUTOMATICALLY: ${import.meta.env.VITE_CONNECT_TO_BURNER_AUTOMATICALLY}`
+    `process.env.DEV: ${process.env.DEV}`,
+    `process.env.NEXT_PUBLIC_FAUCET_ALLOWED: ${process.env.NEXT_PUBLIC_FAUCET_ALLOWED}`,
+    `process.env.NEXT_PUBLIC_BURNER_FALLBACK_ALLOWED: ${process.env.NEXT_PUBLIC_BURNER_FALLBACK_ALLOWED}`,
+    `process.env.NEXT_PUBLIC_CONNECT_TO_BURNER_AUTOMATICALLY: ${process.env.NEXT_PUBLIC_CONNECT_TO_BURNER_AUTOMATICALLY}`
   );
 
 if (DEBUG)
@@ -82,17 +102,17 @@ export const SUBGRAPH_URI = 'http://localhost:8000/subgraphs/name/scaffold-eth/y
  * PROVIDERS CONFIG
  ****************************** */
 
-export const INFURA_ID = import.meta.env.VITE_KEY_INFURA;
+export const INFURA_ID: string = process.env.NEXT_PUBLIC_KEY_INFURA;
 
 // -------------------
 // Connecting to mainnet
 // -------------------
 // attempt to connect to our own scaffold eth rpc and if that fails fall back to infura...
-const mainnetScaffoldEthProvider = new StaticJsonRpcProvider(import.meta.env.VITE_RPC_MAINNET);
+const mainnetScaffoldEthProvider = new StaticJsonRpcProvider(process.env.NEXT_PUBLIC_RPC_MAINNET);
 const mainnetInfura = new StaticJsonRpcProvider(
-  `${import.meta.env.VITE_RPC_MAINNET_INFURA}/${import.meta.env.VITE_KEY_INFURA}`
+  `${process.env.NEXT_PUBLIC_RPC_MAINNET_INFURA}/${process.env.NEXT_PUBLIC_KEY_INFURA}`
 );
-// const mainnetProvider = new InfuraProvider("mainnet",import.meta.env.VITE_KEY_INFURA);
+// const mainnetProvider = new InfuraProvider("mainnet",process.env.NEXT_PUBLIC_KEY_INFURA);
 
 // 🚊 your mainnet provider
 export const MAINNET_PROVIDER = mainnetScaffoldEthProvider;
@@ -103,6 +123,6 @@ export const MAINNET_PROVIDER = mainnetScaffoldEthProvider;
 
 if (DEBUG) console.log('🏠 Connecting to provider:', NETWORKS.localhost.url);
 export const LOCAL_PROVIDER: TEthersProvider | undefined =
-  TARGET_NETWORK_INFO === NETWORKS.localhost && import.meta.env.DEV
+  TARGET_NETWORK_INFO === NETWORKS.localhost && process.env.DEV
     ? new StaticJsonRpcProvider(NETWORKS.localhost.url)
     : undefined;

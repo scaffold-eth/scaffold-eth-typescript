@@ -27,7 +27,7 @@
     "watch": "yarn workspace @scaffold-eth/hardhat watch",
     "@🔖🔖🔖🔖🔖 workspaces": "echo 📖 workspace commands",
     "hardhat": "yarn workspace @scaffold-eth/hardhat hardhat",
-    "hardhat-ws": "yarn workspace @scaffold-eth/hardhat-ts",
+    "hardhat-ts": "yarn workspace @scaffold-eth/hardhat-ts",
     "viteapp": "yarn workspace @scaffold-eth/vite-app",
     "nextapp": "yarn workspace @scaffold-eth/nextjs-app",
     "subgraph": "yarn workspace @scaffold-eth/subgraph",

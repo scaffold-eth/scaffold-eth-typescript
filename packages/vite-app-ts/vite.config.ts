@@ -48,6 +48,7 @@ const excludeDeps = ['@apollo/client', `graphql`, 'electron', 'electron-fetch'];
 export default defineConfig({
   plugins: [reactPlugin(), macrosPlugin(), tsconfigPaths(), externalPlugin, checker({ typescript: true })],
   build: {
+    minify: false,
     sourcemap: true,
     commonjsOptions: {
       include: /node_modules/,

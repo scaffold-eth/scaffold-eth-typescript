@@ -1,7 +1,7 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      NODE_ENV: 'development' | 'production';
+      readonly DEV: boolean;
 
       readonly NEXT_PUBLIC_APP_TARGET_NETWORK: string;
       readonly NEXT_PUBLIC_RPC_MAINNET: string;

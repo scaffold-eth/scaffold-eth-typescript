@@ -34,7 +34,7 @@ if (DEBUG) console.log(`📡 Connecting to ${TARGET_NETWORK_INFO.name}`);
 /**
  * localhost faucet enabled
  */
-export const FAUCET_ENABLED = import.meta.env.VITE_FAUCET_ALLOWED === 'true' && import.meta.env.DEV;
+export const FAUCET_ENABLED: boolean = import.meta.env.VITE_FAUCET_ALLOWED === 'true' && import.meta.env.DEV;
 /**
  * Use burner wallet as fallback
  */

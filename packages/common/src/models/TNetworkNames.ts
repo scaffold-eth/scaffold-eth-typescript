@@ -1,5 +1,3 @@
-// const INFURA_ID = import.meta.env.VITE_KEY_INFURA;
-
 export type TNetworkNames =
   | 'localhost'
   | 'mainnet'
