@@ -39,11 +39,8 @@
       "packages": [
          "packages/common",
          "packages/hardhat-ts",
-         "packages/vite-app-ts",
-         "packages/services/*",
-         "packages/services",
-         "packages/subgraph",
-         "packages/*"
+         "packages/protocol-frontend",
+         "packages/registrar-frontend"
       ]
    },
    "packageManager": "yarn@3.2.0",
