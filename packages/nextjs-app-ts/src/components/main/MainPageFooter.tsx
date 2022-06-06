@@ -3,7 +3,7 @@ import { Faucet, GasGauge } from 'eth-components/ant';
 import { useEthersAppContext } from 'eth-hooks/context';
 import React, { FC, Suspense } from 'react';
 
-import { Ramp, getFaucetAvailable, ThemeSwitcher, ThemeSwitcher } from '~common/components';
+import { Ramp, getFaucetAvailable, ThemeSwitcher } from '~common/components';
 import { NETWORKS } from '~common/constants';
 import { getNetworkInfo } from '~common/functions';
 import { IScaffoldAppProviders } from '~common/models';
