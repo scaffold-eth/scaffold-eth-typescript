@@ -29,7 +29,7 @@
       "~common/*": ["../common/src/*"]
     }
   },
-  "include": ["src", "src/helpers/__global.ts", "vite.config.ts"],
+  "include": ["src", "src/helpers/__global.ts", "vite.config.ts", "../common/src/components/contractContext.ts"],
   "exclude": [
     "**/node_modules",
     ".husky",

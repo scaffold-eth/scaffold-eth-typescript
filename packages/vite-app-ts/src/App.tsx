@@ -8,7 +8,7 @@ import React, { FC, Suspense } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 
 import { ErrorBoundary, ErrorFallback } from '~common/components';
-import { ContractsAppContext } from '~~/components/contractContext';
+import { AppContexts } from '~common/components/context';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
@@ -24,7 +24,7 @@ console.log('init app...');
 const BLOCKNATIVE_DAPPID = import.meta.env.VITE_KEY_BLOCKNATIVE_DAPPID;
 
 // load saved theme
-const savedTheme = window.localStorage.getItem('theme');
+const savedTheme = window.localStorage.getItem('theme') ?? 'light';
 
 // setup themes for theme switcher
 const themes = {
@@ -54,19 +54,11 @@ const App: FC = () => {
   console.log('loading app...');
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <EthComponentsSettingsContext.Provider value={ethComponentsSettings}>
-        <ContractsAppContext>
-          <EthersAppContext>
-            <ErrorBoundary FallbackComponent={ErrorFallback}>
-              <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme ?? 'light'}>
-                <Suspense fallback={<div />}>
-                  <MainPage />
-                </Suspense>
-              </ThemeSwitcherProvider>
-            </ErrorBoundary>
-          </EthersAppContext>
-        </ContractsAppContext>
-      </EthComponentsSettingsContext.Provider>
+      <AppContexts themes={themes} savedTheme={savedTheme} ethComponentsSettings={ethComponentsSettings}>
+        <Suspense fallback={<div />}>
+          <MainPage></MainPage>
+        </Suspense>
+      </AppContexts>
     </ErrorBoundary>
   );
 };

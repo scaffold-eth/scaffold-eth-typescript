@@ -14,7 +14,7 @@ import { useCreateAntNotificationHolder } from '~common/components/hooks/useAntN
 import { useBurnerFallback } from '~common/components/hooks/useBurnerFallback';
 import { useScaffoldAppProviders } from '~common/components/hooks/useScaffoldAppProviders';
 import { NETWORKS } from '~common/constants';
-import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~~/components/contractContext';
+import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~common/components/context';
 import { useScaffoldHooksExamples } from '~~/components/hooks/useScaffoldHooksExamples';
 import {
   BURNER_FALLBACK_ENABLED,

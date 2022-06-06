@@ -1,6 +1,7 @@
 import { Menu } from 'antd';
+import Link from 'next/link';
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 /**
  * A name and element that represents a page
  */
@@ -27,11 +28,11 @@ export type TContractPageList = {
  * @param setRoute
  * @returns
  */
-export const createPagesAndTabs = (
+export const createTabs = (
   pageList: TContractPageList,
   route: string,
   setRoute: (route: string) => void
-): { tabMenu: JSX.Element; tabContents: JSX.Element } => {
+): { tabMenu: JSX.Element } => {
   const getPath = (n: string): string => {
     return n.replaceAll(' ', '-');
   };
@@ -48,7 +49,7 @@ export const createPagesAndTabs = (
           onClick={(): void => {
             setRoute('/');
           }}
-          to="/">
+          href="/">
           {pageList.mainPage.name}
         </Link>
       </Menu.Item>
@@ -58,7 +59,7 @@ export const createPagesAndTabs = (
             onClick={(): void => {
               setRoute(getPath(name));
             }}
-            to={name}>
+            href={name}>
             {name}
           </Link>
         </Menu.Item>
@@ -66,18 +67,5 @@ export const createPagesAndTabs = (
     </Menu>
   );
 
-  const pageContent = (
-    <>
-      <Route key={'main'} exact path={'/'}>
-        {pageList.mainPage.content}
-      </Route>
-      {pageList.pages.map(({ name, content }) => (
-        <Route key={name} path={'/' + getPath(name)}>
-          {content}
-        </Route>
-      ))}
-    </>
-  );
-
-  return { tabMenu: tabMenu, tabContents: pageContent };
+  return { tabMenu: tabMenu };
 };

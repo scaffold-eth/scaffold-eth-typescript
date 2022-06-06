@@ -13,6 +13,7 @@ const nextConfig = {
       // your aliases
       'eth-hooks': path.resolve(__dirname, './node_modules/eth-hooks'),
       'eth-components': path.resolve(__dirname, './node_modules/eth-components'),
+      'react-css-theme-switcher': path.resolve(__dirname, './node_modules/react-css-theme-switcher'),
     };
     return config;
   },

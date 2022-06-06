@@ -75,10 +75,13 @@ export default defineConfig({
     alias: {
       '~~': resolve(__dirname, 'src'),
       '~common': resolve(__dirname, '../common/src'),
+      // your aliases
       'eth-hooks': resolve(__dirname, './node_modules/eth-hooks'),
       'eth-components': resolve(__dirname, './node_modules/eth-components'),
+      'react-css-theme-switcher': resolve(__dirname, './node_modules/react-css-theme-switcher'),
       ...externals,
       ...nodeShims,
+      // required by web3 dependencies
       process: 'process',
       stream: 'stream-browserify',
     },

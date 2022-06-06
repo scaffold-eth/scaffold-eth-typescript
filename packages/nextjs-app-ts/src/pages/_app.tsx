@@ -5,12 +5,14 @@ import { CacheProvider } from '@emotion/react';
 import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-components/models';
 import { EthersAppContext } from 'eth-hooks/context';
 import type { AppProps } from 'next/app';
-import React, { FC, useState } from 'react';
+import React, { FC, Suspense, useState } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 
 import { ErrorBoundary, ErrorFallback } from '~common/components';
-import { ContractsAppContext } from '~~/components/contractContext';
+import { ContractsAppContext } from '~common/components/context';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import { AppContexts } from '~common/components/context';
+import { MainPage } from '~~/components/main/MainPage';
 
 const cache = createCache({ key: 'next' });
 
@@ -56,21 +58,13 @@ const App: FC<AppProps> = ({ Component, ...props }) => {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <CacheProvider value={cache}>
-        <QueryClientProvider client={queryClient}>
+        <AppContexts themes={themes} savedTheme={savedTheme} ethComponentsSettings={ethComponentsSettings}>
           <Hydrate state={props.pageProps.dehydratedState}>
-            <EthComponentsSettingsContext.Provider value={ethComponentsSettings}>
-              <ContractsAppContext>
-                <EthersAppContext disableQueryClientRoot={true}>
-                  <ErrorBoundary FallbackComponent={ErrorFallback}>
-                    <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme ?? 'light'}>
-                      <Component {...props.pageProps} />
-                    </ThemeSwitcherProvider>
-                  </ErrorBoundary>
-                </EthersAppContext>
-              </ContractsAppContext>
-            </EthComponentsSettingsContext.Provider>
+            <Suspense fallback={<div />}>
+              <MainPage></MainPage>
+            </Suspense>
           </Hydrate>
-        </QueryClientProvider>
+        </AppContexts>
       </CacheProvider>
     </ErrorBoundary>
   );
