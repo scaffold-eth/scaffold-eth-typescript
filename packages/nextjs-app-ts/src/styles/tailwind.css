@@ -1,3 +1,10 @@
-@import './tailwind-base.css';
-@import './tailwind-components.css';
-@import './tailwind-utilities.css';
+@tailwind base;
+
+@layer base {
+  button:focus {
+    outline: none;
+  }
+}
+
+@tailwind components;
+@tailwind utilities;

@@ -1,5 +1,5 @@
-import path from 'path';
-const __dirname = path.resolve();
+import { resolve } from 'path';
+const __dirname = resolve();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -10,10 +10,14 @@ const nextConfig = {
   webpack: (config, { dev, isServer }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
+      // -------------------------------------------
       // your aliases
-      'eth-hooks': path.resolve(__dirname, './node_modules/eth-hooks'),
-      'eth-components': path.resolve(__dirname, './node_modules/eth-components'),
-      'react-css-theme-switcher': path.resolve(__dirname, './node_modules/react-css-theme-switcher'),
+      'eth-hooks': resolve(__dirname, './node_modules/eth-hooks'),
+      'eth-components': resolve(__dirname, './node_modules/eth-components'),
+      'react-css-theme-switcher': resolve(__dirname, './node_modules/react-css-theme-switcher'),
+      react: resolve(__dirname, './node_modules/react'),
+      'react-dom': resolve(__dirname, './node_modules/react-dom'),
+      // -------------------------------------------
     };
     return config;
   },

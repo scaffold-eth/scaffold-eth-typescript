@@ -1,7 +1,8 @@
 import { Switch } from 'antd';
 import { useEthersAppContext } from 'eth-hooks/context';
-import React, { FC, useEffect, useLayoutEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useThemeSwitcher } from 'react-css-theme-switcher';
+import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 
 const loadTheme = (): string => {
   if (typeof window != null) {
@@ -21,7 +22,7 @@ export const ThemeSwitcher: FC = () => {
   const { switcher, currentTheme, status, themes } = useThemeSwitcher();
   const ethersAppContext = useEthersAppContext();
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const theme = loadTheme();
     setIsDarkMode(theme === 'dark');
   }, []);

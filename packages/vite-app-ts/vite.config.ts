@@ -67,7 +67,7 @@ export default defineConfig({
   define: {},
   optimizeDeps: {
     exclude: excludeDeps,
-    include: ['eth-hooks', 'eth-components'],
+    include: ['@scaffold-eth/common', 'eth-hooks', 'eth-components'],
   },
   resolve: {
     preserveSymlinks: true,
@@ -75,10 +75,14 @@ export default defineConfig({
     alias: {
       '~~': resolve(__dirname, 'src'),
       '~common': resolve(__dirname, '../common/src'),
+      // -------------------------------------------
       // your aliases
       'eth-hooks': resolve(__dirname, './node_modules/eth-hooks'),
       'eth-components': resolve(__dirname, './node_modules/eth-components'),
       'react-css-theme-switcher': resolve(__dirname, './node_modules/react-css-theme-switcher'),
+      react: resolve(__dirname, './node_modules/react'),
+      'react-dom': resolve(__dirname, './node_modules/react-dom'),
+      // -------------------------------------------
       ...externals,
       ...nodeShims,
       // required by web3 dependencies

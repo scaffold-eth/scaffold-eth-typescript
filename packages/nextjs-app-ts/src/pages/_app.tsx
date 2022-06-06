@@ -1,18 +1,15 @@
-import '~~/styles/globals.css';
 import '~~/styles/tailwind.css';
+import '~~/styles/globals.css';
+
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
-import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-components/models';
-import { EthersAppContext } from 'eth-hooks/context';
+import { IEthComponentsSettings } from 'eth-components/models';
 import type { AppProps } from 'next/app';
 import React, { FC, Suspense, useState } from 'react';
-import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
+import { Hydrate, QueryClient } from 'react-query';
 
 import { ErrorBoundary, ErrorFallback } from '~common/components';
-import { ContractsAppContext } from '~common/components/context';
-import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { AppContexts } from '~common/components/context';
-import { MainPage } from '~~/components/main/MainPage';
 
 const cache = createCache({ key: 'next' });
 
@@ -34,8 +31,8 @@ const savedTheme = 'light';
 
 // setup themes for theme switcher
 const themes = {
-  dark: './dark-theme.css',
-  light: './light-theme.css',
+  dark: './ant-dark-theme.css',
+  light: './ant-light-theme.css',
 };
 
 // create eth components context for options and API keys
@@ -61,7 +58,7 @@ const App: FC<AppProps> = ({ Component, ...props }) => {
         <AppContexts themes={themes} savedTheme={savedTheme} ethComponentsSettings={ethComponentsSettings}>
           <Hydrate state={props.pageProps.dehydratedState}>
             <Suspense fallback={<div />}>
-              <MainPage></MainPage>
+              <Component {...props.pageProps} />
             </Suspense>
           </Hydrate>
         </AppContexts>

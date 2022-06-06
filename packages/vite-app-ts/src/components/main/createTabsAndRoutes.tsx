@@ -1,5 +1,5 @@
 import { Menu } from 'antd';
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Link, Route } from 'react-router-dom';
 /**
  * A name and element that represents a page
@@ -27,11 +27,11 @@ export type TContractPageList = {
  * @param setRoute
  * @returns
  */
-export const createPagesAndTabs = (
+export const createTabsAndRoutes = (
   pageList: TContractPageList,
   route: string,
   setRoute: (route: string) => void
-): { tabMenu: JSX.Element; tabContents: JSX.Element } => {
+): { tabMenu: ReactElement; routeContent: ReactElement } => {
   const getPath = (n: string): string => {
     return n.replaceAll(' ', '-');
   };
@@ -66,7 +66,7 @@ export const createPagesAndTabs = (
     </Menu>
   );
 
-  const pageContent = (
+  const routeContent = (
     <>
       <Route key={'main'} exact path={'/'}>
         {pageList.mainPage.content}
@@ -79,5 +79,5 @@ export const createPagesAndTabs = (
     </>
   );
 
-  return { tabMenu: tabMenu, tabContents: pageContent };
+  return { tabMenu: tabMenu, routeContent };
 };

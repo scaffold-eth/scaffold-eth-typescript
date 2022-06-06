@@ -1,7 +1,7 @@
 import { Menu } from 'antd';
 import Link from 'next/link';
-import React from 'react';
-import { Route } from 'react-router-dom';
+import React, { ReactElement } from 'react';
+
 /**
  * A name and element that represents a page
  */
@@ -28,44 +28,29 @@ export type TContractPageList = {
  * @param setRoute
  * @returns
  */
-export const createTabs = (
-  pageList: TContractPageList,
-  route: string,
-  setRoute: (route: string) => void
-): { tabMenu: JSX.Element } => {
-  const getPath = (n: string): string => {
-    return n.replaceAll(' ', '-');
-  };
-
+export const createTabsAndPages = (
+  pageList: TContractPageList
+): { tabMenu: ReactElement; pages: Record<string, ReactElement> } => {
   const tabMenu = (
     <Menu
       style={{
         textAlign: 'center',
       }}
-      selectedKeys={[route]}
       mode="horizontal">
       <Menu.Item key="/">
-        <Link
-          onClick={(): void => {
-            setRoute('/');
-          }}
-          href="/">
-          {pageList.mainPage.name}
-        </Link>
+        <Link href="/">{pageList.mainPage.name}</Link>
       </Menu.Item>
       {pageList.pages.map(({ name }) => (
         <Menu.Item key={name}>
-          <Link
-            onClick={(): void => {
-              setRoute(getPath(name));
-            }}
-            href={name}>
-            {name}
-          </Link>
+          <Link href={name}>{name}</Link>
         </Menu.Item>
       ))}
     </Menu>
   );
 
-  return { tabMenu: tabMenu };
+  const pages: Record<string, ReactElement> = {};
+  pageList.pages.map(({ name, content }) => (pages[name] = content));
+  pages['main'] = pageList.mainPage.content;
+
+  return { tabMenu, pages };
 };

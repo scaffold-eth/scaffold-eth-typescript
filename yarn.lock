@@ -2097,8 +2097,8 @@ __metadata:
     eslint-plugin-react: ^7.29.4
     eslint-plugin-react-hooks: ^4.5.0
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: ^3.2.38-beta09
-    eth-hooks: ^4.2.34-beta27
+    eth-components: ^3.2.38-beta10
+    eth-hooks: ^4.2.34-beta28
     ethers: ^5.6.6
     fortmatic: ^2.3.0
     husky: ^7.0.4
@@ -2121,6 +2121,7 @@ __metadata:
     typescript: ^4.7.2
     typescript-transform-paths: ^3.3.1
     use-debounce: ^8.0.1
+    usehooks-ts: ^2.5.4
     utf-8-validate: ^5.0.9
     util: ^0.12.4
     walletconnect: ^1.7.8
@@ -2273,8 +2274,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.5.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: ^3.2.38-beta09
-    eth-hooks: ^4.2.34-beta27
+    eth-components: ^3.2.38-beta10
+    eth-hooks: ^4.2.34-beta28
     ethereum-cryptography: ^1.0.3
     ethers: ^5.6.6
     events: ^3.3.0
@@ -2311,6 +2312,7 @@ __metadata:
     ts-invariant: ^0.10.3
     typescript: ^4.7.2
     use-debounce: ^8.0.1
+    usehooks-ts: ^2.5.4
     util: ^0.12.4
     web3modal: ^1.9.7
   languageName: unknown
@@ -2398,8 +2400,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.5.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: ^3.2.38-beta09
-    eth-hooks: ^4.2.34-beta27
+    eth-components: ^3.2.38-beta10
+    eth-hooks: ^4.2.34-beta28
     ethereum-cryptography: ^1.0.3
     ethers: ^5.6.6
     events: ^3.3.0
@@ -9436,9 +9438,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-components@npm:^3.2.38-beta09":
-  version: 3.2.38-beta09
-  resolution: "eth-components@npm:3.2.38-beta09"
+"eth-components@npm:^3.2.38-beta10":
+  version: 3.2.38-beta10
+  resolution: "eth-components@npm:3.2.38-beta10"
   dependencies:
     "@ethersproject/abstract-signer": ^5.6.0
     "@ethersproject/address": ^5.6.0
@@ -9452,21 +9454,21 @@ __metadata:
     "@ethersproject/units": ^5.6.0
     axios: ^0.27.2
     bnc-notify: ^1.9.4
-    eth-hooks: ^4.2.34-beta27
+    eth-hooks: ^4.2.34-beta28
     ethers: ^5.6.4
     qrcode.react: ^3.0.1
     react-blockies: ^1.4.1
     react-qr-reader: ^3.0.0-beta-1
-    test-usehooks-ts: ^3.0.0-beta
     ts-invariant: ^0.10.3
     use-debounce: ^8.0.1
+    usehooks-ts: ^2.5.4
   peerDependencies:
     "@ant-design/icons": ^4.2
     antd: ^4.7
     react: ">=17"
     react-css-theme-switcher: ^0.3.0
     react-dom: ">=17"
-  checksum: ecdfd3508ca3b10502ffeba07bc8c675f850f8ef9c7b1614a8fd964f7b1e0a736c06922df08048f9924b4cf15f335c3ff40958e3e19b232db8ff1d50157d9053
+  checksum: 162de4f5723b3a239d7d5c86627ae140140b170861626d2f1014dd1eba61ab53db3ca5dcf753faeb205f6ba53d099eb90ef4d3ad8c98a50d853d9aaf5c87d8ea
   languageName: node
   linkType: hard
 
@@ -9508,9 +9510,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:^4.2.34-beta27":
-  version: 4.2.34-beta27
-  resolution: "eth-hooks@npm:4.2.34-beta27"
+"eth-hooks@npm:^4.2.34-beta28":
+  version: 4.2.34-beta28
+  resolution: "eth-hooks@npm:4.2.34-beta28"
   dependencies:
     "@ethersproject/abi": ^5.6.1
     "@ethersproject/abstract-provider": ^5.6.0
@@ -9531,15 +9533,15 @@ __metadata:
     lodash.isequal: ^4.5.0
     merge-anything: ^5.0.2
     react-query: ^3.38.*
-    test-usehooks-ts: ^3.0.0-beta
     ts-invariant: ^0.9.4
     use-debounce: ^8.0.1
+    usehooks-ts: ^2.5.4
     web3modal: ^1.9.7
   peerDependencies:
     "@uniswap/sdk": ^3
     react: ">=17"
     react-dom: ">=17"
-  checksum: 6dd092f60146fa574fbf7bedf9bb77381644debd5bfeaeef78d96c092ea8acb6154c3218947743121578c4eed6a6f5ec098432fc30ae7e0150c18715ec1a4dae
+  checksum: db8eb2ea2136ecd234ebb53f45d5ee95a30a208b4fe3b3592a62e46ef508fc2b0998511f4633f5dabecfc950308e3ce22065e13c27461759b9d07e3e9c551ed2
   languageName: node
   linkType: hard
 
@@ -21947,15 +21949,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"test-usehooks-ts@npm:^3.0.0-beta":
-  version: 3.0.0-beta
-  resolution: "test-usehooks-ts@npm:3.0.0-beta"
-  peerDependencies:
-    react: ">=16.8.0"
-  checksum: a8e26cd4ed937921e3a6212ae71c254dbad1f834172f8324ca09d1e3b437874f32b9fde4ede9b238fe1fef8899cdaa0253e5a4ea21fac184eb61e1d1df5d9a89
-  languageName: node
-  linkType: hard
-
 "test-value@npm:^2.1.0":
   version: 2.1.0
   resolution: "test-value@npm:2.1.0"
@@ -22973,6 +22966,15 @@ __metadata:
   version: 3.1.1
   resolution: "use@npm:3.1.1"
   checksum: 08a130289f5238fcbf8f59a18951286a6e660d17acccc9d58d9b69dfa0ee19aa038e8f95721b00b432c36d1629a9e32a464bf2e7e0ae6a244c42ddb30bdd8b33
+  languageName: node
+  linkType: hard
+
+"usehooks-ts@npm:^2.5.4":
+  version: 2.5.4
+  resolution: "usehooks-ts@npm:2.5.4"
+  peerDependencies:
+    react: ">=16.9.0"
+  checksum: d665a6abc98b48eb19c85e97977bfc3f345d7186a6a843b363d9beb9ef1d4fca6cffc6211191828771aa693ff285118ac4897e1193f1657bd0fafbd9dacd8882
   languageName: node
   linkType: hard
 

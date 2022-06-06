@@ -8,13 +8,13 @@ import { asEthersAdaptor } from 'eth-hooks/functions';
 import React, { FC, useEffect, useState } from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 
-import { MainPageFooter, MainPageHeader, createPagesAndTabs, TContractPageList } from '../components/main';
+import { MainPageFooter, MainPageHeader, createTabsAndRoutes, TContractPageList } from '../components/main';
 
+import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~common/components/context';
 import { useCreateAntNotificationHolder } from '~common/components/hooks/useAntNotification';
 import { useBurnerFallback } from '~common/components/hooks/useBurnerFallback';
 import { useScaffoldAppProviders } from '~common/components/hooks/useScaffoldAppProviders';
 import { NETWORKS } from '~common/constants';
-import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~common/components/context';
 import { useScaffoldHooksExamples } from '~~/components/hooks/useScaffoldHooksExamples';
 import {
   BURNER_FALLBACK_ENABLED,
@@ -155,7 +155,7 @@ export const MainPage: FC = () => {
       },
     ],
   };
-  const { tabContents, tabMenu } = createPagesAndTabs(pageList, route, setRoute);
+  const { routeContent: tabContents, tabMenu } = createTabsAndRoutes(pageList, route, setRoute);
 
   // -----------------------------
   // 📃 Render the react components

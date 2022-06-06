@@ -1,16 +1,13 @@
 import { Row, Col, Button } from 'antd';
 import { Faucet, GasGauge } from 'eth-components/ant';
 import { useEthersAppContext } from 'eth-hooks/context';
-import dynamic from 'next/dynamic';
 import React, { FC, Suspense } from 'react';
 
-import { Ramp, getFaucetAvailable } from '~common/components';
+import { Ramp, getFaucetAvailable, ThemeSwitcher, ThemeSwitcher } from '~common/components';
 import { NETWORKS } from '~common/constants';
 import { getNetworkInfo } from '~common/functions';
 import { IScaffoldAppProviders } from '~common/models';
 import { FAUCET_ENABLED } from '~~/config/app.config';
-
-const ThemeSwitcher = dynamic<{}>(() => import('~common/components/ThemeSwitcher').then((mod) => mod.ThemeSwitcher));
 
 export interface IMainPageFooterProps {
   scaffoldAppProviders: IScaffoldAppProviders;
