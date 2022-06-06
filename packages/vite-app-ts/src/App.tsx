@@ -1,11 +1,9 @@
 import '~~/styles/tailwind.css';
 import '~~/styles/globals.css';
 
-import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-components/models';
-import { EthersAppContext } from 'eth-hooks/context';
+import { IEthComponentsSettings } from 'eth-components/models';
 import { lazier } from 'eth-hooks/helpers';
 import React, { FC, Suspense } from 'react';
-import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 
 import { ErrorBoundary, ErrorFallback } from '~common/components';
 import { AppContexts } from '~common/components/context';
