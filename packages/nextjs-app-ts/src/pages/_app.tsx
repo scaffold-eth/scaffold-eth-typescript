@@ -5,11 +5,12 @@ import { CacheProvider } from '@emotion/react';
 import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-components/models';
 import { EthersAppContext } from 'eth-hooks/context';
 import type { AppProps } from 'next/app';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 
 import { ErrorBoundary, ErrorFallback } from '~common/components';
 import { ContractsAppContext } from '~~/components/contractContext';
+import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 
 const cache = createCache({ key: 'next' });
 
@@ -49,24 +50,48 @@ const ethComponentsSettings: IEthComponentsSettings = {
  * @returns
  */
 const App: FC<AppProps> = ({ Component, ...props }) => {
+  const [queryClient, setQueryClient] = useState(() => new QueryClient());
+
   console.log('loading app...');
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <CacheProvider value={cache}>
-        <EthComponentsSettingsContext.Provider value={ethComponentsSettings}>
-          <ContractsAppContext>
-            <EthersAppContext>
-              <ErrorBoundary FallbackComponent={ErrorFallback}>
-                <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme ?? 'light'}>
-                  <Component {...props.pageProps} />
-                </ThemeSwitcherProvider>
-              </ErrorBoundary>
-            </EthersAppContext>
-          </ContractsAppContext>
-        </EthComponentsSettingsContext.Provider>
+        <QueryClientProvider client={queryClient}>
+          <Hydrate state={props.pageProps.dehydratedState}>
+            <EthComponentsSettingsContext.Provider value={ethComponentsSettings}>
+              <ContractsAppContext>
+                <EthersAppContext disableQueryClientRoot={true}>
+                  <ErrorBoundary FallbackComponent={ErrorFallback}>
+                    <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme ?? 'light'}>
+                      <Component {...props.pageProps} />
+                    </ThemeSwitcherProvider>
+                  </ErrorBoundary>
+                </EthersAppContext>
+              </ContractsAppContext>
+            </EthComponentsSettingsContext.Provider>
+          </Hydrate>
+        </QueryClientProvider>
       </CacheProvider>
     </ErrorBoundary>
   );
 };
 
 export default App;
+
+// import { AppProps } from 'next/app';
+// import { FC } from 'react';
+// import { useIsMounted } from 'test-usehooks-ts';
+
+// /**
+//  * ### Summary
+//  * The main app component is {@see MainPage} `components/routes/main/MaingPage.tsx`
+//  * This component sets up all the providers, Suspense and Error handling
+//  * @returns
+//  */
+// const App: FC<AppProps> = ({ Component, ...props }) => {
+//   const data = useIsMounted();
+//   console.log('loading app...');
+//   return <Component {...props.pageProps} />;
+// };
+
+// export default App;

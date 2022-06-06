@@ -9,7 +9,7 @@ export const useAntNotification = (): NotificationInstance => {
 };
 
 export const useCreateAntNotificationHolder = (): ReactElement => {
-  const [api, notificationHolder] = notification.useNotification();
+  const [api, notificationHolder] = notification?.useNotification();
 
   useEffect(() => {
     notificationApi = api;

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "yarn build:anttheme && next build",
@@ -42,9 +43,9 @@
     "antd": "^4.20.5",
     "axios": "^0.27.2",
     "buffer": "^6.0.3",
-    "daisyui": "^2.15.0",
-    "eth-components": "^3.2.36",
-    "eth-hooks": "^4.2.32",
+    "daisyui": "^2.15.1",
+    "eth-components": "^3.2.38-beta09",
+    "eth-hooks": "^4.2.34-beta27",
     "ethereum-cryptography": "^1.0.3",
     "ethers": "^5.6.6",
     "events": "^3.3.0",
@@ -62,7 +63,7 @@
     "react-error-boundary": "^3.1.4",
     "react-qr-reader": "^3.0.0-beta-1",
     "react-query": "^3.39.0",
-    "react-router-dom": "^5.3.1",
+    "react-router-dom": "^5.3.3",
     "react-stack-grid": "^0.7.1",
     "request": "^2.88.2",
     "stream": "^0.0.2",
@@ -113,11 +114,11 @@
     "prettier": "^2.6.2",
     "rollup-plugin-polyfill-node": "^0.9.0",
     "shx": "^0.3.4",
-    "stylelint": "^14.8.2",
+    "stylelint": "^14.8.5",
     "stylelint-config-recommended": "^7.0.0",
     "surge": "^0.23.1",
     "tailwindcss": "^3.0.24",
     "tailwindcss-elevation": "^1.0.1",
-    "typescript": "^4.6.4"
+    "typescript": "^4.7.2"
   }
 }

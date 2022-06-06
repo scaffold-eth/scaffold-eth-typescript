@@ -7,10 +7,11 @@ import { invariant } from 'ts-invariant';
 import { NETWORKS } from '~common/constants';
 import { TNetworkNames } from '~common/models/TNetworkNames';
 
+// global environmental variable declarations
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      readonly DEV: boolean;
+      readonly NEXT_PUBLIC_ISDEV: string;
 
       readonly NEXT_PUBLIC_APP_TARGET_NETWORK: string;
       readonly NEXT_PUBLIC_RPC_MAINNET: string;
@@ -24,13 +25,17 @@ declare global {
     }
   }
 }
+
 /** ******************************
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
  * See ../../common/src/config for other config files
  ****************************** */
 
 export const DEBUG = true;
-invariant.log('env', process.env);
+invariant.log('NODE_ENV', process.env.NODE_ENV);
+const isDev = process.env.NODE_ENV === 'development';
+invariant.log('env:dev', isDev);
+
 /** ******************************
  * TARGET NETWORK CONFIG: 📡 What chain are your contracts deployed to?
  ****************************** */
@@ -41,7 +46,7 @@ invariant.log('env', process.env);
  */
 
 const targetNetwork: TNetworkNames = process.env.NEXT_PUBLIC_TARGET_NETWORK as TNetworkNames;
-invariant.log('VITE_APP_TARGET_NETWORK', process.env.NEXT_PUBLIC_TARGET_NETWORK);
+invariant.log('NEXT_PUBLIC_TARGET_NETWORK', process.env.NEXT_PUBLIC_TARGET_NETWORK);
 invariant(NETWORKS[targetNetwork] != null, `Invalid target network: ${targetNetwork}`);
 
 export const TARGET_NETWORK_INFO: TNetworkInfo = NETWORKS[targetNetwork];
@@ -53,21 +58,20 @@ if (DEBUG) console.log(`📡 Connecting to ${TARGET_NETWORK_INFO.name}`);
 /**
  * localhost faucet enabled
  */
-export const FAUCET_ENABLED: boolean = process.env.NEXT_PUBLIC_FAUCET_ALLOWED === 'true' && process.env.DEV;
+export const FAUCET_ENABLED: boolean = process.env.NEXT_PUBLIC_FAUCET_ALLOWED === 'true' && isDev;
 /**
  * Use burner wallet as fallback
  */
-export const BURNER_FALLBACK_ENABLED: boolean =
-  process.env.NEXT_PUBLIC_BURNER_FALLBACK_ALLOWED === 'true' && process.env.DEV;
+export const BURNER_FALLBACK_ENABLED: boolean = process.env.NEXT_PUBLIC_BURNER_FALLBACK_ALLOWED === 'true' && isDev;
 /**
  * Connect to burner on first load if there are no cached providers
  */
 export const CONNECT_TO_BURNER_AUTOMATICALLY =
-  process.env.NEXT_PUBLIC_CONNECT_TO_BURNER_AUTOMATICALLY === 'true' && process.env.DEV;
+  process.env.NEXT_PUBLIC_CONNECT_TO_BURNER_AUTOMATICALLY === 'true' && isDev;
 
 if (DEBUG)
   invariant.log(
-    `process.env.DEV: ${process.env.DEV}`,
+    `process.env.DEV: ${isDev}`,
     `process.env.NEXT_PUBLIC_FAUCET_ALLOWED: ${process.env.NEXT_PUBLIC_FAUCET_ALLOWED}`,
     `process.env.NEXT_PUBLIC_BURNER_FALLBACK_ALLOWED: ${process.env.NEXT_PUBLIC_BURNER_FALLBACK_ALLOWED}`,
     `process.env.NEXT_PUBLIC_CONNECT_TO_BURNER_AUTOMATICALLY: ${process.env.NEXT_PUBLIC_CONNECT_TO_BURNER_AUTOMATICALLY}`
@@ -123,6 +127,4 @@ export const MAINNET_PROVIDER = mainnetScaffoldEthProvider;
 
 if (DEBUG) console.log('🏠 Connecting to provider:', NETWORKS.localhost.url);
 export const LOCAL_PROVIDER: TEthersProvider | undefined =
-  TARGET_NETWORK_INFO === NETWORKS.localhost && process.env.DEV
-    ? new StaticJsonRpcProvider(NETWORKS.localhost.url)
-    : undefined;
+  TARGET_NETWORK_INFO === NETWORKS.localhost && isDev ? new StaticJsonRpcProvider(NETWORKS.localhost.url) : undefined;

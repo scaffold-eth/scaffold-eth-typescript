@@ -27,7 +27,7 @@
     "watch": "yarn workspace @scaffold-eth/hardhat watch",
     "@🔖🔖🔖🔖🔖 workspaces": "echo 📖 workspace commands",
     "hardhat": "yarn workspace @scaffold-eth/hardhat hardhat",
-    "hardhat-ts": "yarn workspace @scaffold-eth/hardhat-ts",
+    "hardhatapp": "yarn workspace @scaffold-eth/hardhat-ts",
     "viteapp": "yarn workspace @scaffold-eth/vite-app",
     "nextapp": "yarn workspace @scaffold-eth/nextjs-app",
     "subgraph": "yarn workspace @scaffold-eth/subgraph",
@@ -64,12 +64,12 @@
     "cross-env": "^7.0.3",
     "eslint": "^8.15.0",
     "husky": "^7.0.4",
-    "lint-staged": "^12.4.1",
+    "lint-staged": "^12.4.2",
     "prettier": "^2.6.2",
     "prettier-plugin-solidity": "^1.0.0-beta.19",
     "shx": "^0.3.4",
     "syncpack": "^7.2.1",
-    "ts-node": "^10.7.0"
+    "ts-node": "^10.8.0"
   },
   "lint-staged": {
     "packages/vite-app-ts/src/**/*.{ts,tsx}": [
