@@ -1,11 +1,10 @@
-
 # This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
 name: Pull Request CI
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
   push:
     branches: [release, next]
   pull_request:
@@ -37,8 +36,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install --immutable
-      
-      - name: 'hardhat compile'  
+      - name: 'hardhat compile'
         run: |
           yarn compile --force
           yarn hardhat
@@ -48,11 +46,15 @@ jobs:
           yarn shx cp ./packages/vite-app-ts/scripts/hardhat_contracts.json.bak ./packages/vite-app-ts/src/generated/hardhat_contracts.json
           yarn contracts:build
 
-      - name: 'build production'
+      - name: 'build vite production'
         run: |
-          yarn run start optimize --force 
-          yarn run build
-      - name: "run tests"
+          yarn run start:vite optimize --force 
+          yarn run build:vite
+      - name: 'build next production'
+        run: |
+          yarn run start:next optimize --force 
+          yarn run build:next
+      - name: 'run tests'
         run: yarn test
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
