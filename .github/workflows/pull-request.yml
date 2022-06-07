@@ -54,7 +54,7 @@ jobs:
           yarn run start:next optimize --force 
           yarn run build:next
       - name: 'run tests'
-        run: yarn test
+        run: yarn hardhat test
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
         if: always()
