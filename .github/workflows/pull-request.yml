@@ -38,7 +38,7 @@ jobs:
       - run: yarn install --immutable
       - name: 'hardhat run'
         run: |
-          yarn hardhat
+          yarn hardhat compile
 
       - name: 'build contracts'
         run: |
