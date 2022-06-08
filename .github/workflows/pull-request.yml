@@ -38,15 +38,18 @@ jobs:
             ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install --immutable
       
-      - name: 'test hardhat run'  
+      - name: 'test hardhat run compile' 
         run: |
           yarn hardhat compile --force
-          yarn hardhat
-
+          
       - name: 'build contracts'
         run: |
           yarn shx cp ./packages/vite-app-ts/scripts/hardhat_contracts.json.bak ./packages/vite-app-ts/src/generated/hardhat_contracts.json
           yarn contracts:build
+
+      - name: 'test hardhat tasks' 
+        run: |
+          yarn hardhat
 
       - name: 'build production'
         run: |
