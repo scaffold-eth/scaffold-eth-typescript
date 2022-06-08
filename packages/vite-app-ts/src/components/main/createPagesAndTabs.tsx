@@ -33,7 +33,7 @@ export const createPagesAndTabs = (
   setRoute: (route: string) => void
 ): { tabMenu: JSX.Element; tabContents: JSX.Element } => {
   const getPath = (n: string): string => {
-    return n.replaceAll(' ', '-');
+    return n.replaceAll(' ', '-').toLowerCase();
   };
 
   const tabMenu = (
@@ -58,7 +58,7 @@ export const createPagesAndTabs = (
             onClick={(): void => {
               setRoute(getPath(name));
             }}
-            to={name}>
+            to={getPath(name)}>
             {name}
           </Link>
         </Menu.Item>
