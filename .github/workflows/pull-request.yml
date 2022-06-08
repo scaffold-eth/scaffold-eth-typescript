@@ -38,9 +38,9 @@ jobs:
             ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install --immutable
       
-      - name: 'hardhat compile'  
+      - name: 'test hardhat run'  
         run: |
-          yarn compile --force
+          yarn hardhat compile --force
           yarn hardhat
 
       - name: 'build contracts'
