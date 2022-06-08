@@ -36,9 +36,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install --immutable
-      - name: 'hardhat run'
+      - name: 'test hardhat run'  
         run: |
-          yarn hardhat compile
+          yarn hardhat compile --force
+          yarn hardhat
 
       - name: 'build contracts'
         run: |
