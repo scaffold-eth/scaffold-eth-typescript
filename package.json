@@ -22,7 +22,7 @@
       "deploy": "yarn workspace @scaffold-eth/hardhat deploy",
       "@🔖🔖🔖🔖🔖 workspaces": "echo 📖 workspace commands",
       "hardhat": "yarn workspace @scaffold-eth/hardhat hardhat",
-      "hardhat-ts": "yarn workspace @scaffold-eth/hardhat-ts",
+      "hardhat-ts": "yarn workspace @scaffold-eth/hardhat",
       "app-ts": "yarn workspace @scaffold-eth/vite-app",
       "subgraph": "yarn workspace @scaffold-eth/subgraph",
       "@🔖🔖🔖🔖🔖 ethereum helpers": "echo 📖 ethereum helper commands",
