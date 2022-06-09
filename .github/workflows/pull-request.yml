@@ -38,7 +38,7 @@ jobs:
       - run: yarn install --immutable
       - name: 'Check hardhat compile'
         run: |
-          yarn hardhat-ts compile --force
+          yarn w:hardhat compile --force
 
       - name: 'Build contracts'
         run: |
@@ -60,7 +60,7 @@ jobs:
           yarn run build:next
 
       - name: 'Run tests'
-        run: yarn hardhat test
+        run: yarn test
 
       - name: Publish unit test results
         uses: EnricoMi/publish-unit-test-result-action@v1
