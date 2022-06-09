@@ -40,7 +40,7 @@ jobs:
       
       - name: 'test hardhat run compile' 
         run: |
-          yarn hardhat compile --force
+          yarn hardhat-ts compile --force
           
       - name: 'build contracts'
         run: |
