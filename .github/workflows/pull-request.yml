@@ -25,7 +25,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: 'cache'
+      - name: 'Load node modules from cache'
         uses: actions/cache@v2
         with:
           path: |
@@ -36,30 +36,33 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install --immutable
-      - name: 'test hardhat run compile' 
+      - name: 'Check hardhat compile'
         run: |
           yarn hardhat-ts compile --force
-          
-      - name: 'build contracts'
+
+      - name: 'Build contracts'
         run: |
           yarn shx cp ./packages/vite-app-ts/scripts/hardhat_contracts.json.bak ./packages/vite-app-ts/src/generated/hardhat_contracts.json
           yarn contracts:build
 
-      - name: 'test hardhat tasks' 
+      - name: 'Check hardhat run tasks'
         run: |
           yarn hardhat
 
-      - name: 'build vite production'
+      - name: 'Build vite production'
         run: |
           yarn run start:vite optimize --force 
           yarn run build:vite
-      - name: 'build next production'
+
+      - name: 'Build nextjs production'
         run: |
           yarn run start:next optimize --force 
           yarn run build:next
-      - name: 'run tests'
+
+      - name: 'Run tests'
         run: yarn hardhat test
-      - name: Publish Unit Test Results
+
+      - name: Publish unit test results
         uses: EnricoMi/publish-unit-test-result-action@v1
         if: always()
         with:
