@@ -21,6 +21,14 @@ export type TContractPageList = {
 };
 
 /**
+ * Returns a user-friendly path.
+ * @param n
+ */
+const getPath = (n: string): string => {
+  return n.replaceAll(' ', '-').toLowerCase();
+};
+
+/**
  * Helper function that creates pages with routes.  It also creates tabs (menu items) associated with those routes, so that you can click on them to navigate to the page.
  * @param pageList
  * @param route
@@ -32,10 +40,6 @@ export const createPagesAndTabs = (
   route: string,
   setRoute: (route: string) => void
 ): { tabMenu: JSX.Element; tabContents: JSX.Element } => {
-  const getPath = (n: string): string => {
-    return n.replaceAll(' ', '-');
-  };
-
   const tabMenu = (
     <Menu
       style={{
@@ -58,7 +62,7 @@ export const createPagesAndTabs = (
             onClick={(): void => {
               setRoute(getPath(name));
             }}
-            to={name}>
+            to={getPath(name)}>
             {name}
           </Link>
         </Menu.Item>
