@@ -56,8 +56,8 @@ jobs:
 
       - name: 'Build nextjs production'
         run: |
-          yarn run start:next optimize --force 
-          yarn run build:next
+          yarn run start:nextjs
+          yarn run build:nextjs
 
       - name: 'Run tests'
         run: yarn test
