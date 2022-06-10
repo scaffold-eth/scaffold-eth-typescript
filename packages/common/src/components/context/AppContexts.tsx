@@ -12,13 +12,14 @@ interface IAppContexts {
   savedTheme: string;
   children: ReactElement;
   ethComponentsSettings: IEthComponentsSettings;
+  disableQueryClientRoot?: boolean;
 }
 
 export const AppContexts: FC<IAppContexts> = (props) => {
-  return (
+  const element = (
     <EthComponentsSettingsContext.Provider value={props.ethComponentsSettings}>
       <ContractsAppContext>
-        <EthersAppContext>
+        <EthersAppContext disableQueryClientRoot={props.disableQueryClientRoot}>
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             <ThemeSwitcherProvider themeMap={props.themes} defaultTheme={props.savedTheme ?? 'light'}>
               <ErrorBoundary FallbackComponent={ErrorFallback}>{props.children}</ErrorBoundary>
@@ -28,4 +29,6 @@ export const AppContexts: FC<IAppContexts> = (props) => {
       </ContractsAppContext>
     </EthComponentsSettingsContext.Provider>
   );
+
+  return element;
 };

@@ -42,7 +42,7 @@ export const createTabsAndPages = (
       </Menu.Item>
       {pageList.pages.map(({ name }) => (
         <Menu.Item key={name}>
-          <Link href={name}>{name}</Link>
+          <Link href={'/' + name}>{name}</Link>
         </Menu.Item>
       ))}
     </Menu>

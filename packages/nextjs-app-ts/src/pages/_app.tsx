@@ -6,10 +6,11 @@ import { CacheProvider } from '@emotion/react';
 import { IEthComponentsSettings } from 'eth-components/models';
 import type { AppProps } from 'next/app';
 import React, { FC, Suspense, useState } from 'react';
-import { Hydrate, QueryClient } from 'react-query';
+import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 
 import { ErrorBoundary, ErrorFallback } from '~common/components';
 import { AppContexts } from '~common/components/context';
+import { BLOCKNATIVE_DAPPID } from '~~/config/app.config';
 
 const cache = createCache({ key: 'next' });
 
@@ -23,8 +24,6 @@ const cache = createCache({ key: 'next' });
  */
 
 console.log('init app...');
-
-const BLOCKNATIVE_DAPPID = process.env.VITE_KEY_BLOCKNATIVE_DAPPID;
 
 // load saved theme
 const savedTheme = 'light';
@@ -49,40 +48,24 @@ const ethComponentsSettings: IEthComponentsSettings = {
  * @returns
  */
 const App: FC<AppProps> = ({ Component, ...props }) => {
-  const [queryClient, setQueryClient] = useState(() => new QueryClient());
+  const [queryClient] = useState(() => new QueryClient());
 
   console.log('loading app...');
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <CacheProvider value={cache}>
-        <AppContexts themes={themes} savedTheme={savedTheme} ethComponentsSettings={ethComponentsSettings}>
-          <Hydrate state={props.pageProps.dehydratedState}>
-            <Suspense fallback={<div />}>
-              <Component {...props.pageProps} />
-            </Suspense>
-          </Hydrate>
-        </AppContexts>
+        <QueryClientProvider client={queryClient}>
+          <AppContexts themes={themes} savedTheme={savedTheme} ethComponentsSettings={ethComponentsSettings}>
+            <Hydrate state={props.pageProps.dehydratedState}>
+              <Suspense fallback={<div />}>
+                <Component {...props.pageProps} />
+              </Suspense>
+            </Hydrate>
+          </AppContexts>
+        </QueryClientProvider>
       </CacheProvider>
     </ErrorBoundary>
   );
 };
 
 export default App;
-
-// import { AppProps } from 'next/app';
-// import { FC } from 'react';
-// import { useIsMounted } from 'test-usehooks-ts';
-
-// /**
-//  * ### Summary
-//  * The main app component is {@see MainPage} `components/routes/main/MaingPage.tsx`
-//  * This component sets up all the providers, Suspense and Error handling
-//  * @returns
-//  */
-// const App: FC<AppProps> = ({ Component, ...props }) => {
-//   const data = useIsMounted();
-//   console.log('loading app...');
-//   return <Component {...props.pageProps} />;
-// };
-
-// export default App;

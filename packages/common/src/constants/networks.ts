@@ -1,7 +1,3 @@
-import { TNetworkInfo } from 'eth-hooks/models';
-
-import { TNetworkNames } from '../models/TNetworkNames';
-
 const INFURA_ID = process.env.VITE_RPC_MAINNET_INFURA;
 
 let hostname = 'localhost';
@@ -9,7 +5,7 @@ if (typeof window !== 'undefined' && window != null) {
   hostname = window?.location?.hostname ?? 'localhost';
 }
 
-export const NETWORKS: Readonly<Record<TNetworkNames, TNetworkInfo>> = {
+export const NETWORKS = {
   localhost: {
     name: 'localhost',
     color: '#666666',
@@ -149,4 +145,4 @@ export const NETWORKS: Readonly<Record<TNetworkNames, TNetworkInfo>> = {
     gasPrice: 1000000000,
     faucet: 'https://faucet.fantom.network/',
   },
-};
+} as const;

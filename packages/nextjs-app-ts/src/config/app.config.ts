@@ -86,6 +86,9 @@ if (DEBUG)
 
 export const SUBGRAPH_URI = 'http://localhost:8000/subgraphs/name/scaffold-eth/your-contract';
 
+export const BLOCKNATIVE_DAPPID = process.env.NEXT_PUBLIC_KEY_BLOCKNATIVE_DAPPID;
+if (DEBUG) invariant.log(`BLOCKNATIVE_DAPPID: ${BLOCKNATIVE_DAPPID}`);
+
 /** ******************************
  * OTHER FILES
  ****************************** */
@@ -125,6 +128,7 @@ export const MAINNET_PROVIDER = mainnetScaffoldEthProvider;
 // connecting to local provider
 // -------------------
 
-if (DEBUG) console.log('🏠 Connecting to provider:', NETWORKS.localhost.url);
+const localhost: TNetworkInfo = NETWORKS.localhost;
+if (DEBUG) console.log('🏠 Connecting to local provider:', localhost.url);
 export const LOCAL_PROVIDER: TEthersProvider | undefined =
-  TARGET_NETWORK_INFO === NETWORKS.localhost && isDev ? new StaticJsonRpcProvider(NETWORKS.localhost.url) : undefined;
+  TARGET_NETWORK_INFO === localhost && isDev ? new StaticJsonRpcProvider(localhost.url) : undefined;
