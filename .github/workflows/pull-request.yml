@@ -52,12 +52,11 @@ jobs:
       - name: 'Build vite production'
         run: |
           yarn run start:vite optimize --force 
-          yarn run build:vite
+          yarn cross-env NODE_OPTIONS=--max_old_space_size=4096 yarn build:vite
 
       - name: 'Build nextjs production'
         run: |
-          yarn run start:nextjs
-          yarn run build:nextjs
+          yarn cross-env NODE_OPTIONS=--max_old_space_size=4096 yarn build:nextjs
 
       - name: 'Run tests'
         run: yarn test
