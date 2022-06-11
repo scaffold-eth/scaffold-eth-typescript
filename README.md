@@ -2,11 +2,12 @@
 
 ## Typescript
 
-This is the typescript repo of scaffold-eth and it uses `hardhat` and `vite`. The directories that you'll use are:
+This is the typescript repo of scaffold-eth and it uses `hardhat` and `vite` to run scaffold-eth-typescript. There is also a nextjs version. The directories that you'll use are:
 
 ```bash
 packages/vite-app-ts/
 packages/hardhat-ts/
+packages/next-app-ts/
 ```
 
 ## Quick Start
@@ -34,11 +35,20 @@ Running the app
    yarn contracts:build
    # deploy your hardhat contracts
    yarn deploy
-   # start the app
+   # start the app (vite)
    yarn start
    ```
 
-4. other commands
+4. If you'd like to run the nextjs app, `open a new command prompt`
+
+   ```bash
+   # start nextjs app
+   yarn start:next
+
+   ```
+
+5. other commands
+
    ```bash
    # rebuild all contracts, incase of inconsistent state
    yarn contracts:rebuild
@@ -46,13 +56,21 @@ Running the app
    yarn hardhat 'xxx'
    # get eth for testing locally
    yarn hardhat faucet xxx
-   # run subgraph commands for the workspace
+   # run any subgraph commands for the workspace
    yarn subgraph 'xxx'
+   ```
+
+   Other folders
+
+   ```bash
+   # for subgraph
+   packages/advanced/subgraph/
+   packages/advanced/services/
    ```
 
 ### Environment Variables
 
-Vite and next app folders have `.env` files. To create local variables that overrride these, create a file called `.env.local`, or `.env.development.local` or `.env.production.local` and put your overrides in there.
+Vite and NextJs app folders have `.env` files. To create local variables that overrride these, create a file called `.env.local`, or `.env.development.local` or `.env.production.local` and put your overrides in there.
 
 You can set your `TARGET_NETWORK` with them.
 
@@ -122,4 +140,4 @@ Please check out our [Gitcoin grant](https://gitcoin.co/grants/2851/scaffold-eth
 
 ## 🔐 P.S.About keys
 
-You need an RPC and API keys for testnets and production deployments, create an [Alchemy](https://www.alchemy.com/) account and replace the value of `ALCHEMY_KEY = xxx` in `packages/vite-app-ts/.env` with your new keys.
+You need an RPC and API keys for testnets and production deployments, create an [Alchemy](https://www.alchemy.com/) account and replace the value of `ALCHEMY_KEY = xxx` in `packages/vite-app-ts/.env` or `packages/next-app-ts/.env` with your new keys.
