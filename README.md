@@ -16,7 +16,7 @@ packages/next-app-ts/
 
 Running the app
 
-1. install your dependencies
+1. install your dependencies, `open a new command prompt`
 
    ```bash
    yarn install
