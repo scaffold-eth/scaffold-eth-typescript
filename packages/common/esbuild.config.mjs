@@ -6,17 +6,12 @@ import path from 'path';
 function tsPathResolver(content) {
   const relativePath = path.relative(path.dirname(this.resourcePath), path.resolve(__dirname, '../src'));
 
-  return content.replaceAll(`from "~~/`, `from "${relativePath ? relativePath + '/' : './'}`);
+  return content.replaceAll(`from "~common/`, `from "${relativePath ? relativePath + '/' : './'}`);
 }
 
 esbuild
   .build({
-    entryPoints: [
-      './src/index.ts',
-      './src/models/index.ts',
-      './src/constants/index.ts',
-      './src/functions/index.ts',
-    ],
+    entryPoints: ['./src/index.ts', './src/models/index.ts', './src/constants/index.ts', './src/functions/index.ts'],
     outdir: 'lib',
     bundle: true,
     minifyWhitespace: true,

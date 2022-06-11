@@ -2,9 +2,6 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 **/node_modules
 
-packages/subgraph/config/config.json
-tenderly.yaml
-
 #build
 *.tsbuildinfo
 *.stackdump
@@ -21,16 +18,22 @@ packages/hardhat-ts/generated
 !packages/hardhat-ts/generated/.gitignore
 cache
 artifacts
+tenderly.yaml
 
-# secrets
-.secret
+
+# secrets / env
+**/.env.*.local
+**/*.secret
 **/aws.json
-packages/hardhat-ts/mnemonic.secret
+!packages/hardhat-ts/mnemonics/README.md
+**/mnemonics/*.secret
+**/mnemonics/*.txt
 
 #subgraph
-packages/subgraph/subgraph.yaml
-packages/subgraph/generated
-packages/subgraph/abis/*
+packages/advanced/subgraph/config/config.json
+packages/advanced/subgraph/subgraph.yaml
+packages/advanced/subgraph/generated
+packages/advanced/subgraph/abis/*
 
 # dependencies, yarn, etc
 /node_modules
@@ -60,4 +63,11 @@ yarn-error.log*
 .idea
 
 
+# vercel
+**/.vercel/**/*
+**/.next/**/*
+**/out/**/*
 
+# misc
+.DS_Store
+*.pem

@@ -1,8 +1,14 @@
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
-import { NETWORKS } from '@scaffold-eth/common/src/constants';
-import { TNetworkNames } from '@scaffold-eth/common/src/models/TNetworkNames';
 import { TNetworkInfo, TEthersProvider } from 'eth-hooks/models';
 import { invariant } from 'ts-invariant';
+
+import { NETWORKS } from '~common/constants';
+import { TNetworkNames } from '~common/models/TNetworkNames';
+
+/** ******************************
+ * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
+ * See ../../common/src/config for other config files
+ ****************************** */
 
 export const DEBUG = true;
 invariant.log('MODE', import.meta.env.MODE, import.meta.env.DEV);
@@ -28,7 +34,7 @@ if (DEBUG) console.log(`📡 Connecting to ${TARGET_NETWORK_INFO.name}`);
 /**
  * localhost faucet enabled
  */
-export const FAUCET_ENABLED = import.meta.env.VITE_FAUCET_ALLOWED === 'true' && import.meta.env.DEV;
+export const FAUCET_ENABLED: boolean = import.meta.env.VITE_FAUCET_ALLOWED === 'true' && import.meta.env.DEV;
 /**
  * Use burner wallet as fallback
  */
@@ -76,6 +82,8 @@ export const SUBGRAPH_URI = 'http://localhost:8000/subgraphs/name/scaffold-eth/y
  * PROVIDERS CONFIG
  ****************************** */
 
+export const INFURA_ID = import.meta.env.VITE_KEY_INFURA;
+
 // -------------------
 // Connecting to mainnet
 // -------------------
@@ -93,7 +101,7 @@ export const MAINNET_PROVIDER = mainnetScaffoldEthProvider;
 // connecting to local provider
 // -------------------
 
-if (DEBUG) console.log('🏠 Connecting to provider:', NETWORKS.localhost.url);
+if (DEBUG) console.log('🏠 Connecting to local provider:', NETWORKS.localhost.url);
 export const LOCAL_PROVIDER: TEthersProvider | undefined =
   TARGET_NETWORK_INFO === NETWORKS.localhost && import.meta.env.DEV
     ? new StaticJsonRpcProvider(NETWORKS.localhost.url)

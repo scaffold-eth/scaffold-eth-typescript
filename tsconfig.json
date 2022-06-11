@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    // "inlineSources": true,
+    "allowJs": false,
+    "declarationMap": true,
+    "declaration": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "es2020",
+    "moduleResolution": "Node",
+    "incremental": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
+  },
+  "include": ["packages/**/*.ts", "packages/**/*.tsx"],
+  "exclude": [
+    "**/node_modules",
+    "node_modules",
+    ".husky",
+    "**/*.css",
+    "./tailwind.config.js",
+    "**/.yalc/",
+    "**/.yalc/**/*",
+    ".yalc/**/*"
+  ]
+}

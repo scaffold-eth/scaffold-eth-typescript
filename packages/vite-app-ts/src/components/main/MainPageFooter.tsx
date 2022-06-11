@@ -1,13 +1,13 @@
-import { NETWORKS } from '@scaffold-eth/common/src/constants';
 import { Row, Col, Button } from 'antd';
 import { Faucet, GasGauge } from 'eth-components/ant';
 import { useEthersAppContext } from 'eth-hooks/context';
 import React, { FC } from 'react';
 
-import { Ramp, ThemeSwitcher } from '~~/components/common';
-import { getFaucetAvailable } from '~~/components/common/FaucetHintButton';
-import { IScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
-import { getNetworkInfo } from '~~/functions/getNetworkInfo';
+import { Ramp, ThemeSwitcher, getFaucetAvailable } from '~common/components';
+import { NETWORKS } from '~common/constants';
+import { getNetworkInfo } from '~common/functions';
+import { IScaffoldAppProviders } from '~common/models';
+import { FAUCET_ENABLED } from '~~/config/app.config';
 
 export interface IMainPageFooterProps {
   scaffoldAppProviders: IScaffoldAppProviders;
@@ -24,7 +24,7 @@ export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
   const ethersAppContext = useEthersAppContext();
 
   // Faucet Tx can be used to send funds from the faucet
-  const faucetAvailable = getFaucetAvailable(props.scaffoldAppProviders, ethersAppContext);
+  const faucetAvailable = getFaucetAvailable(props.scaffoldAppProviders, ethersAppContext, FAUCET_ENABLED);
 
   const network = getNetworkInfo(ethersAppContext.chainId);
 

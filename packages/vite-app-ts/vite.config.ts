@@ -48,6 +48,7 @@ const excludeDeps = ['@apollo/client', `graphql`, 'electron', 'electron-fetch'];
 export default defineConfig({
   plugins: [reactPlugin(), macrosPlugin(), tsconfigPaths(), externalPlugin, checker({ typescript: true })],
   build: {
+    minify: false,
     sourcemap: true,
     commonjsOptions: {
       include: /node_modules/,
@@ -66,15 +67,25 @@ export default defineConfig({
   define: {},
   optimizeDeps: {
     exclude: excludeDeps,
-    include: ['eth-hooks', 'eth-components'],
+    include: ['@scaffold-eth/common', 'eth-hooks', 'eth-components'],
   },
   resolve: {
     preserveSymlinks: true,
     mainFields: ['module', 'main', 'browser'],
     alias: {
       '~~': resolve(__dirname, 'src'),
+      '~common': resolve(__dirname, '../common/src'),
+      // -------------------------------------------
+      // your aliases
+      'eth-hooks': resolve(__dirname, './node_modules/eth-hooks'),
+      'eth-components': resolve(__dirname, './node_modules/eth-components'),
+      'react-css-theme-switcher': resolve(__dirname, './node_modules/react-css-theme-switcher'),
+      react: resolve(__dirname, './node_modules/react'),
+      'react-dom': resolve(__dirname, './node_modules/react-dom'),
+      // -------------------------------------------
       ...externals,
       ...nodeShims,
+      // required by web3 dependencies
       process: 'process',
       stream: 'stream-browserify',
     },

@@ -1,11 +1,10 @@
-
 # This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
 name: Pull Request CI
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
   push:
     branches: [release, next]
   pull_request:
@@ -26,7 +25,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: 'cache'
+      - name: 'Load node modules from cache'
         uses: actions/cache@v2
         with:
           path: |
@@ -37,32 +36,37 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install --immutable
-      
-      - name: 'test hardhat run compile' 
+      - name: 'Check hardhat compile'
         run: |
-          yarn hardhat-ts compile --force
-          
-      - name: 'build contracts'
+          yarn w:hardhat compile --force
+
+      - name: 'Build contracts'
         run: |
-          yarn shx cp ./packages/vite-app-ts/scripts/hardhat_contracts.json.bak ./packages/vite-app-ts/src/generated/hardhat_contracts.json
+          yarn shx cp ./packages/common/scripts/hardhat_contracts.json.bak ./packages/common/src/generated/hardhat_contracts.json
           yarn contracts:build
 
-      - name: 'test hardhat tasks' 
+      - name: 'Check hardhat run tasks'
         run: |
           yarn hardhat
 
-      - name: 'build production'
+      - name: 'Build vite production'
         run: |
-          yarn run start optimize --force 
-          yarn run build
-      # - name: "run tests"
-        # run: yarn test
-      # - name: Publish Unit Test Results
-      #   uses: EnricoMi/publish-unit-test-result-action@v1
-      #   if: always()
-      #   with:
-      #     files: testresult.xml
-      #     comment_mode: update last
-      #     hide_comments: all but latest
-      #     compare_to_earlier_commit: true
-      #     check_run_annotations: all tests, skipped tests
+          yarn run start:vite optimize --force 
+          yarn cross-env NODE_OPTIONS=--max_old_space_size=4096 yarn build:vite
+
+      - name: 'Build nextjs production'
+        run: |
+          yarn cross-env NODE_OPTIONS=--max_old_space_size=4096 yarn build:nextjs
+
+      - name: 'Run tests'
+        run: yarn test
+
+      - name: Publish unit test results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: testresult.xml
+          comment_mode: update last
+          hide_comments: all but latest
+          compare_to_earlier_commit: true
+          check_run_annotations: all tests, skipped tests

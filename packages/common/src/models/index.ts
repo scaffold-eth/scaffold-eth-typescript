@@ -1,1 +1,2 @@
-export * from "./NetworkTypes";
+export * from './IScaffoldAppProviders';
+export * from './TNetworkNames';

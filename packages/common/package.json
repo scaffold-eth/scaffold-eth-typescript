@@ -1,28 +1,80 @@
 {
   "name": "@scaffold-eth/common",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "author": "Shravan Sunder<shravan.sunder.dev@gmail.com>",
-  "description": "Common package to be used by hardaht-ts and vite-app-ts in the scaffold-eth-typescript workspace",
-  "main": "index.ts",
+  "description": "Common package to be used by hardhat-ts and vite-app-ts in the scaffold-eth-typescript workspace",
+  "license": "MIT",
+  "private": true,
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "browser": "./src/index.ts",
+  "types": "./src/index.ts",
   "scripts": {
+    "contracts:hardhat": "yarn shx rm -rf './src/generated/contracts-types' && yarn shx cp -r '../hardhat-ts/generated/contract-types' './src/generated'",
+    "contracts:external": "yarn shx rm -rf './src/generated/external-contracts' && yarn shx cp -r './scripts/eth-sdk-config.ts.bak' './src/generated/eth-sdk.config.ts' && yarn eth-sdk -p ./src/generated",
     "watch": "tsc -w --noEmit",
     "clean": "shx rm -rf ./lib",
-    "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore ./src/**/*.(ts|tsx)",
-    "lint:report": "eslint --config ./.eslintrc --ignore-path ./.eslintignore --output-file eslint_report.json --format json ./src/**/*.(ts|tsx)",
+    "lint": "eslint --config ./.eslintrc.js --ignore-path ./.eslintignore ./src",
+    "lint:report": "eslint --config ./.eslintrc.js --ignore-path ./.eslintignore --output-file eslint_report.json --format json ./src",
     "format": "yarn prettier -w ./src ",
-    "format:check": "yarn prettier -c ./src"
+    "format:check": "yarn prettier -c ./src",
+    "dev:link:components": "yalc link eth-components",
+    "dev:link:hooks": "yalc link eth-hooks",
+    "dev:unlink": "yalc remove eth-hooks && yalc remove eth-components"
   },
   "dependencies": {
-    "eth-hooks": "^4.2.*",
-    "ethers": "^5.6.*"
+    "@ant-design/icons": "^4.7.0",
+    "@coinbase/wallet-sdk": "^3.1.0",
+    "@emotion/react": "^11.9.0",
+    "@ethersproject/abi": "^5.6.2",
+    "@ethersproject/abstract-provider": "^5.6.0",
+    "@ethersproject/address": "^5.6.0",
+    "@ethersproject/bignumber": "^5.6.1",
+    "@ethersproject/bytes": "^5.6.1",
+    "@ethersproject/contracts": "^5.6.1",
+    "@ethersproject/networks": "^5.6.2",
+    "@ethersproject/providers": "^5.6.6",
+    "@ethersproject/signing-key": "^5.6.1",
+    "@ethersproject/solidity": "^5.6.0",
+    "@ethersproject/units": "^5.6.0",
+    "@portis/web3": "^4.0.7",
+    "@ramp-network/ramp-instant-sdk": "^3.1.1",
+    "@walletconnect/ethereum-provider": "^1.7.8",
+    "@walletconnect/web3-provider": "^1.7.8",
+    "antd": "^4.20.5",
+    "authereum": "^0.1.14",
+    "buffer": "^6.0.3",
+    "eth-components": "^3.2.45",
+    "eth-hooks": "^4.2.38",
+    "ethers": "^5.6.6",
+    "fortmatic": "^2.3.0",
+    "react": "^18.1.0",
+    "react-css-theme-switcher": "^0.3.0",
+    "react-dom": "^18.1.0",
+    "react-error-boundary": "^3.1.4",
+    "react-query": "^3.39.0",
+    "request": "^2.88.2",
+    "stream": "^0.0.2",
+    "stream-browserify": "^3.0.0",
+    "timers-browserify": "^2.0.12",
+    "ts-invariant": "^0.10.3",
+    "use-debounce": "^8.0.1",
+    "usehooks-ts": "^2.5.4",
+    "util": "^0.12.4",
+    "walletconnect": "^1.7.8",
+    "web3modal": "^1.9.7"
   },
   "devDependencies": {
-    "@types/node": "^16.11.33",
-    "@typescript-eslint/eslint-plugin": "^5.22.0",
-    "@typescript-eslint/parser": "^5.22.0",
-    "esbuild": "^0.14.38",
+    "@dethcrypto/eth-sdk": "0.3.0",
+    "@types/node": "^16.11.35",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.4",
+    "@typescript-eslint/eslint-plugin": "^5.23.0",
+    "@typescript-eslint/parser": "^5.23.0",
+    "bufferutil": "^4.0.6",
+    "esbuild": "^0.14.39",
     "esbuild-node-externals": "^1.4.1",
-    "eslint": "^8.14.0",
+    "eslint": "^8.15.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.5.0",
@@ -34,15 +86,17 @@
     "eslint-plugin-react-hooks": "^4.5.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^7.0.4",
-    "lint-staged": "^12.4.1",
+    "lint-staged": "^12.4.2",
     "pinst": "^3.0.0",
     "prettier": "^2.6.2",
-    "prettier-eslint": "^14.0.2",
+    "prettier-eslint": "^14.1.0",
     "shx": "^0.3.4",
     "ts-patch": "^2.0.1",
     "tsconfig-paths": "^3.14.1",
-    "typescript": "^4.6.4",
-    "typescript-transform-paths": "^3.3.1"
+    "typescript": "^4.7.2",
+    "typescript-transform-paths": "^3.3.1",
+    "utf-8-validate": "^5.0.9",
+    "yalc": "^1.0.0-pre.53"
   },
   "keywords": [
     "blockchain",
@@ -51,18 +105,7 @@
     "create-eth-app",
     "typescript"
   ],
-  "license": "MIT",
-  "packageManager": "yarn@3.1.1",
-  "volta": {
-    "node": "16.13.1"
-  },
-  "lint-staged": {
-    "**/*.{ts,tsx}": [
-      "yarn lint --fix",
-      "yarn format"
-    ],
-    "**/*.{json}": [
-      "yarn format"
-    ]
+  "installConfig": {
+    "hoistingLimits": "workspaces"
   }
 }

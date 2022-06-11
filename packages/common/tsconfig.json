@@ -1,36 +1,39 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": ["ESNext", "ES2017"],
+    "lib": ["DOM", "DOM.Iterable", "ESNext", "ES2017"],
     "sourceMap": true,
     // "inlineSources": true,
     "allowJs": false,
     "declarationMap": true,
     "declaration": true,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "skipLibCheck": true,
+    "composite": true,
     "skipDefaultLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ] /* List of folders to include type definitions from. */,
-    "forceConsistentCasingInFileNames": false,
+    "forceConsistentCasingInFileNames": true,
     "module": "es2020",
     "moduleResolution": "Node",
     "incremental": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
     "rootDir": ".",
     "baseUrl": ".",
     "outDir": "dist",
-    "jsx": "react-jsxdev"
+    "jsx": "react-jsxdev",
+    "jsxImportSource": "@emotion/react",
+    "paths": {
+      "~common/*": ["./src/*"]
+    }
   },
-  "include": ["src"],
+  "include": ["src", "src/helpers/__global.ts"],
   "exclude": [
     "**/node_modules",
     ".husky",
+    "**/*.css",
+    "./tailwind.config.js",
     "node_modules",
     "**/.yalc/**/*",
     ".yalc/**/*"
