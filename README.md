@@ -64,8 +64,9 @@ Running the app
 
    ```bash
    # for subgraph
-   packages/advanced/subgraph/
-   packages/advanced/services/
+   packages/subgraph/
+   # other services: like graphql
+   packages/services/
    ```
 
 ### Environment Variables

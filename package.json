@@ -59,8 +59,8 @@
       "packages/hardhat-ts",
       "packages/vite-app-ts",
       "packages/next-app-ts",
-      "packages/advanced/subgraph",
-      "packages/advanced/services/*",
+      "packages/subgraph",
+      "packages/services/*",
       "packages/*"
     ]
   },

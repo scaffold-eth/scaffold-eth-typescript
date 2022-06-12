@@ -4,11 +4,8 @@ import fs from 'fs';
 
 import chalk from 'chalk';
 
-// const publishGenerated = '../vite-app-ts/src/generated/contracts';
-// const publishDir = `${publishGenerated}/contracts`;
-const deploymentsDir = './generated/deployments';
-// const typechainDir = './generated/typechain';
-const graphDir = '../advanced/subgraph';
+const deploymentsDir = './generated/hardhat/deployments';
+const graphDir = '../subgraph';
 
 const publishContract = (contractName: string, networkName: string): boolean => {
   try {
