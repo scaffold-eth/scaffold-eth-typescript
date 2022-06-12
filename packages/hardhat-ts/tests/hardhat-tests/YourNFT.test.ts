@@ -1,12 +1,12 @@
-import '../helpers/hardhat-imports';
-import './helpers/chai-imports';
+import '~helpers/hardhat-imports';
+import '~tests/utils/chai-imports';
 
 import { expect } from 'chai';
 import { YourNFT__factory } from 'generated/contract-types';
+import { YourNFT } from 'generated/contract-types/YourNFT';
 import hre from 'hardhat';
-import { getHardhatSigners } from 'tasks/functions/accounts';
 
-import { YourNFT } from '../generated/contract-types/YourNFT';
+import { getHardhatSigners } from '~tasks/functions/accounts';
 
 describe('🚩 Challenge 0: 🎟 Simple NFT Example 🤓', function () {
   this.timeout(180000);

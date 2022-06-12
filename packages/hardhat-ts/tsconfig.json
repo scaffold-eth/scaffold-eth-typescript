@@ -20,15 +20,15 @@
     "outDir": "dist",
     "paths": {
       "~~/*": ["./src/*"],
-      "helpers/*": ["./helpers/*"],
-      "contracts/*": ["./contracts/*"],
-      "tests/*": ["./tests/*"],
-      "generated/*": ["./generated/*"],
-      "tasks/*": ["./tasks/*"],
+      "~helpers/*": ["./helpers/*"],
+      "~contracts/*": ["./contracts/*"],
+      "~tests/*": ["./tests/*"],
+      "~generated/*": ["./generated/*"],
+      "~tasks/*": ["./tasks/*"],
       "~common/*": ["../common/src/*"]
     }
   },
-  "include": ["types", "scripts", "test", "helpers", "./hardhat.config.ts", "deploy", "tasks", "scripts"],
+  "include": ["types", "scripts", "tests", "helpers", "./hardhat.config.ts", "deploy", "tasks", "scripts"],
   "exclude": ["**/node_modules"],
   "ts-node": {
     "compilerOptions": {

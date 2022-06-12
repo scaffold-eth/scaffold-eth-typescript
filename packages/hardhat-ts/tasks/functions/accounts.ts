@@ -6,7 +6,7 @@ import { ethers, Wallet } from 'ethers';
 import { keccak256, randomBytes } from 'ethers/lib/utils';
 import { SignerWithAddress } from 'hardhat-deploy-ethers/signers';
 import { THardhatRuntimeEnvironmentExtended } from 'helpers/types/THardhatRuntimeEnvironmentExtended';
-import { debugLog } from 'tasks/functions/debug';
+import { debugLog } from '~tasks/functions/debug';
 
 export const getAccountData = async (mnemonic: string): Promise<{ address: string; wallet: Wallet }> => {
   debugLog('mnemonic', mnemonic);

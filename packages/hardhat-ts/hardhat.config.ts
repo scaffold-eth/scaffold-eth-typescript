@@ -125,9 +125,11 @@ export const config: HardhatUserConfig = {
     include: ['contracts'],
   },
   paths: {
-    cache: './generated/cache',
-    artifacts: './generated/artifacts',
-    deployments: './generated/deployments',
+    cache: './generated/hardhat/cache',
+    artifacts: './generated/hardhat/artifacts',
+    deployments: './generated/hardhat/deployments',
+    deploy: './deploy/hardhat-deploy',
+    tests: './tests',
   },
   typechain: {
     outDir: './generated/contract-types',

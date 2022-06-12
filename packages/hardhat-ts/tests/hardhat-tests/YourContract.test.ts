@@ -1,12 +1,12 @@
-import '../helpers/hardhat-imports';
-import './helpers/chai-imports';
+import '~helpers/hardhat-imports';
+import '~tests/utils/chai-imports';
 
 import { expect } from 'chai';
-import { YourContract__factory } from 'generated/contract-types';
 import hre from 'hardhat';
-import { getHardhatSigners } from 'tasks/functions/accounts';
 
-import { YourContract } from '../generated/contract-types/YourContract';
+import { YourContract__factory } from '~generated/contract-types';
+import { YourContract } from '~generated/contract-types/YourContract';
+import { getHardhatSigners } from '~tasks/functions/accounts';
 
 describe('YourContract', function () {
   let yourContract: YourContract;
