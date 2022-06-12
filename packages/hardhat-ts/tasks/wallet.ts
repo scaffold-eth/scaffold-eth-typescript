@@ -3,11 +3,12 @@ import { parseUnits } from '@ethersproject/units';
 import { Signer } from 'ethers';
 import { task } from 'hardhat/config';
 import { THardhatRuntimeEnvironmentExtended } from 'helpers/types/THardhatRuntimeEnvironmentExtended';
+
+import { send } from './functions/send';
+
 import { findFirstAddress } from '~tasks/functions/accounts';
 import { debugLog } from '~tasks/functions/debug';
 import { getMnemonic } from '~tasks/functions/mnemonic';
-
-import { send } from './functions/send';
 
 // eslint-disable-next-line @typescript-eslint/require-await
 task('wallet', 'Create a wallet (pk) link', async (_, { ethers }): Promise<void> => {
