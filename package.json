@@ -23,6 +23,7 @@
     "contracts:rebuild": "yarn workspace @scaffold-eth/hardhat clean && yarn contracts:build",
     "contracts:deploy": "yarn workspace @scaffold-eth/hardhat deploy",
     "chain": "yarn workspace @scaffold-eth/hardhat chain",
+    "compile": "yarn workspace @scaffold-eth/hardhat compile",
     "deploy": "yarn contracts:deploy",
     "@🔖🔖🔖🔖🔖 commands 🔖🔖🔖🔖🔖 ": "echo 📖 commands",
     "hardhat": "yarn workspace @scaffold-eth/hardhat hardhat",
@@ -88,7 +89,7 @@
       "yarn workspace @scaffold-eth/common lint --fix",
       "yarn workspace @scaffold-eth/common format"
     ],
-    "packages/hardhat-ts/test/**/*.ts": [
+    "packages/hardhat-ts/tests/**/*.ts": [
       "yarn workspace @scaffold-eth/hardhat lint --fix",
       "yarn workspace @scaffold-eth/hardhat format"
     ],
