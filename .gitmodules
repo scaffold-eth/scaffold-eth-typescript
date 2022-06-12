@@ -1,11 +1,3 @@
-[submodule "packages/advanced/services/arbitrum"]
-	path = packages/advanced/services/arbitrum
-	url = https://github.com/OffchainLabs/arbitrum
-	branch = master
-[submodule "packages/advanced/services/optimism"]
-	path = packages/advanced/services/optimism
-	url = https://github.com/ethereum-optimism/optimism
-	branch = regenesis/0.4.0
 [submodule "packages/hardhat-ts/lib/forge-std"]
 	path = packages/hardhat-ts/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
