@@ -3,13 +3,14 @@ pragma solidity ^0.8.13;
 
 import "forge-std/Script.sol";
 
-import {YourContract} from "contracts/yourContract.sol";
+import { YourContract } from "contracts/yourContract.sol";
 
 contract YourContractScript is Script {
-    function setUp() public {}
+  function setUp() public {}
 
-    function run() public {
-        vm.broadcast();
-        new YourContract();
-    }
+  function run() public {
+    vm.startBroadcast();
+    new YourContract();
+    vm.stopBroadcast();
+  }
 }
