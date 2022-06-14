@@ -40,6 +40,7 @@
     "@typescript-eslint/no-empty-function": "warn",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/explicit-function-return-type": "warn",
     "unused-imports/no-unused-imports-ts": "warn",
     "unused-imports/no-unused-vars-ts": ["error", { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }],
     "@typescript-eslint/no-use-before-define": ["error"],
@@ -102,7 +103,8 @@
     {
       "files": ["*.test.ts", "*.test.tsx"],
       "rules": {
-        "@typescript-eslint/no-non-null-assertion": "off"
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-unused-expressions": "off"
       }
     }
   ],

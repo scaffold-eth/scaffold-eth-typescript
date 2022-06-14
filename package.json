@@ -55,10 +55,6 @@
       "ts-node": "^10.7.0"
    },
    "lint-staged": {
-      "packages/vite-app-ts/src/**/*.{ts,tsx}": [
-         "yarn workspace @scaffold-eth/vite-app lint --fix",
-         "yarn workspace @scaffold-eth/vite-app format"
-      ],
       "packages/common/src/**/*.{ts,tsx}": [
          "yarn workspace @scaffold-eth/common lint --fix",
          "yarn workspace @scaffold-eth/common format"
