@@ -2572,8 +2572,8 @@ __metadata:
     eslint-plugin-react: ^7.30.0
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: ^3.2.46
-    eth-hooks: ^4.2.39
+    eth-components: ^3.3.0-beta02
+    eth-hooks: ^4.3.0-beta01
     ethers: ^5.6.8
     fortmatic: ^2.4.0
     husky: ^8.0.1
@@ -2750,8 +2750,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: ^3.2.46
-    eth-hooks: ^4.2.39
+    eth-components: ^3.3.0-beta02
+    eth-hooks: ^4.3.0-beta01
     ethereum-cryptography: ^1.0.3
     ethers: ^5.6.8
     events: ^3.3.0
@@ -2876,8 +2876,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: ^3.2.46
-    eth-hooks: ^4.2.39
+    eth-components: ^3.3.0-beta02
+    eth-hooks: ^4.3.0-beta01
     ethereum-cryptography: ^1.0.3
     ethers: ^5.6.8
     events: ^3.3.0
@@ -10317,9 +10317,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-components@npm:^3.2.46":
-  version: 3.2.46
-  resolution: "eth-components@npm:3.2.46"
+"eth-components@npm:^3.3.0-beta02":
+  version: 3.3.0-beta02
+  resolution: "eth-components@npm:3.3.0-beta02"
   dependencies:
     "@ethersproject/abstract-signer": ^5.6.2
     "@ethersproject/address": ^5.6.1
@@ -10347,7 +10347,7 @@ __metadata:
     react: ">=17"
     react-css-theme-switcher: ^0.3.0
     react-dom: ">=17"
-  checksum: 87027c84f0fbf1a731fae854df22005a2fff7b4d48a395c7781652af6fbed07a3d2bb34db134fa5343521fe95ed45f89a92ba9f33fafb846604ec3db25755d93
+  checksum: 33369f159d6893727b8e06e807fd2a81c8b0fce7e3d5459d715bbcc0ef71eec777442bff6ebe6584ce82340a35368c3bb1a1d3cfb53f9dde0b00743bf63f5e09
   languageName: node
   linkType: hard
 
@@ -10421,6 +10421,41 @@ __metadata:
     react: ">=17"
     react-dom: ">=17"
   checksum: 39cf7300762d5c20a1bb305bea6c86555788417e7aa03082ec23b2625e060f2123f548172d84a51312e966ce528998a6f597f4dda4d65d677cf5e0afe34d3c1d
+  languageName: node
+  linkType: hard
+
+"eth-hooks@npm:^4.3.0-beta01":
+  version: 4.3.0-beta01
+  resolution: "eth-hooks@npm:4.3.0-beta01"
+  dependencies:
+    "@ethersproject/abi": ^5.6.3
+    "@ethersproject/abstract-provider": ^5.6.1
+    "@ethersproject/address": ^5.6.1
+    "@ethersproject/bignumber": ^5.6.2
+    "@ethersproject/bytes": ^5.6.1
+    "@ethersproject/contracts": ^5.6.2
+    "@ethersproject/networks": ^5.6.3
+    "@ethersproject/providers": ^5.6.8
+    "@ethersproject/signing-key": ^5.6.2
+    "@ethersproject/solidity": ^5.6.1
+    "@ethersproject/units": ^5.6.1
+    "@uniswap/token-lists": ^1.0.0-beta.28
+    "@web3-react/abstract-connector": ^6.0.7
+    "@web3-react/core": ^6.1.9
+    "@web3-react/types": ^6.0.7
+    ethers: ^5.6.8
+    lodash.isequal: ^4.5.0
+    merge-anything: ^5.0.2
+    react-query: ^3.39.1
+    ts-invariant: ^0.10.3
+    use-debounce: ^8.0.1
+    usehooks-ts: ^2.5.4
+    web3modal: ^1.9.8
+  peerDependencies:
+    "@uniswap/sdk": ^3
+    react: ">=17"
+    react-dom: ">=17"
+  checksum: 5b4fccdc3ff0435a7d4387ea5eddf5cc6020ea17b158b282d101e5b999cfac4fc9ea06eace3db38a84ca806e4a6bb14a3b5cefebcf45df58a116952ee27de2d8
   languageName: node
   linkType: hard
 
