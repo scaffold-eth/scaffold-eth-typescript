@@ -61,17 +61,17 @@
       "packages/*"
     ]
   },
-  "packageManager": "yarn@3.2.0",
+  "packageManager": "yarn@3.2.1",
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "eslint": "^8.15.0",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.4.2",
-    "prettier": "^2.6.2",
+    "eslint": "^8.17.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.1",
+    "prettier": "^2.7.0",
     "prettier-plugin-solidity": "^1.0.0-beta.19",
     "shx": "^0.3.4",
-    "syncpack": "^7.2.1",
-    "ts-node": "^10.8.0"
+    "syncpack": "^8.0.0",
+    "ts-node": "^10.8.1"
   },
   "lint-staged": {
     "packages/vite-app-ts/src/**/*.{ts,tsx}": [
