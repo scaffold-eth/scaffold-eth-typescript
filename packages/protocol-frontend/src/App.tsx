@@ -6,6 +6,8 @@ import styled from "@emotion/styled";
 import {WhiteTheme} from "./whiteTheme";
 import Logo from "./components/navigation/Logo";
 import ResearchPane from "./components/research/ResearchPane";
+import Web3Provider from "./components/web3/Web3Provider";
+import AppProviders from "./components/AppProviders";
 
 const RootView = styled(Grid)(({theme})=> ({
     backgroundColor: theme.palette.grey[100]
@@ -23,8 +25,7 @@ const SidebarView = styled(Grid)(({theme})=> ({
 
 function App() {
     return (
-        <ThemeProvider theme={WhiteTheme}>
-            <CssBaseline />
+        <AppProviders>
             <RootView container sx={{height: "100%"}}>
                 <SidebarView item xs={2}>
                     <Stack justifyContent="space-between" sx={{height: "100%"}}>
@@ -44,7 +45,7 @@ function App() {
                     </MainView>
                 </Grid>
             </RootView>
-        </ThemeProvider>
+        </AppProviders>
     );
 }
 

@@ -24,7 +24,7 @@ function Sidebar() {
         <Box>
             <List>
                 {menuItems.map((link) => (
-                    <ListItem disablePadding>
+                    <ListItem disablePadding key={link.destination}>
                         <ListItemButton>
                             {link.icon? link.icon(): null}
                             <ListItemText primary={link.label} />
