@@ -2572,8 +2572,8 @@ __metadata:
     eslint-plugin-react: ^7.30.0
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: ^3.2.46
-    eth-hooks: ^4.2.39
+    eth-components: ^3.3.1
+    eth-hooks: ^4.3.0
     ethers: ^5.6.8
     fortmatic: ^2.4.0
     husky: ^8.0.1
@@ -2750,8 +2750,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: ^3.2.46
-    eth-hooks: ^4.2.39
+    eth-components: ^3.3.1
+    eth-hooks: ^4.3.0
     ethereum-cryptography: ^1.0.3
     ethers: ^5.6.8
     events: ^3.3.0
@@ -2876,8 +2876,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: ^3.2.46
-    eth-hooks: ^4.2.39
+    eth-components: ^3.3.1
+    eth-hooks: ^4.3.0
     ethereum-cryptography: ^1.0.3
     ethers: ^5.6.8
     events: ^3.3.0
@@ -10317,9 +10317,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-components@npm:^3.2.46":
-  version: 3.2.46
-  resolution: "eth-components@npm:3.2.46"
+"eth-components@npm:^3.3.1":
+  version: 3.3.1
+  resolution: "eth-components@npm:3.3.1"
   dependencies:
     "@ethersproject/abstract-signer": ^5.6.2
     "@ethersproject/address": ^5.6.1
@@ -10333,7 +10333,7 @@ __metadata:
     "@ethersproject/units": ^5.6.1
     axios: ^0.27.2
     bnc-notify: ^1.9.5
-    eth-hooks: ^4.2.39
+    eth-hooks: ^4.3.0
     ethers: ^5.6.8
     qrcode.react: ^3.0.2
     react-blockies: ^1.4.1
@@ -10347,7 +10347,7 @@ __metadata:
     react: ">=17"
     react-css-theme-switcher: ^0.3.0
     react-dom: ">=17"
-  checksum: 87027c84f0fbf1a731fae854df22005a2fff7b4d48a395c7781652af6fbed07a3d2bb34db134fa5343521fe95ed45f89a92ba9f33fafb846604ec3db25755d93
+  checksum: 06748d8b8b71f41687dafce27d4b07a881788c49696662fe5f1b2d0d755cf02617dadd18aac2b2e3c375fdddd68ca305f05c10c76e5034f746f5e4abb222744d
   languageName: node
   linkType: hard
 
@@ -10389,9 +10389,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:^4.2.39":
-  version: 4.2.39
-  resolution: "eth-hooks@npm:4.2.39"
+"eth-hooks@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "eth-hooks@npm:4.3.0"
   dependencies:
     "@ethersproject/abi": ^5.6.3
     "@ethersproject/abstract-provider": ^5.6.1
@@ -10420,7 +10420,7 @@ __metadata:
     "@uniswap/sdk": ^3
     react: ">=17"
     react-dom: ">=17"
-  checksum: 39cf7300762d5c20a1bb305bea6c86555788417e7aa03082ec23b2625e060f2123f548172d84a51312e966ce528998a6f597f4dda4d65d677cf5e0afe34d3c1d
+  checksum: 9b8db17e85e557e8e1a4133597825118affd76797629c052ba539d61cedebbd0de6cf2176ad0a47bd93869457776d64cc333b9ed17b4bbf8d650b46f014bca46
   languageName: node
   linkType: hard
 
