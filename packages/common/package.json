@@ -13,6 +13,7 @@
     "format:check": "yarn prettier -c ./src"
   },
   "dependencies": {
+    "eslint-plugin-tailwind": "^0.2.1",
     "eth-hooks": "^4.2.*",
     "ethers": "^5.6.*"
   },
