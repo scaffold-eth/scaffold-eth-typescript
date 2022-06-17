@@ -43,7 +43,6 @@ function Connection(props: React.PropsWithChildren){
   }, [])
 
   useEffect(() => {
-
     if (chainId && !AVAILABLE_NETWORK.includes(chainId)){
       alertError(`Please use network ${AVAILABLE_NETWORK.join(", ")}`)
     }
