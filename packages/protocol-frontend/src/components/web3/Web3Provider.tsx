@@ -5,8 +5,7 @@ import type { Connector } from '@web3-react/types'
 import { hooks , metaMask } from './metamask-connector'
 import React, { useEffect } from "react";
 import { useSnackBar } from "../SnackBarProvider";
-
-const ALLOWED_CHAIN_IDS = [1];
+import { AVAILABLE_NETWORK } from "@cob/contracts";
 
 export function getName(connector: Connector) {
   if (connector instanceof MetaMask) return 'MetaMask'
@@ -17,6 +16,7 @@ export function getName(connector: Connector) {
 const connectors: [MetaMask | Network, Web3ReactHooks][] = [
   [metaMask, hooks]
 ]
+
 
 export default function Web3Provider(props: React.PropsWithChildren) {
   return (
@@ -44,8 +44,8 @@ function Connection(props: React.PropsWithChildren){
 
   useEffect(() => {
 
-    if (chainId && !ALLOWED_CHAIN_IDS.includes(chainId)){
-      alertError(`Please use network ${ALLOWED_CHAIN_IDS.join(", ")}`)
+    if (chainId && !AVAILABLE_NETWORK.includes(chainId)){
+      alertError(`Please use network ${AVAILABLE_NETWORK.join(", ")}`)
     }
   }, [chainId])
 
