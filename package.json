@@ -9,6 +9,7 @@
     "yarn"
   ],
   "private": true,
+  "type": "module",
   "scripts": {
     "@🔖🔖🔖🔖🔖 react 🔖🔖🔖🔖🔖 ": "echo 📖 react vite-app commands",
     "start": "yarn start:vite",
@@ -66,6 +67,9 @@
   },
   "packageManager": "yarn@3.2.1",
   "devDependencies": {
+    "@swc/core": "^1.2.203",
+    "@swc/helpers": "^0.4.2",
+    "commander": "^9.3.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.17.0",
     "husky": "^8.0.1",
@@ -74,7 +78,8 @@
     "prettier-plugin-solidity": "^1.0.0-beta.19",
     "shx": "^0.3.4",
     "syncpack": "^8.0.0",
-    "ts-node": "^10.8.1"
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4"
   },
   "lint-staged": {
     "packages/vite-app-ts/src/**/*.{ts,tsx}": [

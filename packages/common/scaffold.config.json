@@ -1,0 +1,4 @@
+{
+  "ethereumToolkit": "hardhat",
+  "targetEnvironment": ["localhost"]
+}

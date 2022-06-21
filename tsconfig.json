@@ -7,14 +7,14 @@
     "declaration": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "es2020",
+    "module": "esnext",
     "moduleResolution": "Node",
     "incremental": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true
   },
-  "include": ["packages/**/*.ts", "packages/**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "scripts/scaffoldCommands.mts", "./scripts/"],
   "exclude": [
     "**/node_modules",
     "node_modules",
