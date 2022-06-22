@@ -1,6 +1,8 @@
-import { TNetworkNames } from '.';
+import { TNetworkNames } from './TNetworkNames';
+
+export const EtherumToolkits = ['hardhat', 'foundry'] as const;
 
 export type TScaffoldConfig = {
-  ethereumToolkit: 'hardhat' | 'foundry';
+  ethereumToolkit: typeof EtherumToolkits[number];
   targetEnvironment: TNetworkNames[];
 };
