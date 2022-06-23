@@ -2265,9 +2265,11 @@ __metadata:
     "@scaffold-eth/common": "workspace:^"
     "@swc/core": ^1.2.204
     "@swc/helpers": ^0.4.2
-    chalk: ^5.0.1
+    "@types/edit-json-file": ^1.7.0
+    chalk: ^4.1.2
     commander: ^9.3.0
     cross-env: ^7.0.3
+    edit-json-file: ^1.7.0
     eslint: ^8.17.0
     eslint-config-airbnb: ^19.0.4
     eslint-config-airbnb-typescript: ^17.0.0
@@ -2990,6 +2992,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/edit-json-file@npm:^1.7.0":
+  version: 1.7.0
+  resolution: "@types/edit-json-file@npm:1.7.0"
+  dependencies:
+    "@types/node": "*"
+    "@types/set-value": "*"
+  checksum: 171f2422f0cdd5e604cc8868971bb0d2f579a7ceba86ec8ad69f24b7f7c02a637cf153a23123d24619b376af04e236afe6f2f4e892f7d71d769d90548d28563b
+  languageName: node
+  linkType: hard
+
 "@types/eslint@npm:^8.4.2":
   version: 8.4.3
   resolution: "@types/eslint@npm:8.4.3"
@@ -3389,6 +3401,13 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: 1bd10b9afa724084b655dc81b7b315def3d2d0e272014ef16009fa76e17537411c07c0695fdea412bc7b36d2a02687f5fea33522d55b8ef29eda42992f812913
+  languageName: node
+  linkType: hard
+
+"@types/set-value@npm:*":
+  version: 4.0.1
+  resolution: "@types/set-value@npm:4.0.1"
+  checksum: 97734c04b2aadb0cbe525124b5b424a86a7c3b6063c3e1d1b90e7147dc2a3faf041ac8f5b7f5e72dd66fa4ce4943484a408a8b5495fbd99eb7dd6d024ac1de52
   languageName: node
   linkType: hard
 
@@ -6623,13 +6642,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^5.0.1":
-  version: 5.0.1
-  resolution: "chalk@npm:5.0.1"
-  checksum: 7b45300372b908f0471fbf7389ce2f5de8d85bb949026fd51a1b95b10d0ed32c7ed5aab36dd5e9d2bf3191867909b4404cef75c5f4d2d1daeeacd301dd280b76
-  languageName: node
-  linkType: hard
-
 "chardet@npm:^0.7.0":
   version: 0.7.0
   resolution: "chardet@npm:0.7.0"
@@ -8346,6 +8358,19 @@ __metadata:
     jsbn: ~0.1.0
     safer-buffer: ^2.1.0
   checksum: 22fef4b6203e5f31d425f5b711eb389e4c6c2723402e389af394f8411b76a488fa414d309d866e2b577ce3e8462d344205545c88a8143cc21752a5172818888a
+  languageName: node
+  linkType: hard
+
+"edit-json-file@npm:^1.7.0":
+  version: 1.7.0
+  resolution: "edit-json-file@npm:1.7.0"
+  dependencies:
+    find-value: ^1.0.12
+    iterate-object: ^1.3.4
+    r-json: ^1.2.10
+    set-value: ^4.1.0
+    w-json: ^1.3.10
+  checksum: 12bb6fdc67813b47110159bf1dadf133e2186e11b843fa191222c044e63196b446f8430a3217053377ee9c1f9462991a3a0e47d110c89f217a7519dd251179b9
   languageName: node
   linkType: hard
 
@@ -10946,6 +10971,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"find-value@npm:^1.0.12":
+  version: 1.0.12
+  resolution: "find-value@npm:1.0.12"
+  checksum: 5cab63c88e5090744de582c8c331c05b134f3501935da270f24c95b395c4fea3e7d0df5e9cfdd6c2a25b80ac7cde3bc06d6dd388e4fdc6cd52f6580ed95e14e1
+  languageName: node
+  linkType: hard
+
 "find-yarn-workspace-root@npm:^1.2.1":
   version: 1.2.1
   resolution: "find-yarn-workspace-root@npm:1.2.1"
@@ -13520,6 +13552,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-primitive@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "is-primitive@npm:3.0.1"
+  checksum: c4da6a6e6d487f31d85b9259b67695fffcc75dca6c9612b0a002e3050c734227b9911be09b877539ec6309710229c19f4edd0f9e26ed2a67924ee0916baf0bed
+  languageName: node
+  linkType: hard
+
 "is-promise@npm:~1, is-promise@npm:~1.0.0":
   version: 1.0.1
   resolution: "is-promise@npm:1.0.1"
@@ -13847,6 +13886,13 @@ __metadata:
   dependencies:
     string_decoder: ^1.2.0
   checksum: 15a64fdd33b92e0e1df49df50a2f838e0fdb3f7801ac04ae3c4931ac874e8105cf915c7cd4fb207bccac2435940e9b90b1564e29aa1ed31105d1dea529ab611b
+  languageName: node
+  linkType: hard
+
+"iterate-object@npm:^1.3.4":
+  version: 1.3.4
+  resolution: "iterate-object@npm:1.3.4"
+  checksum: b63496c489177babccb4b487322279ea4377e08d02b93902c3ffba3032a788f014a74e03c615da2a24807fa3fca872f69c9570f7801c8e88181df7a49298904b
   languageName: node
   linkType: hard
 
@@ -18625,6 +18671,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"r-json@npm:^1.2.10":
+  version: 1.2.10
+  resolution: "r-json@npm:1.2.10"
+  checksum: 8ecf97b5a5d53b96f5962aa485411c7e9e406f400e1ebeaf6549c5f88f4cc219b6863423c144c8d27fbf23d5ecb32d9b88795469a08d6f3e9b9ba6c249f3d070
+  languageName: node
+  linkType: hard
+
 "rambda@npm:^7.1.0":
   version: 7.1.4
   resolution: "rambda@npm:7.1.4"
@@ -20630,6 +20683,16 @@ __metadata:
     is-plain-object: ^2.0.3
     split-string: ^3.0.1
   checksum: 09a4bc72c94641aeae950eb60dc2755943b863780fcc32e441eda964b64df5e3f50603d5ebdd33394ede722528bd55ed43aae26e9df469b4d32e2292b427b601
+  languageName: node
+  linkType: hard
+
+"set-value@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "set-value@npm:4.1.0"
+  dependencies:
+    is-plain-object: ^2.0.4
+    is-primitive: ^3.0.1
+  checksum: 2b4f0f222538ae4c1f4171a5014c113649631c86ed81d1ac0c2df406d0a974d8006412ce1d7844c531268f1c66eb912f7eae7245ab3114e34357f1ff9d6dc697
   languageName: node
   linkType: hard
 
@@ -23536,6 +23599,13 @@ __metadata:
   peerDependencies:
     eslint: ">=6.0.0"
   checksum: 8cc751e9fc2bfba93664ad8945732ab1c97791f9123e703de8669b65670d1e01906d80436bf4932d7ee6fa6174ed4545e8abb059206c88f4bd71957ca6cf7ba8
+  languageName: node
+  linkType: hard
+
+"w-json@npm:^1.3.10":
+  version: 1.3.10
+  resolution: "w-json@npm:1.3.10"
+  checksum: 8535a207e579e616797efc4d5140acc7c0aefd11f0c9f846e6739816a2db8637d235492d86fc5c47bb2dba5821413d72b2d62df9184ee9d6e22e67b3f90d205b
   languageName: node
   linkType: hard
 

@@ -3,13 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "init": "ts-node --esm ./src/commands/scaffoldCommands init"
+    "scaffold-eth": "ts-node --esm --swc ./src/commands/scaffold-eth"
   },
   "devDependencies": {
     "@scaffold-eth/common": "workspace:^",
-    "chalk": "^5.0.1",
+    "@types/edit-json-file": "^1.7.0",
+    "chalk": "^4.1.2",
     "commander": "^9.3.0",
     "cross-env": "^7.0.3",
+    "edit-json-file": "^1.7.0",
     "eslint": "^8.17.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
