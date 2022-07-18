@@ -2042,8 +2042,6 @@ __metadata:
     authereum: ^0.1.14
     buffer: ^6.0.3
     bufferutil: ^4.0.6
-    esbuild: ^0.14.49
-    esbuild-node-externals: ^1.4.1
     eslint: ^8.20.0
     eslint-config-airbnb: ^19.0.4
     eslint-config-airbnb-typescript: ^17.0.0
@@ -8874,18 +8872,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild-node-externals@npm:^1.4.1":
-  version: 1.4.1
-  resolution: "esbuild-node-externals@npm:1.4.1"
-  dependencies:
-    find-up: 5.0.0
-    tslib: 2.3.1
-  peerDependencies:
-    esbuild: 0.12 - 0.14
-  checksum: 418a19ed4eaa69cfc877d6a91fcb9e4bffeda805d171225cca29536b57c6ed94d60653306aa95ba0914aa151f82772a01157e061781549b7ec09ee6576376ff9
-  languageName: node
-  linkType: hard
-
 "esbuild-openbsd-64@npm:0.14.49":
   version: 0.14.49
   resolution: "esbuild-openbsd-64@npm:0.14.49"
@@ -8921,7 +8907,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.14.27, esbuild@npm:^0.14.49":
+"esbuild@npm:^0.14.27":
   version: 0.14.49
   resolution: "esbuild@npm:0.14.49"
   dependencies:
@@ -22690,13 +22676,6 @@ __metadata:
     minimist: ^1.2.6
     strip-bom: ^3.0.0
   checksum: a8cf746ffe438513a71c70c1bcdee8da7d62ab2af286efbe2728ff55c4d4c92c2aea80a0822982ded6d0a13c7686c24632934d7c0f4f564be9e1b2cdc3d65eea
-  languageName: node
-  linkType: hard
-
-"tslib@npm:2.3.1":
-  version: 2.3.1
-  resolution: "tslib@npm:2.3.1"
-  checksum: de17a98d4614481f7fcb5cd53ffc1aaf8654313be0291e1bfaee4b4bb31a20494b7d218ff2e15017883e8ea9626599b3b0e0229c18383ba9dce89da2adf15cb9
   languageName: node
   linkType: hard
 
