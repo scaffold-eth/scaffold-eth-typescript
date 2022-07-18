@@ -72,6 +72,8 @@
     "web3modal": "^1.9.8"
   },
   "devDependencies": {
+    "@swc/core": "^1.2.218",
+    "@swc/helpers": "^0.4.3",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.5.2",
     "@tailwindcss/line-clamp": "^0.4.0",
