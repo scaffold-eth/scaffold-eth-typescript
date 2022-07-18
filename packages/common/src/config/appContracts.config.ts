@@ -24,7 +24,7 @@ export const appContractsConfig = () => {
   try {
     const result = {
       // --------------------------------------------------
-      // 🙋🏽‍♂️ Add your hadrdhat contracts here
+      // 🙋🏽‍♂️ Add your hardhat contracts here
       // --------------------------------------------------
       YourContract: createConnectorForHardhatContract(
         'YourContract',
