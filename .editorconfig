@@ -1,6 +1,6 @@
 root = true
 
-[packages/**.js{,x}]
+[packages/**.{j,t}s{,x}]
 indent_style = space
 indent_size = 2
 

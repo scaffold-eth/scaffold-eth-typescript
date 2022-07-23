@@ -43,7 +43,7 @@ Running the app
 
    ```bash
    # start nextjs app
-   yarn start:next
+   yarn start:nextjs
 
    ```
 
