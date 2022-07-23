@@ -9,9 +9,9 @@ import type { AppProps } from 'next/app';
 import React, { FC, ReactNode, Suspense, useState } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
-
 import { ErrorBoundary, ErrorFallback } from '~common/components';
 import { ContractsAppContext } from '~common/components/context';
+
 import { BLOCKNATIVE_DAPPID } from '~~/config/app.config';
 
 const cache = createCache({ key: 'next' });

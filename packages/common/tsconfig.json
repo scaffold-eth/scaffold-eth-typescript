@@ -28,7 +28,7 @@
       "~common/*": ["./src/*"]
     }
   },
-  "include": ["src", "src/helpers/__global.ts"],
+  "include": ["src", "src/**/*.json"],
   "exclude": [
     "**/node_modules",
     ".husky",

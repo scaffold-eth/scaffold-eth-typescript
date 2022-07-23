@@ -1,14 +1,15 @@
 import { formatUnits } from '@ethersproject/units';
 import { task } from 'hardhat/config';
 import { HttpNetworkUserConfig } from 'hardhat/types';
-import { THardhatRuntimeEnvironmentExtended } from 'helpers/types/THardhatRuntimeEnvironmentExtended';
 import * as qrcode from 'qrcode-terminal';
-import { findFirstAddress, getAccountData } from 'tasks/functions/accounts';
-import { DEBUG } from 'tasks/functions/debug';
 
 import { config } from '../hardhat.config';
 
 import { getMnemonic } from './functions/mnemonic';
+
+import { THardhatRuntimeEnvironmentExtended } from '~helpers/types/THardhatRuntimeEnvironmentExtended';
+import { findFirstAddress, getAccountData } from '~tasks/functions/accounts';
+import { DEBUG } from '~tasks/functions/debug';
 
 task('account', 'Get balance informations for the deployment account.', async (_, hre) => {
   const { address } = await getAccountData(getMnemonic());

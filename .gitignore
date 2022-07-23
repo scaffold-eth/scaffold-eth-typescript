@@ -30,10 +30,10 @@ tenderly.yaml
 **/mnemonics/*.txt
 
 #subgraph
-packages/advanced/subgraph/config/config.json
-packages/advanced/subgraph/subgraph.yaml
-packages/advanced/subgraph/generated
-packages/advanced/subgraph/abis/*
+packages/subgraph/config/config.json
+packages/subgraph/subgraph.yaml
+packages/subgraph/generated
+packages/subgraph/abis/*
 
 # dependencies, yarn, etc
 /node_modules

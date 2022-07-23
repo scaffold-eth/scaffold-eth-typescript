@@ -6,9 +6,10 @@ import { mnemonicToSeed, generateMnemonic } from 'bip39';
 import { privateToAddress } from 'ethereumjs-util';
 import { hdkey } from 'ethereumjs-wallet';
 import { task } from 'hardhat/config';
-import { debugLog } from 'tasks/functions/debug';
 
 import { mnemonicPath } from './mnemonic';
+
+import { debugLog } from '~tasks/functions/debug';
 
 task('generate', 'Create a mnemonic for builder deploys', async (_, _hre) => {
   const mnemonic = generateMnemonic();

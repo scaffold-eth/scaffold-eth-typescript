@@ -20,13 +20,19 @@
     "build:nextjs": "yarn workspace @scaffold-eth/nextjs-app build",
     "@🔖🔖🔖🔖🔖 hardhat 🔖🔖🔖🔖🔖 ": "echo 📖 hardhat commands",
     "contracts:build": "yarn workspace @scaffold-eth/hardhat compile && yarn workspace @scaffold-eth/common contracts:hardhat && yarn workspace @scaffold-eth/common contracts:external",
+    "clean": "yarn workspace @scaffold-eth/hardhat clean && yarn @scaffold-eth/common clean",
     "contracts:rebuild": "yarn workspace @scaffold-eth/hardhat clean && yarn contracts:build",
     "contracts:deploy": "yarn workspace @scaffold-eth/hardhat deploy",
     "chain": "yarn workspace @scaffold-eth/hardhat chain",
+    "compile": "yarn workspace @scaffold-eth/hardhat compile",
     "deploy": "yarn contracts:deploy",
-    "@🔖🔖🔖🔖🔖 commands 🔖🔖🔖🔖🔖 ": "echo 📖 commands",
+    "@🔖🔖🔖🔖🔖 scripts & commands 🔖🔖🔖🔖🔖 ": "echo 📖 scripts & commands",
     "hardhat": "yarn workspace @scaffold-eth/hardhat hardhat",
-    "test": "yarn workspace @scaffold-eth/hardhat test",
+    "scripts": "yarn workspace @scaffold-eth/scripts",
+    "scaffold-eth": "yarn workspace @scaffold-eth/scripts scaffold-eth",
+    "@🔖🔖🔖🔖🔖 tests 🔖🔖🔖🔖🔖 ": "echo 📖 tests",
+    "test:hardhat": "yarn workspace @scaffold-eth/hardhat test",
+    "test:foundry": "yarn workspace @scaffold-eth/hardhat exec forge test",
     "@🔖🔖🔖🔖🔖 workspaces 🔖🔖🔖🔖🔖 ": "echo 📖 workspace commands",
     "w:hardhat": "yarn workspace @scaffold-eth/hardhat",
     "w:vite": "yarn workspace @scaffold-eth/vite-app",
@@ -56,22 +62,23 @@
       "packages/hardhat-ts",
       "packages/vite-app-ts",
       "packages/next-app-ts",
-      "packages/advanced/subgraph",
-      "packages/advanced/services/*",
+      "packages/subgraph",
+      "packages/services/*",
       "packages/*"
     ]
   },
   "packageManager": "yarn@3.2.1",
   "devDependencies": {
+    "commander": "^9.4.0",
     "cross-env": "^7.0.3",
-    "eslint": "^8.17.0",
+    "eslint": "^8.20.0",
     "husky": "^8.0.1",
-    "lint-staged": "^13.0.1",
-    "prettier": "^2.7.0",
-    "prettier-plugin-solidity": "^1.0.0-beta.19",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "prettier-plugin-solidity": "^1.0.0-dev.23",
     "shx": "^0.3.4",
-    "syncpack": "^8.0.0",
-    "ts-node": "^10.8.1"
+    "syncpack": "^8.2.4",
+    "ts-node": "^10.9.1"
   },
   "lint-staged": {
     "packages/vite-app-ts/src/**/*.{ts,tsx}": [
@@ -86,7 +93,7 @@
       "yarn workspace @scaffold-eth/common lint --fix",
       "yarn workspace @scaffold-eth/common format"
     ],
-    "packages/hardhat-ts/test/**/*.ts": [
+    "packages/hardhat-ts/tests/**/*.ts": [
       "yarn workspace @scaffold-eth/hardhat lint --fix",
       "yarn workspace @scaffold-eth/hardhat format"
     ],

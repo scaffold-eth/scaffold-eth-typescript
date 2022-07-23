@@ -43,9 +43,12 @@
     "yarn-error.log": true,
     "**/yarn-error.log": true,
     "**/.yalc": true,
-    "**/.yarn": true
+    "**/.yarn": true,
+    "yarn.lock": true
   },
   "explorerExclude.backup": null,
+  "eslint.debug": true,
+  "eslint.enable": true,
   "eslint.workingDirectories": [
     { "directory": "packages/hardhat-ts", "changeProcessCWD": true },
     { "directory": "packages/vite-app-ts", "changeProcessCWD": true },
@@ -58,7 +61,7 @@
   "editor.formatOnSave": true,
   "solidity.formatter": "prettier", // This is the default so it might be missing.
   "[solidity]": {
-    "editor.defaultFormatter": "JuanBlanco.solidity"
+    "editor.defaultFormatter": "NomicFoundation.hardhat-solidity"
   },
   "solidity.defaultCompiler": "localNodeModule",
   "mochaExplorer.configFile": "./packages/hardhat-ts/.mocharc.json"

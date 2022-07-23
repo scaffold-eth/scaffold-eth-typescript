@@ -96,7 +96,7 @@ export const MainPage: FC = () => {
   );
 
   // 📟 Listen for broadcast events
-  const [setPurposeEvents] = useEventListener(yourContract, 'SetPurpose', 0);
+  const [setPurposeEvents] = useEventListener(yourContract, yourContract?.filters.SetPurpose(), 0);
 
   // -----------------------------
   // .... 🎇 End of examples

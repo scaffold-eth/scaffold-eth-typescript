@@ -2,11 +2,11 @@ import { Row, Col, Button } from 'antd';
 import { Faucet, GasGauge } from 'eth-components/ant';
 import { useEthersAppContext } from 'eth-hooks/context';
 import React, { FC, ReactNode, Suspense } from 'react';
-
 import { Ramp, getFaucetAvailable, ThemeSwitcher } from '~common/components';
 import { NETWORKS } from '~common/constants';
 import { getNetworkInfo } from '~common/functions';
 import { IScaffoldAppProviders } from '~common/models';
+
 import { FAUCET_ENABLED } from '~~/config/app.config';
 
 export interface IMainPageFooterProps {

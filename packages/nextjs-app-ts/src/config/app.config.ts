@@ -3,7 +3,6 @@
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { TNetworkInfo, TEthersProvider } from 'eth-hooks/models';
 import { invariant } from 'ts-invariant';
-
 import { NETWORKS } from '~common/constants';
 import { TNetworkNames } from '~common/models/TNetworkNames';
 

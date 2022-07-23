@@ -19,9 +19,9 @@ console.log();
  * browserify for web3 components
  */
 const externals = {
-  http: 'http-browserify',
-  https: 'http-browserify',
-  timers: 'timers-browserify',
+  http: resolve(__dirname, './node_modules/http-browserify'),
+  https: resolve(__dirname, './http-browserify'),
+  timers: resolve(__dirname, './timers-browserify'),
   electron: 'electron',
   'electron-fetch': 'electron-fetch',
 };
