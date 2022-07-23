@@ -49,7 +49,7 @@
   "eslint.workingDirectories": [
     { "directory": "packages/hardhat-ts", "changeProcessCWD": true },
     { "directory": "packages/vite-app-ts", "changeProcessCWD": true },
-    { "directory": "packages/next-app-ts", "changeProcessCWD": true },
+    { "directory": "packages/nextjs-app-ts", "changeProcessCWD": true },
     { "directory": "packages/common", "changeProcessCWD": true },
     { "directory": "packages/subgraph", "changeProcessCWD": true },
     { "directory": "packages/services", "changeProcessCWD": true }
