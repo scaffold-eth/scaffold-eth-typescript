@@ -9,6 +9,9 @@ const nextConfig = {
   emotion: true,
   reactRefresh: true,
   productionBrowserSourceMaps: true,
+  compiler: {
+    emotion: true,
+  },
   webpack: (config, { dev, isServer }) => {
     config.resolve.alias = {
       ...config.resolve.alias,

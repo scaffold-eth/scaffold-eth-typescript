@@ -1,8 +1,7 @@
-import { YourNFT__factory } from 'generated/contract-types/factories/YourNFT__factory';
+import { YourNFT__factory, YourNFT } from 'generated/contract-types';
 import { task } from 'hardhat/config';
 import { create } from 'ipfs-http-client';
 
-import { YourNFT } from '~generated/contract-types/YourNFT';
 import { getHardhatSigners } from '~tasks/functions/accounts';
 import { sleep } from '~tasks/functions/utils';
 

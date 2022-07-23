@@ -133,6 +133,7 @@ export const config: HardhatUserConfig = {
   },
   typechain: {
     outDir: './generated/contract-types',
+    discriminateTypes: true,
   },
 };
 export default config;

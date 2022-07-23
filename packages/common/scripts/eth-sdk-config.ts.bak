@@ -11,4 +11,8 @@ console.log(contractsByNetworkName);
 export default defineConfig({
   contracts: contractsByNetworkName,
   outputPath: './src/generated/external-contracts/',
+  typechainFlags: {
+    discriminateTypes: true,
+    alwaysGenerateOverloads: false,
+  },
 });
