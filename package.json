@@ -64,14 +64,14 @@
   "packageManager": "yarn@3.2.1",
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "eslint": "^8.17.0",
+    "eslint": "^8.20.0",
     "husky": "^8.0.1",
-    "lint-staged": "^13.0.1",
-    "prettier": "^2.7.0",
-    "prettier-plugin-solidity": "^1.0.0-beta.19",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "prettier-plugin-solidity": "^1.0.0-dev.23",
     "shx": "^0.3.4",
-    "syncpack": "^8.0.0",
-    "ts-node": "^10.8.1"
+    "syncpack": "^8.2.4",
+    "ts-node": "^10.9.1"
   },
   "lint-staged": {
     "packages/vite-app-ts/src/**/*.{ts,tsx}": [
