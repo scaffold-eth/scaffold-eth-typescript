@@ -1,6 +1,6 @@
 module.exports = {
   parser: '@typescript-eslint/parser', // Specifies the ESLint parser
-  ignorePatterns: ['**/*.pcss', '**/*.css', '**/*.less', '**/*.json'],
+  ignorePatterns: ['**/*.pcss', '**/*.css', '**/*.less'],
   parserOptions: {
     ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
     sourceType: 'module', // Allows for the use of imports,

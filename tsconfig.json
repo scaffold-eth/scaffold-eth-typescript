@@ -19,7 +19,7 @@
       "~common/*": ["../common/src/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", "./scripts", "packages/common/*.ts"],
+  "include": ["**/*.ts", "**/*.tsx", "./scripts", "**/*.json"],
   "exclude": [
     "**/node_modules",
     "node_modules",

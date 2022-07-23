@@ -12,6 +12,9 @@ export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: b
   const localAddress = appProviders.localAdaptor?.signer;
 
   useEffect(() => {
+    const sameUrl =
+      ethersAppContext.provider?.connection?.url === NETWORKS.localhost.url ||
+      ethersAppContext.provider?.connection?.url === NETWORKS.localhost.url.replace('127.0.0.1', 'localhost');
     /**
      * if the current provider is local provider then use the burner fallback
      */
@@ -19,7 +22,7 @@ export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: b
       burnerFallback?.signer &&
       burnerFallback?.account !== ethersAppContext.account &&
       ethersAppContext.chainId === NETWORKS.localhost.chainId &&
-      ethersAppContext.provider?.connection?.url === NETWORKS.localhost.url &&
+      sameUrl &&
       ethersAppContext.changeSigner &&
       localAddress != null &&
       enable

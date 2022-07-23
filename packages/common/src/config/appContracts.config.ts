@@ -6,7 +6,7 @@ import { externalContractsAddressMap } from './externalContracts.config';
 
 import * as hardhatContracts from '~common/generated/contract-types';
 import * as externalContracts from '~common/generated/external-contracts/esm/types';
-import hardhatContractsJson from '~common/generated/hardhat_contracts.json';
+import hardhatDeployedContractsJson from '~common/generated/hardhat_contracts.json';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
@@ -29,10 +29,14 @@ export const appContractsConfig = () => {
       YourContract: createConnectorForHardhatContract(
         'YourContract',
         hardhatContracts.YourContract__factory,
-        hardhatContractsJson
+        hardhatDeployedContractsJson
       ),
 
-      YourNFT: createConnectorForHardhatContract('YourNFT', hardhatContracts.YourNFT__factory, hardhatContractsJson),
+      YourNFT: createConnectorForHardhatContract(
+        'YourNFT',
+        hardhatContracts.YourNFT__factory,
+        hardhatDeployedContractsJson
+      ),
 
       // --------------------------------------------------
       // 🙋🏽‍♂️ Add your external contracts here, make sure to define the address in `externalContractsConfig.ts`Í
