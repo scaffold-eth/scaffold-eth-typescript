@@ -45,6 +45,7 @@ interface IMainPageProps {
  */
 export const MainPage: FC<IMainPageProps> = (props) => {
   const notificationHolder = useCreateAntNotificationHolder();
+
   // -----------------------------
   // Providers, signers & wallets
   // -----------------------------
