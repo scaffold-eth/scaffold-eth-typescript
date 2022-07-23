@@ -43,7 +43,8 @@
     "yarn-error.log": true,
     "**/yarn-error.log": true,
     "**/.yalc": true,
-    "**/.yarn": true
+    "**/.yarn": true,
+    "yarn.lock": true
   },
   "explorerExclude.backup": null,
   "eslint.workingDirectories": [
