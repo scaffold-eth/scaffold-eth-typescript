@@ -47,7 +47,7 @@ const ProviderWrapper: FC<{ children?: ReactNode }> = (props) => {
   return (
     <EthComponentsSettingsContext.Provider value={ethComponentsSettings}>
       <ContractsAppContext>
-        <EthersAppContext disableQueryClientRoot={true}>
+        <EthersAppContext disableDefaultQueryClientRoot={true}>
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme ?? 'light'}>
               <ErrorBoundary FallbackComponent={ErrorFallback}>{props.children}</ErrorBoundary>
