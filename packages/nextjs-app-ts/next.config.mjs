@@ -4,9 +4,13 @@ const __dirname = resolve();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  experimental: { esmExternals: true, emotion: true, externalDir: true, reactRefresh: true, swcFileReading: true },
+  experimental: { esmExternals: true, externalDir: true, swcFileReading: true },
   swcMinify: true,
+  reactRefresh: true,
   productionBrowserSourceMaps: true,
+  compiler: {
+    emotion: true,
+  },
   webpack: (config, { dev, isServer }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
