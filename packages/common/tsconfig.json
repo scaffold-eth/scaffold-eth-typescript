@@ -28,7 +28,7 @@
       "~common/*": ["./src/*"]
     }
   },
-  "include": ["src", "src/helpers/__global.ts", "./scaffold.config.ts", "./scripts/*.ts"],
+  "include": ["src", "./scaffold.config.ts", "./scripts/*.ts"],
   "exclude": [
     "**/node_modules",
     ".husky",

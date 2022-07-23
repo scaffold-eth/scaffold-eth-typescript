@@ -26,6 +26,7 @@ module.exports = {
     node: true,
   },
   extends: [
+    'next/core-web-vitals',
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',

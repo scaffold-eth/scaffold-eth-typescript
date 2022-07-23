@@ -46,10 +46,12 @@
     "**/.yarn": true
   },
   "explorerExclude.backup": null,
+  "eslint.debug": true,
+  "eslint.enable": true,
   "eslint.workingDirectories": [
     { "directory": "packages/hardhat-ts", "changeProcessCWD": true },
     { "directory": "packages/vite-app-ts", "changeProcessCWD": true },
-    { "directory": "packages/next-app-ts", "changeProcessCWD": true },
+    { "directory": "packages/nextjs-app-ts", "changeProcessCWD": true },
     { "directory": "packages/common", "changeProcessCWD": true },
     { "directory": "packages/subgraph", "changeProcessCWD": true },
     { "directory": "packages/services", "changeProcessCWD": true }
@@ -58,7 +60,7 @@
   "editor.formatOnSave": true,
   "solidity.formatter": "prettier", // This is the default so it might be missing.
   "[solidity]": {
-    "editor.defaultFormatter": "JuanBlanco.solidity"
+    "editor.defaultFormatter": "NomicFoundation.hardhat-solidity"
   },
   "solidity.defaultCompiler": "localNodeModule",
   "mochaExplorer.configFile": "./packages/hardhat-ts/.mocharc.json"
