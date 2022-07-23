@@ -6,7 +6,7 @@ import { CacheProvider } from '@emotion/react';
 import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-components/models';
 import { EthersAppContext } from 'eth-hooks/context';
 import type { AppProps } from 'next/app';
-import React, { FC, ReactNode, ReactNode, Suspense, useState } from 'react';
+import React, { FC, ReactNode, Suspense, useState } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 
