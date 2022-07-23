@@ -1,12 +1,15 @@
 import '~~/styles/tailwind.css';
 import '~~/styles/globals.css';
 
-import { IEthComponentsSettings } from 'eth-components/models';
+import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-components/models';
+import { EthersAppContext } from 'eth-hooks/context';
 import { lazier } from 'eth-hooks/helpers';
-import React, { FC, Suspense } from 'react';
+import React, { FC, ReactNode, Suspense } from 'react';
+import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { ErrorBoundary, ErrorFallback } from '~common/components';
-import { AppContexts } from '~common/components/context';
+import { ContractsAppContext } from '~common/components/context';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
@@ -37,10 +40,28 @@ const ethComponentsSettings: IEthComponentsSettings = {
   },
 };
 
+const queryClient = new QueryClient();
+
 /**
  * Lazy load the main app component
  */
 const MainPage = lazier(() => import('./pages/MainPage'), 'MainPage');
+
+const ProviderWrapper: FC<{ children?: ReactNode }> = (props) => {
+  return (
+    <EthComponentsSettingsContext.Provider value={ethComponentsSettings}>
+      <ContractsAppContext>
+        <EthersAppContext disableDefaultQueryClientRoot={true}>
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme ?? 'light'}>
+              <ErrorBoundary FallbackComponent={ErrorFallback}>{props.children}</ErrorBoundary>
+            </ThemeSwitcherProvider>
+          </ErrorBoundary>
+        </EthersAppContext>
+      </ContractsAppContext>
+    </EthComponentsSettingsContext.Provider>
+  );
+};
 
 /**
  * ### Summary
@@ -52,11 +73,13 @@ const App: FC = () => {
   console.log('loading app...');
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <AppContexts themes={themes} savedTheme={savedTheme} ethComponentsSettings={ethComponentsSettings}>
-        <Suspense fallback={<div />}>
-          <MainPage></MainPage>
-        </Suspense>
-      </AppContexts>
+      <QueryClientProvider client={queryClient}>
+        <ProviderWrapper>
+          <Suspense fallback={<div />}>
+            <MainPage></MainPage>
+          </Suspense>
+        </ProviderWrapper>
+      </QueryClientProvider>
     </ErrorBoundary>
   );
 };

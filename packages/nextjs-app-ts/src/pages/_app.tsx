@@ -3,13 +3,15 @@ import '~~/styles/globals.css';
 
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
-import { IEthComponentsSettings } from 'eth-components/models';
+import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-components/models';
+import { EthersAppContext } from 'eth-hooks/context';
 import type { AppProps } from 'next/app';
-import React, { FC, Suspense, useState } from 'react';
+import React, { FC, ReactNode, Suspense, useState } from 'react';
+import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 
 import { ErrorBoundary, ErrorFallback } from '~common/components';
-import { AppContexts } from '~common/components/context';
+import { ContractsAppContext } from '~common/components/context';
 import { BLOCKNATIVE_DAPPID } from '~~/config/app.config';
 
 const cache = createCache({ key: 'next' });
@@ -41,6 +43,22 @@ const ethComponentsSettings: IEthComponentsSettings = {
   },
 };
 
+const ProviderWrapper: FC<{ children?: ReactNode }> = (props) => {
+  return (
+    <EthComponentsSettingsContext.Provider value={ethComponentsSettings}>
+      <ContractsAppContext>
+        <EthersAppContext disableDefaultQueryClientRoot={true}>
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme ?? 'light'}>
+              <ErrorBoundary FallbackComponent={ErrorFallback}>{props.children}</ErrorBoundary>
+            </ThemeSwitcherProvider>
+          </ErrorBoundary>
+        </EthersAppContext>
+      </ContractsAppContext>
+    </EthComponentsSettingsContext.Provider>
+  );
+};
+
 /**
  * ### Summary
  * The main app component is {@see MainPage} `components/routes/main/MaingPage.tsx`
@@ -55,13 +73,13 @@ const App: FC<AppProps> = ({ Component, ...props }) => {
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <CacheProvider value={cache}>
         <QueryClientProvider client={queryClient}>
-          <AppContexts themes={themes} savedTheme={savedTheme} ethComponentsSettings={ethComponentsSettings}>
-            <Hydrate state={props.pageProps.dehydratedState}>
+          <Hydrate state={props.pageProps.dehydratedState}>
+            <ProviderWrapper>
               <Suspense fallback={<div />}>
                 <Component {...props.pageProps} />
               </Suspense>
-            </Hydrate>
-          </AppContexts>
+            </ProviderWrapper>
+          </Hydrate>
         </QueryClientProvider>
       </CacheProvider>
     </ErrorBoundary>

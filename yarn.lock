@@ -2053,8 +2053,8 @@ __metadata:
     eslint-plugin-react: ^7.30.1
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: ^3.3.2
-    eth-hooks: ^4.3.1
+    eth-components: ^3.4.2
+    eth-hooks: ^4.5.1
     ethers: ^5.6.9
     fortmatic: ^2.4.0
     husky: ^8.0.1
@@ -2234,8 +2234,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: ^3.3.2
-    eth-hooks: ^4.3.1
+    eth-components: ^3.4.2
+    eth-hooks: ^4.5.1
     ethereum-cryptography: ^1.1.2
     ethers: ^5.6.9
     events: ^3.3.0
@@ -2398,8 +2398,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: ^3.3.2
-    eth-hooks: ^4.3.1
+    eth-components: ^3.4.2
+    eth-hooks: ^4.5.1
     ethereum-cryptography: ^1.1.2
     ethers: ^5.6.9
     events: ^3.3.0
@@ -3643,7 +3643,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uniswap/token-lists@npm:^1.0.0-beta.28":
+"@uniswap/token-lists@npm:^1.0.0-beta.28, @uniswap/token-lists@npm:^1.0.0-beta.30":
   version: 1.0.0-beta.30
   resolution: "@uniswap/token-lists@npm:1.0.0-beta.30"
   checksum: 4138b15eab65c2d20749ab7dcf37f838198a349c402c40d810bcb11ab35dfee6b905d5fb7167e676ac863a562ba0a075bf6dd7fcc1e88dffe8b07fc58ce336ca
@@ -9646,9 +9646,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-components@npm:^3.3.2":
-  version: 3.3.2
-  resolution: "eth-components@npm:3.3.2"
+"eth-components@npm:^3.4.2":
+  version: 3.4.2
+  resolution: "eth-components@npm:3.4.2"
   dependencies:
     "@ethersproject/abstract-signer": ^5.6.2
     "@ethersproject/address": ^5.6.1
@@ -9662,7 +9662,7 @@ __metadata:
     "@ethersproject/units": ^5.6.1
     axios: ^0.27.2
     bnc-notify: ^1.9.5
-    eth-hooks: ^4.3.1
+    eth-hooks: ^4.5.1
     ethers: ^5.6.8
     qrcode.react: ^3.0.2
     react-blockies: ^1.4.1
@@ -9676,7 +9676,7 @@ __metadata:
     react: ">=17"
     react-css-theme-switcher: ^0.3.0
     react-dom: ">=17"
-  checksum: e37354421c674abe99c85aafca9bab153b6138346601e1722c4031776f09a7db489a3256bb0dcb16eca6761b594646083d3dc508966fcce3a9de8e297204ec95
+  checksum: 12d719c5e0819b9976feaf959d02eb8cf47cbe2191a4d8c326e347434cf1ff5ec2c881e39bd6187c3abb2e14062e8689db70b832ea63479196f2b74cb0229f63
   languageName: node
   linkType: hard
 
@@ -9718,39 +9718,40 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:^4.3.1":
-  version: 4.3.1
-  resolution: "eth-hooks@npm:4.3.1"
+"eth-hooks@npm:^4.5.1":
+  version: 4.5.1
+  resolution: "eth-hooks@npm:4.5.1"
   dependencies:
-    "@ethersproject/abi": ^5.6.3
+    "@ethersproject/abi": ^5.6.4
     "@ethersproject/abstract-provider": ^5.6.1
     "@ethersproject/address": ^5.6.1
     "@ethersproject/bignumber": ^5.6.2
     "@ethersproject/bytes": ^5.6.1
     "@ethersproject/contracts": ^5.6.2
-    "@ethersproject/networks": ^5.6.3
+    "@ethersproject/networks": ^5.6.4
     "@ethersproject/providers": ^5.6.8
     "@ethersproject/signing-key": ^5.6.2
     "@ethersproject/solidity": ^5.6.1
     "@ethersproject/units": ^5.6.1
     "@ethersproject/wallet": ^5.6.2
-    "@uniswap/token-lists": ^1.0.0-beta.28
+    "@uniswap/token-lists": ^1.0.0-beta.30
     "@web3-react/abstract-connector": ^6.0.7
     "@web3-react/core": ^6.1.9
     "@web3-react/types": ^6.0.7
     ethers: ^5.6.8
     lodash.isequal: ^4.5.0
     merge-anything: ^5.0.2
-    react-query: ^3.39.1
+    react-query: ^3.39.2
     ts-invariant: ^0.10.3
-    use-debounce: ^8.0.1
-    usehooks-ts: ^2.5.4
+    use-debounce: ^8.0.2
+    usehooks-ts: ^2.6.0
     web3modal: ^1.9.8
+    zustand: "https://pkg.csb.dev/pmndrs/zustand/commit/a9a05f74/zustand/_pkg.tgz"
   peerDependencies:
     "@uniswap/sdk": ^3
     react: ">=17"
     react-dom: ">=17"
-  checksum: d09856c27827e77c715447c0b9f35a9c6df4d775dc421ec84a14175e01432f906f11fa6118875525976acc8e52f3277de0e35d7919db507f36ed864185204027
+  checksum: 6f6d2813ac90a2ecdd81cccc01ec6b6db38ec4001beed93f14df339d714c90ff0f427ab2b7ea6f8ff0372cb4ba36ebcb60db98331c0c3ad730e832082ed7a5e6
   languageName: node
   linkType: hard
 
@@ -19378,7 +19379,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-query@npm:^3.39.1, react-query@npm:^3.39.2":
+"react-query@npm:^3.39.2":
   version: 3.39.2
   resolution: "react-query@npm:3.39.2"
   dependencies:
@@ -23235,6 +23236,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"use-sync-external-store@npm:1.2.0":
+  version: 1.2.0
+  resolution: "use-sync-external-store@npm:1.2.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 5c639e0f8da3521d605f59ce5be9e094ca772bd44a4ce7322b055a6f58eeed8dda3c94cabd90c7a41fb6fa852210092008afe48f7038792fd47501f33299116a
+  languageName: node
+  linkType: hard
+
 "use@npm:^3.1.0":
   version: 3.1.1
   resolution: "use@npm:3.1.1"
@@ -24985,5 +24995,22 @@ __metadata:
   version: 3.17.9
   resolution: "zod@npm:3.17.9"
   checksum: 0622a5ae4c668e571869723fec5229c1c8148e6c683db7480cc7a3fdbee77db01ddcf47e286d278678e9e2c0dda14c8018656a4c43455541b0d0182cfc606ee9
+  languageName: node
+  linkType: hard
+
+"zustand@https://pkg.csb.dev/pmndrs/zustand/commit/a9a05f74/zustand/_pkg.tgz":
+  version: 4.0.0-rc.2
+  resolution: "zustand@https://pkg.csb.dev/pmndrs/zustand/commit/a9a05f74/zustand/_pkg.tgz"
+  dependencies:
+    use-sync-external-store: 1.2.0
+  peerDependencies:
+    immer: ">=9.0"
+    react: ">=16.8"
+  peerDependenciesMeta:
+    immer:
+      optional: true
+    react:
+      optional: true
+  checksum: 644770227781511d40d517c2eab4eaab2db017164c0cc48a663fa74159ca09b9db5d5c8af03cb623b84651993cb20284ed013fbe0421291ada0d21d84190a0ae
   languageName: node
   linkType: hard
