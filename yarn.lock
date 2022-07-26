@@ -2006,7 +2006,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@scaffold-eth/common@0.1.0, @scaffold-eth/common@workspace:packages/common":
+"@scaffold-eth/common@workspace:^, @scaffold-eth/common@workspace:packages/common":
   version: 0.0.0-use.local
   resolution: "@scaffold-eth/common@workspace:packages/common"
   dependencies:
@@ -2110,7 +2110,7 @@ __metadata:
     "@openzeppelin/contracts": ^4.7.1
     "@openzeppelin/hardhat-upgrades": ^1.19.0
     "@primitivefi/hardhat-dodoc": ^0.2.3
-    "@scaffold-eth/common": 0.1.0
+    "@scaffold-eth/common": "workspace:^"
     "@tenderly/hardhat-tenderly": ^1.1.4
     "@typechain/ethers-v5": ^10.1.0
     "@typechain/hardhat": ^6.1.2
@@ -2192,7 +2192,7 @@ __metadata:
     "@maticnetwork/maticjs": ^3.4.0-beta.0
     "@next/eslint-plugin-next": ^12.2.3
     "@ramp-network/ramp-instant-sdk": ^3.1.1
-    "@scaffold-eth/common": 0.1.0
+    "@scaffold-eth/common": "workspace:^"
     "@tailwindcss/aspect-ratio": ^0.4.0
     "@tailwindcss/forms": ^0.5.2
     "@tailwindcss/line-clamp": ^0.4.0
@@ -2318,7 +2318,7 @@ __metadata:
     "@ethersproject/solidity": ^5.6.1
     "@ethersproject/units": ^5.6.1
     "@maticnetwork/maticjs": ^3.4.0-beta.0
-    "@scaffold-eth/common": 0.1.0
+    "@scaffold-eth/common": "workspace:^"
     "@tailwindcss/aspect-ratio": ^0.4.0
     "@tailwindcss/forms": ^0.5.2
     "@tailwindcss/line-clamp": ^0.4.0

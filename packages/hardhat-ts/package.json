@@ -44,7 +44,7 @@
     "@openzeppelin/contracts": "^4.7.1",
     "@openzeppelin/hardhat-upgrades": "^1.19.0",
     "@primitivefi/hardhat-dodoc": "^0.2.3",
-    "@scaffold-eth/common": "0.1.0",
+    "@scaffold-eth/common": "workspace:^",
     "@tenderly/hardhat-tenderly": "^1.1.4",
     "@typechain/ethers-v5": "^10.1.0",
     "@typechain/hardhat": "^6.1.2",
