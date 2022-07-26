@@ -9,7 +9,6 @@ import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { ErrorBoundary, ErrorFallback } from '~common/components';
-import { ContractsAppContext } from '~common/components/context';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
@@ -50,15 +49,13 @@ const MainPage = lazier(() => import('./pages/MainPage'), 'MainPage');
 const ProviderWrapper: FC<{ children?: ReactNode }> = (props) => {
   return (
     <EthComponentsSettingsContext.Provider value={ethComponentsSettings}>
-      <ContractsAppContext>
-        <EthersAppContext disableDefaultQueryClientRoot={true}>
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme ?? 'light'}>
-              <ErrorBoundary FallbackComponent={ErrorFallback}>{props.children}</ErrorBoundary>
-            </ThemeSwitcherProvider>
-          </ErrorBoundary>
-        </EthersAppContext>
-      </ContractsAppContext>
+      <EthersAppContext disableDefaultQueryClientRoot={true}>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme ?? 'light'}>
+            <ErrorBoundary FallbackComponent={ErrorFallback}>{props.children}</ErrorBoundary>
+          </ThemeSwitcherProvider>
+        </ErrorBoundary>
+      </EthersAppContext>
     </EthComponentsSettingsContext.Provider>
   );
 };

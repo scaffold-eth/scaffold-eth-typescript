@@ -1,7 +1,6 @@
 import { contractsContextFactory } from 'eth-hooks/context';
-import { TTypedContract } from 'eth-hooks/models';
 
-import { appContractsConfig } from '~common/config';
+import { getAppContractsConfig } from '~common/config';
 
 /**
  * This file initalises the contractContextFactory and exports the types
@@ -10,27 +9,18 @@ import { appContractsConfig } from '~common/config';
 
 /**
  * ### Summary
- * This type describes all your contracts, it is the return of {@link appContractsConfig}
+ * This type describes all your contracts, it is the return of {@link getgetAppContractsConfig}
  */
-export type TAppConnectorList = NonNullable<ReturnType<typeof appContractsConfig>>;
+export type TAppConnectorList = NonNullable<ReturnType<typeof getAppContractsConfig>>;
 
 /**
  * #### Summary
- * Call contractContextFactory with the `appContractsConfig` from `appContracts.config.ts`
+ * Call contractContextFactory with the `getAppContractsConfig` from `appContracts.config.ts`
  *
  * ##### Notes
  * - This will create your ContractContext used by App.tsx
  * - This will create your hooks to access contracts
  * - The type is your contract connect config.
  */
-export const {
-  ContractsAppContext,
-  useAppContractsActions,
-  useAppContracts,
-  useLoadAppContracts,
-  useConnectAppContracts,
-} = contractsContextFactory<
-  keyof TAppConnectorList,
-  TAppConnectorList,
-  TTypedContract<keyof TAppConnectorList, TAppConnectorList>
->(appContractsConfig);
+export const { useAppContracts, useLoadAppContracts, useConnectAppContracts, useContractsAppStore } =
+  contractsContextFactory<keyof TAppConnectorList, TAppConnectorList>(getAppContractsConfig);
