@@ -9,9 +9,8 @@ import type { AppProps } from 'next/app';
 import React, { FC, ReactNode, Suspense, useState } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
-import { ErrorBoundary, ErrorFallback } from '~common/components';
-import { ContractsAppContext } from '~common/components/context';
 
+import { ErrorBoundary, ErrorFallback } from '~common/components';
 import { BLOCKNATIVE_DAPPID } from '~~/config/app.config';
 
 const cache = createCache({ key: 'next' });
@@ -46,15 +45,13 @@ const ethComponentsSettings: IEthComponentsSettings = {
 const ProviderWrapper: FC<{ children?: ReactNode }> = (props) => {
   return (
     <EthComponentsSettingsContext.Provider value={ethComponentsSettings}>
-      <ContractsAppContext>
-        <EthersAppContext disableDefaultQueryClientRoot={true}>
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme ?? 'light'}>
-              <ErrorBoundary FallbackComponent={ErrorFallback}>{props.children}</ErrorBoundary>
-            </ThemeSwitcherProvider>
-          </ErrorBoundary>
-        </EthersAppContext>
-      </ContractsAppContext>
+      <EthersAppContext disableDefaultQueryClientRoot={true}>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <ThemeSwitcherProvider themeMap={themes} defaultTheme={savedTheme ?? 'light'}>
+            <ErrorBoundary FallbackComponent={ErrorFallback}>{props.children}</ErrorBoundary>
+          </ThemeSwitcherProvider>
+        </ErrorBoundary>
+      </EthersAppContext>
     </EthComponentsSettingsContext.Provider>
   );
 };

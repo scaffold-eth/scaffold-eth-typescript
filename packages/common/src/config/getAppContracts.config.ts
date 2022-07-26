@@ -12,7 +12,7 @@ import hardhatDeployedContractsJson from '~common/generated/hardhat_contracts.js
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
  * ### Instructions
  * 1. edit externalContracts.config.ts to add your external contract addresses.
- * 2. edit `appContractsConfig` function below and add them to the list
+ * 2. edit `getAppContractsConfig` function below and add them to the list
  * 3. run `yarn contracts:build` to generate types for contracts
  * 4. run `yarn deploy` to generate hardhat_contracts.json
  *
@@ -20,7 +20,7 @@ import hardhatDeployedContractsJson from '~common/generated/hardhat_contracts.js
  * - called  by useAppContracts
  * @returns
  */
-export const appContractsConfig = () => {
+export const getAppContractsConfig = () => {
   try {
     const result = {
       // --------------------------------------------------
@@ -62,7 +62,7 @@ export const appContractsConfig = () => {
     return result;
   } catch (e) {
     invariant.error(
-      '❌ appContractsConfig: ERROR with loading contracts please run `yarn contracts:build or yarn contracts:rebuild`.  Then run `yarn deploy`!'
+      '❌ getAppContractsConfig: ERROR with loading contracts please run `yarn contracts:build or yarn contracts:rebuild`.  Then run `yarn deploy`!'
     );
     invariant.error(e);
   }

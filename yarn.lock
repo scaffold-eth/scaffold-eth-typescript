@@ -1999,7 +1999,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@scaffold-eth/common@workspace:^, @scaffold-eth/common@workspace:packages/common":
+"@scaffold-eth/common@0.1.0, @scaffold-eth/common@workspace:^, @scaffold-eth/common@workspace:packages/common":
   version: 0.0.0-use.local
   resolution: "@scaffold-eth/common@workspace:packages/common"
   dependencies:
@@ -2041,8 +2041,8 @@ __metadata:
     eslint-plugin-react: ^7.30.1
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: ^3.4.2
-    eth-hooks: ^4.5.1
+    eth-components: 4.0.0-alpha03
+    eth-hooks: 5.0.0-beta02
     ethers: ^5.6.9
     fortmatic: ^2.4.0
     husky: ^8.0.1
@@ -2101,7 +2101,7 @@ __metadata:
     "@openzeppelin/contracts": ^4.7.1
     "@openzeppelin/hardhat-upgrades": ^1.19.0
     "@primitivefi/hardhat-dodoc": ^0.2.3
-    "@scaffold-eth/common": "workspace:^"
+    "@scaffold-eth/common": 0.1.0
     "@swc/core": ^1.2.218
     "@swc/helpers": ^0.4.3
     "@tenderly/hardhat-tenderly": ^1.1.4
@@ -2220,8 +2220,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: ^3.4.2
-    eth-hooks: ^4.5.1
+    eth-components: 4.0.0-alpha03
+    eth-hooks: 5.0.0-beta02
     ethereum-cryptography: ^1.1.2
     ethers: ^5.6.9
     events: ^3.3.0
@@ -2346,7 +2346,7 @@ __metadata:
     "@ethersproject/solidity": ^5.6.1
     "@ethersproject/units": ^5.6.1
     "@maticnetwork/maticjs": ^3.4.0-beta.0
-    "@scaffold-eth/common": "workspace:^"
+    "@scaffold-eth/common": 0.1.0
     "@tailwindcss/aspect-ratio": ^0.4.0
     "@tailwindcss/forms": ^0.5.2
     "@tailwindcss/line-clamp": ^0.4.0
@@ -2383,8 +2383,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: ^3.4.2
-    eth-hooks: ^4.5.1
+    eth-components: 4.0.0-alpha03
+    eth-hooks: 5.0.0-beta02
     ethereum-cryptography: ^1.1.2
     ethers: ^5.6.9
     events: ^3.3.0
@@ -9620,9 +9620,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-components@npm:^3.4.2":
-  version: 3.4.2
-  resolution: "eth-components@npm:3.4.2"
+"eth-components@npm:4.0.0-alpha03":
+  version: 4.0.0-alpha03
+  resolution: "eth-components@npm:4.0.0-alpha03"
   dependencies:
     "@ethersproject/abstract-signer": ^5.6.2
     "@ethersproject/address": ^5.6.1
@@ -9636,7 +9636,7 @@ __metadata:
     "@ethersproject/units": ^5.6.1
     axios: ^0.27.2
     bnc-notify: ^1.9.5
-    eth-hooks: ^4.5.1
+    eth-hooks: ^5.0.0-beta02
     ethers: ^5.6.8
     qrcode.react: ^3.0.2
     react-blockies: ^1.4.1
@@ -9650,7 +9650,7 @@ __metadata:
     react: ">=17"
     react-css-theme-switcher: ^0.3.0
     react-dom: ">=17"
-  checksum: 12d719c5e0819b9976feaf959d02eb8cf47cbe2191a4d8c326e347434cf1ff5ec2c881e39bd6187c3abb2e14062e8689db70b832ea63479196f2b74cb0229f63
+  checksum: 4bc201ddb2fbf2e3d0c5515a31ba44e18908b5aebe5b9c2ea12b3a145f0f6b4758de22f317b34d8a8271475fe071c44bb71b5f257375c7a233d946ea4f834b6b
   languageName: node
   linkType: hard
 
@@ -9692,9 +9692,46 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:^4.5.1":
-  version: 4.5.1
-  resolution: "eth-hooks@npm:4.5.1"
+"eth-hooks@npm:5.0.0-beta02":
+  version: 5.0.0-beta02
+  resolution: "eth-hooks@npm:5.0.0-beta02"
+  dependencies:
+    "@ethersproject/abi": ^5.6.4
+    "@ethersproject/abstract-provider": ^5.6.1
+    "@ethersproject/address": ^5.6.1
+    "@ethersproject/bignumber": ^5.6.2
+    "@ethersproject/bytes": ^5.6.1
+    "@ethersproject/contracts": ^5.6.2
+    "@ethersproject/networks": ^5.6.4
+    "@ethersproject/providers": ^5.6.8
+    "@ethersproject/signing-key": ^5.6.2
+    "@ethersproject/solidity": ^5.6.1
+    "@ethersproject/units": ^5.6.1
+    "@ethersproject/wallet": ^5.6.2
+    "@uniswap/token-lists": ^1.0.0-beta.30
+    "@web3-react/abstract-connector": ^6.0.7
+    "@web3-react/core": ^6.1.9
+    "@web3-react/types": ^6.0.7
+    ethers: ^5.6.8
+    lodash.isequal: ^4.5.0
+    merge-anything: ^5.0.2
+    react-query: ^3.39.2
+    ts-invariant: ^0.10.3
+    use-debounce: ^8.0.2
+    usehooks-ts: ^2.6.0
+    web3modal: ^1.9.8
+    zustand: 4.0.0-rc.4
+  peerDependencies:
+    "@uniswap/sdk": ^3
+    react: ">=17"
+    react-dom: ">=17"
+  checksum: aeda18bb64cbf38aacdd2d8f3a3abf326d0ade1b4f01e9d52f74ca45e872537bdb60ef70f8f9d48bcd6ac1d5eedc40b624910d72ce78b72de181b33a7b633821
+  languageName: node
+  linkType: hard
+
+"eth-hooks@npm:^5.0.0-beta02":
+  version: 5.0.0-beta1
+  resolution: "eth-hooks@npm:5.0.0-beta1"
   dependencies:
     "@ethersproject/abi": ^5.6.4
     "@ethersproject/abstract-provider": ^5.6.1
@@ -9725,7 +9762,7 @@ __metadata:
     "@uniswap/sdk": ^3
     react: ">=17"
     react-dom: ">=17"
-  checksum: 6f6d2813ac90a2ecdd81cccc01ec6b6db38ec4001beed93f14df339d714c90ff0f427ab2b7ea6f8ff0372cb4ba36ebcb60db98331c0c3ad730e832082ed7a5e6
+  checksum: a4630c0667ced1932ac9b91f43fd7be7dd4a3a1c930f6322acdf3b256216b038e7380510869fd8abab0c7c7437efd44ee67f03695bcb9cca1b3edc3f749baae1
   languageName: node
   linkType: hard
 
@@ -24963,5 +25000,22 @@ __metadata:
     react:
       optional: true
   checksum: 644770227781511d40d517c2eab4eaab2db017164c0cc48a663fa74159ca09b9db5d5c8af03cb623b84651993cb20284ed013fbe0421291ada0d21d84190a0ae
+  languageName: node
+  linkType: hard
+
+"zustand@npm:4.0.0-rc.4":
+  version: 4.0.0-rc.4
+  resolution: "zustand@npm:4.0.0-rc.4"
+  dependencies:
+    use-sync-external-store: 1.2.0
+  peerDependencies:
+    immer: ">=9.0"
+    react: ">=16.8"
+  peerDependenciesMeta:
+    immer:
+      optional: true
+    react:
+      optional: true
+  checksum: 2a43738fec7d99d390b92ff7ee6a10dc4e76f229336dc36852a0322b74af5bf40d5fcbde948ced9cfca6cd930e4ae0be4ccb81bc60a8953a164d1651f92c81a1
   languageName: node
   linkType: hard
