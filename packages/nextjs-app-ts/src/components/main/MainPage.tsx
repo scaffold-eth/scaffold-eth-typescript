@@ -5,14 +5,14 @@ import { useDexEthPrice } from 'eth-hooks/dapps';
 import { asEthersAdaptor } from 'eth-hooks/functions';
 import Head from 'next/head';
 import { FC, ReactElement } from 'react';
+
+import { MainPageFooter, MainPageHeader, createTabsAndPages, TContractPageList } from '.';
+
 import { useLoadAppContracts, useConnectAppContracts, useAppContracts } from '~common/components/context';
 import { useCreateAntNotificationHolder } from '~common/components/hooks/useAntNotification';
 import { useBurnerFallback } from '~common/components/hooks/useBurnerFallback';
 import { useScaffoldAppProviders } from '~common/components/hooks/useScaffoldAppProviders';
 import { NETWORKS } from '~common/constants';
-
-import { MainPageFooter, MainPageHeader, createTabsAndPages, TContractPageList } from '.';
-
 import { useScaffoldHooksExamples } from '~~/components/hooks/useScaffoldHooksExamples';
 import {
   BURNER_FALLBACK_ENABLED,
