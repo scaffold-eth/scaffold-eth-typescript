@@ -35,7 +35,6 @@ export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: b
     ethersAppContext.changeSigner,
     burnerFallback.signer,
     burnerFallback?.account,
-    ethersAppContext,
     enable,
   ]);
 };

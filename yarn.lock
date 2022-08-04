@@ -2052,7 +2052,7 @@ __metadata:
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-unused-imports: ^2.0.0
     eth-components: 4.0.0-alpha03
-    eth-hooks: 5.0.0-beta02
+    eth-hooks: 5.0.1-beta03
     ethers: ^5.6.9
     fortmatic: ^2.4.0
     husky: ^8.0.1
@@ -2082,6 +2082,7 @@ __metadata:
     walletconnect: ^1.7.8
     web3modal: ^1.9.8
     yalc: ^1.0.0-pre.53
+    zustand: 4.0.0-rc.4
   languageName: unknown
   linkType: soft
 
@@ -2230,7 +2231,7 @@ __metadata:
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
     eth-components: 4.0.0-alpha03
-    eth-hooks: 5.0.0-beta02
+    eth-hooks: 5.0.1-beta03
     ethereum-cryptography: ^1.1.2
     ethers: ^5.6.9
     events: ^3.3.0
@@ -2356,7 +2357,7 @@ __metadata:
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
     eth-components: 4.0.0-alpha03
-    eth-hooks: 5.0.0-beta02
+    eth-hooks: 5.0.1-beta03
     ethereum-cryptography: ^1.1.2
     ethers: ^5.6.9
     events: ^3.3.0
@@ -9498,9 +9499,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:5.0.0-beta02":
-  version: 5.0.0-beta02
-  resolution: "eth-hooks@npm:5.0.0-beta02"
+"eth-hooks@npm:5.0.1-beta03":
+  version: 5.0.1-beta03
+  resolution: "eth-hooks@npm:5.0.1-beta03"
   dependencies:
     "@ethersproject/abi": ^5.6.4
     "@ethersproject/abstract-provider": ^5.6.1
@@ -9531,7 +9532,7 @@ __metadata:
     "@uniswap/sdk": ^3
     react: ">=17"
     react-dom: ">=17"
-  checksum: aeda18bb64cbf38aacdd2d8f3a3abf326d0ade1b4f01e9d52f74ca45e872537bdb60ef70f8f9d48bcd6ac1d5eedc40b624910d72ce78b72de181b33a7b633821
+  checksum: b415561fb9322512abb30324b15bed2ebc49de38a2451c57aea078c12c4277bb6cc39b4547a8cedb67e2c12f26e3e6547f0a205ed004b38d4552f9da3d8d85ae
   languageName: node
   linkType: hard
 
