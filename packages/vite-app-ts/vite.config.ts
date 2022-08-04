@@ -69,7 +69,7 @@ export default defineConfig({
   },
   optimizeDeps: {
     exclude: excludeDeps,
-    include: ['@scaffold-eth/common', 'eth-hooks', 'eth-components', 'zustand', 'zustand/vanilla'],
+    include: ['@scaffold-eth/common', 'eth-hooks', 'eth-components'],
   },
   resolve: {
     preserveSymlinks: true,
@@ -84,7 +84,6 @@ export default defineConfig({
       'react-css-theme-switcher': resolve(__dirname, './node_modules/react-css-theme-switcher'),
       react: resolve(__dirname, './node_modules/react'),
       'react-dom': resolve(__dirname, './node_modules/react-dom'),
-      zustand: resolve(__dirname, './node_modules/zustand'),
       // -------------------------------------------
       ...externals,
       ...nodeShims,
