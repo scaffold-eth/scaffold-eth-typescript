@@ -46,8 +46,8 @@
     "antd": "^4.21.7",
     "authereum": "^0.1.14",
     "buffer": "^6.0.3",
-    "eth-components": "4.0.0-alpha03",
-    "eth-hooks": "5.0.1-beta03",
+    "eth-components": "4.0.1-alpha04",
+    "eth-hooks": "5.0.1-beta04",
     "ethers": "^5.6.9",
     "fortmatic": "^2.4.0",
     "react": "^18.2.0",
@@ -97,7 +97,7 @@
     "typescript-transform-paths": "^3.3.1",
     "utf-8-validate": "^5.0.9",
     "yalc": "^1.0.0-pre.53",
-    "zustand": "4.0.0-rc.4"
+    "zustand": "4.0.0"
   },
   "keywords": [
     "blockchain",

@@ -9,25 +9,30 @@ import { viteExternalsPlugin } from 'vite-plugin-externals';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 const isDev = process.env.ENVIRONMENT === 'DEVELOPMENT';
-
 console.log('env.dev:', process.env.ENVIRONMENT, ' isDev:', isDev);
 console.log();
 console.log('Make sure to build the contracts with `yarn contracts:build` and deploy them with `yarn deploy`');
 console.log();
 
 /**
+ * These libraries should not be egarly bundled by vite.  They have strange dependencies and are not needed for the app.
+ */
+const excludeDeps = ['@apollo/client', `graphql`, 'electron', 'electron-fetch'];
+
+/**
  * browserify for web3 components
  */
 const externals = {
-  http: 'http-browserify',
-  https: 'http-browserify',
-  timers: 'timers-browserify',
+  http: resolve(__dirname, './node_modules/http-browserify'),
+  https: resolve(__dirname, './node_modules/http-browserify'),
+  timers: resolve(__dirname, './node_modules/timers-browserify'),
+  // the two below are due to strate ipfs-core dependency, they are not loaded
   electron: 'electron',
   'electron-fetch': 'electron-fetch',
 };
 
 const nodeShims = {
-  util: 'util',
+  util: resolve(__dirname, './node_modules/util'),
 };
 
 /**
@@ -39,11 +44,6 @@ const externalPlugin = viteExternalsPlugin({
   ...externals,
   ...(isDev ? { ...nodeShims } : {}),
 });
-
-/**
- * These libraries should not be egarly bundled by vite.  They have strange dependencies and are not needed for the app.
- */
-const excludeDeps = ['@apollo/client', `graphql`, 'electron', 'electron-fetch'];
 
 export default defineConfig({
   plugins: [reactPlugin(), macrosPlugin(), tsconfigPaths(), externalPlugin, checker({ typescript: true })],
@@ -64,10 +64,12 @@ export default defineConfig({
     jsxFactory: 'jsx',
     jsxInject: `import {jsx, css} from '@emotion/react'`,
   },
-  define: {},
+  define: {
+    'process.env': {},
+  },
   optimizeDeps: {
     exclude: excludeDeps,
-    include: ['@scaffold-eth/common', 'eth-hooks', 'eth-components'],
+    include: ['@scaffold-eth/common', 'eth-hooks', 'eth-components', 'zustand', 'zustand/vanilla'],
   },
   resolve: {
     preserveSymlinks: true,
@@ -82,6 +84,7 @@ export default defineConfig({
       'react-css-theme-switcher': resolve(__dirname, './node_modules/react-css-theme-switcher'),
       react: resolve(__dirname, './node_modules/react'),
       'react-dom': resolve(__dirname, './node_modules/react-dom'),
+      zustand: resolve(__dirname, './node_modules/zustand'),
       // -------------------------------------------
       ...externals,
       ...nodeShims,

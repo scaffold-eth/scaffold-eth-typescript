@@ -2006,7 +2006,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@scaffold-eth/common@workspace:^, @scaffold-eth/common@workspace:packages/common":
+"@scaffold-eth/common@0.0.0, @scaffold-eth/common@workspace:packages/common":
   version: 0.0.0-use.local
   resolution: "@scaffold-eth/common@workspace:packages/common"
   dependencies:
@@ -2051,8 +2051,8 @@ __metadata:
     eslint-plugin-react: ^7.30.1
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: 4.0.0-alpha03
-    eth-hooks: 5.0.1-beta03
+    eth-components: 4.0.1-alpha04
+    eth-hooks: 5.0.1-beta04
     ethers: ^5.6.9
     fortmatic: ^2.4.0
     husky: ^8.0.1
@@ -2082,7 +2082,7 @@ __metadata:
     walletconnect: ^1.7.8
     web3modal: ^1.9.8
     yalc: ^1.0.0-pre.53
-    zustand: 4.0.0-rc.4
+    zustand: 4.0.0
   languageName: unknown
   linkType: soft
 
@@ -2111,7 +2111,7 @@ __metadata:
     "@openzeppelin/contracts": ^4.7.1
     "@openzeppelin/hardhat-upgrades": ^1.19.0
     "@primitivefi/hardhat-dodoc": ^0.2.3
-    "@scaffold-eth/common": "workspace:^"
+    "@scaffold-eth/common": 0.0.0
     "@tenderly/hardhat-tenderly": ^1.1.4
     "@typechain/ethers-v5": ^10.1.0
     "@typechain/hardhat": ^6.1.2
@@ -2193,7 +2193,7 @@ __metadata:
     "@maticnetwork/maticjs": ^3.4.0-beta.0
     "@next/eslint-plugin-next": ^12.2.3
     "@ramp-network/ramp-instant-sdk": ^3.1.1
-    "@scaffold-eth/common": "workspace:^"
+    "@scaffold-eth/common": 0.0.0
     "@tailwindcss/aspect-ratio": ^0.4.0
     "@tailwindcss/forms": ^0.5.2
     "@tailwindcss/line-clamp": ^0.4.0
@@ -2230,8 +2230,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: 4.0.0-alpha03
-    eth-hooks: 5.0.1-beta03
+    eth-components: 4.0.1-alpha04
+    eth-hooks: 5.0.1-beta04
     ethereum-cryptography: ^1.1.2
     ethers: ^5.6.9
     events: ^3.3.0
@@ -2271,6 +2271,7 @@ __metadata:
     usehooks-ts: ^2.6.0
     util: ^0.12.4
     web3modal: ^1.9.8
+    zustand: 4.0.0
   languageName: unknown
   linkType: soft
 
@@ -2319,7 +2320,7 @@ __metadata:
     "@ethersproject/solidity": ^5.6.1
     "@ethersproject/units": ^5.6.1
     "@maticnetwork/maticjs": ^3.4.0-beta.0
-    "@scaffold-eth/common": "workspace:^"
+    "@scaffold-eth/common": 0.0.0
     "@tailwindcss/aspect-ratio": ^0.4.0
     "@tailwindcss/forms": ^0.5.2
     "@tailwindcss/line-clamp": ^0.4.0
@@ -2345,6 +2346,7 @@ __metadata:
     buffer: ^6.0.3
     cross-env: ^7.0.3
     daisyui: ^2.20.0
+    dotenv: ^16.0.1
     eslint: ^8.20.0
     eslint-config-airbnb: ^19.0.4
     eslint-config-airbnb-typescript: ^17.0.0
@@ -2356,8 +2358,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: 4.0.0-alpha03
-    eth-hooks: 5.0.1-beta03
+    eth-components: 4.0.1-alpha04
+    eth-hooks: 5.0.1-beta04
     ethereum-cryptography: ^1.1.2
     ethers: ^5.6.9
     events: ^3.3.0
@@ -2403,6 +2405,7 @@ __metadata:
     vite-tsconfig-paths: ^3.5.0
     web3modal: ^1.9.8
     yalc: ^1.0.0-pre.53
+    zustand: 4.0.0
   languageName: unknown
   linkType: soft
 
@@ -9427,9 +9430,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-components@npm:4.0.0-alpha03":
-  version: 4.0.0-alpha03
-  resolution: "eth-components@npm:4.0.0-alpha03"
+"eth-components@npm:4.0.1-alpha04":
+  version: 4.0.1-alpha04
+  resolution: "eth-components@npm:4.0.1-alpha04"
   dependencies:
     "@ethersproject/abstract-signer": ^5.6.2
     "@ethersproject/address": ^5.6.1
@@ -9443,7 +9446,7 @@ __metadata:
     "@ethersproject/units": ^5.6.1
     axios: ^0.27.2
     bnc-notify: ^1.9.5
-    eth-hooks: ^5.0.0-beta02
+    eth-hooks: ^5.0.1-beta04
     ethers: ^5.6.8
     qrcode.react: ^3.0.2
     react-blockies: ^1.4.1
@@ -9457,7 +9460,7 @@ __metadata:
     react: ">=17"
     react-css-theme-switcher: ^0.3.0
     react-dom: ">=17"
-  checksum: 4bc201ddb2fbf2e3d0c5515a31ba44e18908b5aebe5b9c2ea12b3a145f0f6b4758de22f317b34d8a8271475fe071c44bb71b5f257375c7a233d946ea4f834b6b
+  checksum: 7bf97c29c4d7d059527feaef4d6e7a35a280ea1b0d595f98757fc8a7200345dab47caee79525541000ce655bd9fb6808415334d272207f878110e56fb343be3e
   languageName: node
   linkType: hard
 
@@ -9499,9 +9502,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:5.0.1-beta03":
-  version: 5.0.1-beta03
-  resolution: "eth-hooks@npm:5.0.1-beta03"
+"eth-hooks@npm:5.0.1-beta04, eth-hooks@npm:^5.0.1-beta04":
+  version: 5.0.1-beta04
+  resolution: "eth-hooks@npm:5.0.1-beta04"
   dependencies:
     "@ethersproject/abi": ^5.6.4
     "@ethersproject/abstract-provider": ^5.6.1
@@ -9527,49 +9530,12 @@ __metadata:
     use-debounce: ^8.0.2
     usehooks-ts: ^2.6.0
     web3modal: ^1.9.8
-    zustand: 4.0.0-rc.4
+    zustand: 4.0.0
   peerDependencies:
     "@uniswap/sdk": ^3
     react: ">=17"
     react-dom: ">=17"
-  checksum: b415561fb9322512abb30324b15bed2ebc49de38a2451c57aea078c12c4277bb6cc39b4547a8cedb67e2c12f26e3e6547f0a205ed004b38d4552f9da3d8d85ae
-  languageName: node
-  linkType: hard
-
-"eth-hooks@npm:^5.0.0-beta02":
-  version: 5.0.0-beta1
-  resolution: "eth-hooks@npm:5.0.0-beta1"
-  dependencies:
-    "@ethersproject/abi": ^5.6.4
-    "@ethersproject/abstract-provider": ^5.6.1
-    "@ethersproject/address": ^5.6.1
-    "@ethersproject/bignumber": ^5.6.2
-    "@ethersproject/bytes": ^5.6.1
-    "@ethersproject/contracts": ^5.6.2
-    "@ethersproject/networks": ^5.6.4
-    "@ethersproject/providers": ^5.6.8
-    "@ethersproject/signing-key": ^5.6.2
-    "@ethersproject/solidity": ^5.6.1
-    "@ethersproject/units": ^5.6.1
-    "@ethersproject/wallet": ^5.6.2
-    "@uniswap/token-lists": ^1.0.0-beta.30
-    "@web3-react/abstract-connector": ^6.0.7
-    "@web3-react/core": ^6.1.9
-    "@web3-react/types": ^6.0.7
-    ethers: ^5.6.8
-    lodash.isequal: ^4.5.0
-    merge-anything: ^5.0.2
-    react-query: ^3.39.2
-    ts-invariant: ^0.10.3
-    use-debounce: ^8.0.2
-    usehooks-ts: ^2.6.0
-    web3modal: ^1.9.8
-    zustand: "https://pkg.csb.dev/pmndrs/zustand/commit/a9a05f74/zustand/_pkg.tgz"
-  peerDependencies:
-    "@uniswap/sdk": ^3
-    react: ">=17"
-    react-dom: ">=17"
-  checksum: a4630c0667ced1932ac9b91f43fd7be7dd4a3a1c930f6322acdf3b256216b038e7380510869fd8abab0c7c7437efd44ee67f03695bcb9cca1b3edc3f749baae1
+  checksum: 7cc47d49b303c54a49e9d0f99905b78e32f8427c2b9a0622e22c2b2005c59a8d9c2b4744e86d53d28ed978a2a54217f5ca1500054ef38e01234f8c97051c07fd
   languageName: node
   linkType: hard
 
@@ -24748,9 +24714,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zustand@https://pkg.csb.dev/pmndrs/zustand/commit/a9a05f74/zustand/_pkg.tgz":
-  version: 4.0.0-rc.2
-  resolution: "zustand@https://pkg.csb.dev/pmndrs/zustand/commit/a9a05f74/zustand/_pkg.tgz"
+"zustand@npm:4.0.0":
+  version: 4.0.0
+  resolution: "zustand@npm:4.0.0"
   dependencies:
     use-sync-external-store: 1.2.0
   peerDependencies:
@@ -24761,23 +24727,6 @@ __metadata:
       optional: true
     react:
       optional: true
-  checksum: 644770227781511d40d517c2eab4eaab2db017164c0cc48a663fa74159ca09b9db5d5c8af03cb623b84651993cb20284ed013fbe0421291ada0d21d84190a0ae
-  languageName: node
-  linkType: hard
-
-"zustand@npm:4.0.0-rc.4":
-  version: 4.0.0-rc.4
-  resolution: "zustand@npm:4.0.0-rc.4"
-  dependencies:
-    use-sync-external-store: 1.2.0
-  peerDependencies:
-    immer: ">=9.0"
-    react: ">=16.8"
-  peerDependenciesMeta:
-    immer:
-      optional: true
-    react:
-      optional: true
-  checksum: 2a43738fec7d99d390b92ff7ee6a10dc4e76f229336dc36852a0322b74af5bf40d5fcbde948ced9cfca6cd930e4ae0be4ccb81bc60a8953a164d1651f92c81a1
+  checksum: b8ae5971dff79a1007d46f9a6bfa39ed5cc5b101a877eeec069ebdb6c8285ec8e3463e40cfa7c0f1507a41f43fe26ffb44b556063cb70ac03bccf1ea6e0f69d6
   languageName: node
   linkType: hard
