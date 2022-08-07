@@ -1,7 +1,5 @@
 import { Command } from 'commander';
 
-import { TNetworkNames } from '@scaffold-eth/common/src/models/TNetworkNames';
-import { invariant } from 'ts-invariant';
 import { createConfig } from './createConfig';
 
 const program = new Command();

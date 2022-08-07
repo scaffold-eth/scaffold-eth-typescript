@@ -1,18 +1,18 @@
 {
   "name": "@scaffold-eth/scripts",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
-    "scaffold-eth": "ts-node --esm --swc ./src/commands/scaffold-eth"
+    "scaffold": "ts-node --esm --swc ./src/commands/scaffold.ts"
   },
   "devDependencies": {
-    "@scaffold-eth/common": "workspace:^",
+    "@scaffold-eth/common": "0.0.0",
     "@types/edit-json-file": "^1.7.0",
     "chalk": "^4.1.2",
     "commander": "^9.4.0",
     "cross-env": "^7.0.3",
     "edit-json-file": "^1.7.0",
-    "eslint": "^8.20.0",
+    "eslint": "^8.21.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.5.0",
@@ -24,12 +24,14 @@
     "prettier": "^2.7.1",
     "prettier-plugin-solidity": "^1.0.0-beta.19",
     "shx": "^0.3.4",
-    "ts-invariant": "^0.10.3"
+    "ts-invariant": "^0.10.3",
+    "ts-toolbelt": "^9.6.0"
   },
   "dependencies": {
-    "@swc/core": "^1.2.218",
+    "@swc/core": "^1.2.224",
     "@swc/helpers": "^0.4.3",
     "ts-node": "^10.9.1",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "zod": "^3.17.10"
   }
 }

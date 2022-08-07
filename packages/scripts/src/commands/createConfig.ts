@@ -1,36 +1,26 @@
 import chalk from 'chalk';
-import { EtherumToolkits } from '@scaffold-eth/common/src/models/TScaffoldConfig';
-import { NetworkNames } from '@scaffold-eth/common/src/models/TNetworkNames';
+
 import { set, editor } from '../helpers/configManager';
+import { TEthereumToolkits, TNetworkNames } from '~common/models';
+import { scaffoldConfigSchema } from '../models/TScaffoldConfig';
 
-export const createConfig = (toolkit: string, targetNetworks: string[]) => {
+export const createConfig = (ethereumToolkit: TEthereumToolkits, targetNetworks: TNetworkNames[]) => {
   let errors = false;
-  if (!Array.isArray(targetNetworks)) {
-    errors = true;
-    console.log(chalk.yellow('Error: The target network you provided is not part of TNetworkNames type'));
-  } else {
-    const names = Object.keys(NetworkNames);
-    if (!targetNetworks.every((f) => names.some((n) => n == f))) {
-      errors = true;
-      console.log(chalk.yellow('Error: The target network you provided is not part of TNetworkNames type'));
-    }
-  }
-  if (!EtherumToolkits.find((f) => f == toolkit)) {
-    errors = true;
-    console.log(
-      chalk.yellow('Error: Toolkit value is not correct.  It should of type EthereumToolkits. (hardhat, forge, etc..)')
-    );
+
+  const config = scaffoldConfigSchema.safeParse({
+    ethereumToolkit: ethereumToolkit,
+    targetEnvironment: targetNetworks,
+  });
+
+  if (config.success == false) {
+    console.log(chalk.red('Invalid config'));
+    console.log(chalk.yellow(config.error));
   }
 
-  if (errors) {
-    console.log(chalk.red('Invalid arguments, aborting'));
-    return;
-  }
-
-  set('ethereumToolkit', toolkit);
-  set('targetEnvironment', targetNetworks);
+  set('ethereumToolkit', ethereumToolkit);
+  set('targetNetworks', targetNetworks);
 
   editor.save();
   console.log(chalk.green(`Success! Created scaffold.config.json in packages/common`));
-  console.log('With: ', toolkit, targetNetworks);
+  console.log('With: ', ethereumToolkit, targetNetworks);
 };

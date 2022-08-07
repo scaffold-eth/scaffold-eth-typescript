@@ -29,7 +29,7 @@
     "@🔖🔖🔖🔖🔖 scripts & commands 🔖🔖🔖🔖🔖 ": "echo 📖 scripts & commands",
     "hardhat": "yarn workspace @scaffold-eth/hardhat hardhat",
     "scripts": "yarn workspace @scaffold-eth/scripts",
-    "scaffold-eth": "yarn workspace @scaffold-eth/scripts scaffold-eth",
+    "scaffold": "yarn workspace @scaffold-eth/scripts scaffold",
     "@🔖🔖🔖🔖🔖 tests 🔖🔖🔖🔖🔖 ": "echo 📖 tests",
     "test:hardhat": "yarn workspace @scaffold-eth/hardhat test",
     "test:foundry": "yarn workspace @scaffold-eth/hardhat exec forge test",
@@ -71,7 +71,7 @@
   "devDependencies": {
     "commander": "^9.4.0",
     "cross-env": "^7.0.3",
-    "eslint": "^8.20.0",
+    "eslint": "^8.21.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
