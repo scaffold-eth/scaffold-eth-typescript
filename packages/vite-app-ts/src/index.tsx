@@ -18,26 +18,19 @@ const run = async (): Promise<void> => {
   await import('./helpers/__global');
   // dynamic imports for code splitting
   const { lazy, Suspense, StrictMode } = await import('react');
+  const { createRoot } = await import('react-dom/client');
   const ReactDOM = await import('react-dom');
-
   const App = lazy(() => import('./App'));
 
-  ReactDOM.render(
+  const container = document.getElementById('root');
+  const reactRoot = createRoot(container!);
+  reactRoot.render(
     <StrictMode>
       <Suspense fallback={<div />}>
         <App />
       </Suspense>
-    </StrictMode>,
-    document.getElementById('root')
+    </StrictMode>
   );
-  // const root = ReactDOM.createRoot(document.getElementById('root'));
-  // root.render(
-  //   <StrictMode>
-  //     <Suspense fallback={<div />}>
-  //       <App />
-  //     </Suspense>
-  //   </StrictMode>
-  // );
 };
 
 void run();
