@@ -1,7 +1,11 @@
 {
-  "ethereumToolkit": "hardhat",
-  "targetNetworks": [
-    "localhost",
-    "mainnet"
-  ]
+  "build": {
+    "solidityToolkit": "hardhat",
+    "reactBuild": "vite"
+  },
+  "runtime": {
+    "targetNetworks": [
+      "localhost"
+    ]
+  }
 }

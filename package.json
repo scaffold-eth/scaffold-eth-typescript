@@ -28,8 +28,7 @@
     "deploy": "yarn contracts:deploy",
     "@🔖🔖🔖🔖🔖 scripts & commands 🔖🔖🔖🔖🔖 ": "echo 📖 scripts & commands",
     "hardhat": "yarn workspace @scaffold-eth/hardhat hardhat",
-    "scripts": "yarn workspace @scaffold-eth/scripts",
-    "scaffold": "yarn workspace @scaffold-eth/scripts scaffold",
+    "scaffold": "yarn workspace @scaffold-eth/commands scaffold",
     "@🔖🔖🔖🔖🔖 tests 🔖🔖🔖🔖🔖 ": "echo 📖 tests",
     "test:hardhat": "yarn workspace @scaffold-eth/hardhat test",
     "test:foundry": "yarn workspace @scaffold-eth/hardhat exec forge test",
@@ -38,6 +37,7 @@
     "w:vite": "yarn workspace @scaffold-eth/vite-app",
     "w:nextjs": "yarn workspace @scaffold-eth/nextjs-app",
     "w:subgraph": "yarn workspace @scaffold-eth/subgraph",
+    "w:commands": "yarn workspace @scaffold-eth/commands",
     "@🔖🔖🔖🔖🔖 ethereum helpers 🔖🔖🔖🔖🔖": "echo 📖 ethereum helper commands",
     "generate": "yarn workspace @scaffold-eth/hardhat generate",
     "account": "yarn workspace @scaffold-eth/hardhat account",
@@ -92,6 +92,10 @@
     "packages/common/src/**/*.{ts,tsx}": [
       "yarn workspace @scaffold-eth/common lint --fix",
       "yarn workspace @scaffold-eth/common format"
+    ],
+    "packages/commands/src/**/*.{ts,tsx}": [
+      "yarn workspace @scaffold-eth/commands lint --fix",
+      "yarn workspace @scaffold-eth/commands format"
     ],
     "packages/hardhat-ts/tests/**/*.ts": [
       "yarn workspace @scaffold-eth/hardhat lint --fix",

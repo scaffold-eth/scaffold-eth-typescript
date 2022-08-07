@@ -1,5 +1,5 @@
 {
-  "name": "@scaffold-eth/scripts",
+  "name": "@scaffold-eth/commands",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
     "@swc/core": "^1.2.224",
     "@swc/helpers": "^0.4.3",
     "@types/edit-json-file": "^1.7.0",
+    "@types/shelljs": "^0",
     "chalk": "^4.1.2",
     "cross-env": "^7.0.3",
     "edit-json-file": "^1.7.0",
@@ -33,6 +34,8 @@
   },
   "dependencies": {
     "commander": "^9.4.0",
+    "shelljs": "^0.8.5",
+    "shx": "^0.3.4",
     "zod": "^3.17.10"
   }
 }

@@ -2036,6 +2036,41 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@scaffold-eth/commands@workspace:packages/commands":
+  version: 0.0.0-use.local
+  resolution: "@scaffold-eth/commands@workspace:packages/commands"
+  dependencies:
+    "@scaffold-eth/common": 0.0.0
+    "@swc/core": ^1.2.224
+    "@swc/helpers": ^0.4.3
+    "@types/edit-json-file": ^1.7.0
+    "@types/shelljs": ^0
+    chalk: ^4.1.2
+    commander: ^9.4.0
+    cross-env: ^7.0.3
+    edit-json-file: ^1.7.0
+    eslint: ^8.21.0
+    eslint-config-airbnb: ^19.0.4
+    eslint-config-airbnb-typescript: ^17.0.0
+    eslint-config-prettier: ^8.5.0
+    eslint-config-standard-kit: ^0.15.1
+    eslint-plugin-node: ^11.1.0
+    eslint-plugin-prettier: ^4.2.1
+    husky: ^8.0.1
+    lint-staged: ^13.0.3
+    prettier: ^2.7.1
+    prettier-plugin-solidity: ^1.0.0-beta.19
+    shelljs: ^0.8.5
+    shx: ^0.3.4
+    ts-invariant: ^0.10.3
+    ts-node: ^10.9.1
+    ts-toolbelt: ^9.6.0
+    tsconfig-paths: ^4.1.0
+    typescript: ^4.7.4
+    zod: ^3.17.10
+  languageName: unknown
+  linkType: soft
+
 "@scaffold-eth/common@0.0.0, @scaffold-eth/common@workspace:packages/common":
   version: 0.0.0-use.local
   resolution: "@scaffold-eth/common@workspace:packages/common"
@@ -2304,39 +2339,6 @@ __metadata:
     usehooks-ts: ^2.6.0
     util: ^0.12.4
     web3modal: ^1.9.8
-  languageName: unknown
-  linkType: soft
-
-"@scaffold-eth/scripts@workspace:packages/scripts":
-  version: 0.0.0-use.local
-  resolution: "@scaffold-eth/scripts@workspace:packages/scripts"
-  dependencies:
-    "@scaffold-eth/common": 0.0.0
-    "@swc/core": ^1.2.224
-    "@swc/helpers": ^0.4.3
-    "@types/edit-json-file": ^1.7.0
-    chalk: ^4.1.2
-    commander: ^9.4.0
-    cross-env: ^7.0.3
-    edit-json-file: ^1.7.0
-    eslint: ^8.21.0
-    eslint-config-airbnb: ^19.0.4
-    eslint-config-airbnb-typescript: ^17.0.0
-    eslint-config-prettier: ^8.5.0
-    eslint-config-standard-kit: ^0.15.1
-    eslint-plugin-node: ^11.1.0
-    eslint-plugin-prettier: ^4.2.1
-    husky: ^8.0.1
-    lint-staged: ^13.0.3
-    prettier: ^2.7.1
-    prettier-plugin-solidity: ^1.0.0-beta.19
-    shx: ^0.3.4
-    ts-invariant: ^0.10.3
-    ts-node: ^10.9.1
-    ts-toolbelt: ^9.6.0
-    tsconfig-paths: ^4.1.0
-    typescript: ^4.7.4
-    zod: ^3.17.10
   languageName: unknown
   linkType: soft
 
@@ -3136,7 +3138,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/glob@npm:^7.1.1":
+"@types/glob@npm:*, @types/glob@npm:^7.1.1":
   version: 7.2.0
   resolution: "@types/glob@npm:7.2.0"
   dependencies:
@@ -3498,6 +3500,16 @@ __metadata:
   version: 4.0.1
   resolution: "@types/set-value@npm:4.0.1"
   checksum: 97734c04b2aadb0cbe525124b5b424a86a7c3b6063c3e1d1b90e7147dc2a3faf041ac8f5b7f5e72dd66fa4ce4943484a408a8b5495fbd99eb7dd6d024ac1de52
+  languageName: node
+  linkType: hard
+
+"@types/shelljs@npm:^0":
+  version: 0.8.11
+  resolution: "@types/shelljs@npm:0.8.11"
+  dependencies:
+    "@types/glob": "*"
+    "@types/node": "*"
+  checksum: 559b81efba72f2b231485b26510aad68cccfe98dc74087d67dafd5511462997884db0ef18e0e56bf61a3a5789aa65a54dc04845a488bb0528d4a699e6151b99c
   languageName: node
   linkType: hard
 
