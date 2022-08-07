@@ -55,7 +55,8 @@
     { "directory": "packages/nextjs-app-ts", "changeProcessCWD": true },
     { "directory": "packages/common", "changeProcessCWD": true },
     { "directory": "packages/subgraph", "changeProcessCWD": true },
-    { "directory": "packages/services", "changeProcessCWD": true }
+    { "directory": "packages/services", "changeProcessCWD": true },
+    { "directory": "packages/commands", "changeProcessCWD": true }
   ],
   "solidity.packageDefaultDependenciesDirectory": "packages/hardhat-ts/node_modules",
   "editor.formatOnSave": true,
