@@ -1,9 +1,7 @@
 {
   "ethereumToolkit": "hardhat",
-  "targetEnvironment": [
-    "localhost"
-  ],
   "targetNetworks": [
-    "localhost"
+    "localhost",
+    "mainnet"
   ]
 }
