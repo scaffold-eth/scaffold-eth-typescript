@@ -1,7 +1,8 @@
 import { Command } from 'commander';
-import { startReact } from '~~/commands/functions/launch';
+import { buildReact, startReact } from '~~/commands/functions/launch';
 
 import { createConfig, parseCreateConfigArgs } from './functions/createConfig';
+import { setConfig, parseReactBuild } from './functions/setConfig';
 
 const program = new Command();
 
@@ -17,10 +18,25 @@ program
   });
 
 program
+  .command('set-react-build')
+  .description('Set the react build tool')
+  .argument('[react build tool]', 'Use nextjs or vite for your frontend', 'vite')
+  .action((...args: string[]) => {
+    setConfig(...parseReactBuild(...args));
+  });
+
+program
   .command('start')
   .description('Start the react front end')
   .action(() => {
     startReact();
+  });
+
+program
+  .command('build')
+  .description('Build the react front end')
+  .action(() => {
+    buildReact();
   });
 
 program.parse();

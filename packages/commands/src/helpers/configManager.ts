@@ -1,8 +1,9 @@
+import chalk from 'chalk';
 import editJson from 'edit-json-file';
-import { TScaffoldConfig } from '~~/models/TScaffoldConfig';
+import { scaffoldConfigSchema, TScaffoldConfig } from '~common/models';
 
 const packagesPath = '../../packages';
-const configPath = packagesPath + '/common/scaffold.config.json';
+const configPath = packagesPath + '/common/src/scaffold.config.json';
 
 export const editor = editJson(configPath);
 
@@ -12,6 +13,22 @@ export const set = (key: TConfigKeys, value: any) => {
 };
 
 export const load = (): TScaffoldConfig => {
-  const config = editor.read();
-  return config as TScaffoldConfig;
+  const input = editor.read();
+  const config = scaffoldConfigSchema.safeParse(input);
+
+  if (config.success) {
+    return config.data;
+  } else {
+    console.log(chalk.red('❌ Error! Invalid scaffold.config.json!'));
+    console.log(chalk.yellow('🏁 Did you run `yarn scaffold create-config`?'));
+    throw 'Error, Invalid Config';
+  }
+};
+
+export const printConfig = (config: TScaffoldConfig) => {
+  console.log('----------------------------------------------------');
+  console.log(chalk.green('✔️  Loaded scaffold.config.json:'));
+  console.log(config);
+  console.log('----------------------------------------------------');
+  console.log();
 };

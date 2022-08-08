@@ -2362,6 +2362,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@scaffold-eth/typescript@workspace:."
   dependencies:
+    chalk: 4
     commander: ^9.4.0
     cross-env: ^7.0.3
     eslint: ^8.21.0
@@ -2418,9 +2419,9 @@ __metadata:
     antd: ^4.22.3
     autoprefixer: ^10.4.8
     buffer: ^6.0.3
+    chalk: 4
     cross-env: ^7.0.3
     daisyui: ^2.22.0
-    dotenv: ^16.0.1
     eslint: ^8.21.0
     eslint-config-airbnb: ^19.0.4
     eslint-config-airbnb-typescript: ^17.0.0
@@ -6708,7 +6709,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:4.1.2, chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.1, chalk@npm:^4.1.2":
+"chalk@npm:4, chalk@npm:4.1.2, chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.1, chalk@npm:^4.1.2":
   version: 4.1.2
   resolution: "chalk@npm:4.1.2"
   dependencies:

@@ -1,3 +1,7 @@
+import { TNetworkInfo } from 'eth-hooks/models';
+
+import { TNetworkNames } from '~common/models';
+
 const INFURA_ID = process.env.VITE_RPC_MAINNET_INFURA;
 
 let hostname = 'localhost';
@@ -5,7 +9,7 @@ if (typeof window !== 'undefined' && window != null) {
   hostname = window?.location?.hostname ?? 'localhost';
 }
 
-export const NETWORKS = {
+export const networkDefinitions: Record<TNetworkNames, TNetworkInfo> = {
   localhost: {
     name: 'localhost',
     color: '#666666',

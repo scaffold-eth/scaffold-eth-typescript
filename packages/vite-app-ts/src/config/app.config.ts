@@ -2,13 +2,19 @@ import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { TNetworkInfo, TEthersProvider } from 'eth-hooks/models';
 import { invariant } from 'ts-invariant';
 
-import { NETWORKS } from '~common/constants';
-import { TNetworkNames } from '~common/models';
+import { networkDefinitions } from '~common/constants';
+import { scaffoldConfig } from '~common/scaffold.config';
 
 /** ******************************
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
- * See ../../common/src/config for other config files
+ * See packages/common/src/config for other config files
  ****************************** */
+/**
+ * See web3Modal.config.ts to setup your wallet connectors
+ * See appContracts.config.ts for your contract configuration
+ * See packages/common/scaffold.config.ts for scaffold configuration
+ * see .env files for api keys
+ */
 
 export const DEBUG = true;
 invariant.log('MODE', import.meta.env.MODE, import.meta.env.DEV);
@@ -21,12 +27,19 @@ invariant.log('MODE', import.meta.env.MODE, import.meta.env.DEV);
  * 🤚🏽  Set your target frontend network <--- select your target frontend network(localhost, rinkeby, xdai, mainnet)
  */
 
-const targetNetwork: TNetworkNames = import.meta.env.VITE_APP_TARGET_NETWORK as TNetworkNames;
-invariant.log('VITE_APP_TARGET_NETWORK', import.meta.env.VITE_APP_TARGET_NETWORK);
-invariant(NETWORKS[targetNetwork] != null, `Invalid target network: ${targetNetwork}`);
+export const TARGET_NETWORKS = scaffoldConfig.runtime.targetNetworks;
+invariant.log('Target Network', TARGET_NETWORKS);
+TARGET_NETWORKS.forEach((t) => {
+  invariant(
+    networkDefinitions[t] != null,
+    `Invalid target network: ${t}.  Check scaffold.config.json and network definition in /packages/common/src/constants/networks.ts`
+  );
+});
 
-export const TARGET_NETWORK_INFO: TNetworkInfo = NETWORKS[targetNetwork];
-if (DEBUG) console.log(`📡 Connecting to ${TARGET_NETWORK_INFO.name}`);
+export const TARGET_NETWORK_INFO: { [chainId: number]: TNetworkInfo } = {};
+TARGET_NETWORKS.forEach((m) => (TARGET_NETWORK_INFO[networkDefinitions[m].chainId] = networkDefinitions[m]));
+
+if (DEBUG) console.log(`📡 Can connect to `, TARGET_NETWORK_INFO);
 
 /** ******************************
  * APP CONFIG:
@@ -61,23 +74,6 @@ if (DEBUG)
   );
 
 export const SUBGRAPH_URI = 'http://localhost:8000/subgraphs/name/scaffold-eth/your-contract';
-
-/** ******************************
- * OTHER FILES
- ****************************** */
-
-/**
- * See web3Modal.config.ts to setup your wallet connectors
- */
-
-/**
- * See appContracts.config.ts for your contract configuration
- */
-
-/**
- * see .env files for api keys
- */
-
 /** ******************************
  * PROVIDERS CONFIG
  ****************************** */
@@ -101,8 +97,8 @@ export const MAINNET_PROVIDER = mainnetScaffoldEthProvider;
 // connecting to local provider
 // -------------------
 
-if (DEBUG) console.log('🏠 Connecting to local provider:', NETWORKS.localhost.url);
+if (DEBUG) console.log('🏠 Connecting to local provider:', networkDefinitions.localhost.url);
 export const LOCAL_PROVIDER: TEthersProvider | undefined =
-  TARGET_NETWORK_INFO === NETWORKS.localhost && import.meta.env.DEV
-    ? new StaticJsonRpcProvider(NETWORKS.localhost.url)
+  TARGET_NETWORK_INFO[networkDefinitions.localhost.chainId] != null && import.meta.env.DEV
+    ? new StaticJsonRpcProvider(networkDefinitions.localhost.url)
     : undefined;

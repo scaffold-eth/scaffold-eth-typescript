@@ -5,15 +5,16 @@ import { TNetworkInfo, TEthersProvider } from 'eth-hooks/models';
 import { invariant } from 'ts-invariant';
 
 import { NETWORKS } from '~common/constants';
-import { TNetworkNames } from '~common/models/TNetworkNames';
+import { TNetworkNames } from '~common/models';
 
+/** ****************************** */
 // global environmental variable declarations
+/** ****************************** */
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
       readonly NEXT_PUBLIC_ISDEV: string;
 
-      readonly NEXT_PUBLIC_APP_TARGET_NETWORK: string;
       readonly NEXT_PUBLIC_RPC_MAINNET: string;
       readonly NEXT_PUBLIC_RPC_MAINNET_INFURA: string;
       readonly NEXT_PUBLIC_KEY_INFURA: string;

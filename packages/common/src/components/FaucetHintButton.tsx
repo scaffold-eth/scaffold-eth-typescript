@@ -25,8 +25,8 @@ export const getFaucetAvailable = (
   const result =
     (ethersAppContext?.provider &&
       ethersAppContext?.chainId != null &&
-      ethersAppContext?.chainId === scaffoldAppProviders.targetNetwork.chainId &&
-      scaffoldAppProviders.targetNetwork.name === 'localhost') ??
+      ethersAppContext?.chainId === scaffoldAppProviders.currentTargetNetwork.chainId &&
+      scaffoldAppProviders.currentTargetNetwork.name === 'localhost') ??
     false;
   return result && faucetEnabled;
 };

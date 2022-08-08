@@ -1,13 +1,8 @@
-// / <reference types="vite/client" />
-
-import { TNetworkNames } from '~common/models';
-
 interface ImportMetaEnv {
   readonly DEV: boolean;
   readonly PROD: boolean;
   readonly MODE: 'development' | 'production';
 
-  readonly VITE_APP_TARGET_NETWORK: TNetworkNames;
   readonly VITE_RPC_MAINNET: string;
   readonly VITE_RPC_MAINNET_INFURA: string;
   readonly VITE_KEY_INFURA: string;

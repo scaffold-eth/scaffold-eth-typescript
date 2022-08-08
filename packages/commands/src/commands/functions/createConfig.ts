@@ -1,8 +1,8 @@
 import chalk from 'chalk';
 
 import { set, editor } from '~~/helpers/configManager';
-import { TSolidityToolkits, TNetworkNames, TReactBuild } from '~common/models';
-import { scaffoldConfigSchema, TScaffoldConfig } from '~~/models/TScaffoldConfig';
+import { TSolidityToolkits, TNetworkNames, TReactBuilds } from '~common/models';
+import { scaffoldConfigSchema, TScaffoldConfig } from '~common/models';
 
 export const createConfig = (config: TScaffoldConfig) => {
   set('build', config.build);
@@ -19,7 +19,7 @@ export const parseCreateConfigArgs = (...args: string[]): Parameters<typeof crea
     const input: TScaffoldConfig = {
       build: {
         solidityToolkit: args[0] as TSolidityToolkits,
-        reactBuild: args[2] as TReactBuild,
+        reactBuild: args[2] as TReactBuilds,
       },
       runtime: {
         targetNetworks: args[1].split(',').map((x) => x.trim()) as TNetworkNames[],

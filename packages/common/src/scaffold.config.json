@@ -4,8 +4,6 @@
     "reactBuild": "vite"
   },
   "runtime": {
-    "targetNetworks": [
-      "localhost"
-    ]
+    "targetNetworks": ["localhost", "mainnet"]
   }
 }

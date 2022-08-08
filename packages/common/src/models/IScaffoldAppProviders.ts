@@ -2,7 +2,8 @@ import { TCreateEthersModalConnector, TEthersAdaptor, TEthersProvider, TNetworkI
 
 export interface IScaffoldAppProviders {
   currentProvider: TEthersProvider | undefined;
-  targetNetwork: TNetworkInfo;
+  currentTargetNetwork: TNetworkInfo;
+  targetNetworks: { [chainId: number]: TNetworkInfo };
   mainnetAdaptor: TEthersAdaptor | undefined;
   localAdaptor: TEthersAdaptor | undefined;
   createLoginConnector: TCreateEthersModalConnector;

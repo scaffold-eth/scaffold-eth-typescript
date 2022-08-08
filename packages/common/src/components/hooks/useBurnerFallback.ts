@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 import { IScaffoldAppProviders } from '../../models/IScaffoldAppProviders';
 
-import { NETWORKS } from '~common/constants/networks';
+import { networkDefinitions } from '~common/constants/networkDefinitions';
 
 export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: boolean): void => {
   const ethersAppContext = useEthersAppContext();
@@ -13,15 +13,15 @@ export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: b
 
   useEffect(() => {
     const sameUrl =
-      ethersAppContext.provider?.connection?.url === NETWORKS.localhost.url ||
-      ethersAppContext.provider?.connection?.url === NETWORKS.localhost.url.replace('127.0.0.1', 'localhost');
+      ethersAppContext.provider?.connection?.url === networkDefinitions.localhost.url ||
+      ethersAppContext.provider?.connection?.url === networkDefinitions.localhost.url.replace('127.0.0.1', 'localhost');
     /**
      * if the current provider is local provider then use the burner fallback
      */
     if (
       burnerFallback?.signer &&
       burnerFallback?.account !== ethersAppContext.account &&
-      ethersAppContext.chainId === NETWORKS.localhost.chainId &&
+      ethersAppContext.chainId === networkDefinitions.localhost.chainId &&
       sameUrl &&
       ethersAppContext.changeSigner &&
       localAddress != null &&

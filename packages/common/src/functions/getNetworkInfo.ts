@@ -1,16 +1,16 @@
 import { getNetwork } from '@ethersproject/networks';
 import { TNetworkInfo } from 'eth-hooks/models';
 
-import { NETWORKS } from '~common/constants';
+import { networkDefinitions } from '~common/constants';
 import { TNetworkNames } from '~common/models';
 
 export const getNetworkInfo = (chainId: number | undefined): TNetworkInfo | undefined => {
   if (!chainId) return;
 
-  for (const n in NETWORKS) {
+  for (const n in networkDefinitions) {
     const names = n as TNetworkNames;
-    if (NETWORKS[names].chainId === chainId) {
-      return NETWORKS[names];
+    if (networkDefinitions[names].chainId === chainId) {
+      return networkDefinitions[names];
     }
   }
 
