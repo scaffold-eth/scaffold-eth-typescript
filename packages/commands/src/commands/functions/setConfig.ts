@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 
 import { set, editor, load } from '~~/helpers/configManager';
-import { TReactBuilds } from '~common/models';
+import { TReactBuilds, TSolidityToolkits } from '~common/models';
 import { scaffoldConfigSchema, TScaffoldConfig } from '~common/models';
 import { config } from 'shelljs';
 
@@ -44,6 +44,17 @@ export const parseReactBuild = (...args: string[]): Parameters<typeof setConfig>
   const input: DeepPartial<TScaffoldConfig> = {
     build: {
       reactBuild: args[0] as TReactBuilds,
+    },
+  };
+
+  return [validateConfig(input)];
+};
+
+export const parseSolidityToolkit = (...args: string[]): Parameters<typeof setConfig> => {
+  console.log();
+  const input: DeepPartial<TScaffoldConfig> = {
+    build: {
+      solidityToolkit: args[0] as TSolidityToolkits,
     },
   };
 

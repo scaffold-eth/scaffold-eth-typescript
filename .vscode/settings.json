@@ -50,6 +50,7 @@
   "eslint.debug": true,
   "eslint.enable": true,
   "eslint.workingDirectories": [
+    { "directory": "packages/*", "changeProcessCWD": true },
     { "directory": "packages/hardhat-ts", "changeProcessCWD": true },
     { "directory": "packages/vite-app-ts", "changeProcessCWD": true },
     { "directory": "packages/nextjs-app-ts", "changeProcessCWD": true },

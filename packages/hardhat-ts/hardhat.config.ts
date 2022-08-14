@@ -7,6 +7,7 @@ import path from 'path';
 
 import { hardhatNamedAccounts } from '@scaffold-eth/common/src/constants';
 import { getNetworks } from '@scaffold-eth/common/src/functions';
+import chalk from 'chalk';
 import { config as envConfig } from 'dotenv';
 import glob from 'glob';
 import { removeConsoleLog } from 'hardhat-preprocessor';
@@ -30,9 +31,15 @@ envConfig({ path: '../vite-app-ts/.env' });
  * this loads all the tasks from the tasks folder
  */
 if (process.env.BUILDING !== 'true') {
-  glob.sync('./tasks/**/*.ts').forEach((file: string) => {
-    require(path.resolve(file));
-  });
+  console.log(chalk.yellow('🙋 Make sure to compile hardhat first: `yarn compile`'));
+  console.log();
+  try {
+    glob.sync('./tasks/**/*.ts').forEach((file: string) => {
+      require(path.resolve(file));
+    });
+  } catch (e) {
+    throw e;
+  }
 }
 
 /**

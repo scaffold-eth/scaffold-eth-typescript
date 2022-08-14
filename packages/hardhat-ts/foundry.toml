@@ -1,4 +1,4 @@
-[default]
+[profile.default]
 src = 'contracts'
 out = 'generated/foundry/artifacts'
 libs = ['lib', 'node_modules']

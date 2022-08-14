@@ -2,7 +2,7 @@ import { Command } from 'commander';
 import { buildReact, startReact } from '~~/commands/functions/launch';
 
 import { createConfig, parseCreateConfigArgs } from './functions/createConfig';
-import { setConfig, parseReactBuild } from './functions/setConfig';
+import { setConfig, parseReactBuild, parseSolidityToolkit } from './functions/setConfig';
 
 const program = new Command();
 
@@ -17,6 +17,9 @@ program
     createConfig(...parseCreateConfigArgs(...args));
   });
 
+/*********************************** */
+/* React Build Commands            */
+
 program
   .command('set-react-build')
   .description('Set the react build tool')
@@ -28,6 +31,31 @@ program
 program
   .command('start')
   .description('Start the react front end')
+  .action(() => {
+    startReact();
+  });
+
+program
+  .command('build')
+  .description('Build the react front end')
+  .action(() => {
+    buildReact();
+  });
+
+/*********************************** */
+/* Solidity commands            */
+
+program
+  .command('set-solidity-toolkit')
+  .description('Set the solidity toolkit')
+  .argument('[react build tool]', 'Use foundry or hardhat for your frontend', 'hardhat')
+  .action((...args: string[]) => {
+    setConfig(...parseSolidityToolkit(...args));
+  });
+
+program
+  .command('deploy')
+  .description('Deploy your contracts')
   .action(() => {
     startReact();
   });

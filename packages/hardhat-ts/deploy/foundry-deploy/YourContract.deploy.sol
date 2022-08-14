@@ -5,12 +5,10 @@ import "forge-std/Script.sol";
 
 import { YourContract } from "contracts/yourContract.sol";
 
-contract YourContractScript is Script {
+contract YourContractDeploy is Script {
   function setUp() public {}
 
   function run() public {
-    vm.startBroadcast();
     new YourContract();
-    vm.stopBroadcast();
   }
 }

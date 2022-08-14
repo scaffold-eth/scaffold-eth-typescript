@@ -1,4 +1,4 @@
-export const NetworkNames = [
+export const NetworkNamesList = [
   'localhost',
   'mainnet',
   'kovan',
@@ -17,7 +17,11 @@ export const NetworkNames = [
   'testnetFantom',
   'fantom',
 ] as const;
-export type TNetworkNames = typeof NetworkNames[number];
+
+export type TNetworkNamesList = typeof NetworkNamesList[number];
+export type TNetworkNames = {
+  [key in TNetworkNamesList]: key;
+};
 
 export const solidityToolkits = ['hardhat', 'foundry'] as const;
 export type TSolidityToolkits = typeof solidityToolkits[number];

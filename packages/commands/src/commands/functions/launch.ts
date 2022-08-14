@@ -28,3 +28,16 @@ export const buildReact = () => {
     console.log(chalk.red('❌ Error! Invalid react build tool in config!'));
   }
 };
+
+export const deploySolidity = () => {
+  const config = load();
+  printConfig(config);
+
+  if (config.build.solidityToolkit === 'hardhat') {
+    shell.exec('yarn workspace @scaffold-eth/hardhat deploy');
+  } else if (config.build.solidityToolkit === 'foundry') {
+    shell.exec('yarn workspace @scaffold-eth/nextjs-app build');
+  } else {
+    console.log(chalk.red('❌ Error! Invalid react build tool in config!'));
+  }
+};

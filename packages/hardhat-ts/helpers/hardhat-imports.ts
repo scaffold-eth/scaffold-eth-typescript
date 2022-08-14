@@ -11,3 +11,4 @@ import 'hardhat-gas-reporter';
 import 'hardhat-contract-sizer';
 import '@openzeppelin/hardhat-upgrades';
 import '@nomiclabs/hardhat-solhint';
+import 'hardhat-deploy-ethers';
