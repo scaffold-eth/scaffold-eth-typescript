@@ -2067,8 +2067,8 @@ __metadata:
     eslint-plugin-react: ^7.30.1
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: 3.5.0
-    eth-hooks: 4.6.0
+    eth-components: 3.5.2
+    eth-hooks: 4.6.1
     ethers: ^5.6.9
     fortmatic: ^2.4.0
     husky: ^8.0.1
@@ -2245,8 +2245,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: 3.5.0
-    eth-hooks: 4.6.0
+    eth-components: 3.5.2
+    eth-hooks: 4.6.1
     ethereum-cryptography: ^1.1.2
     ethers: ^5.6.9
     events: ^3.3.0
@@ -2372,8 +2372,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: 3.5.0
-    eth-hooks: 4.6.0
+    eth-components: 3.5.2
+    eth-hooks: 4.6.1
     ethereum-cryptography: ^1.1.2
     ethers: ^5.6.9
     events: ^3.3.0
@@ -9580,9 +9580,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-components@npm:3.5.0":
-  version: 3.5.0
-  resolution: "eth-components@npm:3.5.0"
+"eth-components@npm:3.5.2":
+  version: 3.5.2
+  resolution: "eth-components@npm:3.5.2"
   dependencies:
     "@ethersproject/abstract-signer": ^5.6.2
     "@ethersproject/address": ^5.6.1
@@ -9596,7 +9596,7 @@ __metadata:
     "@ethersproject/units": ^5.6.1
     axios: ^0.27.2
     bnc-notify: ^1.9.5
-    eth-hooks: ^4.6.0
+    eth-hooks: ^4.6.1
     ethers: ^5.6.8
     qrcode.react: ^3.0.2
     react-blockies: ^1.4.1
@@ -9610,7 +9610,7 @@ __metadata:
     react: ">=17"
     react-css-theme-switcher: ^0.3.0
     react-dom: ">=17"
-  checksum: 8a0da7a95ab735727204aeb2c5c2a6e9f8fd316c06a5875133c1b21f02dd2d785f298fd89f03c6c3e5cab4785a83d7c8d18f237d57f664f80a9be3bc7a3c0118
+  checksum: 5c5dc441b097d401e8e9925d22c7446fb79468a6cd3536a6336f62078f55f2ca8f59c695627806f77c664d4a0a69378944499ecef78a23a1bdc9828064a20cb1
   languageName: node
   linkType: hard
 
@@ -9652,9 +9652,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:4.6.0, eth-hooks@npm:^4.6.0":
-  version: 4.6.0
-  resolution: "eth-hooks@npm:4.6.0"
+"eth-hooks@npm:4.6.1, eth-hooks@npm:^4.6.1":
+  version: 4.6.1
+  resolution: "eth-hooks@npm:4.6.1"
   dependencies:
     "@ethersproject/abi": ^5.6.4
     "@ethersproject/abstract-provider": ^5.6.1
@@ -9677,7 +9677,7 @@ __metadata:
     merge-anything: ^5.0.2
     react-query: ^3.39.2
     ts-invariant: ^0.10.3
-    use-debounce: ^8.0.2
+    use-debounce: ^8.0.3
     usehooks-ts: ^2.6.0
     web3modal: ^1.9.8
     zustand: 4.0.0
@@ -9685,7 +9685,7 @@ __metadata:
     "@uniswap/sdk": ^3
     react: ">=17"
     react-dom: ">=17"
-  checksum: ad8ed4496b6f0b469ac2d5f6f9a32f6b657f80c660fa3693907edc847b420927e988c181b671ea55459b162cb87b4f778178c2011b58b06ed862e6c0adee6bcf
+  checksum: 1b5cad950a8677c09b194d780e7829e957b93762017f0e049dff90dac31e5ca2c4062d499939055d32becb8c423588fa6a4c4e6dc3edbfe41ee5a94175507952
   languageName: node
   linkType: hard
 
@@ -23133,7 +23133,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-debounce@npm:^8.0.1, use-debounce@npm:^8.0.2, use-debounce@npm:^8.0.3":
+"use-debounce@npm:^8.0.1, use-debounce@npm:^8.0.3":
   version: 8.0.3
   resolution: "use-debounce@npm:8.0.3"
   peerDependencies:
