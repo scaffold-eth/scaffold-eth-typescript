@@ -11,6 +11,8 @@ packages/vite-app-ts/dist
 packages/**/data
 build
 dist
+**/generated/**/*
+!**/generated/.gitignore
 
 # hardhat ts
 packages/hardhat-ts/cache
