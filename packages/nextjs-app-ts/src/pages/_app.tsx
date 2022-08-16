@@ -5,13 +5,14 @@ import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-components/models';
 import { EthersAppContext } from 'eth-hooks/context';
-import type { AppProps } from 'next/app';
+import { NextComponentType } from 'next';
+import { AppContext, AppInitialProps, AppProps } from 'next/app';
 import React, { FC, ReactNode, Suspense, useState } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 
 import { ErrorBoundary, ErrorFallback } from '~common/components';
-import { BLOCKNATIVE_DAPPID } from '~~/config/app.config';
+import { BLOCKNATIVE_DAPPID, loadAppConfig, TAppConfig } from '~~/config/app.config';
 
 const cache = createCache({ key: 'next' });
 
@@ -62,7 +63,7 @@ const ProviderWrapper: FC<{ children?: ReactNode }> = (props) => {
  * This component sets up all the providers, Suspense and Error handling
  * @returns
  */
-const App: FC<AppProps> = ({ Component, ...props }) => {
+const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Component, ...props }) => {
   const [queryClient] = useState(() => new QueryClient());
 
   console.log('loading app...');
@@ -81,6 +82,26 @@ const App: FC<AppProps> = ({ Component, ...props }) => {
       </CacheProvider>
     </ErrorBoundary>
   );
+};
+
+export const getInitialProps = async ({
+  Component,
+  ctx,
+}: AppContext): Promise<{ config: TAppConfig } & AppInitialProps> => {
+  console.log('getInitialProps...');
+  const config = await loadAppConfig();
+  const pageProps = (await Component.getInitialProps?.({ ...ctx })) ?? {};
+  return { config, pageProps };
+};
+
+export const appGetInitialProps = async ({
+  Component,
+  ctx,
+}: AppContext): Promise<{ config: TAppConfig } & AppInitialProps> => {
+  console.log('getInitialProps...');
+  const config = await loadAppConfig();
+  const pageProps = (await Component.getInitialProps?.({ ...ctx })) ?? {};
+  return { config, pageProps };
 };
 
 export default App;

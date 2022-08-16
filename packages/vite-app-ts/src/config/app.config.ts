@@ -74,12 +74,6 @@ if (DEBUG)
     `BURNER_FALLBACK_ENABLED: ${BURNER_FALLBACK_ENABLED}`,
     `CONNECT_TO_BURNER_AUTOMATICALLY: ${CONNECT_TO_BURNER_AUTOMATICALLY}`
   );
-
-/** ******************************
- * SUBGRAPH
- * ****************************** */
-export const SUBGRAPH_URI = 'http://localhost:8000/subgraphs/name/scaffold-eth/your-contract';
-
 /** ******************************
  * PROVIDERS CONFIG
  ****************************** */
