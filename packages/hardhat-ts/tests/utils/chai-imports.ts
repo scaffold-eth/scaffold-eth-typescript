@@ -1,10 +1,9 @@
 // import { smock } from '@defi-wonderland/smock';
-import { should, use } from 'chai';
-import { solidity } from 'ethereum-waffle';
+import { should } from 'chai';
+import '@nomicfoundation/hardhat-chai-matchers';
 // import sinonChai from 'sinon-chai';
 
 // use(sinonChai);
-use(solidity);
 
 should(); // if you like should syntax
 // use(smock.matchers);

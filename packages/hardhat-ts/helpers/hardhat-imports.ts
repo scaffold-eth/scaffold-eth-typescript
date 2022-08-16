@@ -2,19 +2,15 @@ import 'tsconfig-paths/register';
 
 import '@typechain/hardhat';
 
-import '@nomiclabs/hardhat-waffle';
-import '@nomiclabs/hardhat-ethers';
-
-import 'hardhat-deploy';
-import 'solidity-coverage';
-
+import '@nomicfoundation/hardhat-toolbox';
 import 'hardhat-watcher';
 import '@tenderly/hardhat-tenderly';
 import '@primitivefi/hardhat-dodoc';
 import 'hardhat-tracer';
-import 'hardhat-gas-reporter';
 import 'hardhat-contract-sizer';
+
 import '@openzeppelin/hardhat-upgrades';
 import '@nomiclabs/hardhat-solhint';
 
+import 'hardhat-deploy';
 import 'hardhat-deploy-ethers';

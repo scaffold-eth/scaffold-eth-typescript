@@ -112,6 +112,7 @@ export const config: HardhatUserConfig = {
     },
   },
   gasReporter: {
+    enabled: true,
     coinmarketcap: process.env.COINMARKETCAP_API_KEY,
     currency: 'USD',
   },
