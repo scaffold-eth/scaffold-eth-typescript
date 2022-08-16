@@ -28,9 +28,10 @@
       "~common/*": ["../common/src/*"]
     }
   },
-  "include": ["types", "scripts", "tests", "helpers", "./hardhat.config.ts", "deploy", "tasks", "scripts"],
+  "include": ["types", "scripts", "tests", "helpers", "./hardhat.config.ts", "deploy", "tasks", "scripts", "../common/src"],
   "exclude": ["**/node_modules"],
   "ts-node": {
+    "swc": true,
     "compilerOptions": {
       "module": "CommonJS"
     },

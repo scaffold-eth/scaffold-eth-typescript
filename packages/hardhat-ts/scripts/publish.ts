@@ -1,5 +1,3 @@
-import '@nomiclabs/hardhat-ethers';
-import '@nomiclabs/hardhat-waffle';
 import fs from 'fs';
 
 import chalk from 'chalk';

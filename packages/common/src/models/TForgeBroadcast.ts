@@ -22,7 +22,15 @@ export const forgeTransactionSchema = z.object({
 
 export const forgeBroadcastSchema = z.object({
   transactions: z.array(forgeTransactionSchema),
+  chainId: z.string(),
 });
+
+export const TForgeBoradcastCollection = z.record(
+  z.number({ description: 'chainId' }),
+  z.object({
+    transactions: z.array(forgeTransactionSchema),
+  })
+);
 
 export type TForgeTransactionData = z.infer<typeof forgeTransactionDataSchema>;
 

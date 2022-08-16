@@ -1,15 +1,62 @@
 import chalk from 'chalk';
 
+import {
+  TSolidityToolkits,
+  TReactBuilds,
+  TNetworkNamesList,
+  scaffoldConfigSchema,
+  TScaffoldConfig,
+} from '~common/models';
 import { set, editor, load } from '~~/helpers/configManager';
-import { TReactBuilds, TSolidityToolkits } from '~common/models';
-import { scaffoldConfigSchema, TScaffoldConfig } from '~common/models';
-import { config } from 'shelljs';
 
 export type DeepPartial<T> = {
   [P in keyof T]?: DeepPartial<T[P]>;
 };
 
-export const setConfig = (config: DeepPartial<TScaffoldConfig>) => {
+export const createConfig = (config: TScaffoldConfig): void => {
+  set('build', config.build);
+  set('runtime', config.runtime);
+
+  editor.save();
+  console.log(chalk.green(`✅ Success! Created scaffold.config.json in packages/common`));
+  console.log(chalk.green('With: '), config);
+};
+
+export const parseCreateConfigArgs = (...args: string[]): Parameters<typeof createConfig> => {
+  console.log();
+  try {
+    const input: DeepPartial<TScaffoldConfig> = {
+      build: {
+        solidityToolkit: args[0] as TSolidityToolkits,
+        reactBuild: args[2] as TReactBuilds,
+      },
+      runtime: {
+        targetNetworks: args[1]
+          .split(',')
+          .filter((y) => y.length > 0)
+          .map((x) => x.trim()) as TNetworkNamesList[],
+      },
+    };
+
+    const config = scaffoldConfigSchema.safeParse(input);
+
+    if (config.success === false) {
+      console.log(chalk.red('❌ Error! Invalid config values!'));
+      config.error.errors.forEach((err) => {
+        console.log(chalk.red('  -  ', err.message, ';'));
+      });
+      console.log('arguments: ', input);
+      throw '';
+    }
+
+    return [config.data];
+  } catch (err) {
+    console.log(chalk.red('❌ Error! Invalid parameters, could not parse them!'));
+    throw err;
+  }
+};
+
+export const setConfig = (config: DeepPartial<TScaffoldConfig>): void => {
   const oldConfig = load();
   set('build', { ...oldConfig.build, ...config.build });
   set('runtime', { ...oldConfig.runtime, ...config.runtime });
@@ -23,7 +70,7 @@ const validateConfig = (input: DeepPartial<TScaffoldConfig>): DeepPartial<TScaff
   try {
     const config = scaffoldConfigSchema.deepPartial().safeParse(input);
 
-    if (config.success == false) {
+    if (config.success === false) {
       console.log(chalk.red('❌ Error! Invalid config values!'));
       config.error.errors.forEach((err) => {
         console.log(chalk.red('  -  ', err.message, ';'));

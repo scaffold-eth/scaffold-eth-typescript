@@ -3,7 +3,7 @@ import { TNetworkInfo, TEthersProvider } from 'eth-hooks/models';
 import { invariant } from 'ts-invariant';
 
 import { networkDefinitions } from '~common/constants';
-import { scaffoldConfig } from '~common/scaffold.config';
+import { loadScaffoldConfig } from '~common/scaffold.config';
 
 /** ******************************
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
@@ -15,6 +15,8 @@ import { scaffoldConfig } from '~common/scaffold.config';
  * See packages/common/scaffold.config.ts for scaffold configuration
  * see .env files for api keys
  */
+
+const scaffoldConfig = await loadScaffoldConfig();
 
 export const DEBUG = true;
 invariant.log('MODE', import.meta.env.MODE, import.meta.env.DEV);
@@ -42,7 +44,7 @@ TARGET_NETWORKS.forEach((m) => (TARGET_NETWORK_INFO[networkDefinitions[m].chainI
 if (DEBUG) console.log(`📡 Can connect to `, TARGET_NETWORK_INFO);
 
 /** ******************************
- * APP CONFIG:
+ * LOCAL HOST CONFIG:
  ****************************** */
 /**
  * localhost faucet enabled
@@ -73,31 +75,36 @@ if (DEBUG)
     `CONNECT_TO_BURNER_AUTOMATICALLY: ${CONNECT_TO_BURNER_AUTOMATICALLY}`
   );
 
+/** ******************************
+ * SUBGRAPH
+ * ****************************** */
 export const SUBGRAPH_URI = 'http://localhost:8000/subgraphs/name/scaffold-eth/your-contract';
+
 /** ******************************
  * PROVIDERS CONFIG
  ****************************** */
 
-export const INFURA_ID = import.meta.env.VITE_KEY_INFURA;
+export const INFURA_ID = import.meta.env.VITE_KEY_INFURA ?? scaffoldConfig.runtime.buidlGuidl.infuraId;
 
 // -------------------
 // Connecting to mainnet
 // -------------------
-// attempt to connect to our own scaffold eth rpc and if that fails fall back to infura...
-const mainnetScaffoldEthProvider = new StaticJsonRpcProvider(import.meta.env.VITE_RPC_MAINNET);
-const mainnetInfura = new StaticJsonRpcProvider(
-  `${import.meta.env.VITE_RPC_MAINNET_INFURA}/${import.meta.env.VITE_KEY_INFURA}`
+const mainnetProvider = new StaticJsonRpcProvider(
+  import.meta.env.VITE_RPC_MAINNET ?? scaffoldConfig.runtime.buidlGuidl.rpcMainnet
 );
-// const mainnetProvider = new InfuraProvider("mainnet",import.meta.env.VITE_KEY_INFURA);
+
+// incase there are issues
+// const mainnetProvider = new InfuraProvider('mainnet', import.meta.env.VITE_KEY_INFURA);
 
 // 🚊 your mainnet provider
-export const MAINNET_PROVIDER = mainnetScaffoldEthProvider;
+export const MAINNET_PROVIDER = mainnetProvider;
 
 // -------------------
 // connecting to local provider
 // -------------------
 
 if (DEBUG) console.log('🏠 Connecting to local provider:', networkDefinitions.localhost.url);
+
 export const LOCAL_PROVIDER: TEthersProvider | undefined =
   TARGET_NETWORK_INFO[networkDefinitions.localhost.chainId] != null && import.meta.env.DEV
     ? new StaticJsonRpcProvider(networkDefinitions.localhost.url)

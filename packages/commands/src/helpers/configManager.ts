@@ -1,5 +1,6 @@
 import chalk from 'chalk';
 import editJson from 'edit-json-file';
+
 import { scaffoldConfigSchema, TScaffoldConfig } from '~common/models';
 
 const packagesPath = '../../packages';
@@ -8,7 +9,7 @@ const configPath = packagesPath + '/common/src/scaffold.config.json';
 export const editor = editJson(configPath);
 
 type TConfigKeys = keyof TScaffoldConfig;
-export const set = (key: TConfigKeys, value: any) => {
+export const set = (key: TConfigKeys, value: any): void => {
   editor.set(key, value);
 };
 
@@ -25,7 +26,7 @@ export const load = (): TScaffoldConfig => {
   }
 };
 
-export const printConfig = (config: TScaffoldConfig) => {
+export const printConfig = (config: TScaffoldConfig): void => {
   console.log('----------------------------------------------------');
   console.log(chalk.green('✔️  Loaded scaffold.config.json:'));
   console.log(config);

@@ -73,6 +73,9 @@ export default defineConfig({
     exclude: excludeDeps,
     include: ['@scaffold-eth/common', 'eth-hooks', 'eth-components'],
   },
+  json: {
+    namedExports: true,
+  },
   resolve: {
     preserveSymlinks: true,
     mainFields: ['module', 'main', 'browser'],

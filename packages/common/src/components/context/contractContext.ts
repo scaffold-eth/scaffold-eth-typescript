@@ -11,7 +11,7 @@ import { getAppContractsConfig } from '~common/config';
  * ### Summary
  * This type describes all your contracts, it is the return of {@link getgetAppContractsConfig}
  */
-export type TAppConnectorList = NonNullable<ReturnType<typeof getAppContractsConfig>>;
+export type TAppConnectorList = ReturnType<typeof getAppContractsConfig>;
 
 /**
  * #### Summary

@@ -4,7 +4,7 @@ import { invariant } from 'ts-invariant';
 
 import { externalContractsAddressMap } from './externalContracts.config';
 
-import * as hardhatContracts from '~common/generated/contract-types';
+import * as toolkitContracts from '~common/generated/contract-types/';
 import * as externalContracts from '~common/generated/external-contracts/esm/types';
 import hardhatDeployedContractsJson from '~common/generated/hardhat_contracts.json';
 
@@ -28,13 +28,13 @@ export const getAppContractsConfig = () => {
       // --------------------------------------------------
       YourContract: createConnectorForHardhatContract(
         'YourContract',
-        hardhatContracts.YourContract__factory,
+        toolkitContracts.YourContract__factory,
         hardhatDeployedContractsJson
       ),
 
       YourNFT: createConnectorForHardhatContract(
         'YourNFT',
-        hardhatContracts.YourNFT__factory,
+        toolkitContracts.YourNFT__factory,
         hardhatDeployedContractsJson
       ),
 
@@ -65,7 +65,6 @@ export const getAppContractsConfig = () => {
       '❌ getAppContractsConfig: ERROR with loading contracts please run `yarn contracts:build or yarn contracts:rebuild`.  Then run `yarn deploy`!'
     );
     invariant.error(e);
+    throw e;
   }
-
-  return undefined;
 };
