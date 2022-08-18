@@ -7,6 +7,7 @@ import { Ramp, getFaucetAvailable, ThemeSwitcher } from '~common/components';
 import { networkDefinitions } from '~common/constants';
 import { getNetworkInfo } from '~common/functions';
 import { IScaffoldAppProviders } from '~common/models';
+import { FAUCET_ENABLED } from '~~/config/app.config';
 import { TAppProps } from '~~/models/TAppProps';
 
 export interface IMainPageFooterProps {
@@ -28,11 +29,7 @@ export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
   const ethersAppContext = useEthersAppContext();
 
   // Faucet Tx can be used to send funds from the faucet
-  const faucetAvailable = getFaucetAvailable(
-    props.scaffoldAppProviders,
-    ethersAppContext,
-    appProps.config.FAUCET_ENABLED
-  );
+  const faucetAvailable = getFaucetAvailable(props.scaffoldAppProviders, ethersAppContext, FAUCET_ENABLED);
 
   const network = getNetworkInfo(ethersAppContext.chainId);
 

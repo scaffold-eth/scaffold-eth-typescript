@@ -3,7 +3,7 @@ import { TNetworkInfo, TEthersProvider } from 'eth-hooks/models';
 import { invariant } from 'ts-invariant';
 
 import { networkDefinitions } from '~common/constants';
-import { loadScaffoldConfig } from '~common/scaffold.config';
+import { scaffoldConfig } from '~common/scaffold.config';
 
 /** ******************************
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
@@ -15,8 +15,6 @@ import { loadScaffoldConfig } from '~common/scaffold.config';
  * See packages/common/scaffold.config.ts for scaffold configuration
  * see .env files for api keys
  */
-
-const scaffoldConfig = await loadScaffoldConfig();
 
 export const DEBUG = true;
 invariant.log('MODE', import.meta.env.MODE, import.meta.env.DEV);

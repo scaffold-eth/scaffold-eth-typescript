@@ -1,15 +1,29 @@
+import json from './scaffold.config.json';
+
 import { scaffoldConfigSchema, TScaffoldConfig } from '~common/models';
+
+/**
+ * Use this for your app
+ */
+export const scaffoldConfig: TScaffoldConfig = scaffoldConfigSchema.parse(json);
 
 // this logic is a bit redundant, as it has to work with esm, commonjs and hardhat
 
-export let scaffoldConfig: TScaffoldConfig;
+/**
+ * use this for hardhat and node commonjs
+ */
+let configForHardhat: TScaffoldConfig = scaffoldConfig;
 export const loadScaffoldConfig = async (): Promise<TScaffoldConfig> => {
   const data = await import('~common/scaffold.config.json');
-  scaffoldConfig = scaffoldConfigSchema.parse(data);
+  configForHardhat = scaffoldConfigSchema.parse(data);
 
   console.log('...done loading scaffold config');
   return scaffoldConfig;
 };
 
 void loadScaffoldConfig();
-export default scaffoldConfig;
+/**
+ * use this for hardhat
+ */
+// @ts-ignore
+export default configForHardhat;

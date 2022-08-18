@@ -1,8 +1,6 @@
 /* eslint-disable */
 //import './helpers/__global';
 
-import { loadScaffoldConfig } from '~common/scaffold.config';
-
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
  * 🏹 See ./pages/MainPage.tsx for main app component!

@@ -12,7 +12,8 @@ import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 
 import { ErrorBoundary, ErrorFallback } from '~common/components';
-import { BLOCKNATIVE_DAPPID, loadAppConfig } from '~~/config/app.config';
+import { BLOCKNATIVE_DAPPID } from '~~/config/app.config';
+import { appGetInitialProps } from '~~/functions/nextjs/appGetInitialProps';
 
 const cache = createCache({ key: 'next' });
 
@@ -86,11 +87,6 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Compo
   );
 };
 
-MyApp.getInitialProps = async ({ Component, ctx }: AppContext): Promise<AppInitialProps> => {
-  const config = await loadAppConfig();
-  console.log('app getInitialProps...');
-  const pageProps = (await Component.getInitialProps?.({ ...ctx })) ?? {};
-  return { pageProps: { ...pageProps, appProps: { config } } };
-};
-export const getInitialProps = MyApp.getInitialProps;
+MyApp.getInitialProps = appGetInitialProps;
+export const getInitialProps = appGetInitialProps;
 export default MyApp;

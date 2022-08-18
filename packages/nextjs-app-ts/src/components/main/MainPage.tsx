@@ -14,6 +14,14 @@ import { useBurnerFallback } from '~common/components/hooks/useBurnerFallback';
 import { useScaffoldAppProviders } from '~common/components/hooks/useScaffoldAppProviders';
 import { networkDefinitions } from '~common/constants';
 import { useScaffoldHooksExamples } from '~~/components/hooks/useScaffoldHooksExamples';
+import {
+  TARGET_NETWORK_INFO,
+  CONNECT_TO_BURNER_AUTOMATICALLY,
+  LOCAL_PROVIDER,
+  MAINNET_PROVIDER,
+  INFURA_ID,
+  BURNER_FALLBACK_ENABLED,
+} from '~~/config/app.config';
 import { TAppProps } from '~~/models/TAppProps';
 
 /** ********************************
@@ -47,18 +55,18 @@ export const MainPage: NextPage<IMainPageProps> = (props) => {
   // 🛰 providers
   // see useLoadProviders.ts for everything to do with loading the right providers
   const scaffoldAppProviders = useScaffoldAppProviders({
-    targetNetworks: appProps.config.TARGET_NETWORK_INFO,
-    connectToBurnerAutomatically: appProps.config.CONNECT_TO_BURNER_AUTOMATICALLY,
-    localProvider: appProps.config.LOCAL_PROVIDER,
-    mainnetProvider: appProps.config.MAINNET_PROVIDER,
-    infuraId: appProps.config.INFURA_ID,
+    targetNetworks: TARGET_NETWORK_INFO,
+    connectToBurnerAutomatically: CONNECT_TO_BURNER_AUTOMATICALLY,
+    localProvider: LOCAL_PROVIDER,
+    mainnetProvider: MAINNET_PROVIDER,
+    infuraId: INFURA_ID,
   });
 
   // 🦊 Get your web3 ethers context from current providers
   const ethersAppContext = useEthersAppContext();
 
   // if no user is found use a burner wallet on localhost as fallback if enabled
-  useBurnerFallback(scaffoldAppProviders, appProps.config.BURNER_FALLBACK_ENABLED);
+  useBurnerFallback(scaffoldAppProviders, BURNER_FALLBACK_ENABLED);
 
   // -----------------------------
   // Load Contracts
@@ -66,7 +74,7 @@ export const MainPage: NextPage<IMainPageProps> = (props) => {
   // 🛻 load contracts
   useLoadAppContracts();
   // 🏭 connect to contracts for mainnet network & signer
-  const [mainnetAdaptor] = useEthersAdaptorFromProviderOrSigners(appProps.config.MAINNET_PROVIDER);
+  const [mainnetAdaptor] = useEthersAdaptorFromProviderOrSigners(MAINNET_PROVIDER);
   useConnectAppContracts(mainnetAdaptor);
   // 🏭 connec to  contracts for current network & signer
   useConnectAppContracts(asEthersAdaptor(ethersAppContext));

@@ -1,9 +1,9 @@
-import { loadAppConfig } from '~~/config/app.config';
+// import { loadAppConfig } from '~~/config/app.config';
 
-export type TAppConfig = Awaited<ReturnType<typeof loadAppConfig>>;
+// export type TAppConfig = Awaited<ReturnType<typeof loadAppConfig>>;
 
 export type TAppProps = {
-  config: TAppConfig;
+  config: never;
 };
 
 export type TPageProps = {
