@@ -4,9 +4,10 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "start": "next dev",
     "dev": "next dev",
     "build": "yarn build:anttheme && next build",
-    "start": "next start",
+    "serve": "next start",
     "lint:next": "next lint",
     "lint": "eslint --config ./.eslintrc.js --ignore-path ./.eslintignore ./src",
     "build:anttheme": "yarn lessc -x -js ./src/styles/themes/ant-light-theme.less ./public/ant-light-theme.css && yarn lessc -x -js ./src/styles/themes/ant-dark-theme.less ./public/ant-dark-theme.css",

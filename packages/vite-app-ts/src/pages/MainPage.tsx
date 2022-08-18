@@ -45,6 +45,7 @@ export const MainPage: FC = () => {
   // -----------------------------
   // 🦊 Get your web3 ethers context from current providers
   const ethersAppContext = useEthersAppContext();
+)
 
   // 🛰 providers
   // see useLoadProviders.ts for everything to do with loading the right providers

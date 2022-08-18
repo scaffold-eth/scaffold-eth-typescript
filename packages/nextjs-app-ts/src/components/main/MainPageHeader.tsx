@@ -16,14 +16,14 @@ import { FaucetHintButton } from '~common/components';
 import { useAntNotification } from '~common/components/hooks';
 import { getNetworkInfo } from '~common/functions';
 import { IScaffoldAppProviders } from '~common/models';
-import { TAppConfig } from '~~/config/app.config';
+import { TAppProps } from '~~/models/TAppProps';
 
 // displays a page header
 export interface IMainPageHeaderProps {
   scaffoldAppProviders: IScaffoldAppProviders;
   price: number;
   children?: ReactNode;
-  config?: TAppConfig;
+  appProps: TAppProps;
 }
 
 /**
@@ -33,7 +33,7 @@ export interface IMainPageHeaderProps {
  */
 export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
   // passed in by nextjs getInitalProps
-  const config: TAppConfig = props.config!;
+  const appProps: TAppProps = props.appProps;
 
   const settingsContext = useContext(EthComponentsSettingsContext);
   const ethersAppContext = useEthersAppContext();
@@ -113,7 +113,7 @@ export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
         ethComponentSettings={settingsContext}
         scaffoldAppProviders={props.scaffoldAppProviders}
         gasPrice={gasPrice}
-        faucetEnabled={config.FAUCET_ENABLED}
+        faucetEnabled={appProps.config.FAUCET_ENABLED}
       />
       {props.children}
     </div>

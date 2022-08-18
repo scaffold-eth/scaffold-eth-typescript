@@ -12,7 +12,7 @@ import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 
 import { ErrorBoundary, ErrorFallback } from '~common/components';
-import { BLOCKNATIVE_DAPPID, loadAppConfig, TAppConfig } from '~~/config/app.config';
+import { BLOCKNATIVE_DAPPID, loadAppConfig } from '~~/config/app.config';
 
 const cache = createCache({ key: 'next' });
 
@@ -63,15 +63,17 @@ const ProviderWrapper: FC<{ children?: ReactNode }> = (props) => {
  * This component sets up all the providers, Suspense and Error handling
  * @returns
  */
-const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Component, ...props }) => {
-  const [queryClient] = useState(() => new QueryClient());
-
+const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Component, ...props }) => {
   console.log('loading app...');
+  const [queryClient] = useState(() => new QueryClient());
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  const dehydradedState = props.pageProps.dehydratedState as unknown;
+
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <CacheProvider value={cache}>
         <QueryClientProvider client={queryClient}>
-          <Hydrate state={props.pageProps.dehydratedState}>
+          <Hydrate state={dehydradedState}>
             <ProviderWrapper>
               <Suspense fallback={<div />}>
                 <Component {...props.pageProps} />
@@ -84,24 +86,11 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Compone
   );
 };
 
-export const getInitialProps = async ({
-  Component,
-  ctx,
-}: AppContext): Promise<{ config: TAppConfig } & AppInitialProps> => {
-  console.log('getInitialProps...');
+MyApp.getInitialProps = async ({ Component, ctx }: AppContext): Promise<AppInitialProps> => {
   const config = await loadAppConfig();
+  console.log('app getInitialProps...');
   const pageProps = (await Component.getInitialProps?.({ ...ctx })) ?? {};
-  return { config, pageProps };
+  return { pageProps: { ...pageProps, appProps: { config } } };
 };
-
-export const appGetInitialProps = async ({
-  Component,
-  ctx,
-}: AppContext): Promise<{ config: TAppConfig } & AppInitialProps> => {
-  console.log('getInitialProps...');
-  const config = await loadAppConfig();
-  const pageProps = (await Component.getInitialProps?.({ ...ctx })) ?? {};
-  return { config, pageProps };
-};
-
-export default App;
+export const getInitialProps = MyApp.getInitialProps;
+export default MyApp;

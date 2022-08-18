@@ -27,6 +27,8 @@ declare global {
   }
 }
 
+export const DEBUG = false;
+
 /** ******************************
  * SUBGRAPH
  * ****************************** */
@@ -49,7 +51,6 @@ export const loadAppConfig = async () => {
 
   const scaffoldConfig = await loadScaffoldConfig();
 
-  const DEBUG = true;
   invariant.log('NODE_ENV', process.env.NODE_ENV);
   const isDev = process.env.NODE_ENV === 'development';
   invariant.log('env:dev', isDev);
@@ -71,7 +72,7 @@ export const loadAppConfig = async () => {
     );
   });
 
-  const TARGET_NETWORK_INFO: { [chainId: number]: TNetworkInfo } = {};
+  const TARGET_NETWORK_INFO: Record<string, TNetworkInfo> = {};
   TARGET_NETWORKS.forEach((m) => (TARGET_NETWORK_INFO[networkDefinitions[m].chainId] = networkDefinitions[m]));
 
   if (DEBUG) console.log(`📡 Can connect to `, TARGET_NETWORK_INFO);
@@ -132,9 +133,11 @@ export const loadAppConfig = async () => {
   if (DEBUG) console.log('🏠 Connecting to local provider:', networkDefinitions.localhost.url);
 
   const LOCAL_PROVIDER: TEthersProvider | undefined =
-    TARGET_NETWORK_INFO[networkDefinitions.localhost.chainId] != null && process.env.DEV
+    TARGET_NETWORK_INFO[networkDefinitions.localhost.chainId] != null && isDev
       ? new StaticJsonRpcProvider(networkDefinitions.localhost.url)
       : undefined;
+
+  if (DEBUG) console.log('LOCAL_PROVIDER', LOCAL_PROVIDER);
 
   return {
     SUBGRAPH_URI,
@@ -149,5 +152,3 @@ export const loadAppConfig = async () => {
     scaffoldConfig,
   };
 };
-
-export type TAppConfig = Awaited<ReturnType<typeof loadAppConfig>>;

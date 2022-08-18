@@ -18,6 +18,7 @@
     "scaffold": "yarn workspace @scaffold-eth/commands scaffold",
     "@🔖🔖🔖🔖🔖 react 🔖🔖🔖🔖🔖 ": "echo 🔖🔖🔖🔖🔖 ",
     "start": "yarn scaffold start",
+    "dev": "yarn scaffold start",
     "build": "yarn scaffold build",
     "serve": "yarn scaffold serve",
     "@🔖🔖🔖🔖🔖 solidity 🔖🔖🔖🔖🔖 ": "echo 🔖🔖🔖🔖🔖 ",

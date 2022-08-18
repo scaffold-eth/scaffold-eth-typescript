@@ -29,6 +29,7 @@ export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: b
     ) {
       void ethersAppContext.changeSigner?.(burnerFallback.signer);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     ethersAppContext.account,
     localAddress,
