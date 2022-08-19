@@ -27,9 +27,9 @@ program
 program
   .command('set-config')
   .description('Set scaffold.config.json file')
-  .argument('<toolkit>', ':  Solidity tooklit to use: `hardhat` or `foundry` (e.g. "hardhat")')
-  .argument('<networks>', ':  An array of networks to target. (e.g. "localhost, mainnet")')
-  .argument('<frontend>', 'React frontend, use nextjs or vite for your frontend')
+  .argument('<solidity>', ':  Solidity tooklit:  use `hardhat` or `foundry`')
+  .argument('<networks>', ':  An array of networks to target. (e.g. `localhost` or "localhost, mainnet")')
+  .argument('<react>', 'React frontend: use nextjs or vite for your frontend')
   .action((...args: string[]) => {
     createConfig(...parseCreateConfigArgs(...args));
   });
@@ -66,7 +66,6 @@ program
 program
   .command('build')
   .description('Build the react front end')
-
   .argument('[args...]')
   .allowUnknownOption(true)
   .allowExcessArguments(true)
@@ -103,7 +102,6 @@ program
   .argument('[args...]')
   .allowUnknownOption(true)
   .allowExcessArguments(true)
-
   .action((args: string[]) => {
     startChain(args);
   });

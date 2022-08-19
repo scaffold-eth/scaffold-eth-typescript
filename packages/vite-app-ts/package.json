@@ -42,7 +42,7 @@
     "buffer": "^6.0.3",
     "daisyui": "^2.24.0",
     "eth-components": "3.5.2",
-    "eth-hooks": "5.0.2-beta15",
+    "eth-hooks": "5.0.2-beta18",
     "ethereum-cryptography": "^1.1.2",
     "ethers": "^5.6.9",
     "events": "^3.3.0",

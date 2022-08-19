@@ -2,6 +2,7 @@
 import {
   createConnectorForExternalAbi,
   createConnectorForExternalContract,
+  createConnectorForForgeBroadcastContract,
   createConnectorForHardhatContract,
 } from 'eth-hooks/context';
 import { invariant } from 'ts-invariant';
@@ -10,6 +11,7 @@ import { externalContractsAddressMap } from './externalContracts.config';
 
 import * as toolkitContracts from '~common/generated/contract-types/';
 import * as externalContracts from '~common/generated/external-contracts/esm/types';
+import foundryDeployedContractsJson from '~common/generated/foundry_contracts.json';
 import hardhatDeployedContractsJson from '~common/generated/hardhat_contracts.json';
 
 /**
@@ -28,7 +30,7 @@ export const getAppContractsConfig = () => {
   try {
     const result = {
       // --------------------------------------------------
-      // 🙋🏽‍♂️ Add your hardhat contracts here
+      // 🙋🏽‍♂️ hardhat contracts examples
       // --------------------------------------------------
       YourContract: createConnectorForHardhatContract(
         'YourContract',
@@ -40,6 +42,21 @@ export const getAppContractsConfig = () => {
         'YourNFT',
         toolkitContracts.YourNFT__factory,
         hardhatDeployedContractsJson
+      ),
+
+      // --------------------------------------------------
+      // 🙋🏽‍♂️ foundry contracts examples
+      // --------------------------------------------------
+      YourContractFoundry: createConnectorForForgeBroadcastContract(
+        'YourContract',
+        toolkitContracts.YourContract__factory,
+        foundryDeployedContractsJson
+      ),
+
+      YourNFTFoundry: createConnectorForForgeBroadcastContract(
+        'YourNFT',
+        toolkitContracts.YourNFT__factory,
+        foundryDeployedContractsJson
       ),
 
       // --------------------------------------------------

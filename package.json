@@ -13,7 +13,7 @@
     "@🔖🔖🔖🔖🔖 commands 🔖🔖🔖🔖🔖 ": "echo 🔖🔖🔖🔖🔖 ",
     "reset-config": "yarn scaffold reset-config",
     "set-react": "yarn scaffold set-react",
-    "set-solidity": "yarn scaffold set-react",
+    "set-solidity": "yarn scaffold set-solidity",
     "set-config": "yarn scaffold set-config",
     "scaffold": "yarn workspace @scaffold-eth/commands scaffold",
     "@🔖🔖🔖🔖🔖 react 🔖🔖🔖🔖🔖 ": "echo 🔖🔖🔖🔖🔖 ",
