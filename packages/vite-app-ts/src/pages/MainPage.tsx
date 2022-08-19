@@ -180,7 +180,7 @@ export const MainPage: FC = () => {
       </BrowserRouter>
 
       <MainPageFooter scaffoldAppProviders={scaffoldAppProviders} price={ethPrice} />
-      <div style={{ position: 'absolute' }}>{notificationHolder}</div>
+      <div className="absolute">{notificationHolder}</div>
     </div>
   );
 };

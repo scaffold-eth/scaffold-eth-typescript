@@ -1,5 +1,7 @@
+const daisyui = require('daisyui');
+
 module.exports = {
-  content: ['./index.html', './pages/**/*.{vue,js,ts,jsx,tsx}', './components/**/*.{vue,js,ts,jsx,tsx}'],
+  content: ['index.html', 'src/**/*.{ts,tsx}'],
   darkMode: 'class', // or 'media' or 'class'
   important: false,
   corePlugins: {
@@ -31,10 +33,5 @@ module.exports = {
       borderWidth: ['hover', 'focus'],
     },
   },
-  plugins: [require('daisyui')],
-  daisyui: {
-    darkTheme: 'business',
-    themes: ['light', 'luxury', 'business', 'haloween'],
-    prefix: 'daisy',
-  },
+  plugins: [daisyui],
 };

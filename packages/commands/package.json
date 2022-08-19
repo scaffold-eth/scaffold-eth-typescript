@@ -11,16 +11,16 @@
   },
   "devDependencies": {
     "@scaffold-eth/common": "0.0.0",
-    "@swc/core": "^1.2.224",
-    "@swc/helpers": "^0.4.3",
+    "@swc/core": "^1.2.239",
+    "@swc/helpers": "^0.4.7",
     "@types/edit-json-file": "^1.7.0",
-    "@types/shelljs": "^0",
-    "@typescript-eslint/eslint-plugin": "^5.32.0",
-    "@typescript-eslint/parser": "^5.32.0",
+    "@types/shelljs": "^0.8.11",
+    "@typescript-eslint/eslint-plugin": "^5.33.1",
+    "@typescript-eslint/parser": "^5.33.1",
     "chalk": "^4.1.2",
     "cross-env": "^7.0.3",
     "edit-json-file": "^1.7.0",
-    "eslint": "^8.21.0",
+    "eslint": "^8.22.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.5.0",
@@ -48,6 +48,6 @@
     "commander": "^9.4.0",
     "shelljs": "^0.8.5",
     "shx": "^0.3.4",
-    "zod": "^3.17.10"
+    "zod": "^3.18.0"
   }
 }

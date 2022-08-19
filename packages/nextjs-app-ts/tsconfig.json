@@ -29,7 +29,7 @@
     "**/node_modules",
     ".husky",
     "**/*.css",
-    "tailwind.config.cjs",
+    "tailwind.config.js",
     "node_modules",
     "**/.yalc/**/*",
     ".yalc/**/*"

@@ -172,7 +172,7 @@ export const MainPage: NextPage<IMainPageProps> = (props) => {
       {tabMenu}
       {pages[props.pageName] ?? RouteNotFound}
       <MainPageFooter scaffoldAppProviders={scaffoldAppProviders} price={ethPrice} appProps={appProps} />
-      <div style={{ position: 'absolute' }}>{notificationHolder}</div>
+      <div className="absolute bg-slate-600">{notificationHolder}</div>
     </div>
   );
 };
