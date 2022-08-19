@@ -2042,7 +2042,7 @@ __metadata:
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-unused-imports: ^2.0.0
     eth-components: 3.5.2
-    eth-hooks: 5.0.2-beta8
+    eth-hooks: 5.0.2-beta15
     ethers: ^5.6.9
     fortmatic: ^2.4.0
     husky: ^8.0.1
@@ -2225,7 +2225,7 @@ __metadata:
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
     eth-components: 3.5.2
-    eth-hooks: 5.0.2-beta8
+    eth-hooks: 5.0.2-beta15
     ethereum-cryptography: ^1.1.2
     ethers: ^5.6.9
     events: ^3.3.0
@@ -2360,7 +2360,7 @@ __metadata:
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
     eth-components: 3.5.2
-    eth-hooks: 5.0.2-beta8
+    eth-hooks: 5.0.2-beta15
     ethereum-cryptography: ^1.1.2
     ethers: ^5.6.9
     events: ^3.3.0
@@ -8700,9 +8700,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:5.0.2-beta8":
-  version: 5.0.2-beta8
-  resolution: "eth-hooks@npm:5.0.2-beta8"
+"eth-hooks@npm:5.0.2-beta15":
+  version: 5.0.2-beta15
+  resolution: "eth-hooks@npm:5.0.2-beta15"
   dependencies:
     "@ethersproject/abi": ^5.6.4
     "@ethersproject/abstract-provider": ^5.6.1
@@ -8734,7 +8734,7 @@ __metadata:
     "@uniswap/sdk": ^3
     react: ">=17"
     react-dom: ">=17"
-  checksum: 24ac582291283d950502f8984ea34367a5621eaa0e33c97ef9b3a0f2155c543ff989e978621acf237bff6c5932a3855f3bd265502089f4dd21d4f6f953fce0e8
+  checksum: 6fec1fd9c005674fa25bd8ae890e06f4ff99b69e1db9d2ddd114829f5094182b888434cdbaa1e76506c682e98b10597a7db6589da93f8d6cc3142518d9d36b5a
   languageName: node
   linkType: hard
 

@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { createConnectorForExternalContract, createConnectorForHardhatContract } from 'eth-hooks/context';
+import {
+  createConnectorForExternalAbi,
+  createConnectorForExternalContract,
+  createConnectorForHardhatContract,
+} from 'eth-hooks/context';
 import { invariant } from 'ts-invariant';
 
 import { externalContractsAddressMap } from './externalContracts.config';
@@ -46,17 +50,16 @@ export const getAppContractsConfig = () => {
       // --------------------------------------------------
       // 🙋🏽‍♂️ Add your external abi here (unverified contracts)`
       // --------------------------------------------------
-      // YourContract: createConnectorForExternalAbi(
-      //   'YourContract',
-      //   {
-      //     [TARGET_NETWORK_INFO.chainId]: {
-      //       address: 'xxx',
-      //       chainId: TARGET_NETWORK_INFO.chainId,
-      //     },
-      //   },
-      //   hardhatContracts.YourContract__factory.abi,
-      //   hardhatContracts.YourContract__factory.connect
-      // ),
+      YourContractFromAbi: createConnectorForExternalAbi(
+        'YourContract',
+        {
+          [1235]: {
+            address: 'xxx',
+          },
+        },
+        toolkitContracts.YourContract__factory.abi
+        // optional if you have a connect function:  externalContracts.YourContract__factory.connect
+      ),
     } as const;
 
     return result;

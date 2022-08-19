@@ -22,7 +22,8 @@ export const load = (): TScaffoldConfig => {
   } else {
     console.log(chalk.red('❌ Error! Invalid scaffold.config.json!'));
     console.log(chalk.yellow('🏁 Did you run `yarn scaffold create-config`?'));
-    throw 'Error, Invalid Config';
+    console.log(config.error);
+    throw 'Error, Invalid Scaffold Config: scaffold.config.json';
   }
 };
 
