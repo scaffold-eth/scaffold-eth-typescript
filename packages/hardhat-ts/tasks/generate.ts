@@ -7,9 +7,8 @@ import { privateToAddress } from 'ethereumjs-util';
 import { hdkey } from 'ethereumjs-wallet';
 import { task } from 'hardhat/config';
 
-import { mnemonicPath } from './mnemonic';
-
-import { debugLog } from '~tasks/functions/debug';
+import { debugLog } from '~helpers/debug';
+import { defaultMnemonicPath } from '~helpers/functions/mnemonicHelper';
 
 task('generate', 'Create a mnemonic for builder deploys', async (_, _hre) => {
   const mnemonic = generateMnemonic();
@@ -29,5 +28,5 @@ task('generate', 'Create a mnemonic for builder deploys', async (_, _hre) => {
   console.log("💬 Use 'yarn account' to get more information about the deployment account.");
 
   fs.writeFileSync(`./generated/${address}.secret`, mnemonic.toString());
-  fs.writeFileSync(mnemonicPath, mnemonic.toString());
+  fs.writeFileSync(defaultMnemonicPath, mnemonic.toString());
 });

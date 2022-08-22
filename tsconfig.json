@@ -14,6 +14,9 @@
     "isolatedModules": true,
     "noEmit": true
   },
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  },
   "include": ["packages/**/*.ts", "packages/**/*.tsx"],
   "exclude": [
     "**/node_modules",

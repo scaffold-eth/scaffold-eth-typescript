@@ -2,7 +2,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 
 import { invariant } from 'ts-invariant';
 
-import { readAllChildDirs, readChildFiles } from './functions/fileHelper';
+import { readAllChildDirs, readChildFiles } from '../helpers/functions/fileHelper';
 
 // import { validateBroadcastFile } from '~common/functions/validateBroadcastCollection';
 

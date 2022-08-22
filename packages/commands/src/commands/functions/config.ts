@@ -31,7 +31,7 @@ export const parseCreateConfigArgs = (...args: string[]): Parameters<typeof crea
         reactBuild: args[2] as TReactBuilds,
       },
       runtime: {
-        targetNetworks: args[1]
+        availableNetworks: args[1]
           .split(',')
           .filter((y) => y.length > 0)
           .map((x) => x.trim()) as TNetworkNamesList[],

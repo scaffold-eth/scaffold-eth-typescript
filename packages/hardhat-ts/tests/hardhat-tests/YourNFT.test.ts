@@ -4,7 +4,8 @@ import '~tests/utils/chai-imports';
 import { expect } from 'chai';
 import { YourNFT__factory, YourNFT } from 'generated/contract-types';
 import hre from 'hardhat';
-import { getHardhatSigners } from 'tasks/functions/accounts';
+
+import { getHardhatSigners } from '~helpers/functions/accounts';
 
 describe('🚩 Challenge 0: 🎟 Simple NFT Example 🤓', function () {
   this.timeout(180000);

@@ -13,8 +13,9 @@ export const useBurnerFallback = (appProviders: IScaffoldAppProviders, enable: b
 
   useEffect(() => {
     const sameUrl =
-      ethersAppContext.provider?.connection?.url === networkDefinitions.localhost.url ||
-      ethersAppContext.provider?.connection?.url === networkDefinitions.localhost.url.replace('127.0.0.1', 'localhost');
+      ethersAppContext.provider?.connection?.url === networkDefinitions.localhost.rpcUrl ||
+      ethersAppContext.provider?.connection?.url ===
+        networkDefinitions.localhost.rpcUrl.replace('127.0.0.1', 'localhost');
     /**
      * if the current provider is local provider then use the burner fallback
      */

@@ -49,7 +49,7 @@ export const deploySolidity = (args: string[]): void => {
   if (config.build.solidityToolkit === 'hardhat') {
     shell.exec('yarn workspace @scaffold-eth/hardhat deploy:hardhat' + passthroughArgs);
   } else if (config.build.solidityToolkit === 'foundry') {
-    shell.exec('yarn workspace @scaffold-eth/hardhat deploy:foundry' + passthroughArgs);
+    const data = shell.exec('yarn workspace @scaffold-eth/hardhat deploy:foundry' + passthroughArgs);
   } else {
     console.log(chalk.red('❌ Error! Invalid react build tool in config!'));
   }

@@ -6,7 +6,7 @@ import glob from 'glob';
 import { removeConsoleLog } from 'hardhat-preprocessor';
 import type { HardhatUserConfig } from 'hardhat/config';
 
-import { getMnemonic } from './tasks/functions/mnemonic';
+import { getMnemonic } from './helpers/functions';
 
 import { hardhatNamedAccounts } from '~common/constants';
 import { getNetworks } from '~common/functions';
@@ -71,7 +71,7 @@ export const config: HardhatUserConfig = {
   preprocess: {
     eachLine: removeConsoleLog((hre) => hre.network.name !== 'hardhat' && hre.network.name !== 'localhost'),
   },
-  defaultNetwork: scaffoldConfig.runtime.defaultNetwork,
+  defaultNetwork: scaffoldConfig.runtime.targetNetwork,
   namedAccounts: namedAccounts,
   networks: networks,
   solidity: {

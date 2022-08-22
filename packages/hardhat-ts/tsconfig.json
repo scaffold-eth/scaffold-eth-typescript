@@ -25,13 +25,15 @@
       "~tests/*": ["./tests/*"],
       "~generated/*": ["./generated/*"],
       "~tasks/*": ["./tasks/*"],
-      "~common/*": ["../common/src/*"]
+      "~common/*": ["../common/src/*"],
+      "~scripts/*": ["./scripts/*"]
     }
   },
-  "include": ["types", "scripts", "tests", "helpers", "./hardhat.config.ts", "deploy", "tasks", "scripts", "../common/src"],
+  "include": ["types", "scripts", "tests", "helpers", "./hardhat.config.ts", "deploy", "tasks", "scripts", "../common/src", "../common/tsconfig.json"],
   "exclude": ["**/node_modules"],
   "ts-node": {
     "swc": true,
+    "require": ["tsconfig-paths/register"],
     "compilerOptions": {
       "module": "CommonJS"
     },

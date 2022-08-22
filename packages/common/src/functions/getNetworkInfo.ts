@@ -1,10 +1,9 @@
 import { getNetwork } from '@ethersproject/networks';
-import { TNetworkInfo } from 'eth-hooks/models';
 
-import { networkDefinitions } from '~common/constants';
+import { networkDefinitions, TNetworkDefinition } from '~common/constants';
 import { TNetworkNamesList } from '~common/models';
 
-export const getNetworkInfo = (chainId: number | undefined): TNetworkInfo | undefined => {
+export const getNetworkInfo = (chainId: number | undefined): TNetworkDefinition | undefined => {
   if (!chainId) return;
 
   for (const n in networkDefinitions) {
@@ -16,6 +15,6 @@ export const getNetworkInfo = (chainId: number | undefined): TNetworkInfo | unde
 
   const network = getNetwork(chainId) ?? {};
   // @ts-expect-error
-  const url = network?._defaultProvider?.connection?.url ?? '';
-  return { ...network, blockExplorer: '', color: '#666666', url: url };
+  const rpcUrl = network?._defaultProvider?.connection?.rpcUrl ?? '';
+  return { ...network, blockExplorer: '', color: '#666666', rpcUrl };
 };

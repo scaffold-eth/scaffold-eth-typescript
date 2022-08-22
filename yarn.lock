@@ -2033,7 +2033,7 @@ __metadata:
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-unused-imports: ^2.0.0
     eth-components: 3.5.2
-    eth-hooks: 5.0.2-beta18
+    eth-hooks: 5.0.2-beta19
     ethers: ^5.6.9
     fortmatic: ^2.4.0
     husky: ^8.0.1
@@ -2106,6 +2106,7 @@ __metadata:
     "@types/mocha": ^9.1.1
     "@types/node": ^16.11.49
     "@types/qrcode-terminal": ^0.12.0
+    "@types/shelljs": ^0.8.11
     "@typescript-eslint/eslint-plugin": ^5.33.1
     "@typescript-eslint/parser": ^5.33.1
     bip39: ^3.0.4
@@ -2145,6 +2146,7 @@ __metadata:
     prettier-plugin-solidity: ^1.0.0-dev.23
     qrcode-terminal: ^0.12.0
     rlp: ^3.0.0
+    shelljs: ^0.8.5
     shx: ^0.3.4
     solhint: ^3.3.7
     solhint-plugin-prettier: ^0.0.5
@@ -2217,7 +2219,7 @@ __metadata:
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
     eth-components: 3.5.2
-    eth-hooks: 5.0.2-beta18
+    eth-hooks: 5.0.2-beta19
     ethereum-cryptography: ^1.1.2
     ethers: ^5.6.9
     events: ^3.3.0
@@ -2350,7 +2352,7 @@ __metadata:
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
     eth-components: 3.5.2
-    eth-hooks: 5.0.2-beta18
+    eth-hooks: 5.0.2-beta19
     ethereum-cryptography: ^1.1.2
     ethers: ^5.6.9
     events: ^3.3.0
@@ -8822,9 +8824,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:5.0.2-beta18":
-  version: 5.0.2-beta18
-  resolution: "eth-hooks@npm:5.0.2-beta18"
+"eth-hooks@npm:5.0.2-beta19":
+  version: 5.0.2-beta19
+  resolution: "eth-hooks@npm:5.0.2-beta19"
   dependencies:
     "@ethersproject/abi": ^5.6.4
     "@ethersproject/abstract-provider": ^5.6.1
@@ -8856,7 +8858,7 @@ __metadata:
     "@uniswap/sdk": ^3
     react: ">=17"
     react-dom: ">=17"
-  checksum: 365d3c6b4327fbb55b241fe68b91a0d636f82accaf4fb56019e29867469375104c8340bb05b1bb847d69bf200e9d0b32d4e2a0466c7cade380721ca0e49e071e
+  checksum: 73d9f7eb9eab764833966a89284a9b056a2ec5591792f5516426c96a90c37151140ff2dabc22ddcf22353ef9f21e5c156fa41c949c62dd9642f47adcb56b1851
   languageName: node
   linkType: hard
 

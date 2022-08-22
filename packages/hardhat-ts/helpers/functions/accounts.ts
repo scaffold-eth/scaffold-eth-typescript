@@ -1,13 +1,12 @@
-import { isAddress, getAddress } from '@ethersproject/address';
 import { mnemonicToSeed } from 'bip39';
 import { privateToAddress } from 'ethereumjs-util';
 import { hdkey } from 'ethereumjs-wallet';
 import { ethers, Wallet } from 'ethers';
 import { keccak256, randomBytes } from 'ethers/lib/utils';
-import { SignerWithAddress } from 'hardhat-deploy-ethers/signers';
+import type { SignerWithAddress } from 'hardhat-deploy-ethers/signers';
 
+import { debugLog } from '~helpers/debug';
 import { THardhatRuntimeEnvironmentExtended } from '~helpers/types/THardhatRuntimeEnvironmentExtended';
-import { debugLog } from '~tasks/functions/debug';
 
 export const getAccountData = async (mnemonic: string): Promise<{ address: string; wallet: Wallet }> => {
   debugLog('mnemonic', mnemonic);
@@ -24,17 +23,6 @@ export const getAccountData = async (mnemonic: string): Promise<{ address: strin
   const address = `0x${privateToAddress(wallet.getPrivateKey()).toString('hex')}`;
 
   return { address, wallet: Wallet.fromMnemonic(mnemonic, fullPath) };
-};
-export const findFirstAddress = async (hre: THardhatRuntimeEnvironmentExtended, addr: string): Promise<string> => {
-  if (isAddress(addr)) {
-    return getAddress(addr);
-  }
-  const accounts = await hre.ethers.provider.listAccounts();
-  if (accounts !== undefined) {
-    const temp: string | undefined = accounts.find((f: string) => f === addr);
-    if (temp != null && hre.ethers.utils.isAddress(temp)) return temp[0];
-  }
-  throw new Error(`Could not normalize address: ${addr}`);
 };
 
 export const createAddress = (from: string, initCode: string): { address: string; from: string; salt: Uint8Array; initCodeHash: string; initCode: string } => {

@@ -2,9 +2,11 @@
 import '@nomiclabs/hardhat-ethers';
 import fs from 'fs';
 
-import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
-import { ContractTransaction } from 'ethers';
+import type { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
+import { ContractTransaction, utils } from 'ethers';
 import { HardhatRuntimeEnvironment } from 'hardhat/types';
+
+import { THardhatRuntimeEnvironmentExtended } from '~helpers/types/THardhatRuntimeEnvironmentExtended';
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
 
@@ -13,6 +15,18 @@ export enum ProtocolState {
   PublishingPaused,
   Paused,
 }
+
+export const findFirstAddress = async (hre: THardhatRuntimeEnvironmentExtended, addr: string): Promise<string> => {
+  if (utils.isAddress(addr)) {
+    return utils.getAddress(addr);
+  }
+  const accounts = await hre.ethers.provider.listAccounts();
+  if (accounts !== undefined) {
+    const temp: string | undefined = accounts.find((f: string) => f === addr);
+    if (temp != null && hre.ethers.utils.isAddress(temp)) return temp[0];
+  }
+  throw new Error(`Could not normalize address: ${addr}`);
+};
 
 export function getAddrs(): any {
   const json = fs.readFileSync('addresses.json', 'utf8');

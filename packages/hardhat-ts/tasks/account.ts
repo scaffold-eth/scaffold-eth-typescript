@@ -4,13 +4,12 @@ import { HttpNetworkUserConfig } from 'hardhat/types';
 import * as qrcode from 'qrcode-terminal';
 
 import { config } from '../hardhat.config';
+import { getMnemonic } from '../helpers/functions';
 
-import { getMnemonic } from './functions/mnemonic';
-
+import { DEBUG } from '~helpers/debug';
+import { getAccountData } from '~helpers/functions/accounts';
 import { THardhatRuntimeEnvironmentExtended } from '~helpers/types/THardhatRuntimeEnvironmentExtended';
-import { findFirstAddress, getAccountData } from '~tasks/functions/accounts';
-import { DEBUG } from '~tasks/functions/debug';
-
+import { findFirstAddress } from '~tasks/functions/hardhatUtils';
 task('account', 'Get balance informations for the deployment account.', async (_, hre) => {
   const { address } = await getAccountData(getMnemonic());
 

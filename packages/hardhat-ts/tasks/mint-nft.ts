@@ -2,8 +2,8 @@ import { YourNFT__factory, YourNFT } from 'generated/contract-types';
 import { task } from 'hardhat/config';
 import { create } from 'ipfs-http-client';
 
-import { getHardhatSigners } from '~tasks/functions/accounts';
-import { sleep } from '~tasks/functions/utils';
+import { getHardhatSigners } from '~helpers/functions/accounts';
+import { sleep } from '~tasks/functions/hardhatUtils';
 
 task('mint', 'Mints NFTs to the specified address')
   .addPositionalParam('toAddress', 'The address that will mint them')

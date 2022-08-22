@@ -122,7 +122,7 @@ export const getWeb3ModalConfig = async (
         options: {
           chainId: networkDefinitions.localhost.chainId,
           rpc: {
-            [networkDefinitions.localhost.chainId]: networkDefinitions.localhost.url,
+            [networkDefinitions.localhost.chainId]: networkDefinitions.localhost.rpcUrl,
           },
         },
       };

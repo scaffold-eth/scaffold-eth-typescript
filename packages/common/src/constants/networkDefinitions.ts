@@ -9,26 +9,30 @@ if (typeof window !== 'undefined' && window != null) {
   hostname = window?.location?.hostname ?? 'localhost';
 }
 
-export const networkDefinitions: Record<TNetworkNamesList, TNetworkInfo> = {
+export type TNetworkDefinition = TNetworkInfo & {
+  color: string;
+};
+
+export const networkDefinitions: Record<TNetworkNamesList, TNetworkDefinition> = {
   localhost: {
     name: 'localhost',
     color: '#666666',
     chainId: 31337,
     blockExplorer: '',
-    url: 'http://' + hostname + ':8545',
+    rpcUrl: 'http://' + hostname + ':8545',
   },
   mainnet: {
     name: 'mainnet',
     color: '#ff8b9e',
     chainId: 1,
-    url: `https://mainnet.infura.io/v3/${INFURA_ID}`,
+    rpcUrl: `https://mainnet.infura.io/v3/${INFURA_ID}`,
     blockExplorer: 'https://etherscan.io/',
   },
   kovan: {
     name: 'kovan',
     color: '#7003DD',
     chainId: 42,
-    url: `https://kovan.infura.io/v3/${INFURA_ID}`,
+    rpcUrl: `https://kovan.infura.io/v3/${INFURA_ID}`,
     blockExplorer: 'https://kovan.etherscan.io/',
     faucet: 'https://gitter.im/kovan-testnet/faucet', // https://faucet.kovan.network/
   },
@@ -36,7 +40,7 @@ export const networkDefinitions: Record<TNetworkNamesList, TNetworkInfo> = {
     name: 'rinkeby',
     color: '#e0d068',
     chainId: 4,
-    url: `https://rinkeby.infura.io/v3/${INFURA_ID}`,
+    rpcUrl: `https://rinkeby.infura.io/v3/${INFURA_ID}`,
     faucet: 'https://faucet.rinkeby.io/',
     blockExplorer: 'https://rinkeby.etherscan.io/',
   },
@@ -46,7 +50,7 @@ export const networkDefinitions: Record<TNetworkNamesList, TNetworkInfo> = {
     chainId: 3,
     faucet: 'https://faucet.ropsten.be/',
     blockExplorer: 'https://ropsten.etherscan.io/',
-    url: `https://ropsten.infura.io/v3/${INFURA_ID}`,
+    rpcUrl: `https://ropsten.infura.io/v3/${INFURA_ID}`,
   },
   goerli: {
     name: 'goerli',
@@ -54,7 +58,7 @@ export const networkDefinitions: Record<TNetworkNamesList, TNetworkInfo> = {
     chainId: 5,
     faucet: 'https://goerli-faucet.slock.it/',
     blockExplorer: 'https://goerli.etherscan.io/',
-    url: `https://goerli.infura.io/v3/${INFURA_ID}`,
+    rpcUrl: `https://goerli.infura.io/v3/${INFURA_ID}`,
   },
   xdai: {
     name: 'xdai',
@@ -62,7 +66,7 @@ export const networkDefinitions: Record<TNetworkNamesList, TNetworkInfo> = {
     chainId: 100,
     price: 1,
     gasPrice: 1200000000,
-    url: 'https://dai.poa.network',
+    rpcUrl: 'https://dai.poa.network',
     faucet: 'https://xdai-faucet.top/',
     blockExplorer: 'https://blockscout.com/poa/xdai/',
   },
@@ -72,7 +76,7 @@ export const networkDefinitions: Record<TNetworkNamesList, TNetworkInfo> = {
     chainId: 137,
     price: 1,
     gasPrice: 3500000000,
-    url: 'https://matic-mainnet.chainstacklabs.com',
+    rpcUrl: 'https://matic-mainnet.chainstacklabs.com',
     faucet: 'https://faucet.matic.network',
     blockExplorer: 'https://polygonscan.com',
   },
@@ -82,7 +86,7 @@ export const networkDefinitions: Record<TNetworkNamesList, TNetworkInfo> = {
     chainId: 80001,
     price: 1,
     gasPrice: 2000000000,
-    url: 'https://matic-mumbai.chainstacklabs.com',
+    rpcUrl: 'https://matic-mumbai.chainstacklabs.com',
     faucet: 'https://faucet.matic.network',
     blockExplorer: 'https://mumbai.polygonscan.com/',
   },
@@ -91,14 +95,14 @@ export const networkDefinitions: Record<TNetworkNamesList, TNetworkInfo> = {
     color: '#50a0ea',
     chainId: 421611,
     blockExplorer: 'https://rinkeby-explorer.arbitrum.io/#/',
-    url: `https://rinkeby.arbitrum.io/rpc`,
+    rpcUrl: `https://rinkeby.arbitrum.io/rpc`,
   },
   arbitrum: {
     name: 'Arbitrum',
     color: '#50a0ea',
     chainId: 42161,
     blockExplorer: 'https://explorer.arbitrum.io/#/',
-    url: `https://arb1.arbitrum.io/rpc`,
+    rpcUrl: `https://arb1.arbitrum.io/rpc`,
     gasPrice: 0,
   },
   kovanOptimism: {
@@ -106,7 +110,7 @@ export const networkDefinitions: Record<TNetworkNamesList, TNetworkInfo> = {
     color: '#f01a37',
     chainId: 69,
     blockExplorer: 'https://kovan-optimistic.etherscan.io/',
-    url: `https://kovan.optimism.io`,
+    rpcUrl: `https://kovan.optimism.io`,
     gasPrice: 0,
   },
   optimism: {
@@ -114,14 +118,14 @@ export const networkDefinitions: Record<TNetworkNamesList, TNetworkInfo> = {
     color: '#f01a37',
     chainId: 10,
     blockExplorer: 'https://optimistic.etherscan.io/',
-    url: `https://mainnet.optimism.io`,
+    rpcUrl: `https://mainnet.optimism.io`,
   },
   fujiAvalanche: {
     name: 'fujiAvalanche',
     color: '#666666',
     chainId: 43113,
     blockExplorer: 'https://cchain.explorer.avax-test.network/',
-    url: `https://api.avax-test.network/ext/bc/C/rpc`,
+    rpcUrl: `https://api.avax-test.network/ext/bc/C/rpc`,
     gasPrice: 225000000000,
   },
   avalanche: {
@@ -129,7 +133,7 @@ export const networkDefinitions: Record<TNetworkNamesList, TNetworkInfo> = {
     color: '#666666',
     chainId: 43114,
     blockExplorer: 'https://cchain.explorer.avax.network/',
-    url: `https://api.avax.network/ext/bc/C/rpc`,
+    rpcUrl: `https://api.avax.network/ext/bc/C/rpc`,
     gasPrice: 225000000000,
   },
   fantom: {
@@ -137,7 +141,7 @@ export const networkDefinitions: Record<TNetworkNamesList, TNetworkInfo> = {
     color: '#1969ff',
     chainId: 250,
     blockExplorer: 'https://ftmscan.com/',
-    url: `https://rpcapi.fantom.network`,
+    rpcUrl: `https://rpcapi.fantom.network`,
     gasPrice: 1000000000,
   },
   testnetFantom: {
@@ -145,7 +149,7 @@ export const networkDefinitions: Record<TNetworkNamesList, TNetworkInfo> = {
     color: '#1969ff',
     chainId: 4002,
     blockExplorer: 'https://testnet.ftmscan.com/',
-    url: `https://rpc.testnet.fantom.network`,
+    rpcUrl: `https://rpc.testnet.fantom.network`,
     gasPrice: 1000000000,
     faucet: 'https://faucet.fantom.network/',
   },

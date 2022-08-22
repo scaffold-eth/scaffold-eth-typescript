@@ -4,11 +4,11 @@ import { Signer } from 'ethers';
 import { task } from 'hardhat/config';
 import { THardhatRuntimeEnvironmentExtended } from 'helpers/types/THardhatRuntimeEnvironmentExtended';
 
-import { send } from './functions/send';
+import { send } from '../helpers/functions/send';
 
-import { findFirstAddress } from '~tasks/functions/accounts';
-import { debugLog } from '~tasks/functions/debug';
-import { getMnemonic } from '~tasks/functions/mnemonic';
+import { debugLog } from '~helpers/debug';
+import { getMnemonic } from '~helpers/functions';
+import { findFirstAddress } from '~tasks/functions/hardhatUtils';
 
 // eslint-disable-next-line @typescript-eslint/require-await
 task('wallet', 'Create a wallet (pk) link', async (_, { ethers }): Promise<void> => {
