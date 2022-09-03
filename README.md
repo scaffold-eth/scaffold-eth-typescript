@@ -94,7 +94,7 @@ Everything you need to build on Ethereum! 🚀 Quickly experiment with Solidity 
 
 ## Documentation
 
-- Check out [eth-hooks docs](https://scaffold-eth.github.io/eth-hooks) for example of how to use hooks
+- Check out [eth-hooks docs](https://docs.scaffoldeth.io/scaffold-eth-libraries/) for example of how to use hooks
 
 ## 🏃💨 Speedrun Ethereum
 
