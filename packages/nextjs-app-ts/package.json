@@ -11,7 +11,7 @@
     "lint:next": "next lint",
     "lint": "eslint --config ./.eslintrc.js --ignore-path ./.eslintignore ./src",
     "build:anttheme": "yarn lessc -x -js ./src/styles/themes/ant-light-theme.less ./public/ant-light-theme.css && yarn lessc -x -js ./src/styles/themes/ant-dark-theme.less ./public/ant-dark-theme.css",
-    "contracts:hardhat": "yarn shx rm -rf './src/generated/contracts-types' && yarn shx cp -r '../hardhat-ts/generated/contract-types' './src/generated'",
+    "contracts:hardhat": "yarn shx rm -rf './src/generated/contracts-types' && yarn shx cp -r '../solidity-ts/generated/contract-types' './src/generated'",
     "contracts:external": "yarn shx rm -rf './src/generated/external-contracts' && yarn shx cp -r './scripts/eth-sdk-config.ts.bak' './src/generated/eth-sdk.config.ts' && yarn eth-sdk -p ./src/generated",
     "format": "yarn prettier -w ./src ",
     "format:check": "yarn prettier -c ./src ",

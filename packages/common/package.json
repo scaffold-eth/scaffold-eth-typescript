@@ -2,7 +2,7 @@
   "name": "@scaffold-eth/common",
   "version": "0.0.0",
   "author": "Shravan Sunder<shravan.sunder.dev@gmail.com>",
-  "description": "Common package to be used by hardhat-ts and vite-app-ts in the scaffold-eth-typescript workspace",
+  "description": "Common package to be used by solidity-ts and vite-app-ts in the scaffold-eth-typescript workspace",
   "license": "MIT",
   "private": true,
   "main": "./src/index.ts",
@@ -10,7 +10,7 @@
   "browser": "./src/index.ts",
   "types": "./src/index.ts",
   "scripts": {
-    "contracts:toolkit": "yarn shx rm -rf './src/generated/contracts-types' && yarn shx cp -r '../hardhat-ts/generated/contract-types' './src/generated'",
+    "contracts:toolkit": "yarn shx rm -rf './src/generated/contracts-types' && yarn shx cp -r '../solidity-ts/generated/contract-types' './src/generated'",
     "contracts:external": "yarn shx rm -rf './src/generated/external-contracts' && yarn shx cp -r './scripts/eth-sdk-config.ts.bak' './src/generated/eth-sdk.config.ts' && yarn eth-sdk -p ./src/generated",
     "watch": "tsc -w --noEmit",
     "clean": "yarn shx rm -rf ./src/generated",

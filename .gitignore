@@ -27,7 +27,7 @@ tenderly.yaml
 **/.env.*.local
 **/*.secret
 **/aws.json
-!packages/hardhat-ts/mnemonics/README.md
+!packages/solidity-ts/mnemonics/README.md
 **/mnemonics/*.secret
 **/mnemonics/*.txt
 

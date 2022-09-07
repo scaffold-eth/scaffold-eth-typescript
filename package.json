@@ -71,7 +71,7 @@
   "workspaces": {
     "packages": [
       "packages/common",
-      "packages/hardhat-ts",
+      "packages/solidity-ts",
       "packages/vite-app-ts",
       "packages/next-app-ts",
       "packages/subgraph",
@@ -110,23 +110,23 @@
       "yarn workspace @scaffold-eth/commands lint --fix",
       "yarn workspace @scaffold-eth/commands format"
     ],
-    "packages/hardhat-ts/tests/**/*.ts": [
+    "packages/solidity-ts/tests/**/*.ts": [
       "yarn workspace @scaffold-eth/hardhat lint --fix",
       "yarn workspace @scaffold-eth/hardhat format"
     ],
-    "packages/hardhat-ts/helpers/**/*.ts": [
+    "packages/solidity-ts/helpers/**/*.ts": [
       "yarn workspace @scaffold-eth/hardhat lint --fix",
       "yarn workspace @scaffold-eth/hardhat format"
     ],
-    "packages/hardhat-ts/tasks/**/*.ts": [
+    "packages/solidity-ts/tasks/**/*.ts": [
       "yarn workspace @scaffold-eth/hardhat lint --fix",
       "yarn workspace @scaffold-eth/hardhat format"
     ],
-    "packages/hardhat-ts/deploy/**/*.ts": [
+    "packages/solidity-ts/deploy/**/*.ts": [
       "yarn workspace @scaffold-eth/hardhat lint --fix",
       "yarn workspace @scaffold-eth/hardhat format"
     ],
-    "packages/hardhat-ts/**/*.sol": [
+    "packages/solidity-ts/**/*.sol": [
       "yarn workspace @scaffold-eth/hardhat format",
       "yarn workspace @scaffold-eth/hardhat solhint --fix"
     ]
