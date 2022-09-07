@@ -47,9 +47,9 @@ export const deploySolidity = (args: string[]): void => {
   const passthroughArgs = processUnknownArgs(args);
 
   if (config.build.solidityToolkit === 'hardhat') {
-    shell.exec('yarn workspace @scaffold-eth/hardhat deploy:hardhat' + passthroughArgs);
+    shell.exec('yarn workspace @scaffold-eth/solidity deploy:hardhat' + passthroughArgs);
   } else if (config.build.solidityToolkit === 'foundry') {
-    const data = shell.exec('yarn workspace @scaffold-eth/hardhat deploy:foundry' + passthroughArgs);
+    const data = shell.exec('yarn workspace @scaffold-eth/solidity deploy:foundry' + passthroughArgs);
   } else {
     console.log(chalk.red('❌ Error! Invalid react build tool in config!'));
   }
@@ -62,9 +62,9 @@ export const compileSolidity = (args: string[]): void => {
   const passthroughArgs = processUnknownArgs(args);
 
   if (config.build.solidityToolkit === 'hardhat') {
-    shell.exec('yarn workspace @scaffold-eth/hardhat compile:hardhat' + passthroughArgs);
+    shell.exec('yarn workspace @scaffold-eth/solidity compile:hardhat' + passthroughArgs);
   } else if (config.build.solidityToolkit === 'foundry') {
-    shell.exec('yarn workspace @scaffold-eth/hardhat compile:foundry' + passthroughArgs);
+    shell.exec('yarn workspace @scaffold-eth/solidity compile:foundry' + passthroughArgs);
   } else {
     console.log(chalk.red('❌ Error! Invalid solidity toolkit in config!'));
   }
@@ -80,12 +80,12 @@ export const startChain = (args: string[]): void => {
   console.log(passthroughArgs);
 
   if (config.build.solidityToolkit === 'hardhat') {
-    shell.exec('yarn workspace @scaffold-eth/hardhat chain:hardhat' + passthroughArgs);
+    shell.exec('yarn workspace @scaffold-eth/solidity chain:hardhat' + passthroughArgs);
   } else if (config.build.solidityToolkit === 'foundry') {
-    shell.exec('yarn workspace @scaffold-eth/hardhat chain:foundry' + passthroughArgs);
+    shell.exec('yarn workspace @scaffold-eth/solidity chain:foundry' + passthroughArgs);
   } else {
     console.log(chalk.red('❌ Error! Invalid solidity toolkit in config!'));
   }
 
-  shell.exec('yarn workspace @scaffold-eth/hardhat deploy:post');
+  shell.exec('yarn workspace @scaffold-eth/solidity deploy:post');
 };
