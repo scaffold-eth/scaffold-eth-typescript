@@ -15,9 +15,9 @@ dist
 !**/generated/.gitignore
 
 # hardhat ts
-packages/hardhat-ts/cache
-packages/hardhat-ts/generated
-!packages/hardhat-ts/generated/.gitignore
+packages/solidity-ts/cache
+packages/solidity-ts/generated
+!packages/solidity-ts/generated/.gitignore
 cache
 artifacts
 tenderly.yaml
