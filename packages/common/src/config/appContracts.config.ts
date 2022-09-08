@@ -2,6 +2,7 @@
 import {
   createConnectorForExternalAbi,
   createConnectorForExternalContract,
+  createConnectorForForgeBroadcastContract,
   createConnectorForHardhatContract,
 } from 'eth-hooks/context';
 import { invariant } from 'ts-invariant';
@@ -10,13 +11,14 @@ import { externalContractsAddressMap } from './externalContracts.config';
 
 import * as toolkitContracts from '~common/generated/contract-types/';
 import * as externalContracts from '~common/generated/external-contracts/esm/types';
+import foundryDeployedContractsJson from '~common/generated/foundry_contracts.json';
 import hardhatDeployedContractsJson from '~common/generated/hardhat_contracts.json';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
  * ### Instructions
  * 1. edit externalContracts.config.ts to add your external contract addresses.
- * 2. edit `getAppContractsConfig` function below and add them to the list
+ * 2. edit `appContractsConfig` function below and add them to the list
  * 3. run `yarn contracts:build` to generate types for contracts
  * 4. run `yarn deploy` to generate hardhat_contracts.json
  *
@@ -24,7 +26,7 @@ import hardhatDeployedContractsJson from '~common/generated/hardhat_contracts.js
  * - called  by useAppContracts
  * @returns
  */
-export const getAppContractsConfig = () => {
+export const appContractsConfig = () => {
   try {
     const result = {
       // --------------------------------------------------
@@ -45,17 +47,17 @@ export const getAppContractsConfig = () => {
       // --------------------------------------------------
       // 🙋🏽‍♂️ foundry contracts examples
       // --------------------------------------------------
-      // YourContractFoundry: createConnectorForForgeBroadcastContract(
-      //   'YourContract',
-      //   toolkitContracts.YourContract__factory,
-      //   foundryDeployedContractsJson
-      // ),
+      YourContractFoundry: createConnectorForForgeBroadcastContract(
+        'YourContract',
+        toolkitContracts.YourContract__factory,
+        foundryDeployedContractsJson
+      ),
 
-      // YourNFTFoundry: createConnectorForForgeBroadcastContract(
-      //   'YourNFT',
-      //   toolkitContracts.YourNFT__factory,
-      //   foundryDeployedContractsJson
-      // ),
+      YourNFTFoundry: createConnectorForForgeBroadcastContract(
+        'YourNFT',
+        toolkitContracts.YourNFT__factory,
+        foundryDeployedContractsJson
+      ),
 
       // --------------------------------------------------
       // 🙋🏽‍♂️ Add your external contracts here, make sure to define the address in `externalContractsConfig.ts`Í
@@ -80,7 +82,7 @@ export const getAppContractsConfig = () => {
     return result;
   } catch (e) {
     invariant.error(
-      '❌ getAppContractsConfig: ERROR with loading contracts please run `yarn contracts:build or yarn contracts:rebuild`.  Then run `yarn deploy`!'
+      '❌ appContractsConfig: ERROR with loading contracts please run `yarn contracts:build or yarn contracts:rebuild`.  Then run `yarn deploy`!'
     );
     invariant.error(e);
     throw e;
