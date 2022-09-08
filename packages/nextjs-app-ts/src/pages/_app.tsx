@@ -12,7 +12,7 @@ import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 
 import { ErrorBoundary, ErrorFallback } from '~common/components';
-import { BLOCKNATIVE_DAPPID } from '~~/config/app.config';
+import { BLOCKNATIVE_DAPPID } from '~~/config/nextjsApp.config';
 import { appGetInitialProps } from '~~/functions/nextjs/appGetInitialProps';
 
 const cache = createCache({ key: 'next' });

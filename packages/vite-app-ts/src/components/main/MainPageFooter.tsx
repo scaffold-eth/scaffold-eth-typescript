@@ -7,7 +7,7 @@ import { Ramp, ThemeSwitcher, getFaucetAvailable } from '~common/components';
 import { networkDefinitions } from '~common/constants';
 import { getNetworkInfo } from '~common/functions';
 import { IScaffoldAppProviders } from '~common/models';
-import { FAUCET_ENABLED } from '~~/config/app.config';
+import { FAUCET_ENABLED } from '~~/config/viteApp.config';
 
 export interface IMainPageFooterProps {
   scaffoldAppProviders: IScaffoldAppProviders;

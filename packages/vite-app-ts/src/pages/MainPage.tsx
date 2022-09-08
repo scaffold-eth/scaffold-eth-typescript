@@ -22,8 +22,8 @@ import {
   INFURA_ID,
   LOCAL_PROVIDER,
   MAINNET_PROVIDER,
-  TARGET_NETWORK_INFO,
-} from '~~/config/app.config';
+  AVAILABLE_NETWORKS_DEFINITIONS,
+} from '~~/config/viteApp.config';
 
 /** ********************************
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
@@ -49,7 +49,7 @@ export const MainPage: FC = () => {
   // 🛰 providers
   // see useLoadProviders.ts for everything to do with loading the right providers
   const scaffoldAppProviders = useScaffoldAppProviders({
-    targetNetworks: TARGET_NETWORK_INFO,
+    targetNetworks: AVAILABLE_NETWORKS_DEFINITIONS,
     connectToBurnerAutomatically: CONNECT_TO_BURNER_AUTOMATICALLY,
     localProvider: LOCAL_PROVIDER,
     mainnetProvider: MAINNET_PROVIDER,

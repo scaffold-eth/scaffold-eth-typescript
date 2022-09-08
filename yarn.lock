@@ -2032,8 +2032,8 @@ __metadata:
     eslint-plugin-react: ^7.30.1
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: 3.5.2
-    eth-hooks: 5.0.2-beta19
+    eth-components: 3.6.0-beta01
+    eth-hooks: 5.0.2-beta20
     ethers: ^5.6.9
     fortmatic: ^2.4.0
     husky: ^8.0.1
@@ -2128,8 +2128,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: 3.5.2
-    eth-hooks: 5.0.2-beta19
+    eth-components: 3.6.0-beta01
+    eth-hooks: 5.0.2-beta20
     ethereum-cryptography: ^1.1.2
     ethers: ^5.6.9
     events: ^3.3.0
@@ -2351,8 +2351,8 @@ __metadata:
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-tailwind: ^0.2.1
     eslint-plugin-unused-imports: ^2.0.0
-    eth-components: 3.5.2
-    eth-hooks: 5.0.2-beta19
+    eth-components: 3.6.0-beta01
+    eth-hooks: 5.0.2-beta20
     ethereum-cryptography: ^1.1.2
     ethers: ^5.6.9
     events: ^3.3.0
@@ -8752,23 +8752,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-components@npm:3.5.2":
-  version: 3.5.2
-  resolution: "eth-components@npm:3.5.2"
+"eth-components@npm:3.6.0-beta01":
+  version: 3.6.0-beta01
+  resolution: "eth-components@npm:3.6.0-beta01"
   dependencies:
-    "@ethersproject/abstract-signer": ^5.6.2
+    "@ethersproject/abi": ^5.6.4
+    "@ethersproject/abstract-provider": ^5.6.1
     "@ethersproject/address": ^5.6.1
     "@ethersproject/bignumber": ^5.6.2
     "@ethersproject/bytes": ^5.6.1
     "@ethersproject/contracts": ^5.6.2
-    "@ethersproject/networks": ^5.6.3
+    "@ethersproject/networks": ^5.6.4
     "@ethersproject/providers": ^5.6.8
     "@ethersproject/signing-key": ^5.6.2
     "@ethersproject/solidity": ^5.6.1
     "@ethersproject/units": ^5.6.1
+    "@ethersproject/wallet": ^5.6.2
     axios: ^0.27.2
     bnc-notify: ^1.9.5
-    eth-hooks: ^4.6.1
+    eth-hooks: 5.0.2-beta20
     ethers: ^5.6.8
     qrcode.react: ^3.0.2
     react-blockies: ^1.4.1
@@ -8782,7 +8784,7 @@ __metadata:
     react: ">=17"
     react-css-theme-switcher: ^0.3.0
     react-dom: ">=17"
-  checksum: 5c5dc441b097d401e8e9925d22c7446fb79468a6cd3536a6336f62078f55f2ca8f59c695627806f77c664d4a0a69378944499ecef78a23a1bdc9828064a20cb1
+  checksum: 2c49f0600643931565d094ce8c899f208ae5d654b57940161fdeea14821785663c4e1d514774d50164baee405ec77babc057307149949184383109d6efba5935
   languageName: node
   linkType: hard
 
@@ -8824,9 +8826,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-hooks@npm:5.0.2-beta19":
-  version: 5.0.2-beta19
-  resolution: "eth-hooks@npm:5.0.2-beta19"
+"eth-hooks@npm:5.0.2-beta20":
+  version: 5.0.2-beta20
+  resolution: "eth-hooks@npm:5.0.2-beta20"
   dependencies:
     "@ethersproject/abi": ^5.6.4
     "@ethersproject/abstract-provider": ^5.6.1
@@ -8858,44 +8860,7 @@ __metadata:
     "@uniswap/sdk": ^3
     react: ">=17"
     react-dom: ">=17"
-  checksum: 73d9f7eb9eab764833966a89284a9b056a2ec5591792f5516426c96a90c37151140ff2dabc22ddcf22353ef9f21e5c156fa41c949c62dd9642f47adcb56b1851
-  languageName: node
-  linkType: hard
-
-"eth-hooks@npm:^4.6.1":
-  version: 4.6.1
-  resolution: "eth-hooks@npm:4.6.1"
-  dependencies:
-    "@ethersproject/abi": ^5.6.4
-    "@ethersproject/abstract-provider": ^5.6.1
-    "@ethersproject/address": ^5.6.1
-    "@ethersproject/bignumber": ^5.6.2
-    "@ethersproject/bytes": ^5.6.1
-    "@ethersproject/contracts": ^5.6.2
-    "@ethersproject/networks": ^5.6.4
-    "@ethersproject/providers": ^5.6.8
-    "@ethersproject/signing-key": ^5.6.2
-    "@ethersproject/solidity": ^5.6.1
-    "@ethersproject/units": ^5.6.1
-    "@ethersproject/wallet": ^5.6.2
-    "@uniswap/token-lists": ^1.0.0-beta.30
-    "@web3-react/abstract-connector": ^6.0.7
-    "@web3-react/core": ^6.1.9
-    "@web3-react/types": ^6.0.7
-    ethers: ^5.6.8
-    lodash.isequal: ^4.5.0
-    merge-anything: ^5.0.2
-    react-query: ^3.39.2
-    ts-invariant: ^0.10.3
-    use-debounce: ^8.0.3
-    usehooks-ts: ^2.6.0
-    web3modal: ^1.9.8
-    zustand: 4.0.0
-  peerDependencies:
-    "@uniswap/sdk": ^3
-    react: ">=17"
-    react-dom: ">=17"
-  checksum: 1b5cad950a8677c09b194d780e7829e957b93762017f0e049dff90dac31e5ca2c4062d499939055d32becb8c423588fa6a4c4e6dc3edbfe41ee5a94175507952
+  checksum: 9930afba44cabeb6453e156e938e6b656f249e600e577fe6815559de49667c3279095f7596a27d632164fd92365a15e1dc5cba05044979b27c1b4a102060b313
   languageName: node
   linkType: hard
 

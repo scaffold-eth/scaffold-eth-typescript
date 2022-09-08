@@ -15,6 +15,6 @@ export const getNetworkInfo = (chainId: number | undefined): TNetworkDefinition 
 
   const network = getNetwork(chainId) ?? {};
   // @ts-expect-error
-  const rpcUrl = network?._defaultProvider?.connection?.rpcUrl ?? '';
+  const rpcUrl: string = network?._defaultProvider?.connection?.rpcUrl ?? '';
   return { ...network, blockExplorer: '', color: '#666666', rpcUrl };
 };

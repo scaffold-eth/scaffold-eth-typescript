@@ -15,13 +15,13 @@ import { useScaffoldAppProviders } from '~common/components/hooks/useScaffoldApp
 import { networkDefinitions } from '~common/constants';
 import { useScaffoldHooksExamples } from '~~/components/hooks/useScaffoldHooksExamples';
 import {
-  TARGET_NETWORK_INFO,
+  AVAILABLE_NETWORKS_DEFINITIONS,
   CONNECT_TO_BURNER_AUTOMATICALLY,
   LOCAL_PROVIDER,
   MAINNET_PROVIDER,
   INFURA_ID,
   BURNER_FALLBACK_ENABLED,
-} from '~~/config/app.config';
+} from '~~/config/nextjsApp.config';
 import { TAppProps } from '~~/models/TAppProps';
 
 /** ********************************
@@ -55,7 +55,7 @@ export const MainPage: NextPage<IMainPageProps> = (props) => {
   // 🛰 providers
   // see useLoadProviders.ts for everything to do with loading the right providers
   const scaffoldAppProviders = useScaffoldAppProviders({
-    targetNetworks: TARGET_NETWORK_INFO,
+    targetNetworks: AVAILABLE_NETWORKS_DEFINITIONS,
     connectToBurnerAutomatically: CONNECT_TO_BURNER_AUTOMATICALLY,
     localProvider: LOCAL_PROVIDER,
     mainnetProvider: MAINNET_PROVIDER,

@@ -1,8 +1,8 @@
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
-import { TNetworkInfo, TEthersProvider } from 'eth-hooks/models';
+import { TEthersProvider } from 'eth-hooks/models';
 import { invariant } from 'ts-invariant';
 
-import { networkDefinitions } from '~common/constants';
+import { networkDefinitions, TNetworkDefinition } from '~common/constants';
 import { scaffoldConfig } from '~common/scaffold.config';
 
 /** ******************************
@@ -27,19 +27,21 @@ invariant.log('MODE', import.meta.env.MODE, import.meta.env.DEV);
  * 🤚🏽  Set your target frontend network <--- select your target frontend network(localhost, rinkeby, xdai, mainnet)
  */
 
-export const TARGET_NETWORKS = scaffoldConfig.runtime.targetNetworks;
-invariant.log('Target Network', TARGET_NETWORKS);
-TARGET_NETWORKS.forEach((t) => {
+const AVAILABLE_NETWORKS = scaffoldConfig.runtime.availableNetworks;
+invariant.log('Available Networks', AVAILABLE_NETWORKS);
+AVAILABLE_NETWORKS.forEach((t) => {
   invariant(
     networkDefinitions[t] != null,
-    `Invalid target network: ${t}.  Check scaffold.config.json and network definition in /packages/common/src/constants/networks.ts`
+    `Invalid available networks: ${t}.  Check scaffold.config.json and network definition in /packages/common/src/constants/networks.ts`
   );
 });
 
-export const TARGET_NETWORK_INFO: { [chainId: number]: TNetworkInfo } = {};
-TARGET_NETWORKS.forEach((m) => (TARGET_NETWORK_INFO[networkDefinitions[m].chainId] = networkDefinitions[m]));
+export const AVAILABLE_NETWORKS_DEFINITIONS: { [chainId: number]: TNetworkDefinition } = {};
+AVAILABLE_NETWORKS.forEach(
+  (m) => (AVAILABLE_NETWORKS_DEFINITIONS[networkDefinitions[m].chainId] = networkDefinitions[m])
+);
 
-if (DEBUG) console.log(`📡 Can connect to `, TARGET_NETWORK_INFO);
+if (DEBUG) console.log(`📡 Can connect to `, AVAILABLE_NETWORKS_DEFINITIONS);
 
 /** ******************************
  * LOCAL HOST CONFIG:
@@ -95,9 +97,9 @@ export const MAINNET_PROVIDER = mainnetProvider;
 // connecting to local provider
 // -------------------
 
-if (DEBUG) console.log('🏠 Connecting to local provider:', networkDefinitions.localhost.url);
+if (DEBUG) console.log('🏠 Connecting to local provider:', networkDefinitions.localhost.rpcUrl);
 
 export const LOCAL_PROVIDER: TEthersProvider | undefined =
-  TARGET_NETWORK_INFO[networkDefinitions.localhost.chainId] != null && import.meta.env.DEV
-    ? new StaticJsonRpcProvider(networkDefinitions.localhost.url)
+  AVAILABLE_NETWORKS_DEFINITIONS[networkDefinitions.localhost.chainId] != null && import.meta.env.DEV
+    ? new StaticJsonRpcProvider(networkDefinitions.localhost.rpcUrl)
     : undefined;

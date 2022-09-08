@@ -7,7 +7,7 @@ import { Ramp, getFaucetAvailable, ThemeSwitcher } from '~common/components';
 import { networkDefinitions } from '~common/constants';
 import { getNetworkInfo } from '~common/functions';
 import { IScaffoldAppProviders } from '~common/models';
-import { FAUCET_ENABLED } from '~~/config/app.config';
+import { FAUCET_ENABLED } from '~~/config/nextjsApp.config';
 import { TAppProps } from '~~/models/TAppProps';
 
 export interface IMainPageFooterProps {
