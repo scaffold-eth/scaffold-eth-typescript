@@ -1,7 +1,7 @@
 
 # Subgraph
 
-1. Make sure your local chain is running first.
+1. Make sure your local chain is running first and you have ran `yarn deploy`.
 
 2. Make sure you are running `graph-node` using docker,  for instructions checkout `README.md` in `packages/advanced/services` directory.
 
