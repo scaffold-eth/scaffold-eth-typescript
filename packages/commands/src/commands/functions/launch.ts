@@ -41,22 +41,6 @@ export const buildReact = (args: string[]): void => {
   }
 };
 
-export const deploySolidity = (args: string[]): void => {
-  const config = load();
-  printConfig(config);
-  const passthroughArgs = processUnknownArgs(args);
-
-  if (config.build.solidityToolkit === 'hardhat') {
-    shell.exec('yarn workspace @scaffold-eth/solidity deploy:hardhat' + passthroughArgs);
-    shell.exec('yarn workspace @scaffold-eth/solidity deploy:hardhat:post');
-  } else if (config.build.solidityToolkit === 'foundry') {
-    shell.exec('yarn workspace @scaffold-eth/solidity deploy:foundry' + passthroughArgs);
-    shell.exec('yarn workspace @scaffold-eth/solidity deploy:foundry:post');
-  } else {
-    console.log(chalk.red('❌ Error! Invalid react build tool in config!'));
-  }
-};
-
 export const compileSolidity = (args: string[]): void => {
   const config = load();
   printConfig(config);
@@ -73,6 +57,22 @@ export const compileSolidity = (args: string[]): void => {
   }
 
   shell.exec('yarn compile:post');
+};
+
+export const deploySolidity = (args: string[]): void => {
+  const config = load();
+  printConfig(config);
+  const passthroughArgs = processUnknownArgs(args);
+
+  if (config.build.solidityToolkit === 'hardhat') {
+    shell.exec('yarn workspace @scaffold-eth/solidity deploy:hardhat' + passthroughArgs);
+    shell.exec('yarn workspace @scaffold-eth/solidity deploy:hardhat:post');
+  } else if (config.build.solidityToolkit === 'foundry') {
+    shell.exec('yarn workspace @scaffold-eth/solidity deploy:foundry' + passthroughArgs);
+    shell.exec('yarn workspace @scaffold-eth/solidity deploy:foundry:post');
+  } else {
+    console.log(chalk.red('❌ Error! Invalid react build tool in config!'));
+  }
 };
 
 export const startChain = (args: string[]): void => {

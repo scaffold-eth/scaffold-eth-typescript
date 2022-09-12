@@ -15,7 +15,7 @@
     "deploy:hardhat:post": "yarn ts-node scripts/hardhatPostDeploy.ts",
     "deploy:foundry": "yarn ts-node scripts/foundryDeploy.ts",
     "deploy:foundry:post": "yarn ts-node scripts/foundryPostDeploy.ts",
-    "clean:hardhat": "cross-env BUILDING=true hardhat clean",
+    "clean": "yarn cross-env BUILDING=true hardhat clean",
     "accounts:hardhat": "hardhat accounts",
     "generate": "hardhat generate",
     "account": "hardhat account",

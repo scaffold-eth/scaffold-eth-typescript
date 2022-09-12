@@ -15,6 +15,11 @@ export const foundryTypechain = async (): Promise<void> => {
     allFiles,
     outDir: typechainOutDir,
     target: typechainTarget,
+    flags: {
+      discriminateTypes: true,
+      environment: undefined,
+      alwaysGenerateOverloads: false,
+    },
   });
 
   console.log(result);
