@@ -67,6 +67,7 @@ export const compileSolidity = (args: string[]): void => {
     shell.exec('yarn workspace @scaffold-eth/solidity compile:hardhat' + passthroughArgs);
   } else if (config.build.solidityToolkit === 'foundry') {
     shell.exec('yarn workspace @scaffold-eth/solidity compile:foundry' + passthroughArgs);
+    shell.exec('yarn workspace @scaffold-eth/solidity compile:foundry:post ');
   } else {
     console.log(chalk.red('❌ Error! Invalid solidity toolkit in config!'));
   }
