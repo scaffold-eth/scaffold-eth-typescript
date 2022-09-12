@@ -42,8 +42,6 @@ export const ThemeSwitcher: FC = () => {
     toggleTheme(theme === 'dark');
   }, []);
 
-  console.log('theme', status);
-
   if (status === 'loading' || status === 'idle') {
     return <></>;
   }

@@ -2,7 +2,7 @@
 import {
   createConnectorForExternalAbi,
   createConnectorForExternalContract,
-  createConnectorForForgeBroadcastContract,
+  createConnectorForFoundryContract,
   createConnectorForHardhatContract,
 } from 'eth-hooks/context';
 import { invariant } from 'ts-invariant';
@@ -47,13 +47,13 @@ export const appContractsConfig = () => {
       // --------------------------------------------------
       // 🙋🏽‍♂️ foundry contracts examples
       // --------------------------------------------------
-      YourContractFoundry: createConnectorForForgeBroadcastContract(
+      YourContractFoundry: createConnectorForFoundryContract(
         'YourContract',
         toolkitContracts.YourContract__factory,
         foundryDeployedContractsJson
       ),
 
-      YourNFTFoundry: createConnectorForForgeBroadcastContract(
+      YourNFTFoundry: createConnectorForFoundryContract(
         'YourNFT',
         toolkitContracts.YourNFT__factory,
         foundryDeployedContractsJson
