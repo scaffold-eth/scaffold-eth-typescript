@@ -13,6 +13,7 @@ import * as toolkitContracts from '~common/generated/contract-types/';
 import * as externalContracts from '~common/generated/external-contracts/esm/types';
 import foundryDeployedContractsJson from '~common/generated/foundry_contracts.json';
 import hardhatDeployedContractsJson from '~common/generated/hardhat_contracts.json';
+import { scaffoldConfig } from '~common/scaffold.config';
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
@@ -30,34 +31,33 @@ export const appContractsConfig = () => {
   try {
     const result = {
       // --------------------------------------------------
-      // 🙋🏽‍♂️ hardhat contracts examples
+      // 🙋🏽‍♂️ Contracts examples either using hardhat or foundry
       // --------------------------------------------------
-      YourContract: createConnectorForHardhatContract(
-        'YourContract',
-        toolkitContracts.YourContract__factory,
-        hardhatDeployedContractsJson
-      ),
+      YourContract:
+        scaffoldConfig.build.solidityToolkit === 'hardhat'
+          ? createConnectorForHardhatContract(
+              'YourContract',
+              toolkitContracts.YourContract__factory,
+              hardhatDeployedContractsJson
+            )
+          : createConnectorForFoundryContract(
+              'YourContract',
+              toolkitContracts.YourContract__factory,
+              foundryDeployedContractsJson
+            ),
 
-      YourNFT: createConnectorForHardhatContract(
-        'YourNFT',
-        toolkitContracts.YourNFT__factory,
-        hardhatDeployedContractsJson
-      ),
-
-      // --------------------------------------------------
-      // 🙋🏽‍♂️ foundry contracts examples
-      // --------------------------------------------------
-      YourContractFoundry: createConnectorForFoundryContract(
-        'YourContract',
-        toolkitContracts.YourContract__factory,
-        foundryDeployedContractsJson
-      ),
-
-      YourNFTFoundry: createConnectorForFoundryContract(
-        'YourNFT',
-        toolkitContracts.YourNFT__factory,
-        foundryDeployedContractsJson
-      ),
+      YourNFT:
+        scaffoldConfig.build.solidityToolkit === 'hardhat'
+          ? createConnectorForHardhatContract(
+              'YourNFT',
+              toolkitContracts.YourNFT__factory,
+              hardhatDeployedContractsJson
+            )
+          : createConnectorForFoundryContract(
+              'YourNFT',
+              toolkitContracts.YourNFT__factory,
+              foundryDeployedContractsJson
+            ),
 
       // --------------------------------------------------
       // 🙋🏽‍♂️ Add your external contracts here, make sure to define the address in `externalContractsConfig.ts`Í

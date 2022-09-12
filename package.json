@@ -32,7 +32,7 @@
     "start:nextjs": "yarn workspace @scaffold-eth/nextjs-app dev",
     "build:nextjs": "yarn workspace @scaffold-eth/nextjs-app build",
     "@🔖🔖🔖🔖🔖 solidity contracts 🔖🔖🔖🔖🔖 ": "echo 🔖🔖🔖🔖🔖",
-    "compile:post": "yarn workspace @scaffold-eth/common contracts:toolkit && yarn workspace @scaffold-eth/common contracts:external",
+    "compile:post": "yarn workspace @scaffold-eth/common compile:post",
     "contracts:clean": "yarn workspace @scaffold-eth/solidity clean && yarn workspace @scaffold-eth/common clean",
     "contracts:build": "yarn compile && yarn compile:post",
     "deploy:post": "yarn workspace @scaffold-eth/solidity deploy:post",

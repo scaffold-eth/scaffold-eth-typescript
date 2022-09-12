@@ -16,7 +16,7 @@ export const validatedScaffoldConfigSchema = scaffoldConfigSchema.refine((data) 
 /**
  * Use this for your app
  */
-export const scaffoldConfig: TScaffoldConfig = validatedScaffoldConfigSchema.parse(json);
+export const scaffoldConfig = validatedScaffoldConfigSchema.parse(json);
 
 // this logic is a bit redundant, as it has to work with esm, commonjs and hardhat
 
@@ -32,9 +32,7 @@ export const loadScaffoldConfig = async (): Promise<TScaffoldConfig> => {
   return scaffoldConfig;
 };
 
-void loadScaffoldConfig();
 /**
  * use this for hardhat
  */
-// @ts-ignore
 export default configForHardhat;
