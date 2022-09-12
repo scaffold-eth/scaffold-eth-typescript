@@ -2236,8 +2236,8 @@ __metadata:
     "@swc/helpers": ^0.4.7
     "@types/edit-json-file": ^1.7.0
     "@types/shelljs": ^0.8.11
-    "@typescript-eslint/eslint-plugin": ^5.33.1
-    "@typescript-eslint/parser": ^5.33.1
+    "@typescript-eslint/eslint-plugin": ^5.36.2
+    "@typescript-eslint/parser": ^5.36.2
     chalk: ^4.1.2
     commander: ^9.4.0
     cross-env: ^7.0.3
@@ -2294,8 +2294,8 @@ __metadata:
     "@types/node": ^16.11.49
     "@types/react": ^18.0.17
     "@types/react-dom": ^18.0.6
-    "@typescript-eslint/eslint-plugin": ^5.33.1
-    "@typescript-eslint/parser": ^5.33.1
+    "@typescript-eslint/eslint-plugin": ^5.36.2
+    "@typescript-eslint/parser": ^5.36.2
     "@uniswap/sdk": ^3.0.3
     "@uniswap/token-lists": ^1.0.0-beta.30
     "@walletconnect/ethereum-provider": ^1.8.0
@@ -2389,8 +2389,8 @@ __metadata:
     "@types/react-qr-reader": ^2.1.4
     "@types/react-router-dom": ^5.3.3
     "@types/react-stack-grid": ^0.7.3
-    "@typescript-eslint/eslint-plugin": ^5.33.1
-    "@typescript-eslint/parser": ^5.33.1
+    "@typescript-eslint/eslint-plugin": ^5.36.2
+    "@typescript-eslint/parser": ^5.36.2
     "@uniswap/sdk": ^3.0.3
     "@uniswap/token-lists": ^1.0.0-beta.30
     "@web3-react/types": ^6.0.7
@@ -2497,8 +2497,8 @@ __metadata:
     "@types/node": ^16.11.49
     "@types/qrcode-terminal": ^0.12.0
     "@types/shelljs": ^0.8.11
-    "@typescript-eslint/eslint-plugin": ^5.33.1
-    "@typescript-eslint/parser": ^5.33.1
+    "@typescript-eslint/eslint-plugin": ^5.36.2
+    "@typescript-eslint/parser": ^5.36.2
     bip39: ^3.0.4
     chai: ^4.3.6
     chalk: ^4.1.2
@@ -2610,11 +2610,11 @@ __metadata:
     "@types/react-qr-reader": ^2.1.4
     "@types/react-router-dom": ^5.3.3
     "@types/react-stack-grid": ^0.7.3
-    "@typescript-eslint/eslint-plugin": ^5.33.1
-    "@typescript-eslint/parser": ^5.33.1
+    "@typescript-eslint/eslint-plugin": ^5.36.2
+    "@typescript-eslint/parser": ^5.36.2
     "@uniswap/sdk": ^3.0.3
     "@uniswap/token-lists": ^1.0.0-beta.30
-    "@vitejs/plugin-react": ^2.0.1
+    "@vitejs/plugin-react": ^2.1.0
     "@vitejs/plugin-react-refresh": ^1.3.6
     "@web3-react/types": ^6.0.7
     antd: ^4.22.6
@@ -2673,11 +2673,11 @@ __metadata:
     use-debounce: ^8.0.3
     usehooks-ts: ^2.6.0
     util: ^0.12.4
-    vite: ^3.0.8
+    vite: ^3.1.0
     vite-plugin-babel-macros: ^1.0.6
-    vite-plugin-checker: ^0.4.9
+    vite-plugin-checker: ^0.5.1
     vite-plugin-externals: ^0.5.1
-    vite-plugin-imp: ^2.2.0
+    vite-plugin-imp: ^2.3.0
     vite-tsconfig-paths: ^3.5.0
     web3modal: ^1.9.8
     yalc: ^1.0.0-pre.53
@@ -3738,7 +3738,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^5.33.1":
+"@typescript-eslint/eslint-plugin@npm:^5.36.2":
   version: 5.36.2
   resolution: "@typescript-eslint/eslint-plugin@npm:5.36.2"
   dependencies:
@@ -3761,7 +3761,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^5.10.0, @typescript-eslint/parser@npm:^5.21.0, @typescript-eslint/parser@npm:^5.33.1":
+"@typescript-eslint/parser@npm:^5.10.0, @typescript-eslint/parser@npm:^5.21.0, @typescript-eslint/parser@npm:^5.36.2":
   version: 5.36.2
   resolution: "@typescript-eslint/parser@npm:5.36.2"
   dependencies:
@@ -3911,7 +3911,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitejs/plugin-react@npm:^2.0.1":
+"@vitejs/plugin-react@npm:^2.1.0":
   version: 2.1.0
   resolution: "@vitejs/plugin-react@npm:2.1.0"
   dependencies:
@@ -20905,9 +20905,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-checker@npm:^0.4.9":
-  version: 0.4.9
-  resolution: "vite-plugin-checker@npm:0.4.9"
+"vite-plugin-checker@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "vite-plugin-checker@npm:0.5.1"
   dependencies:
     "@babel/code-frame": ^7.12.13
     ansi-escapes: ^4.3.0
@@ -20925,10 +20925,21 @@ __metadata:
     vscode-languageserver-textdocument: ^1.0.1
     vscode-uri: ^3.0.2
   peerDependencies:
+    eslint: ">=7"
+    typescript: "*"
     vite: ^2.0.0 || ^3.0.0-0
-  bin:
-    vite-plugin-checker-vls: bin/vls
-  checksum: b3bff686c3a48335869376d01ceb98ec4a5fa961dcdb4968ab2e629ab989a7760f2ea29c3660cf3fa54f3354968c93415fc918f2bebea2ec8a6bb93692eec41a
+    vls: "*"
+    vti: "*"
+  peerDependenciesMeta:
+    eslint:
+      optional: true
+    typescript:
+      optional: true
+    vls:
+      optional: true
+    vti:
+      optional: true
+  checksum: eed0b1a07563ca5b0567bbb39348a46208282f2c10c47d86d5c4d334c04bde30a1ce80566359588bdbae61339a8ee4ca609b9d4d779d50c6233d3efa8eb36220
   languageName: node
   linkType: hard
 
@@ -20946,7 +20957,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-imp@npm:^2.2.0":
+"vite-plugin-imp@npm:^2.3.0":
   version: 2.3.0
   resolution: "vite-plugin-imp@npm:2.3.0"
   dependencies:
@@ -20977,7 +20988,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^3.0.8":
+"vite@npm:^3.1.0":
   version: 3.1.0
   resolution: "vite@npm:3.1.0"
   dependencies:
