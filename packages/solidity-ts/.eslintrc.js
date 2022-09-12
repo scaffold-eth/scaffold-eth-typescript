@@ -48,7 +48,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/no-unsafe-call': 'warn',
     '@typescript-eslint/unbound-method': 0,
-    '@typescript-eslint/restrict-template-expressions': ['warn', { allowBoolean: true, allowNumber: true }],
+    '@typescript-eslint/restrict-template-expressions': 0,
     'prefer-destructuring': 'off',
     'no-param-reassign': 'error',
     'import/order': [

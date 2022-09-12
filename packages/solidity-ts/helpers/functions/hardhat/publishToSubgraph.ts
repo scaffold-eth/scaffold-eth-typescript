@@ -2,12 +2,13 @@ import fs from 'fs';
 
 import chalk from 'chalk';
 
-const deploymentsDir = './generated/hardhat/deployments';
+import { hardhatDeploymentsDir } from '~helpers/constants/folders';
+
 const graphDir = '../subgraph';
 
 const publishContract = (contractName: string, networkName: string): boolean => {
   try {
-    const contract = fs.readFileSync(`${deploymentsDir}/${networkName}/${contractName}.json`).toString();
+    const contract = fs.readFileSync(`${hardhatDeploymentsDir}/${networkName}/${contractName}.json`).toString();
     const contractJson: { address: string; abi: [] } = JSON.parse(contract);
     const graphConfigPath = `${graphDir}/config/config.json`;
     let graphConfigStr = '{}';
@@ -42,9 +43,9 @@ const publishContract = (contractName: string, networkName: string): boolean => 
 export const hardhatPublishToSubgraph = (): void => {
   console.log(chalk.white('Running Post Deploy: publish contracts to subgraph...'));
 
-  const deploymentSubdirs = fs.readdirSync(deploymentsDir);
+  const deploymentSubdirs = fs.readdirSync(hardhatDeploymentsDir);
   deploymentSubdirs.forEach(function (directory) {
-    const files = fs.readdirSync(`${deploymentsDir}/${directory}`);
+    const files = fs.readdirSync(`${hardhatDeploymentsDir}/${directory}`);
     files.forEach(function (file) {
       if (file.includes('.json')) {
         const contractName = file.replace('.json', '');

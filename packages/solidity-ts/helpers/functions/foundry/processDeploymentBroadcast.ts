@@ -5,13 +5,14 @@ import { invariant } from 'ts-invariant';
 
 import { readAllChildDirs, readChildFiles } from '../fileHelper';
 
+import { commonGenerated, foundryBroadcastDir } from '~helpers/constants/folders';
+
 // import { validateBroadcastFile } from '~common/functions/validateBroadcastCollection';
 
-const broadcastDir = './generated/foundry/broadcast/';
 const deployScriptName = 'DeployContracts.sol';
-const deployJsonDir = broadcastDir + deployScriptName + '/';
+const deployJsonDir = foundryBroadcastDir + deployScriptName + '/';
 const latestBroadcastFileFilter = /run-latest\.json$/;
-const destination = '../common/src/generated/foundry_contracts.json';
+const destination = `${commonGenerated}foundry_contracts.json`;
 
 export const foundryProcessDeploymentBroadcast = async (): Promise<void> => {
   console.log(chalk.white('Running Foundry post deploy...'));
