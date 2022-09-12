@@ -9,7 +9,7 @@ import { getMnemonic } from '../helpers/functions';
 import { DEBUG } from '~helpers/debug';
 import { getAccountData } from '~helpers/functions/accounts';
 import { THardhatRuntimeEnvironmentExtended } from '~helpers/types/THardhatRuntimeEnvironmentExtended';
-import { findFirstAddress } from '~tasks/functions/hardhatUtils';
+import { findFirstAddress } from '~tasks/utils/hardhatUtils';
 task('account', 'Get balance informations for the deployment account.', async (_, hre) => {
   const { address } = await getAccountData(getMnemonic());
 

@@ -48,8 +48,10 @@ export const deploySolidity = (args: string[]): void => {
 
   if (config.build.solidityToolkit === 'hardhat') {
     shell.exec('yarn workspace @scaffold-eth/solidity deploy:hardhat' + passthroughArgs);
+    shell.exec('yarn workspace @scaffold-eth/solidity deploy:hardhat:post');
   } else if (config.build.solidityToolkit === 'foundry') {
-    const data = shell.exec('yarn workspace @scaffold-eth/solidity deploy:foundry' + passthroughArgs);
+    shell.exec('yarn workspace @scaffold-eth/solidity deploy:foundry' + passthroughArgs);
+    shell.exec('yarn workspace @scaffold-eth/solidity deploy:foundry:post');
   } else {
     console.log(chalk.red('❌ Error! Invalid react build tool in config!'));
   }
@@ -86,6 +88,4 @@ export const startChain = (args: string[]): void => {
   } else {
     console.log(chalk.red('❌ Error! Invalid solidity toolkit in config!'));
   }
-
-  shell.exec('yarn workspace @scaffold-eth/solidity deploy:post');
 };

@@ -8,7 +8,7 @@ import { send } from '../helpers/functions/send';
 
 import { debugLog } from '~helpers/debug';
 import { getMnemonic } from '~helpers/functions';
-import { findFirstAddress } from '~tasks/functions/hardhatUtils';
+import { findFirstAddress } from '~tasks/utils/hardhatUtils';
 
 // eslint-disable-next-line @typescript-eslint/require-await
 task('wallet', 'Create a wallet (pk) link', async (_, { ethers }): Promise<void> => {

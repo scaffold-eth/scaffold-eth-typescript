@@ -3,7 +3,7 @@ import { task } from 'hardhat/config';
 import { create } from 'ipfs-http-client';
 
 import { getHardhatSigners } from '~helpers/functions/accounts';
-import { sleep } from '~tasks/functions/hardhatUtils';
+import { sleep } from '~tasks/utils/hardhatUtils';
 
 task('mint', 'Mints NFTs to the specified address')
   .addPositionalParam('toAddress', 'The address that will mint them')
@@ -34,7 +34,7 @@ task('mint', 'Mints NFTs to the specified address')
     if (yourNFTContract == null) {
       const factory = new YourNFT__factory(deployer);
       yourNFTContract = await factory.deploy();
-      console.log('\n\n 🎫 YourNFT contract deployed at ' + yourNFTContract.address + '\n');
+      console.log(`\n\n 🎫 YourNFT contract deployed at ${yourNFTContract.address.toString()}\n`);
     }
 
     if (yourNFTContract == null) {
