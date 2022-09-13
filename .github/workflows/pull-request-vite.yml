@@ -39,7 +39,7 @@ jobs:
 
       - name: Run foundryup
         run: |
-          packages/solidity-ts
+          cd packages/solidity-ts
           foundryup
           cd ...
 
