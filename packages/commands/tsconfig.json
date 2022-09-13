@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    // "inlineSources": true,
+    "allowJs": false,
+    "declarationMap": true,
+    "declaration": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "incremental": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "paths": {
+      "~~/*": ["./src/*"],
+      "~common/*": ["../common/src/*"]
+    }
+  },
+  "ts-node": {
+    "swc": true,
+    "require": ["tsconfig-paths/register"],
+    "compilerOptions": {
+      "module": "CommonJS"
+    },
+    "moduleTypes": {
+      "**/*": "cjs"
+    }
+  },
+  "include": ["src", "../common/src"],
+  "exclude": [
+    "**/node_modules",
+    "node_modules",
+    ".husky",
+    "**/*.css",
+    "./tailwind.config.js",
+    "**/.yalc/",
+    "**/.yalc/**/*",
+    ".yalc/**/*"
+  ]
+}

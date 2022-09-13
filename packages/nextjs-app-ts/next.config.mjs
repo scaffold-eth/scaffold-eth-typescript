@@ -5,8 +5,9 @@ const __dirname = resolve();
 const nextConfig = {
   reactStrictMode: true,
   experimental: { esmExternals: true, externalDir: true, swcFileReading: true },
-  swcMinify: true,
-  reactRefresh: true,
+
+  // https://github.com/vercel/next.js/issues/36221
+  //swcMinify: true,
   productionBrowserSourceMaps: true,
   compiler: {
     emotion: true,

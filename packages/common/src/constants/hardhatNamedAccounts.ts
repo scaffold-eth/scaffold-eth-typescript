@@ -1,6 +1,6 @@
-import { TNetworkNames } from '~common/models/TNetworkNames';
+import { TNetworkNamesList } from '~common/models/scaffoldConfigTypes';
 
-type TChain = TNetworkNames | number;
+type TChain = TNetworkNamesList | number;
 type TAccountName = 'deployer' | 'user1' | 'user2' | 'user3' | 'user4' | 'user5' | 'governance';
 
 /**

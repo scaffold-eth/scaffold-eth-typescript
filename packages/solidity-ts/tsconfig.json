@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "types": ["node", "ethers", "chai", "mocha"],
+    "allowJs": false,
+    "skipLibCheck": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "moduleResolution": "Node",
+    "incremental": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "rootDirs": [".", "../common/src"],
+    "baseUrl": ".",
+    "outDir": "dist",
+    "paths": {
+      "~~/*": ["./src/*"],
+      "~helpers/*": ["./helpers/*"],
+      "~contracts/*": ["./contracts/*"],
+      "~tests/*": ["./tests/*"],
+      "~generated/*": ["./generated/*"],
+      "~tasks/*": ["./tasks/*"],
+      "~common/*": ["../common/src/*"],
+      "~scripts/*": ["./scripts/*"]
+    }
+  },
+  "include": ["types", "scripts", "tests", "helpers", "./hardhat.config.ts", "deploy", "tasks", "scripts", "../common/src", "../common/tsconfig.json"],
+  "exclude": ["**/node_modules"],
+  "ts-node": {
+    "swc": true,
+    "require": ["tsconfig-paths/register"],
+    "compilerOptions": {
+      "module": "CommonJS"
+    },
+    "moduleTypes": {
+      "**/*": "cjs"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "sourceMap": true,
     "allowJs": true,
@@ -24,12 +24,12 @@
       "~common/*": ["../common/src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "../common/src"],
   "exclude": [
     "**/node_modules",
     ".husky",
     "**/*.css",
-    "tailwind.config.cjs",
+    "tailwind.config.js",
     "node_modules",
     "**/.yalc/**/*",
     ".yalc/**/*"

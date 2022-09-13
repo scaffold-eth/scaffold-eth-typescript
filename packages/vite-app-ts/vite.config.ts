@@ -1,8 +1,8 @@
 import { resolve } from 'path';
 
 import reactPlugin from '@vitejs/plugin-react';
+import chalk from 'chalk';
 import { defineConfig } from 'vite';
-// import reactRefresh from '@vitejs/plugin-react-refresh';
 import macrosPlugin from 'vite-plugin-babel-macros';
 import checker from 'vite-plugin-checker';
 import { viteExternalsPlugin } from 'vite-plugin-externals';
@@ -11,7 +11,9 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 const isDev = process.env.ENVIRONMENT === 'DEVELOPMENT';
 console.log('env.dev:', process.env.ENVIRONMENT, ' isDev:', isDev);
 console.log();
-console.log('Make sure to build the contracts with `yarn contracts:build` and deploy them with `yarn deploy`');
+console.log(
+  chalk.green('🏁 Make sure to build the contracts with `yarn contracts:build` and deploy them with `yarn deploy`')
+);
 console.log();
 
 /**
@@ -26,7 +28,7 @@ const externals = {
   http: resolve(__dirname, './node_modules/http-browserify'),
   https: resolve(__dirname, './node_modules/http-browserify'),
   timers: resolve(__dirname, './node_modules/timers-browserify'),
-  // the two below are due to strate ipfs-core dependency, they are not loaded
+  // the two below are due to bad ipfs-core dependency, they are not loaded
   electron: 'electron',
   'electron-fetch': 'electron-fetch',
 };
@@ -70,6 +72,9 @@ export default defineConfig({
   optimizeDeps: {
     exclude: excludeDeps,
     include: ['@scaffold-eth/common', 'eth-hooks', 'eth-components'],
+  },
+  json: {
+    namedExports: true,
   },
   resolve: {
     preserveSymlinks: true,

@@ -1,2 +1,3 @@
 export * from './IScaffoldAppProviders';
-export * from './TNetworkNames';
+export * from './scaffoldConfigTypes';
+export * from './TScaffoldConfig';

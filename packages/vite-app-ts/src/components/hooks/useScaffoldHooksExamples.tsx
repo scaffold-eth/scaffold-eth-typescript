@@ -16,7 +16,7 @@ import { ethers } from 'ethers';
 import { useContext, useEffect } from 'react';
 
 import { useAppContracts } from '~common/components/context';
-import { NETWORKS } from '~common/constants';
+import { networkDefinitions } from '~common/constants';
 import { getNetworkInfo } from '~common/functions';
 import { IScaffoldAppProviders } from '~common/models/IScaffoldAppProviders';
 
@@ -34,7 +34,7 @@ const DEBUG = false;
 export const useScaffoldHooksExamples = (scaffoldAppProviders: IScaffoldAppProviders): void => {
   const ethComponentsSettings = useContext(EthComponentsSettingsContext);
   const ethersAppContext = useEthersAppContext();
-  const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
+  const mainnetDai = useAppContracts('DAI', networkDefinitions.mainnet.chainId);
 
   const exampleMainnetProvider = scaffoldAppProviders.mainnetAdaptor?.provider;
   const currentChainId: number | undefined = ethersAppContext.chainId;

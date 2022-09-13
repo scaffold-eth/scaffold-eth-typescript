@@ -22,11 +22,6 @@ export const ThemeSwitcher: FC = () => {
   const { switcher, currentTheme, status, themes } = useThemeSwitcher();
   const ethersAppContext = useEthersAppContext();
 
-  useIsomorphicLayoutEffect(() => {
-    const theme = loadTheme();
-    setIsDarkMode(theme === 'dark');
-  }, []);
-
   useEffect(() => {
     saveTheme(currentTheme ?? '');
     if (currentTheme === 'light' || currentTheme === 'dark') {
@@ -41,6 +36,12 @@ export const ThemeSwitcher: FC = () => {
     ethersAppContext?.setModalTheme?.(isDarkMode ? 'dark' : 'light');
   };
 
+  useIsomorphicLayoutEffect(() => {
+    const theme = loadTheme();
+    setIsDarkMode(theme === 'dark');
+    toggleTheme(theme === 'dark');
+  }, []);
+
   if (status === 'loading' || status === 'idle') {
     return <></>;
   }
@@ -51,6 +52,4 @@ export const ThemeSwitcher: FC = () => {
       <Switch checked={isDarkMode} onChange={toggleTheme} />
     </div>
   );
-
-  return null;
 };
