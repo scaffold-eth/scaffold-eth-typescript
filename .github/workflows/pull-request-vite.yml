@@ -37,10 +37,6 @@ jobs:
 
       - run: source /home/runner/.bashrc
 
-      - name: 'Check forge'
-        run: |
-          forge
-
       - run: yarn install --immutable
 
       - name: 'Scaffold Configuration'
@@ -51,7 +47,7 @@ jobs:
 
       - name: 'Compile Solidity'
         run: |
-          yarn forge
+          yarn forge install
           yarn compile --force
 
       - name: 'Build contracts'
