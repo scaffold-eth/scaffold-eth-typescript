@@ -37,7 +37,12 @@ jobs:
 
       - run: source /home/runner/.bashrc
 
-      - run: yarn foundryinstall
+      - name: Run foundryup
+        run: |
+          packages/solidity-ts
+          foundryup
+          cd ...
+
       - run: yarn install --immutable
 
       - name: 'Scaffold Configuration'
