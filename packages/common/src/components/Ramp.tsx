@@ -1,13 +1,14 @@
 import { DollarCircleOutlined } from '@ant-design/icons';
 import { RampInstantSDK } from '@ramp-network/ramp-instant-sdk';
 import { Button, Divider, Modal } from 'antd';
-import { TNetworkInfo } from 'eth-hooks/models/networkTypes';
 import React, { useState, FC } from 'react';
+
+import { TNetworkDefinition } from '~common/constants';
 
 interface IRampProps {
   price: number;
   address: string;
-  networks: Record<string, TNetworkInfo>;
+  networks: Record<string, TNetworkDefinition>;
   color?: string;
 }
 

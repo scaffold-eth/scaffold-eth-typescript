@@ -2,11 +2,15 @@
 
 ## Typescript
 
-This is the typescript repo of scaffold-eth and it uses `hardhat` and `vite` to run scaffold-eth-typescript. There is also a nextjs version. The directories that you'll use are:
+This is the typescript repo of scaffold-eth. It has the a command line system that allows you to choose a **react frontend** with `nextjs` or `vite`. You can also use `hardhat` or `foundry` as your solidity toolkit.
+
+The directories that you'll use are:
 
 ```bash
+packages/solidity-ts/
+
+And one of either:
 packages/vite-app-ts/
-packages/hardhat-ts/
 packages/next-app-ts/
 ```
 
@@ -22,40 +26,41 @@ Running the app
    yarn install
    ```
 
-2. start a hardhat node
+2. Setup your default configuration
+
+   ```bash
+   yarn reset-config
+   ```
+
+3. start a hardhat node
 
    ```bash
    yarn chain
    ```
 
-3. run the app, `open a new command prompt`
+4. run the app, `open a new command prompt`
 
    ```bash
-   # build hardhat & external contracts types
-   yarn contracts:build
+   # compile your contracts
+   yarn compile
    # deploy your hardhat contracts
    yarn deploy
    # start the app (vite)
    yarn start
    ```
 
-4. If you'd like to run the nextjs app, `open a new command prompt`
-
-   ```bash
-   # start nextjs app
-   yarn start:nextjs
-
-   ```
-
 5. other commands
 
    ```bash
    # rebuild all contracts, incase of inconsistent state
-   yarn contracts:rebuild
+   yarn contracts:clean
+   yarn contracts:build
    # run hardhat commands for the workspace, or see all tasks
    yarn hardhat 'xxx'
-   # get eth for testing locally
-   yarn hardhat faucet xxx
+   # run forge, anvil or
+   yarn forge
+   yarn anvil
+   yarn cast
    # run any subgraph commands for the workspace
    yarn subgraph 'xxx'
    ```
@@ -64,15 +69,44 @@ Running the app
 
    ```bash
    # for subgraph
-   packages/advanced/subgraph/
-   packages/advanced/services/
+   packages/subgraph/
+   # other services: like graphql
+   packages/services/
    ```
 
-### Environment Variables
+### Configuration
 
-Vite and NextJs app folders have `.env` files. To create local variables that overrride these, create a file called `.env.local`, or `.env.development.local` or `.env.production.local` and put your overrides in there.
+Scaffold uses `scaffold.config.json` as a configuration file located in `/packages/common/scaffold.config.json`
 
-You can set your `TARGET_NETWORK` with them.
+#### Command line help
+
+```bash
+use `-h` with any command for help.  e.g. yarn set-react -h
+```
+
+#### Configure react and solidity
+
+You can change the configuration file to pick different frontends and solidity toolkits.
+
+```bash
+yarn set-react `nextjs` or `vite`
+yarn set-solidity `hardhat` or `foundry`
+```
+
+You can see all the other commands by using `yarn scaffold`
+
+#### Target network
+
+Set your `targetNetwork` in the config. This is the network the solidity toolkit is deploying against.
+
+Set your `availableNetworks` in the config. This is the networks the frontend is available in.
+
+You can configure it from the **config file** or from **command line**.
+
+```bash
+yarn set-network -h
+yarn set-network 'localhost' 'localhost, mainnet'
+```
 
 ## Overview
 
@@ -80,9 +114,9 @@ Everything you need to build on Ethereum! 🚀 Quickly experiment with Solidity 
 
 ![image](https://user-images.githubusercontent.com/2653167/124158108-c14ca380-da56-11eb-967e-69cde37ca8eb.png)
 
-- 🔏 Edit your smart contract `YourContract.sol` in `packages/hardhat-ts/contracts`
+- 🔏 Edit your smart contract `YourContract.sol` in `packages/solidity-ts/contracts`
 - 📝 Edit your frontend `MainPage.tsx` in `packages/vite-app-ts/src`
-- 💼 Edit your deployment scripts in `packages/hardhat-ts/deploy`
+- 💼 Edit your deployment scripts in `packages/solidity-ts/deploy/hardhat-deploy`
 - 📱 Open http://localhost:3000 to see the app
 - 👷🏽‍♂️ run `yarn hardhat` to get a list of all the tasks. Run `yarn hardhat taskname` to run the task.
 
@@ -94,7 +128,7 @@ Everything you need to build on Ethereum! 🚀 Quickly experiment with Solidity 
 
 ## Documentation
 
-- Check out [eth-hooks docs](https://scaffold-eth.github.io/eth-hooks) for example of how to use hooks
+- Check out [eth-hooks docs](https://scaffold-eth.github.io/eth-ui) for example of how to use hooks
 
 ## 🏃💨 Speedrun Ethereum
 
@@ -110,8 +144,6 @@ Register as a builder [here](https://speedrunethereum.com) and start on some of 
 
 ## 📚 Documentation
 
-Documentation, tutorials, challenges, and many more resources, visit: [docs.scaffoldeth.io](https://docs.scaffoldeth.io)
-
 Eth-hooks documentation is [here](https://scaffold-eth.github.io/eth-hooks/). Learn how to use the contexts here.
 
 ## 💬 Support Chat
@@ -126,18 +158,7 @@ Check out
 - [Typescript examples](https://github.com/scaffold-eth/scaffold-eth-typescript-examples)
 - [Vanilla JS active branches](https://github.com/scaffold-eth/scaffold-eth/branches/active)
 - Join/fund the 🏰 [BuidlGuidl](https://BuidlGuidl.com)!
-- [Follow the full Ethereum Speed Run](https://medium.com/@austin_48503/%EF%B8%8Fethereum-dev-speed-run-bd72bcba6a4c)
-
-## 🔭 Learning Solidity
-
-Read the docs: https://docs.soliditylang.org
-
-Go through each topic from [solidity by example](https://solidity-by-example.org) editing `YourContract.sol` in **🏗 scaffold-eth**
 
 ### 🙏🏽 Support us!
 
 Please check out our [Gitcoin grant](https://gitcoin.co/grants/2851/scaffold-eth) too!
-
-## 🔐 P.S.About keys
-
-You need an RPC and API keys for testnets and production deployments, create an [Alchemy](https://www.alchemy.com/) account and replace the value of `ALCHEMY_KEY = xxx` in `packages/vite-app-ts/.env` or `packages/next-app-ts/.env` with your new keys.

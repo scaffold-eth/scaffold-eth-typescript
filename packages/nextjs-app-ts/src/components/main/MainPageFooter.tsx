@@ -4,15 +4,17 @@ import { useEthersAppContext } from 'eth-hooks/context';
 import React, { FC, ReactNode, Suspense } from 'react';
 
 import { Ramp, getFaucetAvailable, ThemeSwitcher } from '~common/components';
-import { NETWORKS } from '~common/constants';
+import { networkDefinitions } from '~common/constants';
 import { getNetworkInfo } from '~common/functions';
 import { IScaffoldAppProviders } from '~common/models';
-import { FAUCET_ENABLED } from '~~/config/app.config';
+import { FAUCET_ENABLED } from '~~/config/nextjsApp.config';
+import { TAppProps } from '~~/models/TAppProps';
 
 export interface IMainPageFooterProps {
   scaffoldAppProviders: IScaffoldAppProviders;
   price: number;
   children?: ReactNode;
+  appProps: TAppProps;
 }
 
 /**
@@ -21,6 +23,9 @@ export interface IMainPageFooterProps {
  * @returns
  */
 export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
+  // passed in by nextjs getInitalProps
+  const appProps: TAppProps = props.appProps;
+
   const ethersAppContext = useEthersAppContext();
 
   // Faucet Tx can be used to send funds from the faucet
@@ -39,7 +44,7 @@ export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
       }}>
       <Row align="middle" gutter={[4, 4]}>
         <Col span={8}>
-          <Ramp price={props.price} address={ethersAppContext?.account ?? ''} networks={NETWORKS} />
+          <Ramp price={props.price} address={ethersAppContext?.account ?? ''} networks={networkDefinitions} />
         </Col>
 
         <Col
@@ -49,7 +54,7 @@ export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
             opacity: 0.8,
           }}>
           <GasGauge
-            chainId={props.scaffoldAppProviders.targetNetwork.chainId}
+            chainId={props.scaffoldAppProviders.currentTargetNetwork.chainId}
             currentNetwork={network}
             provider={ethersAppContext.provider}
             speed="average"

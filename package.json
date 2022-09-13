@@ -10,31 +10,41 @@
   ],
   "private": true,
   "scripts": {
-    "@🔖🔖🔖🔖🔖 react 🔖🔖🔖🔖🔖 ": "echo 📖 react vite-app commands",
-    "start": "yarn start:vite",
-    "build": "yarn build:vite",
+    "@🔖🔖🔖🔖🔖 commands 🔖🔖🔖🔖🔖 ": "echo 🔖🔖🔖🔖🔖 ",
+    "create-config": "yarn scaffold reset-config",
+    "reset-config": "yarn scaffold reset-config",
+    "set-react": "yarn scaffold set-react",
+    "set-solidity": "yarn scaffold set-solidity",
+    "set-config": "yarn scaffold set-config",
+    "set-network": "yarn scaffold set-network",
+    "scaffold": "yarn workspace @scaffold-eth/commands scaffold",
+    "@🔖🔖🔖🔖🔖 front end 🔖🔖🔖🔖🔖 ": "echo 🔖🔖🔖🔖🔖 ",
+    "start": "yarn scaffold start",
+    "dev": "yarn scaffold start",
+    "build": "yarn scaffold build",
+    "serve": "yarn scaffold serve",
+    "test": "yarn scaffold test",
+    "@🔖🔖🔖🔖🔖 solidity commands 🔖🔖🔖🔖🔖 ": "echo 🔖🔖🔖🔖🔖 ",
+    "compile": "yarn scaffold compile",
+    "deploy": "yarn scaffold deploy",
+    "chain": "yarn scaffold chain",
+    "@🔖🔖🔖🔖🔖 solidity contracts 🔖🔖🔖🔖🔖 ": "echo 🔖🔖🔖🔖🔖",
+    "contracts:build": "yarn workspace @scaffold-eth/common contracts:build",
+    "contracts:clean": "yarn workspace @scaffold-eth/solidity clean && yarn workspace @scaffold-eth/common clean",
+    "contracts:watch": "yarn scaffold watch",
+    "@🔖🔖🔖🔖🔖 toolkit commands 🔖🔖🔖🔖🔖 ": "echo 📖 scripts & commands",
+    "hardhat": "yarn workspace @scaffold-eth/solidity hardhat",
+    "forge": "yarn workspace @scaffold-eth/solidity exec forge",
+    "cast": "yarn workspace @scaffold-eth/solidity exec cast",
+    "anvil": "yarn workspace @scaffold-eth/solidity exec anvil",
+    "@🔖🔖🔖🔖🔖 react: vite / nextjs 🔖🔖🔖🔖🔖 ": "echo 🔖🔖🔖🔖🔖 ",
     "start:vite": "yarn workspace @scaffold-eth/vite-app start",
     "build:vite": "yarn workspace @scaffold-eth/vite-app build",
-    "@🔖🔖🔖🔖🔖 nextjs 🔖🔖🔖🔖🔖 ": "echo 📖 react nextjs-app commands",
     "start:nextjs": "yarn workspace @scaffold-eth/nextjs-app dev",
     "build:nextjs": "yarn workspace @scaffold-eth/nextjs-app build",
-    "@🔖🔖🔖🔖🔖 hardhat 🔖🔖🔖🔖🔖 ": "echo 📖 hardhat commands",
-    "contracts:build": "yarn workspace @scaffold-eth/hardhat compile && yarn workspace @scaffold-eth/common contracts:hardhat && yarn workspace @scaffold-eth/common contracts:external",
-    "contracts:rebuild": "yarn workspace @scaffold-eth/hardhat clean && yarn contracts:build",
-    "contracts:deploy": "yarn workspace @scaffold-eth/hardhat deploy",
-    "chain": "yarn workspace @scaffold-eth/hardhat chain",
-    "deploy": "yarn contracts:deploy",
-    "@🔖🔖🔖🔖🔖 commands 🔖🔖🔖🔖🔖 ": "echo 📖 commands",
-    "hardhat": "yarn workspace @scaffold-eth/hardhat hardhat",
-    "test": "yarn workspace @scaffold-eth/hardhat test",
-    "@🔖🔖🔖🔖🔖 workspaces 🔖🔖🔖🔖🔖 ": "echo 📖 workspace commands",
-    "w:hardhat": "yarn workspace @scaffold-eth/hardhat",
-    "w:vite": "yarn workspace @scaffold-eth/vite-app",
-    "w:nextjs": "yarn workspace @scaffold-eth/nextjs-app",
-    "w:subgraph": "yarn workspace @scaffold-eth/subgraph",
     "@🔖🔖🔖🔖🔖 ethereum helpers 🔖🔖🔖🔖🔖": "echo 📖 ethereum helper commands",
-    "generate": "yarn workspace @scaffold-eth/hardhat generate",
-    "account": "yarn workspace @scaffold-eth/hardhat account",
+    "generate": "yarn workspace @scaffold-eth/solidity generate",
+    "account": "yarn workspace @scaffold-eth/solidity account",
     "@🔖🔖🔖🔖🔖 deployment 🔖🔖🔖🔖🔖": "echo 📖 deployment to external services commands",
     "ipfs": "yarn workspace @scaffold-eth/vite-app ipfs",
     "surge": "yarn workspace @scaffold-eth/vite-app surge",
@@ -42,9 +52,9 @@
     "ship": "yarn workspace @scaffold-eth/vite-app ship",
     "@🔖🔖🔖🔖🔖 utilities 🔖🔖🔖🔖🔖": "echo 📖 utilities commands",
     "syncpack:fix": "yarn syncpack fix-mismatches",
-    "prepare": "husky install",
-    "postinstall": "husky install",
-    "lint": "yarn workspace @scaffold-eth/vite-app lint --fix && yarn workspace @scaffold-eth/common lint --fix && yarn workspace @scaffold-eth/hardhat lint --fix && yarn workspace @scaffold-eth/nextjs-app lint --fix",
+    "postinstall": "yarn husky install",
+    "foundryinstall": "yarn workspace @scaffold-eth/solidity exec foundryup",
+    "lint": "yarn workspace @scaffold-eth/vite-app lint --fix && yarn workspace @scaffold-eth/common lint --fix && yarn workspace @scaffold-eth/solidity lint --fix && yarn workspace @scaffold-eth/nextjs-app lint --fix",
     "@🔖🔖🔖🔖🔖 dev linking with yalc 🔖🔖🔖🔖🔖": "echo 📖 dev tools",
     "dev:link:components": "yarn workspace @scaffold-eth/vite-app dev:link:components && yarn workspace @scaffold-eth/common dev:link:components",
     "dev:link:hooks": "yarn workspace @scaffold-eth/vite-app dev:link:hooks && yarn workspace @scaffold-eth/common dev:link:hooks",
@@ -53,18 +63,20 @@
   "workspaces": {
     "packages": [
       "packages/common",
-      "packages/hardhat-ts",
+      "packages/solidity-ts",
       "packages/vite-app-ts",
       "packages/next-app-ts",
-      "packages/advanced/subgraph",
-      "packages/advanced/services/*",
+      "packages/subgraph",
+      "packages/services/*",
       "packages/*"
     ]
   },
   "packageManager": "yarn@3.2.1",
   "devDependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^9.4.0",
     "cross-env": "^7.0.3",
-    "eslint": "^8.20.0",
+    "eslint": "^8.22.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
@@ -86,25 +98,29 @@
       "yarn workspace @scaffold-eth/common lint --fix",
       "yarn workspace @scaffold-eth/common format"
     ],
-    "packages/hardhat-ts/test/**/*.ts": [
-      "yarn workspace @scaffold-eth/hardhat lint --fix",
-      "yarn workspace @scaffold-eth/hardhat format"
+    "packages/commands/src/**/*.{ts,tsx}": [
+      "yarn workspace @scaffold-eth/commands lint --fix",
+      "yarn workspace @scaffold-eth/commands format"
     ],
-    "packages/hardhat-ts/helpers/**/*.ts": [
-      "yarn workspace @scaffold-eth/hardhat lint --fix",
-      "yarn workspace @scaffold-eth/hardhat format"
+    "packages/solidity-ts/tests/**/*.ts": [
+      "yarn workspace @scaffold-eth/solidity lint --fix",
+      "yarn workspace @scaffold-eth/solidity format"
     ],
-    "packages/hardhat-ts/tasks/**/*.ts": [
-      "yarn workspace @scaffold-eth/hardhat lint --fix",
-      "yarn workspace @scaffold-eth/hardhat format"
+    "packages/solidity-ts/helpers/**/*.ts": [
+      "yarn workspace @scaffold-eth/solidity lint --fix",
+      "yarn workspace @scaffold-eth/solidity format"
     ],
-    "packages/hardhat-ts/deploy/**/*.ts": [
-      "yarn workspace @scaffold-eth/hardhat lint --fix",
-      "yarn workspace @scaffold-eth/hardhat format"
+    "packages/solidity-ts/tasks/**/*.ts": [
+      "yarn workspace @scaffold-eth/solidity lint --fix",
+      "yarn workspace @scaffold-eth/solidity format"
     ],
-    "packages/hardhat-ts/**/*.sol": [
-      "yarn workspace @scaffold-eth/hardhat format",
-      "yarn workspace @scaffold-eth/hardhat solhint --fix"
+    "packages/solidity-ts/deploy/**/*.ts": [
+      "yarn workspace @scaffold-eth/solidity lint --fix",
+      "yarn workspace @scaffold-eth/solidity format"
+    ],
+    "packages/solidity-ts/**/*.sol": [
+      "yarn workspace @scaffold-eth/solidity format",
+      "yarn workspace @scaffold-eth/solidity solhint --fix"
     ]
   },
   "volta": {

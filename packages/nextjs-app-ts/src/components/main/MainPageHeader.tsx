@@ -16,13 +16,15 @@ import { FaucetHintButton } from '~common/components';
 import { useAntNotification } from '~common/components/hooks';
 import { getNetworkInfo } from '~common/functions';
 import { IScaffoldAppProviders } from '~common/models';
-import { FAUCET_ENABLED } from '~~/config/app.config';
+import { FAUCET_ENABLED } from '~~/config/nextjsApp.config';
+import { TAppProps } from '~~/models/TAppProps';
 
 // displays a page header
 export interface IMainPageHeaderProps {
   scaffoldAppProviders: IScaffoldAppProviders;
   price: number;
   children?: ReactNode;
+  appProps: TAppProps;
 }
 
 /**
@@ -31,6 +33,9 @@ export interface IMainPageHeaderProps {
  * @returns
  */
 export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
+  // passed in by nextjs getInitalProps
+  const appProps: TAppProps = props.appProps;
+
   const settingsContext = useContext(EthComponentsSettingsContext);
   const ethersAppContext = useEthersAppContext();
   const selectedChainId = ethersAppContext.chainId;
@@ -102,7 +107,7 @@ export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
         loginOnError={onLoginError}
         ensProvider={props.scaffoldAppProviders.mainnetAdaptor?.provider}
         price={props.price}
-        blockExplorer={props.scaffoldAppProviders.targetNetwork.blockExplorer}
+        blockExplorer={props.scaffoldAppProviders.currentTargetNetwork.blockExplorer}
         hasContextConnect={true}
       />
       <FaucetHintButton
@@ -119,11 +124,11 @@ export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
    * display the current network on the top left
    */
   let networkDisplay: ReactElement | undefined;
-  if (selectedChainId && selectedChainId !== props.scaffoldAppProviders.targetNetwork.chainId) {
+  if (selectedChainId && selectedChainId !== props.scaffoldAppProviders.currentTargetNetwork.chainId) {
     const description = (
       <div>
         You have <b>{getNetwork(selectedChainId)?.name}</b> selected and you need to be on{' '}
-        <b>{getNetwork(props.scaffoldAppProviders.targetNetwork)?.name ?? 'UNKNOWN'}</b>.
+        <b>{getNetwork(props.scaffoldAppProviders.currentTargetNetwork)?.name ?? 'UNKNOWN'}</b>.
       </div>
     );
     networkDisplay = (
@@ -139,9 +144,9 @@ export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
           right: 16,
           top: 84,
           padding: 10,
-          color: props.scaffoldAppProviders.targetNetwork.color,
+          color: props.scaffoldAppProviders.currentTargetNetwork.color,
         }}>
-        {props.scaffoldAppProviders.targetNetwork.name}
+        {props.scaffoldAppProviders.currentTargetNetwork.name}
       </div>
     );
   }

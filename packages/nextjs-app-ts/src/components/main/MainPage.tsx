@@ -1,12 +1,10 @@
-/* eslint-disable unused-imports/no-unused-vars-ts */
-
 import { GenericContract } from 'eth-components/ant/generic-contract';
 import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useEventListener } from 'eth-hooks';
 import { useEthersAppContext } from 'eth-hooks/context';
 import { useDexEthPrice } from 'eth-hooks/dapps';
 import { asEthersAdaptor } from 'eth-hooks/functions';
-import Head from 'next/head';
-import React, { FC, ReactElement } from 'react';
+import { NextPage } from 'next';
+import { ReactElement } from 'react';
 
 import { MainPageFooter, MainPageHeader, createTabsAndPages, TContractPageList } from '.';
 
@@ -14,16 +12,17 @@ import { useLoadAppContracts, useConnectAppContracts, useAppContracts } from '~c
 import { useCreateAntNotificationHolder } from '~common/components/hooks/useAntNotification';
 import { useBurnerFallback } from '~common/components/hooks/useBurnerFallback';
 import { useScaffoldAppProviders } from '~common/components/hooks/useScaffoldAppProviders';
-import { NETWORKS } from '~common/constants';
+import { networkDefinitions } from '~common/constants';
 import { useScaffoldHooksExamples } from '~~/components/hooks/useScaffoldHooksExamples';
 import {
-  BURNER_FALLBACK_ENABLED,
+  AVAILABLE_NETWORKS_DEFINITIONS,
   CONNECT_TO_BURNER_AUTOMATICALLY,
-  INFURA_ID,
   LOCAL_PROVIDER,
   MAINNET_PROVIDER,
-  TARGET_NETWORK_INFO,
-} from '~~/config/app.config';
+  INFURA_ID,
+  BURNER_FALLBACK_ENABLED,
+} from '~~/config/nextjsApp.config';
+import { TAppProps } from '~~/models/TAppProps';
 
 /** ********************************
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
@@ -37,13 +36,17 @@ import {
 interface IMainPageProps {
   pageName: string;
   children?: ReactElement;
+  appProps: TAppProps;
 }
 
 /**
  * The main component
  * @returns
  */
-export const MainPage: FC<IMainPageProps> = (props) => {
+export const MainPage: NextPage<IMainPageProps> = (props) => {
+  // passed in by nextjs getInitalProps
+  const appProps: TAppProps = props.appProps;
+
   const notificationHolder = useCreateAntNotificationHolder();
 
   // -----------------------------
@@ -52,7 +55,7 @@ export const MainPage: FC<IMainPageProps> = (props) => {
   // 🛰 providers
   // see useLoadProviders.ts for everything to do with loading the right providers
   const scaffoldAppProviders = useScaffoldAppProviders({
-    targetNetwork: TARGET_NETWORK_INFO,
+    targetNetworks: AVAILABLE_NETWORKS_DEFINITIONS,
     connectToBurnerAutomatically: CONNECT_TO_BURNER_AUTOMATICALLY,
     localProvider: LOCAL_PROVIDER,
     mainnetProvider: MAINNET_PROVIDER,
@@ -91,7 +94,7 @@ export const MainPage: FC<IMainPageProps> = (props) => {
   // init contracts
   const yourContract = useAppContracts('YourContract', ethersAppContext.chainId);
   const yourNFT = useAppContracts('YourNFT', ethersAppContext.chainId);
-  const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
+  const mainnetDai = useAppContracts('DAI', networkDefinitions.mainnet.chainId);
 
   // keep track of a variable from the contract in the local React state:
   const [purpose, update] = useContractReader(
@@ -110,7 +113,7 @@ export const MainPage: FC<IMainPageProps> = (props) => {
   // 💵 This hook will get the price of ETH from 🦄 Uniswap:
   const [ethPrice] = useDexEthPrice(
     scaffoldAppProviders.mainnetAdaptor?.provider,
-    ethersAppContext.chainId !== 1 ? scaffoldAppProviders.targetNetwork : undefined
+    ethersAppContext.chainId !== 1 ? scaffoldAppProviders.currentTargetNetwork : undefined
   );
 
   // 💰 this hook will get your balance
@@ -128,7 +131,7 @@ export const MainPage: FC<IMainPageProps> = (props) => {
           contractName="YourContract"
           contract={yourContract}
           mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
-          blockExplorer={scaffoldAppProviders.targetNetwork.blockExplorer}
+          blockExplorer={scaffoldAppProviders.currentTargetNetwork.blockExplorer}
         />
       ),
     },
@@ -140,7 +143,7 @@ export const MainPage: FC<IMainPageProps> = (props) => {
             contractName="YourNFT"
             contract={yourNFT}
             mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
-            blockExplorer={scaffoldAppProviders.targetNetwork.blockExplorer}></GenericContract>
+            blockExplorer={scaffoldAppProviders.currentTargetNetwork.blockExplorer}></GenericContract>
         ),
       },
       {
@@ -150,7 +153,7 @@ export const MainPage: FC<IMainPageProps> = (props) => {
             contractName="Dai"
             contract={mainnetDai}
             mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
-            blockExplorer={scaffoldAppProviders.targetNetwork.blockExplorer}
+            blockExplorer={scaffoldAppProviders.currentTargetNetwork.blockExplorer}
           />
         ),
       },
@@ -164,17 +167,12 @@ export const MainPage: FC<IMainPageProps> = (props) => {
   // -----------------------------
 
   return (
-    <div className="App">
-      <Head>
-        <title>Create Next App</title>
-        <meta name="description" content="Generated by create next app" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <MainPageHeader scaffoldAppProviders={scaffoldAppProviders} price={ethPrice} />
+    <div>
+      <MainPageHeader scaffoldAppProviders={scaffoldAppProviders} price={ethPrice} appProps={appProps} />
       {tabMenu}
       {pages[props.pageName] ?? RouteNotFound}
-      <MainPageFooter scaffoldAppProviders={scaffoldAppProviders} price={ethPrice} />
-      <div style={{ position: 'absolute' }}>{notificationHolder}</div>
+      <MainPageFooter scaffoldAppProviders={scaffoldAppProviders} price={ethPrice} appProps={appProps} />
+      <div className="absolute bg-slate-600">{notificationHolder}</div>
     </div>
   );
 };

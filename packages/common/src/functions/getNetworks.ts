@@ -1,13 +1,13 @@
 import { TNetworkInfo } from 'eth-hooks/models';
 
-import { NETWORKS } from '~common/constants';
-import { TNetworkNames } from '~common/models';
+import { networkDefinitions, TNetworkDefinition } from '~common/constants';
+import { TNetworkNamesList } from '~common/models';
 
 export const getNetworks = (additionalFields: Record<string, any>): Record<string, TNetworkInfo | any> => {
-  const result: Record<TNetworkNames, TNetworkInfo | any> = { ...NETWORKS };
-  for (const n in NETWORKS) {
-    const names = n as TNetworkNames;
-    result[names] = { ...NETWORKS[names], ...additionalFields };
+  const result: Record<TNetworkNamesList, TNetworkDefinition | any> = { ...networkDefinitions };
+  for (const n in networkDefinitions) {
+    const name = n as TNetworkNamesList;
+    result[name] = { url: networkDefinitions[name].rpcUrl, ...networkDefinitions[name], ...additionalFields };
   }
 
   return result;

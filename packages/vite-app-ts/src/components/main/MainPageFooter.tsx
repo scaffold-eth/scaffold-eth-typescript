@@ -4,10 +4,10 @@ import { useEthersAppContext } from 'eth-hooks/context';
 import React, { FC } from 'react';
 
 import { Ramp, ThemeSwitcher, getFaucetAvailable } from '~common/components';
-import { NETWORKS } from '~common/constants';
+import { networkDefinitions } from '~common/constants';
 import { getNetworkInfo } from '~common/functions';
 import { IScaffoldAppProviders } from '~common/models';
-import { FAUCET_ENABLED } from '~~/config/app.config';
+import { FAUCET_ENABLED } from '~~/config/viteApp.config';
 
 export interface IMainPageFooterProps {
   scaffoldAppProviders: IScaffoldAppProviders;
@@ -39,7 +39,7 @@ export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
       }}>
       <Row align="middle" gutter={[4, 4]}>
         <Col span={8}>
-          <Ramp price={props.price} address={ethersAppContext?.account ?? ''} networks={NETWORKS} />
+          <Ramp price={props.price} address={ethersAppContext?.account ?? ''} networks={networkDefinitions} />
         </Col>
 
         <Col
@@ -49,7 +49,7 @@ export const MainPageFooter: FC<IMainPageFooterProps> = (props) => {
             opacity: 0.8,
           }}>
           <GasGauge
-            chainId={props.scaffoldAppProviders.targetNetwork.chainId}
+            chainId={props.scaffoldAppProviders.currentTargetNetwork.chainId}
             currentNetwork={network}
             provider={ethersAppContext.provider}
             speed="average"

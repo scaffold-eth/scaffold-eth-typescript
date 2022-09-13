@@ -11,11 +11,12 @@ packages/vite-app-ts/dist
 packages/**/data
 build
 dist
+**/generated/**/*
 
-# hardhat ts
-packages/hardhat-ts/cache
-packages/hardhat-ts/generated
-!packages/hardhat-ts/generated/.gitignore
+# solidity
+packages/solidity-ts/cache
+packages/solidity-ts/generated
+packages/common/src/generated
 cache
 artifacts
 tenderly.yaml
@@ -25,15 +26,15 @@ tenderly.yaml
 **/.env.*.local
 **/*.secret
 **/aws.json
-!packages/hardhat-ts/mnemonics/README.md
+!packages/solidity-ts/mnemonics/README.md
 **/mnemonics/*.secret
 **/mnemonics/*.txt
 
 #subgraph
-packages/advanced/subgraph/config/config.json
-packages/advanced/subgraph/subgraph.yaml
-packages/advanced/subgraph/generated
-packages/advanced/subgraph/abis/*
+packages/subgraph/config/config.json
+packages/subgraph/subgraph.yaml
+packages/subgraph/generated
+packages/subgraph/abis/*
 
 # dependencies, yarn, etc
 /node_modules
@@ -71,3 +72,4 @@ yarn-error.log*
 # misc
 .DS_Store
 *.pem
+packages/common/src/scaffold.config.json

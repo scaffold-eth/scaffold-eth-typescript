@@ -5,13 +5,15 @@ import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-components/models';
 import { EthersAppContext } from 'eth-hooks/context';
-import type { AppProps } from 'next/app';
+import { NextComponentType } from 'next';
+import { AppContext, AppInitialProps, AppProps } from 'next/app';
 import React, { FC, ReactNode, Suspense, useState } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 
 import { ErrorBoundary, ErrorFallback } from '~common/components';
-import { BLOCKNATIVE_DAPPID } from '~~/config/app.config';
+import { BLOCKNATIVE_DAPPID } from '~~/config/nextjsApp.config';
+import { appGetInitialProps } from '~~/functions/nextjs/appGetInitialProps';
 
 const cache = createCache({ key: 'next' });
 
@@ -62,15 +64,17 @@ const ProviderWrapper: FC<{ children?: ReactNode }> = (props) => {
  * This component sets up all the providers, Suspense and Error handling
  * @returns
  */
-const App: FC<AppProps> = ({ Component, ...props }) => {
-  const [queryClient] = useState(() => new QueryClient());
-
+const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Component, ...props }) => {
   console.log('loading app...');
+  const [queryClient] = useState(() => new QueryClient());
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  const dehydradedState = props.pageProps.dehydratedState as unknown;
+
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <CacheProvider value={cache}>
         <QueryClientProvider client={queryClient}>
-          <Hydrate state={props.pageProps.dehydratedState}>
+          <Hydrate state={dehydradedState}>
             <ProviderWrapper>
               <Suspense fallback={<div />}>
                 <Component {...props.pageProps} />
@@ -83,4 +87,6 @@ const App: FC<AppProps> = ({ Component, ...props }) => {
   );
 };
 
-export default App;
+MyApp.getInitialProps = appGetInitialProps;
+export const getInitialProps = appGetInitialProps;
+export default MyApp;

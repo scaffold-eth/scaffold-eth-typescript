@@ -1,6 +1,6 @@
 import { ICoreOptions } from 'web3modal';
 
-import { NETWORKS } from '~common/constants/networks';
+import { networkDefinitions } from '~common/constants/networkDefinitions';
 
 export const customWeb3ModalProviders = {
   coinbaseKey: 'custom-walletlink',
@@ -120,9 +120,9 @@ export const getWeb3ModalConfig = async (
         package: StaticJsonRpcProvider,
         connector: ConnectToStaticJsonRpcProvider,
         options: {
-          chainId: NETWORKS.localhost.chainId,
+          chainId: networkDefinitions.localhost.chainId,
           rpc: {
-            [NETWORKS.localhost.chainId]: NETWORKS.localhost.url,
+            [networkDefinitions.localhost.chainId]: networkDefinitions.localhost.rpcUrl,
           },
         },
       };

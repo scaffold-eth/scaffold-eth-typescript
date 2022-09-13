@@ -28,8 +28,8 @@ const savedTheme = window.localStorage.getItem('theme') ?? 'light';
 
 // setup themes for theme switcher
 const themes = {
-  dark: './ant-dark-theme.css',
-  light: './ant-light-theme.css',
+  dark: '/ant-dark-theme.css',
+  light: '/ant-light-theme.css',
 };
 
 // create eth components context for options and API keys

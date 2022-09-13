@@ -1,19 +1,19 @@
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { useEthersAdaptorFromProviderOrSigners } from 'eth-hooks';
 import { EthersModalConnector, TEthersModalConnector, useEthersAppContext } from 'eth-hooks/context';
-import { TNetworkInfo } from 'eth-hooks/models';
 import { useEffect } from 'react';
 import { useThemeSwitcher } from 'react-css-theme-switcher';
 
 import { useGetCreateLoginConnector } from '~common/components/hooks/useGetLoginConnector';
 import { useGetWeb3ModalConfig } from '~common/components/hooks/useGetWeb3ModalConfig';
 import { customWeb3ModalProviders } from '~common/config/web3Modal.config';
+import { TNetworkDefinition } from '~common/constants';
 import { IScaffoldAppProviders } from '~common/models/IScaffoldAppProviders';
 
 export const useScaffoldAppProviders = (config: {
   mainnetProvider: StaticJsonRpcProvider | undefined;
   localProvider: StaticJsonRpcProvider | undefined;
-  targetNetwork: TNetworkInfo;
+  targetNetworks: { [chainId: number]: TNetworkDefinition };
   infuraId: string;
   connectToBurnerAutomatically: boolean;
 }): IScaffoldAppProviders => {
@@ -58,11 +58,17 @@ export const useScaffoldAppProviders = (config: {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [web3Config, config.connectToBurnerAutomatically, createLoginConnector]);
 
+  const currentTargetNetwork =
+    ethersAppContext.chainId != null && config.targetNetworks[ethersAppContext.chainId]
+      ? config.targetNetworks[ethersAppContext.chainId]
+      : Object.values(config.targetNetworks)[0];
+
   return {
     currentProvider: ethersAppContext.provider ?? config.localProvider,
     mainnetAdaptor: mainnetAdaptor,
     localAdaptor: localAdaptor,
-    targetNetwork: config.targetNetwork,
+    currentTargetNetwork: currentTargetNetwork,
+    targetNetworks: config.targetNetworks,
     createLoginConnector: createLoginConnector,
   };
 };

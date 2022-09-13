@@ -7,19 +7,17 @@
     "declaration": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "commonjs",
+    "module": "es2020",
     "moduleResolution": "Node",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
     "incremental": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "paths": {
-      "~common/*": ["../common/src/*"]
-    }
+    "noEmit": true
   },
-  "include": ["**/*.ts", "**/*.tsx", "./scripts", "**/*.json"],
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  },
+  "include": ["packages/**/*.ts", "packages/**/*.tsx"],
   "exclude": [
     "**/node_modules",
     "node_modules",

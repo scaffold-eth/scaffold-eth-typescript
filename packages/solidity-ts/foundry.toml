@@ -1,0 +1,12 @@
+[profile.default]
+src = 'contracts'
+out = 'generated/foundry/artifacts'
+libs = ['lib', 'node_modules']
+test = 'tests/foundry-tests'
+broadcast = 'generated/foundry/broadcast'
+# Whether to cache builds or not
+cache = true
+# The cache directory if enabled
+cache_path = 'generated/foundry/cache'
+
+# See more config options https://github.com/foundry-rs/foundry/tree/master/config
