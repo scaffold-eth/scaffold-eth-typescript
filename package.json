@@ -45,7 +45,7 @@
     "test:foundry": "yarn workspace @scaffold-eth/solidity exec forge test",
     "@🔖🔖🔖🔖🔖 ethereum helpers 🔖🔖🔖🔖🔖": "echo 📖 ethereum helper commands",
     "generate": "yarn workspace @scaffold-eth/solidity generate",
-    "account": "yarn workspace @scaffold-eth/solidity account:hardhat",
+    "account": "yarn workspace @scaffold-eth/solidity account",
     "@🔖🔖🔖🔖🔖 deployment 🔖🔖🔖🔖🔖": "echo 📖 deployment to external services commands",
     "ipfs": "yarn workspace @scaffold-eth/vite-app ipfs",
     "surge": "yarn workspace @scaffold-eth/vite-app surge",
