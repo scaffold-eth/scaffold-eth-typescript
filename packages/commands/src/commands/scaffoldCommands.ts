@@ -11,6 +11,7 @@ import {
 
 import { buildReact, startReact } from '~~/commands/functions/launchReact';
 import { compileSolidity, deploySolidity, startChain } from '~~/commands/functions/launchSolidity';
+import { testSolidity } from '~~/commands/functions/launchTests';
 import { watchSolidity } from '~~/commands/functions/watchSolidity';
 
 const program = new Command();
@@ -117,6 +118,16 @@ program
   .allowExcessArguments(true)
   .action((args: string[]) => {
     startChain(args);
+  });
+
+program
+  .command('test')
+  .description('Run solidity tests')
+  .argument('[args...]')
+  .allowUnknownOption(true)
+  .allowExcessArguments(true)
+  .action((args: string[]) => {
+    testSolidity(args);
   });
 
 program
