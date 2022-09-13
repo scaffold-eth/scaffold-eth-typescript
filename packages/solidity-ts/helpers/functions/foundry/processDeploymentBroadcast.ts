@@ -14,10 +14,11 @@ const latestBroadcastFileFilter = /run-latest\.json$/;
 const destination = `${commonGenerated}foundry_contracts.json`;
 
 export const foundryProcessDeploymentBroadcast = async (): Promise<void> => {
-  console.log(chalk.white('Running Foundry post deploy...'));
+  console.log(chalk.white('🏁 Running Foundry post deploy...'));
   const data = await getAllChainIdBroadcastJsons(deployJsonDir);
   // validateBroadcastFile(data);
   await writeFile(destination, JSON.stringify(data));
+  console.log(chalk.green('✔️ Done'));
 };
 
 const getAllChainIdBroadcastJsons = async (dirPath: string): Promise<{ [chainId: string]: string }> => {

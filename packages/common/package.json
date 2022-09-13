@@ -11,7 +11,7 @@
   "types": "./src/index.ts",
   "scripts": {
     "contracts:build": "yarn contracts:touch && yarn contracts:toolkit && yarn contracts:external",
-    "contracts:touch": "yarn shx touch './src/generated' && yarn shx cp -n './scripts/hardhat_contracts.json.bak' './src/generated/hardhat_contracts.json' && yarn shx cp -n './scripts/foundry_contracts.json.bak' './src/generated/foundry_contracts.json'",
+    "contracts:touch": "yarn shx cp -n './scripts/hardhat_contracts.json.bak' './src/generated/hardhat_contracts.json' && yarn shx cp -n './scripts/foundry_contracts.json.bak' './src/generated/foundry_contracts.json'",
     "contracts:toolkit": "yarn shx cp -r '../solidity-ts/generated/contract-types' './src/generated'",
     "contracts:external": "yarn shx cp -r './scripts/eth-sdk-config.ts.bak' './src/generated/eth-sdk.config.ts' && yarn eth-sdk -p ./src/generated",
     "watch": "tsc -w --noEmit",
