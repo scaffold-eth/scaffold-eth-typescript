@@ -37,15 +37,15 @@ jobs:
 
       - run: source /home/runner/.bashrc
 
+      - name: 'Check forge'
+        run: |
+          yarn forge
+
       - name: Run foundryup
         run: |
           cd packages/solidity-ts
           foundryup
           cd ...
-
-      - name: 'Check forge'
-        run: |
-          yarn forge
 
       - run: yarn install --immutable
 
