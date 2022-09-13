@@ -28,10 +28,11 @@ export const parseCreateConfigArgs = (...args: string[]): Parameters<typeof crea
     const input: DeepPartial<TScaffoldConfig> = {
       build: {
         solidityToolkit: args[0] as TSolidityToolkits,
-        reactBuild: args[2] as TReactBuilds,
+        reactBuild: args[1] as TReactBuilds,
       },
       runtime: {
-        availableNetworks: args[1]
+        targetNetwork: args[2] as TNetworkNamesList,
+        availableNetworks: args[3]
           .split(',')
           .filter((y) => y.length > 0)
           .map((x) => x.trim()) as TNetworkNamesList[],
@@ -102,6 +103,21 @@ export const parseSolidityToolkit = (...args: string[]): Parameters<typeof setCo
   const input: DeepPartial<TScaffoldConfig> = {
     build: {
       solidityToolkit: args[0] as TSolidityToolkits,
+    },
+  };
+
+  return [validateConfig(input)];
+};
+
+export const parseNetwork = (...args: string[]): Parameters<typeof setConfig> => {
+  console.log();
+  const input: DeepPartial<TScaffoldConfig> = {
+    runtime: {
+      targetNetwork: args[0] as TNetworkNamesList,
+      availableNetworks: args[1]
+        .split(',')
+        .filter((y) => y.length > 0)
+        .map((x) => x.trim()) as TNetworkNamesList[],
     },
   };
 

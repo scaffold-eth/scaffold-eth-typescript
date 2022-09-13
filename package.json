@@ -15,6 +15,7 @@
     "set-react": "yarn scaffold set-react",
     "set-solidity": "yarn scaffold set-solidity",
     "set-config": "yarn scaffold set-config",
+    "set-network": "yarn scaffold set-network",
     "scaffold": "yarn workspace @scaffold-eth/commands scaffold",
     "@🔖🔖🔖🔖🔖 front end 🔖🔖🔖🔖🔖 ": "echo 🔖🔖🔖🔖🔖 ",
     "start": "yarn scaffold start",

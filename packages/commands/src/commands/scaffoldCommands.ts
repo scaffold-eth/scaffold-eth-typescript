@@ -6,6 +6,7 @@ import {
   setConfig,
   parseReactBuild,
   parseSolidityToolkit,
+  parseNetwork,
 } from './functions/config';
 
 import { buildReact, startReact } from '~~/commands/functions/launchReact';
@@ -22,15 +23,16 @@ program
   .command('reset-config')
   .description('Create scaffold.config.json')
   .action(() => {
-    createConfig(...parseCreateConfigArgs('hardhat', 'localhost', 'vite'));
+    createConfig(...parseCreateConfigArgs('hardhat', 'vite', 'localhost', 'localhost'));
   });
 
 program
   .command('set-config')
   .description('Set scaffold.config.json file')
   .argument('<solidity>', ':  Solidity tooklit:  use `hardhat` or `foundry`')
-  .argument('<networks>', ':  An array of networks to target. (e.g. `localhost` or "localhost, mainnet")')
   .argument('<react>', 'React frontend: use nextjs or vite for your frontend')
+  .argument('<targetNetwork>', ':  An network your toolkit should target.  (e.g. `localhost` or "localhost, mainnet")')
+  .argument('<availableNetworks>', ':  An array of networks to target. (e.g. `localhost` or "localhost, mainnet")')
   .action((...args: string[]) => {
     createConfig(...parseCreateConfigArgs(...args));
   });
@@ -49,6 +51,15 @@ program
   .argument('[react build tool]', 'Use foundry or hardhat for your frontend', 'hardhat')
   .action((...args: string[]) => {
     setConfig(...parseSolidityToolkit(...args));
+  });
+
+program
+  .command('set-network')
+  .description('Set your networks')
+  .argument('<targetNetwork>', ':  An network your toolkit should target.  (e.g. `localhost` or "localhost, mainnet")')
+  .argument('<availableNetworks>', ':  An array of networks to target. (e.g. `localhost` or "localhost, mainnet")')
+  .action((...args: string[]) => {
+    setConfig(...parseNetwork(...args));
   });
 
 /** ********************************* */
