@@ -2,7 +2,9 @@
 
 ## Typescript
 
-This is the typescript repo of scaffold-eth. It has the a command line system that allows you to choose a **react frontend** with `nextjs` or `vite`. You can also use `hardhat` or `foundry` as your solidity toolkit. The directories that you'll use are:
+This is the typescript repo of scaffold-eth. It has the a command line system that allows you to choose a **react frontend** with `nextjs` or `vite`. You can also use `hardhat` or `foundry` as your solidity toolkit.
+
+The directories that you'll use are:
 
 ```bash
 packages/solidity-ts/
