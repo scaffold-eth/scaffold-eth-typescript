@@ -31,7 +31,6 @@ jobs:
           curl -L https://foundry.paradigm.xyz | bash
 
       - run: yarn install --immutable
-      - run: yarn postinstall
 
       - name: 'Scaffold Configuration'
         run: |
