@@ -56,7 +56,7 @@ export const compileSolidity = (args: string[]): void => {
     console.log(chalk.red('❌ Error! Invalid solidity toolkit in config!'));
   }
 
-  shell.exec('yarn compile:post');
+  shell.exec('yarn workspace @scaffold-eth/common contracts:build');
 };
 
 export const deploySolidity = (args: string[]): void => {

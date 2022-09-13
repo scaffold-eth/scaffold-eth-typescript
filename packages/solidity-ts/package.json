@@ -10,6 +10,7 @@
     "compile:foundry": "yarn exec forge build",
     "compile:foundry:post": "yarn ts-node scripts/foundryPostCompile.ts",
     "compile:hardhat": "cross-env BUILDING=true hardhat compile",
+    "contracts:build": "yarn workspace @scaffold-eth/common contracts:build",
     "watch:hardhat": "cross-env BUILDING=true yarn hardhat watch compile",
     "deploy:hardhat": "hardhat deploy --export-all ../common/src/generated/hardhat_contracts.json",
     "deploy:hardhat:post": "yarn ts-node scripts/hardhatPostDeploy.ts",

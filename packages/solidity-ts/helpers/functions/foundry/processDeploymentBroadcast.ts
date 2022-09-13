@@ -5,12 +5,11 @@ import { invariant } from 'ts-invariant';
 
 import { readAllChildDirs, readChildFiles } from '../fileHelper';
 
-import { commonGenerated, foundryBroadcastDir } from '~helpers/constants/folders';
+import { commonGenerated, foundryBroadcastDir, foundryDeployScriptName } from '~helpers/constants/toolkitPaths';
 
 // import { validateBroadcastFile } from '~common/functions/validateBroadcastCollection';
 
-const deployScriptName = 'DeployContracts.sol';
-const deployJsonDir = foundryBroadcastDir + deployScriptName + '/';
+const deployJsonDir = foundryBroadcastDir + foundryDeployScriptName + '/';
 const latestBroadcastFileFilter = /run-latest\.json$/;
 const destination = `${commonGenerated}foundry_contracts.json`;
 

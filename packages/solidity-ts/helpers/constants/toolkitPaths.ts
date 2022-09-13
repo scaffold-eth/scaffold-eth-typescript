@@ -6,3 +6,5 @@ export const hardhatArtifactsDir = './generated/hardhat/artifacts/';
 export const mnemonicsDir = './mnemonics/';
 
 export const commonGenerated = '../common/src/generated/';
+
+export const foundryDeployScriptName = 'DeployContracts.s.sol';

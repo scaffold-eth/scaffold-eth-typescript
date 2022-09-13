@@ -9,6 +9,8 @@ contract YourContractDeploy is Script {
   function setUp() public {}
 
   function run() public {
+    vm.startBroadcast();
     new YourContract();
+    vm.stopBroadcast();
   }
 }

@@ -7,7 +7,7 @@ import { privateToAddress } from 'ethereumjs-util';
 import { hdkey } from 'ethereumjs-wallet';
 import { task } from 'hardhat/config';
 
-import { mnemonicsDir } from '~helpers/constants/folders';
+import { mnemonicsDir } from '~helpers/constants/toolkitPaths';
 import { debugLog } from '~helpers/debug';
 import { defaultMnemonicPath } from '~helpers/functions/mnemonicHelper';
 

@@ -1,6 +1,6 @@
 import { runTypeChain, glob } from 'typechain';
 
-import { foundryArtifactsDir, typechainOutDir } from '~helpers/constants/folders';
+import { foundryArtifactsDir, typechainOutDir } from '~helpers/constants/toolkitPaths';
 
 export const typechainTarget = 'ethers-v5';
 

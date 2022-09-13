@@ -35,7 +35,7 @@ export const createFoundryDeployArgs = async (
     .map((key) => `--${key} ${forgeScriptsOptionalArgs[key]}`)
     .join(' ');
 
-  const cmd = `forge script deploy/foundry-deploy/DeployContracts.sol:DeployContracts --broadcast --rpc-url ${rpcUrl} --json --sender ${wallet.address} --mnemonic-paths ${mnemonicPaths} ${options}`;
+  const cmd = `forge script deploy/foundry-deploy/DeployContracts.s.sol:DeployContracts --broadcast --rpc-url ${rpcUrl} --json --sender ${wallet.address} --mnemonic-paths ${mnemonicPaths} ${options}`;
   return cmd;
 };
 

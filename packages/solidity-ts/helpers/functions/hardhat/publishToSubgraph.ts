@@ -2,7 +2,7 @@ import fs from 'fs';
 
 import chalk from 'chalk';
 
-import { hardhatDeploymentsDir } from '~helpers/constants/folders';
+import { hardhatDeploymentsDir } from '~helpers/constants/toolkitPaths';
 
 const graphDir = '../subgraph';
 

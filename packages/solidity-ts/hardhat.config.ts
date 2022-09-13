@@ -11,7 +11,7 @@ import { getMnemonic } from './helpers/functions';
 import { hardhatNamedAccounts } from '~common/constants';
 import { getNetworks } from '~common/functions';
 import scaffoldConfig from '~common/scaffold.config';
-import { hardhatArtifactsDir, hardhatDeploymentsDir, typechainOutDir } from '~helpers/constants/folders';
+import { hardhatArtifactsDir, hardhatDeploymentsDir, typechainOutDir } from '~helpers/constants/toolkitPaths';
 
 // eslint-disable-next-line no-duplicate-imports
 /**
