@@ -43,6 +43,10 @@ jobs:
           foundryup
           cd ...
 
+      - name: 'Check forge'
+        run: |
+          yarn forge
+
       - run: yarn install --immutable
 
       - name: 'Scaffold Configuration'
@@ -58,11 +62,6 @@ jobs:
       - name: 'Build contracts'
         run: |
           yarn contracts:build
-          yarn
-
-      - name: 'Check forge'
-        run: |
-          yarn forge
 
       - name: 'Build vite production'
         run: |
