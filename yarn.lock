@@ -2237,12 +2237,12 @@ __metadata:
     "@types/debounce": ^1
     "@types/edit-json-file": ^1.7.0
     "@types/shelljs": ^0.8.11
+    "@types/throttle-debounce": ^5
     "@typescript-eslint/eslint-plugin": ^5.36.2
     "@typescript-eslint/parser": ^5.36.2
     chalk: ^4.1.2
     commander: ^9.4.0
     cross-env: ^7.0.3
-    debounce: ^1.2.1
     edit-json-file: ^1.7.0
     eslint: ^8.22.0
     eslint-config-airbnb: ^19.0.4
@@ -2263,6 +2263,7 @@ __metadata:
     prettier-plugin-solidity: ^1.0.0-dev.23
     shelljs: ^0.8.5
     shx: ^0.3.4
+    throttle-debounce: ^5.0.0
     ts-invariant: ^0.10.3
     ts-node: ^10.9.1
     ts-toolbelt: ^9.6.0
@@ -3735,6 +3736,13 @@ __metadata:
     "@types/glob": "*"
     "@types/node": "*"
   checksum: 559b81efba72f2b231485b26510aad68cccfe98dc74087d67dafd5511462997884db0ef18e0e56bf61a3a5789aa65a54dc04845a488bb0528d4a699e6151b99c
+  languageName: node
+  linkType: hard
+
+"@types/throttle-debounce@npm:^5":
+  version: 5.0.0
+  resolution: "@types/throttle-debounce@npm:5.0.0"
+  checksum: f0b1f626816154466a6c7699fa9a87614f2b65c649654d02456e3603c38c29457b40d26c2ac820c2c44574e92f210c21b0cdce747b578d27566d5faa1daaae7e
   languageName: node
   linkType: hard
 
@@ -7152,13 +7160,6 @@ __metadata:
   version: 1.1.0
   resolution: "death@npm:1.1.0"
   checksum: 8010ba9a320752f9580eb474985ed214572c0595cf83e92859e3c5a014a01fc8e8f2f2908b80b5f8bca9cb3f94adb546cf55810df6b80e282452e355cdce5aaa
-  languageName: node
-  linkType: hard
-
-"debounce@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "debounce@npm:1.2.1"
-  checksum: 682a89506d9e54fb109526f4da255c5546102fbb8e3ae75eef3b04effaf5d4853756aee97475cd4650641869794e44f410eeb20ace2b18ea592287ab2038519e
   languageName: node
   linkType: hard
 
@@ -19983,6 +19984,13 @@ __metadata:
   version: 2.3.0
   resolution: "throttle-debounce@npm:2.3.0"
   checksum: 6d90aa2ddb294f8dad13d854a1cfcd88fdb757469669a096a7da10f515ee466857ac1e750649cb9da931165c6f36feb448318e7cb92570f0a3679d20e860a925
+  languageName: node
+  linkType: hard
+
+"throttle-debounce@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "throttle-debounce@npm:5.0.0"
+  checksum: aa8bf25828b4f8645ce863589de05d6807ea3debc147ce7d89624638ff8a16792d6d0baa0f8a32a260f0b163444d74020c6087b713ae561fde594b97b6e51f28
   languageName: node
   linkType: hard
 

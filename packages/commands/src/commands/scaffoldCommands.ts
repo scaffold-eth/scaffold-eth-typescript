@@ -11,6 +11,7 @@ import {
 
 import { buildReact, startReact } from '~~/commands/functions/launchReact';
 import { compileSolidity, deploySolidity, startChain } from '~~/commands/functions/launchSolidity';
+import { watchSolidity } from '~~/commands/functions/watchSolidity';
 
 const program = new Command();
 
@@ -118,12 +119,13 @@ program
     startChain(args);
   });
 
-// program
-//   .command('watch')
-//   .description('Watch and build contracts automatically')
-//   .argument('[watchTime]', 'watch time in seconds')
-//   .action((args: string[]) => {
-//     watchSolidity(args);
-//   });
+program
+  .command('watch')
+  .description('Watch and build contracts automatically')
+  .argument('[time]', 'Time (seconds) after which a build should be triggered.  Minimum is 10s, max 10min')
+  .action((throttleTimeStr: string) => {
+    const throttleTime = parseInt(throttleTimeStr);
+    watchSolidity(throttleTime);
+  });
 
 program.parse();

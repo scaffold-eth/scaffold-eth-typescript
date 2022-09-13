@@ -4,6 +4,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "@🔖🔖🔖🔖🔖 vite workspace commands 🔖🔖🔖🔖🔖 ": "echo 🔖🔖🔖🔖🔖",
+    "contracts:watch": "yarn scaffold watch",
     "start": "cross-env ENVIRONMENT=DEVELOPMENT vite --force",
     "build": "tsc && yarn build:anttheme && cross-env ENVIRONMENT=PRODUCTION vite build",
     "build:anttheme": "yarn lessc -x -js ./src/styles/themes/ant-light-theme.less ./public/ant-light-theme.css && yarn lessc -x -js ./src/styles/themes/ant-dark-theme.less ./public/ant-dark-theme.css",
