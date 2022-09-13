@@ -53,7 +53,7 @@
     "@🔖🔖🔖🔖🔖 utilities 🔖🔖🔖🔖🔖": "echo 📖 utilities commands",
     "syncpack:fix": "yarn syncpack fix-mismatches",
     "postinstall": "yarn husky install",
-    "foundryinstall": "yarn workspace @scaffold-eth/solidity exec foundryup",
+    "install:foundry": "yarn workspace @scaffold-eth/solidity exec foundryup && yarn forge install",
     "lint": "yarn workspace @scaffold-eth/vite-app lint --fix && yarn workspace @scaffold-eth/common lint --fix && yarn workspace @scaffold-eth/solidity lint --fix && yarn workspace @scaffold-eth/nextjs-app lint --fix",
     "@🔖🔖🔖🔖🔖 dev linking with yalc 🔖🔖🔖🔖🔖": "echo 📖 dev tools",
     "dev:link:components": "yarn workspace @scaffold-eth/vite-app dev:link:components && yarn workspace @scaffold-eth/common dev:link:components",

@@ -1,8 +1,14 @@
 # 🏗 Scaffold-Eth Typescript
 
-## Typescript
+## Features
 
-This is the typescript repo of scaffold-eth. It has the a command line system that allows you to choose a **react frontend** with `nextjs` or `vite`. You can also use `hardhat` or `foundry` as your solidity toolkit.
+This is the typescript repo of scaffold-eth. Use scaffold-eth-typescript with:
+
+- A react frontend running with `nextjs` or `vite`.
+- Solidity toolkit of `hardhat` or `foundry`
+- It has the a command line system that allows you to choose a **react frontend** or **solidity toolkit**
+
+### Directories
 
 The directories that you'll use are:
 
@@ -16,7 +22,15 @@ packages/next-app-ts/
 
 ## Quick Start
 
-### Commands to run the app
+### Fork or clone the repo
+
+- You can use the use the template link: [scaffold-eth-typescript template](https://github.com/scaffold-eth/scaffold-eth-typescript/generate)
+- You can clone the repo with git
+  ```bash
+  git clone https://github.com/scaffold-eth/scaffold-eth.git
+  ```
+
+### Starting the App
 
 Running the app
 
@@ -26,65 +40,43 @@ Running the app
    yarn install
    ```
 
-2. Setup your default configuration
+2. Create a default `scaffold.config.json` configuration file
 
    ```bash
-   yarn reset-config
+   yarn create-config
    ```
 
-3. start a hardhat node
+3. start a local hardhat node (chain)
 
    ```bash
    yarn chain
    ```
 
-4. run the app, `open a new command prompt`
+4. Run the app, `open a new command prompt terminal`
 
    ```bash
+   # in a new terminal
    # compile your contracts
    yarn compile
    # deploy your hardhat contracts
    yarn deploy
-   # start the app (vite)
+   # start the react app (vite)
    yarn start
    ```
 
-5. other commands
+5. Open http://localhost:3000 to see your front end
 
-   ```bash
-   # rebuild all contracts, incase of inconsistent state
-   yarn contracts:clean
-   yarn contracts:build
-   # run hardhat commands for the workspace, or see all tasks
-   yarn hardhat 'xxx'
-   # run forge, anvil or
-   yarn forge
-   yarn anvil
-   yarn cast
-   # run any subgraph commands for the workspace
-   yarn subgraph 'xxx'
-   ```
+## Configuration
 
-   Other folders
+Scaffold uses `scaffold.config.json` as a configuration file located in `/packages/common/scaffold.config.json`. You can create the config file by running the command `yarn create-config`.
 
-   ```bash
-   # for subgraph
-   packages/subgraph/
-   # other services: like graphql
-   packages/services/
-   ```
-
-### Configuration
-
-Scaffold uses `scaffold.config.json` as a configuration file located in `/packages/common/scaffold.config.json`
-
-#### Command line help
+### Command line help
 
 ```bash
 use `-h` with any command for help.  e.g. yarn set-react -h
 ```
 
-#### Configure react and solidity
+### Configure react and solidity toolkit
 
 You can change the configuration file to pick different frontends and solidity toolkits.
 
@@ -93,9 +85,7 @@ yarn set-react `nextjs` or `vite`
 yarn set-solidity `hardhat` or `foundry`
 ```
 
-You can see all the other commands by using `yarn scaffold`
-
-#### Target network
+### Target network
 
 Set your `targetNetwork` in the config. This is the network the solidity toolkit is deploying against.
 
@@ -108,7 +98,53 @@ yarn set-network -h
 yarn set-network 'localhost' 'localhost, mainnet'
 ```
 
-## Overview
+### More commands
+
+You can see all the other commands by using `yarn scaffold`
+
+## Tookits
+
+### Hardhat
+
+Everything will be installed with `yarn install`. You can use hardhat with `yarn hardhat <cmd>`
+
+### Foundry
+
+Make sure you install foundry
+
+1. Make sure you install foundry first. Use `curl -L https://foundry.paradigm.xyz | bash` to install foundryup
+
+   > You can see more details here. https://book.getfoundry.sh/getting-started/installation
+
+2. Run `yarn install:foundry` to install or update foundry in the right folder. It will also run _forge install_ automatically with the right context.
+
+## More Info
+
+### Folders & Commands
+
+Other commands
+
+```bash
+# rebuild all contracts, incase of inconsistent state
+yarn contracts:clean
+yarn contracts:build
+# run hardhat commands for the workspace, or see all tasks
+yarn hardhat 'xxx'
+# run forge, anvil or
+yarn forge
+yarn anvil
+yarn cast
+```
+
+Other folders
+
+```bash
+# for subgraph checkout README.md in following directories
+packages/advanced/subgraph/
+packages/advanced/services/
+```
+
+## Guides
 
 Everything you need to build on Ethereum! 🚀 Quickly experiment with Solidity using a frontend that adapts to your smart contract:
 
@@ -124,7 +160,7 @@ Everything you need to build on Ethereum! 🚀 Quickly experiment with Solidity 
 
 ---
 
-# Guides
+# Additional Info
 
 ## Documentation
 
