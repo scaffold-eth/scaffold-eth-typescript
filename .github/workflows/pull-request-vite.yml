@@ -39,13 +39,7 @@ jobs:
 
       - name: 'Check forge'
         run: |
-          yarn forge
-
-      - name: Run foundryup
-        run: |
-          cd packages/solidity-ts
-          foundryup
-          cd ...
+          forge
 
       - run: yarn install --immutable
 
@@ -57,6 +51,7 @@ jobs:
 
       - name: 'Compile Solidity'
         run: |
+          yarn forge
           yarn compile --force
 
       - name: 'Build contracts'
