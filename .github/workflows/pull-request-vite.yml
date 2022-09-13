@@ -26,14 +26,19 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install Foundry
+      - name: Install Foundry curl
         run: |
           curl -L https://foundry.paradigm.xyz | bash
 
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
       - run: source /home/runner/.bashrc
 
-      - run: yarn install --immutable
       - run: yarn foundryinstall
+      - run: yarn install --immutable
 
       - name: 'Scaffold Configuration'
         run: |
