@@ -91,7 +91,7 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'error',
     '@typescript-eslint/unbound-method': 'off',
     '@typescript-eslint/no-unsafe-member-access': 'warn',
-    '@typescript-eslint/restrict-template-expressions': ['warn', { allowBoolean: true, allowNumber: true }],
+    '@typescript-eslint/restrict-template-expressions': 'off',
     'prefer-destructuring': 'off',
     'prefer-template': 'off',
     'react/destructuring-assignment': 'off',

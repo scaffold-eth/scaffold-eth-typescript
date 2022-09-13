@@ -8,7 +8,8 @@ import {
   parseSolidityToolkit,
 } from './functions/config';
 
-import { buildReact, compileSolidity, deploySolidity, startChain, startReact } from '~~/commands/functions/launch';
+import { buildReact, startReact } from '~~/commands/functions/launchReact';
+import { compileSolidity, deploySolidity, startChain } from '~~/commands/functions/launchSolidity';
 
 const program = new Command();
 
@@ -105,5 +106,13 @@ program
   .action((args: string[]) => {
     startChain(args);
   });
+
+// program
+//   .command('watch')
+//   .description('Watch and build contracts automatically')
+//   .argument('[watchTime]', 'watch time in seconds')
+//   .action((args: string[]) => {
+//     watchSolidity(args);
+//   });
 
 program.parse();

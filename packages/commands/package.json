@@ -13,6 +13,7 @@
     "@scaffold-eth/common": "0.0.0",
     "@swc/core": "^1.2.239",
     "@swc/helpers": "^0.4.7",
+    "@types/debounce": "^1",
     "@types/edit-json-file": "^1.7.0",
     "@types/shelljs": "^0.8.11",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
@@ -46,6 +47,7 @@
   },
   "dependencies": {
     "commander": "^9.4.0",
+    "debounce": "^1.2.1",
     "shelljs": "^0.8.5",
     "shx": "^0.3.4",
     "zod": "^3.18.0"

@@ -12,12 +12,11 @@ packages/**/data
 build
 dist
 **/generated/**/*
-!**/generated/.gitignore
 
-# hardhat ts
+# solidity
 packages/solidity-ts/cache
 packages/solidity-ts/generated
-!packages/solidity-ts/generated/.gitignore
+packages/common/src/generated
 cache
 artifacts
 tenderly.yaml
