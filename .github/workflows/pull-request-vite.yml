@@ -25,7 +25,14 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
       - run: yarn install --immutable
+      - run: yarn postinstall
 
       - name: 'Scaffold Configuration'
         run: |
@@ -33,13 +40,14 @@ jobs:
           yarn set-react vite
           yarn set-solidity foundry
 
-      - name: 'Check hardhat compile'
+      - name: 'Compile Solidity'
         run: |
           yarn compile --force
 
       - name: 'Build contracts'
         run: |
           yarn contracts:build
+          yarn
 
       - name: 'Check hardhat run tasks'
         run: |

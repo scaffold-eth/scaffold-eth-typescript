@@ -33,7 +33,7 @@ jobs:
           yarn set-react nextjs
           yarn set-solidity hardhat
 
-      - name: 'Check hardhat compile'
+      - name: 'Compile solidity'
         run: |
           yarn compile --force
 
