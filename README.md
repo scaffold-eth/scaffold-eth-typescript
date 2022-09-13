@@ -56,14 +56,12 @@ Running the app
    yarn hardhat 'xxx'
    # get eth for testing locally
    yarn hardhat faucet xxx
-   # run any subgraph commands for the workspace
-   yarn subgraph 'xxx'
    ```
 
    Other folders
 
    ```bash
-   # for subgraph
+   # for subgraph checkout README.md in following directories
    packages/advanced/subgraph/
    packages/advanced/services/
    ```
