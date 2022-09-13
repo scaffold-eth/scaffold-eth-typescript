@@ -52,7 +52,7 @@
     "ship": "yarn workspace @scaffold-eth/vite-app ship",
     "@🔖🔖🔖🔖🔖 utilities 🔖🔖🔖🔖🔖": "echo 📖 utilities commands",
     "syncpack:fix": "yarn syncpack fix-mismatches",
-    "postinstall": "yarn husky install && yarn foundryinstall",
+    "postinstall": "yarn husky install",
     "foundryinstall": "yarn workspace @scaffold-eth/solidity exec foundryup",
     "lint": "yarn workspace @scaffold-eth/vite-app lint --fix && yarn workspace @scaffold-eth/common lint --fix && yarn workspace @scaffold-eth/solidity lint --fix && yarn workspace @scaffold-eth/nextjs-app lint --fix",
     "@🔖🔖🔖🔖🔖 dev linking with yalc 🔖🔖🔖🔖🔖": "echo 📖 dev tools",
