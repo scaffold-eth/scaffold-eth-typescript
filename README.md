@@ -15,7 +15,7 @@ This is the typescript repo of scaffold-eth. Use scaffold-eth-typescript with:
 - You can use the use the template link: [scaffold-eth-typescript template](https://github.com/scaffold-eth/scaffold-eth-typescript/generate)
 - You can clone the repo with git
   ```bash
-  git clone https://github.com/scaffold-eth/scaffold-eth.git
+  git clone https://github.com/scaffold-eth/scaffold-eth-typescript.git
   ```
 
 ### Starting the App
