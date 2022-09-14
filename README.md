@@ -8,18 +8,6 @@ This is the typescript repo of scaffold-eth. Use scaffold-eth-typescript with:
 - Solidity toolkit of `hardhat` or `foundry`
 - It has the a command line system that allows you to choose a **react frontend** or **solidity toolkit**
 
-### Directories
-
-The directories that you'll use are:
-
-```bash
-packages/solidity-ts/
-
-And one of either:
-packages/vite-app-ts/
-packages/next-app-ts/
-```
-
 ## Quick Start
 
 ### Fork or clone the repo
@@ -102,11 +90,17 @@ yarn set-network 'localhost' 'localhost, mainnet'
 
 You can see all the other commands by using `yarn scaffold`
 
-## Tookits
+## Solidity Tookits Details
 
 ### Hardhat
 
-Everything will be installed with `yarn install`. You can use hardhat with `yarn hardhat <cmd>`
+Everything will be installed with `yarn install`.
+
+You can use hardhat with right context using
+
+```bash
+yarn hardhat
+```
 
 ### Foundry
 
@@ -118,9 +112,27 @@ Make sure you install foundry
 
 2. Run `yarn install:foundry` to install or update foundry in the right folder. It will also run _forge install_ automatically with the right context.
 
-## More Info
+You can use foundry commands with the right context
 
-### Folders & Commands
+```bash
+yarn forge
+yarn anvil
+yarn cast
+```
+
+## Directories
+
+The directories that you'll use are:
+
+```bash
+packages/solidity-ts/
+
+And one of either:
+packages/vite-app-ts/
+packages/next-app-ts/
+```
+
+### More Info
 
 Other commands
 
