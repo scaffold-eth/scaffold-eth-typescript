@@ -172,11 +172,20 @@ Everything you need to build on Ethereum! 🚀 Quickly experiment with Solidity 
 
 ---
 
-# Additional Info
+# Documentation
 
-## Documentation
+Check out [eth-hooks docs](https://scaffold-eth.github.io/eth-ui) for example of how to use hooks
 
-- Check out [eth-hooks docs](https://scaffold-eth.github.io/eth-ui) for example of how to use hooks
+## Video Tutorials
+
+Tutorial using the CLI
+
+- [Scaffold-eth-typescript Tutorial: Foundry, NextJS, CLI](https://www.youtube.com/watch?v=bEd6wV2H28g)
+
+Eth-hooks v4 & scaffold-eth-typescript overview
+
+- [Getting Started with eth-hooks and scaffold-eth-typescript](https://www.youtube.com/watch?v=a7W9nTX8qLk&t=3s)
+- [eth-hooks v4](https://www.youtube.com/watch?v=STxAdE8wQwY&t=86s)
 
 ## 🏃💨 Speedrun Ethereum
 
@@ -188,11 +197,7 @@ Register as a builder [here](https://speedrunethereum.com) and start on some of 
 
 ---
 
-# More Information!
-
-## 📚 Documentation
-
-Eth-hooks documentation is [here](https://scaffold-eth.github.io/eth-hooks/). Learn how to use the contexts here.
+# Extra!
 
 ## 💬 Support Chat
 
