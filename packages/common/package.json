@@ -48,7 +48,7 @@
     "antd": "^4.22.6",
     "authereum": "^0.1.14",
     "buffer": "^6.0.3",
-    "eth-components": "3.6.0-beta01",
+    "eth-components": "3.6.0-beta02",
     "eth-hooks": "5.0.2-beta24",
     "ethers": "^5.6.9",
     "fortmatic": "^2.4.0",
