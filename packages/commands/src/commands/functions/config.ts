@@ -18,7 +18,7 @@ export const createConfig = (config: TScaffoldConfig): void => {
   set('runtime', config.runtime);
 
   editor.save();
-  console.log(chalk.green(`✅ Success! Created scaffold.config.json in packages/common`));
+  console.log(chalk.green(`✅ Success! Created scaffold.config.json in packages/common/src`));
   console.log(chalk.green('With: '), config);
 };
 
@@ -63,7 +63,7 @@ export const setConfig = (config: DeepPartial<TScaffoldConfig>): void => {
   set('runtime', { ...oldConfig.runtime, ...config.runtime });
 
   editor.save();
-  console.log(chalk.green(`✅ Success! Created scaffold.config.json in packages/common`));
+  console.log(chalk.green(`✅ Success! Created scaffold.config.json in packages/common/src`));
   console.log(chalk.green('With: '), config);
 };
 
