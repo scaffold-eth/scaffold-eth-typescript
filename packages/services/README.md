@@ -1,6 +1,6 @@
 # Graph-Node
 
-1.  Make sure you are in `packages/advanced/services` direcotry in your terminal before running the following commands and docker is running.
+1.  Make sure you are in `packages/services` directory in your terminal before running the following commands and **`docker`** is also running.
 
       ```bash
       cd graph-node && docker-compose up
