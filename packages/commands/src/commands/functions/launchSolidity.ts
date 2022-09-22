@@ -5,6 +5,7 @@ import shell from 'shelljs';
 
 import { processUnknownArgs } from './processUnknownArgs';
 
+import { printError } from '~~/commands/functions/printError';
 import { load, printConfig } from '~~/helpers/configManager';
 
 const createCommonGeneratedFolder = (): void => {
@@ -25,15 +26,18 @@ export const compileSolidity = (args: string[]): void => {
   createCommonGeneratedFolder();
 
   if (config.build.solidityToolkit === 'hardhat') {
-    shell.exec('yarn workspace @scaffold-eth/solidity compile:hardhat' + passthroughArgs);
+    const output = shell.exec('yarn workspace @scaffold-eth/solidity compile:hardhat' + passthroughArgs);
+    printError(output, 'Could not compile');
   } else if (config.build.solidityToolkit === 'foundry') {
-    shell.exec('yarn workspace @scaffold-eth/solidity compile:foundry' + passthroughArgs);
+    const output = shell.exec('yarn workspace @scaffold-eth/solidity compile:foundry' + passthroughArgs);
+    printError(output, 'Could not compile');
     shell.exec('yarn workspace @scaffold-eth/solidity compile:foundry:post ');
   } else {
     console.log(chalk.red('❌ Error! Invalid solidity toolkit in config!'));
   }
 
-  shell.exec('yarn workspace @scaffold-eth/common contracts:build');
+  const output = shell.exec('yarn workspace @scaffold-eth/common contracts:build');
+  printError(output);
 };
 
 export const deploySolidity = (args: string[]): void => {
@@ -44,10 +48,12 @@ export const deploySolidity = (args: string[]): void => {
   createCommonGeneratedFolder();
 
   if (config.build.solidityToolkit === 'hardhat') {
-    shell.exec('yarn workspace @scaffold-eth/solidity deploy:hardhat' + passthroughArgs);
+    const output = shell.exec('yarn workspace @scaffold-eth/solidity deploy:hardhat' + passthroughArgs);
+    printError(output, 'Could not deploy');
     shell.exec('yarn workspace @scaffold-eth/solidity deploy:hardhat:post');
   } else if (config.build.solidityToolkit === 'foundry') {
-    shell.exec('yarn workspace @scaffold-eth/solidity deploy:foundry' + passthroughArgs);
+    const output = shell.exec('yarn workspace @scaffold-eth/solidity deploy:foundry' + passthroughArgs);
+    printError(output, 'Could not deploy');
     shell.exec('yarn workspace @scaffold-eth/solidity deploy:foundry:post');
   } else {
     console.log(chalk.red('❌ Error! Invalid react build tool in config!'));
