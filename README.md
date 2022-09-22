@@ -152,8 +152,8 @@ Other folders
 
 ```bash
 # for subgraph checkout README.md in following directories
-packages/advanced/subgraph/
-packages/advanced/services/
+packages/subgraph/
+packages/services/
 ```
 
 ## Guides
