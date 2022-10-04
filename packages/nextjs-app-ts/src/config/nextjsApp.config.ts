@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
-import { TNetworkInfo, TEthersProvider } from 'eth-hooks/models';
+import { TEthersProvider } from 'eth-hooks/models';
 import { invariant } from 'ts-invariant';
 
-import { networkDefinitions } from '~common/constants';
+import { networkDefinitions, TNetworkDefinition } from '~common/constants';
 import { scaffoldConfig } from '~common/scaffold.config';
 
 // import { loadScaffoldConfig } from '~common/scaffold.config';
@@ -72,7 +72,7 @@ AVAILABLE_NETWORKS.forEach((t) => {
   );
 });
 
-export const AVAILABLE_NETWORKS_DEFINITIONS: Record<string, TNetworkInfo> = {};
+export const AVAILABLE_NETWORKS_DEFINITIONS: Record<number, TNetworkDefinition> = {};
 AVAILABLE_NETWORKS.forEach(
   (m) => (AVAILABLE_NETWORKS_DEFINITIONS[networkDefinitions[m].chainId] = networkDefinitions[m])
 );
