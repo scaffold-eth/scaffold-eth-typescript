@@ -133,7 +133,7 @@ export const MAINNET_PROVIDER = mainnetProvider;
 // connecting to local provider
 // -------------------
 
-if (DEBUG) console.log('🏠 Connecting to local provider:', networkDefinitions.localhost.url);
+if (DEBUG) console.log('🏠 Connecting to local provider:', networkDefinitions.localhost.rpcUrl);
 
 export const LOCAL_PROVIDER: TEthersProvider | undefined =
   AVAILABLE_NETWORKS_DEFINITIONS[networkDefinitions.localhost.chainId] != null && isDev

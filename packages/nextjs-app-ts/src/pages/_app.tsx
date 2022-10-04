@@ -58,16 +58,18 @@ const ProviderWrapper: FC<{ children?: ReactNode }> = (props) => {
   );
 };
 
+type AppPropsExpanded = AppProps & { pageProps: { dehydratedState: any } };
+
 /**
  * ### Summary
  * The main app component is {@see MainPage} `components/routes/main/MaingPage.tsx`
  * This component sets up all the providers, Suspense and Error handling
  * @returns
  */
-const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Component, ...props }) => {
+const MyApp: NextComponentType<AppContext, AppInitialProps, AppPropsExpanded> = ({ Component, ...props }) => {
   console.log('loading app...');
   const [queryClient] = useState(() => new QueryClient());
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+
   const dehydradedState = props.pageProps.dehydratedState as unknown;
 
   return (
