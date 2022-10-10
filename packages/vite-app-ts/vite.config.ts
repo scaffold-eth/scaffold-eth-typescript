@@ -11,9 +11,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 const isDev = process.env.ENVIRONMENT === 'DEVELOPMENT';
 console.log('env.dev:', process.env.ENVIRONMENT, ' isDev:', isDev);
 console.log();
-console.log(
-  chalk.green('🏁 Make sure to build the contracts with `yarn contracts:build` and deploy them with `yarn deploy`')
-);
+console.log(chalk.green('🏁 Make sure to build the contracts with `yarn compile` and deploy them with `yarn deploy`'));
 console.log();
 
 /**
