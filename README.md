@@ -69,8 +69,8 @@ use `-h` with any command for help.  e.g. yarn set-react -h
 You can change the configuration file to pick different frontends and solidity toolkits.
 
 ```bash
-yarn set-react `nextjs` or `vite`
-yarn set-solidity `hardhat` or `foundry`
+yarn set-react nextjs or vite
+yarn set-solidity hardhat or foundry
 ```
 
 ### Target network
