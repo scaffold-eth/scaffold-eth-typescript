@@ -12,7 +12,7 @@ This is the typescript repo of scaffold-eth. Use scaffold-eth-typescript with:
 
 ### Fork or clone the repo
 
-- You can use the use the template link: [scaffold-eth-typescript template](https://github.com/scaffold-eth/scaffold-eth-typescript/generate)
+- You can use the template link: [scaffold-eth-typescript template](https://github.com/scaffold-eth/scaffold-eth-typescript/generate)
 - You can clone the repo with git
   ```bash
   git clone https://github.com/scaffold-eth/scaffold-eth-typescript.git
@@ -137,7 +137,7 @@ packages/next-app-ts/
 Other commands
 
 ```bash
-# rebuild all contracts, incase of inconsistent state
+# rebuild all contracts, in case of inconsistent state
 yarn contracts:clean
 yarn contracts:build
 # run hardhat commands for the workspace, or see all tasks
